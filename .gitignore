@@ -1,0 +1,24 @@
+2013_Fire_Attack_Airflow_Water_Report.pdf
+
+# latex output files
+*.aux
+*.bak
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.err
+*.glg
+*.glo
+*.gls
+*.ist
+*.lof
+*.log
+*.out
+*.pdfsync
+*.toc
+*.eps
+*.fdb_latexmk
+*.synctex.gz
+*.lot
+*.fls
