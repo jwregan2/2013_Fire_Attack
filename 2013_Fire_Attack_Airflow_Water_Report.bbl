@@ -1,0 +1,91 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.5 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{nty}{nty}
+    \entry{SetraManual}{booklet}{}
+      \list{location}{1}{%
+        {Boxboroguh}%
+      }
+      \field{sortinit}{I}
+      \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
+      \field{labeltitlesource}{title}
+      \field{edition}{G}
+      \field{pubstate}{MA}
+      \field{title}{Installation Guide Setra Systems Model 265 Differential Pressure Transducer}
+      \field{year}{2009}
+    \endentry
+    \entry{BDPInPoolFires}{article}{}
+      \name{author}{2}{}{%
+        {{hash=33d4e5c857f14d0f909de4dae255ff92}{Lent}{L\bibinitperiod}{L.A}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=978efc535272060892a77ae5f7fffb79}{Schneider}{S\bibinitperiod}{M.E.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{a761d9f09851dc97d97eff96182b6b3f}
+      \strng{fullhash}{a761d9f09851dc97d97eff96182b6b3f}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Instrument Society of America}
+      \field{number}{4}
+      \field{title}{The Design and Application of Bi-Directional Velocity Probes for MEasurements in Large Pool Fires}
+      \field{type}{report}
+      \field{volume}{26}
+      \field{year}{1987}
+      \field{pages}{25\bibrangedash 32}
+      \range{pages}{8}
+    \endentry
+    \entry{HeatFluxRoundRobin}{article}{}
+      \name{author}{7}{}{%
+        {{hash=3b554ebe3261b7d2da6dcf779e0a926f}{Pitts}{P\bibinitperiod}{William\bibnamedelima M.}{W\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=1f1874525fd150263ef69f44374a4e2f}{Murthy}{M\bibinitperiod}{Annageri\bibnamedelima V.}{A\bibinitperiod\bibinitdelim V\bibinitperiod}{}{}{}{}}%
+        {{hash=2f27b56dcec6cd0474c1a0d0b841abbc}{De\bibnamedelima Ris}{D\bibinitperiod\bibinitdelim R\bibinitperiod}{John\bibnamedelima L.}{J\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{}{}}%
+        {{hash=d59d04f1aae6858a04867ec59850eb62}{Filtz}{F\bibinitperiod}{Jean-Remy}{J\bibinithyphendelim R\bibinitperiod}{}{}{}{}}%
+        {{hash=cb9da3aa4c75a77125514bf98a16dd3b}{Nygard}{N\bibinitperiod}{Kjell}{K\bibinitperiod}{}{}{}{}}%
+        {{hash=a1d5f2321426f951ec58cb9d7b17315b}{Smith}{S\bibinitperiod}{Debbie}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=a868f9f9bf13389332ac7784c0a35e79}{Wetterlund}{W\bibinitperiod}{Ingrid}{I\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{43bdb3100fb0a5c17e58a660a74ebf88}
+      \strng{fullhash}{0411e3e79a18b65d65cbf74b7a03d8ab}
+      \field{sortinit}{P}
+      \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Fire Safety Journal}
+      \field{title}{Round Robbin Study of Total Heat Flux Gauge Calibration at Fire Laboratories.}
+      \field{volume}{41.6}
+      \field{year}{2006}
+      \field{pages}{459\bibrangedash 475}
+      \range{pages}{17}
+    \endentry
+    \entry{TemperatureHandbook}{book}{}
+      \list{publisher}{1}{%
+        {Omega Engineering}%
+      }
+      \field{sortinit}{T}
+      \field{sortinithash}{423d138a005a533b47e6475e39378bf2}
+      \field{labeltitlesource}{title}
+      \field{edition}{7}
+      \field{title}{The Temperature Handbook}
+      \field{year}{2010}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
