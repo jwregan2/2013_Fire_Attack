@@ -22,3 +22,6 @@
 *.synctex.gz
 *.lot
 *.fls
+*.xml
+*.xwm
+
