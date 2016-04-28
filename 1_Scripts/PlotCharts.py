@@ -44,57 +44,59 @@ Line_Colors = {1:'green', 2:'red',3:'blue',4:'pink',5:'lightgreen',6:'darkblue',
 # Loop through Experiment files
 for experiment in experiments:
 
-	#Read in experiment file
-	Exp_Data = pd.read_csv(data_location + experiment)
+	if not '.DS_Store' in experiment:
 
-	#Get Experiment Name from File
-	Test_Name = experiment[:-4]
+		#Read in experiment file
+		Exp_Data = pd.read_csv(data_location + experiment)
 
-	#Read in Experiment Events
-	Events = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
+		#Get Experiment Name from File
+		Test_Name = experiment[:-4]
 
-	Events = Events.set_index('Event')
+		#Read in Experiment Events
+		Events = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
 
-	#Get End of Experiment Time
-	End_Time = (datetime.datetime.strptime(Events['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
+		Events = Events.set_index('Event')
 
-	print (Test_Name)
-	
-	for chart in charts.index:
-		# output to static HTML file
-		output_file(output_location + chart + ".html", title=chart.replace('_',' '))
+		#Get End of Experiment Time
+		End_Time = (datetime.datetime.strptime(Events['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
 
-		# create a new plot with a title and axis labels
-		p = figure(title=Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '), x_axis_label='Time(sec)', y_axis_label=charts['Y_Label'][chart], height=500, width=1200, tools=TOOLS)
-		p.x_range = Range1d(0,End_Time)
-		p.y_range = Range1d(charts['Y_Min'][chart],charts['Y_Max'][chart])
+		print (Test_Name)
 		
-		print ('Plotting ' + chart.replace('_',' '))
+		for chart in charts.index:
+			# output to static HTML file
+			output_file(output_location + chart + ".html", title=chart.replace('_',' '))
 
-		Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
-		Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
+			# create a new plot with a title and axis labels
+			p = figure(title=Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '), x_axis_label='Time(min)', y_axis_label=charts['Y_Label'][chart], height=500, width=1200, tools=TOOLS)
+			p.x_range = Range1d(0,End_Time)
+			p.y_range = Range1d(charts['Y_Min'][chart],charts['Y_Max'][chart])
+			
+			print ('Plotting ' + chart.replace('_',' '))
 
-		Time = [((t - Ignition).total_seconds())/60 for t in Time]
-		
-		color = 0
-		
-		for channel in channels.get_group(chart).index.values:
-			color = color +1
-			scale_factor = channel_list['ScaleFactor'][channel]
-			offset = channel_list['Offset'][channel]
+			Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+			Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
-			data = Exp_Data[channel] * scale_factor + offset
+			Time = [((t - Ignition).total_seconds())/60 for t in Time]
+			
+			color = 0
+			
+			for channel in channels.get_group(chart).index.values:
+				color = color +1
+				scale_factor = channel_list['ScaleFactor'][channel]
+				offset = channel_list['Offset'][channel]
 
-			p.line(Time, data, legend=channel_list['Title'][channel], line_width=2, color=Line_Colors[color])
-		
-		for event in Events.index.values:
-			if not event == 'Ignition' and not event =='End Experiment':
-				EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
-				EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
-				p.renderers.extend([EventLine])
-				p.text(EventTime/60, charts['Y_Max'][chart]*.95, text=[event], angle=1.57, text_align='right')#, text_color="firebrick", text_align="left", text_font_size="10pt")
+				data = Exp_Data[channel] * scale_factor + offset
 
-		p.legend.location = "top_left"
-		# show(p)			
-		save(p)
-		# exit()
+				p.line(Time, data, legend=channel_list['Title'][channel], line_width=2, color=Line_Colors[color])
+			
+			for event in Events.index.values:
+				if not event == 'Ignition' and not event =='End Experiment':
+					EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
+					EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
+					p.renderers.extend([EventLine])
+					p.text(EventTime/60, charts['Y_Max'][chart]*.95, text=[event], angle=1.57, text_align='right')#, text_color="firebrick", text_align="left", text_font_size="10pt")
+
+			p.legend.location = "top_left"
+			show(p)			
+			# save(p)
+	 
