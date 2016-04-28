@@ -99,4 +99,6 @@ for experiment in experiments:
 			p.legend.location = "top_left"
 			show(p)			
 			# save(p)
+
+			
 	 

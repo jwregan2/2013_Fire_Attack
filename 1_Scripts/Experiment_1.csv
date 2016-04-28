@@ -1,0 +1,22 @@
+
+import os as os
+
+Name = os.listdir()
+
+for n in Name:
+	if 'csv' in n:
+		Experiment_Num = n[:-4]
+
+		Experiment_Num = Experiment_Num[11:]
+
+		Translation = {'1':'12'} 
+
+		New_Number = Translation[Experiment_Num]
+
+		os.rename('Experiment_'+Experiment_Num +'.csv', 'Experiment_' + New_Number + '.csv')
+
+		print()
+
+
+
+
