@@ -1,0 +1,42 @@
+Channel,Title,ScaleFactor,Offset,Chart
+1TC7,Bedroom 1 7ft,1.8,32,Bedroom_1_Temps
+1TC5,Bedroom 1 5ft,1.8,32,Bedroom_1_Temps
+1TC3,Bedroom 1 3ft,1.8,32,Bedroom_1_Temps
+1TC1,Bedroom 1 1ft,1.8,32,Bedroom_1_Temps
+2TC7,Bedroom 2 7ft,1.8,32,Bedroom_2_Temps
+2TC5,Bedroom 2 5ft,1.8,32,Bedroom_2_Temps
+2TC3,Bedroom 2 3ft,1.8,32,Bedroom_2_Temps
+2TC1,Bedroom 2 1ft,1.8,32,Bedroom_2_Temps
+3TC7,End of Hall 7ft,1.8,32,End_Hall_Temps
+3TC6,End of Hall 6ft,1.8,32,End_Hall_Temps
+3TC5,End of Hall 5ft,1.8,32,End_Hall_Temps
+3TC4,End of Hall 4ft,1.8,32,End_Hall_Temps
+3TC3,End of Hall 3ft,1.8,32,End_Hall_Temps
+3TC2,End of Hall 2ft,1.8,32,End_Hall_Temps
+3TC1,End of Hall 1ft,1.8,32,End_Hall_Temps
+4TC7,Middle of Hall 7ft,1.8,32,Middle_Hall_Temps
+4TC6,Middle of Hall 6ft,1.8,32,Middle_Hall_Temps
+4TC5,Middle of Hall 5ft,1.8,32,Middle_Hall_Temps
+4TC4,Middle of Hall 4ft,1.8,32,Middle_Hall_Temps
+4TC3,Middle of Hall 3ft,1.8,32,Middle_Hall_Temps
+4TC2,Middle of Hall 2ft,1.8,32,Middle_Hall_Temps
+4TC1,Middle of Hall 1ft,1.8,32,Middle_Hall_Temps
+5TC7,Start of Hall 7ft,1.8,32,Start_Hall_Temps
+5TC6,Start of Hall 6ft,1.8,32,Start_Hall_Temps
+5TC5,Start of Hall 5ft,1.8,32,Start_Hall_Temps
+5TC4,Start of Hall 4ft,1.8,32,Start_Hall_Temps
+5TC3,Start of Hall 3ft,1.8,32,Start_Hall_Temps
+5TC2,Start of Hall 2ft,1.8,32,Start_Hall_Temps
+5TC1,Start of Hall 1ft,1.8,32,Start_Hall_Temps
+6TC7,Living Room Left 7ft,1.8,32,Living_Room_Left_Temps
+6TC6,Living Room Left 6ft,1.8,32,Living_Room_Left_Temps
+6TC5,Living Room Left 5ft,1.8,32,Living_Room_Left_Temps
+6TC4,Living Room Left 4ft,1.8,32,Living_Room_Left_Temps
+6TC3,Living Room Left 3ft,1.8,32,Living_Room_Left_Temps
+6TC2,Living Room Left 2ft,1.8,32,Living_Room_Left_Temps
+6TC1,Living Room Left 1ft,1.8,32,Living_Room_Left_Temps
+1HF1,Wall Heat Flux 1 Ft,1951,0,Heat_Flux_Wall
+1HF3,Wall Heat Flux 3 Ft,15400,0,Heat_Flux_Wall
+1HF5,Wall Heat Flux 5 Ft,16300,0,Heat_Flux_Wall
+2HF,Floor Heat Flux Half Hall,1965,0,Heat_Flux_Floor
+3HF,Floor Heat Flux End Hall,1919,0,Heat_Flux_Floor

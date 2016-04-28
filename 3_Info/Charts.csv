@@ -1,0 +1,9 @@
+Chart,Units,Y_Label,Y_Min,Y_Max,Secondary_Y_Label,Secondary_Y_Min,Secondary_Y_Max
+Bedroom_1_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371
+Bedroom_2_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371
+End_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371
+Middle_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371
+Start_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371
+Living_Room_Left_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371
+Heat_Flux_Wall,kW,Heat Flux (kW/m2),0,100,,,
+Heat_Flux_Floor,kW,Heat Flux (kW/m2),0,10,,,
