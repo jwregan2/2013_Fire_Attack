@@ -3,10 +3,25 @@ import os as os
 import numpy as np 
 import matplotlib.pyplot as plt 
 import datetime
+import shutil
 from bokeh.charts import Scatter, output_file, show
 from dateutil.relativedelta import relativedelta
 from bokeh.plotting import figure, output_file, show, save
 from bokeh.models import HoverTool, Range1d, Span
+from scipy.signal import butter, filtfilt
+
+
+#Define filter for low pass filtering of pressure/temperature for BDP
+def butter_lowpass(cutoff, fs, order=5):
+    nyq = 0.5 * fs
+    normal_cutoff = cutoff / nyq
+    b, a = butter(order, normal_cutoff, btype='low', analog=False)
+    return b, a
+
+def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
+    b, a = butter_lowpass(cutoff, fs, order=order)
+    y = filtfilt(b, a, data)
+    return y
 
 #Set file locations
 
@@ -24,8 +39,17 @@ channel_list = pd.read_csv(channel_location+'Channels.csv')
 #Set index value for channels as 'Channel'
 channel_list = channel_list.set_index('Channel')
 
-#Create charts data by grouping channels for 'Group'
+#Create charts data by grouping channels for 'Chart'
 channels = channel_list.groupby('Chart')
+
+#Read in calculated channels
+calculated_channels_list = pd.read_csv(channel_location+'Calculated_Channels.csv')
+
+#Read in calculated channels
+calculated_channels_list = calculated_channels_list.set_index('Title')
+
+#Group calculated channels by 'Chart'
+calculated_channels = calculated_channels_list.groupby('Chart')
 
 #Read in Charts
 chart_list = pd.read_csv(channel_location+'Charts.csv')
@@ -46,11 +70,22 @@ for experiment in experiments:
 
 	if not '.DS_Store' in experiment:
 
+
 		#Read in experiment file
 		Exp_Data = pd.read_csv(data_location + experiment)
 
 		#Get Experiment Name from File
 		Test_Name = experiment[:-4]
+
+		output_location = output_location + Test_Name + '/'
+
+		#If the folder exists delete it.
+		if os.path.exists(output_location):
+			shutil.rmtree(output_location)
+
+		#If the folder doesn't exist create it.
+		if not os.path.exists(output_location):
+			os.makedirs(output_location)
 
 		#Read in Experiment Events
 		Events = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
@@ -71,8 +106,6 @@ for experiment in experiments:
 			p.x_range = Range1d(0,End_Time)
 			p.y_range = Range1d(charts['Y_Min'][chart],charts['Y_Max'][chart])
 			
-			print ('Plotting ' + chart.replace('_',' '))
-
 			Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
 			Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
@@ -80,25 +113,66 @@ for experiment in experiments:
 			
 			color = 0
 			
-			for channel in channels.get_group(chart).index.values:
-				color = color +1
-				scale_factor = channel_list['ScaleFactor'][channel]
-				offset = channel_list['Offset'][channel]
+			if charts['Type'][chart] == 'Standard':
 
-				data = Exp_Data[channel] * scale_factor + offset
+				print ('Plotting ' + chart.replace('_',' '))
 
-				p.line(Time, data, legend=channel_list['Title'][channel], line_width=2, color=Line_Colors[color])
-			
-			for event in Events.index.values:
-				if not event == 'Ignition' and not event =='End Experiment':
-					EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
-					EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
-					p.renderers.extend([EventLine])
-					p.text(EventTime/60, charts['Y_Max'][chart]*.95, text=[event], angle=1.57, text_align='right')#, text_color="firebrick", text_align="left", text_font_size="10pt")
+				for channel in channels.get_group(chart).index.values:
+					color = color +1
+					scale_factor = channel_list['ScaleFactor'][channel]
+					offset = channel_list['Offset'][channel]
 
-			p.legend.location = "top_left"
-			show(p)			
-			# save(p)
+					data = Exp_Data[channel] * scale_factor + offset
+
+					p.line(Time, data, legend=channel_list['Title'][channel], line_width=2, color=Line_Colors[color])
+				
+				for event in Events.index.values:
+					if not event == 'Ignition' and not event =='End Experiment':
+						EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
+						EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
+						p.renderers.extend([EventLine])
+						p.text(EventTime/60, charts['Y_Max'][chart]*.95, text=[event], angle=1.57, text_align='right')
+
+				p.legend.location = "top_left"
+				save(p)			
+
+			if charts['Type'][chart] == 'Calculated':
+
+				print ('Plotting ' + chart.replace('_',' '))
+
+				for channel in calculated_channels.get_group(chart).index.values:
+					color = color +1
+					
+					#Get Channel Names from Calculated Channels List
+					temp = calculated_channels_list['Temperature'][channel]
+					press = calculated_channels_list['Pressure'][channel] 
+
+					#Set Temperature Data
+					temp_data = Exp_Data[press]
+					# temp_data = butter_lowpass_filtfilt(Exp_Data[temp],calculated_channels_list['cutoff'][channel], calculated_channels_list['fs'][channel])
+					
+					#Set Pressure Data and filter
+					press_data = Exp_Data[press]
+					press_data = press_data - np.average(press_data[:90]) + 2.5
+					press_data = butter_lowpass_filtfilt(press_data, calculated_channels_list['cutoff'][channel], calculated_channels_list['fs'][channel])
+
+					#Caculate result
+					data = np.sign(press_data-2.5)*0.070*((temp_data+273.15)*(99.6*abs(press_data-2.5)))**0.5
+
+					p.line(Time, data, legend=channel, line_width=2, color=Line_Colors[color])
+
+					ZeroLine = Span(location=0, dimension='width', line_color='black')
+					p.renderers.extend([ZeroLine])
+
+				for event in Events.index.values:
+					if not event == 'Ignition' and not event =='End Experiment':
+						EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
+						EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
+						p.renderers.extend([EventLine])
+						p.text(EventTime/60, charts['Y_Max'][chart]*.95, text=[event], angle=1.57, text_align='right')
+
+				p.legend.location = "top_left"
+				save(p)		
 
 			
 	 
