@@ -1,42 +1,137 @@
-Channel,Title,ScaleFactor,Offset,Chart
-1TC7,Bedroom 1 7ft,1.8,32,Bedroom_1_Temps
-1TC5,Bedroom 1 5ft,1.8,32,Bedroom_1_Temps
-1TC3,Bedroom 1 3ft,1.8,32,Bedroom_1_Temps
-1TC1,Bedroom 1 1ft,1.8,32,Bedroom_1_Temps
-2TC7,Bedroom 2 7ft,1.8,32,Bedroom_2_Temps
-2TC5,Bedroom 2 5ft,1.8,32,Bedroom_2_Temps
-2TC3,Bedroom 2 3ft,1.8,32,Bedroom_2_Temps
-2TC1,Bedroom 2 1ft,1.8,32,Bedroom_2_Temps
-3TC7,End of Hall 7ft,1.8,32,End_Hall_Temps
-3TC6,End of Hall 6ft,1.8,32,End_Hall_Temps
-3TC5,End of Hall 5ft,1.8,32,End_Hall_Temps
-3TC4,End of Hall 4ft,1.8,32,End_Hall_Temps
-3TC3,End of Hall 3ft,1.8,32,End_Hall_Temps
-3TC2,End of Hall 2ft,1.8,32,End_Hall_Temps
-3TC1,End of Hall 1ft,1.8,32,End_Hall_Temps
-4TC7,Middle of Hall 7ft,1.8,32,Middle_Hall_Temps
-4TC6,Middle of Hall 6ft,1.8,32,Middle_Hall_Temps
-4TC5,Middle of Hall 5ft,1.8,32,Middle_Hall_Temps
-4TC4,Middle of Hall 4ft,1.8,32,Middle_Hall_Temps
-4TC3,Middle of Hall 3ft,1.8,32,Middle_Hall_Temps
-4TC2,Middle of Hall 2ft,1.8,32,Middle_Hall_Temps
-4TC1,Middle of Hall 1ft,1.8,32,Middle_Hall_Temps
-5TC7,Start of Hall 7ft,1.8,32,Start_Hall_Temps
-5TC6,Start of Hall 6ft,1.8,32,Start_Hall_Temps
-5TC5,Start of Hall 5ft,1.8,32,Start_Hall_Temps
-5TC4,Start of Hall 4ft,1.8,32,Start_Hall_Temps
-5TC3,Start of Hall 3ft,1.8,32,Start_Hall_Temps
-5TC2,Start of Hall 2ft,1.8,32,Start_Hall_Temps
-5TC1,Start of Hall 1ft,1.8,32,Start_Hall_Temps
-6TC7,Living Room Left 7ft,1.8,32,Living_Room_Left_Temps
-6TC6,Living Room Left 6ft,1.8,32,Living_Room_Left_Temps
-6TC5,Living Room Left 5ft,1.8,32,Living_Room_Left_Temps
-6TC4,Living Room Left 4ft,1.8,32,Living_Room_Left_Temps
-6TC3,Living Room Left 3ft,1.8,32,Living_Room_Left_Temps
-6TC2,Living Room Left 2ft,1.8,32,Living_Room_Left_Temps
-6TC1,Living Room Left 1ft,1.8,32,Living_Room_Left_Temps
-1HF1,Wall Heat Flux 1 Ft,1951,0,Heat_Flux_Wall
-1HF3,Wall Heat Flux 3 Ft,15400,0,Heat_Flux_Wall
-1HF5,Wall Heat Flux 5 Ft,16300,0,Heat_Flux_Wall
-2HF,Floor Heat Flux Half Hall,1965,0,Heat_Flux_Floor
-3HF,Floor Heat Flux End Hall,1919,0,Heat_Flux_Floor
+Channel,Title,ScaleFactor,Offset,Chart,
+1TC7,Bedroom 1 7ft,1.8,32,Bedroom_1_Temps,
+1TC5,Bedroom 1 5ft,1.8,32,Bedroom_1_Temps,
+1TC3,Bedroom 1 3ft,1.8,32,Bedroom_1_Temps,
+1TC1,Bedroom 1 1ft,1.8,32,Bedroom_1_Temps,
+2TC7,Bedroom 2 7ft,1.8,32,Bedroom_2_Temps,
+2TC5,Bedroom 2 5ft,1.8,32,Bedroom_2_Temps,
+2TC3,Bedroom 2 3ft,1.8,32,Bedroom_2_Temps,
+2TC1,Bedroom 2 1ft,1.8,32,Bedroom_2_Temps,
+3TC7,End of Hall 7ft,1.8,32,End_Hall_Temps,
+3TC6,End of Hall 6ft,1.8,32,End_Hall_Temps,
+3TC5,End of Hall 5ft,1.8,32,End_Hall_Temps,
+3TC4,End of Hall 4ft,1.8,32,End_Hall_Temps,
+3TC3,End of Hall 3ft,1.8,32,End_Hall_Temps,
+3TC2,End of Hall 2ft,1.8,32,End_Hall_Temps,
+3TC1,End of Hall 1ft,1.8,32,End_Hall_Temps,
+4TC7,Middle of Hall 7ft,1.8,32,Middle_Hall_Temps,
+4TC6,Middle of Hall 6ft,1.8,32,Middle_Hall_Temps,
+4TC5,Middle of Hall 5ft,1.8,32,Middle_Hall_Temps,
+4TC4,Middle of Hall 4ft,1.8,32,Middle_Hall_Temps,
+4TC3,Middle of Hall 3ft,1.8,32,Middle_Hall_Temps,
+4TC2,Middle of Hall 2ft,1.8,32,Middle_Hall_Temps,
+4TC1,Middle of Hall 1ft,1.8,32,Middle_Hall_Temps,
+5TC7,Start of Hall 7ft,1.8,32,Start_Hall_Temps,
+5TC6,Start of Hall 6ft,1.8,32,Start_Hall_Temps,
+5TC5,Start of Hall 5ft,1.8,32,Start_Hall_Temps,
+5TC4,Start of Hall 4ft,1.8,32,Start_Hall_Temps,
+5TC3,Start of Hall 3ft,1.8,32,Start_Hall_Temps,
+5TC2,Start of Hall 2ft,1.8,32,Start_Hall_Temps,
+5TC1,Start of Hall 1ft,1.8,32,Start_Hall_Temps,
+6TC7,Living Room Left 7ft,1.8,32,Living_Room_Left_Temps,
+6TC6,Living Room Left 6ft,1.8,32,Living_Room_Left_Temps,
+6TC5,Living Room Left 5ft,1.8,32,Living_Room_Left_Temps,
+6TC4,Living Room Left 4ft,1.8,32,Living_Room_Left_Temps,
+6TC3,Living Room Left 3ft,1.8,32,Living_Room_Left_Temps,
+6TC2,Living Room Left 2ft,1.8,32,Living_Room_Left_Temps,
+6TC1,Living Room Left 1ft,1.8,32,Living_Room_Left_Temps,
+7TC7,Living Room Right 7ft,1.8,32,Living_Room_Right_Temps,
+7TC6,Living Room Right 6ft,1.8,32,Living_Room_Right_Temps,
+7TC5,Living Room Right 5ft,1.8,32,Living_Room_Right_Temps,
+7TC4,Living Room Right 4ft,1.8,32,Living_Room_Right_Temps,
+7TC3,Living Room Right 3ft,1.8,32,Living_Room_Right_Temps,
+7TC2,Living Room Right 2ft,1.8,32,Living_Room_Right_Temps,
+7TC1,Living Room Right 1ft,1.8,32,Living_Room_Right_Temps,
+8TC7,Bedroom 4 7ft,1.8,32,Bedroom_4_Temps,
+8TC5,Bedroom 4 5ft,1.8,32,Bedroom_4_Temps,
+8TC3,Bedroom 4 3ft,1.8,32,Bedroom_4_Temps,
+8TC1,Bedroom 4 1ft,1.8,32,Bedroom_4_Temps,
+9TC7,Bedroom 3 7ft,1.8,32,Bedroom_3_Temps,
+9TC5,Bedroom 3 5ft,1.8,32,Bedroom_3_Temps,
+9TC3,Bedroom 3 3ft,1.8,32,Bedroom_3_Temps,
+9TC1,Bedroom 3 1ft,1.8,32,Bedroom_3_Temps,
+1TCV7,Victim 1 7ft,1.8,32,Victim_1_Temps,
+1TCV5,Victim 1 5ft,1.8,32,Victim_1_Temps,
+1TCV3,Victim 1 3ft,1.8,32,Victim_1_Temps,
+1TCV1,Victim 1 1ft,1.8,32,Victim_1_Temps,
+2TCV7,Victim 2 7ft,1.8,32,Victim_2_Temps,
+2TCV5,Victim 2 5ft,1.8,32,Victim_2_Temps,
+2TCV3,Victim 2 3ft,1.8,32,Victim_2_Temps,
+2TCV1,Victim 2 1ft,1.8,32,Victim_2_Temps,
+3TCV7,Victim 3 7ft,1.8,32,Victim_3_Temps,
+3TCV5,Victim 3 5ft,1.8,32,Victim_3_Temps,
+3TCV3,Victim 3 3ft,1.8,32,Victim_3_Temps,
+3TCV1,Victim 3 1ft,1.8,32,Victim_3_Temps,
+4TCV7,Victim 4 7ft,1.8,32,Victim_4_Temps,
+4TCV5,Victim 4 5ft,1.8,32,Victim_4_Temps,
+4TCV3,Victim 4 3ft,1.8,32,Victim_4_Temps,
+4TCV1,Victim 4 1ft,1.8,32,Victim_4_Temps,
+5TCV7,Victim 5 7ft,1.8,32,Victim_5_Temps,
+5TCV5,Victim 5 5ft,1.8,32,Victim_5_Temps,
+5TCV3,Victim 5 3ft,1.8,32,Victim_5_Temps,
+5TCV1,Victim 5 1ft,1.8,32,Victim_5_Temps,
+1TCS1,Victim 1 Skin 1,1.8,32,Victim_1_Skin_Temps,
+1TCS2,Victim 1 Skin 2,1.8,32,Victim_1_Skin_Temps,
+1TCS3,Victim 1 Skin 3,1.8,32,Victim_1_Skin_Temps,
+1TCS4,Victim 1 Skin 4,1.8,32,Victim_1_Skin_Temps,
+1TCS5,Victim 1 Skin 5,1.8,32,Victim_1_Skin_Temps,
+1TCS6,Victim 1 Skin 6,1.8,32,Victim_1_Skin_Temps,
+1TCS7,Victim 1 Skin 7,1.8,32,Victim_1_Skin_Temps,
+1TCS8,Victim 1 Skin 8,1.8,32,Victim_1_Skin_Temps,
+1TCS9,Victim 1 Skin 9,1.8,32,Victim_1_Skin_Temps,
+1TCS10,Victim 1 Skin 10,1.8,32,Victim_1_Skin_Temps,
+1TCS11,Victim 1 Skin 11,1.8,32,Victim_1_Skin_Temps,
+1TCS12,Victim 1 Skin 12,1.8,32,Victim_1_Skin_Temps,
+2TCS1,Victim 2 Skin 1,1.8,32,Victim_2_Skin_Temps,
+2TCS2,Victim 2 Skin 2,1.8,32,Victim_2_Skin_Temps,
+2TCS3,Victim 2 Skin 3,1.8,32,Victim_2_Skin_Temps,
+2TCS4,Victim 2 Skin 4,1.8,32,Victim_2_Skin_Temps,
+2TCS5,Victim 2 Skin 5,1.8,32,Victim_2_Skin_Temps,
+2TCS6,Victim 2 Skin 6,1.8,32,Victim_2_Skin_Temps,
+2TCS7,Victim 2 Skin 7,1.8,32,Victim_2_Skin_Temps,
+2TCS8,Victim 2 Skin 8,1.8,32,Victim_2_Skin_Temps,
+2TCS9,Victim 2 Skin 9,1.8,32,Victim_2_Skin_Temps,
+2TCS10,Victim 2 Skin 10,1.8,32,Victim_2_Skin_Temps,
+2TCS11,Victim 2 Skin 11,1.8,32,Victim_2_Skin_Temps,
+2TCS12,Victim 2 Skin 12,1.8,32,Victim_2_Skin_Temps,
+3TCS1,Victim 3 Skin 1,1.8,32,Victim_3_Skin_Temps,
+3TCS2,Victim 3 Skin 2,1.8,32,Victim_3_Skin_Temps,
+3TCS3,Victim 3 Skin 3,1.8,32,Victim_3_Skin_Temps,
+3TCS4,Victim 3 Skin 4,1.8,32,Victim_3_Skin_Temps,
+3TCS5,Victim 3 Skin 5,1.8,32,Victim_3_Skin_Temps,
+3TCS6,Victim 3 Skin 6,1.8,32,Victim_3_Skin_Temps,
+3TCS7,Victim 3 Skin 7,1.8,32,Victim_3_Skin_Temps,
+3TCS8,Victim 3 Skin 8,1.8,32,Victim_3_Skin_Temps,
+3TCS9,Victim 3 Skin 9,1.8,32,Victim_3_Skin_Temps,
+3TCS10,Victim 3 Skin 10,1.8,32,Victim_3_Skin_Temps,
+3TCS11,Victim 3 Skin 11,1.8,32,Victim_3_Skin_Temps,
+3TCS12,Victim 3 Skin 12,1.8,32,Victim_3_Skin_Temps,
+4TCS1,Victim 4 Skin 1,1.8,32,Victim_4_Skin_Temps,
+4TCS2,Victim 4 Skin 2,1.8,32,Victim_4_Skin_Temps,
+4TCS3,Victim 4 Skin 3,1.8,32,Victim_4_Skin_Temps,
+4TCS4,Victim 4 Skin 4,1.8,32,Victim_4_Skin_Temps,
+4TCS5,Victim 4 Skin 5,1.8,32,Victim_4_Skin_Temps,
+4TCS6,Victim 4 Skin 6,1.8,32,Victim_4_Skin_Temps,
+4TCS7,Victim 4 Skin 7,1.8,32,Victim_4_Skin_Temps,
+4TCS8,Victim 4 Skin 8,1.8,32,Victim_4_Skin_Temps,
+4TCS9,Victim 4 Skin 9,1.8,32,Victim_4_Skin_Temps,
+4TCS10,Victim 4 Skin 10,1.8,32,Victim_4_Skin_Temps,
+4TCS11,Victim 4 Skin 11,1.8,32,Victim_4_Skin_Temps,
+4TCS12,Victim 4 Skin 12,1.8,32,Victim_4_Skin_Temps,
+5TCS1,Victim 5 Skin 1,1.8,32,Victim_5_Skin_Temps,
+5TCS2,Victim 5 Skin 2,1.8,32,Victim_5_Skin_Temps,
+5TCS3,Victim 5 Skin 3,1.8,32,Victim_5_Skin_Temps,
+5TCS4,Victim 5 Skin 4,1.8,32,Victim_5_Skin_Temps,
+5TCS5,Victim 5 Skin 5,1.8,32,Victim_5_Skin_Temps,
+5TCS6,Victim 5 Skin 6,1.8,32,Victim_5_Skin_Temps,
+5TCS7,Victim 5 Skin 7,1.8,32,Victim_5_Skin_Temps,
+5TCS8,Victim 5 Skin 8,1.8,32,Victim_5_Skin_Temps,
+5TCS9,Victim 5 Skin 9,1.8,32,Victim_5_Skin_Temps,
+5TCS10,Victim 5 Skin 10,1.8,32,Victim_5_Skin_Temps,
+5TCS11,Victim 5 Skin 11,1.8,32,Victim_5_Skin_Temps,
+5TCS12,Victim 5 Skin 12,1.8,32,Victim_5_Skin_Temps,
+1HF1,Wall Heat Flux 1 Ft,1951,0,Heat_Flux_Wall,a
+1HF3,Wall Heat Flux 3 Ft,15400,0,Heat_Flux_Wall,a
+1HF5,Wall Heat Flux 5 Ft,16300,0,Heat_Flux_Wall,a
+2HF,Floor Heat Flux Half Hall,1965,0,Heat_Flux_Floor,a
+3HF,Floor Heat Flux End Hall,1919,0,Heat_Flux_Floor,a
