@@ -24,6 +24,12 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
     y = filtfilt(b, a, data)
     return y
 
+tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
+			(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
+			(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
+			(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
+			(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+
 #Set file locations
 
 data_location = '../2_Data/'
@@ -33,6 +39,8 @@ channel_location = '../3_Info/'
 chart_location = '../3_Info/'
 
 output_location_init = '../0_Images/Results/'
+
+# info_file = '../3_Info/Description_of_Experiments.csv'
 
 # Read in channel list
 channel_list = pd.read_csv(channel_location+'Channels.csv')
@@ -99,15 +107,14 @@ for f in os.listdir(data_location):
 			if charts['Type'][chart] == 'DualAxis':
 
 				# create a new plot with a title and axis labels
-				fig, ax1 = plt.subplots()
-
+				fig = plt.subplots()
+            	# Scale the RGB values to the [0, 1] range, which is the format matplotlib accepts.
 				tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
 							(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
 							(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
 							(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
 							(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
 
-            	# Scale the RGB values to the [0, 1] range, which is the format matplotlib accepts.
 				for i in range(len(tableau20)):
 					r, g, b = tableau20[i]
 					tableau20[i] = (r / 255., g / 255., b / 255.)
@@ -129,16 +136,17 @@ for f in os.listdir(data_location):
 
 					data = Exp_Data[channel] * scale_factor + offset
 					data_c = (5.0/9.0)*(data-32.0)
-
-					ax1.plot(Time, data, linewidth=2, label=channel, marker=next(plot_markers), markevery=int(End_Time*60/50))
+					plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+					plt.plot(Time, data, linewidth=2, label=channel, marker=next(plot_markers), markevery=int(End_Time*60/50))
+					ax1 = plt.gca()
 					ax1.set_xlabel('Time (min)')
 					ax1.set_ylabel(charts['Y_Label'][chart])
 					ax1.set_ylim ([charts['Y_Min'][chart],charts['Y_Max'][chart]])
-					ax2 = ax1.twinx()
-					ax2.set_ylim([charts['Secondary_Y_Min'][chart],charts['Secondary_Y_Max'][chart]])
-					ax2.set_ylabel(charts['Secondary_Y_Label'][chart])
-					# plt.title(Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '))
 					plt.legend(loc='upper left')
+				ax2 = ax1.twinx()
+				ax2.set_ylim([charts['Secondary_Y_Min'][chart],charts['Secondary_Y_Max'][chart]])
+				ax2.set_ylabel(charts['Secondary_Y_Label'][chart])
+				# plt.title(Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '))
 
 				for event in Events.index.values:
 					if not event == 'Ignition' and not event =='End Experiment':
@@ -153,14 +161,13 @@ for f in os.listdir(data_location):
 
 				# create a new plot with a title and axis labels
 				fig = plt.figure()
-
+            	# Scale the RGB values to the [0, 1] range, which is the format matplotlib accepts.
 				tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
 							(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
 							(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
 							(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
 							(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
 
-            	# Scale the RGB values to the [0, 1] range, which is the format matplotlib accepts.
 				for i in range(len(tableau20)):
 					r, g, b = tableau20[i]
 					tableau20[i] = (r / 255., g / 255., b / 255.)
