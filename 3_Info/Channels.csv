@@ -135,3 +135,15 @@ Channel,Title,ScaleFactor,Offset,Chart,
 1HF5,Wall Heat Flux 5 Ft,16300,0,Heat_Flux_Wall,a
 2HF,Floor Heat Flux Half Hall,1965,0,Heat_Flux_Floor,a
 3HF,Floor Heat Flux End Hall,1919,0,Heat_Flux_Floor,a
+1O2V,Victim 1 Oxygen,5,0,Victim_1_Gas,
+1COV,Victim 1 Carbon Monoxide,10000,0,Victim_1_Carbon_Monoxide,
+1CO2V,Victim 1 Carbon Dioxide,5,0,Victim_1_Gas,
+2O2V,Victim 2 Oxygen,5,0,Victim_2_Gas,
+2COV,Victim 2 Carbon Monoxide,10000,0,Victim_2_Carbon_Monoxide,
+2CO2V,Victim 2 Carbon Dioxide,5,0,Victim_2_Gas,
+3O2V,Victim 3 Oxygen,5,0,Victim_3_Gas,
+3COV,Victim 3 Carbon Monoxide,10000,0,Victim_3_Carbon_Monoxide,
+3CO2V,Victim 3 Carbon Dioxide,5,0,Victim_3_Gas,
+4O2V,Victim 4 Oxygen,5,0,Victim_4_Gas,
+4COV,Victim 4 Carbon Monoxide,10000,0,Victim_4_Carbon_Monoxide,
+4CO2V,Victim 4 Carbon Dioxide,5,0,Victim_4_Gas,

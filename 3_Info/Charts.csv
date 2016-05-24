@@ -1,23 +1,31 @@
 Chart,Units,Y_Label,Y_Min,Y_Max,Secondary_Y_Label,Secondary_Y_Min,Secondary_Y_Max,Type
-Bedroom_1_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Bedroom_2_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-End_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Middle_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Start_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Living_Room_Left_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Living_Room_Right_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Bedroom_4_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Bedroom_3_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Victim_1_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Victim_2_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Victim_3_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Victim_4_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Victim_5_Temps,Temp,Temperature (Degrees F),0,2500,Temperature C,0,1371,Standard
-Victim_1_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature C,0,1371,Standard
-Victim_2_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature C,0,1371,Standard
-Victim_3_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature C,0,1371,Standard
-Victim_4_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature C,0,1371,Standard
-Victim_5_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature C,0,1371,Standard
+Bedroom_1_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Bedroom_2_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+End_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Middle_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Start_Hall_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Living_Room_Left_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Living_Room_Right_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Bedroom_4_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Bedroom_3_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_1_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_2_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_3_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_4_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_5_Temps,Temp,Temperature (Degrees F),0,2500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_1_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_2_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_3_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_4_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_5_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-17.8,1371,DualAxis
+Victim_1_Gas,%,Percentage,0,25,,,,Standard
+Victim_1_Carbon_Monoxide,PPM,PPM,0,30000,,,,Standard
+Victim_2_Gas,%,Percentage,0,25,,,,Standard
+Victim_2_Carbon_Monoxide,PPM,PPM,0,30000,,,,Standard
+Victim_3_Gas,%,Percentage,0,25,,,,Standard
+Victim_3_Carbon_Monoxide,PPM,PPM,0,30000,,,,Standard
+Victim_4_Gas,%,Percentage,0,25,,,,Standard
+Victim_4_Carbon_Monoxide,PPM,PPM,0,30000,,,,Standard
 Heat_Flux_Wall,kW,Heat Flux (kW/m2),0,100,,,,Standard
 Heat_Flux_Floor,kW,Heat Flux (kW/m2),0,10,,,,Standard
 Bedroom_1_Window,Velocity,Velocity (m/s),-5,5,,,,Calculated
