@@ -40,16 +40,22 @@ chart_location = '../3_Info/'
 
 output_location_init = '../0_Images/Results/'
 
-# info_file = '../3_Info/Description_of_Experiments.csv'
+info_file = '../3_Info/Description_of_Experiments.csv'
 
 # Read in channel list
-channel_list = pd.read_csv(channel_location+'Channels.csv')
+channel_list_a = pd.read_csv(channel_location+'Channels_A.csv')
+
+channel_list_b = pd.read_csv(channel_location+'Channels_B.csv')
 
 #Set index value for channels as 'Channel'
-channel_list = channel_list.set_index('Channel')
+channel_list_a = channel_list_a.set_index('Channel')
+
+channel_list_b = channel_list_b.set_index('Channel')
 
 #Create charts data by grouping channels for 'Chart'
-channels = channel_list.groupby('Chart')
+channels_a = channel_list_a.groupby('Chart')
+
+channels_b = channel_list_b.groupby('Chart')
 
 #Read in calculated channels
 calculated_channels_list = pd.read_csv(channel_location+'Calculated_Channels.csv')
@@ -67,6 +73,10 @@ chart_list = pd.read_csv(channel_location+'Charts.csv')
 charts = chart_list.set_index('Chart')
 
 skip_files = ['example']
+
+Exp_Des = pd.read_csv(info_file)
+
+Exp_Des = Exp_Des.set_index('Experiment')
 
 # Loop through Experiment files
 for f in os.listdir(data_location):
@@ -92,6 +102,12 @@ for f in os.listdir(data_location):
 		if not os.path.exists(output_location):
 			os.makedirs(output_location)
 
+		Exp_Num = Test_Name[:-5]
+
+		House = Exp_Des['House'][int(Exp_Num[11:])]
+
+		Speed = Exp_Des['Speed'][int(Exp_Num[11:])]
+
 		#Read in Experiment Events
 		Events = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
 
@@ -102,6 +118,14 @@ for f in os.listdir(data_location):
 
 		print (Test_Name)
 		
+		if House == 'a':
+			channels = channels_a
+			channel_list = channel_list_a
+
+		if House == 'b':
+			channels = channels_b
+			channel_list = channel_list_b
+
 		for chart in charts.index:
 			
 			if charts['Type'][chart] == 'DualAxis':
@@ -122,8 +146,14 @@ for f in os.listdir(data_location):
 				plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 				xlim ([0,End_Time])
 				
-				#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
-				Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+				if Speed == 'low':
+					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
+					Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+
+				if Speed == 'high':
+					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
+					Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+
 				Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
 				#Setting time equal to the elapsed time minus the ignition time which yields a test time with ignition a 0 seconds/minutes.
@@ -131,28 +161,47 @@ for f in os.listdir(data_location):
 
 				print ('Plotting ' + chart.replace('_',' '))
 				for channel in channels.get_group(chart).index.values:
-					scale_factor = channel_list['ScaleFactor'][channel]
-					offset = channel_list['Offset'][channel]
 
-					data = Exp_Data[channel] * scale_factor + offset
-					data_c = (5.0/9.0)*(data-32.0)
-					plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-					plt.plot(Time, data, linewidth=2, label=channel, marker=next(plot_markers), markevery=int(End_Time*60/50))
-					ax1 = plt.gca()
-					ax1.set_xlabel('Time (min)')
-					ax1.set_ylabel(charts['Y_Label'][chart])
-					ax1.set_ylim ([charts['Y_Min'][chart],charts['Y_Max'][chart]])
-					plt.legend(loc='upper left')
+					if channel in Exp_Data.columns:
+						print (channel)
+						scale_factor = channel_list['ScaleFactor'][channel]
+						offset = channel_list['Offset'][channel]
+
+						data = Exp_Data[channel] * scale_factor + offset
+						data_c = (5.0/9.0)*(data-32.0)
+						plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+						plt.plot(Time, data, linewidth=2, label=channel, marker=next(plot_markers), markevery=int(End_Time*60/5))
+						ax1 = plt.gca()
+						ax1.set_xlabel('Time (min)')
+						ax1.set_ylabel(charts['Y_Label'][chart])
+						ax1.set_ylim ([charts['Y_Min'][chart],charts['Y_Max'][chart]])
+						plt.legend(loc='upper left',fontsize=8,handlelength=3)
 				ax2 = ax1.twinx()
 				ax2.set_ylim([charts['Secondary_Y_Min'][chart],charts['Secondary_Y_Max'][chart]])
 				ax2.set_ylabel(charts['Secondary_Y_Label'][chart])
 				# plt.title(Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '))
 
-				for event in Events.index.values:
-					if not event == 'Ignition' and not event =='End Experiment':
-						EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
-						plt.axvline(EventTime/60, color='0.5', lw=1)
-						plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
+				ax3=plt.twiny()
+				ax3.set_xlim(0,End_Time)
+				EventTime=list(range(len(Events.index.values)))
+
+				for i in range(len(Events.index.values)):
+					#if not Events.index.values[i] == 'Ignition' and not Events.index.values[i] =='End Experiment':
+			
+						EventTime[i] = (datetime.datetime.strptime(Events['Time'][Events.index.values[i]], '%H:%M:%S')-Ignition).total_seconds()
+						#EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
+
+						plt.axvline(EventTime[i],color='.01',lw=1) 
+
+				ax3.set_xticks(EventTime)
+				plt.setp(plt.xticks()[1], rotation=30)		
+				ax3.set_xticklabels(Events.index.values, fontsize=4, ha='left')
+
+				# for event in Events.index.values:
+				# 	if not event == 'Ignition' and not event =='End Experiment':
+				# 		EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
+				# 		plt.axvline(EventTime/60, color='0.5', lw=1)
+				# 		plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
 
 				plt.savefig(output_location + chart + '.pdf')
 				plt.close('all')
@@ -176,8 +225,14 @@ for f in os.listdir(data_location):
 				xlim ([0,End_Time])
 				ylim ([charts['Y_Min'][chart],charts['Y_Max'][chart]])
 
-				#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
-				Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+				if Speed == 'low':
+					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
+					Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+
+				if Speed == 'high':
+					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
+					Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+
 				Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
 				#Setting time equal to the elapsed time minus the ignition time which yields a test time with ignition a 0 seconds/minutes.
@@ -185,23 +240,41 @@ for f in os.listdir(data_location):
 
 				print ('Plotting ' + chart.replace('_',' '))
 				for channel in channels.get_group(chart).index.values:
-					scale_factor = channel_list['ScaleFactor'][channel]
-					offset = channel_list['Offset'][channel]
 
-					data = Exp_Data[channel] * scale_factor + offset
+					if channel in Exp_Data.columns:
 
-					plt.plot(Time, data, linewidth=2,label=channel,
-								marker=next(plot_markers),markevery=int(End_Time*60/50))
-					plt.xlabel('Time (min)')
-					plt.ylabel(charts['Y_Label'][chart])
-					# plt.title(Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '))
-					plt.legend(loc='upper left')
+						scale_factor = channel_list['ScaleFactor'][channel]
+						offset = channel_list['Offset'][channel]
 
-				for event in Events.index.values:
-					if not event == 'Ignition' and not event =='End Experiment':
-						EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
-						plt.axvline(EventTime/60, color='0.5', lw=1)
-						plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
+						data = Exp_Data[channel] * scale_factor + offset
+
+						plt.plot(Time, data, linewidth=2,label=channel, marker=next(plot_markers),markevery=int(End_Time*60/5))
+						plt.xlabel('Time (min)')
+						plt.ylabel(charts['Y_Label'][chart])
+						# plt.title(Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '))
+						plt.legend(loc='upper left',fontsize=8,handlelength=3)
+
+				ax3=plt.twiny()
+				ax3.set_xlim(0,End_Time)
+				EventTime=list(range(len(Events.index.values)))
+
+				for i in range(len(Events.index.values)):
+					#if not Events.index.values[i] == 'Ignition' and not Events.index.values[i] =='End Experiment':
+			
+						EventTime[i] = (datetime.datetime.strptime(Events['Time'][Events.index.values[i]], '%H:%M:%S')-Ignition).total_seconds()
+						#EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
+
+						plt.axvline(EventTime[i],color='.01',lw=1) 
+
+				ax3.set_xticks(EventTime)
+				plt.setp(plt.xticks()[1], rotation=30)		
+				ax3.set_xticklabels(Events.index.values, fontsize=4, ha='left')
+
+					# for event in Events.index.values:
+					# 	if not event == 'Ignition' and not event =='End Experiment':
+					# 		EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
+					# 		plt.axvline(EventTime/60, color='0.5', lw=1)
+					# 		plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
 
 				plt.savefig(output_location + chart + '.pdf')
 				plt.close('all')
@@ -226,8 +299,14 @@ for f in os.listdir(data_location):
 				xlim ([0,End_Time])
 				ylim ([charts['Y_Min'][chart],charts['Y_Max'][chart]])
 
-				#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
-				Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+				if Speed == 'low':
+					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
+					Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+
+				if Speed == 'high':
+					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
+					Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+
 				Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
 				#Setting time equal to the elapsed time minus the ignition time which yields a test time with ignition a 0 seconds/minutes.
@@ -254,17 +333,35 @@ for f in os.listdir(data_location):
 					data = np.sign(press_data-2.5)*0.070*((temp_data+273.15)*(99.6*abs(press_data-2.5)))**0.5
 
 					plt.plot(Time, data, linewidth=2,label=channel,
-								marker=next(plot_markers),markevery=int(End_Time*60/50))
+								marker=next(plot_markers),markevery=int(End_Time*60/5))
 					plt.xlabel('Time (min)')
 					plt.ylabel(charts['Y_Label'][chart])
 					# plt.title(Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '))
-					plt.legend(loc='upper left')
+					plt.legend(loc='upper left',fontsize=8,handlelength=3)
 
-				for event in Events.index.values:
-					if not event == 'Ignition' and not event =='End Experiment':
-						EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
-						plt.axvline(EventTime/60, color='0.5', lw=1)
-						plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
+					plt.axhline(0, linewidth=1)
+
+				ax3=plt.twiny()
+				ax3.set_xlim(0,End_Time)
+				EventTime=list(range(len(Events.index.values)))
+
+				for i in range(len(Events.index.values)):
+					#if not Events.index.values[i] == 'Ignition' and not Events.index.values[i] =='End Experiment':
+			
+						EventTime[i] = (datetime.datetime.strptime(Events['Time'][Events.index.values[i]], '%H:%M:%S')-Ignition).total_seconds()
+						#EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
+
+						plt.axvline(EventTime[i],color='.01',lw=1) 
+
+				ax3.set_xticks(EventTime)
+				plt.setp(plt.xticks()[1], rotation=30)		
+				ax3.set_xticklabels(Events.index.values, fontsize=4, ha='left')
+
+				# for event in Events.index.values:
+				# 	if not event == 'Ignition' and not event =='End Experiment':
+				# 		EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
+				# 		plt.axvline(EventTime/60, color='0.5', lw=1)
+				# 		plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
 
 				plt.savefig(output_location + chart + '.pdf')
 				plt.close('all')
