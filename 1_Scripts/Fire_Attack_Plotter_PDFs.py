@@ -224,6 +224,7 @@ for f in os.listdir(data_location):
 				plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 				xlim ([0,End_Time])
 				ylim ([charts['Y_Min'][chart],charts['Y_Max'][chart]])
+				ax=plt.gca()
 
 				if Speed == 'low':
 					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.

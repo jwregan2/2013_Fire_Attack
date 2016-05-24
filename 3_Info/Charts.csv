@@ -18,14 +18,14 @@ Victim_2_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-
 Victim_3_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-17.8,1371,DualAxis
 Victim_4_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-17.8,1371,DualAxis
 Victim_5_Skin_Temps,Temp,Temperature (Degrees F),0,500,Temperature (Degrees C),-17.8,1371,DualAxis
-Victim_1_Gas,%,Percentage,0,25,,,,Gas
-Victim_1_Carbon_Monoxide,PPM,PPM,0,30000,,,,Gas
-Victim_2_Gas,%,Percentage,0,25,,,,Gas
-Victim_2_Carbon_Monoxide,PPM,PPM,0,30000,,,,Gas
-Victim_3_Gas,%,Percentage,0,25,,,,Gas
-Victim_3_Carbon_Monoxide,PPM,PPM,0,30000,,,,Gas
-Victim_4_Gas,%,Percentage,0,25,,,,Gas
-Victim_4_Carbon_Monoxide,PPM,PPM,0,30000,,,,Gas
+Victim_1_Gas,Concentration,Gas Concentration (%),0,25,,,,Gas
+Victim_1_Carbon_Monoxide,Concentration,Gas Concentration (PPM),0,50000,,,,Gas
+Victim_2_Gas,Concentration,Gas Concentration (%),0,25,,,,Gas
+Victim_2_Carbon_Monoxide,Concentration,Gas Concentration (PPM),0,50000,,,,Gas
+Victim_3_Gas,Concentration,Gas Concentration (%),0,25,,,,Gas
+Victim_3_Carbon_Monoxide,Concentration,Gas Concentration (PPM),0,50000,,,,Gas
+Victim_4_Gas,Concentration,Gas Concentration (%),0,25,,,,Gas
+Victim_4_Carbon_Monoxide,Concentration,Gas Concentration (PPM),0,50000,,,,Gas
 Heat_Flux_Wall,kW,Heat Flux (kW/m2),0,100,,,,Standard
 Heat_Flux_Floor,kW,Heat Flux (kW/m2),0,10,,,,Standard
 Bedroom_1_Window,Velocity,Velocity (m/s),-5,5,,,,Calculated
