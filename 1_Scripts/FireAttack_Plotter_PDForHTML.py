@@ -25,7 +25,7 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
 
 #Set Chart Type
 
-chart_type = '.pdf'
+chart_type = '.html'
 
 #Set file locations
 data_location = '../2_Data/'
@@ -34,7 +34,11 @@ channel_location = '../3_Info/'
 
 chart_location = '../3_Info/'
 
-output_location = '../0_Images/Results/'
+output_location = '../4_Results_Module/'
+
+#Read in Experiment Discriptions
+Exp_Des = pd.read_csv(channel_location + 'Description_of_Experiments.csv')
+Exp_Des = Exp_Des.set_index('Experiment')
 
 # Read in channel list
 channel_list = pd.read_csv(channel_location+'Channels.csv')
@@ -69,16 +73,21 @@ experiments = os.listdir(data_location)
 #Colors to cycle through for each chart.
 Line_Colors = {1:'green', 2:'red',3:'blue',4:'pink',5:'lightgreen',6:'darkblue',7:'goldenrod'}
 
+files_to_skip = ['.DS_Store','Example_Data.csv']
+
 # Loop through Experiment files
 for experiment in experiments:
 
-	if not '.DS_Store' in experiment:
+	if not experiment in files_to_skip:
 
 		#Read in experiment file
 		Exp_Data = pd.read_csv(data_location + experiment)
 
 		#Get Experiment Name from File
 		Test_Name = experiment[:-4]
+
+		Exp_Num = Test_Name[:-5]
+		Exp_Num = int(Exp_Num[11:])
 
 		output_location = output_location + Test_Name + '/'
 
@@ -89,6 +98,8 @@ for experiment in experiments:
 		#If the folder doesn't exist create it.
 		if not os.path.exists(output_location):
 			os.makedirs(output_location)
+
+		Speed  = Exp_Des['Speed'][Exp_Num]
 
 		#Read in Experiment Events
 		Events = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
@@ -111,7 +122,12 @@ for experiment in experiments:
 				p.x_range = Range1d(0,End_Time)
 				p.y_range = Range1d(charts['Y_Min'][chart],charts['Y_Max'][chart])
 				
-				Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+				
+				if Speed == 'high':
+					Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+				if Speed == 'low':
+					Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+				
 				Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
 				Time = [((t - Ignition).total_seconds())/60 for t in Time]
@@ -194,8 +210,13 @@ for experiment in experiments:
 					plt.ylim(charts['Y_Min'][chart],charts['Y_Max'][chart])
 					plt.xlabel('Time(min)', fontsize=20)
 					plt.ylabel(charts['Y_Label'][chart],fontsize=20)
+					
+					if Speed == 'high':
+						Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+
+					if Speed == 'low':
+						Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
 				
-					Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
 					Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
 					Time = [((t - Ignition).total_seconds())/60 for t in Time]

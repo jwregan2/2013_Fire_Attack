@@ -39,5 +39,9 @@ for experiment in experiments:
 		
 		New_Data.index = [ t.strftime('%H:%M:%S.%f') for t in New_Data.index]
 		
-		New_Data.to_csv(data_location + '/Resampled_Data/' + experiment)
+		New_Data = New_Data.reset_index()
+
+		New_Data = New_Data.rename(columns={'index': 'Elapsed Time'})
+
+		New_Data.to_csv(data_location + '/Resampled_Data/' + experiment, index=False)
 
