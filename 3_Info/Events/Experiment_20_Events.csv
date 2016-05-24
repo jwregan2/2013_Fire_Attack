@@ -1,7 +1,7 @@
-Date and Time,Event,Time
-121,Ignition,0:02:08
-540,Exterior Suppression BR1 Window Solid Stream,0:09:00
-550,Front Door Open,0:09:32
-550,Attack Team Enters,0:09:42
-,Room Suppression,0:10:42
-850,End Experiment,0:14:14
+Event,Time
+Ignition,0:02:08
+Exterior Suppression BR1 Window Solid Stream,0:09:00
+Front Door Open,0:09:32
+Attack Team Enters,0:09:42
+Room Suppression,0:10:42
+End Experiment,0:14:14

@@ -152,7 +152,7 @@ for f in os.listdir(data_location):
 
 				if Speed == 'high':
 					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
-					Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+					Time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data['Elapsed Time']]
 
 				Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
@@ -163,7 +163,7 @@ for f in os.listdir(data_location):
 				for channel in channels.get_group(chart).index.values:
 
 					if channel in Exp_Data.columns:
-						print (channel)
+						
 						scale_factor = channel_list['ScaleFactor'][channel]
 						offset = channel_list['Offset'][channel]
 
@@ -206,7 +206,7 @@ for f in os.listdir(data_location):
 				plt.savefig(output_location + chart + '.pdf')
 				plt.close('all')
 
-			if charts['Type'][chart] == 'Standard':
+			if charts['Type'][chart] == 'Standard' or charts['Type'][chart] == 'Gas':
 
 				# create a new plot with a title and axis labels
 				fig = plt.figure()
@@ -231,12 +231,16 @@ for f in os.listdir(data_location):
 
 				if Speed == 'high':
 					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
-					Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+					Time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data['Elapsed Time']]
 
 				Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
 				#Setting time equal to the elapsed time minus the ignition time which yields a test time with ignition a 0 seconds/minutes.
-				Time = [((t - Ignition).total_seconds())/60 for t in Time]
+
+				if charts['Type'][chart] == 'Gas':
+					Time = [(((t - Ignition).total_seconds())/60)-float(channel_list['TransportTime'][channel])/60.0 for t in Time]
+				else:
+					Time = [((t - Ignition).total_seconds())/60 for t in Time]
 
 				print ('Plotting ' + chart.replace('_',' '))
 				for channel in channels.get_group(chart).index.values:
@@ -305,7 +309,7 @@ for f in os.listdir(data_location):
 
 				if Speed == 'high':
 					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
-					Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+					Time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data['Elapsed Time']]
 
 				Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 

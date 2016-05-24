@@ -1,7 +1,7 @@
-Date and Time,Event,Time
-2016-03-03-08:41:10,Ignition,0:05:03
-2016-03-03-08:49:12,Front Door Open,0:13:01
-,Attack Team Enters,0:13:16
-2016-03-03-08:49:27,Burst Suppression,0:13:21
-,Hall Suppression,0:13:30
-2016-03-03-08:55:40,End Experiment,0:19:41
+Event,Time
+Ignition,0:05:03
+Front Door Open,0:13:01
+Attack Team Enters,0:13:16
+Burst Suppression,0:13:21
+Hall Suppression,0:13:30
+End Experiment,0:19:41

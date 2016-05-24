@@ -1,8 +1,8 @@
-Date and Time,Event,Time
-2016-03-02-09:29:28,Ignition,0:05:06
-2016-03-02-09:34:59,Exterior Suppression BR1 Window Solid Stream,0:10:30
-2016-03-02-09:35:13,Front Door Open,0:10:41
-,Attack Team Enters,0:10:48
-,Burst Suppression,0:10:51
-,Room Suppression,0:11:13
-2016-03-02-09:41:28,End Experiment,0:17:10
+Event,Time
+Ignition,0:05:06
+Exterior Suppression BR1 Window Solid Stream,0:10:30
+Front Door Open,0:10:41
+Attack Team Enters,0:10:48
+Burst Suppression,0:10:51
+Room Suppression,0:11:13
+End Experiment,0:17:10

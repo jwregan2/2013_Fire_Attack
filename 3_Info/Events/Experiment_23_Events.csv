@@ -1,14 +1,7 @@
-Date and Time,Event,Time
-2016-02-29-11:48:08,Ignition,0:05:07
-2016-02-29-11:53:40,Exterior Suppression BR1 Window Narrow Fog,0:10:33
-,Front Door Open,0:10:48
-,Attack Team Enters,0:10:57
-,Hall Suppression ,0:11:08
-2016-02-29-12:00:09,End Experiment,0:17:12
-,,
-,,
-,,
-,,
-,,
-,,
-,,
+Event,Time
+Ignition,0:05:07
+Exterior Suppression BR1 Window Narrow Fog,0:10:33
+Front Door Open,0:10:48
+Attack Team Enters,0:10:57
+Hall Suppression ,0:11:08
+End Experiment,0:17:12
