@@ -36,6 +36,8 @@ for experiment in experiments:
 		Exp_Data = Exp_Data.set_index(Exp_Data['Elapsed Time'])
 		
 		New_Data = Exp_Data.resample('100L').mean()
-
+		
+		New_Data.index = [ t.strftime('%H:%M:%S.%f') for t in New_Data.index]
+		
 		New_Data.to_csv(data_location + '/Resampled_Data/' + experiment)
 
