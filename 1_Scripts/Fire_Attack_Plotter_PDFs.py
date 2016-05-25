@@ -168,8 +168,7 @@ for f in os.listdir(data_location):
 						offset = channel_list['Offset'][channel]
 
 						data = Exp_Data[channel] * scale_factor + offset
-						data_c = (5.0/9.0)*(data-32.0)
-						plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+						data_c = Exp_Data[channel]
 						plt.plot(Time, data, linewidth=2, label=channel, marker=next(plot_markers), markevery=int(End_Time*60/5))
 						ax1 = plt.gca()
 						ax1.set_xlabel('Time (min)')
@@ -203,7 +202,7 @@ for f in os.listdir(data_location):
 				# 		plt.axvline(EventTime/60, color='0.5', lw=1)
 				# 		plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
 
-				plt.savefig(output_location + chart + '.pdf')
+				plt.savefig(output_location + chart + '.png')
 				plt.close('all')
 
 			if charts['Type'][chart] == 'Standard' or charts['Type'][chart] == 'Gas':
@@ -224,7 +223,6 @@ for f in os.listdir(data_location):
 				plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 				xlim ([0,End_Time])
 				ylim ([charts['Y_Min'][chart],charts['Y_Max'][chart]])
-				ax=plt.gca()
 
 				if Speed == 'low':
 					#Set time to elapsed time column in experimental data and pull ignition time from events csv file.
@@ -281,7 +279,7 @@ for f in os.listdir(data_location):
 					# 		plt.axvline(EventTime/60, color='0.5', lw=1)
 					# 		plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
 
-				plt.savefig(output_location + chart + '.pdf')
+				plt.savefig(output_location + chart + '.png')
 				plt.close('all')
 				
 			if charts['Type'][chart] == 'Calculated':
@@ -368,5 +366,5 @@ for f in os.listdir(data_location):
 				# 		plt.axvline(EventTime/60, color='0.5', lw=1)
 				# 		plt.text(EventTime/60, charts['Y_Max'][chart]*.95, [event], rotation=60, horizontalalignment='right')
 
-				plt.savefig(output_location + chart + '.pdf')
+				plt.savefig(output_location + chart + '.png')
 				plt.close('all')
