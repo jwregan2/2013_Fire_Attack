@@ -32,7 +32,7 @@ tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
 
 #Set file locations
 
-data_location = '../2_Data/'
+data_location = '../2_Data/Smaller_Data/'
 
 channel_location = '../3_Info/'
 
@@ -341,8 +341,8 @@ for f in os.listdir(data_location):
 					plt.ylabel(charts['Y_Label'][chart])
 					# plt.title(Test_Name.replace('_',' ') + ' ' + chart.replace('_',' '))
 					plt.legend(loc='upper left',fontsize=8,handlelength=3)
-
 					plt.axhline(0, linewidth=1)
+
 
 				ax3=plt.twiny()
 				ax3.set_xlim(0,End_Time)
