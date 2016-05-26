@@ -1,7 +1,7 @@
 #2013 Fire Attack Project
 DHS Grant
 
-#About Experiments:
+About Experiments:
 --------------------------------------------------------------------
 | Experiment | Description                         |
 |------------|------------------------------------:|
