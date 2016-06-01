@@ -177,6 +177,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find temperature type in channels csv
 				if channel_list['Type'][channel] == 'Temperature':
+					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					# Set y-label to degrees F with LaTeX syntax
@@ -196,6 +197,7 @@ for f in os.listdir(data_location):
 
                 # If statement to find velocity type in channels csv
 				if channel_list['Type'][channel] == 'Velocity':
+					Data_Time = Time
 					# Define cutoff and fs for filtering 
 					cutoff = 50
 					fs = 700
@@ -213,6 +215,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find heat flux type in channels csv
 				if channel_list['Type'][channel] == 'Heat Flux':
+					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
@@ -222,14 +225,22 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
-					# Time = [(((t - Ignition).total_seconds())/60)-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Gas Concentration (%)', fontsize = 16)
 					axis_scale = 'Y Scale Gas'
 
+				# If statement to find gas type in channels csv
+				if channel_list['Type'][channel] == 'Carbon Monoxide':
+					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					# Set data to include slope and intercept
+					current_data = current_data * scale_factor + offset
+					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)
+					axis_scale = 'Y Scale Carbon Monoxide'
+
 				# Plot channel data or save channel data for later usage, depending on plot mode
-				plt.plot(Time,
+				plt.plot(Data_Time,
 					current_data,
 					lw=1.5,
 					marker=next(plot_markers),

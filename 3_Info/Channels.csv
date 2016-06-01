@@ -136,16 +136,16 @@ Channel,Title,ScaleFactor_A,ScaleFactor_B,Offset,Transport_Time_A,Transport_Time
 2HF,Floor Heat Flux Half Hall,1965,2026,0,0,0,Heat_Flux_Floor,Heat Flux
 3HF,Floor Heat Flux End Hall,1919,1848,0,0,0,Heat_Flux_Floor,Heat Flux
 1O2V,Victim 1 Oxygen,5,5,0,23,29,Victim_1_Gas,Gas
-1COV,Victim 1 Carbon Monoxide,10000,10000,0,23,29,Victim_1_Carbon_Monoxide,Gas
+1COV,Victim 1 Carbon Monoxide,10000,10000,0,23,29,Victim_1_Carbon_Monoxide,Carbon Monoxide
 1CO2V,Victim 1 Carbon Dioxide,5,5,0,23,29,Victim_1_Gas,Gas
 2O2V,Victim 2 Oxygen,5,5,0,23,30,Victim_2_Gas,Gas
-2COV,Victim 2 Carbon Monoxide,10000,10000,0,23,30,Victim_2_Carbon_Monoxide,Gas
+2COV,Victim 2 Carbon Monoxide,10000,10000,0,23,30,Victim_2_Carbon_Monoxide,Carbon Monoxide
 2CO2V,Victim 2 Carbon Dioxide,5,5,0,23,30,Victim_2_Gas,Gas
 3O2V,Victim 3 Oxygen,5,5,0,24,31,Victim_3_Gas,Gas
-3COV,Victim 3 Carbon Monoxide,10000,10000,0,24,31,Victim_3_Carbon_Monoxide,Gas
+3COV,Victim 3 Carbon Monoxide,10000,10000,0,24,31,Victim_3_Carbon_Monoxide,Carbon Monoxide
 3CO2V,Victim 3 Carbon Dioxide,5,5,0,24,31,Victim_3_Gas,Gas
 4O2V,Victim 4 Oxygen,5,5,0,29,30,Victim_4_Gas,Gas
-4COV,Victim 4 Carbon Monoxide,10000,10000,0,29,30,Victim_4_Carbon_Monoxide,Gas
+4COV,Victim 4 Carbon Monoxide,10000,10000,0,29,30,Victim_4_Carbon_Monoxide,Carbon Monoxide
 4CO2V,Victim 4 Carbon Dioxide,5,5,0,29,30,Victim_4_Gas,Gas
 1BDP5V,Bedroom 1 Window Top,1,1,0,0,0,Bedroom_1_Window,Velocity
 1BDP4V,Bedroom 1 Window Top Middle,1,1,0,0,0,Bedroom_1_Window,Velocity

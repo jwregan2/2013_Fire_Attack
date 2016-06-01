@@ -186,6 +186,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find temperature type in channels csv
 				if channel_list['Type'][channel] == 'Temperature':
+					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					# Set y-label to degrees F with LaTeX syntax
@@ -204,6 +205,7 @@ for f in os.listdir(data_location):
 
                 # If statement to find velocity type in channels csv
 				if channel_list['Type'][channel] == 'Velocity':
+					Data_Time = Time
 					# Define cutoff and fs for filtering 
 					cutoff = 50
 					fs = 700
@@ -221,6 +223,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find heat flux type in channels csv
 				if channel_list['Type'][channel] == 'Heat Flux':
+					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Heat Flux (kW/m^2)'
@@ -236,8 +239,17 @@ for f in os.listdir(data_location):
 					y_label='Gas Concentration (%)'
 					axis_scale = 'Y Scale Gas'
 					hover_value = 'Gas'
+
+				# If statement to find gas type in channels csv
+				if channel_list['Type'][channel] == 'Carbon Monoxide':
+					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					# Set data to include slope and intercept
+					current_data = current_data * scale_factor + offset
+					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)
+					axis_scale = 'Y Scale Carbon Monoxide'
+
 				# Plot channel data with legend from channel list and using tableau colors, in addition to x-axis range
-				x= Time
+				x= Data_Time
 				y= current_data
 				channel_label = np.tile(channel_list['Title'][channel],[len(x),1])
 				source = ColumnDataSource({'channels':channel_label})
