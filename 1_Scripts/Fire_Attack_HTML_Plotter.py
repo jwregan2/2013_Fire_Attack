@@ -53,13 +53,10 @@ Exp_Des = pd.read_csv(info_file)
 Exp_Des = Exp_Des.set_index('Experiment')
 
 # Set files to skip in experimental directory
-
-skip_files = ['example']
+# skip_files = ['example']
 
 #Set Tools for Bokeh Plots
 TOOLS = 'box_zoom,box_select,resize,reset,hover,pan,wheel_zoom'
-
-
 
 # Loop through Experiment files
 for f in os.listdir(data_location):
@@ -106,7 +103,6 @@ for f in os.listdir(data_location):
 		print ()
 		print (Test_Name)
 		 
-
 		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
 		if Speed == 'low':
 			#Set time to elapsed time column in experimental data.
@@ -124,9 +120,10 @@ for f in os.listdir(data_location):
 		# Adjust time for ignition offset
 		Time = [((t - Ignition).total_seconds())/60 for t in Time]
 
-		#Get End of Experiment Time
+		# Get End of Experiment Time
 		End_Time = (datetime.datetime.strptime(Events['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
 		
+		# Sets scale factor (heat flux constants) and transport time (gas) based on which house the experiment was done in
 		if House == 'a':
 			scalefactor = 'ScaleFactor_A'
 			Transport_Time = 'Transport_Time_A'
@@ -137,13 +134,11 @@ for f in os.listdir(data_location):
 
 		# Begin plotting
 
+		# Begin cycling through groups 
 		for group in channel_groups.groups:
 			# Skip excluded groups listed in test description file
 			if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
 				continue
-
-   #          #Create figure
-			# fig = plt.figure()
 
    #          # Define 20 color pallet using RGB values
 			tableau20 = cycle([(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -152,10 +147,6 @@ for f in os.listdir(data_location):
 						(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
 						(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)])
 			color=tableau20
-			# # Define RGB values in pallet 
-			# for i in range(len(tableau20)):
-			# 		r, g, b = tableau20[i]
-			# 		tableau20[i] = (r / 255., g / 255., b / 255.)
 
 			# # Plot style - cycle through 20 color pallet and define markers to cycle through
 			# plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
@@ -164,11 +155,12 @@ for f in os.listdir(data_location):
 			# Print 'Plotting Chart XX'
 			print ('Plotting ' + group.replace('_',' '))
 			
+			# Create figure with set x-axis, set size, and available tools in bokeh package
 			p = figure( x_axis_label='Time(min)',  height=500, width=1200, tools=TOOLS)
+
 			# Begin cycling through channels
 			for channel in channel_groups.get_group(group).index.values:
 			
-
 				# Skip plot quantity if channel name is blank
 				if pd.isnull(channel):
 					continue
@@ -203,7 +195,6 @@ for f in os.listdir(data_location):
 					#Set scaling dependent on axis scale defined above
 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 5/9 - 32
 
-
                 # Set parameters for velocity plots
 
                 # If statement to find velocity type in channels csv
@@ -234,20 +225,15 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
-					# Time = [(((t - Ignition).total_seconds())/60)-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Gas Concentration (%)'
 					axis_scale = 'Y Scale Gas'
 
-				# Plot channel data or save channel data for later usage, depending on plot mode
-				
-				
+				# Plot channel data with legend from channel list and using tableau colors, in addition to x-axis range
 				p.line(Time, current_data, legend=channel_list['Title'][channel], line_width=2, color=next(color))
 				p.x_range = Range1d(0,End_Time)
-
-				
-				
 
 				# Scale y-axis limit based on specified range in test description file
 				if axis_scale == 'Y Scale BDP':
@@ -259,7 +245,6 @@ for f in os.listdir(data_location):
 
             # Set axis options, legend, tickmarks, etc.
 
-
 			# Secondary y-axis parameters
 			if secondary_axis_label:     
 				if axis_scale == 'Y Scale BDP':
@@ -270,9 +255,7 @@ for f in os.listdir(data_location):
 					p.add_layout(LinearAxis(y_range_name=secondary_axis_label, axis_label=secondary_axis_label), 'right')
 				else:
 					p.extra_y_ranges={secondary_axis_label:Range1d(0,secondary_axis_scale)}
-					p.add_layout(LinearAxis(y_range_name=secondary_axis_label, axis_label=secondary_axis_label), 'right')
-				
-				
+					p.add_layout(LinearAxis(y_range_name=secondary_axis_label, axis_label=secondary_axis_label), 'right')	
 
 			try:
 				for event in Events.index.values:
@@ -280,8 +263,7 @@ for f in os.listdir(data_location):
 							EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
 							EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
 							p.renderers.extend([EventLine])
-							p.text(EventTime/60, charts['Y_Max'][chart]*.95, text=[event], angle=1.57, text_align='right')
-
+							p.text(EventTime/60, Exp_Des[axis_scale][Test_Name]*.95, text=[event], angle=1.57, text_align='right')
 
                 # # Add vertical lines and labels for timing information (if available)
                 # ax3 = ax1.twiny()
@@ -297,8 +279,11 @@ for f in os.listdir(data_location):
                 # plt.xlim([0, end_of_test - start_of_test])
                 # # Increase figure size for plot labels at top
                 # fig.set_size_inches(10, 6)
+
 			except:
 				pass
+
+			p.legend.location = "top_left"
 			output_file(output_location + group + '.html', title=group.replace('_',' '))
 
 			save(p)
