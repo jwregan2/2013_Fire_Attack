@@ -13,7 +13,6 @@ from bokeh.plotting import figure, output_file, show, save,ColumnDataSource,rese
 from bokeh.models import HoverTool, Range1d, Span, LinearAxis
 from bokeh.resources import CDN
 from scipy.signal import butter, filtfilt
-from matplotlib import pyplot as plt
 
 # Define filter for low pass filtering of pressure/temperature for BDP
 def butter_lowpass(cutoff, fs, order=5):
