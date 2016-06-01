@@ -9,9 +9,11 @@ from scipy.signal import butter, filtfilt
 from itertools import cycle
 from bokeh.charts import Scatter, output_file, show
 from dateutil.relativedelta import relativedelta
-from bokeh.plotting import figure, output_file, show, save
+from bokeh.plotting import figure, output_file, show, save,ColumnDataSource,reset_output
 from bokeh.models import HoverTool, Range1d, Span, LinearAxis
+from bokeh.resources import CDN
 from scipy.signal import butter, filtfilt
+from matplotlib import pyplot as plt
 
 # Define filter for low pass filtering of pressure/temperature for BDP
 def butter_lowpass(cutoff, fs, order=5):
@@ -53,10 +55,13 @@ Exp_Des = pd.read_csv(info_file)
 Exp_Des = Exp_Des.set_index('Experiment')
 
 # Set files to skip in experimental directory
-# skip_files = ['example']
+skip_files = ['example']
 
 #Set Tools for Bokeh Plots
-TOOLS = 'box_zoom,box_select,resize,reset,hover,pan,wheel_zoom'
+TOOLS = 'box_zoom,reset,hover,pan,wheel_zoom'
+
+# Specify name
+specific_name = 'Experiment_1_Data'
 
 # Loop through Experiment files
 for f in os.listdir(data_location):
@@ -68,11 +73,17 @@ for f in os.listdir(data_location):
 
 		# Read in experiment file
 		experiment = f
-		# exp = experiment[11:-9]
 		Exp_Data = pd.read_csv(data_location + experiment)
+		# Exp_Data = Exp_Data.rolling(window=10, center=True).mean()
 
 		# Get experiment name from file
 		Test_Name = experiment[:-4]
+
+		print ('--- Loaded ' + Test_Name + ' ---')
+
+		 # uncomment if you want to only plot a single test
+		# if specific_name != Test_Name:
+		# 	continue
 
 		# Grab experiment number from test name
 		Exp_Num = Test_Name[:-5]
@@ -100,9 +111,6 @@ for f in os.listdir(data_location):
 		# Set index of experiment events files to Event
 		Events = Events.set_index('Event')
 
-		print ()
-		print (Test_Name)
-		 
 		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
 		if Speed == 'low':
 			#Set time to elapsed time column in experimental data.
@@ -136,11 +144,12 @@ for f in os.listdir(data_location):
 
 		# Begin cycling through groups 
 		for group in channel_groups.groups:
+
 			# Skip excluded groups listed in test description file
 			if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
 				continue
 
-   #          # Define 20 color pallet using RGB values
+			# Define 20 color pallet using RGB values
 			tableau20 = cycle([(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
 						(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
 						(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
@@ -148,15 +157,12 @@ for f in os.listdir(data_location):
 						(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)])
 			color=tableau20
 
-			# # Plot style - cycle through 20 color pallet and define markers to cycle through
-			# plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-			# plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
-
 			# Print 'Plotting Chart XX'
 			print ('Plotting ' + group.replace('_',' '))
 			
 			# Create figure with set x-axis, set size, and available tools in bokeh package
-			p = figure( x_axis_label='Time(min)',  height=500, width=1200, tools=TOOLS)
+			output_file(output_location + group + '.html',mode='cdn')
+			p = figure( x_axis_label='Time(min)',  height=500, width=1200, tools=TOOLS, title=group.replace('_',' '),x_range = Range1d(0,End_Time))
 
 			# Begin cycling through channels
 			for channel in channel_groups.get_group(group).index.values:
@@ -184,17 +190,17 @@ for f in os.listdir(data_location):
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					# Set y-label to degrees F with LaTeX syntax
-					y_label='Temperature ($^\circ$F)'
+					y_label='Temperature (Degrees F)'
 					# Search for skin inside description of events file for scaling
 					if 'skin' in group:
 						axis_scale = 'Y Scale Skin Temperature'
 					else: # Default to standard temperature scale
 						axis_scale = 'Y Scale Temperature'
 					# Set secondary y-axis label to degrees C
-					secondary_axis_label = 'Temperature ($^\circ$C)'
+					secondary_axis_label = 'Temperature (Degrees C)'
 					#Set scaling dependent on axis scale defined above
 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 5/9 - 32
-
+					hover_value = 'Temperature'
                 # Set parameters for velocity plots
 
                 # If statement to find velocity type in channels csv
@@ -211,16 +217,16 @@ for f in os.listdir(data_location):
 					axis_scale = 'Y Scale BDP'
 					secondary_axis_label = 'Velocity (mph)'
 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 2.23694
-
+					hover_value = 'Velocity'
                 # Set parameters for heat flux plots
 
 				# If statement to find heat flux type in channels csv
 				if channel_list['Type'][channel] == 'Heat Flux':
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					y_label='Heat Flux (kW/m$^2$)'
+					y_label='Heat Flux (kW/m^2)'
 					axis_scale = 'Y Scale Heat Flux'
-
+					hover_value = 'Heat Flux'
 				# Set parameters for gas plots
 
 				# If statement to find gas type in channels csv
@@ -230,11 +236,15 @@ for f in os.listdir(data_location):
 					current_data = current_data * scale_factor + offset
 					y_label='Gas Concentration (%)'
 					axis_scale = 'Y Scale Gas'
-
+					hover_value = 'Gas'
 				# Plot channel data with legend from channel list and using tableau colors, in addition to x-axis range
-				p.line(Time, current_data, legend=channel_list['Title'][channel], line_width=2, color=next(color))
-				p.x_range = Range1d(0,End_Time)
-
+				x= Time
+				y= current_data
+				channel_label = np.tile(channel_list['Title'][channel],[len(x),1])
+				source = ColumnDataSource({'channels':channel_label})
+				p.line(x, y, legend=channel_list['Title'][channel], line_width=2, color=next(color),source=source)
+				hover=p.select(dict(type=HoverTool))
+				hover.tooltips = [('Time','$x{1.11}'),(hover_value,'$y{0.0}'),('Channel','@channels')]
 				# Scale y-axis limit based on specified range in test description file
 				if axis_scale == 'Y Scale BDP':
 					p.y_range = Range1d(-np.float(Exp_Des[axis_scale][Test_Name]),np.float(Exp_Des[axis_scale][Test_Name]))
@@ -255,8 +265,7 @@ for f in os.listdir(data_location):
 					p.add_layout(LinearAxis(y_range_name=secondary_axis_label, axis_label=secondary_axis_label), 'right')
 				else:
 					p.extra_y_ranges={secondary_axis_label:Range1d(0,secondary_axis_scale)}
-					p.add_layout(LinearAxis(y_range_name=secondary_axis_label, axis_label=secondary_axis_label), 'right')	
-
+					p.add_layout(LinearAxis(y_range_name=secondary_axis_label, axis_label=secondary_axis_label), 'right')
 			try:
 				for event in Events.index.values:
 						if not event == 'Ignition' and not event =='End Experiment':
@@ -264,26 +273,8 @@ for f in os.listdir(data_location):
 							EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
 							p.renderers.extend([EventLine])
 							p.text(EventTime/60, Exp_Des[axis_scale][Test_Name]*.95, text=[event], angle=1.57, text_align='right')
-
-                # # Add vertical lines and labels for timing information (if available)
-                # ax3 = ax1.twiny()
-                # ax3.set_xlim(ax1_xlims)
-                # # Remove NaN items from event timeline
-                # events = all_times[test_name].dropna()
-                # # Ignore events that are commented starting with a pound sign
-                # events = events[~events.str.startswith('#')]
-                # [plt.axvline(_x - start_of_test, color='0.50', lw=1) for _x in events.index.values]
-                # ax3.set_xticks(events.index.values - start_of_test)
-                # plt.setp(plt.xticks()[1], rotation=60)
-                # ax3.set_xticklabels(events.values, fontsize=8, ha='left')
-                # plt.xlim([0, end_of_test - start_of_test])
-                # # Increase figure size for plot labels at top
-                # fig.set_size_inches(10, 6)
-
 			except:
 				pass
-
 			p.legend.location = "top_left"
-			output_file(output_location + group + '.html', title=group.replace('_',' '))
-
 			save(p)
+			reset_output()
