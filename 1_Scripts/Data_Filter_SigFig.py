@@ -40,7 +40,6 @@ for experiment in experiments:
 			elif 'BDP' and 'V' in channel:
 				Exp_Data[channel] = Exp_Data[channel].map(lambda x: '%1.4f' % x)
 			elif 'PT' in channel:
-				print(channel + ' is a Pressure')
 				Exp_Data[channel] = Exp_Data[channel].map(lambda x: '%1.3f' % x)
 			elif 'BDP' and 'T' in channel:
 				Exp_Data[channel] = Exp_Data[channel].map(lambda x: '%2.1f' % x)
