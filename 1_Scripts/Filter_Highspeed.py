@@ -36,7 +36,10 @@ for experiment in experiments:
 		Exp_Data = Exp_Data.set_index(Exp_Data['Elapsed Time'])
 		
 		New_Data = Exp_Data.resample('100L').mean()
-		
+
+		# print(New_Data.head())
+		# exit()
+				
 		New_Data.index = [ t.strftime('%H:%M:%S.%f') for t in New_Data.index]
 		
 		New_Data = New_Data.reset_index()
