@@ -28,7 +28,7 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
 
 # Set file locations
 
-data_location = '../2_Data/'
+data_location = '../2_Data/Smaller_Data/'
 
 channel_location = '../3_Info/'
 

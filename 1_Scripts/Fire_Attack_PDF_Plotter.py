@@ -183,7 +183,7 @@ for f in os.listdir(data_location):
 					# Set y-label to degrees F with LaTeX syntax
 					plt.ylabel('Temperature ($^\circ$F)', fontsize = 16)
 					# Search for skin inside description of events file for scaling
-					if 'skin' in group:
+					if 'Skin' in group:
 						axis_scale = 'Y Scale Skin Temperature'
 					else: # Default to standard temperature scale
 						axis_scale = 'Y Scale Temperature'
@@ -312,6 +312,6 @@ for f in os.listdir(data_location):
 			plt.legend(handles1, labels1, loc='upper left', fontsize=8, handlelength=3)
 
             # Save plot to file
-			plt.savefig(output_location + group + '.pdf')
+			plt.savefig(output_location + group + '.png')
 			plt.close('all')
    
