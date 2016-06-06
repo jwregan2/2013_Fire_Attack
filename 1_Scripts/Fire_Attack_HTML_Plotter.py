@@ -233,7 +233,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
-					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Gas Concentration (%)'
@@ -242,7 +242,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Carbon Monoxide':
-					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)

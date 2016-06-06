@@ -96,7 +96,6 @@ for f in os.listdir(data_location):
 		print ()
 		print (Test_Name)
 		 
-
 		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
 		if Speed == 'low':
 			#Set time to elapsed time column in experimental data.
@@ -225,7 +224,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
-					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Gas Concentration (%)', fontsize = 16)
@@ -233,7 +232,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Carbon Monoxide':
-					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)
@@ -292,6 +291,7 @@ for f in os.listdir(data_location):
 				plt.setp(plt.xticks()[1], rotation=90)		
 				ax3.set_xticklabels(Events.index.values, fontsize=10, ha='left')
 				fig.set_size_inches(20, 16)
+				plt.tight_layout()
                 # # Add vertical lines and labels for timing information (if available)
                 # ax3 = ax1.twiny()
                 # ax3.set_xlim(ax1_xlims)
