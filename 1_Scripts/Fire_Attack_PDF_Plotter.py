@@ -40,7 +40,8 @@ channel_list = pd.read_csv(channel_location+'Channels.csv')
 channel_list = channel_list.set_index('Channel')
 
 # Create groups data by grouping channels for 'Chart'
-channel_groups = channel_list.groupby('Chart')
+channel_groups = channel_list.groupby('Primary_Chart')
+# channel_groups = channel_list.groupby('Secondary_Chart')
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)
@@ -190,7 +191,6 @@ for f in os.listdir(data_location):
 					secondary_axis_label = 'Temperature ($^\circ$C)'
 					#Set scaling dependent on axis scale defined above
 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 5/9 - 32
-
 
                 # Set parameters for velocity plots
 
