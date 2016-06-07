@@ -29,7 +29,7 @@ channel_location = '../3_Info/'
 
 chart_location = '../3_Info/'
 
-output_location_init = '../0_Images/Results/'
+output_location_init = '../0_Images/Results/Comparisons'
 
 info_file = '../3_Info/Description_of_Experiments.csv'
 
@@ -132,6 +132,13 @@ for f in os.listdir(data_location):
 			if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
 				continue
 
+			Comparison = Exp_Des['Experiments To Compare'][Test_Name]
+		
+			if Comparison == 0:
+				continue
+			elif any([substring in group for substring in Exp_Des['Experiments To Compare'][Test_Name].split('|')]):
+				Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + Comparison + "_Data")
+
             #Create figure
 			fig = plt.figure()
 
@@ -169,6 +176,7 @@ for f in os.listdir(data_location):
 				scale_factor = channel_list[scalefactor][channel]
 				offset = channel_list['Offset'][channel]
 				current_data = Exp_Data[channel]
+				current_data_2 = Exp_Data_2[channel]
 
 				# Set secondary axis default to None, unless otherwise stated below
 				secondary_axis_label = None
@@ -180,6 +188,7 @@ for f in os.listdir(data_location):
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
+					current_data_2 = current_data_2 * scale_factor + offset
 					# Set y-label to degrees F with LaTeX syntax
 					plt.ylabel('Temperature ($^\circ$F)', fontsize = 16)
 					# Search for skin inside description of events file for scaling
@@ -202,8 +211,12 @@ for f in os.listdir(data_location):
 					fs = 700
 					current_data = current_data - np.average(current_data[:90]) + 2.5
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
+					current_data_2 = current_data_2 - np.average(current_data_2[:90]) + 2.5
+					current_data_2 = butter_lowpass_filtfilt(current_data_2, cutoff, fs)
+
 					#Calculate result
 					current_data = np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5
+					current_data_2 = np.sign(current_data_2-2.5)*0.070*((Exp_Data_2[channel[:-1]+'T']+273.15)*(99.6*abs(current_data_2-2.5)))**0.5
 					plt.ylabel('Velocity (m/s)', fontsize=16)
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'
@@ -217,6 +230,7 @@ for f in os.listdir(data_location):
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
+					current_data_2 = current_data_2 * scale_factor + offset
 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
 					axis_scale = 'Y Scale Heat Flux'
 
@@ -227,6 +241,7 @@ for f in os.listdir(data_location):
 					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
+					current_data_2 = current_data_2 * scale_factor + offset
 					plt.ylabel('Gas Concentration (%)', fontsize = 16)
 					axis_scale = 'Y Scale Gas'
 
@@ -235,12 +250,23 @@ for f in os.listdir(data_location):
 					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
+					current_data_2 = current_data_2 * scale_factor + offset
 					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)
 					axis_scale = 'Y Scale Carbon Monoxide'
 
 				# Plot channel data or save channel data for later usage, depending on plot mode
 				plt.plot(Data_Time,
 					current_data,
+					lw=1.5,
+					marker=next(plot_markers),
+					markevery=int(End_Time*60/mark_freq),
+					mew=1.5,
+					mec='none',
+					ms=7,
+					label=channel)
+
+				plt.plot(Data_Time,
+					current_data_2,
 					lw=1.5,
 					marker=next(plot_markers),
 					markevery=int(End_Time*60/mark_freq),
