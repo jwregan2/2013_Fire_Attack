@@ -8,7 +8,7 @@ Experiment_6_Data,6,20,b,low,Bedroom_2_Window,2BDP3V|3TC3|3TCS9|3TCS10,2000,200,
 Experiment_7_Data,7,6|8|11|13|18|20,b,high,Bedroom_2_Window,1TCS7|3TCS9,2000,200,8,50,25,50000
 Experiment_8_Data,8,6|15|18|20,a,high,Bedroom_2_Window,5BDP3V,2000,200,8,50,25,50000
 Experiment_9_Data,7A,1|7|8|10|17,b,high,Bedroom_2_Window|Victim_5_Skin_Temps,3TCS10,2000,200,8,50,25,50000
-Experiment_10_Data,7B,1|7|8|17,b,high,Bedroom_2_Window,None,2000,200,8,50,25,50000
+Experiment_10_Data,7B,1,b,high,Bedroom_2_Window,None,2000,200,8,50,25,50000
 Experiment_11_Data,10,8|16,a,high,Bedroom_2_Window,4BDP4V|2HFS,2000,200,8,50,25,50000
 Experiment_12_Data,11,7|8|11|17,b,low,None,1BDP4V,2000,200,8,50,25,50000
 Experiment_13_Data,12,14|15|16|17|22,b,high,Victim_5_Skin_Temps,None,2000,200,8,50,25,50000

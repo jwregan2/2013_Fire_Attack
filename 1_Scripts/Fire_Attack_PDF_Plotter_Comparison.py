@@ -74,6 +74,21 @@ for f in os.listdir(data_location):
 		# Set output location for results
 		output_location = output_location_init + Test_Name + '/'
 
+		Comparison = Exp_Des['Experiments To Compare'][Test_Name]
+		# Comparison = Exp_Des['Exp Comp'][Test_Name].split('|')
+
+		print(Comparison)
+
+		# if Comparison == 0:
+		# 	continue
+		# elif any([substring in group for substring in Exp_Des['Exp Comp'][Test_Name].split('|')]):
+		# 	Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + Comparison + "_Data")
+
+		if Comparison == 0:
+		 	continue
+		else: 
+			Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + Comparison + "_Data.csv")
+
 		# # If the folder exists delete it.
 		# if os.path.exists(output_location):
 		# 	shutil.rmtree(output_location)
@@ -101,11 +116,13 @@ for f in os.listdir(data_location):
 		if Speed == 'low':
 			#Set time to elapsed time column in experimental data.
 			Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+			Time_2 = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data_2['Elapsed Time']]
 			mark_freq = 15
 
 		if Speed == 'high':
 			#Set time to elapsed time column in experimental data.
 			Time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+			Time_2 = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data_2['Elapsed Time']]
 			mark_freq = 5
 
 		# Pull ignition time from events csv file
@@ -132,14 +149,7 @@ for f in os.listdir(data_location):
 			if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
 				continue
 
-			Comparison = Exp_Des['Experiments To Compare'][Test_Name]
-		
-			if Comparison == 0:
-				continue
-			elif any([substring in group for substring in Exp_Des['Experiments To Compare'][Test_Name].split('|')]):
-				Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + Comparison + "_Data")
-
-            #Create figure
+			#Create figure
 			fig = plt.figure()
 
             # Define 20 color pallet using RGB values
@@ -186,6 +196,7 @@ for f in os.listdir(data_location):
 				# If statement to find temperature type in channels csv
 				if channel_list['Type'][channel] == 'Temperature':
 					Data_Time = Time
+					Data_Time_2 = Time_2
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					current_data_2 = current_data_2 * scale_factor + offset
@@ -206,6 +217,7 @@ for f in os.listdir(data_location):
                 # If statement to find velocity type in channels csv
 				if channel_list['Type'][channel] == 'Velocity':
 					Data_Time = Time
+					Data_Time_2 = Time_2
 					# Define cutoff and fs for filtering 
 					cutoff = 50
 					fs = 700
@@ -228,6 +240,7 @@ for f in os.listdir(data_location):
 				# If statement to find heat flux type in channels csv
 				if channel_list['Type'][channel] == 'Heat Flux':
 					Data_Time = Time
+					Data_Time_2 = Time_2
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					current_data_2 = current_data_2 * scale_factor + offset
@@ -239,6 +252,7 @@ for f in os.listdir(data_location):
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
 					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time_2 = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time_2]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					current_data_2 = current_data_2 * scale_factor + offset
@@ -248,6 +262,7 @@ for f in os.listdir(data_location):
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Carbon Monoxide':
 					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time_2 = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time_2]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					current_data_2 = current_data_2 * scale_factor + offset
@@ -265,7 +280,7 @@ for f in os.listdir(data_location):
 					ms=7,
 					label=channel)
 
-				plt.plot(Data_Time,
+				plt.plot(Data_Time_2,
 					current_data_2,
 					lw=1.5,
 					marker=next(plot_markers),
