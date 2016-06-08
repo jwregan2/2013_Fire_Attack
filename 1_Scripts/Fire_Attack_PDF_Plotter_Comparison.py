@@ -29,7 +29,7 @@ channel_location = '../3_Info/'
 
 chart_location = '../3_Info/'
 
-output_location_init = '../0_Images/Results/Comparisons'
+output_location_init = '../0_Images/Results/Comparisons/'
 
 info_file = '../3_Info/Description_of_Experiments.csv'
 
@@ -71,9 +71,6 @@ for f in os.listdir(data_location):
 		# Grab experiment number from test name
 		Exp_Num = Test_Name[:-5]
 
-		# Set output location for results
-		output_location = output_location_init + Test_Name + '/'
-
 		Comparison = Exp_Des['Experiments To Compare'][Test_Name]
 		# Comparison = Exp_Des['Exp Comp'][Test_Name].split('|')
 
@@ -89,13 +86,16 @@ for f in os.listdir(data_location):
 		else: 
 			Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + Comparison + "_Data.csv")
 
+		# Set output location for results
+		output_location = output_location_init + Exp_Num + "_Experiment_" + Comparison + '/'	
+
 		# # If the folder exists delete it.
 		# if os.path.exists(output_location):
 		# 	shutil.rmtree(output_location)
 
 		# # If the folder doesn't exist create it.
-		# if not os.path.exists(output_location):
-		# 	os.makedirs(output_location)
+		if not os.path.exists(output_location):
+			os.makedirs(output_location)
 
 		# Get which house from description of events file
 		House = Exp_Des['House'][Test_Name]
@@ -130,6 +130,7 @@ for f in os.listdir(data_location):
 
 		# Adjust time for ignition offset
 		Time = [((t - Ignition).total_seconds())/60 for t in Time]
+		Time_2 = [((t - Ignition).total_seconds())/60 for t in Time_2]
 
 		#Get End of Experiment Time
 		End_Time = (datetime.datetime.strptime(Events['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
@@ -230,7 +231,6 @@ for f in os.listdir(data_location):
 					current_data = np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5
 					current_data_2 = np.sign(current_data_2-2.5)*0.070*((Exp_Data_2[channel[:-1]+'T']+273.15)*(99.6*abs(current_data_2-2.5)))**0.5
 					plt.ylabel('Velocity (m/s)', fontsize=16)
-					line_style = '-'
 					axis_scale = 'Y Scale BDP'
 					secondary_axis_label = 'Velocity (mph)'
 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 2.23694
@@ -269,26 +269,11 @@ for f in os.listdir(data_location):
 					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)
 					axis_scale = 'Y Scale Carbon Monoxide'
 
-				# Plot channel data or save channel data for later usage, depending on plot mode
-				plt.plot(Data_Time,
-					current_data,
-					lw=1.5,
-					marker=next(plot_markers),
-					markevery=int(End_Time*60/mark_freq),
-					mew=1.5,
-					mec='none',
-					ms=7,
-					label=channel)
+				# Plot channel data 
+				plt.plot(Data_Time, current_data, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none', ms=7, label=channel)
 
-				plt.plot(Data_Time_2,
-					current_data_2,
-					lw=1.5,
-					marker=next(plot_markers),
-					markevery=int(End_Time*60/mark_freq),
-					mew=1.5,
-					mec='none',
-					ms=7,
-					label=channel)
+				# Plot channel data 2 for second experiment that was compared to
+				plt.plot(Data_Time_2, current_data_2, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none',	ms=7, label=channel, ls = '--')
 
 				# Scale y-axis limit based on specified range in test description file
 				if axis_scale == 'Y Scale BDP':
