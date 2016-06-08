@@ -87,7 +87,7 @@ for f in os.listdir(data_location):
 			Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + Comparison + "_Data.csv")
 
 		# Set output location for results
-		output_location = output_location_init + Exp_Num + "_Experiment_" + Comparison + '/'	
+		output_location = output_location_init + Exp_Num + "_and_Experiment_" + Comparison + '/'	
 
 		# # If the folder exists delete it.
 		# if os.path.exists(output_location):
