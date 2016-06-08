@@ -1,3 +1,4 @@
-#pdf and png plots
+#pdf, png, html plots
 *.pdf
 *.png
+*.html
