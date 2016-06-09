@@ -40,8 +40,8 @@ channel_list = pd.read_csv(channel_location+'Channels.csv')
 channel_list = channel_list.set_index('Channel')
 
 # Create groups data by grouping channels for 'Chart'
-channel_groups = channel_list.groupby('Primary_Chart')
-# channel_groups = channel_list.groupby('Secondary_Chart')
+# channel_groups = channel_list.groupby('Primary_Chart')
+channel_groups = channel_list.groupby('Secondary_Chart')
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)
@@ -78,9 +78,9 @@ for f in os.listdir(data_location):
 		# if os.path.exists(output_location):
 		# 	shutil.rmtree(output_location)
 
-		# # If the folder doesn't exist create it.
-		# if not os.path.exists(output_location):
-		# 	os.makedirs(output_location)
+		# If the folder doesn't exist create it.
+		if not os.path.exists(output_location):
+			os.makedirs(output_location)
 
 		# Get which house from description of events file
 		House = Exp_Des['House'][Test_Name]
@@ -105,7 +105,7 @@ for f in os.listdir(data_location):
 
 		if Speed == 'high':
 			#Set time to elapsed time column in experimental data.
-			Time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+			Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
 			mark_freq = 5
 
 		# Pull ignition time from events csv file
@@ -203,22 +203,36 @@ for f in os.listdir(data_location):
 					current_data = current_data - np.average(current_data[:90]) + 2.5
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
 					#Calculate result
-					current_data = np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5
-					plt.ylabel('Velocity (m/s)', fontsize=16)
+					current_data = (np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5) * 2.23694
+					plt.ylabel('Velocity (mph)', fontsize=16)
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'
-					secondary_axis_label = 'Velocity (mph)'
-					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 2.23694
+					secondary_axis_label = 'Velocity (m/s)'
+					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) / 2.23694
 
                 # Set parameters for heat flux plots
 
 				# If statement to find heat flux type in channels csv
-				if channel_list['Type'][channel] == 'Heat Flux':
+				if channel_list['Type'][channel] == 'Wall Heat Flux':
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
-					axis_scale = 'Y Scale Heat Flux'
+					axis_scale = 'Y Scale Wall Heat Flux'
+
+				if channel_list['Type'][channel] == 'Floor Heat Flux':
+					Data_Time = Time
+					# Set data to include slope and intercept
+					current_data = current_data * scale_factor + offset
+					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
+					axis_scale = 'Y Scale Floor Heat Flux'
+
+				if channel_list['Type'][channel] == 'Victim Heat Flux':
+					Data_Time = Time
+					# Set data to include slope and intercept
+					current_data = current_data * scale_factor + offset
+					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
+					axis_scale = 'Y Scale Victim Heat Flux'
 
 				# Set parameters for gas plots
 
@@ -247,7 +261,7 @@ for f in os.listdir(data_location):
 					mew=1.5,
 					mec='none',
 					ms=7,
-					label=channel)
+					label=channel_list['Title'][channel])
 
 				# Scale y-axis limit based on specified range in test description file
 				if axis_scale == 'Y Scale BDP':

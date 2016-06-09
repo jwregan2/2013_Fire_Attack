@@ -45,7 +45,8 @@ channel_list = pd.read_csv(channel_location+'Channels.csv')
 channel_list = channel_list.set_index('Channel')
 
 # Create groups data by grouping channels for 'Chart'
-channel_groups = channel_list.groupby('Chart')
+# channel_groups = channel_list.groupby('Primary_Chart')
+channel_groups = channel_list.groupby('Secondary_Chart')
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)
@@ -90,9 +91,9 @@ for f in os.listdir(data_location):
 		# Set output location for results
 		output_location = output_location_init + Test_Name + '/'
 
-		# If the folder exists delete it.
-		if os.path.exists(output_location):
-			shutil.rmtree(output_location)
+		# # If the folder exists delete it.
+		# if os.path.exists(output_location):
+		# 	shutil.rmtree(output_location)
 
 		# If the folder doesn't exist create it.
 		if not os.path.exists(output_location):
@@ -118,7 +119,7 @@ for f in os.listdir(data_location):
 
 		if Speed == 'high':
 			#Set time to elapsed time column in experimental data.
-			Time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+			Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
 			mark_freq = 5
 
 		# Pull ignition time from events csv file
@@ -192,7 +193,7 @@ for f in os.listdir(data_location):
 					# Set y-label to degrees F with LaTeX syntax
 					y_label='Temperature (Degrees F)'
 					# Search for skin inside description of events file for scaling
-					if 'skin' in group:
+					if 'Skin' in group:
 						axis_scale = 'Y Scale Skin Temperature'
 					else: # Default to standard temperature scale
 						axis_scale = 'Y Scale Temperature'
@@ -201,6 +202,7 @@ for f in os.listdir(data_location):
 					#Set scaling dependent on axis scale defined above
 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 5/9 - 32
 					hover_value = 'Temperature'
+
                 # Set parameters for velocity plots
 
                 # If statement to find velocity type in channels csv
@@ -212,23 +214,41 @@ for f in os.listdir(data_location):
 					current_data = current_data - np.average(current_data[:90]) + 2.5
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
 					#Calculate result
-					current_data = np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5
-					y_label='Velocity (m/s)'
+					current_data = (np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5)* 2.23694
+					y_label='Velocity (mph)'
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'
-					secondary_axis_label = 'Velocity (mph)'
-					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 2.23694
+					secondary_axis_label = 'Velocity (m/s)'
+					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) / 2.23694
 					hover_value = 'Velocity'
+
                 # Set parameters for heat flux plots
 
 				# If statement to find heat flux type in channels csv
-				if channel_list['Type'][channel] == 'Heat Flux':
+				if channel_list['Type'][channel] == 'Wall Heat Flux':
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Heat Flux (kW/m^2)'
-					axis_scale = 'Y Scale Heat Flux'
+					axis_scale = 'Y Scale Wall Heat Flux'
 					hover_value = 'Heat Flux'
+
+				if channel_list['Type'][channel] == 'Floor Heat Flux':
+					Data_Time = Time
+					# Set data to include slope and intercept
+					current_data = current_data * scale_factor + offset
+					y_label='Heat Flux (kW/m^2)'
+					axis_scale = 'Y Scale Floor Heat Flux'
+					hover_value = 'Heat Flux'
+
+				if channel_list['Type'][channel] == 'Victim Heat Flux':
+					Data_Time = Time
+					# Set data to include slope and intercept
+					current_data = current_data * scale_factor + offset
+					y_label='Heat Flux (kW/m^2)'
+					axis_scale = 'Y Scale Victim Heat Flux'
+					hover_value = 'Heat Flux'
+
 				# Set parameters for gas plots
 
 				# If statement to find gas type in channels csv
@@ -245,7 +265,7 @@ for f in os.listdir(data_location):
 					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)
+					y_label='Gas Concentration (PPM)'
 					axis_scale = 'Y Scale Carbon Monoxide'
 
 				# Plot channel data with legend from channel list and using tableau colors, in addition to x-axis range

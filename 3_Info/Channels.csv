@@ -130,16 +130,16 @@ Channel,Title,ScaleFactor_A,ScaleFactor_B,Offset,Transport_Time_A,Transport_Time
 5TCS10,Victim 5 Skin 10,1.8,1.8,32,0,0,Victim_5_Skin_Temps,,Temperature
 5TCS11,Victim 5 Skin 11,1.8,1.8,32,0,0,Victim_5_Skin_Temps,,Temperature
 5TCS12,Victim 5 Skin 12,1.8,1.8,32,0,0,Victim_5_Skin_Temps,,Temperature
-1HF1,Wall Heat Flux 1 Ft,1951,1878,0,0,0,Heat_Flux_Wall,,Heat Flux
-1HF3,Wall Heat Flux 3 Ft,15400,14180,0,0,0,Heat_Flux_Wall,,Heat Flux
-1HF5,Wall Heat Flux 5 Ft,16300,16180,0,0,0,Heat_Flux_Wall,,Heat Flux
-2HF,Floor Heat Flux Half Hall,1965,2026,0,0,0,Heat_Flux_Floor,,Heat Flux
-3HF,Floor Heat Flux End Hall,1919,1848,0,0,0,Heat_Flux_Floor,,Heat Flux
-1HFS,Victim 1 Heat Flux,10850,10850,0,0,0,Victim_Heat_Flux,,Heat Flux
-2HFS,Victim 2 Heat Flux,96990,96990,0,0,0,Victim_Heat_Flux,,Heat Flux
-3HFS,Victim 3 Heat Flux,1899,1899,0,0,0,Victim_Heat_Flux,,Heat Flux
-4HFS,Victim 4 Heat Flux,11400,11400,0,0,0,Victim_Heat_Flux,,Heat Flux
-5HFS,Victim 5 Heat Flux,11950,11950,0,0,0,Victim_Heat_Flux,,Heat Flux
+1HF1,Wall Heat Flux 1 Ft,1951,1878,0,0,0,Heat_Flux_Wall,,Wall Heat Flux
+1HF3,Wall Heat Flux 3 Ft,15400,14180,0,0,0,Heat_Flux_Wall,,Wall Heat Flux
+1HF5,Wall Heat Flux 5 Ft,16300,16180,0,0,0,Heat_Flux_Wall,,Wall Heat Flux
+2HF,Floor Heat Flux Middle Hall,1965,2026,0,0,0,Heat_Flux_Floor,,Floor Heat Flux
+3HF,Floor Heat Flux Start Hall,1919,1848,0,0,0,Heat_Flux_Floor,,Floor Heat Flux
+1HFS,Victim 1 Heat Flux,10850,10850,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
+2HFS,Victim 2 Heat Flux,96990,96990,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
+3HFS,Victim 3 Heat Flux,1899,1899,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
+4HFS,Victim 4 Heat Flux,11400,11400,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
+5HFS,Victim 5 Heat Flux,11950,11950,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
 1O2V,Victim 1 Oxygen,5,5,0,23,29,Victim_1_Gas,,Gas
 1COV,Victim 1 Carbon Monoxide,10000,10000,0,23,29,Victim_1_Carbon_Monoxide,,Carbon Monoxide
 1CO2V,Victim 1 Carbon Dioxide,5,5,0,23,29,Victim_1_Gas,,Gas
