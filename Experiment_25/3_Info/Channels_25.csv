@@ -1,0 +1,68 @@
+Channel,Title,ScaleFactor_A,ScaleFactor_B,Offset,Transport_Time_A,Transport_Time_B,Primary_Chart,Secondary_Chart,Type
+1TC7,Fire Room 7ft,1.8,1.8,32,0,0,Fire_Room_Temps,House_Temps_7ft,Temperature
+1TC6,Fire Room 6ft,1.8,1.8,32,0,0,Fire_Room_Temps,,Temperature
+1TC5,Fire Room 5ft,1.8,1.8,32,0,0,Fire_Room_Temps,,Temperature
+1TC4,Fire Room 4ft,1.8,1.8,32,0,0,Fire_Room_Temps,,Temperature
+1TC3,Fire Room 3ft,1.8,1.8,32,0,0,Fire_Room_Temps,,Temperature
+1TC2,Fire Room 2ft,1.8,1.8,32,0,0,Fire_Room_Temps,,Temperature
+1TC1,Fire Room 1ft,1.8,1.8,32,0,0,Fire_Room_Temps,House_Temps_1ft,Temperature
+2TC7,Back Left 7ft,1.8,1.8,32,0,0,Back_Left_Temps,House_Temps_7ft,Temperature
+2TC6,Back Left 6ft,1.8,1.8,32,0,0,Back_Left_Temps,,Temperature
+2TC5,Back Left 5ft,1.8,1.8,32,0,0,Back_Left_Temps,,Temperature
+2TC4,Back Left 4ft,1.8,1.8,32,0,0,Back_Left_Temps,,Temperature
+2TC3,Back Left 3ft,1.8,1.8,32,0,0,Back_Left_Temps,,Temperature
+2TC2,Back Left 2ft,1.8,1.8,32,0,0,Back_Left_Temps,,Temperature
+2TC1,Back Left 1ft,1.8,1.8,32,0,0,Back_Left_Temps,House_Temps_1ft,Temperature
+3TC7,Middle Left 7ft,1.8,1.8,32,0,0,Middle_Left_Temps,House_Temps_7ft,Temperature
+3TC6,Middle Left 6ft,1.8,1.8,32,0,0,Middle_Left_Temps,,Temperature
+3TC5,Middle Left 5ft,1.8,1.8,32,0,0,Middle_Left_Temps,,Temperature
+3TC4,Middle Left 4ft,1.8,1.8,32,0,0,Middle_Left_Temps,,Temperature
+3TC3,Middle Left 3ft,1.8,1.8,32,0,0,Middle_Left_Temps,,Temperature
+3TC2,Middle Left 2ft,1.8,1.8,32,0,0,Middle_Left_Temps,,Temperature
+3TC1,Middle Left 1ft,1.8,1.8,32,0,0,Middle_Left_Temps,House_Temps_1ft,Temperature
+4TC7,Front Left 7ft,1.8,1.8,32,0,0,Front_Left_Temps,House_Temps_7ft,Temperature
+4TC6,Front Left 6ft,1.8,1.8,32,0,0,Front_Left_Temps,,Temperature
+4TC5,Front Left 5ft,1.8,1.8,32,0,0,Front_Left_Temps,,Temperature
+4TC4,Front Left 4ft,1.8,1.8,32,0,0,Front_Left_Temps,,Temperature
+4TC3,Front Left 3ft,1.8,1.8,32,0,0,Front_Left_Temps,,Temperature
+4TC2,Front Left 2ft,1.8,1.8,32,0,0,Front_Left_Temps,,Temperature
+4TC1,Front Left 1ft,1.8,1.8,32,0,0,Front_Left_Temps,House_Temps_1ft,Temperature
+5TC7,Middle Right 7ft,1.8,1.8,32,0,0,Middle_Right_Temps,House_Temps_7ft,Temperature
+5TC6,Middle Right 6ft,1.8,1.8,32,0,0,Middle_Right_Temps,,Temperature
+5TC5,Middle Right 5ft,1.8,1.8,32,0,0,Middle_Right_Temps,,Temperature
+5TC4,Middle Right 4ft,1.8,1.8,32,0,0,Middle_Right_Temps,,Temperature
+5TC3,Middle Right 3ft,1.8,1.8,32,0,0,Middle_Right_Temps,,Temperature
+5TC2,Middle Right 2ft,1.8,1.8,32,0,0,Middle_Right_Temps,,Temperature
+5TC1,Middle Right 1ft,1.8,1.8,32,0,0,Middle_Right_Temps,House_Temps_1ft,Temperature
+6TC7,Front Door 7ft,1.8,1.8,32,0,0,Front_Door_Temps,House_Temps_7ft,Temperature
+6TC6,Front Door 6ft,1.8,1.8,32,0,0,Front_Door_Temps,,Temperature
+6TC5,Front Door 5ft,1.8,1.8,32,0,0,Front_Door_Temps,,Temperature
+6TC4,Front Door 4ft,1.8,1.8,32,0,0,Front_Door_Temps,,Temperature
+6TC3,Front Door 3ft,1.8,1.8,32,0,0,Front_Door_Temps,,Temperature
+6TC2,Front Door 2ft,1.8,1.8,32,0,0,Front_Door_Temps,,Temperature
+6TC1,Front Door 1ft,1.8,1.8,32,0,0,Front_Door_Temps,House_Temps_1ft,Temperature
+7TC7,Back Right 7ft,1.8,1.8,32,0,0,Back_Right_Temps,House_Temps_7ft,Temperature
+7TC6,Back Right 6ft,1.8,1.8,32,0,0,Back_Right_Temps,,Temperature
+7TC5,Back Right 5ft,1.8,1.8,32,0,0,Back_Right_Temps,,Temperature
+7TC4,Back Right 4ft,1.8,1.8,32,0,0,Back_Right_Temps,,Temperature
+7TC3,Back Right 3ft,1.8,1.8,32,0,0,Back_Right_Temps,,Temperature
+7TC2,Back Right 2ft,1.8,1.8,32,0,0,Back_Right_Temps,,Temperature
+7TC1,Back Right 1ft,1.8,1.8,32,0,0,Back_Right_Temps,House_Temps_1ft,Temperature
+8TC7,Front Right 7ft,1.8,1.8,32,0,0,Front_Right_Temps,House_Temps_7ft,Temperature
+8TC6,Front Right 6ft,1.8,1.8,32,0,0,Front_Right_Temps,,Temperature
+8TC5,Front Right 5ft,1.8,1.8,32,0,0,Front_Right_Temps,,Temperature
+8TC4,Front Right 4ft,1.8,1.8,32,0,0,Front_Right_Temps,,Temperature
+8TC3,Front Right 3ft,1.8,1.8,32,0,0,Front_Right_Temps,,Temperature
+8TC2,Front Right 2ft,1.8,1.8,32,0,0,Front_Right_Temps,,Temperature
+8TC1,Front Right 1ft,1.8,1.8,32,0,0,Front_Right_Temps,House_Temps_1ft,Temperature
+1BDP5V,Bedroom 1 Window Top,1,1,0,0,0,Fire_Room_Window,,Velocity
+1BDP4V,Bedroom 1 Window Top Middle,1,1,0,0,0,Fire_Room_Window,,Velocity
+1BDP3V,Bedroom 1 Window Middle,1,1,0,0,0,Fire_Room_Window,,Velocity
+1BDP2V,Bedroom 1 Window Bottom Middle,1,1,0,0,0,Fire_Room_Window,,Velocity
+1BDP1V,Bedroom 1 Window Bottom,1,1,0,0,0,Fire_Room_Window,,Velocity
+2BDP5V,Front Door Top,1,1,0,0,0,Front_Door_Flow,,Velocity
+2BDP4V,Front Door Top Middle,1,1,0,0,0,Front_Door_Flow,,Velocity
+2BDP3V,Front Door Middle,1,1,0,0,0,Front_Door_Flow,,Velocity
+2BDP2V,Front Door Bottom Middle,1,1,0,0,0,Front_Door_Flow,,Velocity
+2BDP1V,Front Door Bottom,1,1,0,0,0,Front_Door_Flow,,Velocity
+HeatFluxV,Floor Heat Flux,1965,2026,0,0,0,Heat_Flux_Floor,,Floor Heat Flux
