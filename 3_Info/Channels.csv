@@ -136,7 +136,7 @@ Channel,Title,ScaleFactor_A,ScaleFactor_B,Offset,Transport_Time_A,Transport_Time
 2HF,Floor Heat Flux Middle Hall,1965,2026,0,0,0,Heat_Flux_Floor,,Floor Heat Flux
 3HF,Floor Heat Flux Start Hall,1919,1848,0,0,0,Heat_Flux_Floor,,Floor Heat Flux
 1HFS,Victim 1 Heat Flux,10850,10850,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
-2HFS,Victim 2 Heat Flux,96990,96990,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
+2HFS,Victim 2 Heat Flux,9699,9699,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
 3HFS,Victim 3 Heat Flux,1899,1899,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
 4HFS,Victim 4 Heat Flux,11400,11400,0,0,0,Victim_Heat_Flux,,Victim Heat Flux
 5HFS,Victim 5 Heat Flux,11950,11950,0,0,0,Victim_Heat_Flux,,Victim Heat Flux

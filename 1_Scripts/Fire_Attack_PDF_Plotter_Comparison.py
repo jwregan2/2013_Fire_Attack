@@ -71,7 +71,7 @@ for f in os.listdir(data_location):
 		# Grab experiment number from test name
 		Exp_Num = Test_Name[:-5]
 
-		Comparison = Exp_Des['Experiments To Compare'][Test_Name]
+		Comparison = Exp_Des['Compare Exp'][Test_Name]
 		# Comparison = Exp_Des['Exp Comp'][Test_Name].split('|')
 
 		print(Comparison)
