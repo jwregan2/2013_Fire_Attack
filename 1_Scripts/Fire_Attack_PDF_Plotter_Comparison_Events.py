@@ -89,7 +89,7 @@ for f in os.listdir(data_location):
 
 		# Set output location for results
 		output_location = output_location_init + Exp_Num + "_and_Experiment_" + str(Comparison) + '/'
-		Comp_Name=	"Experiment_" + str(Comparison) +"_Data"
+		Comp_Name=	"Experiment_" + str(Comparison)+"_Data"
 
 		# # If the folder exists delete it.
 		# if os.path.exists(output_location):
@@ -131,20 +131,16 @@ for f in os.listdir(data_location):
 			mark_freq = 5
 
 		# Pull ignition time from events csv file
-		Ignition_1 = datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'Ignition'], '%H:%M:%S')
-		Ignition_2 = datetime.datetime.strptime(Events_2['Time'][Comp_Name[:-5].replace('_',' ')+ ' '+'Ignition'], '%H:%M:%S')
-		# Ignition_1 = datetime.datetime.strptime(Events_1['Time']['Ignition'], '%H:%M:%S')
-		# Ignition_2 = datetime.datetime.strptime(Events_2['Time']['Ignition'], '%H:%M:%S')
+		Ignition_1 = datetime.datetime.strptime(Events_1['Time']['Ignition'], '%H:%M:%S')
+		Ignition_2 = datetime.datetime.strptime(Events_2['Time']['Ignition'], '%H:%M:%S')
 
 		# Adjust time for ignition offset
 		Time = [((t - Ignition_1).total_seconds())/60 for t in Time]
 		Time_2 = [((t - Ignition_2).total_seconds())/60 for t in Time_2]
 
 		#Get End of Experiment Time
-		End_Time = (datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'Ignition'], '%H:%M:%S')).total_seconds()/60
-
-		# End_Time = (datetime.datetime.strptime(Events_1['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
-		# End_Time_2 = (datetime.datetime.strptime(Events_2['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_2['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
+		End_Time = (datetime.datetime.strptime(Events_1['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
+		End_Time_2 = (datetime.datetime.strptime(Events_2['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_2['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
 		
 		if House == 'a':
 			scalefactor = 'ScaleFactor_A'
@@ -153,6 +149,30 @@ for f in os.listdir(data_location):
 		if House == 'b':
 			scalefactor = 'ScaleFactor_B'
 			Transport_Time = 'Transport_Time_B'
+
+		#concatonate events and include test name in text
+		New_Event_Index = []
+		for event in Events_1.index:
+			New_Event_Index.append(Test_Name[:-5].replace('_',' ')+' '+event)
+
+		New_Event_Index = pd.DataFrame({'Event':New_Event_Index})
+		New_Event_Index = New_Event_Index.set_index(Events_1.index)
+		Events_1 = pd.concat([Events_1,New_Event_Index], axis=1, join_axes=[Events_1.index])
+		Events_1 = Events_1.set_index('Event')
+		
+		New_Event_Index = []
+		for event in Events_2.index:
+			New_Event_Index.append(Comp_Name[:-5].replace('_',' ')+ ' '+event)
+
+		New_Event_Index = pd.DataFrame({'Event':New_Event_Index})
+		New_Event_Index = New_Event_Index.set_index(Events_2.index)
+		Events_2 = pd.concat([Events_2,New_Event_Index], axis=1, join_axes=[Events_2.index])
+		Events_2 = Events_2.set_index('Event')
+
+		#Assemble master events file from Events_1 and Events_2
+		Master_Events = None
+		Master_Events=pd.concat([Events_1,Events_2])
+		EventTime=list(range(len(Master_Events.index.values)))
 
 		# Begin plotting
 
@@ -323,9 +343,10 @@ for f in os.listdir(data_location):
 				EventTime=list(range(len(Master_Events.index.values)))
 
 				for i in range(len(Master_Events.index.values)):
-					if i<len(Events_1):
+					
+					if any([substring in Test_Name[:-5]  for substring in Master_Events.index.values[i]]):
 						EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_1).total_seconds()
-						print (Master_Events.index.values[i])
+						print(Master_Events.index.values[i])
 					else:
 						EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_2).total_seconds()
 
