@@ -89,7 +89,7 @@ for f in os.listdir(data_location):
 
 		# Set output location for results
 		output_location = output_location_init + Exp_Num + "_and_Experiment_" + str(Comparison) + '/'
-		Comp_Name=	"Experiment_" + str(Comparison)+"_Data"
+		Comp_Name=	"Experiment_" + str(Comparison) +"_Data"
 
 		# # If the folder exists delete it.
 		# if os.path.exists(output_location):
@@ -108,12 +108,6 @@ for f in os.listdir(data_location):
 		# Read in each experiment event file
 		Events_1 = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
 		Events_2 = pd.read_csv(channel_location + '/Events/' + Comp_Name[:-4] + 'Events.csv')
-
-		# for event in Events_1.index:
-		# 	Events_1['Event'][event] =  Test_Name[:-5].replace('_',' ')+' '+Events_1['Event'][event] 
-
-		# for event in Events_2.index:
-		# 	Events_2['Event'][event] = Comp_Name[:-5].replace('_',' ')+ ' '+Events_2['Event'][event] 
 
 		# Set index of experiment events files to Event
 		Events_1 = Events_1.set_index('Event')
@@ -137,16 +131,20 @@ for f in os.listdir(data_location):
 			mark_freq = 5
 
 		# Pull ignition time from events csv file
-		Ignition_1 = datetime.datetime.strptime(Events_1['Time']['Ignition'], '%H:%M:%S')
-		Ignition_2 = datetime.datetime.strptime(Events_2['Time']['Ignition'], '%H:%M:%S')
+		Ignition_1 = datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'Ignition'], '%H:%M:%S')
+		Ignition_2 = datetime.datetime.strptime(Events_2['Time'][Comp_Name[:-5].replace('_',' ')+ ' '+'Ignition'], '%H:%M:%S')
+		# Ignition_1 = datetime.datetime.strptime(Events_1['Time']['Ignition'], '%H:%M:%S')
+		# Ignition_2 = datetime.datetime.strptime(Events_2['Time']['Ignition'], '%H:%M:%S')
 
 		# Adjust time for ignition offset
 		Time = [((t - Ignition_1).total_seconds())/60 for t in Time]
 		Time_2 = [((t - Ignition_2).total_seconds())/60 for t in Time_2]
 
 		#Get End of Experiment Time
-		End_Time = (datetime.datetime.strptime(Events_1['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
-		End_Time_2 = (datetime.datetime.strptime(Events_2['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_2['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
+		End_Time = (datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'Ignition'], '%H:%M:%S')).total_seconds()/60
+
+		# End_Time = (datetime.datetime.strptime(Events_1['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
+		# End_Time_2 = (datetime.datetime.strptime(Events_2['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_2['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
 		
 		if House == 'a':
 			scalefactor = 'ScaleFactor_A'
@@ -286,7 +284,7 @@ for f in os.listdir(data_location):
 				plt.plot(Data_Time, current_data, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none', ms=7, label=channel)
 
 				# Plot channel data 2 for second experiment that was compared to
-				plt.plot(Data_Time_2, current_data_2, lw=1.5, marker=next(plot_markers), markevery=int(End_Time_2*60/mark_freq), mew=1.5,	mec='none',	ms=7, label=channel, ls = '--')
+				plt.plot(Data_Time_2, current_data_2, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none',	ms=7, label=channel, ls = '--')
 
 				# Scale y-axis limit based on specified range in test description file
 				if axis_scale == 'Y Scale BDP':
@@ -316,91 +314,30 @@ for f in os.listdir(data_location):
 				else:
 					ax2.set_ylim([0, secondary_axis_scale])
 
-		 	# print(Events_1)
-			New_Event_Index = []
-			for event in Events_1.index:
-				New_Event_Index.append(Test_Name[:-5].replace('_',' ')+' '+event)
-
-			# print(New_Event_Index)
-
-			New_Event_Index = pd.DataFrame({'Event':New_Event_Index})
-			New_Event_Index = New_Event_Index.set_index(Events_1.index)
-			Events_1 = pd.concat([Events_1,New_Event_Index], axis=1, join_axes=[Events_1.index])
-			Events_1 = Events_1.set_index('Event')
-			# print(Events_1)
-
-			New_Event_Index = []
-			for event in Events_2.index:
-				New_Event_Index.append(Comp_Name[:-5].replace('_',' ')+ ' '+event)
-
-			# print(New_Event_Index)
-
-			New_Event_Index = pd.DataFrame({'Event':New_Event_Index})
-			New_Event_Index = New_Event_Index.set_index(Events_2.index)
-			Events_2 = pd.concat([Events_2,New_Event_Index], axis=1, join_axes=[Events_2.index])
-			Events_2 = Events_2.set_index('Event')
-
-			# print([Events_1, Events_2])
-			# Event_1 = Event_1.set_index('') 
-			# Events_1 = Events_1
-
-			# print (Events_1)
-			
-
 			try:
 				ax3=ax1.twiny()
 				ax3.set_xlim(0,End_Time)
-				#modify event file names so that the events include the test name
-
-
-				# for event in Events_2.index:
-				# 	Events_2['Event'][event]=(Comp_Name.replace('_',' ')+ ' '+ Events_2['Event'][event])
-				# print Events_1
-				# sys.exit()
 					
 				#Assemble master events file from Events_1 and Events_2
 				Master_Events=pd.concat([Events_1,Events_2])
 				EventTime=list(range(len(Master_Events.index.values)))
-				
-				
-				
 
 				for i in range(len(Master_Events.index.values)):
-					
-					if any([substring in Test_Name[:-5]  for substring in Master_Events.index.values[i]]):
+					if i<len(Events_1):
 						EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_1).total_seconds()
-						print(Master_Events.index.values[i])
+						print (Master_Events.index.values[i])
 					else:
 						EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_2).total_seconds()
 
 					plt.axvline(EventTime[i],color='0',lw=1) 
-				# for i in range(len(Events_2.index.values)):
-				# 	EventTime_2[i] = (datetime.datetime.strptime(Events_2['Time'][Events_2.index.values[i]], '%H:%M:%S')-Ignition_2).total_seconds()
-				# 	plt.axvline(EventTime_2[i],color='0',lw=1)
 
-				
 				ax3.set_xticks(EventTime)
 
 				plt.setp(plt.xticks()[1], rotation=90)
 				ax3.set_xticklabels(Master_Events.index.values, fontsize=10, ha='left')
-				#ax3.set_xticklabels(Test_Name[:-5].replace('_',' ')+" "+Events_1.index.values, fontsize=10, ha='left')
-				#ax3.set_xticklabels(Comp_Name[:-5].replace('_',' ')+" "+Events_2.index.values, fontsize=10, ha='left')
 				fig.set_size_inches(20, 16)
 				plt.tight_layout()
-	            # # Add vertical lines and labels for timing information (if available)
-	            # ax3 = ax1.twiny()
-	            # ax3.set_xlim(ax1_xlims)
-	            # # Remove NaN items from event timeline
-	            # events = all_times[test_name].dropna()
-	            # # Ignore events that are commented starting with a pound sign
-	            # events = events[~events.str.startswith('#')]
-	            # [plt.axvline(_x - start_of_test, color='0.50', lw=1) for _x in events.index.values]
-	            # ax3.set_xticks(events.index.values - start_of_test)
-	            # plt.setp(plt.xticks()[1], rotation=60)
-	            # ax3.set_xticklabels(events.values, fontsize=8, ha='left')
-	            # plt.xlim([0, end_of_test - start_of_test])
-	            # # Increase figure size for plot labels at top
-	            # fig.set_size_inches(10, 6)
+
 			except:
 				pass
 			
