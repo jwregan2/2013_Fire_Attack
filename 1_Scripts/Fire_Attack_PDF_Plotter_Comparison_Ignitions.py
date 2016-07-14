@@ -118,9 +118,9 @@ for f in os.listdir(data_location):
 		# Set index of experiment events files to Event
 		Events_1 = Events_1.set_index('Event')
 		Events_2 = Events_2.set_index('Event')
-		# print Events_2
 
 		print ()
+
 		print (Test_Name)
 		 
 		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
@@ -315,6 +315,8 @@ for f in os.listdir(data_location):
 				else:
 					ax2.set_ylim([0, secondary_axis_scale])
 
+			print()
+
 			try:
 				ax3=ax1.twiny()
 				ax3.set_xlim(0,End_Time)
@@ -324,14 +326,37 @@ for f in os.listdir(data_location):
 				EventTime=list(range(len(Master_Events.index.values)))
 
 				for i in range(len(Master_Events.index.values)):
+					# if 'End Experiment' not in Master_Events.index.values[i]:
 					if i<len(Events_1):
 						EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_1).total_seconds()
-						print (Master_Events.index.values[i])
+						# print (Master_Events.index.values[i])
 					else:
 						EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_2).total_seconds()
 
 					plt.axvline(EventTime[i],color='0',lw=1) 
 				
+				# for event in Master_Events.index:
+				# 	if event == Test_Name[:-4] + ' Ignition':
+				# 		Master_Events['Event'][event] = 'Ignition'
+				# 		print (Kenosha)
+				# 	elif event == Comp_Name[:-4] + ' Ignition':
+				# 		Master_Events['Event'][event] = ' ' 
+				# 		print (Kenosha)
+
+					print (event)
+					if Test_Name[:-4] + ' Ignition' in event:
+						Master_Events['Event'][event] = 'Ignition'
+					elif Comp_Name[:-4] + ' Ignition' in event:
+						Master_Events['Event'][event] = ' ' 
+						print (Kenosha)
+					else:
+						continue 
+
+					if Test_Name[:-4] + ' End Experiment' in event:
+						Master_Events['Event'][event] = ' '
+					else:
+						continue
+
 				ax3.set_xticks(EventTime)
 
 				plt.setp(plt.xticks()[1], rotation=90)
