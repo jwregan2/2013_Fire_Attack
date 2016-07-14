@@ -13,7 +13,7 @@ import operator
 
 import csv
 
-data_dir = '/CSV_Data/'
+data_dir = 'CSV_Data/'
 
 for f in os.listdir(data_dir):
 	if f.endswith('.csv'):
@@ -81,16 +81,45 @@ for f in os.listdir(data_dir):
 		# print Y[0:8]
 		# print Zgraph[0:8]
 
-		ax = Axes3D(plt.figure())
+		# fig = plt.figure()
+		# ax = fig.add_subplot(111, projection='3d')
+		# # ax = Axes3D(plt.figure())
+		# ax.bar3d(X, Y, np.zeros(len(Zgraph)), dx, dy, Zgraph, zsort='max')
+		# ax.view_init(elev=48., azim=-160)
+		# ax.text(10, 3.25, 11,f[:-4], horizontalalignment='left', verticalalignment='bottom')
+		# ax.set_zlim(0,10)
+		# row_num = 6
+		# col_num = 8
+		# ticksx = np.arange(0, col_num, 1)
+		# ticksy = np.arange(0, row_num, 1)
+		# column_names = ['1','2','3','4','5','6','7','8']
+		# row_names = ['1','2','3','4','5','6']
+		# ax.xticks(ticksx, col_names)
+		# ax.yticks(ticksy, row_names)
 
+		row_num = 6
+		col_num = 8
+		ticksx = np.arange(0, col_num, 1)
+		ticksy = np.arange(0, row_num, 1)
+		column_names = ['1','2','3','4','5','6','7','8']
+		row_names = ['1','2','3','4','5','6']
+
+		fig = plt.figure()
+		ax = fig.add_subplot(111, projection='3d')
+		# ax = Axes3D(plt.figure())
 		ax.bar3d(X, Y, np.zeros(len(Zgraph)), dx, dy, Zgraph, zsort='max')
 		ax.view_init(elev=48., azim=-160)
 		ax.text(10, 3.25, 11,f[:-4], horizontalalignment='left', verticalalignment='bottom')
 		ax.set_zlim(0,10)
+		ax.set_xlabel('Width (# of Bins)')
+		ax.set_ylabel('Length (# of Bins)')
+		ax.set_zlabel('Mass of Water Collected (kg)')
+		# plt.xticks(ticksx, column_names)
+		# plt.yticks(ticksy, row_names)
 
 		# plt.show()
 
-		plt.savefig('/Figures/' + f[:-4] + '.pdf')
+		plt.savefig('Figures/' + f[:-4] + '.pdf')
 		plt.close('all')
 
 # print len(X)
