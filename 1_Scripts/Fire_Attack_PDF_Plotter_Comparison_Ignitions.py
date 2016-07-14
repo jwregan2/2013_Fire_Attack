@@ -120,8 +120,7 @@ for f in os.listdir(data_location):
 		Events_2 = Events_2.set_index('Event')
 
 		print ()
-
-		print (Test_Name)
+		print (Test_Name + ' and ' + Comp_Name)
 		 
 		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
 		if Speed == 'low':
@@ -146,7 +145,21 @@ for f in os.listdir(data_location):
 
 		#Get End of Experiment Time
 		End_Time = (datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'Ignition'], '%H:%M:%S')).total_seconds()/60
-		
+
+		#Assemble master events file from Events_1 and Events_2
+		Master_Events=pd.concat([Events_1,Events_2])
+		EventTime=list(range(len(Master_Events.index.values)))
+		for i in range(len(EventTime)):
+			if i<len(Events_1):
+				EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_1).total_seconds()
+			else:
+				EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_2).total_seconds()
+
+			if ' Ignition' in Master_Events.index.values[i]:
+				Master_Events.index.values[i] = 'Ignition'
+			if ' End Experiment' in Master_Events.index.values[i]:
+				Master_Events.index.values[i] = ' '
+
 		if House == 'a':
 			scalefactor = 'ScaleFactor_A'
 			Transport_Time = 'Transport_Time_A'
@@ -282,10 +295,10 @@ for f in os.listdir(data_location):
 					axis_scale = 'Y Scale Carbon Monoxide'
 
 				# Plot channel data 
-				plt.plot(Data_Time, current_data, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none', ms=7, label=channel)
+				plt.plot(Data_Time, current_data, lw=2, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none', ms=7, label='Exp '+ str(Exp_Num[11:]) + ': ' + channel)
 
 				# Plot channel data 2 for second experiment that was compared to
-				plt.plot(Data_Time_2, current_data_2, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none',	ms=7, label=channel, ls = '--')
+				plt.plot(Data_Time_2, current_data_2, lw=2, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none',	ms=7, label='Exp '+str(Comparison) + ': ' +channel, ls = '--')
 
 				# Scale y-axis limit based on specified range in test description file
 				if axis_scale == 'Y Scale BDP':
@@ -314,62 +327,22 @@ for f in os.listdir(data_location):
 					ax2.set_ylim([-secondary_axis_scale, secondary_axis_scale])
 				else:
 					ax2.set_ylim([0, secondary_axis_scale])
-
-			print()
-
 			try:
 				ax3=ax1.twiny()
 				ax3.set_xlim(0,End_Time)
-					
-				#Assemble master events file from Events_1 and Events_2
-				Master_Events=pd.concat([Events_1,Events_2])
-				EventTime=list(range(len(Master_Events.index.values)))
-
-				for i in range(len(Master_Events.index.values)):
-					# if 'End Experiment' not in Master_Events.index.values[i]:
-					if i<len(Events_1):
-						EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_1).total_seconds()
-						# print (Master_Events.index.values[i])
-					else:
-						EventTime[i] = (datetime.datetime.strptime(Master_Events['Time'][Master_Events.index.values[i]], '%H:%M:%S')-Ignition_2).total_seconds()
-
+				for i in range(len(EventTime)):
 					plt.axvline(EventTime[i],color='0',lw=1) 
-				
-				# for event in Master_Events.index:
-				# 	if event == Test_Name[:-4] + ' Ignition':
-				# 		Master_Events['Event'][event] = 'Ignition'
-				# 		print (Kenosha)
-				# 	elif event == Comp_Name[:-4] + ' Ignition':
-				# 		Master_Events['Event'][event] = ' ' 
-				# 		print (Kenosha)
-
-					print (event)
-					if Test_Name[:-4] + ' Ignition' in event:
-						Master_Events['Event'][event] = 'Ignition'
-					elif Comp_Name[:-4] + ' Ignition' in event:
-						Master_Events['Event'][event] = ' ' 
-						print (Kenosha)
-					else:
-						continue 
-
-					if Test_Name[:-4] + ' End Experiment' in event:
-						Master_Events['Event'][event] = ' '
-					else:
-						continue
-
 				ax3.set_xticks(EventTime)
-
 				plt.setp(plt.xticks()[1], rotation=90)
-				ax3.set_xticklabels(Master_Events.index.values, fontsize=10, ha='left')
+				ax3.set_xticklabels(Master_Events.index.values, fontsize=12, ha='left')
 				fig.set_size_inches(20, 16)
 				plt.tight_layout()
 
 			except:
 				pass
-			
-			plt.legend(handles1, labels1, loc='upper left', fontsize=8, handlelength=3)
+			plt.legend(handles1, labels1, loc='upper left', fontsize=16, handlelength=3)
 
             # Save plot to file
-			plt.savefig(output_location + group + '.png')
+			plt.savefig(output_location + group + '.pdf')
 			plt.close('all')
    
