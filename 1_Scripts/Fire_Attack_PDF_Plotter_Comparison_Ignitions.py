@@ -71,21 +71,20 @@ for f in os.listdir(data_location):
 		# Grab experiment number from test name
 		Exp_Num = Test_Name[:-5]
 
-		Comparison = Exp_Des['Compare Exp'][Test_Name]
-		# Comparison = Exp_Des['Exp Comp'][Test_Name].split('|')
+		# Comparison = Exp_Des['Compare Exp'][Test_Name]
+		Comparison = Exp_Des['Experiments To Compare'][Test_Name].split('|')
 
 		print(Comparison)
 
-		# if Comparison == 0:
-		# 	continue
-		# elif any([substring in group for substring in Exp_Des['Exp Comp'][Test_Name].split('|')]):
-		# 	Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + Comparison + "_Data")
-
 		if Comparison == 0:
-		 	continue
-		else: 
-			#data_location + "Training_Fire_" + Comparison + "_Data.csv"
-			Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + str(Comparison) + "_Data.csv")
+			continue
+		elif any([for substring in Exp_Des['Experiments To Compare'][Test_Name].split('|')]):
+			Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + str(Comparison) + "_Data")
+
+		# if Comparison == 0:
+		#  	continue
+		# else: 
+		# 	Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + str(Comparison) + "_Data.csv")
 
 		# Set output location for results
 		output_location = output_location_init + Exp_Num + "_and_Experiment_" + str(Comparison) + '/'
@@ -110,10 +109,14 @@ for f in os.listdir(data_location):
 		Events_2 = pd.read_csv(channel_location + '/Events/' + Comp_Name[:-4] + 'Events.csv')
 
 		for event in Events_1.index:
-			Events_1['Event'][event] =  Test_Name[:-5].replace('_',' ')+' '+Events_1['Event'][event] 
+			Events_1['Event'][event] = 'Exp '+ str(Exp_Num[11:]) +' '+ Events_1['Event'][event] 
+			# Test_Name[:-5].replace('_',' ')
 
 		for event in Events_2.index:
-			Events_2['Event'][event] = Comp_Name[:-5].replace('_',' ')+ ' '+Events_2['Event'][event] 
+			Events_2['Event'][event] = 'Exp '+ str(Comparison) + ' '+ Events_2['Event'][event] 
+			# Comp_Name[:-5].replace('_',' ')
+
+		# print (Events_1)
 
 		# Set index of experiment events files to Event
 		Events_1 = Events_1.set_index('Event')
@@ -136,15 +139,19 @@ for f in os.listdir(data_location):
 			mark_freq = 5
 
 		# Pull ignition time from events csv file
-		Ignition_1 = datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'Ignition'], '%H:%M:%S')
-		Ignition_2 = datetime.datetime.strptime(Events_2['Time'][Comp_Name[:-5].replace('_',' ')+ ' '+'Ignition'], '%H:%M:%S')
+		Ignition_1 = datetime.datetime.strptime(Events_1['Time']['Exp '+ str(Exp_Num[11:])+' '+'Ignition'], '%H:%M:%S')
+		Ignition_2 = datetime.datetime.strptime(Events_2['Time']['Exp '+ str(Comparison)+' '+'Ignition'], '%H:%M:%S')
+		# Test_Name[:-5].replace('_',' ')
+		# Comp_Name[:-5].replace('_',' ')
 
 		# Adjust time for ignition offset
 		Time = [((t - Ignition_1).total_seconds())/60 for t in Time]
 		Time_2 = [((t - Ignition_2).total_seconds())/60 for t in Time_2]
 
 		#Get End of Experiment Time
-		End_Time = (datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time'][Test_Name[:-5].replace('_',' ')+' '+'Ignition'], '%H:%M:%S')).total_seconds()/60
+		End_Time = (datetime.datetime.strptime(Events_1['Time']['Exp '+ str(Exp_Num[11:])+' '+'End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events_1['Time']['Exp '+ str(Exp_Num[11:])+' '+'Ignition'], '%H:%M:%S')).total_seconds()/60
+
+		print (Ignition_1)
 
 		#Assemble master events file from Events_1 and Events_2
 		Master_Events=pd.concat([Events_1,Events_2])
@@ -343,6 +350,6 @@ for f in os.listdir(data_location):
 			plt.legend(handles1, labels1, loc='upper left', fontsize=16, handlelength=3)
 
             # Save plot to file
-			plt.savefig(output_location + group + '.pdf')
+			plt.savefig(output_location + group + '.png')
 			plt.close('all')
    
