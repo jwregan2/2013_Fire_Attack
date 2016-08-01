@@ -86,7 +86,7 @@ for f in os.listdir(data_dir):
 
 		for value in range(0,len(Zstart)):
 			if Zend[value]-Zstart[value] > 10:
-				Zgraph.append(10)
+				Zgraph.append(20)
 			else:
 				Zgraph.append(Zend[value]-Zstart[value])
 
@@ -120,6 +120,7 @@ for f in os.listdir(data_dir):
 		Nozzle_Position = str(Exp_Des['Nozzle_Position'][f[:-4]])+ ','+' '+str(Exp_Des['Nozzle_Direction'][f[:-4]])
 		Nozzle_Pattern = str(Exp_Des['Nozzle_Pattern'][f[:-4]])+' '+'Pattern'
 		Hoseline_Size = str(Exp_Des['Hose_Line_Size'][f[:-4]])+'"'+' '+'Hose'
+		Location = str(Exp_Des['Location'][f[:-4]])
 
 		print (Test_Name)
 
@@ -136,23 +137,25 @@ for f in os.listdir(data_dir):
 		ax.bar3d(X, Y, np.zeros(len(Zgraph)), dx, dy, Zgraph, zsort='max')
 		ax.view_init(elev=48., azim=-160)
 		# ax.text(5, 10, 14.85,Test_Name + ' ' + Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
-		ax.text(10, 3.25, 13,Test_Name, horizontalalignment='left', verticalalignment='bottom')
-		ax.text(10, 3.25, 12,Hoseline_Size + ',' + ' ' + Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
+		ax.text(15, 4.5, 15,Test_Name, horizontalalignment='left', verticalalignment='bottom')
+		ax.text(15, 4.5, 13,Hoseline_Size + ',' + ' ' + Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
 		# ax.text(10, 3.25, 11,Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
-		ax.text(10, 3.25, 11,Nozzle_Position, horizontalalignment='left', verticalalignment='bottom')
-		ax.text(10, 3.25, 10,Nozzle_Pattern, horizontalalignment='left', verticalalignment='bottom')
-		ax.text(10, 3.25, 9,Vents, horizontalalignment='left', verticalalignment='bottom')
+		ax.text(15, 4.5, 11,Nozzle_Position, horizontalalignment='left', verticalalignment='bottom')
+		ax.text(15, 4.5, 9,Nozzle_Pattern, horizontalalignment='left', verticalalignment='bottom')
+		# ax.text(10, 3.25, 9,Vents, horizontalalignment='left', verticalalignment='bottom')
 		
-		ax.set_zlim(0,10)
+		ax.set_zlim(0,20)
 		ax.set_xlabel('Window Side (# of Bins)')
 		ax.set_ylabel('Door Side (# of Bins)')
-		ax.set_zlabel('Mass of Water Collected (kg)')
+		ax.set_zlabel('Mass of Water Collected (gal)')
 		# plt.xticks(ticksx, column_names)
 		# plt.yticks(ticksy, row_names)
 
 		# plt.show()
 
-		plt.savefig('Figures/' + Test_Name.replace('/','_').replace('"','in') + Nozzle_Setting + Nozzle_Position + Nozzle_Pattern + '.png')
+		plt.savefig('Figures/' + f[:-4] + '_' + Test_Name.replace('/','_').replace('"','in').replace(' ','_') + '.png')
+
+		# plt.savefig('Figures/' + Test_Name.replace('/','_').replace('"','in') + Nozzle_Setting + Nozzle_Position.replace(':','_') + Nozzle_Pattern + '.png')
 		plt.close('all')
 
 # print len(X)
