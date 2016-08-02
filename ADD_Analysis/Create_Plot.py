@@ -90,25 +90,16 @@ for f in os.listdir(data_dir):
 			else:
 				Zgraph.append(Zend[value]-Zstart[value])
 
-		# print X[0:8]
-		# print Y[0:8]
-		# print Zgraph[0:8]
-
-		# fig = plt.figure()
-		# ax = fig.add_subplot(111, projection='3d')
-		# # ax = Axes3D(plt.figure())
-		# ax.bar3d(X, Y, np.zeros(len(Zgraph)), dx, dy, Zgraph, zsort='max')
-		# ax.view_init(elev=48., azim=-160)
-		# ax.text(10, 3.25, 11,f[:-4], horizontalalignment='left', verticalalignment='bottom')
-		# ax.set_zlim(0,10)
-		# row_num = 6
-		# col_num = 8
-		# ticksx = np.arange(0, col_num, 1)
-		# ticksy = np.arange(0, row_num, 1)
-		# column_names = ['1','2','3','4','5','6','7','8']
-		# row_names = ['1','2','3','4','5','6']
-		# ax.xticks(ticksx, col_names)
-		# ax.yticks(ticksy, row_names)
+		cs = ["" for x in range(len(Zgraph))]
+		for i in range(len(Zgraph)):
+			if Zgraph[i] <= 5:
+				cs[i] = 'b'
+			elif Zgraph[i] > 5 and Zgraph[i] <= 10:
+				cs[i] = 'g'
+			elif Zgraph[i] > 10 and Zgraph[i] <= 15:
+				cs[i] = 'gold'
+			elif Zgraph[i] > 15:
+				cs[i] = 'r'
 
 		if Exp_Des['Nozzle_Type'][f[:-4]] == 'Smooth Bore':
 			Test_Name = str(Exp_Des['Tip_Size_(in)'][f[:-4]]) + '"' + ' ' + str(Exp_Des['Nozzle_Type'][f[:-4]]) + ' ' + str(Exp_Des['Location'][f[:-4]])
@@ -133,42 +124,17 @@ for f in os.listdir(data_dir):
 
 		fig = plt.figure()
 		ax = fig.add_subplot(111, projection='3d')
-		# ax = Axes3D(plt.figure())
-		ax.bar3d(X, Y, np.zeros(len(Zgraph)), dx, dy, Zgraph, zsort='max')
+		ax.bar3d(X, Y, np.zeros(len(Zgraph)), dx, dy, Zgraph, zsort='max',color=cs)
 		ax.view_init(elev=48., azim=-160)
-		# ax.text(5, 10, 14.85,Test_Name + ' ' + Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
 		ax.text(15, 4.5, 15,Test_Name, horizontalalignment='left', verticalalignment='bottom')
 		ax.text(15, 4.5, 13,Hoseline_Size + ',' + ' ' + Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
-		# ax.text(10, 3.25, 11,Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
 		ax.text(15, 4.5, 11,Nozzle_Position, horizontalalignment='left', verticalalignment='bottom')
 		ax.text(15, 4.5, 9,Nozzle_Pattern, horizontalalignment='left', verticalalignment='bottom')
-		# ax.text(10, 3.25, 9,Vents, horizontalalignment='left', verticalalignment='bottom')
-		
+
 		ax.set_zlim(0,20)
 		ax.set_xlabel('Window Side (# of Bins)')
 		ax.set_ylabel('Door Side (# of Bins)')
 		ax.set_zlabel('Mass of Water Collected (gal)')
-		# plt.xticks(ticksx, column_names)
-		# plt.yticks(ticksy, row_names)
-
-		# plt.show()
-
 		plt.savefig('Figures/' + f[:-4] + '_' + Test_Name.replace('/','_').replace('"','in').replace(' ','_') + '.png')
 
-		# plt.savefig('Figures/' + Test_Name.replace('/','_').replace('"','in') + Nozzle_Setting + Nozzle_Position.replace(':','_') + Nozzle_Pattern + '.png')
 		plt.close('all')
-
-# print len(X)
-# print X
-
-# print len(Z)
-# print Z
-
-# x = np.arange(-5,5,0.25)
-# y = np.arange(-5,5,0.25)
-
-# X,Y = np.meshgrid(x,y)
-
-# Z = x**2 - Y**2
-
-# print len(Z)
