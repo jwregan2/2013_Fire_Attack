@@ -85,7 +85,7 @@ for f in os.listdir(data_dir):
 			Zstart.append((Z1[v]+ Z2[v]+Z3[v]+Z4[v]+Z5[v])/5)
 
 		for value in range(0,len(Zstart)):
-			if Zend[value]-Zstart[value] > 10:
+			if Zend[value]-Zstart[value] > 20:
 				Zgraph.append(20)
 			else:
 				Zgraph.append(Zend[value]-Zstart[value])
