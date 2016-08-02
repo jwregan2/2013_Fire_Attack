@@ -134,7 +134,7 @@ for f in os.listdir(data_dir):
 		ax.set_zlim(0,20)
 		ax.set_xlabel('Window Side (# of Bins)')
 		ax.set_ylabel('Door Side (# of Bins)')
-		ax.set_zlabel('Mass of Water Collected (gal)')
+		ax.set_zlabel('Volume of Water (gal)')
 		plt.savefig('Figures/' + f[:-4] + '_' + Test_Name.replace('/','_').replace('"','in').replace(' ','_') + '.png')
 
 		plt.close('all')
