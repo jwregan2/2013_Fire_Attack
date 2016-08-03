@@ -1,0 +1,89 @@
+Experiment_Type,Test_Config,Location,Top_Vent,Bottom_Vent,Nozzle_Size,Manufacturer,Nozze_Type,Tip_Size,Flow_Rate,Pressure
+Manufacturer,,Interior,,,1.5,Akron,Combination,,95,100
+Manufacturer,,Interior,,,1.5,Akron,Combination,,150,50
+Manufacturer,,Interior,,,1.5,Akron,Combination,,150,75
+Manufacturer,,Interior,,,1.5,Akron,Combination,,150,100
+Manufacturer,,Interior,,,1.5,Akron,Smooth Bore,7/8,150,50
+Manufacturer,,Interior,,,1.5,Akron,Smooth Bore,15/16,180,50
+Manufacturer,,Interior,,,1.5,Akron,Smooth Bore,1,210,50
+Manufacturer,,Interior,,,1.5,Elkhart,Combination,,95,100
+Manufacturer,,Interior,,,1.5,Elkhart,Combination,,150,50
+Manufacturer,,Interior,,,1.5,Elkhart,Combination,,150,75
+Manufacturer,,Interior,,,1.5,Elkhart,Combination,,150,100
+Manufacturer,,Interior,,,1.5,Elkhart,Smooth Bore,7/8,150,50
+Manufacturer,,Interior,,,1.5,Elkhart,Smooth Bore,15/16,180,50
+Manufacturer,,Interior,,,1.5,Elkhart,Smooth Bore,1,210,50
+Manufacturer,,Interior,,,1.5,TFT,Combination,,95,100
+Manufacturer,,Interior,,,1.5,TFT,Combination,,150,50
+Manufacturer,,Interior,,,1.5,TFT,Combination,,150,75
+Manufacturer,,Interior,,,1.5,TFT,Combination,,150,100
+Manufacturer,,Interior,,,1.5,TFT,Smooth Bore,7/8,150,50
+Manufacturer,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50
+Manufacturer,,Interior,,,1.5,TFT,Smooth Bore,1,210,50
+Manufacturer,,Interior,,,2.5,TFT,Combination,,250,50
+Manufacturer,,Interior,,,2.5,TFT,Combination,,250,75
+Manufacturer,,Interior,,,2.5,TFT,Combination,,250,100
+Manufacturer,,Interior,,,2.5,TFT,Smooth Bore,1 1/8,260,50
+Manufacturer,,Interior,,,2.5,TFT,Smooth Bore,1 1/4,320,50
+Manufacturer,,Exterior,,,1.5,TFT,Combination,,150,75
+Manufacturer,,Exterior,,,1.5,TFT,Smooth Bore,15/16,180,50
+Manufacturer,,Exterior,,,2.5,TFT,Combination,,250,75
+Manufacturer,,Exterior,,,2.5,TFT,Smooth Bore,1 1/4,320,50
+Manufacturer,,Exterior,,,PM,TFT,Combination,,500,75
+Manufacturer,,Exterior,,,PM,TFT,Smooth Bore,,500,80
+Bedroom_Setup,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50
+Bedroom_Setup,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50
+Bedroom_Setup,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50
+Bedroom_Setup,,Interior,,,1.5,TFT,Combination,,150,50
+Bedroom_Setup,,Interior,,,1.5,TFT,Combination,,150,50
+Bedroom_Setup,,Interior,,,1.5,TFT,Combination,,150,50
+Bedroom_Setup,,Interior,,,1.5,TFT,Combination,,150,75
+Bedroom_Setup,,Exterior,,,1.5,TFT,Combination,,150,50
+Distance_Tests,,Interior,,,1.5,TFT,Combination,,150,100
+Distance_Tests,,Interior,,,1.5,TFT,Combination,,150,50
+Door_Occlusion_Test,,Interior,,,1.5,TFT,Combination,,150,100
+Nozzle_Movement,,Interior,,,1.5,TFT,Smooth Bore,1,210,50
+Nozzle_Movement,,Interior,,,1.5,TFT,Smooth Bore,1,210,50
+Geometry_Tests,,Interior,Controlled Door,Single Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,Double Door,Double Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,Double Door,Single Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,Double Door,Single Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,No Opening,Double Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,No Opening,Single Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,No Opening,Single Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,Single Door,Double Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,Single Door,Single Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,Single Door,Double Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,Single Door,Single Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Interior,Controlled Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Interior,Double Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Interior,Single Door,Double Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Interior,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Exterior,Double Door,Double Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,Double Door,Single Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,No Opening,Double Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,No Opening,Single Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,No Opening,Double Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,Single Door,Double Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,Single Door,Single Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,Single Door,Double Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,Single Door,Single Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,Single Window,Double Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,Single Window,Single Door,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Exterior,No Opening,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Exterior,Single Door,Double Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Exterior,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Exterior,Single Window,Single Door,2.5,TFT,Combination,,250,75
+Geometry_Tests,,Exterior,Single Door,Single Window,2.5,TFT,Combination,,250,75
+Geometry_Tests,,Exterior,Single Window,Single Door,2.5,TFT,Smooth Bore,1 1/4,320,50
+Geometry_Tests,ignore,Exterior,Single Door,Single Window,2.5,TFT,Smooth Bore ,1 1/4,320,50
+Geometry_Tests,,Exterior,Single Window,Single Door,PM,TFT,Combination,,500,80
+Geometry_Tests,,Exterior,Single Door,Single Window,PM,TFT,Combination,,500,80
+Geometry_Tests,,Exterior,Single Window,Single Door,PM,TFT,Smooth Bore,1 3/8,500,80
+Geometry_Tests,,Exterior,Single Door,Single Window,PM,TFT,Smooth Bore,1 3/8,500,80
+Geometry_Tests,,Transitional,Single Window,Single Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Transitional,No Opening,Single Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Transitional,Single Door,Single Window,1.5,TFT,Combination,,150,75
+Geometry_Tests,,Transitional,Single Window,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Transitional,No Opening,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
+Geometry_Tests,,Transitional,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
