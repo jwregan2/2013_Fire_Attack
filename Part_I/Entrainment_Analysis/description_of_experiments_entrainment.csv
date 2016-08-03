@@ -1,89 +1,95 @@
-Experiment_Type,Test_Config,Location,Top_Vent,Bottom_Vent,Nozzle_Size,Manufacturer,Nozze_Type,Tip_Size,Flow_Rate,Pressure
-Manufacturer,,Interior,,,1.5,Akron,Combination,,95,100
-Manufacturer,,Interior,,,1.5,Akron,Combination,,150,50
-Manufacturer,,Interior,,,1.5,Akron,Combination,,150,75
-Manufacturer,,Interior,,,1.5,Akron,Combination,,150,100
-Manufacturer,,Interior,,,1.5,Akron,Smooth Bore,7/8,150,50
-Manufacturer,,Interior,,,1.5,Akron,Smooth Bore,15/16,180,50
-Manufacturer,,Interior,,,1.5,Akron,Smooth Bore,1,210,50
-Manufacturer,,Interior,,,1.5,Elkhart,Combination,,95,100
-Manufacturer,,Interior,,,1.5,Elkhart,Combination,,150,50
-Manufacturer,,Interior,,,1.5,Elkhart,Combination,,150,75
-Manufacturer,,Interior,,,1.5,Elkhart,Combination,,150,100
-Manufacturer,,Interior,,,1.5,Elkhart,Smooth Bore,7/8,150,50
-Manufacturer,,Interior,,,1.5,Elkhart,Smooth Bore,15/16,180,50
-Manufacturer,,Interior,,,1.5,Elkhart,Smooth Bore,1,210,50
-Manufacturer,,Interior,,,1.5,TFT,Combination,,95,100
-Manufacturer,,Interior,,,1.5,TFT,Combination,,150,50
-Manufacturer,,Interior,,,1.5,TFT,Combination,,150,75
-Manufacturer,,Interior,,,1.5,TFT,Combination,,150,100
-Manufacturer,,Interior,,,1.5,TFT,Smooth Bore,7/8,150,50
-Manufacturer,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50
-Manufacturer,,Interior,,,1.5,TFT,Smooth Bore,1,210,50
-Manufacturer,,Interior,,,2.5,TFT,Combination,,250,50
-Manufacturer,,Interior,,,2.5,TFT,Combination,,250,75
-Manufacturer,,Interior,,,2.5,TFT,Combination,,250,100
-Manufacturer,,Interior,,,2.5,TFT,Smooth Bore,1 1/8,260,50
-Manufacturer,,Interior,,,2.5,TFT,Smooth Bore,1 1/4,320,50
-Manufacturer,,Exterior,,,1.5,TFT,Combination,,150,75
-Manufacturer,,Exterior,,,1.5,TFT,Smooth Bore,15/16,180,50
-Manufacturer,,Exterior,,,2.5,TFT,Combination,,250,75
-Manufacturer,,Exterior,,,2.5,TFT,Smooth Bore,1 1/4,320,50
-Manufacturer,,Exterior,,,PM,TFT,Combination,,500,75
-Manufacturer,,Exterior,,,PM,TFT,Smooth Bore,,500,80
-Bedroom_Setup,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50
-Bedroom_Setup,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50
-Bedroom_Setup,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50
-Bedroom_Setup,,Interior,,,1.5,TFT,Combination,,150,50
-Bedroom_Setup,,Interior,,,1.5,TFT,Combination,,150,50
-Bedroom_Setup,,Interior,,,1.5,TFT,Combination,,150,50
-Bedroom_Setup,,Interior,,,1.5,TFT,Combination,,150,75
-Bedroom_Setup,,Exterior,,,1.5,TFT,Combination,,150,50
-Distance_Tests,,Interior,,,1.5,TFT,Combination,,150,100
-Distance_Tests,,Interior,,,1.5,TFT,Combination,,150,50
-Door_Occlusion_Test,,Interior,,,1.5,TFT,Combination,,150,100
-Nozzle_Movement,,Interior,,,1.5,TFT,Smooth Bore,1,210,50
-Nozzle_Movement,,Interior,,,1.5,TFT,Smooth Bore,1,210,50
-Geometry_Tests,,Interior,Controlled Door,Single Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,Double Door,Double Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,Double Door,Single Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,Double Door,Single Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,No Opening,Double Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,No Opening,Single Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,No Opening,Single Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,Single Door,Double Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,Single Door,Single Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,Single Door,Double Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,Single Door,Single Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Interior,Controlled Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Interior,Double Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Interior,Single Door,Double Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Interior,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Exterior,Double Door,Double Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,Double Door,Single Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,No Opening,Double Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,No Opening,Single Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,No Opening,Double Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,Single Door,Double Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,Single Door,Single Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,Single Door,Double Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,Single Door,Single Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,Single Window,Double Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,Single Window,Single Door,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Exterior,No Opening,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Exterior,Single Door,Double Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Exterior,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Exterior,Single Window,Single Door,2.5,TFT,Combination,,250,75
-Geometry_Tests,,Exterior,Single Door,Single Window,2.5,TFT,Combination,,250,75
-Geometry_Tests,,Exterior,Single Window,Single Door,2.5,TFT,Smooth Bore,1 1/4,320,50
-Geometry_Tests,ignore,Exterior,Single Door,Single Window,2.5,TFT,Smooth Bore ,1 1/4,320,50
-Geometry_Tests,,Exterior,Single Window,Single Door,PM,TFT,Combination,,500,80
-Geometry_Tests,,Exterior,Single Door,Single Window,PM,TFT,Combination,,500,80
-Geometry_Tests,,Exterior,Single Window,Single Door,PM,TFT,Smooth Bore,1 3/8,500,80
-Geometry_Tests,,Exterior,Single Door,Single Window,PM,TFT,Smooth Bore,1 3/8,500,80
-Geometry_Tests,,Transitional,Single Window,Single Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Transitional,No Opening,Single Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Transitional,Single Door,Single Window,1.5,TFT,Combination,,150,75
-Geometry_Tests,,Transitional,Single Window,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Transitional,No Opening,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
-Geometry_Tests,,Transitional,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50
+Experiment_Type,File_Name,Test_Config,Location,Top_Vent,Bottom_Vent,Nozzle_Size,Manufacturer,Nozze_Type,Tip_Size,Flow_Rate,Pressure,
+Manufacturer,1.75 Automatic 95GPM 100PSI_2015-10-26-1706,,Interior,,,1.5,Akron,Combination,,95,100,
+Manufacturer,1.75 Automatic 150GPM 50PSI_2015-10-26-1723,,Interior,,,1.5,Akron,Combination,,150,50,
+Manufacturer,1.75 Automatic 150GPM 75PSI_2015-10-26-1714,,Interior,,,1.5,Akron,Combination,,150,75,
+Manufacturer,1.75 Automatic 150GPM 100PSI_2015-10-26-1656,,Interior,,,1.5,Akron,Combination,,150,100,
+Manufacturer,1.75 Smooth Bore 7_18in 150GPM 50PSI_2015-10-26-1732,,Interior,,,1.5,Akron,Smooth Bore,7/8,150,50,
+Manufacturer,1.75 Smooth Bore 15_16in 180GPM 50PSI_2015-10-26-1737,,Interior,,,1.5,Akron,Smooth Bore,15/16,180,50,
+Manufacturer,1.75 Smooth Bore 1in 210GPM 50PSI_2015-10-26-1743,,Interior,,,1.5,Akron,Smooth Bore,1,210,50,
+Manufacturer,1.75 Automatic Nozzle 95GPM 100PSI_2015-10-27-0752,,Interior,,,1.5,Elkhart,Combination,,95,100,
+Manufacturer,1.75 Automatic Nozzle 150GPM 50PSI_2015-10-27-0834,,Interior,,,1.5,Elkhart,Combination,,150,50,
+Manufacturer,1.75 Automatic Nozzle 150GPM 75PSI_2015-10-27-0815,,Interior,,,1.5,Elkhart,Combination,,150,75,
+Manufacturer,1.75 Automatic Nozzle 150GPM 100PSI_2015-10-27-0725,,Interior,,,1.5,Elkhart,Combination,,150,100,
+Manufacturer,1.75 Smooth Bore 7_8in 150GPM 50PSI_2015-10-27-0843,,Interior,,,1.5,Elkhart,Smooth Bore,7/8,150,50,
+Manufacturer,1.75 Smooth Bore 15_16in 180GPM 50PSI_2015-10-27-0852,,Interior,,,1.5,Elkhart,Smooth Bore,15/16,180,50,
+Manufacturer,1.75 Smooth Bore 1in 210GPM 50PSI_2015-10-27-0901,,Interior,,,1.5,Elkhart,Smooth Bore,1,210,50,
+Manufacturer,1.75 Automatic Nozzle 95GPM 100PSI_2015-10-26-1608,,Interior,,,1.5,TFT,Combination,,95,100,
+Manufacturer,1.75 Automatic Nozzle 150GPM 50PSI_2015-10-26-1517,,Interior,,,1.5,TFT,Combination,,150,50,
+Manufacturer,1.75 Automatic Nozzle 150GPM 75PSI_2015-10-26-1530,,Interior,,,1.5,TFT,Combination,,150,75,
+Manufacturer,1.75 Automatic Nozzle 150GPM 100PSI_2015-10-26-1551,,Interior,,,1.5,TFT,Combination,,150,100,
+Manufacturer,1.75 Smooth Bore 7_8In 150GPM 50PSI_2015-10-26-1620,,Interior,,,1.5,TFT,Smooth Bore,7/8,150,50,
+Manufacturer,1.75 Smooth Bore 15_16In 180GPM 50PSI_2015-10-26-1630,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50,
+Manufacturer,1.75 Smooth Bore 1In 210GPM 50PSI_2015-10-26-1640,,Interior,,,1.5,TFT,Smooth Bore,1,210,50,
+Manufacturer,2.5 Automatic Nozzle 1in 250GPM at 50PSI_2015-10-27-1204,,Interior,,,2.5,TFT,Combination,,250,50,
+Manufacturer,2.5 Automatic Nozzle 1in 250GPM at 75PSI_2015-10-27-1216,,Interior,,,2.5,TFT,Combination,,250,75,
+Manufacturer,2.5 Automatic Nozzle 1in 250GPM at 100PSI_2015-10-27-1250,,Interior,,,2.5,TFT,Combination,,250,100,
+Manufacturer,2.5 Smooth Bore 1 1_8in 260GPM at 50PSI_2015-10-27-1307,,Interior,,,2.5,TFT,Smooth Bore,1 1/8,260,50,
+Manufacturer,2.5 Smooth Bore 1 1_4in 260GPM at 50PSI_2015-10-27-1315,,Interior,,,2.5,TFT,Smooth Bore,1 1/4,320,50,
+Manufacturer,Master Stream Fog Tip 600GPM at 80PSI_2015-10-27-1639,,Interior,,,MS,TFT,Combination,,500,100,
+Manufacturer,Master Stream Fog Tip 750PM_2015-10-27-1646,,Interior,,,MS,TFT,Combination,,750,100,
+Manufacturer,Master Stream 1 1_2in Tip 600GPM at 80PSI_2015-10-27-1624,,Interior,,,MS,TFT,Smooth Bore,1 1/2,600,80,
+Manufacturer,Master Stream 1 3_4in Tip 600GPM at 80PSI_2015-10-27-1629,,Interior,,,MS,TFT,Smooth Bore,1 3/4,800,80,
+Manufacturer,Portable Monitor Fog Tip 500GPM at 80PSI_2015-10-27-1354,,Interior,,,PM,TFT,Combination,,500,80,
+Manufacturer,Portable Monitor Smooth Bore 1 3_8in 480GPM at 80PSI_2015-10-27-1344,,Interior,,,PM,TFT,Smooth Bore,1 3/8,480,80,
+Manufacturer,1_5_TFTComb_150GPM_75PSI,ignore,Exterior,,,1.5,TFT,Combination,,150,75,
+Manufacturer,1.5 Smooth Bore 15_16in 180GPM 50PSI _2015-10-27-1923,,Exterior,,,1.5,TFT,Smooth Bore,15/16,180,50,
+Manufacturer,2.5 Automatic Nozzle 250GPM 75PSI_2015-10-27-1950,,Exterior,,,2.5,TFT,Combination,,250,75,
+Manufacturer,2.5 Smooth Bore 1 1_4 320GPM 50PSI_2015-10-27-2003,,Exterior,,,2.5,TFT,Smooth Bore,1 1/4,320,50,
+Manufacturer,Portable Monitor Automatic Nozzle 500GPM 75PSI_2015-10-27-2017,,Exterior,,,PM,TFT,Combination,,500,75,
+Manufacturer,Portable Monitor Smooth Bore 500GPM 75PSI_2015-10-27-2026,,Exterior,,,PM,TFT,Smooth Bore,,500,80,
+Bedroom_Setup,1_5 Smooth Bore 180GPM 50PSI_2015-10-29-1131,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50,
+Bedroom_Setup,1_5 Smooth Bore 180GPM 50PSI_2015-10-29-1141,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50,
+Bedroom_Setup,1_5 Smooth Bore Nozzle 180GPM 50PSI_2015-10-29-1414,,Interior,,,1.5,TFT,Smooth Bore,15/16,180,50,
+Bedroom_Setup,1_5 Smooth Bore Nozzle 180GPM 50PSI_2015-10-29-1426,,Interior,,,1.5,TFT,Combination,,150,50,
+Bedroom_Setup,1_5 Automatic Nozzle 180GPM 50PSI_2015-10-29-1353,,Interior,,,1.5,TFT,Combination,,150,50,
+Bedroom_Setup,1_5 Automatic Nozzle 180GPM 50PSI_2015-10-29-1405,,Interior,,,1.5,TFT,Combination,,150,50,
+Bedroom_Setup,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-29-1117,,Interior,,,1.5,TFT,Combination,,150,75,
+Bedroom_Setup,1_5 Automatic Nozzle150GPM 50PSI_2015-10-29-1436,,Exterior,,,1.5,TFT,Combination,,150,50,
+Distance_Tests,1.5 Automatic 150GPM 100 PSI - Distance Test_2015-10-26-1322,,Interior,,,1.5,TFT,Combination,,150,100,
+Distance_Tests,1.5 Automatic 150GPM 50 PSI - Distance Test_2015-10-26-1258,,Interior,,,1.5,TFT,Combination,,150,50,
+Door_Occlusion_Test,1.5 Automatic 150GPM 100 PSI - Opening Occlusion Test_2015-10-26-1339,,Interior,,,1.5,TFT,Combination,,150,100,
+Nozzle_Movement,1.75 Smooth Bore 1in 210GPM 50PSI - Patter Speed Test_2015-10-27-0912,,Interior,,,1.5,TFT,Smooth Bore,1,210,50,rev speed
+Nozzle_Movement,1.75 Smooth Bore 1in 210GPM 50PSI - Spray and Pray Test_2015-10-27-0923,,Interior,,,1.5,TFT,Smooth Bore,1,210,50,spray pray
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1755,,Interior,Controlled Door,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1614,,Interior,Double Door,Double Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1745,,Interior,Double Door,Single Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1738,,Interior,Double Door,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1652,,Interior,No Opening,Double Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1645,,Interior,No Opening,Single Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1659,,Interior,No Opening,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1621,,Interior,Single Door,Double Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1630,,Interior,Single Door,Single Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-1908,,Interior,Single Door,Double Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1731,,Interior,Single Door,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Smooth Bore 15_16in 180GPM 50PSI_2015-10-28-1842,,Interior,Controlled Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,1_5 Smooth Bore 15_16in 180GPM 50PSI_2015-10-28-1852,,Interior,Double Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,1_5 Smooth Bore 15_16in 180GPM 50PSI_2015-10-28-1902,,Interior,Single Door,Double Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,1_5 Smooth Bore 15_16in 180GPM 50PSI_2015-10-28-1847,,Interior,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-0814,,Exterior,Double Door,Double Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-0828,,Exterior,Double Door,Single Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-0754,,Exterior,No Opening,Double Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-0745,,Exterior,No Opening,Single Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1050,,Exterior,No Opening,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-0722,,Exterior,Single Door,Double Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-0732,,Exterior,Single Door,Single Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-1000,,Exterior,Single Door,Double Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic 150GPM 75PSI_2015-10-28-1042,,Exterior,Single Door,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-0948,,Exterior,Single Window,Double Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-0920,,Exterior,Single Window,Single Door,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Smooth Bore 15_16in 180GPM 50PSI_2015-10-28-1100,,Exterior,No Opening,Single Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,1_5 Smooth Bore 15_16in 180GPM 50PSI_2015-10-28-1019,,Exterior,Single Door,Double Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,1_5 Smooth Bore 15_16in 180GPM 50PSI_2015-10-28-1036,,Exterior,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,2_5 Automatic Nozzle 250GPM 75PSI_2015-10-28-1425,,Exterior,Single Window,Single Door,2.5,TFT,Combination,,250,75,
+Geometry_Tests,2_5 Automatic Nozzle 250GPM 75PSI_2015-10-28-1414,,Exterior,Single Door,Single Window,2.5,TFT,Combination,,250,75,
+Geometry_Tests,2_5 Smooth Bore 1 1_4in 320GPM 50PSI_2015-10-28-1435,,Exterior,Single Window,Single Door,2.5,TFT,Smooth Bore,1 1/4,320,50,
+Geometry_Tests,,ignore,Exterior,Single Door,Single Window,2.5,TFT,Smooth Bore ,1 1/4,320,50,
+Geometry_Tests,Portable Monitor Automatic 500GPM 75PSI_2015-10-28-1447,,Exterior,Single Window,Single Door,PM,TFT,Combination,,500,80,
+Geometry_Tests,Portable Monitor Automatic 500GPM 80PSI_2015-10-28-1524,,Exterior,Single Door,Single Window,PM,TFT,Combination,,500,80,
+Geometry_Tests,Portable Monitor 1 3_8in 500GPM 80PSI_2015-10-28-1455,,Exterior,Single Window,Single Door,PM,TFT,Smooth Bore,1 3/8,500,80,
+Geometry_Tests,Portable Monitor 1 3_8in 500GPM 80PSI_2015-10-28-1511,,Exterior,Single Door,Single Window,PM,TFT,Smooth Bore,1 3/8,500,80,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 50PSI_2015-10-28-1351,,Transitional,Single Window,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-1315,,Transitional,No Opening,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Automatic Nozzle 150GPM 75PSI_2015-10-28-1323,,Transitional,Single Door,Single Window,1.5,TFT,Combination,,150,75,
+Geometry_Tests,1_5 Smooth Bore 15_16 180GPM 50PSI_2015-10-28-1342,,Transitional,Single Window,Single Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,1_5 Smoother Bore 15_16  180GPM 50 PSI_2015-10-28-1304,,Transitional,No Opening,Single Window,1.5,TFT,Smooth Bore,15/16,180,50,
+Geometry_Tests,1_5 Smooth Bore 15_16 180GPM 50PSI_2015-10-28-1334,,Transitional,Single Door,Single Window,1.5,TFT,Smooth Bore,15/16,180,50,
