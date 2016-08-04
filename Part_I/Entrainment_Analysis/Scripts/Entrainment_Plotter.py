@@ -103,17 +103,20 @@ for i in range(len(tableau20)):
 #Plotting
 plot_file = pd.read_csv(plot_file)
 
-for i in range(len(plot_file)):
+for k in range(len(plot_file)):
 	test_comps=[]
 	event_nums=[]
-	temp1 = plot_file['Experiments_To_Compare'][i].split('|')
+	legend_names = []
+	temp1 = plot_file['Experiments_To_Compare'][k].split('|')
 	test_comps = np.asarray(temp1)
-	temp2 = plot_file['Bars'][i].split('|')
-	event_nums = np.array(temp2)
-
-
+	temp2 = plot_file['Bars'][k].split('|')
+	event_nums = np.asarray(temp2)
+	temp3 = plot_file['Legend'][k].split('|')
+	legend_names = np.asarray(temp3)
+	file_name = plot_file['Plot_Name'][k]
+	
 	ind = np.arange(len(event_nums))  # the x locations for the groups
-	width = 0.35       # the width of the bars
+	width = 0.8/len(test_comps)  # the width of the bars
 	fig, ax = plt.subplots()
 
 	cfm_bars = np.zeros((len(test_comps),len(event_nums)))
@@ -126,8 +129,10 @@ for i in range(len(plot_file)):
 
 		rects = ax.bar(ind+i*width, cfm_bars[i,:], width, color=tableau20[i])
 
+	ax.legend(legend_names)
+	ax.set_title(plot_file['Chart_Title'][k])
 	ax.set_ylabel('CFM')
 	ax.set_xticks(ind + width)
 	ax.set_xticklabels(labels)
-	savefig('../Figures/'+'test'+'.pdf')
+	savefig('../Figures/'+file_name+'.pdf')
 
