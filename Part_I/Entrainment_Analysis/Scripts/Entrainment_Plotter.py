@@ -36,22 +36,28 @@ for f in os.listdir(data_location):
 
 		# Read in experiment file
 		experiment = f
+
 		# exp = experiment[11:-9]
 		Exp_Data = pd.read_csv(data_location + experiment)
-		# print (Exp_Data['Time'][1])
-		# Exp_Time = [datetime.datetime.strptime(t, '%d/%m/%Y %H:%M:%S') for t in Exp_Data['Time']]
-		# print(Exp_Time)
+		data_copy = Exp_Data.drop('Elapsed Time', axis=1)
+		data_copy = data_copy.rolling(window=10, center=True).mean()
+		data_copy.insert(0, 'Elapsed Time', Exp_Data['Elapsed Time'])
+		data_copy = data_copy.dropna()
+		Exp_Data = data_copy
+
 		Exp_Events = pd.read_csv(data_location + experiment[:-4]+'_Events.csv')
 		Event_Time = [datetime.datetime.strptime(t, '%Y-%m-%d-%H:%M:%S') for t in Exp_Events['Time']]
-		print(Event_Time)
-		print(fds)
 
 		# Get experiment name from file
 		Test_Name = experiment[:-4]
 		Exp_Num = Test_Name[4:-7]
 
-		BDP_Resolution = Exp_Des['BDP_Res'][Test_Name]
+		temp_time = []
+		for i in range(len(Event_Time)):
+			temp_time.append(Event_Time[i].timestamp() - Event_Time[0].timestamp() + Exp_Des['Time_Offset'][Test_Name])
+		Exp_Events['Elapsed_Time'] = temp_time
 
+		BDP_Resolution = Exp_Des['BDP_Res'][Test_Name]
 		if BDP_Resolution == 'N':
 			channels = channels_nr
 		else:
@@ -61,12 +67,27 @@ for f in os.listdir(data_location):
 		print (Test_Name)
 
 		for channel in channels:
-			#Calculate velocity in ft/min
-			zero_voltage = np.mean(Exp_Data[channel][0:60])
-			Exp_Data[channel] = (np.sign(Exp_Data[channel]-zero_voltage)*0.070*(288.7*(4.98*abs(Exp_Data[channel]-zero_voltage)))**0.5) * 196.85
+			#Calculate velocity
+			conv_inch_h2o = 0.4
+			conv_pascal = 248.8
+			convert_ftpm = 196.85
+			end_zero_time = int(Exp_Events['Elapsed_Time'][1])
+			zero_voltage = np.mean(Exp_Data[channel][0:end_zero_time])
+			pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel] - zero_voltage)  # Convert voltage to pascals
+			# Calculate velocity
+			Exp_Data[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * (293.15)) * np.sign(pressure)
 
 		#Calculate cfm
 		area = 18.56
 		CFM = np.mean(Exp_Data[channels],axis=1)*area
+		cfm_avgs = []
+		for i in range(1,len(Exp_Events)):
+			pos2 = int(Exp_Events['Elapsed_Time'][i])
+			pos1 = int(Exp_Events['Elapsed_Time'][i-1])
+			cfm_avgs.append(np.mean(CFM[pos1:pos2]))
+		cfm_avgs = np.append(cfm_avgs,'NaN')
+		Exp_Events['CFM_Avg'] = cfm_avgs
+
+	Exp_Events.to_csv('../Experimental_Data/'+ Test_Name + '_Events_CFM.csv')
 
 
