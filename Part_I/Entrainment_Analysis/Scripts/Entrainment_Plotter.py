@@ -25,7 +25,7 @@ skip_files = ['_events']
 channels_nr = ['BDP1V','BDP2V','BDP3V','BDP4V','BDP5V']
 channels_hr = ['BDP1VHR','BDP2VHR','BDP3VHR','BDP4VHR','BDP5VHR']
 
-# Loop through Experiment files
+# # Loop through Experiment files
 # for f in os.listdir(data_location):
 # 	if f.endswith('.csv'):
 
@@ -87,7 +87,7 @@ channels_hr = ['BDP1VHR','BDP2VHR','BDP3VHR','BDP4VHR','BDP5VHR']
 # 		cfm_avgs = np.append(cfm_avgs,'NaN')
 # 		Exp_Events['CFM_Avg'] = cfm_avgs
 
-	# Exp_Events.to_csv('../Experimental_Data/'+ Test_Name + '_Events_CFM.csv')
+# 		Exp_Events.to_csv('../Experimental_Data/'+ Test_Name + '_Events_CFM.csv')
 
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
              (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
@@ -109,7 +109,10 @@ for k in range(len(plot_file)):
 	legend_names = []
 	temp1 = plot_file['Experiments_To_Compare'][k].split('|')
 	test_comps = np.asarray(temp1)
-	temp2 = plot_file['Bars'][k].split('|')
+	if plot_file['Anomalies'][k] == 0:
+		temp2 = plot_file['Bars'][k].split('|')
+	elif plot_file['Anomalies'][k] == 1:
+		temp2 = plot_file['New_Bars'][k].split('|')
 	event_nums = np.asarray(temp2)
 	temp3 = plot_file['Legend'][k].split('|')
 	legend_names = np.asarray(temp3)
@@ -134,5 +137,6 @@ for k in range(len(plot_file)):
 	ax.set_ylabel('CFM')
 	ax.set_xticks(ind + width)
 	ax.set_xticklabels(labels)
-	savefig('../Figures/'+file_name+'.pdf')
+	savefig('../Figures/'+file_name+'.png')
 
+	plt.close('all')
