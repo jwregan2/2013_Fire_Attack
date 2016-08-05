@@ -99,44 +99,58 @@ for i in range(len(tableau20)):
     r, g, b = tableau20[i]
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
-
 #Plotting
 plot_file = pd.read_csv(plot_file)
-
 for k in range(len(plot_file)):
+	print('Plotting: ' + plot_file['Chart_Title'][k])
 	test_comps=[]
 	event_nums=[]
 	legend_names = []
+	event_nums_anomoly = []
 	temp1 = plot_file['Experiments_To_Compare'][k].split('|')
 	test_comps = np.asarray(temp1)
 	if plot_file['Anomalies'][k] == 0:
 		temp2 = plot_file['Bars'][k].split('|')
+		event_nums = np.asarray(temp2)
 	elif plot_file['Anomalies'][k] == 1:
-		temp2 = plot_file['New_Bars'][k].split('|')
-	event_nums = np.asarray(temp2)
-	temp3 = plot_file['Legend'][k].split('|')
-	legend_names = np.asarray(temp3)
+		temp2 = plot_file['Bars'][k].split('|')
+		event_nums = np.asarray(temp2)
+		temp3 = plot_file['New_Bars'][k].split('|')
+		event_nums_anomoly = np.asarray(temp3)
+	temp4 = plot_file['Legend'][k].split('|')
+	legend_names = np.asarray(temp4)
 	file_name = plot_file['Plot_Name'][k]
-	
+
 	ind = np.arange(len(event_nums))  # the x locations for the groups
 	width = 0.8/len(test_comps)  # the width of the bars
-	fig, ax = plt.subplots()
 
+	fig, ax = plt.subplots(figsize=(10, 9))
 	cfm_bars = np.zeros((len(test_comps),len(event_nums)))
 	labels = ["" for x in range(len(event_nums))]
 	for i in range(len(test_comps)):
 		temp_read = pd.read_csv('../Experimental_Data/'+test_comps[i]+'_Events_CFM.csv')
 		for j in range(len(event_nums)):
-			cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
+			if plot_file['Anomalies'][k] == 0:
+				cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
+			elif plot_file['Anomalies'][k] == 1:
+				if test_comps[i] == plot_file['Anomaly_Exp'][k]:
+					cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums_anomoly[j])]
+				else:
+					cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
 			labels[j] = temp_read['Event'][int(event_nums[j])]
 
 		rects = ax.bar(ind+i*width, cfm_bars[i,:], width, color=tableau20[i])
 
-	ax.legend(legend_names)
+	box = ax.get_position()
+	ax.set_position([box.x0, box.y0, box.width * 0.7, box.height])
+	ax.legend(legend_names,loc='center left', bbox_to_anchor=(1, 0.5))
 	ax.set_title(plot_file['Chart_Title'][k])
 	ax.set_ylabel('CFM')
-	ax.set_xticks(ind + width)
-	ax.set_xticklabels(labels)
+	if len(test_comps) == 1:
+		ax.set_xticks(ind + width/2)
+	else:
+		ax.set_xticks(ind + width)
+	ax.set_xticklabels(labels, rotation = -15, ha = 'left')
 	savefig('../Figures/'+file_name+'.png')
 
 	plt.close('all')
