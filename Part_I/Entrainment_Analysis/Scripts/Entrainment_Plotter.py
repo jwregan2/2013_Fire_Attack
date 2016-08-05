@@ -116,9 +116,11 @@ for k in range(len(plot_file)):
 		temp2 = plot_file['Bars'][k].split('|')
 		event_nums = np.asarray(temp2)
 		temp3 = plot_file['New_Bars'][k].split('|')
-		event_nums_anomoly = np.asarray(temp3)
-	temp4 = plot_file['Legend'][k].split('|')
-	legend_names = np.asarray(temp4)
+		event_nums_anomaly = np.asarray(temp3)
+		temp4 = plot_file['Anomaly_Exp'][k].split('|')
+		test_anomaly = np.asarray(temp4)
+	temp5 = plot_file['Legend'][k].split('|')
+	legend_names = np.asarray(temp5)
 	file_name = plot_file['Plot_Name'][k]
 
 	ind = np.arange(len(event_nums))  # the x locations for the groups
@@ -133,8 +135,8 @@ for k in range(len(plot_file)):
 			if plot_file['Anomalies'][k] == 0:
 				cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
 			elif plot_file['Anomalies'][k] == 1:
-				if test_comps[i] == plot_file['Anomaly_Exp'][k]:
-					cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums_anomoly[j])]
+				if any(x in test_anomaly[nn] for x in test_comps[i]):
+					cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums_anomaly[j])]
 				else:
 					cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
 			labels[j] = temp_read['Event'][int(event_nums[j])]
