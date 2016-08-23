@@ -1,11 +1,11 @@
 Time,Event
 2015-10-29-14:36:17,Background
-2015-10-29-14:37:17,Straight Through Window
+2015-10-29-14:37:17,At Wall
 2015-10-29-14:38:18,Nozzle Off 1
-2015-10-29-14:39:19,Straight Stream 8' In Off Ceiling
+2015-10-29-14:39:19,Min Angle - Ceiling
 2015-10-29-14:40:20,Nozzle Off 2
-2015-10-29-14:41:21,Nozzle on - Directly Inside the Window
+2015-10-29-14:41:21,Max Angle
 2015-10-29-14:42:21,Nozzle Off 3
-2015-10-29-14:43:21,Narrow Fog - Straight in Window
+2015-10-29-14:43:21,Narrow Fog Fixed
 2015-10-29-14:44:22,Nozzle Off 4
 2015-10-29-14:45:26,End Test

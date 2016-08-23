@@ -1,1 +1,8 @@
-Time,Event2015-10-26-16:20:18,Background2015-10-26-16:21:18,Nozzle On2015-10-26-16:22:18,'O' Pattern2015-10-26-16:23:19,'Z' Pattern2015-10-26-16:24:19,'n' Pattern2015-10-26-16:25:21,Nozzle Off2015-10-26-16:26:22,End Test
+Time,Event
+2015-10-26-16:20:18,Background
+2015-10-26-16:21:18,SB Fixed
+2015-10-26-16:22:18,SB 'O'
+2015-10-26-16:23:19,Straight Stream 'Z' 
+2015-10-26-16:24:19,Straight Stream 'n'
+2015-10-26-16:25:21,Nozzle Off
+2015-10-26-16:26:22,End Test
