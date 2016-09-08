@@ -3,13 +3,13 @@ Setback_Distance_Comparison,Setback Distance Comparison,Preliminary Testing,150g
 Opening_Occlusion,Opening Occlusion,Preliminary Testing,150gpm @ 50psi,Exp_03_102615,1|2|3,0,,
 Nozzle_Movement_Comparison_1,Nozzle Movement Comparison - Rotation Speed,Preliminary Testing,210gpm @ 50psi,Exp_25_102715,1|2|3,0,,
 Nozzle_Movement_Comparison_2,Nozzle Movement Comparison - Patterns,Preliminary Testing,210gpm @ 50psi,Exp_26_102715,1|2,0,,
-Manufacturer_1_5_Combination_Nozzle_95gpm_100psi,"1.5"" Combination Nozzle: 95gpm @ 100psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_07_102615|Exp_12_102615|Exp_19_102715,1|2|3|4,1,Exp_07_102615,1|2|5|6
-Manufacturer_1_5_Combination_Nozzle_150gpm_50psi,"1.5"" Combination Nozzle: 150gpm @ 50psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_04_102615|Exp_14_102615|Exp_21_102715,1|2|3|4,1,Exp_04_102615,1|2|5|6
-Manufacturer_1_5_Combination_Nozzle_150gpm_75psi,"1.5"" Combination Nozzle: 150gpm @ 75psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_05_102615|Exp_13_102615|Exp_20_102715,1|2|3|4,1,Exp_05_102615,1|2|5|6
-Manufacturer_1_5_Combination_Nozzle_150gpm_100psi,"1.5"" Combination Nozzle: 150gpm @ 100psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_06_102615|Exp_11_102615|Exp_18_102715,1|2|3|4,1,Exp_06_102615,1|2|5|6
-Manufacturer_1_5_Smooth_Bore_Nozzle_7_8_150gpm_50psi,"1.5"" Smooth Bore Nozzle: 7/8"" 150gpm @ 50psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_08_102615|Exp_15_102615|Exp_22_102715,1|2,0,,
-Manufacturer_1_5_Smooth_Bore_Nozzle_15_16_180gpm_50psi,"1.5"" Smooth Bore Nozzle: 15/16"" 180gpm @ 50psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_09_102615|Exp_16_102615|Exp_23_102715,1|2,0,,
-Manufacturer_1_5_Smooth_Bore_Nozzle_1_210gpm_50psi,"1.5"" Smooth Bore Nozzle: 1"" 210gpm @ 50psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_10_102615|Exp_17_102615|Exp_24_102715,1|2,0,,
+Manufacturer_1_5_Combination_Nozzle_95gpm_100psi,"1.5"" Combination Nozzle: 95gpm @ 100psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_07_102615|Exp_19_102715|Exp_12_102615,1|2|3|4,1,Exp_07_102615,1|2|5|6
+Manufacturer_1_5_Combination_Nozzle_150gpm_50psi,"1.5"" Combination Nozzle: 150gpm @ 50psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_04_102615|Exp_21_102715|Exp_14_102615,1|2|3|4,1,Exp_04_102615,1|2|5|6
+Manufacturer_1_5_Combination_Nozzle_150gpm_75psi,"1.5"" Combination Nozzle: 150gpm @ 75psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_05_102615|Exp_20_102715|Exp_13_102615,1|2|3|4,1,Exp_05_102615,1|2|5|6
+Manufacturer_1_5_Combination_Nozzle_150gpm_100psi,"1.5"" Combination Nozzle: 150gpm @ 100psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_06_102615|Exp_18_102715|Exp_11_102615,1|2|3|4,1,Exp_06_102615,1|2|5|6
+Manufacturer_1_5_Smooth_Bore_Nozzle_7_8_150gpm_50psi,"1.5"" Smooth Bore Nozzle: 7/8"" 150gpm @ 50psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_08_102615|Exp_22_102715|Exp_15_102615,1|2,0,,
+Manufacturer_1_5_Smooth_Bore_Nozzle_15_16_180gpm_50psi,"1.5"" Smooth Bore Nozzle: 15/16"" 180gpm @ 50psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_09_102615|Exp_23_102715|Exp_16_102615,1|2,0,,
+Manufacturer_1_5_Smooth_Bore_Nozzle_1_210gpm_50psi,"1.5"" Smooth Bore Nozzle: 1"" 210gpm @ 50psi",Manufacturer Comparison,MFI|MFII|MFIII,Exp_10_102615|Exp_24_102715|Exp_17_102615,1|2,0,,
 Total_Entrainment_1_5_Combination_Nozzle_Interior,"1.5"" Combination Nozzle Interior",Total Air Entrainment,150gpm @ 50psi|150gpm @ 75psi|150gpm @ 100psi|95gpm@100psi,Exp_04_102615|Exp_05_102615|Exp_06_102615|Exp_07_102615,1|2|3|4|5|6,0,,
 Total_Entrainment_1_5_Combination_Nozzle_Interior_Patterns,"1.5"" Combination Nozzle Interior ",Total Air Entrainment,150gpm @ 50psi|150gpm @ 75psi|150gpm @ 100psi|95gpm@100psi,Exp_04_102615|Exp_05_102615|Exp_06_102615|Exp_07_102615,2|3|4,0,,
 Total_Entrainment_1_5_Smooth_Bore_Nozzle_Interior,"1.5"" Smooth Bore Nozzle Interior",Total Air Entrainment,150gpm @ 50psi|180gpm @ 50psi|210gpm @ 50psi,Exp_08_102615|Exp_09_102615|Exp_10_102615,1|2|3|4,0,,
