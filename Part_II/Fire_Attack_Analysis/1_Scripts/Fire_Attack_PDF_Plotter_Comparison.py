@@ -84,10 +84,10 @@ for f in os.listdir(data_location):
 		if Comparison == 0:
 		 	continue
 		else: 
-			Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + Comparison + "_Data.csv")
+			Exp_Data_2 = pd.read_csv(data_location + "Experiment_" + str(Comparison) + "_Data.csv")
 
 		# Set output location for results
-		output_location = output_location_init + Exp_Num + "_and_Experiment_" + Comparison + '/'	
+		output_location = output_location_init + Exp_Num + "_and_Experiment_" + str(Comparison) + '/'	
 
 		# # If the folder exists delete it.
 		# if os.path.exists(output_location):
@@ -121,8 +121,8 @@ for f in os.listdir(data_location):
 
 		if Speed == 'high':
 			#Set time to elapsed time column in experimental data.
-			Time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data['Elapsed Time']]
-			Time_2 = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in Exp_Data_2['Elapsed Time']]
+			Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+			Time_2 = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data_2['Elapsed Time']]
 			mark_freq = 5
 
 		# Pull ignition time from events csv file
@@ -270,10 +270,8 @@ for f in os.listdir(data_location):
 					axis_scale = 'Y Scale Carbon Monoxide'
 
 				# Plot channel data 
-				plt.plot(Data_Time, current_data, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none', ms=7, label=channel)
-
-				# Plot channel data 2 for second experiment that was compared to
-				plt.plot(Data_Time_2, current_data_2, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none',	ms=7, label=channel, ls = '--')
+				plt.plot(Data_Time, current_data, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none', ms=7, label=channel+' Exp '+Exp_Num[11:])
+				plt.plot(Data_Time_2, current_data_2, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none',	ms=7, label=channel+' Exp '+str(Comparison), ls = '--')
 
 				# Scale y-axis limit based on specified range in test description file
 				if axis_scale == 'Y Scale BDP':
@@ -318,20 +316,6 @@ for f in os.listdir(data_location):
 				ax3.set_xticklabels(Events.index.values, fontsize=10, ha='left')
 				fig.set_size_inches(20, 16)
 				plt.tight_layout()
-                # # Add vertical lines and labels for timing information (if available)
-                # ax3 = ax1.twiny()
-                # ax3.set_xlim(ax1_xlims)
-                # # Remove NaN items from event timeline
-                # events = all_times[test_name].dropna()
-                # # Ignore events that are commented starting with a pound sign
-                # events = events[~events.str.startswith('#')]
-                # [plt.axvline(_x - start_of_test, color='0.50', lw=1) for _x in events.index.values]
-                # ax3.set_xticks(events.index.values - start_of_test)
-                # plt.setp(plt.xticks()[1], rotation=60)
-                # ax3.set_xticklabels(events.values, fontsize=8, ha='left')
-                # plt.xlim([0, end_of_test - start_of_test])
-                # # Increase figure size for plot labels at top
-                # fig.set_size_inches(10, 6)
 			except:
 				pass
 
