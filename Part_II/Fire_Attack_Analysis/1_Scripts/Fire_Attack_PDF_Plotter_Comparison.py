@@ -21,6 +21,18 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
     y = filtfilt(b, a, data)
     return y
 
+# Define 20 color pallet using RGB values
+tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
+(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
+(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
+(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
+(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+
+# Define RGB values in pallet 
+for i in range(len(tableau20)):
+		r, g, b = tableau20[i]
+		tableau20[i] = (r / 255., g / 255., b / 255.)
+
 # Set file locations
 
 data_location = '../2_Data/Smaller_Data/'
@@ -160,24 +172,12 @@ for f in os.listdir(data_location):
 					#Create figure
 					fig = plt.figure()
 
-		            # Define 20 color pallet using RGB values
-					tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
-					(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
-					(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
-					(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
-					(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
-					
-					# Define RGB values in pallet 
-					for i in range(len(tableau20)):
-							r, g, b = tableau20[i]
-							tableau20[i] = (r / 255., g / 255., b / 255.)
-
 					# Plot style - cycle through 20 color pallet and define markers to cycle through
 					plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 					plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
 					# Print 'Plotting Chart XX'
-					print ('Plotting ' + group.replace('_',' '))
+					# print ('Plotting ' + group.replace('_',' '))
 
 					# Begin cycling through channels
 					for channel in channel_groups.get_group(group).index.values:
@@ -186,44 +186,35 @@ for f in os.listdir(data_location):
 						if pd.isnull(channel):
 							continue
 
-		                # Skip excluded channels listed in test description file
+						# Skip excluded channels listed in test description file
 						if any([substring in channel for substring in Exp_Des['Excluded Channels'][Test_Name].split('|')]):
 							continue
 
-		                # Set scale factor and offset
+						# Set scale factor and offset
 						scale_factor = channel_list[scalefactor][channel]
 						scale_factor_2 = channel_list[scalefactor_2][channel]
 						offset = channel_list['Offset'][channel]
 						current_data = Exp_Data[channel]
 						current_data_2 = Exp_Data_2[channel]
-
 						# Set secondary axis default to None, unless otherwise stated below
 						secondary_axis_label = None
 
 						# Set parameters for temperature plots
-
-						# If statement to find temperature type in channels csv
 						if channel_list['Type'][channel] == 'Temperature':
 							Data_Time = Time
 							Data_Time_2 = Time_2
 							# Set data to include slope and intercept
 							current_data = current_data * scale_factor + offset
 							current_data_2 = current_data_2 * scale_factor_2 + offset
-							# Set y-label to degrees F with LaTeX syntax
 							plt.ylabel('Temperature ($^\circ$F)', fontsize = 16)
-							# Search for skin inside description of events file for scaling
 							if 'Skin' in group:
 								axis_scale = 'Y Scale Skin Temperature'
 							else: # Default to standard temperature scale
 								axis_scale = 'Y Scale Temperature'
-							# Set secondary y-axis label to degrees C
 							secondary_axis_label = 'Temperature ($^\circ$C)'
-							#Set scaling dependent on axis scale defined above
 							secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 5/9 - 32
 
-		                # Set parameters for velocity plots
-
-		                # If statement to find velocity type in channels csv
+						# Set parameters for velocity plots
 						if channel_list['Type'][channel] == 'Velocity':
 							Data_Time = Time
 							Data_Time_2 = Time_2
@@ -243,9 +234,7 @@ for f in os.listdir(data_location):
 							secondary_axis_label = 'Velocity (mph)'
 							secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 2.23694
 
-		                # Set parameters for heat flux plots
-
-						# If statement to find heat flux type in channels csv
+						# Set parameters for heat flux plots
 						if channel_list['Type'][channel] == 'Heat Flux':
 							Data_Time = Time
 							Data_Time_2 = Time_2
@@ -256,8 +245,6 @@ for f in os.listdir(data_location):
 							axis_scale = 'Y Scale Heat Flux'
 
 						# Set parameters for gas plots
-
-						# If statement to find gas type in channels csv
 						if channel_list['Type'][channel] == 'Gas':
 							Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 							Data_Time_2 = [t+float(channel_list[Transport_Time_2][channel])/60.0 for t in Time_2]
@@ -267,7 +254,6 @@ for f in os.listdir(data_location):
 							plt.ylabel('Gas Concentration (%)', fontsize = 16)
 							axis_scale = 'Y Scale Gas'
 
-						# If statement to find gas type in channels csv
 						if channel_list['Type'][channel] == 'Carbon Monoxide':
 							Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 							Data_Time_2 = [t+float(channel_list[Transport_Time_2][channel])/60.0 for t in Time_2]
@@ -278,26 +264,25 @@ for f in os.listdir(data_location):
 							axis_scale = 'Y Scale Carbon Monoxide'
 
 						# Plot channel data 
-						plt.plot(Data_Time, current_data, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none', ms=7, label=channel+' Exp '+Exp_Num[11:])
-						plt.plot(Data_Time_2, current_data_2, lw=1.5, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none',	ms=7, label=channel+' Exp '+str(comps[nn]), ls = '--')
+						plt.plot(Data_Time, current_data, lw=1.25, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none', ms=6, label=channel+' Exp '+Exp_Num[11:])
+						plt.plot(Data_Time_2, current_data_2, lw=1.25, marker=next(plot_markers), markevery=int(End_Time*60/mark_freq), mew=1.5,	mec='none',	ms=6, label=channel+' Exp '+str(comps[nn]), ls = '--')
 
-						# Scale y-axis limit based on specified range in test description file
-						if axis_scale == 'Y Scale BDP':
-							plt.ylim([-np.float(Exp_Des[axis_scale][Test_Name]), np.float(Exp_Des[axis_scale][Test_Name])])
-						else:
-							plt.ylim([0, np.float(Exp_Des[axis_scale][Test_Name])])
+					# Scale y-axis limit based on specified range in test description file
+					if axis_scale == 'Y Scale BDP':
+						plt.ylim([-np.float(Exp_Des[axis_scale][Test_Name]), np.float(Exp_Des[axis_scale][Test_Name])])
+					else:
+						plt.ylim([0, np.float(Exp_Des[axis_scale][Test_Name])])
 
-		                # Set axis options, legend, tickmarks, etc.
-						ax1 = plt.gca()
-						handles1, labels1 = ax1.get_legend_handles_labels()
-						plt.xlim([0, End_Time])
-						ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-						ax1_xlims = ax1.axis()[0:2]
-						plt.grid(True)
-						plt.xlabel('Time (min)', fontsize=16)
-						plt.xticks(fontsize=16)
-						plt.yticks(fontsize=16)
-
+					# Set axis options, legend, tickmarks, etc.
+					ax1 = plt.gca()
+					handles1, labels1 = ax1.get_legend_handles_labels()
+					plt.xlim([0, End_Time])
+					ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+					ax1_xlims = ax1.axis()[0:2]
+					plt.grid(True)
+					plt.xlabel('Time (min)', fontsize=16)
+					plt.xticks(fontsize=16)
+					plt.yticks(fontsize=16)
 					# Secondary y-axis parameters
 					if secondary_axis_label:
 						ax2 = ax1.twinx()
@@ -308,7 +293,6 @@ for f in os.listdir(data_location):
 							ax2.set_ylim([-secondary_axis_scale, secondary_axis_scale])
 						else:
 							ax2.set_ylim([0, secondary_axis_scale])
-
 					try:
 						ax3=ax1.twiny()
 						ax3.set_xlim(0,End_Time)
@@ -320,17 +304,17 @@ for f in os.listdir(data_location):
 							plt.axvline(EventTime[i],color='0',lw=1) 
 
 						ax3.set_xticks(EventTime)
-						plt.setp(plt.xticks()[1], rotation=90)		
-						ax3.set_xticklabels(Events.index.values, fontsize=10, ha='left')
-						fig.set_size_inches(20, 16)
-						plt.tight_layout()
+						plt.setp(plt.xticks()[1], rotation=80)
+						ax3.set_xticklabels(Events.index.values, fontsize=8, ha='left')
+						# fig.set_size_inches(20, 16)
 					except:
 						pass
 
 					plt.legend(handles1, labels1, loc='upper left', fontsize=8, handlelength=3)
+					plt.tight_layout()
 
-		            # Save plot to file
-					plt.savefig(output_location + group + '.png')
+					# Save plot to file
+					plt.savefig(output_location + group + '.pdf')
 					plt.close('all')
 			except:
 				pass
