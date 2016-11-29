@@ -11,10 +11,10 @@ from itertools import cycle
 
 data_location = '../Experimental_Data/'
 
-chart_location = '../Figures/'
+chart_location = '../../Report/Script_Figures/Entrainment/'
 
-info_file = '../description_of_experiments_entrainment.csv'
-plot_file = '../description_of_charts.csv'
+info_file = '../Info/description_of_experiments_entrainment.csv'
+plot_file = '../Info/description_of_charts.csv'
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)
@@ -92,8 +92,8 @@ for f in os.listdir(data_location):
 		fig = figure()
 		plt.plot(time,CFM,'k-',label='CFM')
 		xlabel('Time (s)')
-		ylabel('CFM (ft^3/min)')
-		savefig('../Figures/'+Test_Name+'_CFM.png')
+		ylabel('CFM (ft$^3$/min)')
+		savefig(chart_location+Test_Name+'_CFM.pdf')
 		close()
 
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -160,6 +160,6 @@ for k in range(len(plot_file)):
 	else:
 		ax.set_xticks(ind + width)
 	ax.set_xticklabels(labels, rotation = -15, ha = 'left')
-	savefig('../Figures/'+file_name+'.png')
+	savefig(chart_location+file_name+'.pdf')
 
 	plt.close('all')

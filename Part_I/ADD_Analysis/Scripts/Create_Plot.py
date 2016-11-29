@@ -15,9 +15,9 @@ import pandas as pd
 
 import csv
 
-data_dir = 'CSV_Data/'
+data_dir = '../CSV_Data/'
 
-info_file = 'Description_of_Experiments.csv'
+info_file = '../Info/Description_of_Experiments.csv'
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)
@@ -135,6 +135,6 @@ for f in os.listdir(data_dir):
 		ax.set_xlabel('Window Side (# of Bins)')
 		ax.set_ylabel('Door Side (# of Bins)')
 		ax.set_zlabel('Volume of Water (gal)')
-		plt.savefig('Figures/' + f[:-4] + '_' + Test_Name.replace('/','_').replace('"','in').replace(' ','_') + '.png')
+		plt.savefig('../../Report/Script_Figures/ADD_Analysis/' + f[:-4] + '_' + Test_Name.replace('/','_').replace('"','in').replace(' ','_') + '.pdf')
 
 		plt.close('all')
