@@ -76,7 +76,7 @@ for f in os.listdir(data_location):
 			area = 17.778
 			end_zero_time = int(Exp_Events['Elapsed_Time'][1])
 			zero_voltage = np.mean(Exp_Data[channel][0:end_zero_time])
-			pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel] - zero_voltage)  # Convert voltage to pascals
+			pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel])# - zero_voltage)  # Convert voltage to pascals
 			# Calculate flowrate
 			Exp_Data[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * ((Exp_Des['Temp_C'][Test_Name])+273.13)) * np.sign(pressure)
 
