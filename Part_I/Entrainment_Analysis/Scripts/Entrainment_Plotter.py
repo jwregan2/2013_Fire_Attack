@@ -39,7 +39,7 @@ for f in os.listdir(data_location):
 		# exp = experiment[11:-9]
 		Exp_Data = pd.read_csv(data_location + experiment)
 		data_copy = Exp_Data.drop('Elapsed Time', axis=1)
-		data_copy = data_copy.rolling(window=15, center=True).mean()
+		data_copy = data_copy.rolling(window=1, center=True).mean()
 		data_copy.insert(0, 'Elapsed Time', Exp_Data['Elapsed Time'])
 		data_copy = data_copy.dropna()
 		Exp_Data = data_copy
@@ -55,19 +55,22 @@ for f in os.listdir(data_location):
 		for i in range(len(Event_Time)):
 			temp_time.append(Event_Time[i].timestamp() - Event_Time[0].timestamp())
 		Exp_Events['Elapsed_Time'] = temp_time
+		Start_Time = Exp_Events['Elapsed_Time'][0]
+		End_Time = temp_time[-1]
 
 		BDP_Resolution = Exp_Des['BDP_Res'][Test_Name]
 		if BDP_Resolution == 'N':
 			channels = channels_nr
+			conv_inch_h2o = 0.04
 		else:
 			channels = channels_hr
+			conv_inch_h2o = 0.2
 
-		print ()
 		print (Test_Name)
 
 		for channel in channels:
 			#Calculate velocity
-			conv_inch_h2o = 0.04
+			# conv_inch_h2o = 0.04
 			conv_pascal = 248.84
 			convert_ftpm = 196.85
 			area = 17.778
@@ -75,10 +78,12 @@ for f in os.listdir(data_location):
 			zero_voltage = np.mean(Exp_Data[channel][0:end_zero_time])
 			pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel] - zero_voltage)  # Convert voltage to pascals
 			# Calculate flowrate
-			Exp_Data[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * (288.7)) * np.sign(pressure)
+			Exp_Data[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * ((Exp_Des['Temp_C'][Test_Name])+273.13)) * np.sign(pressure)
 
 		#Calculate cfm
 		CFM = area*np.mean(Exp_Data[channels],axis=1)
+		zero_CFM = np.mean(CFM[0:end_zero_time])
+		CFM = CFM-zero_CFM
 		cfm_avgs = []
 		for i in range(1,len(Exp_Events)):
 			pos2 = int(Exp_Events['Elapsed_Time'][i])
@@ -90,9 +95,28 @@ for f in os.listdir(data_location):
 		time = list(range(len(Exp_Data)))
 
 		fig = figure()
+		ax1 = plt.gca()
+		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+		ax1_xlims = ax1.axis()[0:2]
+		plt.xlim([0, End_Time-Start_Time])
 		plt.plot(time,CFM,'k-',label='CFM')
-		xlabel('Time (s)')
-		ylabel('CFM (ft$^3$/min)')
+		plt.xlabel('Time (s)')
+		plt.ylabel('CFM (ft$^3$/min)')
+		try:
+			# Add vertical lines and labels for timing information (if available)
+			ax3 = ax1.twiny()
+			ax3.set_xlim(ax1_xlims)
+			# Remove NaN items from event timeline
+			events = Exp_Events['Event']
+			[plt.axvline(_x, color='0.50', lw=1) for _x in Exp_Events['Elapsed_Time']]
+			ax3.set_xticks(Exp_Events['Elapsed_Time'])
+			plt.setp(plt.xticks()[1], rotation=60)
+			ax3.set_xticklabels(events.values, fontsize=8, ha='left')
+			plt.xlim([0, End_Time])
+			# Increase figure size for plot labels at top
+			fig.set_size_inches(10, 9)
+		except:
+			pass
 		savefig(chart_location+Test_Name+'_CFM.pdf')
 		close()
 
