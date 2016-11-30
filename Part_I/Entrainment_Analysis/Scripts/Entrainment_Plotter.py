@@ -76,14 +76,20 @@ for f in os.listdir(data_location):
 			area = 17.778
 			end_zero_time = int(Exp_Events['Elapsed_Time'][1])
 			zero_voltage = np.mean(Exp_Data[channel][0:end_zero_time])
-			pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel])# - zero_voltage)  # Convert voltage to pascals
+			pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel])  # Convert voltage to pascals
 			# Calculate flowrate
 			Exp_Data[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * ((Exp_Des['Temp_C'][Test_Name])+273.13)) * np.sign(pressure)
 
 		#Calculate cfm
 		CFM = area*np.mean(Exp_Data[channels],axis=1)
+		CFM_1 = area*(Exp_Data[channels[2]])
+		CFM_3 = area*np.mean(Exp_Data[channels[1:3]],axis=1)
 		zero_CFM = np.mean(CFM[0:end_zero_time])
-		CFM = CFM-zero_CFM
+		zero_CFM_1 = np.mean(CFM_1[0:end_zero_time])
+		zero_CFM_3 = np.mean(CFM_3[0:end_zero_time])
+		CFM = CFM - zero_CFM
+		CFM_1 = CFM_1 - zero_CFM_1
+		CFM_3 = CFM_3 - zero_CFM_3
 		cfm_avgs = []
 		for i in range(1,len(Exp_Events)):
 			pos2 = int(Exp_Events['Elapsed_Time'][i])
@@ -99,7 +105,9 @@ for f in os.listdir(data_location):
 		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
 		ax1_xlims = ax1.axis()[0:2]
 		plt.xlim([0, End_Time-Start_Time])
-		plt.plot(time,CFM,'k-',label='CFM')
+		plt.plot(time,CFM,'k-',label='CFM All')
+		plt.plot(time,CFM_3,'b--',label='CFM Middle 3')
+		plt.plot(time,CFM_1,'r-.',label='CFM Middle')
 		plt.xlabel('Time (s)')
 		plt.ylabel('CFM (ft$^3$/min)')
 		try:
@@ -117,6 +125,7 @@ for f in os.listdir(data_location):
 			fig.set_size_inches(10, 9)
 		except:
 			pass
+		ax1.legend(loc='upper left')
 		savefig(chart_location+Test_Name+'_CFM.pdf')
 		close()
 
