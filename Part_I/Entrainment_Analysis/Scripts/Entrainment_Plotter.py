@@ -101,13 +101,14 @@ for f in os.listdir(data_location):
 		time = list(range(len(Exp_Data)))
 
 		fig = figure()
-		ax1 = plt.gca()
-		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-		ax1_xlims = ax1.axis()[0:2]
-		plt.xlim([0, End_Time-Start_Time])
 		plt.plot(time,CFM,'k-',label='CFM All')
 		plt.plot(time,CFM_3,'b--',label='CFM Middle 3')
 		plt.plot(time,CFM_1,'r-.',label='CFM Middle')
+		ax1 = plt.gca()
+		handles1, labels1 = ax1.get_legend_handles_labels()
+		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+		ax1_xlims = ax1.axis()[0:2]
+		plt.xlim([0, End_Time-Start_Time])
 		plt.xlabel('Time (s)')
 		plt.ylabel('CFM (ft$^3$/min)')
 		try:
@@ -125,7 +126,7 @@ for f in os.listdir(data_location):
 			fig.set_size_inches(10, 9)
 		except:
 			pass
-		ax1.legend(loc='upper left')
+		plt.legend(handles1, labels1, loc='upper left', fontsize=12, handlelength=3)
 		savefig(chart_location+Test_Name+'_CFM.pdf')
 		close()
 
