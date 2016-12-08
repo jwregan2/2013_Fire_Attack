@@ -64,31 +64,12 @@ for Vent_Type in Vent_Info.columns:
 		# if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
 		# 	continue
 
-	    #Create figure
-		fig = plt.figure()
-
 		# Set output location for results
 		output_location = output_location_init + 'Growth_Compare' + str(Vent_Type) + '/' + group + '/'
 
 		# If the folder doesn't exist create it.
 		if not os.path.exists(output_location):
 			os.makedirs(output_location)	
-	    
-	    # Define 20 color pallet using RGB values
-		tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
-		(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
-		(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
-		(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
-		(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
-		
-		# Define RGB values in pallet 
-		for i in range(len(tableau20)):
-				r, g, b = tableau20[i]
-				tableau20[i] = (r / 255., g / 255., b / 255.)
-
-		# Plot style - cycle through 20 color pallet and define markers to cycle through
-		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
 		# Print 'Plotting Chart XX'
 		print ()
@@ -98,7 +79,28 @@ for Vent_Type in Vent_Info.columns:
 		for channel in channel_groups.get_group(group).index.values:
 
 			print ()
-			print (channel)
+			print (channel)	
+
+		    # Define 20 color pallet using RGB values
+			tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
+			(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
+			(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
+			(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
+			(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+			
+			# Define RGB values in pallet 
+			for i in range(len(tableau20)):
+					r, g, b = tableau20[i]
+					tableau20[i] = (r / 255., g / 255., b / 255.)
+
+			# Plot style - cycle through 20 color pallet and define markers to cycle through
+			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+			#Create figure	
+			fig = plt.figure()
+			fig.set_size_inches(20, 16)	
+			print ('Figure Created')
 
 			for exp in Vent_Type_Exp:
 
@@ -107,6 +109,10 @@ for Vent_Type in Vent_Info.columns:
 
 				# Read in experiment file
 				Exp_Data = pd.read_csv(data_location + 'Experiment_' + str(exp) + '_Data.csv')
+
+				if not channel in Exp_Data.columns.values:
+					print ('Cant find channel')
+					continue
 
 				# Get experiment name from file
 				Test_Name = 'Experiment_' + str(exp) + '_Data'
@@ -262,22 +268,22 @@ for Vent_Type in Vent_Info.columns:
 					ms=7,
 					label='Exp ' + str(exp) + ' ' + channel_list['Title'][channel])
 
-				# Scale y-axis limit based on specified range in test description file
-				if axis_scale == 'Y Scale BDP':
-					plt.ylim([-np.float(Exp_Des[axis_scale][Test_Name]), np.float(Exp_Des[axis_scale][Test_Name])])
-				else:
-					plt.ylim([0, np.float(Exp_Des[axis_scale][Test_Name])])
+			# Scale y-axis limit based on specified range in test description file
+			if axis_scale == 'Y Scale BDP':
+				plt.ylim([-np.float(Exp_Des[axis_scale][Test_Name]), np.float(Exp_Des[axis_scale][Test_Name])])
+			else:
+				plt.ylim([0, np.float(Exp_Des[axis_scale][Test_Name])])
 
-		        # Set axis options, legend, tickmarks, etc.
-				ax1 = plt.gca()
-				handles1, labels1 = ax1.get_legend_handles_labels()
-				plt.xlim([0, End_Time])
-				ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-				ax1_xlims = ax1.axis()[0:2]
-				plt.grid(True)
-				plt.xlabel('Time (min)', fontsize=16)
-				plt.xticks(fontsize=16)
-				plt.yticks(fontsize=16)
+	        # Set axis options, legend, tickmarks, etc.
+			ax1 = plt.gca()
+			handles1, labels1 = ax1.get_legend_handles_labels()
+			plt.xlim([0, End_Time])
+			ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+			ax1_xlims = ax1.axis()[0:2]
+			plt.grid(True)
+			plt.xlabel('Time (min)', fontsize=16)
+			plt.xticks(fontsize=16)
+			plt.yticks(fontsize=16)
 
 			# Secondary y-axis parameters
 			if secondary_axis_label:
@@ -290,40 +296,10 @@ for Vent_Type in Vent_Info.columns:
 				else:
 					ax2.set_ylim([0, secondary_axis_scale])
 
-			# try:
-			# 	ax3=ax1.twiny()
-			# 	ax3.set_xlim(0,Events['Time']['End Experiment'])
-			# 	EventTime=list(range(len(Events.index.values)))
-			# 	for i in range(len(Events.index.values)):
-			# 		EventTime[i] = (datetime.datetime.strptime(Events['Time'][Events.index.values[i]], '%H:%M:%S')-Ignition).total_seconds()
-			# 		print (EventTime[i]/60)
-
-			# 		plt.axvline(EventTime[i],color='0',lw=1) 
-
-			# 	ax3.set_xticks(EventTime)
-			# 	plt.setp(plt.xticks()[1], rotation=90)		
-			# 	ax3.set_xticklabels(Events.index.values, fontsize=10, ha='left')
-			fig.set_size_inches(20, 16)
-				# plt.tight_layout()
-		        # # Add vertical lines and labels for timing information (if available)
-		        # ax3 = ax1.twiny()
-		        # ax3.set_xlim(ax1_xlims)
-		        # # Remove NaN items from event timeline
-		        # events = all_times[test_name].dropna()
-		        # # Ignore events that are commented starting with a pound sign
-		        # events = events[~events.str.startswith('#')]
-		        # [plt.axvline(_x - start_of_test, color='0.50', lw=1) for _x in events.index.values]
-		        # ax3.set_xticks(events.index.values - start_of_test)
-		        # plt.setp(plt.xticks()[1], rotation=60)
-		        # ax3.set_xticklabels(events.values, fontsize=8, ha='left')
-		        # plt.xlim([0, end_of_test - start_of_test])
-		        # # Increase figure size for plot labels at top
-		        # fig.set_size_inches(10, 6)
-			# except:
-			# 	pass
 
 			plt.legend(handles1, labels1, loc='upper left', fontsize=8, handlelength=3)
 
 		    # Save plot to file
+			print ('Chart Saved')
 			plt.savefig(output_location + group + channel +'.png')
 			plt.close('all')
