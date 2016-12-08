@@ -53,11 +53,7 @@ Exp_Des = Exp_Des.set_index('Experiment')
 # Set files to skip in experimental directory
 skip_files = ['example']
 
-Vent_Info=pd.read_csv(channel_location+'Vent_Info.csv')
-
-SingleRoom_No_Vent = Vent_Info['SingleRoom_No_Vent'].values
-SingleRoom_Vent = Vent_Info['SingleRoom_Vent'].values
-TwoRoom_Two_Vent = Vent_Info['TwoRoom_TwoVent'].values
+Vent_Info=pd.read_csv(channel_location+'Vent_Info.csv', dtype='object')
 
 for Vent_Type in Vent_Info.columns:
 
@@ -95,17 +91,19 @@ for Vent_Type in Vent_Info.columns:
 		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
 		# Print 'Plotting Chart XX'
-		print ('Plotting ' + group.replace('_',' '))
 		print ()
+		print ('Plotting ' + group.replace('_',' '))
 
 		# Begin cycling through channels
 		for channel in channel_groups.get_group(group).index.values:
 
+			print ()
+			print (channel)
+
 			for exp in Vent_Type_Exp:
 
-				# # Skip files with time information or reduced data files
-				# if any([substring in f.lower() for substring in skip_files]):
-				# 	continue
+				if exp is np.nan:
+					continue
 
 				# Read in experiment file
 				Exp_Data = pd.read_csv(data_location + 'Experiment_' + str(exp) + '_Data.csv')
