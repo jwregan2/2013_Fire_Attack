@@ -85,20 +85,19 @@ for f in os.listdir(data_dir):
 			Zstart.append((Z1[v]+ Z2[v]+Z3[v]+Z4[v]+Z5[v])/5)
 
 		for value in range(0,len(Zstart)):
-			if Zend[value]-Zstart[value] > 20:
-				Zgraph.append(20)
-			else:
-				Zgraph.append(Zend[value]-Zstart[value])
-
+			# if Zend[value]-Zstart[value] > 20:
+			# 	Zgraph.append(20)
+			# else:
+			Zgraph.append(Zend[value]-Zstart[value])
 		cs = ["" for x in range(len(Zgraph))]
 		for i in range(len(Zgraph)):
-			if Zgraph[i] <= 5:
+			if Zgraph[i] <= 8:
 				cs[i] = 'b'
-			elif Zgraph[i] > 5 and Zgraph[i] <= 10:
+			elif Zgraph[i] > 8 and Zgraph[i] <= 16:
 				cs[i] = 'g'
-			elif Zgraph[i] > 10 and Zgraph[i] <= 15:
+			elif Zgraph[i] > 16 and Zgraph[i] <= 24:
 				cs[i] = 'gold'
-			elif Zgraph[i] > 15:
+			elif Zgraph[i] > 24:
 				cs[i] = 'r'
 
 		if Exp_Des['Nozzle_Type'][f[:-4]] == 'Smooth Bore':
@@ -126,12 +125,12 @@ for f in os.listdir(data_dir):
 		ax = fig.add_subplot(111, projection='3d')
 		ax.bar3d(X, Y, np.zeros(len(Zgraph)), dx, dy, Zgraph, zsort='max',color=cs)
 		ax.view_init(elev=48., azim=-160)
-		ax.text(15, 4.5, 15,Test_Name, horizontalalignment='left', verticalalignment='bottom')
-		ax.text(15, 4.5, 13,Hoseline_Size + ',' + ' ' + Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
-		ax.text(15, 4.5, 11,Nozzle_Position, horizontalalignment='left', verticalalignment='bottom')
+		ax.text(15, 4.5, 16.5,Test_Name, horizontalalignment='left', verticalalignment='bottom')
+		ax.text(15, 4.5, 14,Hoseline_Size + ',' + ' ' + Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
+		ax.text(15, 4.5, 11.5,Nozzle_Position, horizontalalignment='left', verticalalignment='bottom')
 		ax.text(15, 4.5, 9,Nozzle_Pattern, horizontalalignment='left', verticalalignment='bottom')
 
-		ax.set_zlim(0,20)
+		ax.set_zlim(0,30)
 		ax.set_xlabel('Window Side (# of Bins)')
 		ax.set_ylabel('Door Side (# of Bins)')
 		ax.set_zlabel('Volume of Water (gal)')
