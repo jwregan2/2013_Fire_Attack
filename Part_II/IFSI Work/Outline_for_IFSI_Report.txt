@@ -1,0 +1,51 @@
+Outline for IFSI Report
+
+1)	Pig Skin Data
+	a)	Schematics and setup explanation
+		i)	Information on Pig Skin and Neoprene
+		ii)	Water bath and aluminum sheet described with CAD model
+		iii)	Instrumentation at each victim location
+	b)	Tests in the IFSI environmental chamber
+		i)	 Radiative heat comparison
+		ii)	 Convective heat comparison
+	c)	Victim Packages and Locations
+		i)	 Raw UL Pig Skin Temps
+		ii)	 Discussion on general trends at each location
+				(1)	Victim 1
+					(a)	Representative plot
+					(b)	Discussion
+				(2)	Victim 2
+					(a)	Representative plot
+					(b)	Discussion
+				(3)	Victim 3
+					(a)	Representative plot
+					(b)	Discussion
+				(4)	Victim 4
+					(a)	Representative plot
+					(b)	Discussion
+				(5)	Victim 5
+					(a)	Representative plot
+					(b)	Discussion
+	d)	Overall Takeaways from data
+		i)	Compare to gas temperatures
+		ii)	 Comparison with heat flux (how accurate, where and why does it differ)
+				(1)	Give a few representative plots
+		iii)	  Spikes in temperature are observed after some water applications
+				(1)	Spikes are small and only last 10-15 seconds, therefore no through thickness burns
+				(2)	Temps between skin and neoprene never spike
+
+
+2)	Water Concentration Data
+	a)	Schematic and measurement information
+		i)	Brief explanation on tunable diode laser absorption spectroscopy and selection of wavelength
+		ii)	Instrumentation and measurement location (bedroom 3 on the floor)
+	b)	Experimental data
+		i)	Plots of water concentration and obscuration for relevant experiments
+		ii)	Discussion on general trends and obscuration issues
+	c)	Overall takeaways from data
+		i)	More water vapor is created by the fire then is created by the water application (at our measurement location)
+		ii)	Compare the straw fire to a typical bedroom fire
+
+
+
+Notes:
