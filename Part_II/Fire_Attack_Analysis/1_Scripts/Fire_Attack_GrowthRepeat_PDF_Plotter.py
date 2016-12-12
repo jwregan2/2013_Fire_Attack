@@ -55,6 +55,9 @@ skip_files = ['example']
 
 Vent_Info=pd.read_csv(channel_location+'Vent_Info.csv', dtype='object')
 
+Vent_Info_Events = pd.read_csv(channel_location+'Vent_Info_Events.csv', dtype='object')
+Vent_Info_Events = Vent_Info_Events.set_index('Event')
+
 for Vent_Type in Vent_Info.columns:
 
 	Vent_Type_Exp = Vent_Info[Vent_Type].values
@@ -152,7 +155,7 @@ for Vent_Type in Vent_Info.columns:
 				Time = [((t - Ignition).total_seconds())/60 for t in Time]
 
 				#Get End of Experiment Time
-				End_Time = (datetime.datetime.strptime(Events['Time']['Front Door Open'], '%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
+				End_Time = float(Vent_Info_Events[Vent_Type]['Front Door Open'])
 
 				if House == 'a':
 					scalefactor = 'ScaleFactor_A'
@@ -268,6 +271,37 @@ for Vent_Type in Vent_Info.columns:
 					ms=7,
 					label='Exp ' + str(exp) + ' ' + channel_list['Title'][channel])
 
+				#Caculculate Average
+				if Speed == 'high':
+					Data_Time = Data_Time[0::10]
+
+				Time_Sec = [t * 60 for t in Data_Time]
+				Time_Sec = ['%.1f' % elem for elem in Time_Sec]
+				Time_Sec = [float(x) for x in Time_Sec]
+
+				print (len(Time_Sec[Time_Sec.index(0.0):Time_Sec.index(End_Time)+1]))
+
+				if Time_Sec[1] - Time_Sec[0] == 1.0:
+					Time_Sec=Time_Sec[0::2] 
+				
+				exit()
+
+				# 	for sec in Time_Sec:
+				# 		if sec >= 1:
+				# 			exit()
+				# print (Time_Sec[0:10])
+	
+				
+
+				# if Speed == 'low':
+				# 	print (len(Data_Time[Data_Time.index(0):Data_Time.index(End_Time)+1]))
+				# 	print (Data_Time)
+				# if Speed == 'high':
+				# 	print (Data_Time)
+					# print (len(Data_Time[Data_Time.index(0.0):Data_Time.index(End_Time)+1]))
+				# print (Data_Time[Data_Time.index(0):Data_Time.index(End_Time)+1])
+
+			exit()
 			# Scale y-axis limit based on specified range in test description file
 			if axis_scale == 'Y Scale BDP':
 				plt.ylim([-np.float(Exp_Des[axis_scale][Test_Name]), np.float(Exp_Des[axis_scale][Test_Name])])
