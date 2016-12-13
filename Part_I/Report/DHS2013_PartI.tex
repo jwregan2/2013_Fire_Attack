@@ -1204,8 +1204,10 @@ With a fixed nozzle movement, the tests showed that increasing the distance betw
 
 The goal of the water distribution experiments was to quantify the impact that changing a nozzle, changing flow pressure, or changing flow position had on water dispersion within a compartment. Eighty-eight water flow tests were conducted at the UL Headquarters in Northbrook, IL in a purpose built compartment with an attached hallway and movable staircase. Water flow patterns were determined by collecting the water in 48 discrete collection bins. A detailed description of the water collection is in Section~\ref{sec:add_instrumentation}.
 
-\subsection{Experimental Facility}
+\subsection{Experimental Configuration}
 
+\subsubsection{Test Apparatus}
+\label{ADD_discussion}
 The main portion of test compartment had interior (finished) dimensions of 14~ft 8~in. by 10~ft 5~in with an 8~ft ceiling. To account for water collection apparatus the entire compartment was 7~ft 11~in above the floor of the lab floor (see Figure~\ref{fig:Water_Distribution_Test_Structure_and_ADD_Apparatus}). The overall size of the compartment was designed to reflect that of one found in a typical resident structure but was also bound by the dimensions of the water collection apparatus (Section~\ref{sec:add_instrumentation}). The compartment was wood frame construction with 2~in. by 4~in. studs and track set to 16~in. centers with a interior height measuring 8~ft 1 1/8~in. rough. The walls and ceiling were lined with 1/2~in. durarock cement board atop 1/2~in. plywood. The ceiling joists were 2~in. by 6~in. set to 16~in. on center.
 
 \begin{figure}[!ht]
@@ -1243,13 +1245,10 @@ A unique feature of this compartment was that there was no floor constructed. Th
 	\label{fig:ADD_Flashing}
 \end{figure}
 
-
-\clearpage
-
-\subsubsection{Instrumentation}
+\subsubsection{Instrumentation and Uncertainty}
 \label{sec:add_instrumentation}
 
-To measure the water distribution throughout the compartment, a fire sprinkler spray density measurement instrument known as the Actual Delivered Density (ADD) apparatus was used. This device was connected to the 48 collection bins that comprised the floor of the test structure. The ADD apparatus is comprised of one main array and two satellite arrays of heavy steel framework. The main array consists of 32 water barrels and water pan collection assemblies while each satellite array contains 8 barrels and collection assemblies (see Figure~\ref{fig:ADD_Collection_Assembly}. All barrels are of 30-gallon capacity and are connected by a 2~in. diameter hose to a 20~in. by 20~in. inverted square pyramid shaped stainless steel water collection pan above. In total, there are 48 total collection pans/barrels. Differential pressure transducers connect to the bottom of each water collection barrel via flexible tubing. The water level in a given barrel is determined by the head pressure measured by the transducer. The water collection rate is calculated based the change in head pressure over time. As Figure \ref{fig:ADD_planview_collection} shows, collection assemblies are arranged into 2~$\times$~2 arrays. Each collection barrel is also connected to a pneumatic drain valve which can be actuated to automatically drain each barrel at the conclusion of an experiment. 
+To measure the water distribution throughout the compartment, a fire sprinkler spray density measurement instrument known as the Actual Delivered Density (ADD) apparatus was used. This device was connected to the 48 collection bins that comprised the floor of the test structure. The ADD apparatus is comprised of one main array and two satellite arrays of heavy steel framework. The main array consists of 32 water barrels and water pan collection assemblies while each satellite array contains 8 barrels and collection assemblies (see Figure~\ref{fig:ADD_Collection_Assembly}. All barrels are of 30-gallon capacity and are connected by a 2~in. diameter hose to a 20~in. by 20~in. inverted square pyramid shaped stainless steel water collection pan above. In total, there are 48 total collection pans/barrels. Differential pressure transducers connect to the bottom of each water collection barrel via flexible tubing. The water level in a given barrel is determined by the head pressure measured by the transducer. The water collection rate is calculated based the change in head pressure over time. As Figure \ref{fig:Bin Numbers and Locations} shows, collection assemblies were arranged into 2~$\times$~2 arrays. Each collection barrel is uniquely numbered so that water flow data can be mapped to specific position. The barrels are connected to a pneumatic drain valve which could be actuated to drain each barrel at the conclusion of an experiment. 
 
 \begin{figure}[!ht]
 	\centering
@@ -1263,34 +1262,18 @@ To measure the water distribution throughout the compartment, a fire sprinkler s
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=\columnwidth]{Figures/Water_Distribution/addschematic}
-	\caption{Top-down schematic view of the ADD Collection Bins}
-	\label{fig:ADD_planview_collection}
-\end{figure}
-
-Prior to testing, data was collected to estimate the uncertainty associated with the water distribution experiments performed using the ADD apparatus. Each water collection assembly was filled to capacity while recording pressure transducer measurements as well as data from a calibrated turbine flowmeter (with less than 1~\% measurement uncertainty). Although the design of each water collection assembly is the same, the measurement performance across the entire apparatus varied in terms of bias and precision. Overall, the water collection assemblies reported volume with a bias of 0.5~gallons less than the volume calculated using the flow meter and with a precision of +/- 2.4~gallons. Using the same data, it was estimated that the real-time (1 Hz) flowrate calculated by the ADD apparatus reported 0.1~gpm less than the turbine flow meter, and with a precision +/- 0.4 gpm. The recorded data was used to compute a total amount of water in a given bin with the units of gallons.
-
-\clearpage
-
-\subsubsection{Measurement Locations}
-
-
-The Actual Delivered Density apparatus, described above, was utilized to measure the amount and distribution of water flowed into the compartment constructed specifically for this testing. By placing the ADD apparatus beneath the compartment, all of the water flowed was collected and measured. The collection bins were numbered according to their location within the apparatus which allowed a 3D map of the water flow to show the distribution.
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=6in]{Figures/Water_Distribution/Measurement_Locations_BinNumbers}
+	\includegraphics[width=\columnwidth]{Figures/Water_Distribution/Measurement_Locations_BinNumbers}
 	\caption{Bin Numbers and Locations}
 	\label{fig:Bin Numbers and Locations}
 \end{figure}
 
-\clearpage
+Prior to testing, data was collected to estimate the uncertainty associated with the water distribution measurements performed using the ADD apparatus. Each water collection assembly was filled to capacity while recording pressure transducer measurements as well as data from a calibrated turbine flowmeter (with less than 1~\% measurement uncertainty). Although the design of each water collection assembly is the same, the measurement performance across the entire apparatus varied. Overall, the 48 water collection assemblies reported an average accuracy of $\pm$ 2.4~gallons. This represents an uncertainty in total volume of $\pm$ 8~\% at full scale (30 gal).
 
-\subsubsection{Equipment Used}
+\subsubsection{Experimental Equipment}
 
-In order to ensure the data collected and associated results were applicable to the majority of the fire servce, our technical panel was tasked with creating a list of represetative nozzles, specified flows/pressures, and hose line techniques. All of these variables were tested during both the air entrainment and water distribution experiments; however, several other aspects were held constant such as the length of hose used. The nozzles utilized during these experiments can be seen in the table below.
+To ensure the data collected were applicable to the majority of the fire service, a list of representative nozzles, specified flows/pressures, and hose line techniques was developed. These test variables are similar to those discussed in the air entrainment experiments and are shown in Table~\ref{tab:nozzles_used_detail}.
 
-\begin{table}[]
+\begin{table}[!ht]
 \centering
 \caption{Details of Nozzles Used}
 \label{tab:nozzles_used_detail}
@@ -1318,13 +1301,9 @@ Master Stream & Smooth Bore & 1 1/2 & 80 & 600 \\
 \end{tabular}
 \end{table}
 
-\clearpage
-
 \subsection{Experiments Conducted}
 
-The water distribution experiments incorporated both interior and exterior fire attack utilizing the various nozzles and configurations chosen by the technical panel. 
-
-The interior testing was simulating a fire on the same floor as the attack crew in which the suppression operations were conducted from an adjoining room/hallway. At this position, the nozzle type as well as nozzle direction and application pattern were varied to determine the water distribution within the compartment. The nozzle directions and associated terminology can be seen in Figure \ref{fig:Nozzle_Direction_Interior_Attack}.
+The water distribution experiments consisted of 88 tests that incorporated both interior and exterior fire attack utilizing the various nozzles and flow configurations. The interior tests were designed to simulate a fire on the same floor as the attack crew. Suppression operations were conducted from an adjoining room/hallway. At this position, the nozzle type as well as nozzle direction and application pattern were varied to determine the water distribution within the compartment. The nozzle directions and associated terminology can be seen in Figure \ref{fig:Nozzle_Direction_Interior_Attack}.
 
 \begin{figure}[!ht]
 	\centering
