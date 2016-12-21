@@ -27,6 +27,7 @@
 \usepackage[subfigure]{tocloft}
 \usepackage{rotating}
 \usepackage[printwatermark]{xwatermark}
+\usepackage{amssymb}
 % \usepackage[table,xcdraw]{xcolor}
 \hypersetup{
 	colorlinks,
@@ -1450,16 +1451,7 @@ Second & Fog                & Comb (Fixed then O)    & Max Angle  & 100 & 150 \\
 
 \subsection{Analysis \& Results}
 
-The intent of the water flow testing was to determine the location of where water within the compartment as a function of several common fire service equipment configurations and application locations.
-
-
-\subsubsection{Repeatability}
-
-It should be noted that several tests were conducted to determine the repeatability of the experiments to ensure accuracy in the results as well as several tests utilizing `live-fire' in order to determine the applicability of this testing to the remainder of the study.
-
-Four tests utilizing a straight stream nozzle flowing 150~gpm at 100~psi from the exterior first floor position directed into the structure with a maximum angle were conducted to determine the variance in results.
-
-\clearpage 
+The intent of the water flow testing was to determine the location of the water within the compartment as a function of several common fire service equipment configurations and application locations. Recall, the location of the water within the compartment was achieved using the ADD device (Section~\ref{sec:add_instrumentation}). To ensure that differences between water distributions within the compartment could be quantified, it was important to confirm the repeatability of the experimental setup. Four tests utilizing a straight stream nozzle flowing 150~gpm at 100~psi from the exterior first floor position directed into the structure with a maximum angle were conducted to determine the variance in results. The total water in each of the 48 collection bins for the four replicate tests is shown in Figure~\ref{fig:Repeatability_Testing}. In the bar chart, bins with less than 8~gal. are colored blue, with more than 8~gal. but less than 16~gal. are colored green, with more than 16~gal. but less than 24~gal. are colored yellow, and bins with more than 24~gal. are colored red. 
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1468,13 +1460,12 @@ Four tests utilizing a straight stream nozzle flowing 150~gpm at 100~psi from th
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-10_083305_Datafile_Straight_Stream_Exterior} &
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-10_083751_Datafile_Straight_Stream_Exterior} \\
 \end{tabular*}
-\caption{Figures showing repeatability in test results.}
+\caption{Straight stream nozzle flowing 150~gpm at 100~psi from the exterior first floor position directed into the structure with a maximum angle.}
 \label{fig:Repeatability_Testing}
 \end{figure}
 
-\vspace*{\baselineskip}
+Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_Testing} look similar to one another. However, to better compare the tests, a statistical approach known as an analysis of variance (ANOVA), was performed. Specifically, the Kruskal-Willis one-way ANOVA test was applied. The goal of this analysis was to quantify whether samples (in this case the flow rate of water in each bin) originate from the same distribution (are the tests similar or different). The Kruskal-Willis analysis was selected because there is no prior assumption that the data is normally distributed. While this statistical analysis can compare $n$ number of data sets and identify if the data sets are statistically different, a limitation in all ANOVAs is the inability to identify which data set is statistically different. The result of the ANOVA is a p-value. If the p-value is less than 0.05, the experiments being compared are statistically different. If the p-value is large, the experiments being compared are similar to one another.
 
-From these results, it is clear that the differences between the tests were minimal and thus determined that the measurement technique was repeatable.
 
 \clearpage
 
@@ -1488,26 +1479,26 @@ From these results, it is clear that the differences between the tests were mini
 \toprule[1.5pt]
 {{Comparison}} & {{\# of Tests}} & {{P Value}} & {{Statistically Different}} \\ 
 \midrule
- Straight Stream Exterior Replicate Tests               & 4          & 0.822   & No \\
- Fixed Interior, Varying Hose Stream                    & 3          & 6.6E-07 & Yes \\
- O Pattern Interior, Varying Hose Stream                & 3          & 0.008   & Yes \\
- Fixed First Floor Exterior, Varying Hose Stream        & 3          & 0.046   & Yes \\
- Fixed Second Floor Exterior, Varying Hose Stream       & 3          & 0.064   & No \\
- Sweeping First Floor Exterior, Varying Hose Stream     & 2          & 0.383   & No \\
- Sweeping Second Floor Exterior, Varying Hose Stream    & 2          & 0.433   & No \\
- Fixed Interior Smooth Bore, Varying Nozzle Position    & 3          & 3.2E-04 & Yes \\
- O Pattern Interior Smooth Bore, Varying Nozzle Position    & 3          & 2.0E-04 & Yes \\
- Fixed Interior Straight Stream, Varying Nozzle Position    & 3          & 3.0E-09 & Yes \\
- O Pattern Interior Straight Stream, Varying Nozzle Position    & 3          & 3.6E-04 & Yes \\
- Fixed First Floor Exterior Straight Stream, Varying Nozzle Position   & 5          & 2.8E-08 & Yes \\
- Fixed Second Floor Exterior Straight Stream, Varying Nozzle Position  & 5          & 2.3E-09 & Yes \\
- Fixed First Floor Exterior Smooth Bore, Varying Nozzle Position       & 5          & 1.0E-06 & Yes \\
- Fixed Second Floor Exterior Smooth Bore, Varying Nozzle Position      & 4          & 3.1E-06 & Yes \\
- Fixed Interior Straight Stream, Varying Nozzle Pressure        & 3          & 0.277   & No \\
- Fixed Interior Fog Stream, Varying Nozzle Pressure             & 3          & 0.198   & No \\
- Fixed First Floor Exterior Straight Stream, Varying Nozzle Pressure   & 4          & 0.850   & No \\
- Fixed First Floor Exterior Smooth Bore, Varying Nozzle Pressure       & 4          & 0.360   & No \\
- Fixed First Floor Exterior Smooth Bore, Varying Tip Size       & 3          & 0.205   & No \\
+ Straight Stream Exterior Replicate Tests               & 4          & 0.822   &   \\
+ Fixed Interior, Varying Hose Stream                    & 3          & 6.6E-07 & \checkmark \\
+ O Pattern Interior, Varying Hose Stream                & 3          & 0.008   & \checkmark \\
+ Fixed First Floor Exterior, Varying Hose Stream        & 3          & 0.046   & \checkmark \\
+ Fixed Second Floor Exterior, Varying Hose Stream       & 3          & 0.064   &   \\
+ Sweeping First Floor Exterior, Varying Hose Stream     & 2          & 0.383   &   \\
+ Sweeping Second Floor Exterior, Varying Hose Stream    & 2          & 0.433   &   \\
+ Fixed Interior Smooth Bore, Varying Nozzle Position    & 3          & 3.2E-04 & \checkmark \\
+ O Pattern Interior Smooth Bore, Varying Nozzle Position    & 3          & 2.0E-04 & \checkmark \\
+ Fixed Interior Straight Stream, Varying Nozzle Position    & 3          & 3.0E-09 & \checkmark \\
+ O Pattern Interior Straight Stream, Varying Nozzle Position    & 3          & 3.6E-04 & \checkmark \\
+ Fixed First Floor Exterior Straight Stream, Varying Nozzle Position   & 5          & 2.8E-08 & \checkmark \\
+ Fixed Second Floor Exterior Straight Stream, Varying Nozzle Position  & 5          & 2.3E-09 & \checkmark \\
+ Fixed First Floor Exterior Smooth Bore, Varying Nozzle Position       & 5          & 1.0E-06 & \checkmark \\
+ Fixed Second Floor Exterior Smooth Bore, Varying Nozzle Position      & 4          & 3.1E-06 & \checkmark \\
+ Fixed Interior Straight Stream, Varying Nozzle Pressure        & 3          & 0.277   &   \\
+ Fixed Interior Fog Stream, Varying Nozzle Pressure             & 3          & 0.198   &   \\
+ Fixed First Floor Exterior Straight Stream, Varying Nozzle Pressure   & 4          & 0.850   &   \\
+ Fixed First Floor Exterior Smooth Bore, Varying Nozzle Pressure       & 4          & 0.360   &   \\
+ Fixed First Floor Exterior Smooth Bore, Varying Tip Size       & 3          & 0.205   &   \\
 \bottomrule[1.25pt]
 \end{tabular}
 \end{table}
