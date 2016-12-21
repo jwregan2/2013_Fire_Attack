@@ -1279,7 +1279,7 @@ To ensure the data collected were applicable to the majority of the fire service
 \label{tab:nozzles_used_detail}
 \begin{tabular}{llccc}
 \toprule[1.5pt]
-{\textbf{Line Size}} & {\textbf{Nozzle Type}} & {\textbf{Tip (in)}} & {\textbf{Nozzle Pressure (psi)}} & \textbf{Approximate Flow Rate (gpm)} \\ 
+{{Line Size}} & {{Nozzle Type}} & {{Tip (in)}} & {{Nozzle Pressure (psi)}} & {Approximate Flow Rate (gpm)} \\ 
 \midrule
 1 3/4 in. & Smooth Bore          & 1      & 50 & 210 \\
           & Smooth Bore          & 15/16  & 50 & 180 \\
@@ -1319,7 +1319,7 @@ The interior tests were designed to simulate a fire on the same floor as the att
 \label{tab:Interior_Fire_Attack_Distribution_Experiments}
 \begin{tabular}{ccccc}
 \toprule[1.5pt]
-{\textbf{Hose Stream Type}} & {\textbf{Nozzle Direction}} & {\textbf{Nozzle Movement}} & {\textbf{Nozzle Pressure (psi)}} & \textbf{Flow Rate (gpm)} \\ 
+{{Hose Stream Type}} & {{Nozzle Direction}} & {{Nozzle Movement}} & {{Nozzle Pressure (psi)}} & {Flow Rate (gpm)} \\ 
 \midrule
 Straight Stream   & Max Angle   & O       & 100 & 150 \\
 Straight Stream   & Max Angle   & Fixed   & 100 & 150 \\
@@ -1390,7 +1390,7 @@ The exterior tests are shown in Table~\ref{tab:Exterior_Fire_Attack_Distribution
 \label{tab:Exterior_Fire_Attack_Distribution_Experiments}
 \begin{tabular}{lccccc}
 \toprule[1.5pt]
-{\textbf{Floor Position}}& {\textbf{Hose Stream Type}} & {\textbf{Nozzle Movement}} & {\textbf{Nozzle Direction}} & {\textbf{Nozzle Pressure (psi)}} & \textbf{Flow Rate (gpm)} \\ 
+{{Floor Position}}& {{Hose Stream Type}} & {{Nozzle Movement}} & {{Nozzle Direction}} & {{Nozzle Pressure (psi)}} & {Flow Rate (gpm)} \\ 
 \midrule
 First  & Straight Stream  & Fixed      & Max Angle               & 100 & 150 \\
 First  & Straight Stream  & Sweeping   & Max Angle               & 100 & 150 \\
@@ -1450,7 +1450,7 @@ Second & Fog                & Comb (Fixed then O)    & Max Angle  & 100 & 150 \\
 
 \subsection{Analysis \& Results}
 
-The intent of the water flow testing was to determine the location of where water within the compartment as a function of several common fire service equipment configurations.
+The intent of the water flow testing was to determine the location of where water within the compartment as a function of several common fire service equipment configurations and application locations.
 
 
 \subsubsection{Repeatability}
@@ -1477,6 +1477,42 @@ Four tests utilizing a straight stream nozzle flowing 150~gpm at 100~psi from th
 From these results, it is clear that the differences between the tests were minimal and thus determined that the measurement technique was repeatable.
 
 \clearpage
+
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{Assessment of Flow Rate Comparisons}
+\label{tab:add_comp_results}
+\begin{tabular}{lccc}
+\toprule[1.5pt]
+{{Comparison}} & {{\# of Tests}} & {{P Value}} & {{Statistically Different}} \\ 
+\midrule
+ Straight Stream Exterior Replicate Tests               & 4          & 0.822   & No \\
+ Fixed Interior, Varying Hose Stream                    & 3          & 6.6E-07 & Yes \\
+ O Pattern Interior, Varying Hose Stream                & 3          & 0.008   & Yes \\
+ Fixed First Floor Exterior, Varying Hose Stream        & 3          & 0.046   & Yes \\
+ Fixed Second Floor Exterior, Varying Hose Stream       & 3          & 0.064   & No \\
+ Sweeping First Floor Exterior, Varying Hose Stream     & 2          & 0.383   & No \\
+ Sweeping Second Floor Exterior, Varying Hose Stream    & 2          & 0.433   & No \\
+ Fixed Interior Smooth Bore, Varying Nozzle Position    & 3          & 3.2E-04 & Yes \\
+ O Pattern Interior Smooth Bore, Varying Nozzle Position    & 3          & 2.0E-04 & Yes \\
+ Fixed Interior Straight Stream, Varying Nozzle Position    & 3          & 3.0E-09 & Yes \\
+ O Pattern Interior Straight Stream, Varying Nozzle Position    & 3          & 3.6E-04 & Yes \\
+ Fixed First Floor Exterior Straight Stream, Varying Nozzle Position   & 5          & 2.8E-08 & Yes \\
+ Fixed Second Floor Exterior Straight Stream, Varying Nozzle Position  & 5          & 2.3E-09 & Yes \\
+ Fixed First Floor Exterior Smooth Bore, Varying Nozzle Position       & 5          & 1.0E-06 & Yes \\
+ Fixed Second Floor Exterior Smooth Bore, Varying Nozzle Position      & 4          & 3.1E-06 & Yes \\
+ Fixed Interior Straight Stream, Varying Nozzle Pressure        & 3          & 0.277   & No \\
+ Fixed Interior Fog Stream, Varying Nozzle Pressure             & 3          & 0.198   & No \\
+ Fixed First Floor Exterior Straight Stream, Varying Nozzle Pressure   & 4          & 0.850   & No \\
+ Fixed First Floor Exterior Smooth Bore, Varying Nozzle Pressure       & 4          & 0.360   & No \\
+ Fixed First Floor Exterior Smooth Bore, Varying Tip Size       & 3          & 0.205   & No \\
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+
 
 % \subsubsection{Comparison to Fire Testing}
 
