@@ -46,7 +46,7 @@ for ii in range(len(comp_des)):
 			water_flow = 0
 			for jj in range(1,49):
 				water_flow = globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Scaled'].iloc[kk]+water_flow		
-			if (final_water-water_flow) < 5:
+			if (final_water-water_flow) < 10:
 				break
 		# print(kk-k)
 		for jj in range(1,49):	

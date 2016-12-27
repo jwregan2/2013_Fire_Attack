@@ -35,10 +35,31 @@ for f in os.listdir(data_dir):
 		print(Test_Name)
 		data = pd.read_csv(data_dir + experiment)
 
+		init_water = 0
+		final_water = 0
 		total_water_exp_temp = 0
 		for i in range(1,49):
-			total_water_exp_temp = (data['Pressure_'+str(i)+'- Scaled'].iloc[-1] - data['Pressure_'+str(i)+'- Scaled'].iloc[0]) + total_water_exp_temp
-		total_water_theo_temp = Exp_Des['Flow_Rate_(gpm)'][Test_Name]*Exp_Des['Duration'][Test_Name]
+			init_water = data['Pressure_'+str(i)+'- Scaled'].iloc[0] + init_water
+			final_water = data['Pressure_'+str(i)+'- Scaled'].iloc[-1] + final_water
+		
+		for k in range(len(data)):
+			water_flow = 0
+			for i in range(1,49):
+				water_flow = data['Pressure_'+str(i)+'- Scaled'].iloc[k]+water_flow
+			if (water_flow - init_water) > 5:
+				break
+		for kk in range(len(data)):
+			water_flow = 0
+			for i in range(1,49):
+				water_flow = data['Pressure_'+str(i)+'- Scaled'].iloc[kk]+water_flow
+			if (final_water-water_flow) < 5:
+				break
+		if Test_Name == '15-12-08_104620_Datafile':
+			kk = 90
+		print(kk,k)
+		for i in range(1,49):
+			total_water_exp_temp = (data['Pressure_'+str(i)+'- Scaled'].iloc[kk] - data['Pressure_'+str(i)+'- Scaled'].iloc[k]) + total_water_exp_temp
+		total_water_theo_temp = Exp_Des['Flow_Rate_(gpm)'][Test_Name]*((kk-k)/60)*Exp_Des['Flow_Correction'][Test_Name]
 		percent_diff.append(round(100*abs(total_water_exp_temp-total_water_theo_temp)/total_water_theo_temp,2))
 
 		total_water_exp.append(total_water_exp_temp)
