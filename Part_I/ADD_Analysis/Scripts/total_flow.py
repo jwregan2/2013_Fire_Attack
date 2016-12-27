@@ -46,17 +46,16 @@ for f in os.listdir(data_dir):
 			water_flow = 0
 			for i in range(1,49):
 				water_flow = data['Pressure_'+str(i)+'- Scaled'].iloc[k]+water_flow
-			if (water_flow - init_water) > 5:
+			if (water_flow - init_water) > 10:
 				break
 		for kk in range(len(data)):
 			water_flow = 0
 			for i in range(1,49):
 				water_flow = data['Pressure_'+str(i)+'- Scaled'].iloc[kk]+water_flow
-			if (final_water-water_flow) < 5:
+			if (final_water-water_flow) < 10:
 				break
 		if Test_Name == '15-12-08_104620_Datafile':
 			kk = 90
-		print(kk,k)
 		for i in range(1,49):
 			total_water_exp_temp = (data['Pressure_'+str(i)+'- Scaled'].iloc[kk] - data['Pressure_'+str(i)+'- Scaled'].iloc[k]) + total_water_exp_temp
 		total_water_theo_temp = Exp_Des['Flow_Rate_(gpm)'][Test_Name]*((kk-k)/60)*Exp_Des['Flow_Correction'][Test_Name]
@@ -64,6 +63,8 @@ for f in os.listdir(data_dir):
 
 		total_water_exp.append(total_water_exp_temp)
 		total_water_theo.append(total_water_theo_temp)	
+print('Average % Difference: ', round(np.mean(percent_diff),2))
+print('Standard Deviation % Difference: ', round(np.std(percent_diff),2))
 
 output = [name,total_water_theo,total_water_exp,percent_diff]
 cols = ['Test Name', 'Theoretical Water', 'Experimental Water', 'Percent Difference']
