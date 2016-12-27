@@ -16,9 +16,10 @@ Exp_Des = Exp_Des.set_index('Original_Test_Name')
 comp_file = '../Info/test_differences.csv'
 comp_des = pd.read_csv(comp_file)
 
-p_val = []
+p_val_rate = []
+p_val_total = []
 stat_diff = []
-f_val = []
+stat_diff2 = []
 
 for ii in range(len(comp_des)):
 	print(comp_des['Name'][ii])
@@ -28,8 +29,8 @@ for ii in range(len(comp_des)):
 	names = comp_des['Experiments_To_Compare'][ii].split('|')
 	for nn in range(num_tests):
 		globals() ["data"+str(nn+1)] = pd.read_csv(data_dir+names[nn-1]+'_Datafile.csv')
+		globals() ["rate_water_buckets_"+str(nn+1)] = []
 		globals() ["total_water_buckets_"+str(nn+1)] = []
-		
 		init_water = 0
 		final_water = 0
 		for jj in range(1,49):
@@ -49,22 +50,39 @@ for ii in range(len(comp_des)):
 				break
 		# print(kk-k)
 		for jj in range(1,49):	
-			globals() ["total_water_buckets_"+str(nn+1)].append(np.mean(globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Rate'].iloc[k:kk]))
+			globals() ["total_water_buckets_"+str(nn+1)].append(globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Scaled'].iloc[-1] - globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Scaled'].iloc[0])		
+			globals() ["rate_water_buckets_"+str(nn+1)].append(np.mean(globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Rate'].iloc[k:kk]))
+		globals() ["rate_water_buckets_"+str(nn+1)] = globals() ["rate_water_buckets_"+str(nn+1)]
 		globals() ["total_water_buckets_"+str(nn+1)] = globals() ["total_water_buckets_"+str(nn+1)]
-	data_dict ={}
+	data_dict_rate = {}
+	data_dict_total = {}
 	for kk in range(num_tests):
-		data_dict["total_water_buckets_"+str(kk+1)] = globals() ["total_water_buckets_"+str(kk+1)]
+		data_dict_rate["rate_water_buckets_"+str(kk+1)] = globals() ["rate_water_buckets_"+str(kk+1)]
+		data_dict_total["total_water_buckets_"+str(kk+1)] = globals() ["total_water_buckets_"+str(kk+1)]
+	
+	f_val_temp,p_val_temp1 = stats.kruskal(*data_dict_rate.values())
+	p_val_rate.append(p_val_temp1)
+	f_val_temp,p_val_temp2 = stats.kruskal(*data_dict_total.values())
+	p_val_total.append(p_val_temp2)
 
-	f_val_temp, p_val_temp = stats.kruskal(*data_dict.values())
-	f_val.append(f_val_temp)
-	p_val.append(p_val_temp)
-	if p_val_temp < 0.05:
+	if p_val_temp1 < 0.05:
 		stat_diff.append('yes')
 	else:
 		stat_diff.append('no')
 
-comp_des['P_Test'] = p_val
-comp_des['Are Comps Different'] = stat_diff
-comp_des['F_Test'] = f_val
+	if p_val_temp2 < 0.05:
+		stat_diff2.append('yes')
+	else:
+		stat_diff2.append('no')
+
+
+comp_des['P_Test_Rate'] = p_val_rate
+comp_des['Are Rates Different'] = stat_diff
+comp_des['P_Test_Total'] = p_val_total
+comp_des['Are Totals Different'] = stat_diff2
+
 comp_des.to_csv('../Info/test_differences_output.csv')
+
+
+
 
