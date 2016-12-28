@@ -446,7 +446,7 @@ The two-story concrete structure was built on a concrete slab as shown in Fig.~\
 
 The interior walls of the first floor were framed with steel studs set to 16~in. centers and track and were lined with 0.5~in. thick cement board. The walls were composed of 0.6~in. Type X gypsum board. Additionally, the ceiling was composed of two layers of 0.5~in. thick cement board. The first floor ceiling support of the structure was composed of wood truss joist I-beams (TJIs) with a 11.75~in. depth. Each TJI was composed of laminated veneer lumber flanges with a cross section of 1.13~in. x 1.75~in. and an 0.43~in. thick oriented strand board web. Tongue and groove oriented strand board of 0.72~in. thickness was screwed to the top of the TJIs. The second floor of the two story structure was built on the wood ceiling support described above and was connected to the first floor by a stairwell. The walls of the second floor were wood frame with nominal 2~in. by 4~in. studs set to 16~in. centers. The interior walls were protected by 0.6~in. fire rated gypsum board, 0.6~in. durarock board, and a second layer of 0.6~in. fire rated gypsum board. The exterior walls were protected with 0.4~in. oriented strand board and 0.3~in. fiber cement lap siding.
 
-The interior layout of the structure can be seen in the dimensioned floor plans above. The interior dimensions of the first and second floors of the structure were 19~ft. by 35.1~ft. and 20~ft. by 35.8~ft., respectively. The stairs connecting the two floors of the structure started 5.3~ft. off the South wall with a width of 4~ft. off the East wall and contained a 7.25~in. rise and 7.5~in. run. The exterior doorways of each structure and the stairwell doorway on the second level of the structure all contained steel doors that were opened or closed at certain instances during tests to change the ventilation configuration within the structure. All other doorways in the structures did not contain a door. If it was determined that these doors needed closed during a test, a sheet of either gypsum board or oriented strand board was used to cover the opening and remainded as such until the conclusion of the given test.
+The interior layout of the structure can be seen in the dimensioned floor plans above. The interior dimensions of the first and second floors of the structure were 19~ft. by 35.1~ft. and 20~ft. by 35.8~ft., respectively. The stairs connecting the two floors of the structure started 5.3~ft. off the South wall with a width of 4~ft. off the East wall and contained a 7.25~in. rise and 7.5~in. run. The exterior doorways of each structure and the stairwell doorway on the second level of the structure all contained steel doors that were opened or closed at certain instances during tests to change the ventilation configuration within the structure. All other doorways in the structures did not contain a door. If it was determined that these doors needed closed during a test, a sheet of either gypsum board or oriented strand board was used to cover the opening and remained as such until the conclusion of the given test.
 
 \subsubsection{Instrumentation}
 
@@ -1394,8 +1394,6 @@ The exterior tests are shown in Table~\ref{tab:Exterior_Fire_Attack_Distribution
 {{Floor Position}}& {{Hose Stream Type}} & {{Nozzle Movement}} & {{Nozzle Direction}} & {{Nozzle Pressure (psi)}} & {Flow Rate (gpm)} \\ 
 \midrule
 First  & Straight Stream  & Fixed      & Max Angle               & 100 & 150 \\
-First  & Straight Stream  & Sweeping   & Max Angle               & 100 & 150 \\
-First  & Straight Stream  & Wide Sweep & Max Angle               & 100 & 150 \\
 First  & Straight Stream  & Fixed      & Max Angle               & 100 & 150 \\
 First  & Straight Stream  & Fixed      & Max Angle               & 100 & 150 \\
 First  & Straight Stream  & Fixed      & Max Angle               & 100 & 150 \\
@@ -1406,6 +1404,8 @@ First  & Straight Stream  & Fixed      & Max Angle               & 75 & 60 \\
 First  & Straight Stream  & Fixed      & Max Angle               & 50 & 185 \\
 First  & Straight Stream  & Fixed      & Max Angle               & 25 & 130 \\
 First  & Straight Stream  & Fixed      & Max Angle               & 100 & 250 \\
+First  & Straight Stream  & Sweeping   & Max Angle               & 100 & 150 \\
+First  & Straight Stream  & Wide Sweep & Max Angle               & 100 & 150 \\
 First  & Straight Stream  & Fixed      & Mid Ceiling             & 100 & 150 \\
 First  & Straight Stream  & Fixed      & Min Angle: Ceiling      & 100 & 150 \\
 First  & Straight Stream  & Fixed      & Min Angle:Ceiling       & 100 & 250 \\
@@ -1460,126 +1460,47 @@ The intent of the water flow testing was to determine the location of the water 
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-10_083305_Datafile_Straight_Stream_Exterior} &
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-10_083751_Datafile_Straight_Stream_Exterior} \\
 \end{tabular*}
-\caption{Straight stream nozzle flowing 150~gpm at 100~psi from the exterior first floor position directed into the structure with a maximum angle.}
+\caption{Water volume in each collection bin for a fixed exterior straight stream nozzle flowing 150~gpm at 100~psi from the first floor position directed into the structure with a maximum angle. The four bar charts are replicate tests of the same configuration}
 \label{fig:Repeatability_Testing}
 \end{figure}
 
-Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_Testing} look similar to one another. However, to better compare the tests, a statistical approach known as an analysis of variance (ANOVA), was performed. Specifically, the Kruskal-Willis one-way ANOVA test was applied. The goal of this analysis was to quantify whether samples (in this case the flow rate of water in each bin) originate from the same distribution (are the tests similar or different). The Kruskal-Willis analysis was selected because there is no prior assumption that the data is normally distributed. While this statistical analysis can compare $n$ number of data sets and identify if the data sets are statistically different, a limitation in all ANOVAs is the inability to identify which data set is statistically different. The result of the ANOVA is a p-value. If the p-value is less than 0.05, the experiments being compared are statistically different. If the p-value is large, the experiments being compared are similar to one another.
+Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_Testing} look similar to one another. However, to better compare the tests, a statistical approach known as an analysis of variance (ANOVA), was performed. Specifically, the Kruskal-Willis one-way ANOVA test was applied. The goal of this analysis was to quantify whether samples (in this case the flow rate of water in each bin) originate from the same distribution (are the tests similar or different). The Kruskal-Willis analysis was selected because there is no prior assumption that the data is normally distributed. While this statistical analysis can compare $n$ number of data sets and identify if the data sets are statistically different, a limitation in all ANOVAs is the inability to identify which data sets are statistically different. The result of the ANOVA is a p-value. If the p-value is less than 0.05, the experiments being compared are statistically different. If the p-value is large, the experiments being compared are not statistically different.
 
+For the straight stream experiments shown in Figure~\ref{fig:Repeatability_Testing}, two Kruskal-Willis ANOVA tests were applied; one was based on average flow rate of water into each collection bin and the other was based on total volume of water recorded in each bin. The resulting p-values were 0.822 and 0.627 for average flow rate and total volume respectively. The high p-values mean that the 4 straight stream flow patterns cannot be distinguished from one another. In other words, these experiments were repeatable.
 
-\clearpage
-
+Confirmation of repeatability, allowed for the exploration of additional comparisons within the data. The three main comparisons were varying the hose stream type, varying the nozzle position, and varying the flow pressure. The hose stream comparisons were designed to quantify the impact on water distribution from using a straight stream, smooth bore, or a narrow fog pattern. For the hose stream type comparisons, 6 configurations were analyzed. Within each configuration set, the nozzle direction, nozzle movement, and nozzle pressure/flow rate were fixed. Table~\ref{tab:add_hosestream} shows the results from the ANOVA test based on flow rate and total volume for each of the configurations tested.
 
 \begin{table}[!ht]
 \centering
 \small
-\caption{Assessment of Flow Rate Comparisons}
-\label{tab:add_comp_results}
-\begin{tabular}{lccc}
+\caption{Assessment of Variation of Hose Stream Types}
+\label{tab:add_hosestream}
+\begin{tabular}{lccccc}
 \toprule[1.5pt]
-{{Comparison}} & {{\# of Tests}} & {{P Value}} & {{Statistically Different}} \\ 
+Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Different \\ 
 \midrule
- Straight Stream Exterior Replicate Tests               & 4          & 0.822   &   \\
- Fixed Interior, Varying Hose Stream                    & 3          & 6.6E-07 & \checkmark \\
- O Pattern Interior, Varying Hose Stream                & 3          & 0.008   & \checkmark \\
- Fixed First Floor Exterior, Varying Hose Stream        & 3          & 0.046   & \checkmark \\
- Fixed Second Floor Exterior, Varying Hose Stream       & 3          & 0.064   &   \\
- Sweeping First Floor Exterior, Varying Hose Stream     & 2          & 0.383   &   \\
- Sweeping Second Floor Exterior, Varying Hose Stream    & 2          & 0.433   &   \\
- Fixed Interior Smooth Bore, Varying Nozzle Position    & 3          & 3.2E-04 & \checkmark \\
- O Pattern Interior Smooth Bore, Varying Nozzle Position    & 3          & 2.0E-04 & \checkmark \\
- Fixed Interior Straight Stream, Varying Nozzle Position    & 3          & 3.0E-09 & \checkmark \\
- O Pattern Interior Straight Stream, Varying Nozzle Position    & 3          & 3.6E-04 & \checkmark \\
- Fixed First Floor Exterior Straight Stream, Varying Nozzle Position   & 5          & 2.8E-08 & \checkmark \\
- Fixed Second Floor Exterior Straight Stream, Varying Nozzle Position  & 5          & 2.3E-09 & \checkmark \\
- Fixed First Floor Exterior Smooth Bore, Varying Nozzle Position       & 5          & 1.0E-06 & \checkmark \\
- Fixed Second Floor Exterior Smooth Bore, Varying Nozzle Position      & 4          & 3.1E-06 & \checkmark \\
- Fixed Interior Straight Stream, Varying Nozzle Pressure        & 3          & 0.277   &   \\
- Fixed Interior Fog Stream, Varying Nozzle Pressure             & 3          & 0.198   &   \\
- Fixed First Floor Exterior Straight Stream, Varying Nozzle Pressure   & 4          & 0.850   &   \\
- Fixed First Floor Exterior Smooth Bore, Varying Nozzle Pressure       & 4          & 0.360   &   \\
- Fixed First Floor Exterior Smooth Bore, Varying Tip Size       & 3          & 0.205   &   \\
+ Interior, Mid Ceiling, Fixed Pattern             & 3          & 6.6E-07 & \checkmark & 2.3E-05 & \checkmark   \\
+ Interior, Mid Ceiling, `O' Pattern               & 3          & 0.008   & \checkmark & 0.008   & \checkmark   \\
+ First Floor Exterior, Max Angle, Fixed Pattern   & 3          & 0.046   & \checkmark & 0.100   &    \\
+ Second Floor Exterior, Max Angle, Fixed Pattern  & 3          & 0.064   &            & 0.004   & \checkmark   \\
+ First Floor Exterior, Max Angle, Sweep Pattern   & 2          & 0.383   &            & 0.337   &    \\
+ Second Floor Exterior, Max Angle, Sweep Pattern  & 2          & 0.433   &            & 0.524   &    \\
 \bottomrule[1.25pt]
 \end{tabular}
 \end{table}
 
+The results of the statistical analysis identified that 4 of the 6 hose stream comparisons showed statistical difference in either the flow rate comparison, total volume comparison or both. In the case of the interior tests, both the fixed pattern and `o' pattern showed statistical differences in both tests (Figures~\ref{fig:Interior_Varying_Nozzle_Types_Fixed_Pattern} and \ref{fig:Interior_Varying_Nozzle_Types_O_Pattern}). Comparison of the three streams in Figure~\ref{fig:Interior_Varying_Nozzle_Types_Fixed_Pattern}, shows that the fog stream had significantly lower volume of water at the edge bins along the wall opposite the doorway. For the interior test with the `o' pattern, the p-test values indicate that the data are different. The volume data in Figure~\ref{fig:Interior_Varying_Nozzle_Types_O_Pattern}, show that patterns along the wall opposite the doorway are similar. The smooth bore had water distributed along the window wall and wall opposite the window compared to the other two hose streams which had the water more concentrated along the wall opposite the doorway; leading to the statistical difference.
 
-
-% \subsubsection{Comparison to Fire Testing}
-
-% Additionally, two tests were conducted using `live fire' in which two UL 199 standard commodity wooden cribs were placed in the center of the compartment, as shown in Figure \ref{fig:Wood_Crib_Location}, atop a collection pan filled with heptane. The wooden cribs were chosen because of their ability to maintain a near constant burn rate for a period of time. Wooden cribs have been used in the standards testing of sprinklers for many years. The wood cribs were constructed of kiln-dried spruce or fir sticks measuring 1.5~in. high by 1.5~in. wide by 20~in. long. These were fastened together with nails and stacked atop one another to form the overal structure (10 alternating layers, with 5 sticks per layer). The crib measured 20~in. wide by 20~in. deep by 15~in. high and weighed approximately 33~lbs. each. Two cribs were stacked atop one another to ensure the steady burning period of the fire would last for the duration of the experiment. In order to shorten the time to reach the steady burning period and assist in the near uniform ignition of the cribs, 32~oz of Heptane was poured in the pan beneath and ignited with a propane torch.
-
-% \begin{figure}[!ht]
-% 	\centering
-% 	\includegraphics[width=4in]{Figures/Water_Distribution/ADDcriblocation.jpg}
-% 	\caption{Wood Crib Location}
-% 	\label{fig:Wood_Crib_Location}
-% \end{figure}
-
-% \begin{figure} [H]
-% 	\centering
-% 	\begin{tabular}{c c}
-% 		\subfloat[Wooden Cribs]{\includegraphics[height = 2.5in]{Figures/Water_Distribution/WoodCrib2.jpg}} &
-% 		\subfloat[Fire Test]{\includegraphics[height = 2.5in]{Figures/Water_Distribution/WoodCribfire3.jpg}} \\
-% 	\end{tabular}
-% 	\caption{ADD Fire Tests}
-% 	\label{fig:ADD_Fire_Tests}
-% \end{figure}
-
-% \clearpage
-
-% The results of the two fire tests are shown below as compared to the same tests conducted without `live fire.'
-
-% \vspace*{\baselineskip}
-
-% \begin{figure}[ht]
-% \begin{tabular*}{\textwidth}{lr}
-% \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-10_132600_Datafile_Straight_Stream_Interior} &
-% \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_152435_Datafile_Straight_Stream_Interior} \\
-% \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-10_122043_Datafile_Straight_Stream_Exterior} &
-% \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_113237_Datafile_Straight_Stream_Exterior} \\
-% \end{tabular*}
-% \caption{`Live fire' comparison results.}
-% \label{fig:Live_Fire_Comparison}
-% \end{figure}
-
-% From these results, it was determined that the distributions were similar with or without the presence of fire. The small differences can be attributed to several aspects of the testing, including:
-
-% \begin{itemize}
-% 	\item As the water passes into the heated compartment and contacts the hot gas layer, some of the water is converted to steam as it heats up and thus the total quantity of water making it into the bins will be slightly smaller in the fire tests.
-% 	\item The collection bins immediately adjacent to the bin where the wooden cribs were placed showed a higher amount of water collected in the fire tests when compared to those without fire. This is attributed to some of the water deflecting off of the crib and falling into the bins surrounding the crib.
-% \end{itemize}
-
-% If the attack is made from either the interior or exterior of the structure and the stream is directed at the ceiling, the majority of the water `rides' down the opposite wall from the nozzle location, with little to no water making it into the center of the compartment.
-
-% \clearpage
-
-\paragraph{Water distribution is dependent on nozzle type (smooth bore, straight stream, fog).} \mbox{}
-
-% ------------------------------------------------------------------------------------
-% Interior
-% ------------------------------------------------------------------------------------
-
-% Interior (at room entrance, fixed pattern, set flow/pressure)
-% 	SS (150 @ 50), Fog (150 @ 50), 15/16 SB (180 @ 50)
-% 	15-12-09_121955_Datafile, 15-12-09_123142_Datafile, 15-12-09_144839_Datafile
-
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_121955_Datafile_Straight_Stream_Interior} &
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_123142_Datafile_Fog_Interior} \\
 \end{tabular*}
 \centering
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_144839_Datafile_15_16in_Smooth_Bore_Interior}
-\caption{Figures showing distribution differences in varying nozzle types during an interior attack with a fixed pattern.}
+\caption{Water volume in each collection bin for interior fixed pattern flow at the mid-ceiling position for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
 \label{fig:Interior_Varying_Nozzle_Types_Fixed_Pattern}
 \end{figure}
-
-\clearpage
-
-% Interior (at room entrance, O pattern, set flow/pressure)
-% 	SS (150 @ 50), Fog (150 @ 50), 15/16 SB (180 @ 50)
-% 	15-12-09_122551_Datafile, 15-12-09_123636_Datafile, 15-12-09_145534_Datafile
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1588,70 +1509,80 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \end{tabular*}
 \centering
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_145534_Datafile_15_16in_Smooth_Bore_Interior}
-\caption{Figures showing distribution differences in varying nozzle types during an interior attack with an `O' pattern.}
+\caption{Water volume in each collection bin for interior `O' pattern flow at the mid-ceiling position for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
 \label{fig:Interior_Varying_Nozzle_Types_O_Pattern}
 \end{figure}
 
-\clearpage
 
-% --------------------------------------------------------------------------------
-% Exterior, First Floor/Second Floor
-% --------------------------------------------------------------------------------
-
-% % Exterior (first floor, fixed, set flow/pressure)
-% % 	SS (150 @ 100), Fog (150 @ 100), 15/16 SB (180 @ 50)
-% % 	15-12-08_113237_Datafile, 15-12-08_121806_Datafile, 15-12-08_101028_Datafile
-
-% Exterior (second floor, fixed, set flow/pressure)
-% 	SS (150 @ 100), Fog (150 @ 100), 15/16 SB (180 @ 50)
-% 	15-12-07_145156_Datafile, 15-12-07_155751_Datafile, 15-12-07_111118_Datafile
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_113237_Datafile_Straight_Stream_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_145156_Datafile_Straight_Stream_Exterior} \\
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_121806_Datafile_Fog_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_155751_Datafile_Fog_Exterior} \\
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101028_Datafile_15_16in_Smooth_Bore_Exterior} & 
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_111118_Datafile_15_16in_Smooth_Bore_Exterior} \\
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_121806_Datafile_Fog_Exterior} \\
 \end{tabular*}
 \centering
-\caption{Figures showing distribution differences in varying nozzle types during an exterior attack with a fixed pattern.}
-\label{fig:Exterior_Varying_Nozzle_Types_Fixed_Pattern}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101028_Datafile_15_16in_Smooth_Bore_Exterior}
+\caption{Water volume in each collection bin for exterior first floor fixed pattern flow at the max angle position for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
+\label{fig:Exterior_FirstFloor_Fixed_Varying_Nozzle}
 \end{figure}
 
-\clearpage
+\begin{figure}[ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_145156_Datafile_Straight_Stream_Exterior} &
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_155751_Datafile_Fog_Exterior} \\
+\end{tabular*}
+\centering
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_111118_Datafile_15_16in_Smooth_Bore_Exterior}
+\caption{Water volume in each collection bin for exterior second floor fixed pattern flow at the max angle position for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
+\label{fig:Exterior_SecondFloor_Fixed_Varying_Nozzle}
+\end{figure}
 
-% Exterior (first floor, Sweeping pattern, set flow/pressure)
-% 	SS (150 @ 50), 15/16 SB (180 @ 50)
-% 	15-12-08_113716_Datafile, 15-12-08_101825_Datafile
-
-% Exterior (second floor, Sweeping pattern, set flow/pressure)
-% 	SS (150 @ 50), 15/16 SB (180 @ 50)
-% 	15-12-07_121014_Datafile, 15-12-07_145842_Datafile
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_113716_Datafile_Straight_Stream_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_145842_Datafile_Straight_Stream_Exterior} \\
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101825_Datafile_15_16in_Smooth_Bore_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_121014_Datafile_15_16in_Smooth_Bore_Exterior} \\
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101825_Datafile_15_16in_Smooth_Bore_Exterior}
 \end{tabular*}
-\caption{Figures showing distribution differences in varying nozzle types during an exterior attack with a sweeping pattern.}
-\label{fig:Exterior_Varying_Nozzle_Types_Sweeping_Pattern}
+\caption{Water volume in each collection bin for exterior first floor sweeping pattern flow at the max angle position for a straight stream (left) and smooth bore (right) nozzle}
+\label{fig:Exterior_FirstFloor_O_Varying_Nozzle}
 \end{figure}
+
+
+\begin{figure}[ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_145842_Datafile_Straight_Stream_Exterior} &
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_121014_Datafile_15_16in_Smooth_Bore_Exterior}
+\end{tabular*}
+\caption{Water volume in each collection bin for exterior second floor sweeping pattern flow at the max angle position for a straight stream (left) and smooth bore (right) nozzle}
+\label{fig:Exterior_SecondFloor_O_Varying_Nozzle}
+\end{figure}
+
 
 \clearpage
 
-\paragraph{Water distribution is dependent on stream direction within a compartment (max angle, mid ceiling, min angle).} \mbox{}
 
-% ------------------------------------------------------------------------------------
-% Interior
-% ------------------------------------------------------------------------------------
+The second comparison was to quantify the impact of nozzle direction on water distribution within the compartment. Referring back to Figures~\ref{fig:Nozzle_Direction_Interior_Attack}, \ref{fig:Nozzle_Direction_Exterior_1st_Floor_Attack}, and \ref{fig:Nozzle_Direction_Exterior_2nd_Floor_Attack} there are 3, 5, and 5 nozzle directions for the interior experiments, the exterior first floor experiments, and the exterior second floor experiments, respectively. Table~\ref{tab:add_nozzleposition} shows the p-test values average flow rate per collection bin and total volume per collection bin for the nozzle direction comparison experiments. 
 
-% Interior (at room entrance, fixed pattern, set flow/pressure: 180 @ 50)
-% 	15/16 SB at wall, 15/16 SB mid-ceiling, 15/16 SB max angle
-% 	15-12-09_142948_Datafile, 15-12-09_144839_Datafile, 15-12-09_145932_Datafile
+\begin{table}[!ht]
+\centering
+\small
+\caption{Assessment of Variation of Nozzle Directions}
+\label{tab:add_nozzleposition}
+\begin{tabular}{lccccc}
+\toprule[1.5pt]
+Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Different \\ 
+\midrule
+ Interior, Smooth Bore, Fixed Pattern     & 3          & 3.2E-04 & \checkmark & 2.2E-04 & \checkmark   \\
+ Interior, Smooth Bore, `O' Pattern       & 3          & 2.0E-04 & \checkmark & 7.8E-05 & \checkmark   \\
+ Interior, Straight Stream, Fixed Pattern & 3          & 3.0E-09 & \checkmark & 2.0E-08 & \checkmark   \\
+ Interior, Straight Stream, `O' Pattern   & 3          & 3.6E-04 & \checkmark & 6.0E-04 & \checkmark   \\
+ First Floor Exterior, Straight Stream    & 5          & 2.8E-08 & \checkmark & 5.6E-08 & \checkmark   \\
+ Second Floor Exterior, Straight Stream   & 5          & 2.3E-09 & \checkmark & 2.7E-09 & \checkmark   \\
+ First Floor Exterior, Smooth Bore        & 5          & 1.0E-06 & \checkmark & 3.8E-06 & \checkmark   \\
+ Second Floor Exterior, Smooth Bore       & 4          & 3.1E-06 & \checkmark & 6.9E-07 & \checkmark   \\
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1664,12 +1595,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \label{fig:Interior_Varying_Nozzle_Direction_SB_Fixed_Pattern}
 \end{figure}
 
-\clearpage
-
-% Interior (at room entrance, O pattern, set flow/pressure: 180 @ 50)
-% 	15/16 SB at wall, 15/16 SB mid-ceiling, 15/16 SB max angle
-% 	15-12-09_144524_Datafile, 15-12-09_145534_Datafile, 15-12-09_150300_Datafile
-
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_144524_Datafile_15_16in_Smooth_Bore_Interior} &
@@ -1680,12 +1605,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \caption{Figures showing distribution differences in varying nozzle directions during smooth bore attack with an `O' pattern.}
 \label{fig:Interior_Varying_Nozzle_Direction_SB_O_Pattern}
 \end{figure}
-
-\clearpage
-
-% Interior (at room entrance, fixed pattern, set flow/pressure: 150 @ 100)
-% 	SS at wall, SS mid-ceiling, SS max angle
-% 	15-12-09_151401_Datafile, 15-12-09_112850_Datafile, 15-12-09_152435_Datafile
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1698,12 +1617,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \label{fig:Interior_Varying_Nozzle_Direction_SS_Fixed_Pattern}
 \end{figure}
 
-\clearpage
-
-% Interior (at room entrance, O pattern, set flow/pressure: 150 @ 100)
-% 	SS at wall, SS mid-ceiling, SS max angle
-% 	15-12-09_151823_Datafile, 15-12-09_113335_Datafile, 15-12-09_153038_Datafile
-
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_151823_Datafile_Straight_Stream_Interior} &
@@ -1714,12 +1627,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \caption{Figures showing distribution differences in varying nozzle directions during a straight stream attack with an `O' pattern.}
 \label{fig:Interior_Varying_Nozzle_Direction_SS_O_Pattern}
 \end{figure}
-
-\clearpage
-
-% -----------------------------------------------------------------------------
-% Exterior, First Floor/Second Floor
-% -----------------------------------------------------------------------------
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1734,8 +1641,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \label{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SS_Fixed_Pattern}
 \end{figure}
 
-\clearpage
-
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_145156_Datafile_Straight_Stream_Exterior} &
@@ -1749,7 +1654,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \label{fig:Exterior_Second_Floor_Varying_Nozzle_Directions_SS_Fixed_Pattern}
 \end{figure}
 
-\clearpage
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1764,7 +1668,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \label{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern}
 \end{figure}
 
-\clearpage
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1777,17 +1680,30 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \label{fig:Exterior_Second_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern}
 \end{figure}
 
+
 \clearpage
 
-\paragraph{Varying nozzle pressure and flow can affect the amount of water applied to a given area while the distribution remains somewhat constant.} \mbox{}
+The third comparison was to quantify the impact of nozzle pressure on water distribution within the compartment.
 
-% ------------------------------------------------------------------------------------
-% Interior
-% ------------------------------------------------------------------------------------
 
-% Interior (at room entrance, fixed, SS, mid-ceiling)
-% 	150 @ 100, 150 @ 75, 150 @ 50
-% 	15-12-09_112850_Datafile, 15-12-09_115707_Datafile, 15-12-09_121955_Datafile
+\begin{table}[!ht]
+\centering
+\small
+\caption{Assessment of Variation of Nozzle Pressure}
+\label{tab:add_pressure}
+\begin{tabular}{lccccc}
+\toprule[1.5pt]
+Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Different \\ 
+\midrule
+ Interior, Straight Stream, Mid Ceiling            & 3          & 0.277   &            & 0.031   & \checkmark   \\
+ Interior, Fog Stream, Mid Ceiling                 & 3          & 0.198   &            & 0.028   & \checkmark   \\
+ First Floor Exterior, Straight Stream, Max Angle  & 4          & 0.850   &            & 0.591   &    \\
+ First Floor Exterior, Smooth Bore, Max Angle      & 4          & 0.360   &            & 0.129   &    \\
+ First Floor Exterior Smooth Bore, Vary Tip Size   & 3          & 0.205   &            & 0.166   &    \\
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1800,12 +1716,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \label{fig:Interior_Varying_Nozzle_Pressure_SS_Fixed_Pattern}
 \end{figure}
 
-\clearpage
-
-% Interior (at room entrance, fixed, fog, mid-ceiling)
-% 	150 @ 100, 150 @ 75, 150 @ 50
-% 	15-12-09_113802_Datafile, 15-12-09_120821_Datafile, 15-12-09_123142_Datafile
-
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_113802_Datafile_Fog_Interior} &
@@ -1816,12 +1726,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \caption{Figures showing distribution differences in varying nozzle pressures during a fog attack with a fixed pattern.}
 \label{fig:Interior_Varying_Nozzle_Pressure_Fog_Fixed_Pattern}
 \end{figure}
-
-\clearpage
-
-% ------------------------------------------------------------------------------------
-% Exterior First Floor/Second Floor
-% ------------------------------------------------------------------------------------
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1834,8 +1738,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \label{fig:Exterior_First_Floor_Varying_Nozzle_Pressure_SS_Fixed_Pattern}
 \end{figure}
 
-\clearpage
-
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_153737_Datafile_15_16in_Smooth_Bore_Exterior} &
@@ -1846,8 +1748,6 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \caption{Figures showing distribution differences in varying nozzle pressures during an exterior first floor smooth bore attack with a fixed pattern.}
 \label{fig:Exterior_First_Floor_Varying_Nozzle_Pressure_SB_Fixed_Pattern}
 \end{figure}
-
-\clearpage
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1861,6 +1761,10 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 \end{figure}
 
 \clearpage
+
+
+
+
 
 \paragraph{Applying water from the exterior or from a distance via the interior will adequately coat the surfaces of a compartment (walls and ceiling) while applying little water to the center of the room.} \mbox{}
 
