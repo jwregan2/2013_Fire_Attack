@@ -14,6 +14,7 @@
 \usepackage{array}
 % \usepackage{l3kernel}
 % \usepackage{l3packages}
+\usepackage{tabularx,booktabs}
 \usepackage{siunitx}
 \usepackage{color,soul}
 \usepackage{placeins}
@@ -499,7 +500,7 @@ Heat flux measurements were made using a 2.54 cm nominal diameter water-cooled S
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width = 3.5in]{../0_Images/Instrumentation/Heat_Flux_Gauge.jpg}
+	\includegraphics[width = 3.5in]{0_Images/Instrumentation/Heat_Flux_Gauge.jpg}
 	\caption{Water Cooled Schmidt-Boelter Heat Flux Gauge}
 	\label{fig:HeatFluxGauge}
 \end{figure}
@@ -508,28 +509,28 @@ Temperatures were recorded using a bare-bead, Chromel-Alumel (Type K) thermocoup
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width = 4in]{../0_Images/Instrumentation/Thermocouple.jpg}
+	\includegraphics[width = 4in]{0_Images/Instrumentation/Thermocouple.jpg}
 	\caption{Chromel-Alumel (Type K) Thermocouple}
 	\label{fig:Thermocouple}
 \end{figure}
 
-To determine the gas velocity, an array of bi-directional probes was utilized in conjunction with differential pressure transducers and inconel thermocouples. The bi-directional probe was constructed of stainless steel and features a `high' side and a `low' side which travel back to a pressure transducer that evaulates the differential pressure from ambient pressure. The iconel thermocouples were placed in-line wtih the bi-directional probes to ensure that the measurements were recorded at the same location. The iconel thermocouple was a 0.063~in. diameter type KSL iconel 600 sheathed grounded junction with a type K, 24~gauge glass/glass insulation lead. The differential pressure transducer was a Setra Model 264 with a range of ±1.0~in. WC (±248.8~Pa). The uncertainty given by the manufacturer is 1\% or 1.2~Pa. The configuration had a velocity range of ±24.2~m/s (±54~mph). The pressure transducers were configured in groups of 6, contained in a single plastic box with connections for pressure, temperature and power (Figure \ref{fig:Gas_Velocity_Measurements}a). Five probes were installed in openings where velocity measurements were taken, centered horizontally in the opening (Figure \ref{fig:Gas_Velocity_Measurements}b). Velocity measurement with this configuration was determined to have an uncertainty of ±5\% \cite{BDPInPoolFires}.
+To determine the gas velocity, an array of bi-directional probes was utilized in conjunction with differential pressure transducers and inconel thermocouples. The bi-directional probe was constructed of stainless steel and features a `high' side and a `low' side which travel back to a pressure transducer that evaulates the differential pressure from ambient pressure. The iconel thermocouples were placed in-line wtih the bi-directional probes to ensure that the measurements were recorded at the same location. The iconel thermocouple was a 0.063~in. diameter type KSL iconel 600 sheathed grounded junction with a type K, 24~gauge glass/glass insulation lead. The differential pressure transducer was a Setra Model 264 with a range of ±1.0~in. WC (±248.8~Pa). The uncertainty given by the manufacturer is 1\% or 1.2~Pa. The configuration had a velocity range of ±24.2~m/s (±54~mph). The pressure transducers were configured in groups of 6, contained in a single plastic box with connections for pressure, temperature and power (Figure~\ref{fig:Gas_Velocity_Measurements}a). Five probes were installed in openings where velocity measurements were taken, centered horizontally in the opening (Figure~\ref{fig:Gas_Velocity_Measurements}b). Velocity measurement with this configuration was determined to have an uncertainty of ±5\% \cite{BDPInPoolFires}.
 
 \begin{figure} [H]
 	\centering
 	\begin{tabular}{c c}
-		\subfloat[Pressure Transducer Box]{\includegraphics[height = 2.5in]{../0_Images/Instrumentation/PressureBox.jpg}} &
-		\subfloat[Bi-Directional Probe Array]{\includegraphics[height = 2.5in]{../0_Images/Instrumentation/BDPArray.jpg}} \\
+		\subfloat[Pressure Transducer Box]{\includegraphics[height = 2.5in]{0_Images/Instrumentation/PressureBox.jpg}} &
+		\subfloat[Bi-Directional Probe Array]{\includegraphics[height = 2.5in]{0_Images/Instrumentation/BDPArray.jpg}} \\
 	\end{tabular}
 	\caption{Bi-Directional Probe}
 	\label{fig:BDP}
 \end{figure}
 
-Standard video was obtained through the use of BoschVTC-206F03-4 video cameras Figure (\ref{fig:BullettCam}). Thermal imaging of the front and rear of the structure was taken using ISG Infrasys Elite XR (Figure \ref{fig:IRCam}). The thermal imaging camera has a fixed emissivity value of 0.9 and was utilized for visual representation of relative conditions, no temperature measurements or analysis were derived using the camera. All cameras were recorded Samsung Model SRD-1680 DN digital video recorder set to 24 frames per second with a quality of ``high''.}
+Standard video was obtained through the use of BoschVTC-206F03-4 video cameras (Figure~\ref{fig:BullettCam}). Thermal imaging of the front and rear of the structure was taken using ISG Infrasys Elite XR (Figure~\ref{fig:IRCam}). The thermal imaging camera has a fixed emissivity value of 0.9 and was utilized for visual representation of relative conditions, no temperature measurements or analysis were derived using the camera. All cameras were recorded Samsung Model SRD-1680 DN digital video recorder set to 24 frames per second with a quality of ``high''.
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width = 3in]{../0_Images/Instrumentation/BullettCam.jpg}
+	\includegraphics[width = 3in]{0_Images/Instrumentation/BullettCam.jpg}
 
 	\caption{BoschVTC-206F03-4 video camera}
 	\label{fig:BullettCam}
@@ -537,7 +538,7 @@ Standard video was obtained through the use of BoschVTC-206F03-4 video cameras F
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width = 3in]{../0_Images/Instrumentation/DVR.jpg}
+	\includegraphics[width = 3in]{0_Images/Instrumentation/DVR.jpg}
 
 	\caption{Samsung Model SRD-1680 DN Digital Video Recorder with Monitor}
 	\label{fig:DVR}
@@ -545,8 +546,8 @@ Standard video was obtained through the use of BoschVTC-206F03-4 video cameras F
 
 \begin{figure} [H]
 	\centering
-	\includegraphics[width = 2.5in]{../0_Images/Instrumentation/ISG_IR.jpg}
-	\includegraphics[width = 2.5in]{../0_Images/Instrumentation/ISG_IR2.jpg}
+	\includegraphics[width = 2.5in]{0_Images/Instrumentation/ISG_IR.jpg}
+	\includegraphics[width = 2.5in]{0_Images/Instrumentation/ISG_IR2.jpg}
 	\caption{ISG Elite XR Fire Service Thermal Imaging Camera}
 	\label{fig:IRCam}
 \end{figure}
@@ -556,14 +557,14 @@ Gas samples were analyzed through the use of OxyMat6 and UltraMat23 Siemens gas 
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{*3c}
-		\subfloat[Sample Line]{\includegraphics[width = 2in]{../0_Images/Instrumentation/Gas_Analyzer/SamplePoint.jpg}} &
-		\subfloat[Vaccum Pump - Cole Palmber L-79200-30]{\includegraphics[width = 2in]{../0_Images/Instrumentation/Gas_Analyzer/VaccumPump.jpg}} &
-		\subfloat[Course Filter - Solberg 842]{\includegraphics[width = 2in]{../0_Images/Instrumentation/Gas_Analyzer/CourseFilter.jpg}} \\
-		\subfloat[Condensing Tube]{\includegraphics[height = 2in]{../0_Images/Instrumentation/Gas_Analyzer/CoilCondenser.png}} &
-		\subfloat[Dririte Tube]{\includegraphics[height = 2in]{../0_Images/Instrumentation/Gas_Analyzer/DriRightTube.jpg}} &
-		\subfloat[Fine Filter - Perma Pure FF-250-SG-2.5G]{\includegraphics[height = 2in]{../0_Images/Instrumentation/Gas_Analyzer/FineFilter.jpg}} \\
+		\subfloat[Sample Line]{\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/SamplePoint.jpg}} &
+		\subfloat[Vaccum Pump - Cole Palmber L-79200-30]{\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/VaccumPump.jpg}} &
+		\subfloat[Course Filter - Solberg 842]{\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/CourseFilter.jpg}} \\
+		\subfloat[Condensing Tube]{\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/CoilCondenser.png}} &
+		\subfloat[Dririte Tube]{\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/DriRightTube.jpg}} &
+		\subfloat[Fine Filter - Perma Pure FF-250-SG-2.5G]{\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/FineFilter.jpg}} \\
 	\end{tabular}
-	\subfloat[Gas Analyzers]{\includegraphics[width = 2in]{../0_Images/Instrumentation/Gas_Analyzer/GasAnalyzers.jpg}}
+	\subfloat[Gas Analyzers]{\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/GasAnalyzers.jpg}}
 	\caption{Gas Analyzer Configuration}
 	\label{fig:GasAnalyzers}
 \end{figure}
@@ -572,7 +573,7 @@ All data was logged through the use of a national instruments data acquisition s
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width = 4in]{../0_Images/Instrumentation/DataSystem.jpg}
+	\includegraphics[width = 4in]{0_Images/Instrumentation/DataSystem.jpg}
 	\caption{Data Acquisition System}
 	\label{fig:DataSystem}
 \end{figure}
@@ -594,13 +595,6 @@ The ranch fire experiments were conducted in two identical structures that were 
 
 
 Since the ranch fire experiments were intended to examine room and contents fires, and not structure fires, the walls of the fire room (Bedroom 1) and hallway were lined with two layers of gypsum board: a surface layer of 1/2'' board and a base layer of 5/8'' board. The remaining interior surfaces in the structure consisted of 1/2'' drywall. The exterior walls were covered with cement board to limit exterior fire spread. In Experiments 1 and 2, the floor close to the fire room and in the kitchen area was composed of cement board. The rest of the house was carpeted. For Experiment 3, the kitchen floor was composed of cement board, while the rest of the house was carpeted. The layout for Experiments 1 and 2 can be seen in Figure \ref{figure:ranchexp2_floorplan}, and the layout for Experiment 3 can be seen in Figure \ref{figure:ranchexp3_floorplan}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.75\textwidth]{0_Images/Ranch_Pictures/Report_ISO_Pallets.jpg}
-\caption{Training Fuel Experiment Layout}
-\label{figure:ranchexp2_floorplan}
-\end{figure}
 
 \begin{figure}[H]
 \centering
@@ -699,36 +693,6 @@ Master Stream & Smooth Bore & 1 1/2 & 80 & 600 \\
 
 \section{Full-Scale Residential Fire Experiments}
 
-The experiments to determine the amount of air entrained by nozzles and hose streams consisted of several test series to gain a wholelistic view of how varying different components, either with the structure or equipment utilized, affected the end result.
-
-% \hl{A discription of the experiments.} Table \ref{table:Air_Entrainment_Experiments} shows the experiments conducted. 
-
-\subsection{Manufacturer Comparison}
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=4in]{Figures/Air_Entrainment/Measurement_Locations_Firstfloor.png}
-	\caption{Nozzle Position, First Floor, Manufacturer Comparison}
-	\label{fig:Nozzle_Position_First_Floor_Manufacturer_Comparison}
-\end{figure}
-
-\subsection{Room Configuration}
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=4in]{Figures/Air_Entrainment/West_Test_Structure_1st_Floor.pdf}
-	\caption{Room Configuration, First Floor}
-	\label{fig:Room Configuration, First Floor}
-\end{figure}
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=4in]{Figures/Air_Entrainment/Measurement_Location_Room_Configuration.jpg}
-	\caption{Nozzle Position, First Floor, Room Configuration}
-	\label{fig:Nozzle_Position_First_Floor_Room_Configuration}
-\end{figure}
-
-
 \clearpage
 
 \section{Experiment Analysis}
@@ -740,7 +704,6 @@ The experiments to determine the amount of air entrained by nozzles and hose str
 
 \section{Future Research Needs}
 
-Part I of the Fire Attack Study was intended to provide preliminary results and insight into the amount of air entrained by hose streams using differing nozzles and configurations in addition to determining where water is distributed within compartments. These tests have built upon the work conducted by Knapp et. all of the Rockland County, NY Fire Training Academy who conducted early experiments to attempt to quantify the amount of air entrained by suppression operations. Because the testing scope was limied to certain geometries for both air entrainment and water distribution, a future study analyzing different sized structures (including a varying ceiling height and design) in addition to differing compartmentation versus open concepts would be beneficial to further the understanding.
 
 % ****** REMOVE COMMRENTS IN THIS BLOCK TO ADD GLOSSARY SEE IN HEADER FOR OTHER BLOCK TO REMOVE ***********
 % \clearpage
