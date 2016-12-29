@@ -1263,7 +1263,7 @@ To measure the water distribution throughout the compartment, a fire sprinkler s
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=\columnwidth]{Figures/Water_Distribution/Measurement_Locations_BinNumbers}
+	\includegraphics[width=\columnwidth]{Figures/Water_Distribution/Bin_Numbers_NoDimensions}
 	\caption{Bin Numbers and Locations}
 	\label{fig:Bin Numbers and Locations}
 \end{figure}
@@ -1466,7 +1466,7 @@ The intent of the water flow testing was to determine the location of the water 
 
 Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_Testing} look similar to one another. However, to better compare the tests, a statistical approach known as an analysis of variance (ANOVA), was performed. Specifically, the Kruskal-Willis one-way ANOVA test was applied. The goal of this analysis was to quantify whether samples (in this case the flow rate of water in each bin) originate from the same distribution (are the tests similar or different). The Kruskal-Willis analysis was selected because there is no prior assumption that the data is normally distributed. While this statistical analysis can compare $n$ number of data sets and identify if the data sets are statistically different, a limitation in all ANOVAs is the inability to identify which data sets are statistically different. The result of the ANOVA is a p-value. If the p-value is less than 0.05, the experiments being compared are statistically different. If the p-value is large, the experiments being compared are not statistically different.
 
-For the straight stream experiments shown in Figure~\ref{fig:Repeatability_Testing}, two Kruskal-Willis ANOVA tests were applied; one was based on average flow rate of water into each collection bin and the other was based on total volume of water recorded in each bin. The resulting p-values were 0.822 and 0.627 for average flow rate and total volume respectively. The high p-values mean that the 4 straight stream flow patterns cannot be distinguished from one another. In other words, these experiments were repeatable.
+For the straight stream experiments shown in Figure~\ref{fig:Repeatability_Testing}, two Kruskal-Willis ANOVA tests were applied; one was based on average flow rate of water into each collection bin and the other was based on total volume of water recorded in each bin. The resulting p-values were 0.822 and 0.627 for average flow rate and total volume respectively. The high p-values mean that the 4 straight stream flow patterns cannot be distinguished from one another. In other words, these experiments can be considered as repeatable.
 
 Confirmation of repeatability, allowed for the exploration of additional comparisons within the data. The three main comparisons were varying the hose stream type, varying the nozzle position, and varying the flow pressure. The hose stream comparisons were designed to quantify the impact on water distribution from using a straight stream, smooth bore, or a narrow fog pattern. For the hose stream type comparisons, 6 configurations were analyzed. Within each configuration set, the nozzle direction, nozzle movement, and nozzle pressure/flow rate were fixed. Table~\ref{tab:add_hosestream} shows the results from the ANOVA test based on flow rate and total volume for each of the configurations tested.
 
@@ -1513,7 +1513,9 @@ The results of the statistical analysis identified that 4 of the 6 hose stream c
 \label{fig:Interior_Varying_Nozzle_Types_O_Pattern}
 \end{figure}
 
+\clearpage
 
+The statistical tests for the exterior, fixed pattern experiments at the max angle indicated that the first floor tests had a different flow rate distribution and the second floor tests had different total volume distribution. In both the fixed pattern first and second floor tests, the straight stream and smooth bore nozzles showed similar total volume distributions (Figures~\ref{fig:Exterior_FirstFloor_Fixed_Varying_Nozzle} and \ref{fig:Exterior_SecondFloor_Fixed_Varying_Nozzle}). Similar to the interior tests, the fog nozzle shows a different pattern, most noticeably in Figure~\ref{fig:Exterior_SecondFloor_Fixed_Varying_Nozzle}. 
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1537,6 +1539,9 @@ The results of the statistical analysis identified that 4 of the 6 hose stream c
 \label{fig:Exterior_SecondFloor_Fixed_Varying_Nozzle}
 \end{figure}
 
+\clearpage
+
+Note that for the exterior water flow experiments with a sweep pattern, only a straight stream and smooth bore hose stream are compared. The stream from a fog pattern would typically encompass the ventilation opening, depending on the size of the opening and the distance from the opening. In these experiments, the fog stream enclosed the window, therefore only a fixed pattern was studied. The results from the statistical tests in Table~\ref{tab:add_hosestream}, indicate that the straight stream and smooth bore are likely similar in both rate and volume. Figures~\ref{fig:Exterior_FirstFloor_O_Varying_Nozzle} and \ref{fig:Exterior_SecondFloor_O_Varying_Nozzle} confirm the similarity in the total water distribution.
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1561,7 +1566,7 @@ The results of the statistical analysis identified that 4 of the 6 hose stream c
 \clearpage
 
 
-The second comparison was to quantify the impact of nozzle direction on water distribution within the compartment. Referring back to Figures~\ref{fig:Nozzle_Direction_Interior_Attack}, \ref{fig:Nozzle_Direction_Exterior_1st_Floor_Attack}, and \ref{fig:Nozzle_Direction_Exterior_2nd_Floor_Attack} there are 3, 5, and 5 nozzle directions for the interior experiments, the exterior first floor experiments, and the exterior second floor experiments, respectively. Table~\ref{tab:add_nozzleposition} shows the p-test values average flow rate per collection bin and total volume per collection bin for the nozzle direction comparison experiments. 
+The second comparison was to quantify the impact of nozzle direction on water distribution within the compartment. Referring back to Figures~\ref{fig:Nozzle_Direction_Interior_Attack}, \ref{fig:Nozzle_Direction_Exterior_1st_Floor_Attack}, and \ref{fig:Nozzle_Direction_Exterior_2nd_Floor_Attack} there are 3, 5, and 5 nozzle directions for the interior experiments, the exterior first floor experiments, and the exterior second floor experiments, respectively. Table~\ref{tab:add_nozzleposition} shows the p-test values average flow rate per collection bin and total volume per collection bin for the nozzle direction comparison experiments. In all comparisons, there was enough variation in the flow rate and volume data for the results to be statistically different.
 
 \begin{table}[!ht]
 \centering
@@ -1573,16 +1578,18 @@ The second comparison was to quantify the impact of nozzle direction on water di
 Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Different \\ 
 \midrule
  Interior, Smooth Bore, Fixed Pattern     & 3          & 3.2E-04 & \checkmark & 2.2E-04 & \checkmark   \\
- Interior, Smooth Bore, `O' Pattern       & 3          & 2.0E-04 & \checkmark & 7.8E-05 & \checkmark   \\
  Interior, Straight Stream, Fixed Pattern & 3          & 3.0E-09 & \checkmark & 2.0E-08 & \checkmark   \\
+ Interior, Smooth Bore, `O' Pattern       & 3          & 2.0E-04 & \checkmark & 7.8E-05 & \checkmark   \\
  Interior, Straight Stream, `O' Pattern   & 3          & 3.6E-04 & \checkmark & 6.0E-04 & \checkmark   \\
  First Floor Exterior, Straight Stream    & 5          & 2.8E-08 & \checkmark & 5.6E-08 & \checkmark   \\
- Second Floor Exterior, Straight Stream   & 5          & 2.3E-09 & \checkmark & 2.7E-09 & \checkmark   \\
  First Floor Exterior, Smooth Bore        & 5          & 1.0E-06 & \checkmark & 3.8E-06 & \checkmark   \\
+ Second Floor Exterior, Straight Stream   & 5          & 2.3E-09 & \checkmark & 2.7E-09 & \checkmark   \\
  Second Floor Exterior, Smooth Bore       & 4          & 3.1E-06 & \checkmark & 6.9E-07 & \checkmark   \\
 \bottomrule[1.25pt]
 \end{tabular}
 \end{table}
+
+For the interior tests, there were three nozzle directions examined: at wall, mid ceiling, and max angle (Figure~\ref{fig:Nozzle_Direction_Interior_Attack}). The fixed pattern smooth bore and straight stream tests (Figures~\ref{fig:Interior_Varying_Nozzle_Direction_SB_Fixed_Pattern} and \ref{fig:Interior_Varying_Nozzle_Pressure_SS_Fixed_Pattern}) both show variation in the data (Table~\ref{tab:add_nozzleposition}) that is visualized in the total volume bar charts. Specifically, the max angle position for both hose stream types resulted in spread along the perimeter of the compartment compared to localized water along the wall opposite the doorway. The `o' pattern smooth bore and straight stream tests show are similar to the fixed pattern. The mid ceiling and wall position show water concentrated along the wall opposite the doorway while the max angle shows water distributed around the perimeter. The ANOVA tests also show that there is statistical difference between the position for the moving hose stream at the three positions.
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1591,19 +1598,8 @@ Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Differ
 \end{tabular*}
 \centering
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_145932_Datafile_15_16in_Smooth_Bore_Interior}
-\caption{Figures showing distribution differences in varying nozzle directions during smooth bore attack with a fixed pattern.}
+\caption{Water volume in each collection bin for an interior smooth bore stream with a fixed pattern at three nozzle positions: at wall (top left), mid ceiling (top right) and max angle (bottom)}
 \label{fig:Interior_Varying_Nozzle_Direction_SB_Fixed_Pattern}
-\end{figure}
-
-\begin{figure}[ht]
-\begin{tabular*}{\textwidth}{lr}
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_144524_Datafile_15_16in_Smooth_Bore_Interior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_145534_Datafile_15_16in_Smooth_Bore_Interior} \\
-\end{tabular*}
-\centering
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_150300_Datafile_15_16in_Smooth_Bore_Interior}
-\caption{Figures showing distribution differences in varying nozzle directions during smooth bore attack with an `O' pattern.}
-\label{fig:Interior_Varying_Nozzle_Direction_SB_O_Pattern}
 \end{figure}
 
 \begin{figure}[ht]
@@ -1613,8 +1609,19 @@ Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Differ
 \end{tabular*}
 \centering
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_152435_Datafile_Straight_Stream_Interior}
-\caption{Figures showing distribution differences in varying nozzle directions during a straight stream attack with a fixed pattern.}
+\caption{Water volume in each collection bin for an interior straight stream with a fixed pattern at three nozzle positions: at wall (top left), mid ceiling (top right) and max angle (bottom)}
 \label{fig:Interior_Varying_Nozzle_Direction_SS_Fixed_Pattern}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_144524_Datafile_15_16in_Smooth_Bore_Interior} &
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_145534_Datafile_15_16in_Smooth_Bore_Interior} \\
+\end{tabular*}
+\centering
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_150300_Datafile_15_16in_Smooth_Bore_Interior}
+\caption{FWater volume in each collection bin for an interior smooth bore stream with an `o' pattern at three nozzle positions: at wall (top left), mid ceiling (top right) and max angle (bottom)}
+\label{fig:Interior_Varying_Nozzle_Direction_SB_O_Pattern}
 \end{figure}
 
 \begin{figure}[ht]
@@ -1624,8 +1631,27 @@ Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Differ
 \end{tabular*}
 \centering
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_153038_Datafile_Straight_Stream_Interior}
-\caption{Figures showing distribution differences in varying nozzle directions during a straight stream attack with an `O' pattern.}
+\caption{Water volume in each collection bin for an interior straight stream with an 'o' pattern at three nozzle positions: at wall (top left), mid ceiling (top right) and max angle (bottom)}
 \label{fig:Interior_Varying_Nozzle_Direction_SS_O_Pattern}
+\end{figure}
+
+\clearpage
+
+The first floor exterior experiments used 5 different nozzle directions: max angle, mid ceiling, min angle ceiling, min angle wall, and at wall. The statistical analysis indicated that the 5 nozzle direction results are not the same in terms of flow rate and volume for both the smooth bore and straight stream experiments. Figure~\ref{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern} shows the water volume distribution for the 5 positions for the smooth bore stream while Figure~\ref{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SS_Fixed_Pattern} shows the water volume distributions for the straight stream. For both streams, the mid ceiling and min angle ceiling positions indicate that the majority of the water accumulated in the bins along the wall opposite the window. The two wall positions and the max angle position show a broader distribution of water within in the compartment with the max angle having the most disperse distribution.
+
+The smooth bore and straight stream second floor exterior experiments were similar to the first floor exterior experiments in that changing nozzle position produced flow rate and volume data was different as a function of position. Figures~\ref{fig:Exterior_Second_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern} and \ref{fig:Exterior_Second_Floor_Varying_Nozzle_Directions_SS_Fixed_Pattern} show the results of the water volume distribution for 4 smooth bore positions and 5 straight stream positions. Like all of the prior position data presented, the max angle shows that the most prominent water distribution with water filling the compartment perimeter buckets, noticeably different than the wall or ceiling positions. The one exception here is the straight stream sill experiment shows a flatter overall distribution. 
+
+\begin{figure}[ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101028_Datafile_15_16in_Smooth_Bore_Exterior} &
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_102802_Datafile_15_16in_Smooth_Bore_Exterior} \\
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_103414_Datafile_15_16in_Smooth_Bore_Exterior} &
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_104150_Datafile_15_16in_Smooth_Bore_Exterior} \\
+\end{tabular*}
+\centering
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_104620_Datafile_15_16in_Smooth_Bore_Exterior} \\
+\caption{Water volume in each collection bin for a first floor exterior smooth bore stream with a fixed pattern at five nozzle positions: max angle (top left), mid ceiling (top right), min angle ceiling (middle left), min angle at wall (middle right), and at wall (bottom)}
+\label{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern}
 \end{figure}
 
 \begin{figure}[ht]
@@ -1637,8 +1663,19 @@ Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Differ
 \end{tabular*}
 \centering
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_121425_Datafile_Straight_Stream_Exterior} \\
-\caption{Figures showing distribution differences in varying nozzle directions during an exterior first floor attack with a SS fixed pattern.}
+\caption{Water volume in each collection bin for a first floor exterior straight stream with a fixed pattern at five nozzle positions: max angle (top left), mid ceiling (top right), min angle ceiling (middle left), min angle at wall (middle right), and at wall (bottom)}
 \label{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SS_Fixed_Pattern}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_111118_Datafile_15_16in_Smooth_Bore_Exterior} &
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_122135_Datafile_15_16in_Smooth_Bore_Exterior} \\
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_140034_Datafile_15_16in_Smooth_Bore_Exterior} &
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_141333_Datafile_15_16in_Smooth_Bore_Exterior} \\
+\end{tabular*}
+\caption{Water volume in each collection bin for a second floor exterior smooth bore stream with a fixed pattern at four nozzle positions: max angle (top left), mid ceiling (top right), min angle ceiling (bottom left), and min angle wall (bottom left)}
+\label{fig:Exterior_Second_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern}
 \end{figure}
 
 \begin{figure}[ht]
@@ -1650,34 +1687,8 @@ Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Differ
 \end{tabular*}
 \centering
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_155226_Datafile_Straight_Stream_Exterior} \\
-\caption{Figures showing distribution differences in varying nozzle directions during an exterior second floor attack with a SS fixed pattern.}
+\caption{Water volume in each collection bin for a second floor exterior straight stream with a fixed pattern at five nozzle positions: max angle (top left), max angle still (top right), mid ceiling (middle left), min angle ceiling (middle right), and min angle wall (bottom)}
 \label{fig:Exterior_Second_Floor_Varying_Nozzle_Directions_SS_Fixed_Pattern}
-\end{figure}
-
-
-\begin{figure}[ht]
-\begin{tabular*}{\textwidth}{lr}
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101028_Datafile_15_16in_Smooth_Bore_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_102802_Datafile_15_16in_Smooth_Bore_Exterior} \\
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_103414_Datafile_15_16in_Smooth_Bore_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_104150_Datafile_15_16in_Smooth_Bore_Exterior} \\
-\end{tabular*}
-\centering
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_104620_Datafile_15_16in_Smooth_Bore_Exterior} \\
-\caption{Figures showing distribution differences in varying nozzle directions during an exterior first floor attack with a SB fixed pattern.}
-\label{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern}
-\end{figure}
-
-
-\begin{figure}[ht]
-\begin{tabular*}{\textwidth}{lr}
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_111118_Datafile_15_16in_Smooth_Bore_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_122135_Datafile_15_16in_Smooth_Bore_Exterior} \\
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_140034_Datafile_15_16in_Smooth_Bore_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_141333_Datafile_15_16in_Smooth_Bore_Exterior} \\
-\end{tabular*}
-\caption{Figures showing distribution differences in varying nozzle directions during an exterior second floor attack with a SB fixed pattern.}
-\label{fig:Exterior_Second_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern}
 \end{figure}
 
 
