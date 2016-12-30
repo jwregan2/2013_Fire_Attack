@@ -20,7 +20,7 @@
 \usepackage{color,soul}
 \usepackage{placeins}
 \usepackage{microtype}
-\usepackage[backend=biber]{biblatex}
+% \usepackage[backend=biber]{biblatex}
 \usepackage[hidelinks]{hyperref}
 \usepackage[toc,page]{appendix}
 %\usepackage[toc]{glossaries}
@@ -28,6 +28,7 @@
 \usepackage{rotating}
 \usepackage[printwatermark]{xwatermark}
 \usepackage{amssymb}
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography and index in the ToC
 % \usepackage[table,xcdraw]{xcolor}
 \hypersetup{
 	colorlinks,
@@ -70,6 +71,7 @@
 % ]{\usebox\mybox}
 
 \begin{document}
+\bibliographystyle{unsrt}
 	
 	\begin{titlepage}
 		
@@ -136,7 +138,7 @@ This work was funded through a grant from the Department of Homeland Security's 
 
 \clearpage
 
-In order to better design and implement the experiments for the Fire Attack study, UL - FSRI has gathered a group of fire service experts from across the world with knowledge in fire suppression and the impact of interior and exterior fire streams. The individuals below provided direction for the project, assisting in planing the experiments, witnessing the testing, and developing concrete conclusions. Their tireless support and effort make this project relevant to the fire service across the world. 
+To assist the design and implementation of the experiments for the Fire Attack study, UL - FSRI has gathered fire service experts from across the world with knowledge in fire suppression and the impact of interior and exterior fire streams. The individuals below provided direction for the project, assisting in planing the experiments, witnessing the testing, and developing concrete conclusions. Their tireless support and effort make this project relevant to the fire service across the world. 
 
 \vspace*{\baselineskip}
 
@@ -243,7 +245,7 @@ Fire suppression effectiveness and firefighter safety are not achieved by water 
 
 \clearpage
 
-\section{Objectives and Technical Plan}
+\section{Objectives}
 
 \subsection {Objectives}
 
@@ -256,72 +258,6 @@ The purpose of this part to the overall study was to provide the fire service wi
 	\item Gain understanding of the impact of water streams depending on the volume of the fire compartment/structure.
 	\item Bring the `Science to the Streets' by transferring science based conclusions founded on experimental results that can be incorporated into firefighting standard operating procedures.
 	\end{itemize}
-
-% All five of the Technology \& Fire Service Science issues facing the fire service determined during the 2nd National Fire Service Research Symposium \cite{NFFF} were incorporated into this study.
-
-\clearpage
-
-\subsection{Technical Plan}
-
-Part I to the study consisted of the following tasks. 
-
-\begin{itemize}
-
-\item \bf{Task 1 - Design of Experiments}
-\normalfont
-\vspace*{\baselineskip}
-
-Task 1 is the design of the experiments. In this task, UL - FSRI's project engineers will work closely with the technical panel to ensure fire service concerns are addressed and that the results will be of great benefit to the end users. All experimental variables, equipment, personnel, infrastructure, and other resources will be evaluated to determine the best set of experiments to get the most for the investment and provide the largest return to the fire service community. Variables such as types of nozzles, flow rates, nozzle pressures, hose stream types, stream elevation angles, ventilation parameters, and timing of tactics will be discussed and selected.  
-\vspace*{\baselineskip}
-
-\item \bf{Task 2 - Test Fixture Design}
-\normalfont
-\vspace*{\baselineskip}
-
-Task 2 is the design of the test fixtures to be used in the experiments. There will be a separate main test fixture for each test series. The air entrainment experiments will be utilizing an exisiting structure at the Delaware County Emergency Services Training Facility repurposed for this study and the water distribution structure will be constructed within a lab space inside UL`s Large Fire Facility. The structures and compartments incorporated into this study are representative in both size and construction type of the structures utilized in the full-scale fire experiments for Parts II and III of the study. These fixtures are similar in construction type and size to the structures built for the three previous ventilation research grants and will therefore allow continuity of previous results to expand our knowledge. Additional test fixture details are provided in the detailed report below.
-\vspace*{\baselineskip}
-
-\item \bf{Task 3 - Conduct Experiments}
-\normalfont
-\vspace*{\baselineskip}
-
-\subitem \bf{Task 3A:  Water Flow Mapping (Interior and Exterior Applications)}
-\normalfont
-\vspace*{\baselineskip} 
-
-Methodology: Conduct a series of experiments in a compartment constructed to determine where water goes once discharged from fire department nozzles during a simulated interior fire attack and exterior fire attack. The ability to suppress a fire safely and efficiently is dependent on how much water absorbs energy from the fire and what surfaces are cooled. A combination of water mapping techniques that are commonly used for characterizing sprinkler sprays will be utilized to determine flow distribution. The compartment will be of similar size to the fire rooms in the full-scale fire experiments so that the results can be linked.
-
-Water will be flowed utilizing common fire department nozzles with 3 hose stream types (combination nozzle in straight stream, combination nozzle in narrow fog, and a smooth bore nozzle). Different nozzle techniques that are commonly taught to firefighters and utilized in practice will be evaluated such as circular motions, various patterns, flowing off the ceiling, and flowing ahead. Common flow rates for each nozzle will be used during the experiments. We will also construct a prop to aid in water delivery to distribute the water in a repeatable manner that would be done by firefighters in the field. Several experiments will be done to also examine repeatability.  
-
-Measurements: The actual delivered density apparatus (described later) will be used to determine water distribution. 
-\vspace*{\baselineskip}
-
-\clearpage
-
-\subitem \bf{Task 3B:  Air Flow and Pressure Experiments}
-\normalfont
-\vspace*{\baselineskip}
-
-Methodology: Conduct air flow and pressure experiments in specific test fixtures prior to the introduction of any fire. Different hose streams and nozzle movement techniques entrain different amounts of air which can greatly impact fire dynamics, firefighter safety, and victim survivability. The same nozzles, hose stream types, and nozzle movement techniques from the water distribution experiments will be used and the amount of air flow generated in the structure will be measured. Different flow paths will also be established to see their impact such as having a ventilation point ahead of the hoseline when compared to having no ventilation opening ahead. We will also examine air movement generated by both 1 3/4~in. and 2 1/2~in. hoselines in addition to flows from portable and master-stream devices.
-
-Measurements: During each of these experiments, velocities will be measured with bidirectional probes attached to differential pressure transducers. 
-\vspace*{\baselineskip}
-
-\item \bf{Task 4 - Data Compilation and Analysis}
-\normalfont
-\vspace*{\baselineskip}
-
-Task 4 is the compilation and analysis that will be conducted by UL - FSRI engineers to make the data usable by the fire service community. The data will be organized in graphs that will be reviewed by the technical panel in preparation for the final report. The focus of the analysis will be to quantify air entrainment in hose streams and the location of where water is distributed during suppression. In addition, conclusions will be developed in conjunction with the fire service technical panel supported by data and subsequent analysis.
-\vspace*{\baselineskip}
-
-\item \bf{Task 5 - Develop Final Project Report}
-\normalfont
-\vspace*{\baselineskip}
-
-Task 5 is the development of the final report that details all of the experiments and results. The report will be provided to DHS and made publicly available via UL - FSRI's website for the fire service, www.ULfirefightersafety.com to serve as a reference for future research. The conclusions developed with the technical advisory panel will be a focus within the report. A fire service summary report at the conclusion of the remainder of the study will also be written and disseminated to include critical information for firefighter safety.
-\vspace*{\baselineskip}
-
-\end{itemize}
 
 \clearpage
 
@@ -415,116 +351,71 @@ The Firefighting Technology Group at NIST has a current project that is examinin
 
 \subsubsection{Structures}
 
-The air entrainment testing was conducted at the Delaware County Emergency Services Training Center in Sharon Hill, PA. A two-story purpose built strucutre was constructed several years ago for the use during previous research work conducted by both NIST and UL.
+The air entrainment testing was conducted at the Delaware County Emergency Services Training Center in Sharon Hill, PA. A two-story concrete structure was built on a concrete slab as shown in Fig.~\ref{fig:Delaware_County,_PA_Fire_Test_Structure}. It was designed to simulate a representative residential structure. 
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=6in]{Figures/Air_Entrainment/delcocorner.jpg}
+	\includegraphics[width=\columnwidth]{Figures/Air_Entrainment/delcocorner.jpg}
 	\caption{Delaware County, PA Fire Test Structure}
 	\label{fig:Delaware_County,_PA_Fire_Test_Structure}
 \end{figure}
 
-The two-story concrete structure was built on a concrete slab as shown in Fig.~\ref{fig:Delaware_County,_PA_Fire_Test_Structure}. It was designed to simulate a representative residential structure. The outer wall of the structure was composed of interlocking concrete blocks 2~ft. wide, 2~ft. high, and 4~ft. long. The interior dimensions of the structure was 20~ft. wide, 36~ft. long, and 8~ft. high. The joints and gaps between the blocks were filled with high temperature insulation.
+The outer walls of the first floor of the structure were composed of interlocking concrete blocks 2~ft. wide, 2~ft. high, and 4~ft. long. The interior dimensions of the structure were 20~ft. wide, 36~ft. long, and 8~ft. high. The joints and gaps between the blocks were filled with high temperature insulation. The interior walls of the first floor were framed with steel studs set to 16~in. centers and track and were lined with 0.5~in. thick cement board. The walls were composed of 0.6~in. Type X gypsum board. Additionally, the ceiling was composed of two layers of 0.5~in. thick cement board. The first floor ceiling support of the structure was composed of wood truss joist I-beams (TJIs) with a 11.75~in. depth. Each TJI was composed of laminated veneer lumber flanges with a cross section of 1.13~in. x 1.75~in. and an 0.43~in. thick oriented strand board web. Tongue and groove oriented strand board of 0.72~in. thickness was screwed to the top of the TJIs. 
 
-\clearpage
+A stairwell was built to connect the two floors of the structure. The stairs had a 7.25~in rise and 7.5~in run and started 5.25~ft off the south wall with a width of 14~ft off the east wall. The second story walls were wood framed with 2~in by 4~in studs. The studs were set to 16~in centers. The interior walls were protected by 0.63~in fire rated gypsum board, 0.63~in Durock board, and a second layer of 0.63~in fire rated gypsum board. The exterior walls were protected with 0.31~in oriented strand board and 0.31~in fiber cement lap siding. Dimensioned drawings of the first and second floor are shown in Figures~\ref{fig:Delaware_County,_PA_Fire_Test_Structure_First_Floor} and \ref{fig:Delaware_County,_PA_Fire_Test_Structure_Second_Floor} respectively.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=5in]{Figures/Air_Entrainment/West_Test_Structure_1st_Floor_original_nodim.pdf}
+	\includegraphics[width=\columnwidth]{Figures/Air_Entrainment/West_Test_Structure_1st_Floor_original_nodim.pdf}
 	\caption{Delaware County, PA Fire Test Structure First Floor}
 	\label{fig:Delaware_County,_PA_Fire_Test_Structure_First_Floor}
 \end{figure}
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=5in]{Figures/Air_Entrainment/West_Test_Structure_2nd_Floor_nodim.pdf}
+	\includegraphics[width=\columnwidth]{Figures/Air_Entrainment/West_Test_Structure_2nd_Floor_nodim.pdf}
 	\caption{Delaware County, PA Fire Test Structure Second Floor}
 	\label{fig:Delaware_County,_PA_Fire_Test_Structure_Second_Floor}
 \end{figure}
 
-\clearpage
-
-The interior walls of the first floor were framed with steel studs set to 16~in. centers and track and were lined with 0.5~in. thick cement board. The walls were composed of 0.6~in. Type X gypsum board. Additionally, the ceiling was composed of two layers of 0.5~in. thick cement board. The first floor ceiling support of the structure was composed of wood truss joist I-beams (TJIs) with a 11.75~in. depth. Each TJI was composed of laminated veneer lumber flanges with a cross section of 1.13~in. x 1.75~in. and an 0.43~in. thick oriented strand board web. Tongue and groove oriented strand board of 0.72~in. thickness was screwed to the top of the TJIs. The second floor of the two story structure was built on the wood ceiling support described above and was connected to the first floor by a stairwell. The walls of the second floor were wood frame with nominal 2~in. by 4~in. studs set to 16~in. centers. The interior walls were protected by 0.6~in. fire rated gypsum board, 0.6~in. durarock board, and a second layer of 0.6~in. fire rated gypsum board. The exterior walls were protected with 0.4~in. oriented strand board and 0.3~in. fiber cement lap siding.
-
-The interior layout of the structure can be seen in the dimensioned floor plans above. The interior dimensions of the first and second floors of the structure were 19~ft. by 35.1~ft. and 20~ft. by 35.8~ft., respectively. The stairs connecting the two floors of the structure started 5.3~ft. off the South wall with a width of 4~ft. off the East wall and contained a 7.25~in. rise and 7.5~in. run. The exterior doorways of each structure and the stairwell doorway on the second level of the structure all contained steel doors that were opened or closed at certain instances during tests to change the ventilation configuration within the structure. All other doorways in the structures did not contain a door. If it was determined that these doors needed closed during a test, a sheet of either gypsum board or oriented strand board was used to cover the opening and remained as such until the conclusion of the given test.
+The exterior doorways of each structure were steel doors that were opened or closed at certain instances during tests to change the ventilation configuration within the structure. All other doorways in the structures did not contain a door. If it was determined that these doors needed closed during a test, a sheet of either gypsum board or oriented strand board was used to cover the opening and remained as such until the conclusion of the given test.
 
 \subsubsection{Instrumentation}
+Gas velocity, a measure of air entrainment by hose streams, was obtained through the use of an array of bi-directional probes. Bi-directional probes were connected to a pressure transducers to evaluate the change in pressure associated with the gas flow. The differential pressure transducer was a Setra Model 264 with a range of +/- 0.5~in. WC (+/- 124.5~Pa.). The uncertainty given by the manufacturer is 1\% or 1.2~Pa. 
 
-% In order to obtain the results for Part I of this study, sensors were installed in the test fixtures to record measurements throughout the experiments. The instrumentation used varied between the air entrainment and the water distribution testing. The instrtuments, and associated uncertainty, used for each test series is outlined below.
-
-To determine the amount of air entrained in hose streams, gas velocity was obtained through the use of an array of bi-directional probes in conjunction with differential pressure transducers and inconel thermocouples. The bi-directional probe was constructed of stainless steel and features a `high' side and a `low' side in which gases travel, through tubing, back to a pressure transducer that evaulates the differential pressure from ambient pressure. The iconel thermocouples were placed in-line wtih the bi-directional probes to ensure that the measurements were recorded at the same location. The iconel thermocouple was a 0.063~in. diameter type KSL iconel 600 sheathed grounded junction with a type K, 24~gauge glass/glass insulation lead. The differential pressure transducer was a Setra Model 264 with a range of +/- 0.5~in. WC (+/- 124.5~Pa.). The uncertainty given by the manufacturer is 1\% or 1.2~Pa. \hl{The configuration had a velocity range of +/- 24.2~m/s (+/- 54~mph).} The pressure transducers were configured in groups of six, contained in a single plastic box with connections for pressure, temperature, and power (Figure \ref{fig:Gas_Velocity_Measurements}a). Five probes were installed in openings where velocity measurements were taken, centered horizontally in the opening (Figure \ref{fig:Gas_Velocity_Measurements}b). The opening in which the bi-directional probes were placed is 2~ft. 8~in. by 6~ft. 8~in. The probes were placed in the center of the doorway horizontally and spaced evenly vertically. Velocity measurement with this configuration was determined to have an uncertainty of +/- 5\% \cite{BDPInPoolFires}.
-
-\begin{figure} [H]
-	\centering
-	\begin{tabular}{c c}
-		\subfloat[Pressure Transducer Box]{\includegraphics[height = 2.5in]{Figures/Instrumentation/BDPbox.jpg}} &
-		\subfloat[Bi-Directional Probe Array]{\includegraphics[height = 2.5in]{Figures/Instrumentation/BDParraydelco.jpg}} \\
-	\end{tabular}
-	\caption{Gas Velocity Measurements}
-	\label{fig:Gas_Velocity_Measurements}
-\end{figure}
-
-% Standard video was obtained through the use of BoschVTC-206F03-4 video cameras (Figure \ref{fig:BullettCam}). All cameras were recorded via Samsung DVR.
-
-% \begin{figure} [H]
-% 	\centering
-% 	\includegraphics[width = 3in]{Figures/Instrumentation/BullettCam.jpg}
-% 	\caption{Bullet Camera}
-% 	\label{fig:BullettCam}
-% \end{figure}
-
-All data was logged through the use of a National Instruments data acquisition system incorporating a SCXI-1001 chassis with 8 SCXI-1102C 32-Channel modules (Figure \ref{fig:DataSystem}). The system is configured for a total of 256 channels capable of reading values between 0-10 volts DC. Values are recorded once a second and translated to quantities of interest through the use of LabVIEW software specifically programmed for use with the system.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width = 4in]{Figures/Instrumentation/DataSystem.jpg}
-	\caption{Data Acquisition System}
-	\label{fig:DataSystem}
-\end{figure}
-
-\clearpage
+A gas velocity measurement study examining the doorway flow of pre-flashover compartment fires yielded expanded uncertainty measurements ranging from $\pm$~0.14 to $\pm$~0.22 for bi-directional probes of similar design~\cite{Bryant:FSJ2009}. The total expanded uncertainty for gas velocity in these experiments is estimated to be $\pm$~18~\%.
 
 \subsubsection{Measurement Locations}
-
-When examining the amount of air entrainment caused by variations in hose stream types, several challenges arose in determining the location to measure the gas velocity in the structure. Because the experiments were conducted in an outdoor fixture, considering environmental factors such as wind was critical; especially when quantifying the amount of air moved by hose streams. Additionally, the instrumentation used in data collection requires a dry environment to maintain the smallest level of uncertainty and remain operational. In order to combat these challenges, it was determined that the best way to acquire flow data would be to utilize the structure in such a way that there would be an inlet for replacement air, a measurement location, and an exhaust for both the hose streams and air moved. 
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=3in]{Figures/Air_Entrainment/Airflow_flowpath}
-	\caption{Air Entrainment Flowpath}
-	\label{fig:Air_Entrainment_Flowpath}
-\end{figure}
-
-% \begin{figure}[!ht]
-% 	\centering
-% 	\includegraphics[width=5in]{Figures/Air_Entrainment/Airflow_Layout}
-% 	\caption{Air Entrainment Flowpath, Interior Experiments}
-% 	\label{fig:Air_Entrainment_Flowpath_Interior_Experiments}
-% \end{figure}
-
-% \begin{figure}[!ht]
-% 	\centering
-% 	\includegraphics[width=4.5in]{Figures/Air_Entrainment/Airflow_Layout_Ext}
-% 	\caption{Air Entrainment Flowpath, Exterior Experiments}
-% 	\label{fig:Air_Entrainment_Flowpath_Exterior_Experiments}
-% \end{figure}
-
-% \clearpage
-
-By placing the inlet and exhaust on the same side of the building, we can ensure that any presence of wind does not affect the pressure or air flow within the building. Therefore, the interior environment was consistent throughout the flow path as to not affect the measurements taken. The measurement location was placed in the inlet portion of the flow path in order to keep the instrumentation dry and out of the reach of a hose stream. With the exception of the predetermined inlet and outlet, the remainder of the ventilation openings in the structure remained closed throughout the duration of testing. This ensures that the air entrained by the nozzle is drawn from the inlet location and passes through the measurement location seen in Figure \ref{fig:Measurement_Location_Second_Floor}.
+There were several challenges associated with measuring air entrainment from hose streams. The first challenge existed because the experiments were conducted outside, therefore considering wind was critical. Additionally, the instrumentation used in data collection is best in a dry environment to maintain the smallest level of uncertainty and remain operational. To address these challenges, the measurement location was set at the doorway at the top of the stairwell. Figure~\ref{fig:Measurement_Location_Second_Floor} shows the position of the the bi-direction probe array on the second floor.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=3in]{Figures/Air_Entrainment/Measurement_Locations_Secondfloor}
+	\includegraphics[width=.6\columnwidth]{Figures/Air_Entrainment/Measurement_Locations_Secondfloor}
 	\caption{Measurement Location (Second Floor)}
 	\label{fig:Measurement_Location_Second_Floor}
 \end{figure}
 
-\clearpage
+Figures~\ref{fig:Air_Entrainment_Flowpath_Interior_Experiments} and \ref{fig:Air_Entrainment_Flowpath_Exterior_Experiments} show the experimental configuration for the interior flow tests and exterior flow tests, respectively. The arrows indicate the flow direction based on the hose stream being the source of the flow through air entrainment.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.7\columnwidth]{Figures/Air_Entrainment/Airflow_Layout}
+	\caption{Air Entrainment Flowpath, Interior Experiments}
+	\label{fig:Air_Entrainment_Flowpath_Interior_Experiments}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.7\columnwidth]{Figures/Air_Entrainment/Airflow_Layout_Ext}
+	\caption{Air Entrainment Flowpath, Exterior Experiments}
+	\label{fig:Air_Entrainment_Flowpath_Exterior_Experiments}
+\end{figure}
+
+The measurement location was placed at the top of the stairs, within the flow path of both test configurations. This location kept the instrumentation dry and out of the reach of a hose stream. While this location did guarantee isolation from wind effects due to open vents, this represented the best location to minimize those effects.
 
 \subsubsection{Equipment Used}
 
-In order to ensure the data collected and associated results were applicable to the majority of the fire servce, our technical panel was tasked with creating a list of represetative nozzles, specified flow rates/pressures, and nozzle movement techniques. All of these variables were tested during the air entrainment experiments; however, several other aspects were held constant such as the length of hose used. The nozzles utilized during these experiments can be seen in the Table~\ref{tab:Nozzle Selection}.
+In order to ensure the data collected and associated results were applicable to the majority of the fire service, our technical panel was tasked with creating a list of representative nozzles, specified flow rates/pressures, and nozzle movement techniques. All of these variables were tested during the air entrainment experiments; however, several other aspects were held constant such as the length of hose used. The nozzles utilized during these experiments can be seen in the Table~\ref{tab:Nozzle Selection}.
 
 \vspace*{\baselineskip}
 
@@ -533,7 +424,7 @@ In order to ensure the data collected and associated results were applicable to 
 \caption{Nozzles Used In Testing}\label{tab:Nozzle Selection}
 \begin{tabular}{llccc}
 \toprule[1.5pt]
-\multicolumn{1}{l}{\textbf{Line Size}} & \multicolumn{1}{l}{\textbf{Nozzle}} & \multicolumn{1}{l}{\textbf{Tip (in)}} & \multicolumn{1}{l}{\textbf{Nozzle Pressure (psi)}} & \textbf{Approximate Flow Rate (gpm)} \\
+Line Size & Nozzle & Tip (in)& Nozzle Pressure (psi) & Approximate Flow Rate (gpm) \\
 \midrule
 1 3/4 in. & Smooth Bore & 1 & 50 & 210 \\
  & Smooth Bore & 15/16 & 50 & 180 \\
@@ -1742,9 +1633,9 @@ Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Differ
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_160630_Datafile_Straight_Stream_Exterior} &
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_161540_Datafile_Straight_Stream_Exterior} \\
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_162126_Datafile_Straight_Stream_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_162547_Datafile_Straight_Stream_Exterior} \\
 \end{tabular*}
+\centering
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_162547_Datafile_Straight_Stream_Exterior} \\
 \caption{Figures showing distribution differences in varying nozzle pressures during an exterior first floor straight stream attack with a fixed pattern.}
 \label{fig:Exterior_First_Floor_Varying_Nozzle_Pressure_SS_Fixed_Pattern}
 \end{figure}
@@ -1843,31 +1734,15 @@ For both the air entrainment and water distribution testing, differences were ev
 
 The conclusions from these experiments helped to guide the design of the 30+ full-scale residential fire experiments in addition to the acquired structure testing. Stay tuned to the remainder of the Fire Attack study for the details and analysis on the full-scale fire experiments, both in the labratory and in the field. The results from the fire experiments will be constructed into tactical considerations to share with the fire service worldwide.
 
-\clearpage
 
-% ****** REMOVE COMMRENTS IN THIS BLOCK TO ADD GLOSSARY SEE IN HEADER FOR OTHER BLOCK TO REMOVE ***********
-% \clearpage
-
-% \glsaddall
-% \printglossary[nonumberlist]
-% \newpage
-
-\printbibliography
-
-\clearpage
-
-\begin{appendices}
-
-\section{Experimental Results} \label{App:Results}
-\renewcommand{\thesubsection}{\Alph{section}}
-\counterwithin{figure}{subsection}
+\bibliography{UL_general,FireAttackReport}
 
 \appendix
 
-\subsection{Air Entrainment Figures}
+\section{Air Entrainment Figures}
 \label{app:Air_Entrainment_Figures}
 
-\subsubsection{Manufacturer Comparison}
+\subsection{Manufacturer Comparison}
 
 \begin{figure}[!ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1895,7 +1770,7 @@ The conclusions from these experiments helped to guide the design of the 30+ ful
 
 \clearpage
 
-\subsubsection{Total Air Entrainment}
+\subsection{Total Air Entrainment}
 
 \begin{figure}[!ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -1967,7 +1842,7 @@ Smooth Bore Nozzle (1 3/8" tip, 500 gpm @ 80 psi) & 6768 CFM & N/A & 31572 CFM \
 
 \clearpage
 
-\subsubsection{Ventilation Configuration}
+\subsection{Ventilation Configuration}
 
 \begin{figure}[!ht]
 \centering
@@ -2059,7 +1934,7 @@ Smooth Bore Nozzle (1 3/8" tip, 500 gpm @ 80 psi) & 6768 CFM & N/A & 31572 CFM \
 
 \clearpage
 
-\subsubsection{Room Configuration}
+\subsection{Room Configuration}
 
 \begin{figure}[!ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -2083,10 +1958,10 @@ Smooth Bore Nozzle (1 3/8" tip, 500 gpm @ 80 psi) & 6768 CFM & N/A & 31572 CFM \
 
 \clearpage
 
-\subsection{Water Distribution Figures}
+\section{Water Distribution Figures}
 \label{app:Water_Distribution_Figures}
 
-\subsubsection{Second Floor Exterior Tests}
+\subsection{Second Floor Exterior Tests}
 
 \begin{figure}[ht]
 \scalebox{0.8}{
@@ -2137,7 +2012,7 @@ Smooth Bore Nozzle (1 3/8" tip, 500 gpm @ 80 psi) & 6768 CFM & N/A & 31572 CFM \
 
 \clearpage
 
-\subsubsection{First Floor Exterior Tests}
+\subsection{First Floor Exterior Tests}
 
 \begin{figure}[ht]
 \scalebox{0.8}{
@@ -2239,7 +2114,7 @@ Smooth Bore Nozzle (1 3/8" tip, 500 gpm @ 80 psi) & 6768 CFM & N/A & 31572 CFM \
 
 \clearpage
 
-\subsubsection{Interior Tests}
+\subsection{Interior Tests}
 
 \begin{figure}[ht]
 \scalebox{0.8}{
@@ -2333,9 +2208,5 @@ Smooth Bore Nozzle (1 3/8" tip, 500 gpm @ 80 psi) & 6768 CFM & N/A & 31572 CFM \
 \caption{Straight Stream Varied Elevation Angle, First Floor Interior}
 \label{fig:Straight Stream Varied Elevation Angle, First Floor Interior}
 \end{figure}
-
-\clearpage
-
-\end{appendices}
 
 \end{document}
