@@ -1,0 +1,1296 @@
+\documentclass{article}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx,booktabs}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{changepage}
+\usepackage{xcolor}
+\usepackage{afterpage}
+\usepackage[document]{ragged2e}
+\usepackage[none]{hyphenat}
+\usepackage[margin=1in,footskip=0.25in]{geometry}
+\usepackage{array}
+% \usepackage{l3kernel}
+% \usepackage{l3packages}
+\usepackage{siunitx}
+\usepackage{color,soul}
+\usepackage{placeins}
+\usepackage{microtype}
+% \usepackage[backend=biber]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\usepackage[toc,page]{appendix}
+%\usepackage[toc]{glossaries}
+\usepackage[subfigure]{tocloft}
+\usepackage{rotating}
+\usepackage[printwatermark]{xwatermark}
+\usepackage{amssymb}
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography and index in the ToC
+% \usepackage[table,xcdraw]{xcolor}
+\hypersetup{
+	colorlinks,
+	linkcolor=[rgb]{0,0,0.50196},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+
+\cftsetindents{subsection}{.25in}{.4in}
+
+\usepackage[flushleft]{threeparttable}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\definecolor{ULred}{HTML}{872434}
+
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+
+\pdfoptionpdfminorversion=6
+%\addbibresource{FireAttackReport.bib}
+
+\setlength{\parskip}{1em}
+
+% ******* REMOVE COMMENTS AND PLACE GLOSSARY.TEX IN ROOT DIRECTORY TO ADD GLOSSARY, SEE END FOR ADDITIONAL LINES TO UNCOMMENTS *******
+%
+%\loadglsentries{glossary.tex}
+%
+%\makeglossaries
+
+% ******* REMOVE COMMENTS ON THIS BLOCK TO ADD DRAFT TO REPORT ********
+% \newsavebox\mybox
+% \savebox\mybox{\tikz[color=gray,opacity=0.5]\node{DRAFT};}
+% \newwatermark*[
+% allpages,
+% angle=65,
+% scale=15,
+% xpos=-65,
+% ypos=20
+% ]{\usebox\mybox}
+
+\begin{document}
+\bibliographystyle{unsrt}
+	
+	\begin{titlepage}
+		
+		\pagecolor{ULred}\afterpage{\nopagecolor}
+		
+
+		\AddToShipoutPictureFG*{\AtPageUpperLeft{\raisebox{-\height}{\includegraphics[width=7in]{Figures/General/TitlePagePhotoNew}}}} 
+
+			\vspace*{20\baselineskip} 
+
+		\huge
+		\begin{adjustwidth}{-0.5in}{-0in}
+		\color{white}
+		\textbf{Study of the Impact of Fire Attack \\ Utilizing Interior and Exterior Streams \\ on Firefighter Safety and Occupant Survival}
+		\end{adjustwidth}
+		\huge
+		\begin{adjustwidth}{-0.5in}{-0in}
+		\color{white}
+		\textbf{Air Entrainment}
+		\end{adjustwidth}
+		\begin{adjustwidth}{-0.5in}{}
+		\color{white}
+		\vspace{.2\baselineskip}
+		\large
+		Keith Stakes \\
+		Robin Zevotek \\
+		UL Firefighter Safety Research Institute \\
+		\vspace*{4\baselineskip}
+
+		Stephen Kerber \\
+		Director \\
+		UL Firefighter Safety Research Institute \\
+
+		\vspace*{.8\baselineskip}	
+		\today
+		\vspace*{.8\baselineskip}
+		\begin{figure}[h]
+			\hspace*{-0.5in}\includegraphics[width=0.75in]{Figures/General/ULLogoWhite.pdf}
+		\end{figure}
+		\end{adjustwidth}
+	\end{titlepage}
+
+\begin{center}
+	DISCLAIMER\\
+	\vspace*{\baselineskip}
+	\begin{adjustwidth}{-0.25in}{-0.25in}
+		In no event shall UL be responsible to anyone for whatever use or non-use is made of the information contained in this Report and in no event shall UL, its employees, or its agents incur any obligation or liability for damages including, but not limited to, consequential damage arising out of or in connection  with the use or inability to use the information contained in this Report. Information conveyed by this Report applies only to the specimens actually involved in these tests. UL has not established a factory Follow-Up Service Program to determine the conformance of subsequently produced material, nor has any provision been made to apply any registered mark of UL to such material. The issuance of this Report in no way implies Listing, Classification or Recognition by UL and does not authorize the use of UL Listing, Classification or Recognition Marks or other reference to UL on or in connection with the product or system.
+	\end{adjustwidth}
+\end{center}
+
+\begin{center}
+	ACKNOWLEDGEMENTS
+\vspace*{\baselineskip}
+\begin{adjustwidth}{-0.25in}{-0.25in}
+This work was funded through a grant from the Department of Homeland Security's Assistance to Firefighters Grant Program under the Fire Prevention and Safety Grants: Research and Development. Without this critical funding and support, this vital fire service research would not be possible.
+
+\vspace*{\baselineskip}
+
+\begin{center}
+	\includegraphics[width=0.28\textwidth]{Figures/General/DHS}
+\end{center}
+
+\clearpage
+
+To assist the design and implementation of the experiments for the Fire Attack study, fire service experts were gathered from across the world with knowledge in fire suppression and the impact of interior and exterior fire streams. The individuals below provided direction for the project, assisting in planing the experiments, witnessing the testing, and developing concrete conclusions. Their tireless support and effort make this project relevant to the fire service across the world. 
+
+\vspace*{\baselineskip}
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{table}[H]
+	\centering
+	\caption*{Fire Service Technical Panel}
+	\begin{tabular}{ll}
+		\toprule[1.5pt]
+		Name & Fire Department \\ 
+		\midrule
+		Steve Brisebois  & Montreal Fire Department \\ 
+		Matt Carrigan    & Montgomery County Fire and Rescue Service \\ 
+		Tony Carroll     & Washington DC Fire Department \\ 
+		Albert Castillo  & Houston Fire Department \\ 
+		Chad Christensen & Los Angeles County Fire Department \\ 
+		John Chubb       & Dublin Fire Brigade \\ 		 		  
+		Danny Doyle      & Pittsburgh Fire Department \\ 
+		Aaron Fields     & Seattle Fire Department \\ 
+		Jason Floyd      & Las Cruces Fire Department \\ 
+		John Gallagher   & Boston Fire Department \\ 
+		Chad Green       & Anchorage Fire Department \\ 
+		Kelly Hanink     & Eden Prairie Fire Department \\ 
+		Samuel Hittle    & Wichita Fire Department \\ 
+		Jacob Hoffman    & Toledo Fire/Rescue Department \\ 
+		Josh Hummel      & Howard County Department of Fire and Rescue Services \\ 
+		Jerry Knapp      & West Haverstraw (NY) Fire Department \\ 
+		Dennis Legear    & Oakland Fire Department \\ 
+		Hans Neiling     & Zuid Limburg Fire \\ 
+		Nick Martin      & Columbia Fire Department \\ 
+		Ray McCormack    & Fire Department of New York \\ 
+		John McDonough   & New South Wales Fire Department \\ 
+		Jordan Mohr      & Sedgwick County Fire District 1 \\ 
+		Steve Pegram     & Goshen Township Fire and EMS \\ 
+		\bottomrule[1.25pt]
+	\end{tabular}
+\end{table}
+
+\end{adjustwidth}
+\end{center}
+
+\clearpage
+
+\renewcommand{\abstractname}{Abstract}
+\setlength{\emergencystretch}{5pt}
+
+\begin{abstract}
+
+As research continues into how fire department interventions affect fire dynamics in the modern fire environment; questions continue to arise on the impact and implications of interior versus exterior fire attack on both firefighter safety and occupant survivability. Previous research into various types of fire ground ventilation, flow paths, and exterior fire streams has provided the fire service with a more in-depth understanding of fire dynamics in addition to causing concern about certain fire attack methods stemming from differing traditions and myths. This knowledge gap and lack of previous research in this area has driven the need for further study into fire department interventions at structure fires with a focus on hose streams and suppression tactics. Statistics show that both firefighters and building occupants continue to loose their lives due to fire. As such, research into the various methods of fire attack will allow a broader understanding of how firefighter interventions on the fire ground can impact the outcome of both life safety and property protection. 
+
+\vspace*{\baselineskip}
+
+This study will build and expand upon the fire research conducted to date by analyzing how firefighting tactics, specifically suppression methods, affect the thermal exposure and survivability of both firefighters and building occupants in addition to impacting fire behavior in structures. The purpose of this study is to improve firefighter safety, fireground tactics, and the knowledge of fire dynamics by providing the fire service with credible scientific information, developed from both water flow and full-scale fire testing, in representative single family homes. The project will be comprised of 3 parts:
+\vspace*{\baselineskip}
+\begin{itemize}
+	\item Part I:  Water Distribution
+	\item Part II: Air Entrainment
+	\item Part III: Full-Scale Residential Fire Experiments
+	\end{itemize}
+\vspace*{\baselineskip}
+
+This report details the results and analysis from the water distribution experiments. These tests were conducted without the presence of fire to gain a fundamental understanding of water flow the remaining parts of the study were conducted. Each test was designed to quantify water distribution within compartments by evaluating the differences caused by various application methods, hose stream types, nozzle movements, pressures/flow rates, and stream locations and elevation angles. 
+
+\end{abstract}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Background}
+
+Recent fire service research has highlighted the importance of applying water to the fire as quickly as possible. This tactical consideration has highlighted a knowledge gap and increased the interest in better understanding the impact of water applied as part of an interior or exterior attack. Many variables exist in fire attack that impact firefighter effectiveness and victim survivability including stream placement, the time required to get water on the fire, stream type, stream movement, air entrainment, steam development, hot gas cooling and contraction, and position of flow paths. The most important firefighting tool for many years at structure fires has been their hoseline; however, many questions have arisen as more research shows the impact of ventilation, flow paths, and exterior fire streams. Whether a fire attack crew chooses to apply water as part of an interior attack or as part of an exterior or ``transitional attack," they need to know what impact their stream has on the fire environment ahead of them. This is difficult on the fire ground because visibility is commonly limited and therefore most experience and first-hand accounts are from behind the nozzle. This results in beliefs about conditions (e.g. temperature) ahead of the nozzle team and the impact of their tactics on victim survivability; but knowledge of the actual impact has yet been researched. Additionally, when the fire is ultimately suppressed, there is no assurance the attack was conducted in the most effective, efficient, and safe manner even if the experience gained suggests that it was. Fire service adages such as ``don’t put water on smoke,'' ``you will steam the victims,'' and ``fog nozzles always disrupt the thermal layer'' have been passed on from generation to generation with little context or substantiation. Without the context, these concepts get treated like rules and can severely limit firefighters understanding of fire suppression.
+
+Current fire training curriculum defines 3 fire attack methods: direct attack, indirect attack, and combination attack. Direct attack involves the discharge of water directly onto the burning fuel. Indirect attack involves directing the stream toward the ceiling of a compartment in order to generate a large amount of steam in order to cool the compartment. Converting the water to steam displaces oxygen, absorbs the heat of the fire and cools the hot gas layer sufficiently for firefighters to safely enter and make a direct attack. Combination attack extinguishes a fire by using both a direct and indirect attack. Another technique to safely approach a fire that cannot be reached with a direct attack is gas cooling. Gas cooling provides a buffer zone around the attack team but the larger the compartment, the less the impact on cooling the hot gas layer. Gas cooling must be a continuous process while advancing toward a shielded fire. Techniques for effective gas cooling and the upper limit of the volume where gas cooling is effective is not well known.  
+
+\hl{*** ADD BACKGROUND SPECIFIC TO AIR ENTRAINMENT AND ADD ***}
+\hl{DAN TO ORGANIZE}
+
+Fire suppression effectiveness and firefighter safety are not achieved by water flow rate alone, but by appropriate use of a given flow rate under specific fire ground conditions. A flow rate must meet the critical flow rate to extinguish a fire depending on the heat release rate and should be higher to reduce the time to extinguishment. Drastically exceeding the critical flow rate has less known impact on time to extinguishment but has a significant impact on the total amount of water used. To-date, there is little data to connect the critical flow rate to firefighter safety. However, it has been estimated that only 5 to 10 percent of water applied during fire attack contributes to extinguishment. It is difficult for firefighters to realize the the efficiency of various hose stream techniques due to poor visibility on the fireground. However, by developing data in realistic structures, fuel sources, and fire scenarios, important inferences may be developed relative to different hose stream techniques, and use of water.
+
+\clearpage
+
+\section{Objectives}
+
+\subsection {Objectives}
+
+The purpose of this part to the overall study was to provide the fire service with scientific based knowledge on the impact of hose streams during interior and exterior fire attack on firefighter safety and trapped occupants to improve training and decision making on the fire ground. This was accomplished with the completion of the following objectives:
+
+\begin{itemize}
+	\item Improve firefighter safety by increasing knowledge of fire suppression.
+	\item Develop knowledge of hose streams applied during an interior and exterior fire attack and its impact on firefighter safety and victim survivability.
+	\item Understand where water goes and how air flows during interior and exterior fire attack utilizing common equipment, practices, and tactics.
+	\item Gain understanding of the impact of water streams depending on the volume of the fire compartment/structure.
+	\item Bring the `Science to the Streets' by transferring science based conclusions founded on experimental results that can be incorporated into firefighting standard operating procedures.
+	\end{itemize}
+
+\clearpage
+
+\subsection{Limitation and Scope}
+
+The purpose is to quantify the amount of air entrainment in hose streams given certain parameters as well as determine where water is distributed within a compartment. This is all without fire involvement in order to provide a baseline understanding before moving forward with the remainder of the study. This baseline knowledge is intended to bridge the gap in the fire service understanding about the use of various nozzles, hose stream types, nozzle movements, and advancement techniques in specific scenarios. Knowing how hose streams affect air movement and how water is distributed can allow for better decision making capabilities across the fire service when it comes to use during an actual emergency incident.
+
+When analyzing the air entrainment and water distribution, equipment from various manufacturers was tested. For the purpose of the study, the companies will be referred to as Manufacturer 1, Manufacturer II, and Manufacturer III. The air entrainment experiments yielded results that showed little to no difference among the various manufacturers. Therefore, a single manufacturer was chosen for the remainder of Part I of the study. More specifically, Part I of the study is not intended to purchasing of one type of nozzle over another.
+
+The intent of the air entrainment experiments was to determine how much air hose streams entrain. This involved several components:
+
+\begin{itemize}
+	\item Does the hose stream type (smooth bore versus straight stream versus narrow fog) effect air entrainment?
+	\item Does the amount of air entrainment vary dependent on manufacturer given set flow rates/pressures?
+	\item How do different building geometries, compartment layouts, and ventilation configurations effect air entrainment?
+	\item Do various nozzle movements effect air entrainment (fixed, sweeping, O, T, Z, inverted U)?
+	\item Does the distance from a ventilation opening effect the air entrainment?
+
+\end{itemize}
+
+Additionally, the intent of the water distribution experiments was to determine where water goes within a compartment. In order to answer this question, the tests considered the following:
+
+\begin{itemize}
+	\item Does interior versus exterior attack effect water distribution?
+	\item Does the hose stream type (smooth bore versus straight stream versus narrow fog) effect water distribution? 
+	\item Does the hose stream elevation angle effect water distribution?
+	\item Does adjusting the flow rates/pressures of the nozzles effect water distribution? 
+	\item Do various nozzle movements effect water distribution (fixed, sweeping, O)?
+	\item How does a first floor exterior attack effect the water distribution when compared to a second floor exterior attack?
+\end{itemize}
+
+For the purpose of these experiments we utilized the same structure throughout all of the air entrainment experiments. The water distribution testing utilized another structure, which also remained the same for the duration of those experiments. The only component of the firefighting equipment that was varied among the tests was the nozzle, and sometimes the hoseline size. The hoseline diameter was either 1 3/4~in. or 2 1/2~in. and was always 200~ft. in length. By creating some aspects that were not varied and by bounding other variables, we ensured that all aspects of the air entrainment and water distribution were examined as a baseline for further future evaluation in different structures with different conditions.
+
+\clearpage
+
+\section{Previous Literature}
+
+At the start of the study, a literature review was performed to identify and analyze the following:
+
+\begin{itemize}
+	\item Previous research in the field of air entrainment, water distribution, and fire suppression.
+	\item Both past and current fire suppression tactics.
+	\item Knowledge gaps in fire suppression operations. (choice of tactics, myths, traditions, etc.) 
+\end{itemize}
+
+The following section outlines some of the material as it relates to the fire attack study. The literature review encompassed past research work, various articles in fire service publications, fire service training manuals, as well as fire department standard operating procedures to highlight some of the critical areas of information which drove the project at hand.
+
+\subsection{Literature Overview}
+
+\hl{DAN TO ADD/ORGANIZE}
+
+Hose, nozzles and water have been used by the fire service for hundreds of years. Despite their frequent use, there has been little scientific research conducted on the effective use of these tools for fire suppression. It is common in the fire service to find discussions about which nozzle is better or which flow rate is required for what sized fire but this is based on experience and usually not science. 
+
+In 1950 Chief Lloyd Layman presented a paper titled “Little Drops of Water” at the Fire Department Instructors Conference. He introduced what he called indirect method of attack to suppress interior building fires by using the heat absorbing properties of expanding and condensing steam, produced in great quantities by fog streams. The conclusions were based on Coast Guard experiments that Layman was in charge of conducting at the Coast Guard Firefighting School at Fort McHenry in Baltimore, MD. Layman continued his experiments after he returned to his position as fire chief in Parkersburg, WV where he applied his tactic in building fires.  This research had a very large impact on the fire service and their suppression techniques to this day. 
+
+Throughout the 1950’s a National Committee began conducting experiments to collect data on the growth and behavior of interior fires and how to most effectively suppress them. Keith Royer and Bill Nelson were members of this committee, and as the heads of the firemanship training program at the Iowa State University’s Engineering Extension, they collected and analyzed data from hundreds of experimental fires. Through this research the fire service was taught about fire behavior and how to suppress fire with a combination fire attack. They examined the amount of heat generated by common fuels, the heat absorbing capacity of water, the impact of compartment volume during suppression and they developed the Iowa formula. The Iowa formula or critical rate of flow formula is still used today and it determines the amount of water needed to control a fire in the largest open space within a structure by dividing the cubic foot volume of the space by 100.
+
+While the physics of fire development has not changed over time, the fire environment for specifically the single family home has evolved. Several factors including home size, geometry, contents and construction materials have changed significantly over the past 50 or more years. Each of these factors has impacted firefighter and occupant safety. Faster fire propagation, shorter times to flashover, rapid changes in fire dynamics and shorter escape times all impact fire service suppression techniques and effectiveness. Many of the variables in Royer and Nelson’s analysis have changed and more research is needed to see how suppression techniques used in the 1950’s with 1950’s fuel loads and firefighting tools translates to today’s firefighter safety and effectiveness.
+
+Beginning in 1994, the Naval Research Laboratory carried out a series of full-scale fire experiments to compare straight stream attack versus fog pattern attack. These experiments were conducted on the Navy ship ex-USS Shadwell with a fire volume of approximately 110~m$^3$. In these experiments one 60 degree fog pattern was applied at a 45 degree angle into the smoke layer. They examined cooling effects, steam generation and thermal layer disruption. Their experiments examined shielded and non-shielded fires and concluded that using fog to cool the upper layer was more effective and safer than straight stream attack when the fire could not be attacked directly and the firefighters heart rates and body temperatures were lower utilizing the fog attack.
+
+In 1998 NIST conducted a series of experiments to demonstrate the suppression effectiveness of water-based firefighting agents. This was a step toward creating test procedures to determine suppression effectiveness to develop a standardized test method for evaluating the fire fighting effectiveness of water and other agents. This study provides preliminary data upon which firefighting effectiveness test may be developed by it suggests additional research on application technique, tests reflective of the complexities found in firefighting and experiments involving structural-fire suppression.  
+
+In 2002, The National Research Council of Canada conducted a literature search on 3D water fog techniques for firefighting. It discusses the impact of water fog characteristics associated with properties of the nozzle (e,g,, droplet size, momentum, flow rate, spray angle and pattern) and discharge techniques (e.g., discharge angle, and discharge duration related to the burts) on performance of the 3D water fog technique are discussed. This technique is to supplement a direct attack by controlling the environment the firefighters are in until they are in a position to apply water directly to the fire. Opponents of flowing water into smoke have concerns that include: (i) effectiveness of controlling the fire, compared to traditional straight stream attack; (ii) possible disruption of the thermal balance; (iii) possible generation of a large amount of hot steam that produces burn injuries to firefighters; and (iv) the performance of this technique is complex and requires extensive training. Advocates of this technique have attempted to respond to these concerns but very limited experimental studies have been undertaken do to complexity of the problems. Application techniques and fire conditions on the the performance of fog technique is not well studied and therefore there are little guidelines and adoption will be greatly limited.
+
+Several theoretical studies had been conducted that examine droplet size and their ability to suppress fire gases. For example, when droplet diameter is reduced from 1000 nanometers to 100 nanometers the total surface area increases 10 times from 6 m2 to 60 m2 for 1 liter of water. Since these smaller droplets evaporate sooner, others have examined the lifetime of the droplet to determine how far it can travel based on temperature of the surrounding gases and droplet size. Further complicating this theory is that droplets all have an impact on each other as they turn to steam. Residence time can be further reduced compared to an individual droplet, because leading droplets impart forward momentum to the surrounding gas, reducing the air drag on the following droplets and resulting in better penetration. In 2010, the University of Maryland examined spray characteristics from fire hose nozzles. They examined the breakup of a smooth bore nozzle utilizing techniques such as shadowgraphy and a patternator and concluded that more research was needed to fully understand the water spray from fire hose nozzles.  
+
+In 2000, Lund University examined the demand for extinguishing media in manual firefighting. They examined critical flow rates required to suppress fires by reviewing available literature and conducted a series of experiments that examined suppression of wood pallets at a fire training academy. They examined the five ways that water can be applied during fire extiguishment, on hot gases, on flames, on burning fuel, on fuel that is not yet burning and on hot surfaces. They highlight that what is most effective against the fire is not necessarily best for the firefighters since there are other constraints during firefighting operations such as limited air supply and multiple priorities. The optimum flow rate corresponds to an optimum control time, a control time that gives the lowest total demand for resources. Most of the current data for optimum water flow rate include experiments utilizing wood cribs or pallets, but not todays synthetic fuel loads in actual structures.  These studies also did not investigate the effect of flow paths or the impact of steam generation on firefighters or victims.
+
+In 2003, a fire service group at the Rockland County (NY) Fire Training Center conducted a series of tests in their concrete training building. They measured the amount of air moved by solid bore and combination nozzles using common fire ground methods. They concluded that air volumes moved by smooth bore nozzles and combination nozzles in the straight stream setting are very similar if not the same, and that combination nozzles in the fog pattern move significant amounts of air which can over pressurize the fire area and send steam over the attack crew even with a ventilation opening opposite the attack crew. These tests were performed either with no fire or with a training fire but which are very different than actual fire conditions. Their tests do provide a good range of airflows that can be expected in our experiments. The authors state, “Our nozzle testing program was not as controlled and as precise as we would have liked.” They also did not have measurement devices that were able to accurately measure air flows from a fog pattern.  
+
+The Firefighting Technology Group at NIST has a current project that is examining hose streams. This project examines a variety of fire fighting hose stream characteristics related to flow, distribution and thermal impact from both solid and fog stream nozzles. A series of real scale, laboratory based experiments have been started to look specifically at the water discharge and distribution characteristics, the impact of hose streams on a hot gas layer in a compartment, the impact of hose streams on gas flows through multi-compartment structures, and the suppression effectiveness on burning piles of wooden pallets. The proposed project will build on their results by utilizing real-scale structures with common residential fuels and making additional measurements to better characterize the impact of flow path, nozzle technique and steam generation on fire dynamics, firefighter exposure and occupant survivability.
+
+\subsection{Fire Service Publications}
+
+[MIKE]
+
+\subsection{Fire Service Training Manuals}
+
+[MIKE]
+
+\subsection{Research Work}
+
+[MIKE]
+
+\clearpage
+
+\section{Air Entrainment Experiments}
+
+\subsection{Experimental Configuration}
+
+\subsubsection{Test Facility}
+
+The air entrainment testing was conducted at the Delaware County Emergency Services Training Center in Sharon Hill, PA. A two-story concrete structure was built on a concrete slab as shown in Fig.~\ref{fig:Delaware_County,_PA_Fire_Test_Structure}. It was designed to simulate a representative residential structure. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/Air_Entrainment/delcocorner.jpg}
+	\caption{Delaware County, PA Fire Test Structure}
+	\label{fig:Delaware_County,_PA_Fire_Test_Structure}
+\end{figure}
+
+The outer walls of the first floor of the structure were composed of interlocking concrete blocks 2~ft. wide, 2~ft. high, and 4~ft. long. The interior dimensions of the structure were 20~ft. wide, 36~ft. long, and 8~ft. high. The joints and gaps between the blocks were filled with high temperature insulation. The interior walls of the first floor were framed with steel studs set to 16~in. centers and track and were lined with 0.5~in. thick cement board. The walls were composed of 0.6~in. Type X gypsum board. Additionally, the ceiling was composed of two layers of 0.5~in. thick cement board. The first floor ceiling support of the structure was composed of wood truss joist I-beams (TJIs) with a 11.75~in. depth. Each TJI was composed of laminated veneer lumber flanges with a cross section of 1.13~in. x 1.75~in. and an 0.43~in. thick oriented strand board web. Tongue and groove oriented strand board of 0.72~in. thickness was screwed to the top of the TJIs. 
+
+A stairwell was built to connect the two floors of the structure. The stairs had a 7.25~in rise and 7.5~in run and started 5.25~ft off the south wall with a width of 14~ft off the east wall. The second story walls were wood framed with 2~in by 4~in studs. The studs were set to 16~in centers. The interior walls were protected by 0.63~in fire rated gypsum board, 0.63~in Durock board, and a second layer of 0.63~in fire rated gypsum board. The exterior walls were protected with 0.31~in oriented strand board and 0.31~in fiber cement lap siding. Dimensioned drawings of the first and second floor are shown in Figures~\ref{fig:Delaware_County,_PA_Fire_Test_Structure_First_Floor} and \ref{fig:Delaware_County,_PA_Fire_Test_Structure_Second_Floor} respectively.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/Air_Entrainment/West_Test_Structure_1st_Floor_original_nodim.pdf}
+	\caption{Delaware County, PA Fire Test Structure First Floor}
+	\label{fig:Delaware_County,_PA_Fire_Test_Structure_First_Floor}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/Air_Entrainment/West_Test_Structure_2nd_Floor_nodim.pdf}
+	\caption{Delaware County, PA Fire Test Structure Second Floor}
+	\label{fig:Delaware_County,_PA_Fire_Test_Structure_Second_Floor}
+\end{figure}
+
+The exterior doorways of each structure were steel doors that were opened or closed at certain instances during tests to change the ventilation configuration within the structure. All other doorways in the structures did not contain a door. If it was determined that these doors needed closed during a test, a sheet of either gypsum board or oriented strand board was used to cover the opening and remained as such until the conclusion of the given test.
+
+\subsubsection{Instrumentation and Uncertainty}
+Gas velocity, a measure of air entrainment by hose streams, was obtained through the use of an array of bi-directional probes. Bi-directional probes were connected to a pressure transducers to evaluate the change in pressure associated with the gas flow. The differential pressure transducer was a Setra Model 264 with a range of +/- 0.5~in. WC (+/- 124.5~Pa.). The uncertainty given by the manufacturer is 1\% or 1.2~Pa. 
+
+A gas velocity measurement study examining the doorway flow of pre-flashover compartment fires yielded expanded uncertainty measurements ranging from $\pm$~0.14 to $\pm$~0.22 for bi-directional probes of similar design~\cite{Bryant:FSJ2009}. The total expanded uncertainty for gas velocity in these experiments is estimated to be $\pm$~18~\%.
+
+\subsubsection{Measurement Location}
+There were several challenges associated with measuring air entrainment from hose streams. The first challenge existed because the experiments were conducted outside, therefore considering wind was critical. Additionally, the instrumentation used in data collection is best in a dry environment to maintain the smallest level of uncertainty and remain operational. To address these challenges, the measurement location was set at the doorway at the top of the stairwell. Figure~\ref{fig:Measurement_Location_Second_Floor} shows the position of the the bi-direction probe array on the second floor.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.6\columnwidth]{Figures/Air_Entrainment/Measurement_Locations_Secondfloor}
+	\caption{Measurement Location (Second Floor)}
+	\label{fig:Measurement_Location_Second_Floor}
+\end{figure}
+
+Figures~\ref{fig:Air_Entrainment_Flowpath_Interior_Experiments} and \ref{fig:Air_Entrainment_Flowpath_Exterior_Experiments} show the experimental configuration for the interior flow tests and exterior flow tests, respectively. The arrows indicate the flow direction based on the hose stream being the source of the flow through air entrainment.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.7\columnwidth]{Figures/Air_Entrainment/Airflow_Layout}
+	\caption{Air Entrainment Flowpath, Interior Experiments}
+	\label{fig:Air_Entrainment_Flowpath_Interior_Experiments}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.7\columnwidth]{Figures/Air_Entrainment/Airflow_Layout_Ext}
+	\caption{Air Entrainment Flowpath, Exterior Experiments}
+	\label{fig:Air_Entrainment_Flowpath_Exterior_Experiments}
+\end{figure}
+
+The measurement location was placed at the top of the stairs, within the flow path of both test configurations. This location kept the instrumentation dry and out of the reach of a hose stream. While this location did guarantee isolation from wind effects due to open vents, this represented the best location to minimize those effects.
+
+\subsubsection{Equipment Used}
+
+To ensure the data collected and associated results were applicable to the majority of the fire service, a list of representative nozzles, specified flow rates/pressures, and nozzle movement techniques was created. The variables, which were tested during the air entrainment experiments are included in the Table~\ref{tab:Nozzle Selection}.
+
+\begin{table}[!ht]
+\centering
+\caption{Nozzles Used In Testing}\label{tab:Nozzle Selection}
+\begin{tabular}{llccc}
+\toprule[1.5pt]
+Line Size & Nozzle & Tip (in)& Nozzle Pressure (psi) & Approximate Flow Rate (gpm) \\
+\midrule
+1 3/4 in. & Smooth Bore & 1 & 50 & 210 \\
+ & Smooth Bore & 15/16 & 50 & 180 \\
+ & Smooth Bore & 7/8 & 50 & 150 \\
+ & Fog &  & 100 & 100 \\
+ & Fog &  & 100 & 150 \\
+ & Fog &  & 75 & 150 \\
+ & Fog &  & 50 & 150 \\
+ \midrule
+2 1/2 in. & Smooth Bore & 1 1/8 & 50 & 260 \\
+ & Smooth Bore & 1 1/4 & 50 & 320 \\
+ & Fog &  & 100 & 250 \\
+ & Fog &  & 75 & 250 \\
+ & Fog &  & 50 & 250 \\ 
+ \midrule
+Portable Monitor & Smooth Bore & 1 3/8 & 80 & 500 \\
+ & Fog &  & 75 & 500 \\ 
+ \midrule
+Master Stream & Smooth Bore & 1 1/2 & 80 & 600 \\
+ & Smooth Bore & 1 3/4 & 80 & 800 \\
+ & Fog &  & 100 & 500-1000 \\ 
+ \bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+These experiments involved the repetition of nozzle movements and patterns; therefore to minimize nozzle operator fatigue and improve repeatability a nozzle prop was constructed. The prop was used as the `backup' firefighter by supporting the hoseline and minimizing nozzle reaction forces on the operator. Figure~\ref{fig:Nozzle_Prop} shows the constructed prop. 
+
+\begin{figure}[!ht]
+\centering
+	\includegraphics[width=.5\columnwidth]{Figures/Air_Entrainment/hoserig.jpg}
+	\caption{Nozzle Prop}
+	\label{fig:Nozzle_Prop}
+\end{figure}
+
+The hose was affixed to the prop with `U' bolts and locking nuts to ensure the hose did not move during an experiment. The prop supported both 1.5~in. and 2.5~in. hoselines. To ensure the experiments were consistent (independent of variance of nozzle position on the prop), the distance from the nozzle to the ventilation opening was measured from the tip of the nozzle, and not the base of the prop.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.4\columnwidth]{Figures/Air_Entrainment/Old_Gib} 
+\includegraphics[width=.4\columnwidth]{Figures/Air_Entrainment/Old_Gib_1} \\
+\caption{Nozzle Prop in Use}
+\label{fig:Nozzle_Prop_in_Use}
+\end{figure}
+
+\subsection{Experiments Conducted}
+
+Ninety-two experiments were completed to determine how air entrainment from hose streams was affected by varying equipment, spray patterns, hose stream type, and ventilation.
+
+Prior to determining the parameters for the test series' below, several preliminary experiments were conducted in order to provide insight into several key components including the setback distance from the nozzle to the ventilation opening, the hose stream type, and various nozzle movements.
+
+\begin{itemize}
+
+\item \bf{Setback Distance}
+\normalfont
+\vspace*{\baselineskip}
+
+Two experiments were conducted on the interior of the structure utilizing a 1.5~in. combination nozzle with a flow rate of 150~gpm to determine the effects of altering the setback distance of the nozzle to the ventilation opening on the overall air entrainment in the hose stream. The first of the two tests examined setback distances of 3, 6, 9, 12, and 15~feet from the open double door at a pressure of 50~psi. The second test examined the same setback distances at a nozzle pressure of 100~psi.  
+
+\vspace*{\baselineskip}
+
+\item \bf{Hose Stream Type}
+\normalfont
+\vspace*{\baselineskip}
+
+To gain an initial look into the hose stream type, a fixed setback distance of 3~ft. was chosen and the nozzle was varied to a wide fog pattern (nearly occluding the ventilation opening), a narrow fog pattern (roughly 30~deg.), and a straight stream pattern. This provided preliminary information that aided in the test setup for the remainder of the experiments. The nozzle used during this test was a 1.5~in. combination nozzle with a flow rate of 150~gpm and a pressure of 100~psi.
+
+\vspace*{\baselineskip}
+
+\item \bf{Nozzle Movements}
+\normalfont
+\vspace*{\baselineskip}
+
+Because there are numerous nozzle movements that firefighters can employ during suppression operations, it was vital that the UL - FSRI team identify any differences in air entrainment prior to conducting the remainder of the study. This would provide information into whether or not the various nozzle movements would all be tested or if some could be eliminated due to similarities in results. These tests were conducted with a fixed setback distance of 18~ft. from the ventilation opening and utilized both a 1.5~in. combination nozzle with a flow rate of 150~gpm and a pressure of 100~psi and a 1.5" smooth bore nozzle with a 1" tip flowing 210~gpm at a pressure of 50~psi.
+
+\vspace*{\baselineskip}
+
+\item \bf{Manufacturer Comparison}
+\normalfont
+\vspace*{\baselineskip}
+
+Similar to the issue above with various nozzle movements, fire departments across the world used nozzles made from different manufacturers. To provide some insight into the accuracy of manufacturer ratings of flow rate and pressure in addition to air entrainment, several experiments were conducted to determine the differences in nozzle manufacturers. These experiments were all conducted with both a 1.5~in. combination nozzle and a 1.5~in. smooth bore nozzle. This would provide information into the differences in air entrainment between nozzles with similar flow rates and pressures made by different manufacturers.
+
+\vspace*{\baselineskip}
+
+\end{itemize}
+
+\clearpage
+
+\subsubsection{Total Air Entrainment Comparison}
+
+The first test series of the air entrainment experiments looked at the differences in total entrainment given a single nozzle manufacturer with varying flow rates and pressures. These tests were conducted from both the interior and exterior of the structure at a setback distance of 18~ft. from the ventilation opening. 
+
+An `Event' is defined as a specific measurement period during the experiment in which a specific variable is being analyzed. For example, during the total air entrainment experiment for 1.5~in. combination nozzles from the interior, 6 different events were incorporated within the test: 1) Straight Stream, 2) Straight Stream `O', Straight Stream `Z', Straight Stream `n', Narrow Fog, and Narrow Fog `O'. In order to ensure consistency among results, each of the `Events' within the experiments was designed to be 1 minute in duration. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Figures/Air_Entrainment/Measurement_Locations_Firstfloor}
+	\caption{First Floor Setup - Total Entrainment Interior Tests}
+	\label{fig:First_Floor_Setup_Total_Entrainment_Interior_Tests}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=6.5in]{Figures/Air_Entrainment/Measurement_Locations_Firstfloor_Ext}
+	\caption{First Floor Setup - Total Entrainment Exterior Tests}
+	\label{fig:First_Floor_Setup_Total_Entrainment_Exterior_Tests}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Figures/Air_Entrainment/Measurement_Locations_Secondfloor}
+	\caption{Second Floor Measurement Location}
+	\label{fig:Second_Floor_Measurement_Location}
+\end{figure}
+
+\vspace*{\baselineskip}
+
+\begin{table}[!ht]
+\centering
+\caption{Air Entrainment Experiments}\label{Total_Air_Entrainment_Experiments}
+\begin{tabular}{lcclccc}
+\toprule[1.5pt]
+Location & Nozzle Size & Nozzle Type & Tip Size & Flow Rate & Pressure \\ 
+\midrule
+Interior & 1.5 & Combination &  & 95 & 100 \\
+Interior & 1.5 & Combination &  & 150 & 50 \\
+Interior & 1.5 & Combination &  & 150 & 75 \\
+Interior & 1.5 & Combination &  & 150 & 100 \\
+Interior & 1.5 & Smooth Bore & 7/8 & 150 & 50 \\
+Interior & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & 1.5 & Smooth Bore & 1 & 210 & 50 \\
+Interior & 2.5 & Combination &  & 250 & 50 \\
+Interior & 2.5 & Combination &  & 250 & 75 \\
+Interior & 2.5 & Combination &  & 250 & 100 \\
+Interior & 2.5 & Smooth Bore & 1 1/8 & 260 & 50 \\
+Interior & 2.5 & Smooth Bore & 1 1/4 & 320 & 50 \\
+Interior & MS & Combination &  & 500 & 100 \\
+Interior & MS & Combination &  & 750 & 100 \\
+Interior & MS & Smooth Bore & 1 1/2 & 600 & 80 \\
+Interior & MS & Smooth Bore & 1 3/4 & 800 & 80 \\
+Interior & PM & Combination &  & 500 & 80 \\
+Interior & PM & Smooth Bore & 1 3/8 & 480 & 80 \\
+Exterior & 1.5 & Combination &  & 150 & 75 \\
+Exterior & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Exterior & 2.5 & Combination &  & 250 & 75 \\
+Exterior & 2.5 & Smooth Bore & 1 1/4 & 320 & 50 \\
+Exterior & PM & Combination &  & 500 & 75 \\
+Exterior & PM & Smooth Bore & 1 3/8 & 500 & 80 \\ 
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\subsubsection{Ventilation Configuration}
+
+The second series of tests conducted to analyze air entrainment in hose streams involved varying the ventilation configurations within the flow path. The inlet and exhaust of the flow path were varied between both different sized doors as well as windows to show the effect on overall air entrainment. The tests were conducted from both the interior and the exterior of the structure with a fixed setback distance of 18~ft. from the ventilation opening. The measurement location during these experiments remained the same as that used during the total air entrainment experiments with the instrumentation remaining in the doorway at the top of the stairs on the second floor. (Figure \ref{fig:Second_Floor_Ventilation_Config})
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=5in]{Figures/Air_Entrainment/Measurement_Location_VentConfig_Bottom.jpg}
+	\caption{First Floor Ventilation Configuration Interior}
+	\label{fig:First_Floor_Ventilation_Configuration_Interior}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=6.5in]{Figures/Air_Entrainment/Measurement_Location_VentConfig_Bottom_Ext.jpg}
+	\caption{First Floor Ventilation Configuration Exterior}
+	\label{fig:First_Floor_Ventilation_Configuration_Exterior}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Figures/Air_Entrainment/Measurement_Location_VentConfig_Top.jpg}
+	\caption{Second Floor Ventilation Configuration}
+	\label{fig:Second_Floor_Ventilation_Config}
+\end{figure}
+
+In order to evaluate how ventilation openings affect the air entrainment due to hose streams, different ventilation openings were considered to include both doors as well as windows of common sizes. The measurement location within the structure was a fixed location and fixed opening size. The measurement location was the size of a common single doorway as seen below. The remainder of the ventilation openings varied between a single and double door as well as a single and double window. Additionally, a controlled door was evaluated to show the impact of a reduced inlet size on the total air entrainment in hose streams. This is a common practice among fire departments based on previous research conducted showing the benefits to closing down the flow path and limiting the available oxygen to the fire. The effect of the controlled door on air entrainment has yet been analyzed and thus was vital to be included in this study.
+
+\vspace*{\baselineskip}
+
+\begin{table}[!ht]
+\centering
+\caption{Ventilation Opening Sizes}\label{Vent_Sizes}
+\begin{tabular}{lccccc}
+\toprule[1.5pt]
+ & Width & Height & Width (in) & Height (in) & Area (sq. in.) \\ 
+\midrule
+\multicolumn{1}{l}{Measurement Location} & 2' 8" & 6' 8" & 32 & \multicolumn{1}{c}{80} & 2560 \\
+\multicolumn{1}{l}{Single Window} & 2' & 4' & 24 & \multicolumn{1}{c}{48} & 1152 \\
+\multicolumn{1}{l}{Double Window} & 4' & 5' & 48 & \multicolumn{1}{c}{60} & 2880 \\
+\multicolumn{1}{l}{Single Door} & 3' & 6' 8" & 36 & \multicolumn{1}{c}{80} & 2880 \\
+\multicolumn{1}{l}{Double Door} & 6' & 6' 8" & 72 & \multicolumn{1}{c}{80} & 5760 \\
+\multicolumn{1}{l}{Controlled Door} & 8" & 6' 8" & 8 & \multicolumn{1}{c}{80} & 640 \\ 
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+% \begin{figure}[!ht]
+% 	\centering
+% 	\includegraphics[width=3.5in]{Figures/Air_Entrainment/Measurement_Location_VentConfig_Top.jpg}
+% 	\caption{Second Floor Ventilation Configuration}
+% 	\label{fig:Second_Floor_Ventilation_Configuration}
+% \end{figure}
+
+% \clearpage
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\caption{Ventilation Configuration Experiments}
+\label{Ventilation_Configuration_Experiments}
+\begin{tabular}{lccccccc}
+\toprule[1.5pt]
+Location & Top Vent & Bottom Vent & Nozzle Size & Nozzle Type & Tip Size & Flow Rate & Pressure \\ 
+\midrule
+Interior & Controlled Door & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Interior & Double Door & Double Door & 1.5 & Combination &  & 150 & 75 \\
+Interior & Double Door & Single Door & 1.5 & Combination &  & 150 & 75 \\
+Interior & Double Door & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Interior & No Opening & Double Door & 1.5 & Combination &  & 150 & 75 \\
+Interior & No Opening & Single Door & 1.5 & Combination &  & 150 & 75 \\
+Interior & No Opening & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Interior & Single Door & Double Door & 1.5 & Combination &  & 150 & 75 \\
+Interior & Single Door & Single Door & 1.5 & Combination &  & 150 & 75 \\
+Interior & Single Door & Double Window & 1.5 & Combination &  & 150 & 75 \\
+Interior & Single Door & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Interior & Controlled Door & Single Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & Double Door & Single Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & Single Door & Double Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & Single Door & Single Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Exterior & Double Door & Double Door & 1.5 & Combination &  & 150 & 75 \\
+Exterior & Double Door & Single Door & 1.5 & Combination &  & 150 & 75 \\
+Exterior & No Opening & Double Door & 1.5 & Combination &  & 150 & 75 \\
+Exterior & No Opening & Single Door & 1.5 & Combination &  & 150 & 75 \\
+Exterior & No Opening & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Exterior & Single Door & Double Door & 1.5 & Combination &  & 150 & 75 \\
+Exterior & Single Door & Single Door & 1.5 & Combination &  & 150 & 75 \\
+Exterior & Single Door & Double Window & 1.5 & Combination &  & 150 & 75 \\
+Exterior & Single Door & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Exterior & Single Window & Double Window & 1.5 & Combination &  & 150 & 75 \\
+Exterior & Single Window & Single Door & 1.5 & Combination &  & 150 & 75 \\
+Exterior & No Opening & Single Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Exterior & Single Door & Double Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Exterior & Single Door & Single Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Exterior & Single Window & Single Door & 2.5 & Combination &  & 250 & 75 \\
+Exterior & Single Door & Single Window & 2.5 & Combination &  & 250 & 75 \\
+Exterior & Single Window & Single Door & 2.5 & Smooth Bore & 1 1/4 & 320 & 50 \\
+Exterior & Single Door & Single Window & 2.5 & Smooth Bore & 1 1/4 & 320 & 50 \\
+Exterior & Single Window & Single Door & PM & Combination &  & 500 & 80 \\
+Exterior & Single Door & Single Window & PM & Combination &  & 500 & 80 \\
+Exterior & Single Window & Single Door & PM & Smooth Bore & 1 3/8 & 500 & 80 \\
+Exterior & Single Door & Single Window & PM & Smooth Bore & 1 3/8 & 500 & 80 \\
+Transitional & Single Window & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Transitional & No Opening & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Transitional & Single Door & Single Window & 1.5 & Combination &  & 150 & 75 \\
+Transitional & Single Window & Single Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Transitional & No Opening & Single Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Transitional & Single Door & Single Window & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\ 
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\subsubsection{Room Configuration}
+
+The last test series of the air entrainment experiments involved reconfiguring the first floor of the structure to analyze how compartmentation and varying building geometries affect the end result. The air entrainment from various attacks, both fixed position and advancements, was studied. Additionally, the tests were conducted from both the interior and exterior of the structure. The nozzles utilized during these experiments included both a 1.5~in. combination nozzle and a 1.5~in. smooth bore nozzle with a 15/16~in. tip.
+
+The dimensioned drawing below shows the changes to the first floor of the structure. A wall was constructed to create a room adjacent to the bottom ventilation opening. Attached to the room via a standard 2~ft. 6~in. by 6~ft. 8~in. doorway was a 16~ft. by 4~ft. hallway. This allowed for the team to study entrainment in a structure configuration most comparable to residential single family homes. This setup would best simluate the configuration for a suppression crew advancing down a hallway towards a bedroom including single door entry with a window present in the room. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=6in]{Figures/Air_Entrainment/West_Test_Structure_1st_Floor_nodim.pdf}
+	\caption{First Floor Alterations Room Configuration}
+	\label{fig:First_Floor_Alterations_Room_Configuration}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Figures/Air_Entrainment/Measurement_Location_Room_Configuration_Bottom.jpg}
+	\caption{First Floor Room Configuration, Interior Experiments}
+	\label{fig:First_Floor_Room_Configuration_Interior_Experiments}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Figures/Air_Entrainment/Measurement_Location_VentConfig_Top.jpg}
+	\caption{Second Floor Room Configuration}
+	\label{fig:Second_Floor_Room_Configuration}
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\caption{Room Configuration Experiments}
+\label{Room_Configuration_Experiments}
+\begin{tabular}{lccccc}
+\toprule[1.5pt]
+Location & Nozzle Size & Nozzle Type & Tip Size & Flow Rate & Pressure \\ 
+\midrule
+Interior & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & 1.5 & Combination &  & 150 & 50 \\
+Interior & 1.5 & Combination &  & 150 & 50 \\
+Interior & 1.5 & Combination &  & 150 & 50 \\
+Interior & 1.5 & Combination &  & 150 & 75 \\
+Exterior & 1.5 & Combination &  & 150 & 50 \\ 
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\subsection{Analysis \& Results}
+
+\vspace*{\baselineskip}
+
+After the air entrainment testing was complete and the results were analyzed, several conclusions were drawn:
+
+\begin{itemize}
+	\item Air entrainment is dependent on hose stream type. (smooth bore, straight stream, fog)
+	\item Air entrainment is dependent on structure size, compartmentation, and ventilation configurations.
+	\item Increases in nozzle movement increase overall air entrainment.
+	\item Different nozzle movement patterns have little effect on overall air entrainment. (O, T, Z, inverted U)
+	\item Air entrainment, either into or out of the structure, is dependent on the horizontal distance of the nozzle to the ventilation opening.
+\end{itemize}
+
+Each of these conclusions is explained in detail below with supporting results.
+
+\paragraph{Manufacturer Comparison}
+
+\vspace*{\baselineskip}
+
+The table below shows the series of tests that were conducted to compare similar nozzles from differing manufacturers. Within each of these tests, the air entraiment from various hose stream types was determined.
+
+\vspace*{\baselineskip}
+
+\begin{table}[!ht]
+\centering
+\caption{Manufacturer Comparison Experiments}
+\label{Manufacturer_Comparison_Experiments}
+\begin{tabular}{lcclccc}
+\toprule[1.5pt]
+Location & Nozzle Size & Manufacturer & Nozzle Type & Tip Size & Flow Rate & Pressure \\ 
+\midrule
+Interior & 1.5 & MF3 & Combination &  & 95 & 100 \\
+Interior & 1.5 & MF3 & Combination &  & 150 & 50 \\
+Interior & 1.5 & MF3 & Combination &  & 150 & 75 \\
+Interior & 1.5 & MF3 & Combination &  & 150 & 100 \\
+Interior & 1.5 & MF3 & Smooth Bore & 7/8 & 150 & 50 \\
+Interior & 1.5 & MF3 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & 1.5 & MF3 & Smooth Bore & 1 & 210 & 50 \\
+Interior & 1.5 & MF2 & Combination &  & 95 & 100 \\
+Interior & 1.5 & MF2 & Combination &  & 150 & 50 \\
+Interior & 1.5 & MF2 & Combination &  & 150 & 75 \\
+Interior & 1.5 & MF2 & Combination &  & 150 & 100 \\
+Interior & 1.5 & MF2 & Smooth Bore & 7/8 & 150 & 50 \\
+Interior & 1.5 & MF2 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & 1.5 & MF2 & Smooth Bore & 1 & 210 & 50 \\
+Interior & 1.5 & MF1 & Combination &  & 95 & 100 \\
+Interior & 1.5 & MF1 & Combination &  & 150 & 50 \\
+Interior & 1.5 & MF1 & Combination &  & 150 & 75 \\
+Interior & 1.5 & MF1 & Combination &  & 150 & 100 \\
+Interior & 1.5 & MF1 & Smooth Bore & 7/8 & 150 & 50 \\
+Interior & 1.5 & MF1 & Smooth Bore & 15/16 & 180 & 50 \\
+Interior & 1.5 & MF1 & Smooth Bore & 1 & 210 & 50 \\ 
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_95gpm_100psi} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_50psi} \\
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_75psi} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_100psi} \\
+\end{tabular*}
+\caption{Figures showing manufacturer comparison of air entrainment results for 1.5 in combination nozzles.}
+\label{fig:1_5_Interior_Combination_Manufacturer}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_7_8_150gpm_50psi} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_15_16_180gpm_50psi} \\
+\end{tabular*}
+\centering
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_1_210gpm_50psi} 
+\caption{Figures showing manufacturer comparison of air entrainment results for 1.5 in smooth bore nozzles.}
+\label{fig:1_5_Interior_Smooth_Bore_Manufacturer}
+\end{figure}
+
+As shown by the results for both the 1.5~in. combination and smooth bore nozzles examined, manufacturers have different design details for their given product and that is evident in the differening air entrainment results. The spread amongst manufacturers in the combination nozzle varies anywhere from less than 1000~CFM to over 2000~CFM. Due to the more simple design features of the smooth bore nozzles, the differences across manufacturers was less.
+
+With that being said, several trends were consistent amongst the different experiments:
+
+\begin{itemize}
+	\item Increases in nozzle movement (i.e. fixed compared to `O' pattern) increase overall air entrainment.
+	\item The wider the hose stream pattern, the larger the amount of air entrained. (i.e. narrow fog when compared to straight stream or smooth bore)
+\end{itemize}
+
+\clearpage
+
+\paragraph{Air entrainment is dependent on hose stream type. (smooth bore, straight stream, fog)} \mbox{}
+
+The intial opening occlusion test was conducted to determine how varying the hose stream type from a single nozzle can effect the air entrainment at a given setback distance (3~ft.). This test showed that given a fixed setback distance, a combination nozzle flowing a common flow rate of 150~gpm at a pressure of 50~psi had increasing air entrainment with an increase in the width of the pattern. As the pattern became wider, approaching the size of the ventilation opening, the air entrainment increased, with straight stream experiencing the smallest airflow. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Script_Figures/Entrainment/Opening_Occlusion}
+	\caption{Varying air entrainment in varying hose stream types utilizing a 1.5" combination nozzle with a flow rate of 150gpm at 50 psi.}
+	\label{fig:Opening_Occlusion}
+\end{figure}
+
+Varying the hose stream type was analyzed in various other experiments as well. These were conducted with a interior fixed setback distance of 18~ft. and utilized 1.5" nozzles.
+
+% \vspace*{\baselineskip}
+
+\begin{table}[!ht]
+\centering
+\caption{Hose stream type comparison for interior 1.5" nozzles.}
+\label{Hose_Stream_Type_Comparison}
+\begin{tabular}{lccc}
+\toprule[1.5pt]
+Hose Stream Type & Flow Rate (GPM) & Pressure (PSI) & Air Entrainment (CFM) \\ 
+\midrule
+Straight Stream & 150 & 50 & 3440 \\
+Straight Stream `O' & 150 & 50 & 10441 \\
+Narrow Fog & 150 & 50 & 17645 \\
+Narrow Fog `O' & 150 & 50 & 22873 \\
+Smooth Bore & 150 & 50 & 3319 \\
+Smooth Bore `O' & 150 & 50 & 9738 \\ 
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\paragraph{Air entrainment is dependent on structure size, compartmentation, and ventilation configurations.} \mbox{}
+
+The first set of experiments in which the ventilation openings were examined utilized a 1.5~in. combination (150~gpm @ 75~psi) nozzle and a smooth bore nozzle (15/16" tip, 180~gpm @ 50~psi). Four different intake openings were examined including no door, controlled door, single door, and double door. These were looking at scenarios in which a fire attack crew makes entry into the structure via a doorway and is flowing water towards an exhaust of varying size and shape. A window was not examined as one of the intake openings as the assumption was made that the attack crew would be entering the building through a door and not a window. The distance from the nozzle to the opening was 18~ft.
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_No_Door_Top} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Controlled_Door} \\
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Single_Door_Top} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Double_Door_Top} \\
+\end{tabular*}
+\caption{Figures showing interior air entrainment results for 1.5" combination nozzles with fixed intake openings and varying exhaust openings.}
+\label{fig:1_5_Interior_Combination_Vents}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Interior}
+\caption{Figures showing interior air entrainment results for 1.5" smooth bore nozzles with fixed intake openings and varying exhaust openings.}
+\label{fig:1_5_Interior_Smooth_Bore_Vents}
+\end{figure}
+
+Several conclusions can be drawn from the first set of ventilation experiments looking at interior attacks:
+
+\begin{itemize}
+	\item As the size of the intake opening increases, so does the amount of air entrained into the hose stream.
+	\item Controlling the door after entry by the fire attack team significantly reduces the amount of air entrainment.
+	\item \hl{Something about exhaust vent sizes}
+\end{itemize}
+
+\clearpage
+
+The next set of experiments utilized the same nozzles as the interior attack tests above; however these examined the differences in air entrainment from exterior streams. These tests incorporated fixed exhaust openings and varyied intake shapes and sizes. The distance from the nozzle to the opening was 18~ft.
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior_No_Door_Top} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior_Single_Window_Top} \\
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior_Single_Door_Top} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior_Double_Door} \\
+\end{tabular*}
+\caption{Figures showing exterior air entrainment results for 1.5" combination nozzles with fixed exhaust openings and varying intake openings.}
+\label{fig:1_5_Exterior_Combination_Vents}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Exterior}
+\caption{Figures showing exterior air entrainment results for 1.5" smooth bore nozzles with fixed exhaust openings and varying intake openings.}
+\label{fig:1_5_Exterior_Smooth_Bore_Vents}
+\end{figure}
+
+Several conclusions can be drawn from the second set of ventilation experiments looking at exterior attacks:
+
+\begin{itemize}
+	\item The amount of air entrained into the hose stream and moved throughout the structure is dependent on the size of the available exhaust opening.
+	\item The larger the intake opening, the more air available to be entrained into the hose stream.
+\end{itemize}
+
+\clearpage
+
+The following experiments looked at the scenario in which a crew would be much closer to the ventilation opening, utilizing exterior streams in what is known as a transitional attack. The fire attack crew would be located on the exterior of the structure, flowing water into the building via a single window. The distance from the nozzle to the opening was less than 3~ft.
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Transitional} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Transitional} \\
+\end{tabular*}
+\caption{Figures showing transitional air entrainment results for 1.5" nozzles with fixed intake openings and varying exhaust openings.}
+\label{fig:1_5_Transitional_Vents}
+\end{figure}
+
+Several conclusions can be drawn from this set of ventilation experiments looking at transitional attacks:
+
+\begin{itemize}
+	\item The amount of air entrained into the hose stream and moved throughout the structure is dependent on the size of the available exhaust opening.
+	\item The larger the exhuast opening, the more air available to be entrained into the hose stream.
+\end{itemize}
+
+\clearpage
+
+Several tests were conducted with hose lines of 2.5~in. diameter in which 2.5~in. nozzles were examined as well as portable monitors.
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_2_5_Combination_Nozzle_Exterior} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_2_5_Smooth_Bore_Nozzle_Exterior} \\
+\end{tabular*}
+\caption{Figures showing air entrainment results for 2.5" nozzles with varying exhaust and intake openings.}
+\label{fig:2_5_Exterior_Vents}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_PM_Combination_Nozzle_Exterior} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_PM_Smooth_Bore_Nozzle_Exterior} \\
+\end{tabular*}
+\caption{Figures showing air entrainment results for portable monitor nozzles with varying exhaust and intake openings.}
+\label{fig:PM_Exterior_Vents}
+\end{figure}
+
+\clearpage
+
+% \begin{figure}[!ht]
+% 	\centering
+% 	\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Controlled_Door}
+% 	\caption{Figure showing entrainment results for varying exhaust vent configuration of an interior 1.5" combination nozzle with a fixed controlled door inlet.}
+% 	\label{fig:1_5_Interior_Vent_Configuration_Combination_Comparison_Controlled_Door}
+% \end{figure}
+
+% \begin{figure}[!ht]
+% 	\centering
+% 	\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Double_Door_Top}
+% 	\caption{Figure showing entrainment results for varying exhaust vent configuration of an interior 1.5" combination nozzle with a fixed double door inlet.}
+% 	\label{fig:1_5_Interior_Vent_Configuration_Combination_Comparison_Double_Door_Top}
+% \end{figure}
+
+% \begin{figure}[!ht]
+% 	\centering
+% 	\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Single_Door_Top}
+% 	\caption{Figure showing entrainment results for varying exhaust vent configuration of an interior 1.5" combination nozzle with a fixed single door inlet.}
+% 	\label{fig:1_5_Interior_Vent_Configuration_Combination_Comparison_Single_Door_Top}
+% \end{figure}
+
+% \begin{figure}[!ht]
+% 	\centering
+% 	\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_No_Door_Top}
+% 	\caption{Figure showing entrainment results for varying exhaust vent configuration of an interior 1.5" combination nozzle with no door for an inlet.}
+% 	\label{fig:1_5_Interior_Vent_Configuration_Combination_Comparison_No_Door_Top}
+% \end{figure}
+
+% \clearpage
+
+\paragraph{Increases in nozzle movement increase overall air entrainment}
+
+A single test was conducted to determine the differences in air entrainment when a given 1.5~in. smooth bore nozzle of fixed flow rate of 210~gpm and pressure of 50~psi was utilized with a `O' pattern at different rotation speeds. Using a metronome, the `O' pattern was applied at 50, 100, and 150 revolutions per minute. This test was conducted at the fixed interior setback distance of 18~ft. from the tip of the nozzle to the ventilation opening.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Script_Figures/Entrainment/Nozzle_Movement_Comparison_1}
+	\caption{Figure showing various rotation speeds of an `O' pattern for an interior 1.5" smooth bore nozzle with a 1" tip.}
+	\label{fig:1_5_Interior_Nozzle_Movement_RotationSpeed_Comparison}
+\end{figure}
+
+As shown in the figure above, an increase in the rotation speed while applying a specified pattern yeilded an increase in the air entrainment seen within the stream.
+
+\clearpage
+
+Additionally, in various other experiments, both fixed and moving patterns were examined. The results confirm that an increase in movement, increase entrainment. The figure below shows that a narrow fog `O' pattern yields higher entrainment than a fixed narrow fog patter and a straight stream `O' pattern yields higher entrainment than a fixed straight stream pattern.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Script_Figures/Entrainment/Total_Entrainment_1_5_Combination_Nozzle_Interior}
+	\caption{Figure showing entrainment results of interior 1.5" combination nozzles.}
+	\label{fig:1_5_Interior_Combination_Results_Nozzle_Movements}
+\end{figure}
+
+\clearpage
+
+\paragraph{Differing nozzle movement patterns have little effect on overall air entrainment.} \mbox{}
+
+Various tests were conducted to determine how different nozzle movements effect the overall air entrainment. Common nozzle movements seen in the fire service today are the `O', `Z', and `n' patterns. Differences in these were examined utilizing nozzles of various flow rates and pressures for both 1.5~in. combination as well as 1.5~in. smooth bore nozzles from the interior of the structure at a fixed setback distance of 18~ft. The results show that there is less than a +/- 1000 CFM difference between the patterns across the various nozzle types and settings.
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_1_5_Combination_Nozzle_Interior_Patterns} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_1_5_Smooth_Bore_Nozzle_Interior_Patterns} \\
+\end{tabular*}
+\caption{Figures showing air entrainment given various nozzle movements for interior 1.5" nozzles.}
+\label{fig:1_5_Interior_Nozzle_Movement_Comparison}
+\end{figure}
+
+\clearpage
+
+A test was also conducted to determine if a standard utilized nozzle movement in an `O' pattern would differ from a `Spray and Pray' technique in which the nozzle operator moves the hose stream across the ventilation opening as fast as possible with no discerible pattern. Once again, the results showed little to no difference in the air entrainment.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Script_Figures/Entrainment/Nozzle_Movement_Comparison_2}
+	\caption{Figure showing common pattern compared to no discernible pattern for an interior 1.5" smooth bore nozzle with a 1" tip.}
+	\label{fig:1_5_Interior_Nozzle_Movement_PatterntoNoPattern_Comparison}
+\end{figure}
+
+Because the results very clearly showed little to no difference in air entrainment from varying nozzle movements across multiple nozzle types and settings, a single nozzle movement pattern (`O') was utilized for the remainder of the experiments conducted.
+
+\clearpage
+
+\paragraph{Air entrainment is dependent on the distance of the nozzle to the ventilation opening.} \mbox{}
+
+One of the preliminary experiments conducted was the setback comparison tests in which a 1.5~in. combination nozzle at two different pressures (100~psi and 50~psi) was utilized in a fixed pattern at varying distances from the ventilation opening. The nozzle was moved back from the opening at intervals 3, 6, 9, 12, and 15~ft. to see the effect on air entrainment in the hose stream.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=4in]{Script_Figures/Entrainment/Setback_Distance_Comparison}
+	\caption{1.5" Combination Nozzle, Setback Distance Comparison}
+	\label{fig:1_5_Combination_Nozzle_Setback_Distance_Comparison}
+\end{figure}
+
+With a fixed nozzle movement, the tests showed that increasing the distance between the tip of the nozzle and the ventilation opening increased the entrainment in the hose stream. The further the nozzle from the vent allowed for a more broken and `wider' stream, which in turn, encompassed more of the opening.
+
+\clearpage
+
+
+
+
+\section{Future Research Needs}
+
+The water distribution data presented in this report is a one piece of the fire attack study. The intention of this report is to provide preliminary results and insight into the distribution of water within a compartment. The air entrainment data and full-scale fire testing data are currently undergoing analysis. Upon completion of the analysis, conclusions can be drawn and tactical considerations can be developed regarding each experimental series, the relationships between the series, and the project in its entirety.  
+
+\section{Summary}
+
+The goal of the experiments was quantify water distributions within a room over a set of parameters typical the the fire service. 
+
+
+\bibliography{UL_general,FireAttackReport}
+
+\clearpage
+
+\appendix
+
+\section{Air Entrainment Figures}
+\label{app:Air_Entrainment_Figures}
+
+\subsection{Manufacturer Comparison}
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_95gpm_100psi} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_50psi} \\
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_75psi} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_100psi} \\
+\end{tabular*}
+\caption{Figures showing manufacturer comparison of interior air entrainment results for 1.5 in combination nozzles.}
+\label{fig:1_5_Interior_Combination_Manufacturer}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_7_8_150gpm_50psi} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_15_16_180gpm_50psi} \\
+\end{tabular*}
+\centering
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_1_210gpm_50psi} 
+\caption{Figures showing manufacturer comparison of interior air entrainment results for 1.5 in smooth bore nozzles.}
+\label{fig:1_5_Interior_Smooth_Bore_Manufacturer}
+\end{figure}
+
+\clearpage
+
+\subsection{Total Air Entrainment}
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_1_5_Combination_Nozzle_Interior} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_1_5_Smooth_Bore_Nozzle_Interior} \\
+\end{tabular*}
+\caption{Figures showing total interior air entrainment results for 1.5 in. nozzles}
+\label{fig:1_5_Interior_Total_Entrainment}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_1_5_Smooth_Bore_Nozzle_Exterior}
+\caption{Figure showing total exterior air entrainment results for 1.5 in. smooth bore nozzle}
+\label{fig:1_5_Exterior_Total_Entrainment}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_2_5_Combination_Nozzle_Interior} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_2_5_Smooth_Bore_Nozzle_Interior} \\
+\end{tabular*}
+\caption{Figures showing total interior air entrainment results for 2.5 in. nozzles}
+\label{fig:2_5_Interior_Total_Entrainment}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_2_5_Combination_Nozzle_Exterior} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_2_5_Smooth_Bore_Nozzle_Exterior} \\
+\end{tabular*}
+\caption{Figures showing total exterior air entrainment results for 2.5 in. nozzles}
+\label{fig:2_5_Exterior_Total_Entrainment}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_MS_Combination_Nozzle_Interior} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_MS_Smooth_Bore_Nozzle_Interior} \\
+\end{tabular*}
+\caption{Figures showing total interior air entrainment results for master stream nozzles}
+\label{fig:MS_Interior_Total_Entrainment}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Total_Entrainment_MS_Combination_Nozzle_Interior_500gpm_100psi}
+\caption{Figure showing total interior air entrainment results for combination master stream nozzle}
+\label{fig:MS_Interior_Total_Entrainment_Combination}
+\end{figure}
+
+\clearpage
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|l|ccc|}
+\hline
+\textbf{Portable Monitor Nozzle Type} & \multicolumn{1}{c|}{\textbf{Interior SS/SB}} & \multicolumn{1}{c|}{\textbf{Interior Fog}} & \textbf{Exterior SS/SB)} \\ \hline
+Combination Nozzle (500 gpm @ 75 psi) & 11582 CFM & 53919 CFM & 26523 CFM \\
+Smooth Bore Nozzle (1 3/8" tip, 500 gpm @ 80 psi) & 6768 CFM & N/A & 31572 CFM \\ \hline
+\end{tabular}
+\caption{Portable Monitor Entrainment Results}
+\label{Portable_Monitor_Entrainment_Results}
+\end{table}
+
+\clearpage
+
+\subsection{Ventilation Configuration}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior}
+\caption{Figure showing interior air entrainment results for varying vent configurations with a 1.5 in. combination nozzle}
+\label{fig:1_5_Interior_Combination_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Interior}
+\caption{Figure showing interior air entrainment results for varying vent configurations with a 1.5 in. smooth bore nozzle}
+\label{fig:1_5_Interior_Smooth_Bore_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior}
+\caption{Figure showing exterior air entrainment results for varying vent configurations with a 1.5 in. combination nozzle}
+\label{fig:1_5_Exterior_Combination_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Exterior}
+\caption{Figure showing exterior air entrainment results for varying vent configurations with a 1.5 in. smooth bore nozzle}
+\label{fig:1_5_Exterior_Smooth_Bore_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Transitional}
+\caption{Figure showing transitional air entrainment results for varying vent configurations with a 1.5 in. combination nozzle}
+\label{fig:1_5_Transitional_Combination_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Transitional}
+\caption{Figure showing transitional air entrainment results for varying vent configurations with a 1.5 in. smooth bore nozzle}
+\label{fig:1_5_Transitional_Smooth_Bore_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_2_5_Combination_Nozzle_Exterior}
+\caption{Figure showing exterior air entrainment results for varying vent configurations with a 2.5 in. combination nozzle}
+\label{fig:2_5_Exterior_Combination_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_2_5_Smooth_Bore_Nozzle_Exterior}
+\caption{Figure showing exterior air entrainment results for varying vent configurations with a 2.5 in. smooth bore nozzle}
+\label{fig:2_5_Exterior_Smooth_Bore_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_PM_Combination_Nozzle_Exterior}
+\caption{Figure showing exterior air entrainment results for varying vent configurations with a portable monitor combination nozzle}
+\label{fig:PM_Exterior_Combination_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Vent_Configuration_PM_Smooth_Bore_Nozzle_Exterior}
+\caption{Figure showing exterior air entrainment results for varying vent configurations with a portable monitor smooth bore nozzle}
+\label{fig:PM_Exterior_Smooth_Bore_Vent_Config}
+\end{figure}
+
+\clearpage
+
+\subsection{Room Configuration}
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Room_Configuration_1_5_Combination_Nozzle_Interior_1} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Room_Configuration_1_5_Combination_Nozzle_Interior_4} \\
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Room_Configuration_1_5_Combination_Nozzle_Interior_2} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Room_Configuration_1_5_Combination_Nozzle_Interior_3} \\
+\end{tabular*}
+\caption{Figures showing the interior air entrainment results for 1.5 in combination nozzles in the room configuration.}
+\label{fig:1_5_Interior_Combination_Room_Config}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=6in]{Script_Figures/Entrainment/Room_Configuration_1_5_Combination_Nozzle_Exterior}
+\caption{Figure showing the exterior air entrainment results for 1.5 in. combination nozzles in the room configuration.}
+\label{fig:1_5_Exterior_Combination_Room_Config}
+\end{figure}
+
+\clearpage
+\end{document}
