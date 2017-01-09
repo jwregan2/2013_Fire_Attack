@@ -1,131 +1,151 @@
-\documentclass{article}
-\usepackage{float}
-\usepackage{graphicx}
-\usepackage{tabularx,booktabs}
-\usepackage{caption}
-\usepackage{subfig}
-\usepackage{lipsum}
-\usepackage{tikz}
-\usepackage{eso-pic}
-\usepackage{changepage}
-\usepackage{xcolor}
-\usepackage{afterpage}
-\usepackage[document]{ragged2e}
-\usepackage[none]{hyphenat}
-\usepackage[margin=1in,footskip=0.25in]{geometry}
-\usepackage{array}
-% \usepackage{l3kernel}
-% \usepackage{l3packages}
-\usepackage{siunitx}
-\usepackage{color,soul}
-\usepackage{placeins}
-\usepackage{microtype}
-% \usepackage[backend=biber]{biblatex}
-\usepackage[hidelinks]{hyperref}
-\usepackage[toc,page]{appendix}
-%\usepackage[toc]{glossaries}
-\usepackage[subfigure]{tocloft}
-\usepackage{rotating}
-\usepackage[printwatermark]{xwatermark}
-\usepackage{amssymb}
-\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography and index in the ToC
-% \usepackage[table,xcdraw]{xcolor}
-\hypersetup{
-	colorlinks,
-	linkcolor=[rgb]{0,0,0.50196},
-	citecolor={blue!50!black},
-	urlcolor={blue!80!black}
-}
+\documentclass{book}
+\input{commoncommands}
 
-\cftsetindents{subsection}{.25in}{.4in}
+% Rename chapter headings
+\renewcommand{\chaptername}{Section}
+\renewcommand{\bibname}{References}
 
-\usepackage[flushleft]{threeparttable}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-
-\definecolor{ULred}{HTML}{872434}
-
-\usepackage{chngcntr}
-\counterwithin{table}{section}
-\counterwithin{figure}{section}
-
-\pdfoptionpdfminorversion=6
-%\addbibresource{FireAttackReport.bib}
-
-\setlength{\parskip}{1em}
-
-% ******* REMOVE COMMENTS AND PLACE GLOSSARY.TEX IN ROOT DIRECTORY TO ADD GLOSSARY, SEE END FOR ADDITIONAL LINES TO UNCOMMENTS *******
-%
-%\loadglsentries{glossary.tex}
-%
-%\makeglossaries
-
-% ******* REMOVE COMMENTS ON THIS BLOCK TO ADD DRAFT TO REPORT ********
-% \newsavebox\mybox
-% \savebox\mybox{\tikz[color=gray,opacity=0.5]\node{DRAFT};}
-% \newwatermark*[
-% allpages,
-% angle=65,
-% scale=15,
-% xpos=-65,
-% ypos=20
-% ]{\usebox\mybox}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\rhead{}
+\chead{}
+\renewcommand{\headrulewidth}{0pt}
 
 \begin{document}
+\pagenumbering{gobble}
+
 \bibliographystyle{unsrt}
+%\pagestyle{empty}
+
+\begin{minipage}[t][9in][s]{6.25in}
+
+
+\headerB{
+Impact of Fire Attack Utilizing \\
+Interior and Exterior Streams on\\ 
+Firefighter Safety and Occupant \\
+Survival: Water Mapping\\
+}
+
+\normalsize
+
+\headerC{
+{
+\flushleft{
+Craig Weinschenk \\
+Keith Stakes \\
+Robin Zevotek \\
+\vspace{0.2in}
+UL Firefighter Safety Research Institute \\
+Columbia, MD 21045 \\
+\vspace*{2\baselineskip}
+
+}
+
+\vfill
+
+\flushright{
+
+\includegraphics[width=2.in]{Figures/General/FSRI_GraphicShield} \\[.3in]
+}
+}
+}
+
+\end{minipage}
+
+\newpage
+\hspace{5in}
+\newpage
+
+\frontmatter
+
+\begin{minipage}[t][9in][s]{6.25in}
+\pagenumbering{gobble}
+
+
+\headerB{
+Impact of Fire Attack Utilizing \\
+Interior and Exterior Streams on\\ 
+Firefighter Safety and Occupant \\
+Survival: Water Mapping\\
+}
+
+\headerC{
+\flushleft{
+Craig Weinschenk \\
+Keith Stakes \\
+Robin Zevotek \\
+\vspace{0.2in}
+{UL Firefighter Safety Research Institute \\
+Columbia, MD 21045 \\}}
+
+\flushleft{\today \\}
+}
+
+
+\vfill
+
+\flushright{\includegraphics[width=2in]{Figures/General/FSRI_GraphicShield}}
+
+\titlesigs
+
+\end{minipage}
+
+\newpage
+
+\begin{minipage}[t][9in][s]{6.25in}
+
+\flushleft{In no event shall UL be responsible to anyone for whatever use or non-use is made of the information contained in this Report and in no event shall UL, its employees, or its agents incur any obligation or liability for damages including, but not limited to, consequential damage arising out of or in connection  with the use or inability to use the information contained in this Report. Information conveyed by this Report applies only to the specimens actually involved in these tests. UL has not established a factory Follow-Up Service Program to determine the conformance of subsequently produced material, nor has any provision been made to apply any registered mark of UL to such material. The issuance of this Report in no way implies Listing, Classification or Recognition by UL and does not authorize the use of UL Listing, Classification or Recognition Marks or other reference to UL on or in connection with the product or system.
+}
+
+\vspace{3in}
+
+
+\vfill
+
+\hspace{1in}
+
+\end{minipage}
+
+\newpage
+
+\frontmatter
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\chapter{List of Acronyms}
+
+\begin{tabbing}
+\hspace{1.5in} \= \\
+AFG \> Assistance to Firefighters Grant program  \\
+DHS \> U.S Department of Homeland Security   \\   
+FEMA \> Federal Emergency Management Agency  \\
+NIST \> National Institute of Standards and Technology \\
+UL FSRI \> UL Firefighter Safety Research Institute \\
+USFA \> United States Fire Administration  \\
+\end{tabbing}
+
+\mainmatter
+
+\chapter*{Acknowledgements}
 	
-	\begin{titlepage}
-		
-		\pagecolor{ULred}\afterpage{\nopagecolor}
-		
-
-		\AddToShipoutPictureFG*{\AtPageUpperLeft{\raisebox{-\height}{\includegraphics[width=7in]{Figures/General/TitlePagePhotoNew}}}} 
-
-			\vspace*{20\baselineskip} 
-
-		\huge
-		\begin{adjustwidth}{-0.5in}{-0in}
-		\color{white}
-		\textbf{Study of the Impact of Fire Attack \\ Utilizing Interior and Exterior Streams \\ on Firefighter Safety and Occupant Survival}
-		\end{adjustwidth}
-		\huge
-		\begin{adjustwidth}{-0.5in}{-0in}
-		\color{white}
-		\textbf{Water Distribution}
-		\end{adjustwidth}
-		\begin{adjustwidth}{-0.5in}{}
-		\color{white}
-		\vspace{.2\baselineskip}
-		\large
-		Keith Stakes \\
-		Robin Zevotek \\
-		UL Firefighter Safety Research Institute \\
-		\vspace*{4\baselineskip}
-
-		Stephen Kerber \\
-		Director \\
-		UL Firefighter Safety Research Institute \\
-
-		\vspace*{.8\baselineskip}	
-		\today
-		\vspace*{.8\baselineskip}
-		\begin{figure}[h]
-			\hspace*{-0.5in}\includegraphics[width=0.75in]{Figures/General/ULLogoWhite.pdf}
-		\end{figure}
-		\end{adjustwidth}
-	\end{titlepage}
-
-\begin{center}
-	DISCLAIMER\\
-	\vspace*{\baselineskip}
-	\begin{adjustwidth}{-0.25in}{-0.25in}
-		In no event shall UL be responsible to anyone for whatever use or non-use is made of the information contained in this Report and in no event shall UL, its employees, or its agents incur any obligation or liability for damages including, but not limited to, consequential damage arising out of or in connection  with the use or inability to use the information contained in this Report. Information conveyed by this Report applies only to the specimens actually involved in these tests. UL has not established a factory Follow-Up Service Program to determine the conformance of subsequently produced material, nor has any provision been made to apply any registered mark of UL to such material. The issuance of this Report in no way implies Listing, Classification or Recognition by UL and does not authorize the use of UL Listing, Classification or Recognition Marks or other reference to UL on or in connection with the product or system.
-	\end{adjustwidth}
-\end{center}
-
-\begin{center}
-	ACKNOWLEDGEMENTS
-\vspace*{\baselineskip}
-\begin{adjustwidth}{-0.25in}{-0.25in}
 This work was funded through a grant from the Department of Homeland Security's Assistance to Firefighters Grant Program under the Fire Prevention and Safety Grants: Research and Development. Without this critical funding and support, this vital fire service research would not be possible.
 
 \vspace*{\baselineskip}
@@ -176,15 +196,7 @@ To assist the design and implementation of the experiments for the Fire Attack s
 	\end{tabular}
 \end{table}
 
-\end{adjustwidth}
-\end{center}
-
-\clearpage
-
-\renewcommand{\abstractname}{Abstract}
-\setlength{\emergencystretch}{5pt}
-
-\begin{abstract}
+\chapter*{\centering Abstract}
 
 As research continues into how fire department interventions affect fire dynamics in the modern fire environment; questions continue to arise on the impact and implications of interior versus exterior fire attack on both firefighter safety and occupant survivability. Previous research into various types of fire ground ventilation, flow paths, and exterior fire streams has provided the fire service with a more in-depth understanding of fire dynamics in addition to causing concern about certain fire attack methods stemming from differing traditions and myths. This knowledge gap and lack of previous research in this area has driven the need for further study into fire department interventions at structure fires with a focus on hose streams and suppression tactics. Statistics show that both firefighters and building occupants continue to loose their lives due to fire. As such, research into the various methods of fire attack will allow a broader understanding of how firefighter interventions on the fire ground can impact the outcome of both life safety and property protection. 
 
@@ -193,6 +205,7 @@ As research continues into how fire department interventions affect fire dynamic
 This study will build and expand upon the fire research conducted to date by analyzing how firefighting tactics, specifically suppression methods, affect the thermal exposure and survivability of both firefighters and building occupants in addition to impacting fire behavior in structures. The purpose of this study is to improve firefighter safety, fireground tactics, and the knowledge of fire dynamics by providing the fire service with credible scientific information, developed from both water flow and full-scale fire testing, in representative single family homes. The project will be comprised of 3 parts:
 \vspace*{\baselineskip}
 \begin{itemize}
+	\setlength{\itemindent}{0.25in}
 	\item Part I:  Water Distribution
 	\item Part II: Air Entrainment
 	\item Part III: Full-Scale Residential Fire Experiments
@@ -201,15 +214,8 @@ This study will build and expand upon the fire research conducted to date by ana
 
 This report details the results and analysis from the water distribution experiments. These tests were conducted without the presence of fire to gain a fundamental understanding of water flow the remaining parts of the study were conducted. Each test was designed to quantify water distribution within compartments by evaluating the differences caused by various application methods, hose stream types, nozzle movements, pressures/flow rates, and stream locations and elevation angles. 
 
-\end{abstract}
 
-\newpage
-
-\tableofcontents
-
-\newpage
-
-\section{Background}
+\chapter{Background}
 
 Recent fire service research has highlighted the importance of applying water to the fire as quickly as possible. This tactical consideration has highlighted a knowledge gap and increased the interest in better understanding the impact of water applied as part of an interior or exterior attack. Many variables exist in fire attack that impact firefighter effectiveness and victim survivability including stream placement, the time required to get water on the fire, stream type, stream movement, air entrainment, steam development, hot gas cooling and contraction, and position of flow paths. The most important firefighting tool for many years at structure fires has been their hoseline; however, many questions have arisen as more research shows the impact of ventilation, flow paths, and exterior fire streams. Whether a fire attack crew chooses to apply water as part of an interior attack or as part of an exterior or ``transitional attack," they need to know what impact their stream has on the fire environment ahead of them. This is difficult on the fire ground because visibility is commonly limited and therefore most experience and first-hand accounts are from behind the nozzle. This results in beliefs about conditions (e.g. temperature) ahead of the nozzle team and the impact of their tactics on victim survivability; but knowledge of the actual impact has yet been researched. Additionally, when the fire is ultimately suppressed, there is no assurance the attack was conducted in the most effective, efficient, and safe manner even if the experience gained suggests that it was. Fire service adages such as ``don’t put water on smoke,'' ``you will steam the victims,'' and ``fog nozzles always disrupt the thermal layer'' have been passed on from generation to generation with little context or substantiation. Without the context, these concepts get treated like rules and can severely limit firefighters understanding of fire suppression.
 
@@ -222,13 +228,12 @@ Fire suppression effectiveness and firefighter safety are not achieved by water 
 
 \clearpage
 
-\section{Objectives}
-
-\subsection {Objectives}
+\chapter{Objectives}
 
 The purpose of this part to the overall study was to provide the fire service with scientific based knowledge on the impact of hose streams during interior and exterior fire attack on firefighter safety and trapped occupants to improve training and decision making on the fire ground. This was accomplished with the completion of the following objectives:
 
 \begin{itemize}
+	\setlength{\itemindent}{0.25in}
 	\item Improve firefighter safety by increasing knowledge of fire suppression.
 	\item Develop knowledge of hose streams applied during an interior and exterior fire attack and its impact on firefighter safety and victim survivability.
 	\item Understand where water goes and how air flows during interior and exterior fire attack utilizing common equipment, practices, and tactics.
@@ -239,13 +244,13 @@ The purpose of this part to the overall study was to provide the fire service wi
 \clearpage
 
 
-\section{Water Distribution Experiments}
+\chapter{Water Distribution Experiments}
 
 The goal of the water distribution experiments was to quantify the impact that changing a nozzle, changing flow pressure, or changing flow position had on water dispersion within a compartment. Eighty-four water flow tests were conducted at the UL Headquarters in Northbrook, IL in a purpose built compartment with an attached hallway and movable staircase. Water flow patterns were determined by collecting the water in 48 discrete collection bins. A detailed description of the water collection is in Section~\ref{sec:add_instrumentation}.
 
-\subsection{Experimental Configuration}
+\section{Experimental Configuration}
 
-\subsubsection{Test Apparatus}
+\subsection{Test Apparatus}
 \label{ADD_discussion}
 The main portion of test compartment had interior (finished) dimensions of 14~ft 8~in. by 10~ft 5~in with an 8~ft ceiling. To account for water collection apparatus the entire compartment was 7~ft 11~in above the floor of the lab floor (see Figure~\ref{fig:Water_Distribution_Test_Structure_and_ADD_Apparatus}). The overall size of the compartment was designed to reflect that of one found in a typical resident structure but was also bound by the dimensions of the water collection apparatus (Section~\ref{sec:add_instrumentation}). The compartment was wood frame construction with 2~in. by 4~in. studs and track set to 16~in. centers with a interior height measuring 8~ft 1 1/8~in. rough. The walls and ceiling were lined with 1/2~in. durarock cement board atop 1/2~in. plywood. The ceiling joists were 2~in. by 6~in. set to 16~in. on center.
 
@@ -283,7 +288,7 @@ A unique feature of this compartment was that there was no floor constructed. Th
 	\label{fig:ADD_Flashing}
 \end{figure}
 
-\subsubsection{Instrumentation and Uncertainty}
+\subsection{Instrumentation and Uncertainty}
 \label{sec:add_instrumentation}
 
 To measure the water distribution throughout the compartment, a fire sprinkler spray density measurement instrument known as the Actual Delivered Density (ADD) apparatus was used. This device was connected to the 48 collection bins that comprised the floor of the test structure. The ADD apparatus is comprised of one main array and two satellite arrays of heavy steel framework. The main array consists of 32 water barrels and water pan collection assemblies while each satellite array contains 8 barrels and collection assemblies (see Figure~\ref{fig:ADD_Collection_Assembly}. All barrels are of 30-gallon capacity and are connected by a 2~in. diameter hose to a 20~in. by 20~in. inverted square pyramid shaped stainless steel water collection pan above. In total, there are 48 total collection pans/barrels. Differential pressure transducers connect to the bottom of each water collection barrel via flexible tubing. The water level in a given barrel is determined by the head pressure measured by the transducer. The water collection rate is calculated based the change in head pressure over time. As Figure \ref{fig:Bin Numbers and Locations} shows, collection assemblies were arranged into 2~$\times$~2 arrays. Each collection barrel is uniquely numbered so that water flow data can be mapped to specific position. The barrels are connected to a pneumatic drain valve which could be actuated to drain each barrel at the conclusion of an experiment. 
@@ -291,10 +296,10 @@ To measure the water distribution throughout the compartment, a fire sprinkler s
 \begin{figure}[!ht]
 	\centering
 	\begin{tabular}{cc}
-		\subfloat[Collection Barrels]{\includegraphics[height = .3\columnwidth]{Figures/Water_Distribution/ADD2.jpg}} &
-		\subfloat[Collection Pans]{\includegraphics[height = .3\columnwidth]{Figures/Water_Distribution/ADDbottom3.jpg}} \\
+		\includegraphics[height = .3\columnwidth]{Figures/Water_Distribution/ADD2.jpg} &
+		\includegraphics[height = .3\columnwidth]{Figures/Water_Distribution/ADDbottom3.jpg} \\
 	\end{tabular}
-	\caption{ADD Collection Assembly}
+	\caption{ADD collection barrels (left) and ADD collection pans (right)}
 	\label{fig:ADD_Collection_Assembly}
 \end{figure}
 
@@ -307,7 +312,7 @@ To measure the water distribution throughout the compartment, a fire sprinkler s
 
 Prior to testing, data was collected to estimate the uncertainty associated with the water distribution measurements performed using the ADD apparatus. Each water collection assembly was filled to capacity while recording pressure transducer measurements as well as data from a calibrated turbine flowmeter (with less than 1~\% measurement uncertainty). Although the design of each water collection assembly is the same, the measurement performance across the entire apparatus varied. Overall, the 48 water collection assemblies reported an average accuracy of $\pm$ 2.4~gallons. This represents an uncertainty in total volume of $\pm$ 8~\% at full scale (30 gal).
 
-\subsubsection{Experimental Equipment}
+\subsection{Experimental Equipment}
 
 To ensure the data collected were applicable to the majority of the fire service, a representative set of nozzles types, specified flows/pressures, and hose sizes were used. These test variables are similar to those discussed in the air entrainment experiments and are shown in Table~\ref{tab:nozzles_used_detail}.
 
@@ -332,11 +337,11 @@ Line Size & Nozzle Type & Tip (in) & Nozzle Pressure (psi) & Approximate Flow Ra
 \end{tabular}
 \end{table}
 
-\subsection{Experiments Conducted}
+\section{Experiments Conducted}
 
 The water distribution experiments consisted of 84 tests that incorporated both interior and exterior fire attack utilizing the various nozzles and flow configurations. In each test, water flowed for approximately 1~min. in duration. The duration was dictated by the size of the collection barrels in the ADD apparatus. Each collection barrel was a total of 30 gallons. If a barrel overflowed, there would be an inability to determine the correct distribution of water flow. At the start of each test, there was an initial amount of water in the bottom of the barrel to ensure the sensors were able to record the water received during the testing. The total water in each barrel was determined by subtracting the initial water volume in each barrel from the final value. 
 
-\subsubsection{Interior Tests}
+\subsection{Interior Tests}
 \label{int_tests}
 The interior tests were designed to simulate a fire on the same floor as the attack crew. Suppression operations were conducted from the doorway adjoining the hallway to the test compartment. At this location, hose stream type, nozzle direction, and spray pattern were varied and the water distribution within the compartment was measured. The three nozzle directions, max angle ceiling, mid ceiling, and at wall are shown in Figure \ref{fig:Nozzle_Direction_Interior_Attack}. The max angle ceiling position was defined to be the steepest angle the nozzle could be without the stream being impacted by the soffit of the doorway. The mid ceiling position set the stream to hit the middle of the ceiling along the 14~ft 8~in. dimension. The third position, the wall position, was defined to have the stream hit the vertical midpoint of the wall adjacent to the doorway. Table~\ref{tab:Interior_Fire_Attack_Distribution_Experiments} lists the interior tests conducted.
 
@@ -391,7 +396,7 @@ Fog               & Mid Ceiling 		& O       & 100 & 125 \\
 
 \clearpage
 
-\subsubsection{Exterior Tests}
+\subsection{Exterior Tests}
 \label{ext_tests}
 
 The exterior testing included two attack positions; one attack was from the fire floor and the second was from the floor below the fire. These are referred to as first floor and second floor attacks. The movable staircase to allowed for the variation between first floor and second floor suppression through the same window vent. The exterior tests simulated a single room of fire in which an exterior attack was used. Similar to the interior testing, the hose stream type, the nozzle direction, and application pattern were varied for comparison. The differences in first floor and second floor attacks can been seen in Figures \ref{fig:Nozzle_Direction_Exterior_1st_Floor_Attack} and \ref{fig:Nozzle_Direction_Exterior_2nd_Floor_Attack}. 
@@ -490,9 +495,9 @@ Second & Fog                & Max Angle Ceiling      & Fixed/O                 &
 
 \clearpage
 
-\subsection{Analysis \& Results}
+\chapter{Results}
 
-The intent of the water flow testing was to determine the location of the water within the compartment as a function of several common fire service equipment configurations and application locations. Recall, the location of the water within the compartment was achieved using the ADD device (Section~\ref{sec:add_instrumentation}). To ensure that differences between water distributions within the compartment could be quantified, it was important to confirm the repeatability of the experimental setup. Four tests utilizing a straight stream nozzle flowing 150~gpm at 100~psi from a 1 3/4~in. hoseline from the exterior first floor position directed into the structure with a maximum angle were conducted to determine the variance in results. The total water in each of the 48 collection bins for the four replicate tests is shown in Figure~\ref{fig:Repeatability_Testing}. In the bar chart, bins with less than 8~gal. are colored blue, with more than 8~gal. but less than 16~gal. are colored green, with more than 16~gal. but less than 24~gal. are colored yellow, and bins with more than 24~gal. are colored red. 
+The intent of the water flow testing was to determine the location of the water within the compartment as a function of several common fire service equipment configurations and application locations. Recall, the location of the water within the compartment was achieved using the ADD device (Section~\ref{sec:add_instrumentation}). To ensure that differences between water distributions within the compartment could be quantified, it was important to confirm the repeatability of the experimental setup. Four tests utilizing a straight stream nozzle flowing 150~gpm at 100~psi from a 1 3/4~in. hoseline from the exterior first floor position directed into the structure with a maximum angle were conducted to determine the variance in results. The average flux (gpm/ft$^2$) of water in each of the 48 collection bins for the four replicate tests is shown in Figure~\ref{fig:Repeatability_Testing}. In the bar chart, bins with less than 3~gpm/ft$^2$ are colored blue, with more than 3~gpm/ft$^2$ but less than 6~gpm/ft$^2$ are colored green, with more than 6~gpm/ft$^2$ but less than 9~gpm/ft$^2$ are colored yellow, and bins with more than 9~gpm/ft$^2$ are colored red. 
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -501,31 +506,31 @@ The intent of the water flow testing was to determine the location of the water 
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-10_083305_Datafile_Rate_Straight_Stream_Exterior} &
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-10_083751_Datafile_Rate_Straight_Stream_Exterior} \\
 \end{tabular*}
-\caption{Water volume in each collection bin for a fixed exterior straight stream nozzle flowing 150~gpm at 100~psi from the first floor position directed into the structure with a maximum angle. The four bar charts are replicate tests of the same configuration}
+\caption{Water flux in each collection bin for a fixed exterior straight stream nozzle flowing 150~gpm at 100~psi from the first floor position directed into the structure with a maximum angle. The four bar charts are replicate tests of the same configuration}
 \label{fig:Repeatability_Testing}
 \end{figure}
 
-Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_Testing} look similar to one another. However, to better compare the tests, a statistical approach known as an analysis of variance (ANOVA), was performed. Specifically, the Kruskal-Willis one-way ANOVA test was applied. The goal of this analysis was to quantify whether samples (in this case the flow rate of water in each bin) originate from the same distribution (are the tests similar or different). The Kruskal-Willis analysis was selected because there is no prior assumption that the data is normally distributed. While this statistical analysis can compare $n$ number of data sets and identify if the data sets are statistically different, a limitation in all ANOVAs is the inability to identify which data sets are statistically different. The result of the ANOVA is a p-value. If the p-value is less than 0.05, the experiments being compared are statistically different. If the p-value is large, the experiments being compared are not statistically different.
+Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_Testing} look similar to one another. However, to better compare the tests, a statistical approach known as an analysis of variance (ANOVA), was performed. Specifically, the Kruskal-Willis one-way ANOVA test was applied. The goal of this analysis was to quantify whether samples (in this case the flow rate of water in each bin) originate from the same distribution (are the configurations compared similar or different). The Kruskal-Willis analysis was selected because there is no prior assumption that the data is normally distributed. While this statistical analysis can compare $n$ number of data sets and identify if the data sets are statistically different, a limitation in all ANOVAs is the inability to identify which data sets are statistically different. The result of the ANOVA is a p-value. If the p-value is less than 0.05, the experiments being compared are statistically different. If the p-value is large, the experiments being compared are not statistically different.
 
-For the straight stream experiments shown in Figure~\ref{fig:Repeatability_Testing}, two Kruskal-Willis ANOVA tests were applied; one was based on average flow rate of water into each collection bin and the other was based on total volume of water recorded in each bin. The resulting p-values were 0.822 and 0.627 for average flow rate and total volume respectively. The high p-values mean that the 4 straight stream flow patterns cannot be distinguished from one another. In other words, these experiments can be considered as repeatable.
+For the straight stream experiments shown in Figure~\ref{fig:Repeatability_Testing}, a Kruskal-Willis ANOVA test was applied based on average flow rate of water into each collection bin. The resulting p-value was 0.814 average water flux. The high p-value mean that the 4 straight stream flow patterns cannot be distinguished from one another. In other words, these experiments can be considered as repeatable.
 
 Confirmation of repeatability, allowed for the exploration of additional comparisons within the data. The three main comparisons were varying the hose stream type, varying the nozzle direction, and varying the flow pressure. The hose stream comparisons were designed to quantify the impact on water distribution from using a straight stream, smooth bore, or a narrow fog pattern. For the hose stream type comparisons, 6 configurations were analyzed. Within each configuration set, the nozzle direction, nozzle movement, and nozzle pressure/flow rate were fixed. Table~\ref{tab:add_hosestream} shows the results from the ANOVA test based on flow rate and total volume for each of the configurations tested.
 
 \begin{table}[!ht]
 \centering
-\footnotesize
-\caption{Assessment of Variation of Hose Stream Types}
+\small
+\caption{Variation of Hose Stream Types: Straight Stream, Smooth Bore Stream, Fog Stream}
 \label{tab:add_hosestream}
-\begin{tabular}{lccccc}
+\begin{tabular}{lccc}
 \toprule[1.5pt]
-Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Different \\ 
+Configuration & \# of Tests & P Value Rate & Different \\ 
 \midrule
- Interior, Mid Ceiling, Fixed Pattern             & 3          & 6.6E-07 & \checkmark & 2.3E-05 & \checkmark   \\
- Interior, Mid Ceiling, `O' Pattern               & 3          & 0.008   & \checkmark & 0.008   & \checkmark   \\
- 1st Floor Exterior, Max Angle Ceiling, Fixed Pattern  & 3          & 0.046   & \checkmark & 0.100   &    \\
- 2nd Floor Exterior, Max Angle Ceiling, Fixed Pattern  & 3          & 0.064   &            & 0.004   & \checkmark   \\
- 1st Floor Exterior, Max Angle Ceiling, Sweep Pattern  & 2          & 0.383   &            & 0.337   &    \\
- 2nd Floor Exterior, Max Angle Ceiling, Sweep Pattern  & 2          & 0.433   &            & 0.524   &    \\
+ Interior, Mid Ceiling, Fixed Pattern                  & 3          & 4.9E-08 & \checkmark \\
+ Interior, Mid Ceiling, `O' Pattern                    & 3          & 0.014   & \checkmark \\
+ 1st Floor Exterior, Max Angle Ceiling, Fixed Pattern  & 3          & 0.085   & \checkmark \\
+ 2nd Floor Exterior, Max Angle Ceiling, Fixed Pattern  & 3          & 0.090   & \checkmark \\
+ 1st Floor Exterior, Max Angle Ceiling, Sweep Pattern  & 2          & 0.308   &            \\
+ 2nd Floor Exterior, Max Angle Ceiling, Sweep Pattern  & 2          & 0.588   &            \\
 \bottomrule[1.25pt]
 \end{tabular}
 \end{table}
@@ -611,22 +616,22 @@ The second comparison was to quantify the impact of nozzle direction on water di
 
 \begin{table}[!ht]
 \centering
-\footnotesize
-\caption{Assessment of Variation of Nozzle Directions}
+\small
+\caption{Variation of Nozzle Directions}
 \label{tab:add_nozzleposition}
-\begin{tabular}{lccccc}
+\begin{tabular}{lccc}
 \toprule[1.5pt]
-Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Different \\ 
+Configuration & \# of Tests & P Value Rate & Different \\ 
 \midrule
- Interior, Smooth Bore, Fixed Pattern                  & 3          & 3.2E-04 & \checkmark & 2.2E-04 & \checkmark   \\
- Interior, Straight Stream, Fixed Pattern              & 3          & 3.0E-09 & \checkmark & 2.0E-08 & \checkmark   \\
- Interior, Smooth Bore, `O' Pattern                    & 3          & 2.0E-04 & \checkmark & 7.8E-05 & \checkmark   \\
- Interior, Straight Stream, `O' Pattern                & 3          & 3.6E-04 & \checkmark & 6.0E-04 & \checkmark   \\
- 1st Floor Exterior, Straight Stream, Fixed Pattern    & 5          & 2.8E-08 & \checkmark & 5.6E-08 & \checkmark   \\
- 1st Floor Exterior, Smooth Bore Fixed Pattern         & 5          & 1.0E-06 & \checkmark & 3.8E-06 & \checkmark   \\
- 2nd Floor Exterior, Straight Stream Fixed Pattern     & 5          & 2.3E-09 & \checkmark & 2.7E-09 & \checkmark   \\
- 2nd Floor Exterior, Smooth Bore Fixed Pattern         & 4          & 3.1E-06 & \checkmark & 6.9E-07 & \checkmark   \\
- 1st and 2nd Floor, Exterior, Straight Stream          & 2          & 0.143   &            & 0.157   &              \\
+ Interior, Smooth Bore, Fixed Pattern                  & 3          & 3.2E-04 & \checkmark  \\
+ Interior, Straight Stream, Fixed Pattern              & 3          & 3.0E-09 & \checkmark  \\
+ Interior, Smooth Bore, `O' Pattern                    & 3          & 2.0E-04 & \checkmark  \\
+ Interior, Straight Stream, `O' Pattern                & 3          & 3.6E-04 & \checkmark  \\
+ 1st Floor Exterior, Straight Stream, Fixed Pattern    & 5          & 2.8E-08 & \checkmark  \\
+ 1st Floor Exterior, Smooth Bore Fixed Pattern         & 5          & 1.0E-06 & \checkmark  \\
+ 2nd Floor Exterior, Straight Stream Fixed Pattern     & 5          & 2.3E-09 & \checkmark  \\
+ 2nd Floor Exterior, Smooth Bore Fixed Pattern         & 4          & 3.1E-06 & \checkmark  \\
+ 1st and 2nd Floor, Exterior, Straight Stream          & 2          & 0.143   &             \\
 \bottomrule[1.25pt]
 \end{tabular}
 \end{table}
@@ -751,19 +756,19 @@ The third set of analysis was to quantify the impact of pressure and flow rate o
 \begin{table}[!ht]
 \centering
 \footnotesize
-\caption{Assessment of Variation of Nozzle Pressure/Flowrate}
+\caption{Variation of Nozzle Pressure/Flowrate}
 \label{tab:add_pressure}
-\begin{tabular}{lccccc}
+\begin{tabular}{lccc}
 \toprule[1.5pt]
-Configuration & \# of Tests & P Value Rate & Different & P Value Volume & Different \\ 
+Configuration & \# of Tests & P Value Rate & Different \\ 
 \midrule
- Interior, Straight Stream, Mid Ceiling                  & 3   & 0.277   &            & 0.031   & \checkmark   \\
- Interior, Fog Stream, Mid Ceiling                       & 3   & 0.198   &            & 0.028   & \checkmark   \\
- 1st Floor Exterior, Smooth Bore, Max Angle Ceiling      & 3   & 0.750   &            & 0.451   &    \\
- 1st Floor Exterior Smooth Bore, Vary Tip Size           & 3   & 0.205   &            & 0.166   &    \\
- 1st Floor Exterior, Straight Stream, Max Angle Ceiling  & 2   & 0.971   &            & 0.134   &    \\
- 1st Floor Exterior, Varying Stream, Varying Hose Diameter & 2 & 0.491   &            & 0.883   &    \\
- 1st Floor Exterior, Smooth Bore, Varying Bail           & 2   & 9.2E-4  & \checkmark & 0.026   & \checkmark   \\
+ Interior, Straight Stream, Mid Ceiling                  & 3   & 0.277   &            \\
+ Interior, Fog Stream, Mid Ceiling                       & 3   & 0.198   &            \\
+ 1st Floor Exterior, Smooth Bore, Max Angle Ceiling      & 3   & 0.750   &            \\
+ 1st Floor Exterior Smooth Bore, Vary Tip Size           & 3   & 0.205   &            \\
+ 1st Floor Exterior, Straight Stream, Max Angle Ceiling  & 2   & 0.971   &            \\
+ 1st Floor Exterior, Varying Stream, Varying Hose Diameter & 2 & 0.491   &            \\
+ 1st Floor Exterior, Smooth Bore, Varying Bail           & 2   & 9.2E-4  & \checkmark \\
 
 \bottomrule[1.25pt]
 \end{tabular}
@@ -846,11 +851,11 @@ Bail Opening
 
 
 
-\section{Future Research Needs}
+\chapter{Future Research Needs}
 
 The water distribution data presented in this report is a one piece of the fire attack study. The intention of this report is to provide preliminary results and insight into the distribution of water within a compartment. The air entrainment data and full-scale fire testing data are currently undergoing analysis. Upon completion of the analysis, conclusions can be drawn and tactical considerations can be developed regarding each experimental series, the relationships between the series, and the project in its entirety.  
 
-\section{Summary}
+\chapter{Summary}
 
 The goal of the experiments was quantify water distributions within a room over a set of parameters typical the the fire service. 
 
@@ -864,10 +869,11 @@ The goal of the experiments was quantify water distributions within a room over 
 
 
 
-\section{Water Distribution Figures}
+\chapter{Water Distribution Figures}
 \label{app:Water_Distribution_Figures}
 
 \begin{table}[]
+\tiny
 \centering
 \caption{Theoretical vs. Experimental Water Differences}
 \label{Theoretical_vs._Experimental_Water_Differences}

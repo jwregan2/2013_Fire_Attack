@@ -39,13 +39,13 @@ for f in os.listdir(data_dir):
 			water_flow = 0
 			for i in range(1,49):
 				water_flow = data['Pressure_'+str(i)+'- Scaled'].iloc[k]+water_flow
-			if (water_flow - init_water) > 10:
+			if (water_flow - init_water) > 5:
 				break
 		for kk in range(len(data)):
 			water_flow = 0
 			for i in range(1,49):
 				water_flow = data['Pressure_'+str(i)+'- Scaled'].iloc[kk]+water_flow
-			if (final_water-water_flow) < 10:
+			if (final_water-water_flow) < 5:
 				break
 		if Test_Name == '15-12-08_104620_Datafile':
 			kk = 90

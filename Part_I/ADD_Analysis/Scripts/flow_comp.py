@@ -15,6 +15,9 @@ Exp_Des = pd.read_csv(info_file)
 Exp_Des = Exp_Des.set_index('Original_Test_Name')
 comp_file = '../Info/test_differences.csv'
 comp_des = pd.read_csv(comp_file)
+bin_file = '../Info/bin_map.csv'
+bin_data = pd.read_csv(bin_file)
+
 
 p_val_rate = []
 p_val_total = []
@@ -40,24 +43,22 @@ for ii in range(len(comp_des)):
 			water_flow = 0
 			for jj in range(1,49):
 				water_flow = globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Scaled'].iloc[k]+water_flow		
-			if (water_flow - init_water) > 10:
+			if (water_flow - init_water) > 5:
 				break
 		for kk in range(len(globals() ["data"+str(nn+1)])):
 			water_flow = 0
 			for jj in range(1,49):
 				water_flow = globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Scaled'].iloc[kk]+water_flow		
-			if (final_water-water_flow) < 10:
+			if (final_water-water_flow) < 5:
 				break
-		# print(kk-k)
 		for jj in range(1,49):	
 			globals() ["total_water_buckets_"+str(nn+1)].append(globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Scaled'].iloc[-1] - globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Scaled'].iloc[0])		
-			globals() ["rate_water_buckets_"+str(nn+1)].append(np.mean(globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Rate'].iloc[k:kk]))
-		globals() ["rate_water_buckets_"+str(nn+1)] = globals() ["rate_water_buckets_"+str(nn+1)]
-		globals() ["total_water_buckets_"+str(nn+1)] = globals() ["total_water_buckets_"+str(nn+1)]
+			globals() ["rate_water_buckets_"+str(nn+1)].append(globals() ["data"+str(nn+1)]['Pressure_'+str(jj)+'- Rate'].iloc[k:kk].mean())
+	
 	data_dict_rate = {}
 	data_dict_total = {}
 	for kk in range(num_tests):
-		data_dict_rate["rate_water_buckets_"+str(kk+1)] = globals() ["rate_water_buckets_"+str(kk+1)]
+		data_dict_rate["rate_water_buckets_"+str(kk+1)] = globals() ["rate_water_buckets_"+str(kk+1)]/bin_data['area']
 		data_dict_total["total_water_buckets_"+str(kk+1)] = globals() ["total_water_buckets_"+str(kk+1)]
 	
 	f_val_temp,p_val_temp1 = stats.kruskal(*data_dict_rate.values())
