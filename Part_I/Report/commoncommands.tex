@@ -36,10 +36,6 @@
 \usepackage{tikz}
 \usepackage[toc,page]{appendix}
 
-\usepackage{chngcntr}
-\counterwithin{table}{chapter}
-\counterwithin{figure}{chapter}
-
 \newcommand{\nopart}{\expandafter\def\csname Parent-1\endcsname{}} % To fix table of contents in pdf.
 
 \usepackage{siunitx}
@@ -83,6 +79,7 @@
 \setlength{\cftsubsecnumwidth}{0.5in}
 \setlength{\cftfignumwidth}{0.45in}
 \setlength{\cfttabnumwidth}{0.45in}
+\setlength{\parskip}{1em}
 
 \newcommand{\titlesigs}
 {
