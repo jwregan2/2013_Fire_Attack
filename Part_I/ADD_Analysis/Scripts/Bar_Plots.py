@@ -71,7 +71,9 @@ for f in os.listdir(data_dir):
 
 		cs = ["" for x in range(len(rate_water))]
 		for i in range(len(rate_water)):
-			if rate_water[i] <= 3:
+			if rate_water[i] <= 0.05:
+				cs[i] = 'grey'
+			elif rate_water[i] > 0.05 and rate_water[i] < 3:
 				cs[i] = 'b'
 			elif rate_water[i] > 3 and rate_water[i] <= 6:
 				cs[i] = 'g'
