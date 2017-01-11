@@ -2,7 +2,7 @@
 \input{commoncommands}
 
 % Rename chapter headings
-\renewcommand{\chaptername}{Section}
+\renewcommand{\chaptername}{}
 \renewcommand{\bibname}{References}
 
 \usepackage{fancyhdr}
@@ -223,8 +223,8 @@ Current fire training curriculum defines 3 fire attack methods: direct attack, i
 
 Fire suppression effectiveness and firefighter safety are not achieved by water flow rate alone, but by appropriate use of a given flow rate under specific fire ground conditions. A flow rate must meet the critical flow rate to extinguish a fire depending on the heat release rate and should be higher to reduce the time to extinguishment. Drastically exceeding the critical flow rate has less known impact on time to extinguishment but has a significant impact on the total amount of water used. To-date, there is little data to connect the critical flow rate to firefighter safety. However, it has been estimated that only 5 to 10 percent of water applied during fire attack contributes to extinguishment. It is difficult for firefighters to realize the the efficiency of various hose stream techniques due to poor visibility on the fireground. However, by developing data in realistic structures, fuel sources, and fire scenarios, important inferences may be developed relative to different hose stream techniques, and use of water.
 
-\paragraph{Hose Streams} \mbox{} %Only created paragraph so we have a heading to move this section around
-Hose streams, often titled ``Fire Streams'' in traditional fire service training manuals are defined many was however all with the same general theme. A hose stream is the pattern of water which exits a nozzle, supplied via a fire hose. The two main fire service nozzles are a combination nozzle and smoothbore nozzle. 
+\subsubsection*{Hose Streams} %Only created paragraph so we have a heading to move this section around
+Hose streams, often titled ``Fire Streams'' in traditional fire service training manuals are defined many was however all with the same general theme. A hose stream is the pattern of water which exits a nozzle, supplied via a fire hose. The two main fire service nozzles are a combination nozzle and smooth bore nozzle. 
 
 \chapter{Objectives}
 
@@ -508,7 +508,11 @@ Qualitatively, the array of bars in each chart in Figure~\ref{fig:Repeatability_
 
 For the straight stream experiments shown in Figure~\ref{fig:Repeatability_Testing}, a Kruskal-Willis ANOVA test was applied based on average flow rate of water into each collection bin. The resulting p-value was 0.902 average water flux. The high p-value means that the 4 straight stream flow patterns cannot be distinguished from one another. In other words, these experiments can be considered as repeatable.
 
-Confirmation of repeatability, allowed for the exploration of additional comparisons within the data. The three main comparisons were varying the hose stream type, varying the nozzle direction, and varying the flow pressure. The hose stream comparisons were designed to quantify the impact on water distribution from using a straight stream, smooth bore, or a narrow fog pattern. For the hose stream type comparisons, 6 configurations were analyzed. Within each configuration set, the nozzle direction, nozzle movement, and nozzle pressure/flow rate were fixed. Table~\ref{tab:add_hosestream} shows the results from the ANOVA test based on flow rate and total volume for each of the configurations tested.
+Confirmation of repeatability, allowed for the exploration of additional comparisons within the data. The three main comparison sets were variation of hose stream type, variation of nozzle direction, and variation of the flow pressure/flow rate. 
+
+\section{Comparison of Impact of Hose Stream Type}
+
+The hose stream type experiments were designed to quantify the distributions of water flux from a straight stream, smooth bore stream, and a narrow fog stream. Six configuration sets were analyzed. Within each configuration set, the nozzle direction, nozzle movement, and nozzle pressure/flow rate were fixed. Table~\ref{tab:add_hosestream} shows the results from the ANOVA test based on a comparison of the distribution of the average water flux (gpm/ft$^2$) within the compartment. The configuration column in the table provides the location (and floor) of the nozzle, the nozzle position, and the nozzle movement. Note that for the exterior water flow experiments with a sweep pattern, only a straight stream and smooth bore hose stream are compared. The pattern from a fog stream could typically encompass the entire window opening, depending on the size of the opening and the distance from the opening. In these experiments, the fog stream enclosed the window, therefore only a fixed pattern was studied. 
 
 \begin{table}[!ht]
 \centering
@@ -521,7 +525,7 @@ Configuration & \# of Tests & P Value Rate & Different \\
 \midrule
  Interior, Mid Ceiling, Fixed Pattern                  & 3          & 2.8E-06 & \checkmark \\
  Interior, Mid Ceiling, `O' Pattern                    & 3          & 1.0E-04 & \checkmark \\
- 1st Floor Exterior, Max Angle Ceiling, Fixed Pattern  & 3          & 0.050   & \checkmark \\
+ 1st Floor Exterior, Max Angle Ceiling, Fixed Pattern  & 3          & 0.051   &            \\
  2nd Floor Exterior, Max Angle Ceiling, Fixed Pattern  & 3          & 0.048   & \checkmark \\
  1st Floor Exterior, Max Angle Ceiling, Sweep Pattern  & 2          & 0.275   &            \\
  2nd Floor Exterior, Max Angle Ceiling, Sweep Pattern  & 2          & 0.501   &            \\
@@ -529,27 +533,32 @@ Configuration & \# of Tests & P Value Rate & Different \\
 \end{tabular}
 \end{table}
 
-The results of the statistical analysis identified that 4 of the 6 hose stream comparisons showed statistical difference in either the flow rate comparison, total volume comparison, or both. In the case of the interior tests, both the fixed pattern and `o' pattern showed statistical differences in both tests (Figures~\ref{fig:Interior_Varying_Nozzle_Types_Fixed_Pattern} and \ref{fig:Interior_Varying_Nozzle_Types_O_Pattern}). Comparison of the three streams in Figure~\ref{fig:Interior_Varying_Nozzle_Types_Fixed_Pattern}, shows that the fog stream had significantly lower volume of water at the edge bins along the wall opposite the doorway. For the interior test with the `o' pattern, the p-test values indicate that the data are different. The volume data in Figure~\ref{fig:Interior_Varying_Nozzle_Types_O_Pattern}, show that patterns along the wall opposite the doorway are similar. The smooth bore had water distributed along the window wall and wall opposite the window compared to the other two hose streams which had the water more concentrated along the wall opposite the doorway; leading to the statistical difference.
+The results of the statistical analysis identified that 4 of the 6 hose stream comparisons showed statistical difference between the distributions of average water flux. Here, statistical difference means that the resulting distributions likely originated from different sources. In other words, the hose streams that produced the water flux distributions are not the same. For the interior tests, both the fixed pattern and `O' pattern showed statistical differences (Figures~\ref{fig:Interior_Varying_Nozzle_Types_Fixed_Pattern} and \ref{fig:Interior_Varying_Nozzle_Types_O_Pattern}). 
+
+The distributions in Figure~~\ref{fig:Interior_Varying_Nozzle_Types_Fixed_Pattern} are similar in the the majority of the water flowed into the buckets opposite the doorway and these buckets all had rates greater than a typical residential sprinkler. For the straight stream and smooth bore stream the profile of water flux along the wall in fairly flat. In the case of the fog stream, the flux profile is parabolic with a peak flow at the center and minimums at the corners of the room. For the smooth bore stream, note that along the walls parallel to the flow, there are several buckets that exceed 0.05~gpm/ft$^2$, which the other two hose stream types do not produce. 
+
+Comparison of interior experiments with the `O' pattern also yielded a p-test value that indicates the streams are different. While the water flux data in Figure~\ref{fig:Interior_Varying_Nozzle_Types_O_Pattern}, shows increased water coverage within the compartment compared to a fixed stream, there are differences within the hose stream types. The straight stream and fog stream have more pronounced water flux at the corners of the room while the smooth bore steam has a flatter profile. The `O' pattern smooth bore stream has more floor coverage in excess of 0.05~gpm/ft$^2$ especially along the walls parallel to the stream direction.
+
 
 \begin{figure}[!ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_121955_Datafile_Rate_Straight_Stream_Interior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_123142_Datafile_Rate_Fog_Interior} \\
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_144839_Datafile_Rate_15_16in_Smooth_Bore_Interior} \\
 \end{tabular*}
 \centering
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_144839_Datafile_Rate_15_16in_Smooth_Bore_Interior}
-\caption{Water volume in each collection bin for interior fixed pattern flow at the mid-ceiling direction for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_123142_Datafile_Rate_Fog_Interior} \\
+\caption[Water Flux for Varying Fixed Pattern Hose Stream Types]{Water flux in each collection bin for interior fixed pattern flow at the mid-ceiling direction for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
 \label{fig:Interior_Varying_Nozzle_Types_Fixed_Pattern}
 \end{figure}
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_122551_Datafile_Rate_Straight_Stream_Interior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_123636_Datafile_Rate_Fog_Interior} \\
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_145534_Datafile_Rate_15_16in_Smooth_Bore_Interior} \\
 \end{tabular*}
 \centering
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_145534_Datafile_Rate_15_16in_Smooth_Bore_Interior}
-\caption{Water volume in each collection bin for interior `O' pattern flow at the mid-ceiling direction for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_123636_Datafile_Rate_Fog_Interior}
+\caption[Water Flux for Varying `O' Pattern Hose Stream Types]{Water volume in each collection bin for interior `O' pattern flow at the mid-ceiling direction for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
 \label{fig:Interior_Varying_Nozzle_Types_O_Pattern}
 \end{figure}
 
@@ -560,10 +569,10 @@ The statistical tests for the exterior, fixed pattern experiments at the max ang
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_113237_Datafile_Rate_Straight_Stream_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_121806_Datafile_Rate_Fog_Exterior} \\
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101028_Datafile_Rate_15_16in_Smooth_Bore_Exterior} \\
 \end{tabular*}
 \centering
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101028_Datafile_Rate_15_16in_Smooth_Bore_Exterior}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_121806_Datafile_Rate_Fog_Exterior}
 \caption{Water volume in each collection bin for exterior first floor fixed pattern flow at the max angle direction for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
 \label{fig:Exterior_FirstFloor_Fixed_Varying_Nozzle}
 \end{figure}
@@ -571,17 +580,17 @@ The statistical tests for the exterior, fixed pattern experiments at the max ang
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_145156_Datafile_Rate_Straight_Stream_Exterior} &
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_155751_Datafile_Rate_Fog_Exterior} \\
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_111118_Datafile_Rate_15_16in_Smooth_Bore_Exterior} \\
 \end{tabular*}
 \centering
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_111118_Datafile_Rate_15_16in_Smooth_Bore_Exterior}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_155751_Datafile_Rate_Fog_Exterior}
 \caption{Water volume in each collection bin for exterior second floor fixed pattern flow at the max angle direction for a straight stream (upper left), fog (upper right), and smooth bore (bottom middle) nozzle}
 \label{fig:Exterior_SecondFloor_Fixed_Varying_Nozzle}
 \end{figure}
 
 \clearpage
 
-Note that for the exterior water flow experiments with a sweep pattern, only a straight stream and smooth bore hose stream are compared. The stream from a fog pattern would typically encompass the ventilation opening, depending on the size of the opening and the distance from the opening. In these experiments, the fog stream enclosed the window, therefore only a fixed pattern was studied. The results from the statistical tests in Table~\ref{tab:add_hosestream}, indicate that the straight stream and smooth bore are likely similar in both rate and volume. Figures~\ref{fig:Exterior_FirstFloor_O_Varying_Nozzle} and \ref{fig:Exterior_SecondFloor_O_Varying_Nozzle} confirm the similarity in the total water distribution.
+The results from the statistical tests in Table~\ref{tab:add_hosestream}, indicate that the straight stream and smooth bore are likely similar in both rate and volume. Figures~\ref{fig:Exterior_FirstFloor_O_Varying_Nozzle} and \ref{fig:Exterior_SecondFloor_O_Varying_Nozzle} confirm the similarity in the total water distribution.
 
 \begin{figure}[ht]
 \begin{tabular*}{\textwidth}{lr}
@@ -603,7 +612,7 @@ Note that for the exterior water flow experiments with a sweep pattern, only a s
 \end{figure}
 
 
-\clearpage
+\section{Comparison of Impact of Nozzle Direction}
 
 
 The second comparison was to quantify the impact of nozzle direction on water distribution within the compartment. Referring back to Figures~\ref{fig:Nozzle_Direction_Interior_Attack}, \ref{fig:Nozzle_Direction_Exterior_1st_Floor_Attack}, and \ref{fig:Nozzle_Direction_Exterior_2nd_Floor_Attack} there are 3, 5, and 5 nozzle directions for the interior experiments, the exterior first floor experiments, and the exterior second floor experiments, respectively. Table~\ref{tab:add_nozzleposition} shows the p-test values average flow rate per collection bin and total volume per collection bin for the nozzle direction comparison experiments. In all comparisons of nozzle direction, there was enough variation in the flow rate and volume data for the results to be statistically different. For the case where the nozzle direction was the same, but the starting floor (first floor versus second floor) was varied the resulting was distributions was similar.
@@ -743,7 +752,7 @@ For the comparison of a first floor exterior stream to a second floor exterior s
 \label{fig:Exterior_First_Floor_Second_Floor}
 \end{figure}
 
-\clearpage
+\section{Comparison of Impact of Pressure and  Flow Rate}
 
 The third set of analysis was to quantify the impact of pressure and flow rate on water distribution within the compartment. Table~\ref{tab:add_pressure} shows the statistical comparison results for the rate of water accumulation distribution and total water volume distribution. Three comparisons examined the impact of changing water pressure: on a straight stream (Fig.~\ref{fig:Interior_Varying_Nozzle_Pressure_SS_Fixed_Pattern}), on a fog stream (Fig.~\ref{fig:Interior_Varying_Nozzle_Pressure_Fog_Fixed_Pattern}) and on a smooth bore stream (Fig.~\ref{fig:Exterior_First_Floor_Varying_Nozzle_Pressure_SB_Fixed_Pattern}). For each of these three hose streams, the statistical analysis of the distributions of flow rate revealed that varying pressure did not result in distinctly different bin fill rates. The p-values based on the volume distributions for the straight stream and fog stream did show statistical differences. However, a qualitative examination of the volume distributions in Figs.~\ref{fig:Interior_Varying_Nozzle_Pressure_SS_Fixed_Pattern} and \ref{fig:Interior_Varying_Nozzle_Pressure_Fog_Fixed_Pattern} shows the similar patterns as a function of pressure for the straight stream and smooth bore hose streams. The majority of the water accumulated along the wall opposite the doorway in all cases.
 

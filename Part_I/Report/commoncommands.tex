@@ -36,6 +36,10 @@
 \usepackage{tikz}
 \usepackage[toc,page]{appendix}
 
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{1em}{} 
+
 \newcommand{\nopart}{\expandafter\def\csname Parent-1\endcsname{}} % To fix table of contents in pdf.
 
 \usepackage{siunitx}
