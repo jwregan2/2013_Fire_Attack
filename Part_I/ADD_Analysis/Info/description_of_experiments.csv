@@ -1,100 +1,100 @@
-Original_Test_Name,Test_Number,Test_Config,Location,Vent_Configuration,Nozzle_Position,Nozzle_Pattern,Nozzle_Direction,Hose_Line_Size,Nozzle_Type,Tip_Size_(in),Nozzle_Pressure_(psi),Flow_Rate_(gpm),Notes,Actual_Flow,Flow_Correction,Pump_Setting
-15-04-13_103117_Datafile,0,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Fog,,100,125,,135 (~6 leak),1,67.6
-15-12-07_111118_Datafile,1,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,183,1,
-15-12-07_111820_Datafile,,ignore,,,,,,,,,,,,,,
-15-12-07_121014_Datafile,2,,Exterior,"Open Door, Open Window",Second Floor,Sweeping,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,183,1,
-15-12-07_122135_Datafile,3,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Mid Ceiling,1 3/4,Smooth Bore,15/16,50,180,,183,1,
-15-12-07_131316_Datafile,,ignore,,,,,,,,,,,,,,
-15-12-07_140034_Datafile,4,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Min Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,183,1,
-15-12-07_141333_Datafile,5,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Wall,1 3/4,Smooth Bore,15/16,50,180,,183,1,
-15-12-07_143141_Datafile,6,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore, 7/8,50,150,,171,1,
-15-12-07_143828_Datafile,7,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,1,50,210,,220,1,
-15-12-07_145156_Datafile,8,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,148,1,
-15-12-07_145842_Datafile,9,,Exterior,"Open Door, Open Window",Second Floor,Sweeping,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,148,1,
-15-12-07_150349_Datafile,10,,Exterior,"Open Door, Open Window",Second Floor,Wide Sweep,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,148,1,
-15-12-07_151001_Datafile,11,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Soffit,1 3/4,Straight Stream,,100,150,,148,1,
-15-12-07_151630_Datafile,12,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Mid Ceiling,1 3/4,Straight Stream,,100,150,,148,1,
-15-12-07_152028_Datafile,13,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Min Angle Ceiling,1 3/4,Straight Stream,,100,150,,148,1,
-15-12-07_155226_Datafile,14,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Wall,1 3/4,Straight Stream,,100,150,,148,1,
-15-12-07_155751_Datafile,15,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Fog,,100,150,Approx. 45 seconds,145,1,
-15-12-07_160438_Datafile,16,,Exterior,"Open Door, Open Window",Second Floor,Comb (Fixed then O),Max Angle Ceiling,1 3/4,Fog,,100,150,,145,1,
-15-12-08_101028_Datafile,17,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,188,1,
-15-12-08_101825_Datafile,18,,Exterior,"Open Door, Open Window",First Floor,Sweeping,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,188,1,
-15-12-08_102402_Datafile,,ignore,,,,,,,,,,,,,,
-15-12-08_102802_Datafile,19,,Exterior,"Open Door, Open Window",First Floor,Fixed,Mid Ceiling,1 3/4,Smooth Bore,15/16,50,180,,188,1,
-15-12-08_103414_Datafile,20,,Exterior,"Open Door, Open Window",First Floor,Fixed,Min Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,188,1,
-15-12-08_104150_Datafile,21,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Wall,1 3/4,Smooth Bore,15/16,50,180,,188,1,
-15-12-08_104620_Datafile,22,,Exterior,"Open Door, Open Window",First Floor,Fixed,At Wall ,1 3/4,Smooth Bore,15/16,50,180,Disregard data beyond 1:30,188,1,
-15-12-08_105851_Datafile,23,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore, 7/8,50,150,,168,1,
-15-12-08_110730_Datafile,24,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,1,50,210,,218,1,
-15-12-08_113237_Datafile,25,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,149,1,
-15-12-08_113716_Datafile,26,,Exterior,"Open Door, Open Window",First Floor,Sweeping,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,149,1,
-15-12-08_114309_Datafile,27,,Exterior,"Open Door, Open Window",First Floor,Wide Sweep,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,149,1,
-15-12-08_114905_Datafile,28,,Exterior,"Open Door, Open Window",First Floor,Fixed,Mid Ceiling,1 3/4,Straight Stream,,100,150,,149,1,
-15-12-08_120311_Datafile,29,,Exterior,"Open Door, Open Window",First Floor,Fixed,Min Angle Ceiling,1 3/4,Straight Stream,,100,150,,149,1,
-15-12-08_121011_Datafile,30,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Wall,1 3/4,Straight Stream,,100,150,,149,1,
-15-12-08_121425_Datafile,31,,Exterior,"Open Door, Open Window",First Floor,Fixed,At Wall,1 3/4,Straight Stream,,100,150,,149,1,
-15-12-08_121806_Datafile,32,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Fog,,100,150,,149,1,
-15-12-08_122239_Datafile,33,,Exterior,"Open Door, Open Window",First Floor,Comb (SS then Fog O),Max Angle Ceiling,1 3/4,Fog,,100,150,,149,1,
-15-12-08_140501_Datafile,34,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,2 1/2,Straight Stream,,100,250,,238,1,
-15-12-08_142655_Datafile,35,,Exterior,"Open Door, Open Window",First Floor,Fixed,Min Angle Ceiling,2 1/2,Straight Stream,,100,250,,238,1,
-15-12-08_144238_Datafile,36,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,2 1/2,Smooth Bore,1 1/4,50,260,,266,1,
-15-12-08_151308_Datafile,37,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,15 seconds,150,1,
-15-12-08_151603_Datafile,38,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,30 seconds,150,1,
-15-12-08_151902_Datafile,39,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,45 seconds,150,1,
-15-12-08_152446_Datafile,40,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,60 seconds,150,1,
-15-12-08_152906_Datafile,41,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,Bail Cracked Open (1/2),76,0.506,
-15-12-08_153737_Datafile,42,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,Bail Cracked Open (1/2),195,0.528,
-15-12-08_154306_Datafile,43,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,30,150,,152,1,
-15-12-08_154812_Datafile,44,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,15,130,,127,1,
-15-12-08_155710_Datafile,,ignore,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,10,100,,90,1,
-15-12-08_160630_Datafile,45,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,50,150,,172,1,
-15-12-08_161540_Datafile,46,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,75,60,,65,1,
-15-12-08_162126_Datafile,47,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,50,185,,195,1,
-15-12-08_162547_Datafile,48,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,25,130,Approx. 30 seconds,134,1,
-15-12-09_101601_Datafile,49,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Straight Stream,,100,125,,159 (~33 leak),1,69
-15-12-09_102308_Datafile,50,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Straight Stream,,100,125,,135 (~6 leak),1,67.6
-15-12-09_102830_Datafile,51,,Interior,"Open Door, Open Window",At Door,Z,Mid Ceiling,1 3/4,Straight Stream,,100,125,,135 (~6 leak),1,67.6
-15-12-09_103306_Datafile,52,,Interior,"Open Door, Open Window",At Door,T,Mid Ceiling,1 3/4,Straight Stream,,100,125,,135 (~6 leak),1,67.6
-15-12-09_103649_Datafile,53,,Interior,"Open Door, Open Window",At Door,Inverted U,Mid Ceiling,1 3/4,Straight Stream,,100,125,,135 (~6 leak),1,67.6
-15-12-09_104315_Datafile,54,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Fog,,100,125,,135 (~6 leak),1,67.6
-15-12-09_104806_Datafile,,ignore,,,,,,,,,,,,,,
-15-12-09_112850_Datafile,55,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Straight Stream,,100,150,,161 (~6 leak),1,70.5
-15-12-09_113335_Datafile,56,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Straight Stream,,100,150,,161 (~6 leak),1,70.5
-15-12-09_113802_Datafile,57,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Fog,,100,150,,161 (~6 leak),1,70.5
-15-12-09_114240_Datafile,58,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Fog,,100,150,,161 (~6 leak),1,70.5
-15-12-09_115707_Datafile,59,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Straight Stream,,75,150,,157 (~6 leak),1,64.7
-15-12-09_120229_Datafile,60,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Straight Stream,,75,150,,157 (~6 leak),1,64.7
-15-12-09_120821_Datafile,61,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Fog,,75,150,,157 (~6 leak),1,64.7
-15-12-09_121309_Datafile,62,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Fog,,75,150,,157 (~6 leak),1,64.7
-15-12-09_121955_Datafile,63,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Straight Stream,,50,150,,171 (~6 leak),1,61.2
-15-12-09_122551_Datafile,64,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Straight Stream,,50,150,,171 (~6 leak),1,61.2
-15-12-09_123142_Datafile,65,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Fog,,50,150,,171 (~6 leak),1,61.2
-15-12-09_123636_Datafile,66,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Fog,,50,150,,171 (~6 leak),1,61.2
-15-12-09_142948_Datafile,67,,Interior,"Open Door, Open Window",At Door,Fixed,At Wall,1 3/4,Smooth Bore,15/16,50,180,,191,1,66.1
-15-12-09_143335_Datafile,,ignore,,,,,,,,,,,,,,
-15-12-09_143524_Datafile,,ignore,,,,,,,,,,,,,,
-15-12-09_144524_Datafile,68,,Interior,"Open Door, Open Window",At Door ,O,At Wall,1 3/4,Smooth Bore,15/16,50,180,,191,1,66.1
-15-12-09_144839_Datafile,69,,Interior,"Open Door, Open Window",At Door ,Fixed,Mid Ceiling,1 3/4,Smooth Bore,15/16,50,180,,191,1,66.1
-15-12-09_145534_Datafile,70,,Interior,"Open Door, Open Window",At Door ,O,Mid Ceiling,1 3/4,Smooth Bore,15/16,50,180,,191,1,66.1
-15-12-09_145932_Datafile,71,,Interior,"Open Door, Open Window",At Door ,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,191,1,66.1
-15-12-09_150300_Datafile,72,,Interior,"Open Door, Open Window",At Door ,O,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,191,1,66.1
-15-12-09_151401_Datafile,73,,Interior,"Open Door, Open Window",At Door ,Fixed,At Wall,1 3/4,Straight Stream,,100,150,,161,1,71.5
-15-12-09_151823_Datafile,74,,Interior,"Open Door, Open Window",At Door ,O,At Wall,1 3/4,Straight Stream,,100,150,,161,1,71.5
-15-12-09_152435_Datafile,75,,Interior,"Open Door, Open Window",At Door ,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,161,1,71.5
-15-12-09_153038_Datafile,76,,Interior,"Open Door, Open Window",At Door ,O,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,161,1,71.5
-15-12-09_153557_Datafile,,ignore,,,,,,,,,,,,,,
-15-12-09_154257_Datafile,,ignore,Interior,Triple Lindy,Triple Lindy,Triple Lindy,Triple Lindy,1 3/4,Straight Stream,,100,150,,161,1,71.5
-15-12-09_154846_Datafile,,ignore,Interior,"Open Door, Open Window",At Hall Entrance,O,At Wall,1 3/4,Straight Stream,,100,150,,161,1,71.5
-15-12-09_155406_Datafile,,ignore,Interior,"Open Door, Open Window",At Hall Entrance,Z,At Wall,1 3/4,Straight Stream,,100,150,,161,1,71.5
-15-12-09_160336_Datafile,,ignore,Interior,"Open Door, Open Window",At Hall Entrance,Pulsing,At Ceiling,1 3/4,Straight Stream,,100,150,,161,1,71.5
-15-12-10_082039_Datafile,77,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,165 (~11 leak),1,70.4
-15-12-10_082423_Datafile,78,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,165 (~11 leak),1,70.4
-15-12-10_083305_Datafile,79,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,165 (~11 leak),1,70.4
-15-12-10_083751_Datafile,80,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,165 (~11 leak),1,70.4
-15-12-10_084506_Datafile,81,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,75,150,,138 (~10 leak),1,59.7
-15-12-10_084944_Datafile,82,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,50,150,,113 (~8.5 leak),1,49.6
-15-12-10_085408_Datafile,83,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,25,150,,80 (~6 leak),1,36.6
-15-12-10_122043_Datafile,,ignore,Exterior,Fire w/ 2 cribs & 32 oz heptane,First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,165 (~15 leak),1,70.9
-15-12-10_132600_Datafile,,ignore,Interior,Fire w/ 2 cribs & 32 oz heptane,At Door,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,165 (~15 leak),1,70.9
-15-12-10_160724_Datafile,,ignore,Exterior,"Open Door, Open Window",First Floor,Fixed ,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,,1,
+Original_Test_Name,Test_Number,Test_Config,Location,Vent_Configuration,Nozzle_Position,Nozzle_Pattern,Nozzle_Direction,Hose_Line_Size,Nozzle_Type,Tip_Size_(in),Nozzle_Pressure_(psi),Flow_Rate_(gpm),Notes,Actual_Flow,Actual_Flow_With_Leak,Flow_Correction,Pump_Setting
+15-04-13_103117_Datafile,,ignore,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Fog,,100,125,,129,135 (~6 leak),1,67.6
+15-12-07_111118_Datafile,0,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,183,183,1,
+15-12-07_111820_Datafile,,ignore,,,,,,,,,,,,,,,
+15-12-07_121014_Datafile,1,,Exterior,"Open Door, Open Window",Second Floor,Sweeping,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,183,183,1,
+15-12-07_122135_Datafile,2,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Mid Ceiling,1 3/4,Smooth Bore,15/16,50,180,,183,183,1,
+15-12-07_131316_Datafile,,ignore,,,,,,,,,,,,,,,
+15-12-07_140034_Datafile,3,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Min Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,183,183,1,
+15-12-07_141333_Datafile,4,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Wall,1 3/4,Smooth Bore,15/16,50,180,,183,183,1,
+15-12-07_143141_Datafile,5,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore, 7/8,50,150,,171,171,1,
+15-12-07_143828_Datafile,6,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,1,50,210,,220,220,1,
+15-12-07_145156_Datafile,7,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,148,148,1,
+15-12-07_145842_Datafile,8,,Exterior,"Open Door, Open Window",Second Floor,Sweeping,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,148,148,1,
+15-12-07_150349_Datafile,9,,Exterior,"Open Door, Open Window",Second Floor,Wide Sweep,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,148,148,1,
+15-12-07_151001_Datafile,10,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Soffit,1 3/4,Straight Stream,,100,150,,148,148,1,
+15-12-07_151630_Datafile,11,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Mid Ceiling,1 3/4,Straight Stream,,100,150,,148,148,1,
+15-12-07_152028_Datafile,12,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Min Angle Ceiling,1 3/4,Straight Stream,,100,150,,148,148,1,
+15-12-07_155226_Datafile,13,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Wall,1 3/4,Straight Stream,,100,150, ,148,148,1,
+15-12-07_155751_Datafile,14,,Exterior,"Open Door, Open Window",Second Floor,Fixed,Max Angle Ceiling,1 3/4,Fog,,100,150,Approx. 45 seconds,145,145,1,
+15-12-07_160438_Datafile,15,,Exterior,"Open Door, Open Window",Second Floor,Comb (Fixed then O),Max Angle Ceiling,1 3/4,Fog,,100,150,,145,145,1,
+15-12-08_101028_Datafile,16,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,188,188,1,
+15-12-08_101825_Datafile,17,,Exterior,"Open Door, Open Window",First Floor,Sweeping,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,188,188,1,
+15-12-08_102402_Datafile,,ignore,,,,,,,,,,,,,,,
+15-12-08_102802_Datafile,18,,Exterior,"Open Door, Open Window",First Floor,Fixed,Mid Ceiling,1 3/4,Smooth Bore,15/16,50,180,,188,188,1,
+15-12-08_103414_Datafile,19,,Exterior,"Open Door, Open Window",First Floor,Fixed,Min Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,188,188,1,
+15-12-08_104150_Datafile,20,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Wall,1 3/4,Smooth Bore,15/16,50,180,,188,188,1,
+15-12-08_104620_Datafile,21,,Exterior,"Open Door, Open Window",First Floor,Fixed,At Wall ,1 3/4,Smooth Bore,15/16,50,180,Disregard data beyond 1:30,188,188,1,
+15-12-08_105851_Datafile,22,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore, 7/8,50,150,,168,168,1,
+15-12-08_110730_Datafile,23,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,1,50,210,,218,218,1,
+15-12-08_113237_Datafile,24,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,149,149,1,
+15-12-08_113716_Datafile,25,,Exterior,"Open Door, Open Window",First Floor,Sweeping,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,149,149,1,
+15-12-08_114309_Datafile,26,,Exterior,"Open Door, Open Window",First Floor,Wide Sweep,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,149,149,1,
+15-12-08_114905_Datafile,27,,Exterior,"Open Door, Open Window",First Floor,Fixed,Mid Ceiling,1 3/4,Straight Stream,,100,150,,149,149,1,
+15-12-08_120311_Datafile,28,,Exterior,"Open Door, Open Window",First Floor,Fixed,Min Angle Ceiling,1 3/4,Straight Stream,,100,150,,149,149,1,
+15-12-08_121011_Datafile,29,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Wall,1 3/4,Straight Stream,,100,150,,149,149,1,
+15-12-08_121425_Datafile,30,,Exterior,"Open Door, Open Window",First Floor,Fixed,At Wall,1 3/4,Straight Stream,,100,150,,149,149,1,
+15-12-08_121806_Datafile,31,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Fog,,100,150,,149,149,1,
+15-12-08_122239_Datafile,32,,Exterior,"Open Door, Open Window",First Floor,Comb (SS then Fog O),Max Angle Ceiling,1 3/4,Fog,,100,150,,149,149,1,
+15-12-08_140501_Datafile,33,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,2 1/2,Straight Stream,,100,250,,238,238,1,
+15-12-08_142655_Datafile,34,,Exterior,"Open Door, Open Window",First Floor,Fixed,Min Angle Ceiling,2 1/2,Straight Stream,,100,250,,238,238,1,
+15-12-08_144238_Datafile,35,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,2 1/2,Smooth Bore,1 1/4,50,260,,266,266,1,
+15-12-08_151308_Datafile,36,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,15 seconds,150,150,1,
+15-12-08_151603_Datafile,37,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,30 seconds,150,150,1,
+15-12-08_151902_Datafile,38,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,45 seconds,150,150,1,
+15-12-08_152446_Datafile,39,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,60 seconds,150,150,1,
+15-12-08_152906_Datafile,40,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,Bail Cracked Open (1/2),76,76,1,
+15-12-08_153737_Datafile,41,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,Bail Cracked Open (1/2),195,195,0.528,
+15-12-08_154306_Datafile,42,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,30,150,,152,152,1,
+15-12-08_154812_Datafile,43,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,15,130,,127,127,1,
+15-12-08_155710_Datafile,,ignore,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,10,100,,90,90,1,
+15-12-08_160630_Datafile,44,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,50,150,,172,172,1,
+15-12-08_161540_Datafile,45,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,75,60,,65,65,1,
+15-12-08_162126_Datafile,46,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,50,185,,195,195,1,
+15-12-08_162547_Datafile,47,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,25,130,Approx. 30 seconds,134,134,1,
+15-12-09_101601_Datafile,48,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Straight Stream,,100,125,,126,159 (~33 leak),1,69
+15-12-09_102308_Datafile,49,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Straight Stream,,100,125,,129,135 (~6 leak),1,67.6
+15-12-09_102830_Datafile,50,,Interior,"Open Door, Open Window",At Door,Z,Mid Ceiling,1 3/4,Straight Stream,,100,125,,129,135 (~6 leak),1,67.6
+15-12-09_103306_Datafile,51,,Interior,"Open Door, Open Window",At Door,T,Mid Ceiling,1 3/4,Straight Stream,,100,125,,129,135 (~6 leak),1,67.6
+15-12-09_103649_Datafile,52,,Interior,"Open Door, Open Window",At Door,Inverted U,Mid Ceiling,1 3/4,Straight Stream,,100,125,,129,135 (~6 leak),1,67.6
+15-12-09_104315_Datafile,53,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Fog,,100,125,,129,135 (~6 leak),1,67.6
+15-12-09_104806_Datafile,,ignore,,,,,,,,,,,,,,,
+15-12-09_112850_Datafile,54,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Straight Stream,,100,150,,155,161 (~6 leak),1,70.5
+15-12-09_113335_Datafile,55,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Straight Stream,,100,150,,155,161 (~6 leak),1,70.5
+15-12-09_113802_Datafile,56,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Fog,,100,150,,155,161 (~6 leak),1,70.5
+15-12-09_114240_Datafile,57,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Fog,,100,150,,155,161 (~6 leak),1,70.5
+15-12-09_115707_Datafile,58,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Straight Stream,,75,150,,151,157 (~6 leak),1,64.7
+15-12-09_120229_Datafile,59,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Straight Stream,,75,150,,151,157 (~6 leak),1,64.7
+15-12-09_120821_Datafile,60,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Fog,,75,150,,151,157 (~6 leak),1,64.7
+15-12-09_121309_Datafile,61,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Fog,,75,150,,151,157 (~6 leak),1,64.7
+15-12-09_121955_Datafile,62,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Straight Stream,,50,150,,165,171 (~6 leak),1,61.2
+15-12-09_122551_Datafile,63,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Straight Stream,,50,150,,165,171 (~6 leak),1,61.2
+15-12-09_123142_Datafile,64,,Interior,"Open Door, Open Window",At Door,Fixed,Mid Ceiling,1 3/4,Fog,,50,150,,165,171 (~6 leak),1,61.2
+15-12-09_123636_Datafile,65,,Interior,"Open Door, Open Window",At Door,O,Mid Ceiling,1 3/4,Fog,,50,150,,165,171 (~6 leak),1,61.2
+15-12-09_142948_Datafile,66,,Interior,"Open Door, Open Window",At Door,Fixed,At Wall,1 3/4,Smooth Bore,15/16,50,180,,191,191,1,66.1
+15-12-09_143335_Datafile,,ignore,,,,,,,,,,,,,,,
+15-12-09_143524_Datafile,,ignore,,,,,,,,,,,,,,,
+15-12-09_144524_Datafile,67,,Interior,"Open Door, Open Window",At Door ,O,At Wall,1 3/4,Smooth Bore,15/16,50,180,,191,191,1,66.1
+15-12-09_144839_Datafile,68,,Interior,"Open Door, Open Window",At Door ,Fixed,Mid Ceiling,1 3/4,Smooth Bore,15/16,50,180,,191,191,1,66.1
+15-12-09_145534_Datafile,69,,Interior,"Open Door, Open Window",At Door ,O,Mid Ceiling,1 3/4,Smooth Bore,15/16,50,180,,191,191,1,66.1
+15-12-09_145932_Datafile,70,,Interior,"Open Door, Open Window",At Door ,Fixed,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,191,191,1,66.1
+15-12-09_150300_Datafile,71,,Interior,"Open Door, Open Window",At Door ,O,Max Angle Ceiling,1 3/4,Smooth Bore,15/16,50,180,,191,191,1,66.1
+15-12-09_151401_Datafile,72,,Interior,"Open Door, Open Window",At Door ,Fixed,At Wall,1 3/4,Straight Stream,,100,150,,161,161,1,71.5
+15-12-09_151823_Datafile,73,,Interior,"Open Door, Open Window",At Door ,O,At Wall,1 3/4,Straight Stream,,100,150,,161,161,1,71.5
+15-12-09_152435_Datafile,74,,Interior,"Open Door, Open Window",At Door ,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,161,161,1,71.5
+15-12-09_153038_Datafile,75,,Interior,"Open Door, Open Window",At Door ,O,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,161,161,1,71.5
+15-12-09_153557_Datafile,,ignore,,,,,,,,,,,,,,,
+15-12-09_154257_Datafile,,ignore,Interior,Triple Lindy,Triple Lindy,Triple Lindy,Triple Lindy,1 3/4,Straight Stream,,100,150,,161,161,1,71.5
+15-12-09_154846_Datafile,,ignore,Interior,"Open Door, Open Window",At Hall Entrance,O,At Wall,1 3/4,Straight Stream,,100,150,,161,161,1,71.5
+15-12-09_155406_Datafile,,ignore,Interior,"Open Door, Open Window",At Hall Entrance,Z,At Wall,1 3/4,Straight Stream,,100,150,,161,161,1,71.5
+15-12-09_160336_Datafile,,ignore,Interior,"Open Door, Open Window",At Hall Entrance,Pulsing,At Ceiling,1 3/4,Straight Stream,,100,150,,161,161,1,71.5
+15-12-10_082039_Datafile,76,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,154,165 (~11 leak),1,70.4
+15-12-10_082423_Datafile,77,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,154,165 (~11 leak),1,70.4
+15-12-10_083305_Datafile,78,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,154,165 (~11 leak),1,70.4
+15-12-10_083751_Datafile,79,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,154,165 (~11 leak),1,70.4
+15-12-10_084506_Datafile,80,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,75,150,,128,138 (~10 leak),1,59.7
+15-12-10_084944_Datafile,81,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,50,150,,104.5,113 (~8.5 leak),1,49.6
+15-12-10_085408_Datafile,82,,Exterior,"Open Door, Open Window",First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,25,150,,74,80 (~6 leak),1,36.6
+15-12-10_122043_Datafile,,ignore,Exterior,Fire w/ 2 cribs & 32 oz heptane,First Floor,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,150,165 (~15 leak),1,70.9
+15-12-10_132600_Datafile,,ignore,Interior,Fire w/ 2 cribs & 32 oz heptane,At Door,Fixed,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,150,165 (~15 leak),1,70.9
+15-12-10_160724_Datafile,,ignore,Exterior,"Open Door, Open Window",First Floor,Fixed ,Max Angle Ceiling,1 3/4,Straight Stream,,100,150,,,,1,
