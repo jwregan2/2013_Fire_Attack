@@ -58,7 +58,7 @@ for f in os.listdir(data_dir):
 			kk = 90
 		for i in range(1,49):
 			total_water_exp_temp = (data['Pressure_'+str(i)+'- Scaled'].iloc[kk] - data['Pressure_'+str(i)+'- Scaled'].iloc[k]) + total_water_exp_temp
-		total_water_theo_temp = Exp_Des['Flow_Rate_(gpm)'][Test_Name]*((kk-k)/60)*Exp_Des['Flow_Correction'][Test_Name]
+		total_water_theo_temp = Exp_Des['Actual_Flow'][Test_Name]*((kk-k)/60)*Exp_Des['Flow_Correction'][Test_Name]
 		percent_diff.append(round(100*abs(total_water_exp_temp-total_water_theo_temp)/total_water_theo_temp,2))
 
 		total_water_exp.append(total_water_exp_temp)

@@ -17,8 +17,8 @@ Number_of_Tests,Experiments_To_Compare,Name
 2,15-12-08_113237|15-12-07_145156,Position First Floor Second Floor
 3,15-12-09_112850|15-12-09_115707|15-12-09_121955,Pressure SS Interior Fixed
 3,15-12-09_113802|15-12-09_120821|15-12-09_123142,Pressure Fog Interior Fixed
-2,15-12-08_160630|15-12-08_162126,Flowrate SS Exterior Fixed
+3,15-12-08_160630|15-12-08_162126|15-12-08_113237,Flowrate SS Exterior Fixed Disc
 3,15-12-08_101028|15-12-08_153737|15-12-08_154306,Pressure Smooth Bore Exterior Fixed
 3,15-12-07_111118|15-12-07_143141|15-12-07_143828,Tip Size Smooth Bore Exterior Fixed
-2,15-12-08_140501|15-12-08_144238,Hose Diameter
-2,15-12-08_103414|15-12-08_153737,Bail Opening
+2,15-12-08_101028|15-12-08_144238,Hose Diameter
+2,15-12-08_101028|15-12-08_153737,Bail Opening
