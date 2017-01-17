@@ -98,8 +98,6 @@ for f in os.listdir(data_dir):
 
 		row_num = 6
 		col_num = 8
-		ticksx = np.arange(0, col_num, 1)
-		ticksy = np.arange(0, row_num, 1)
 		column_names = ['1','2','3','4','5','6','7','8']
 		row_names = ['1','2','3','4','5','6']
 
@@ -107,6 +105,10 @@ for f in os.listdir(data_dir):
 		ax = fig.add_subplot(111, projection='3d')
 		ax.bar3d(X, Y, np.zeros(len(rate_water)), dx, dy, rate_water, zsort='max',color=cs)
 		ax.view_init(elev=48., azim=-160)
+		ticksx = np.arange(1.3, 9, 1)
+		plt.xticks(ticksx, column_names)
+		ticksy = np.arange(1.25, 7, 1)
+		plt.yticks(ticksy, row_names)
 		ax.text(15, 4.5, 8.5,Test_Name2, horizontalalignment='left', verticalalignment='bottom')
 		ax.text(15, 4.5, 7,Hoseline_Size + ',' + ' ' + Nozzle_Setting, horizontalalignment='left', verticalalignment='bottom')
 		ax.text(15, 4.5, 5.5,Nozzle_Position, horizontalalignment='left', verticalalignment='bottom')
