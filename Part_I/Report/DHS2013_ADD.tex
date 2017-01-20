@@ -12,6 +12,10 @@
 \chead{}
 \renewcommand{\headrulewidth}{0pt}
 
+% \usepackage{draftwatermark}
+% \SetWatermarkText{DRAFT}
+% \SetWatermarkScale{1}
+
 \begin{document}
 \pagenumbering{gobble}
 
@@ -341,7 +345,7 @@ The hose was affixed to the prop with `U' bolts and locking nuts to ensure the h
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=.4\columnwidth]{Figures/Air_Entrainment/Old_Gib} 
-\includegraphics[width=.4\columnwidth]{Figures/Air_Entrainment/Old_Gib_1} \\
+\includegraphics[width=.35\columnwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_Setup_SS} \\
 \caption{Nozzle Prop in Use}
 \label{fig:Nozzle_Prop_in_Use}
 \end{figure}
@@ -903,7 +907,7 @@ Stream dispersion is dependent on the angle of impact. When the angle of impact 
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_AtWall_SB_Arrows.png}
+\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_AtWall_SB_Arrows}
 \caption[Water Dispersion Straight Stream 90$^{\circ}$ Impact Angle]{Water dispersion of straight stream impacting a wall at an approximate 90$^{\circ}$ angle.}
 \label{fig:90DegreeImpact}
 \end{figure}
@@ -912,7 +916,7 @@ For the cases where the stream was aimed at the ceiling, a 90$^{\circ}$ angle co
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MaxAngleCeiling_SS_Arrows.png} 
+\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MaxAngleCeiling_SS_Arrows} 
 \caption[Water Dispersion Straight Stream Max Angle Ceiling]{Water dispersion of straight stream impacting a ceiling at the maximum angle.}
 \label{fig:MaxAngleCeilingImpact}
 \end{figure}
@@ -921,14 +925,14 @@ As the angle between the stream and ceiling decreased (stream became more parall
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SS_Arrows.png}
+\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SS_Arrows}
 \caption[Water Dispersion Straight Stream Middle Position Ceiling]{Water dispersion of straight stream impacting a ceiling at the middle position.}
 \label{fig:MidCeilingImpact}
 \end{figure}
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MinAngleCeiling_SS_FirstFloor_Arrows.png}
+\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MinAngleCeiling_SS_FirstFloor_Arrows}
 \caption[Water Dispersion Straight Stream Minimum Angle Ceiling]{Water dispersion of straight stream impacting a ceiling at the minimum angle.}
 \label{fig:MinAngleCeilingImpact}
 \end{figure}
@@ -938,8 +942,8 @@ Figure \ref{fig:Mid_Ceiling_Dispersion} provides a mid ceiling nozzle position v
 \begin{figure}[!ht]
 \centering
 \centering
-\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SB_FirstFloor_Under.png} \\
-\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SS_FirstFloor_Under.png}
+\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SB_FirstFloor_Under} \\
+\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SS_FirstFloor_Under}
 \caption[Water Dispersion for Smooth Bore Stream and Straight Stream at Mid Ceiling]{Dispersion at the  mid ceiling nozzle position from below for a smooth bore stream (top) and straight stream (bottom).}
 \label{fig:Mid_Ceiling_Dispersion}
 \end{figure}
@@ -948,14 +952,14 @@ Although the shape of the stream when it hits the surface has some impact on the
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MaxAngleCeiling_Fog_Arrows.png}
+\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MaxAngleCeiling_Fog_Arrows}
 \caption[Water Dispersion Fog Stream Maximum Angle Ceiling]{Water dispersion of fog stream impacting a ceiling at the maximum angle.}
 \label{fig:MaxAngleCeilingFogImpact}
 \end{figure}
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MidCeiling_Fog_Arrows.png} 
+\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MidCeiling_Fog_Arrows} 
 \caption[Water Dispersion Straight Stream Mid Angle Ceiling]{Water dispersion of straight stream impacting a ceiling at the mid angle.}
 \label{fig:MinAngleCeilingFogImpact}
 \end{figure}
@@ -963,58 +967,35 @@ Although the shape of the stream when it hits the surface has some impact on the
 
 \section{Water Distribution}
 \label{sec:water_dist}
-With the hose stream having such a high momentum, impacting a surface causes predictable dispersion, which in turn, results in predictable distribution in a room. If a stream impacts a wall at near a 90$^{\circ}$ angle the water will be distributed along that surface outward from the point of impact. The water will travel along that wall until it impacts another surface. If that happens to be a 90$^{\circ}$ wall the same dispersion will happen distributing the droplets along the new surface. This results in the distribution of the water being concentrated along the back wall and in the corners as shown in Figure \ref{fig:Interior_Atwall_Example}.
+
+If a stream impacts a wall at near a 90$^{\circ}$ angle the water will be distributed along that surface outward from the point of impact. The water will travel along that wall until it impacts another surface or gravity overcomes its translational momentum. This results in the distribution of the water being concentrated along the back wall and in the corners as shown in Figure~\ref{fig:Interior_Atwall_Example}.
 
 \begin{figure}[!ht]
-	\centering
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	\includegraphics[height=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_AtWall.png} 
-	\subcaption{Straight Stream Back Wall}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	\includegraphics[width=0.95\textwidth]{Script_Figures/ADD_Analysis/15-12-09_151401_Datafile_Rate_Straight_Stream_Interior.pdf}
-	\subcaption{Straight Stream Back Wall Chart}
-	\end{minipage}
-	\caption{Example of Back Wall Distribution - Straight Stream}
-	\label{fig:Interior_Atwall_Example}
+\centering
+\includegraphics[height=0.25\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MaxAngleWall_SS_Inside_2} 
+\includegraphics[width=0.4\textwidth]{Script_Figures/ADD_Analysis/15-12-09_151401_Datafile_Rate_Straight_Stream_Interior}
+\caption[Example of At Wall Distribution]{Example of wall distribution for a straight stream: experimental image (left) and water flux distribution (right).}
+\label{fig:Interior_Atwall_Example}
 \end{figure}
 
-The same general principal is applied when the stream impacts a horizontal surface such as a ceiling; however, generally there will be less than a 90~Degree angle of impact. This results in more of the stream being translated along the surface in the direction the hose was aimed. The momentum the interior application was enough to carry the stream horizontally to the far wall. The stream broke up and fell along the wall to the floor below. The distribution of the water was was still concentrated along the back wall as seen in Figure \ref{fig:MaxAngle_Exterior} . The greater the angle, the more the stream dispersed the water like the 90~Degree impact, resulting in some water being translated back in the direction the stream was applied to the front wall and down to the floor.
+The same general principal is applied when the stream impacts a horizontal surface such as a ceiling; however, generally there will be less than a 90$^{\circ}$ angle of impact. As the angle decreased from 90$^{\circ}$, more of the stream was translated along the surface in the direction the hose was aimed. The momentum of the stream was sufficient to carry the stream horizontally to the opposite wall. The stream broke up and fell along the wall to the floor below. The distribution of the water was was still concentrated along the back wall as seen in Figure~\ref{fig:MaxAngle_Exterior}.
 
 \begin{figure}[!ht]
-	\centering
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MaxAngleCeiling_SS.png}
-	\subcaption{Straight Stream Max Angle}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	\includegraphics[width=0.95\textwidth]{Script_Figures/ADD_Analysis/15-12-08_113237_Datafile_Rate_Straight_Stream_Exterior.pdf}
-	\subcaption{Straight Stream Max Angle Chart}
-	\end{minipage}
-	\caption{Example of Max Angle Ceiling - Straight Stream}
-	\label{fig:MaxAngle_Exterior}
+\centering
+\includegraphics[height=0.25\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MaxAngleCeiling_SS} 
+\includegraphics[width=0.4\textwidth]{Script_Figures/ADD_Analysis/15-12-08_113237_Datafile_Rate_Straight_Stream_Exterior}
+\caption[Example of Max Angle Distribution]{Example of max angle distribution for a straight stream: experimental image (left) and water flux distribution (right).}
+\label{fig:MaxAngle_Exterior}
 \end{figure}
 
-Adjusting the pattern had little effect on the distribution. The momentum of the stream still carried the water along with the same pattern. If the impact was less than 90~Degrees and the surface was the ceiling, the broken stream from the fog pattern still translated horizontally to the far wall and was distributed along the far wall. Figure \ref{fig:Interior_Fog_MidCeiling} shows an example of the fog stream as it was translated to the far wall and distributed along the back wall.
+Adjusting the pattern had little effect on the distribution, the momentum of the stream carried the water along with the same pattern. If the impact was less than 90$^{\circ} and the surface was the ceiling, the broken stream from the fog pattern still translated horizontally to the far wall and was distributed along the far wall. Figure~\ref{fig:Interior_Fog_MidCeiling} shows an example of the fog stream as it was translated to the far wall and distributed along the back wall.
 
 \begin{figure}[!ht]
-	\centering
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MidCeiling_Fog.png}
-	\subcaption{Interior Attack Fog Stream Mid Ceiling}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	\includegraphics[width=0.95\textwidth]{Script_Figures/ADD_Analysis/15-12-09_113802_Datafile_Rate_Fog_Interior.pdf}
-	\subcaption{Interior Attack Fog Stream Back Wall Chart}
-	\end{minipage}
-	\caption{Example of Ceiling Distribution - Fog Stream}
-	\label{fig:Interior_Fog_MidCeiling}
+\centering
+\includegraphics[height=0.25\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MidCeiling_Fog}
+\includegraphics[width=0.4\textwidth]{Script_Figures/Script_Figures/ADD_Analysis/15-12-09_113802_Datafile_Rate_Fog_Interior}
+\caption[Example of Mid Ceiling Distribution]{Example of mid ceiling distribution for a fog stream: experimental image (left) and water flux distribution (right).}
+\label{fig:MaxAngle_Exterior}
 \end{figure}
 
 \section{Interior vs. Exterior}
