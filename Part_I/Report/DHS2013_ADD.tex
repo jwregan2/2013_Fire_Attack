@@ -532,6 +532,7 @@ Confirmation of repeatability, allowed for the exploration of additional compari
 
 
 \section{Comparison of Impact of Hose Stream Type}
+\label{sec:streamtype}
 
 The hose stream type experiments were designed to quantify the distributions of water flux from a straight stream, smooth bore stream, and a narrow fog stream. Six configuration sets were analyzed. Within each configuration set, the nozzle direction, nozzle movement, and nozzle pressure/flow rate were fixed. Table~\ref{tab:add_hosestream} shows the results from the ANOVA test based on a comparison of the distribution of the average water flux (gpm/ft$^2$) within the compartment. The configuration column in the table provides the location (and floor) of the nozzle, the nozzle position, and the nozzle movement. Note that for the exterior water flow experiments with a sweep pattern, only a straight stream and smooth bore hose stream are compared. The pattern from a fog stream could typically encompass the entire window opening, depending on the size of the opening and the distance from the opening. In these experiments, the fog stream enclosed the window, therefore only a fixed pattern was studied. 
 
@@ -635,6 +636,7 @@ The final two comparison sets were both exterior streams (one first floor set an
 
 
 \section{Comparison of Impact of Nozzle Direction}
+\label{sec:direction}
 
 The second comparison was to quantify the impact of nozzle direction on water distribution within the compartment. Referring back to Figures~\ref{fig:Nozzle_Direction_Interior_Attack}, \ref{fig:Nozzle_Direction_Exterior_1st_Floor_Attack}, and \ref{fig:Nozzle_Direction_Exterior_2nd_Floor_Attack} there are 3, 5, and 5 nozzle directions for the interior experiments, the exterior first floor experiments, and the exterior second floor experiments, respectively. Table~\ref{tab:add_nozzleposition} shows the p-test values comparing average water flux per collection bin  for the nozzle direction comparison experiments. For the case where the nozzle direction was the same, but the starting floor was varied (Configuration: 1st and 2nd Floor, Exterior, Straight Stream) the resulting distributions were similar. In all comparisons where the nozzle location was fixed and the nozzle direction was varied, there was enough variation in the water flux data to indicate that the data was statistically different. 
 
@@ -776,8 +778,8 @@ Exterior, max angle ceiling straight streams, one from the first floor position 
 \label{fig:Exterior_First_Floor_Second_Floor}
 \end{figure}
 
-\section{Comparison of Impact of Pressure and  Flow Rate}
-
+\section{Comparison of Impact of Pressure and Flow Rate}
+\label{sec:pressure}
 The third set of analysis was to quantify the impact of nozzle pressure and nozzle flow rate on water distribution within the compartment. Table~\ref{tab:add_pressure} shows the statistical comparison results for water flux distributions. 
 
 \begin{table}[!ht]
@@ -795,7 +797,6 @@ Configuration & \# of Tests & P Value Rate & Different \\
  1st Floor Exterior Smooth Bore, Vary Tip Size               & 3   & 0.255   &            \\
  1st Floor Exterior, Straight Stream, Varying Pressure Disc  & 3   & 0.211   &            \\
  1st Floor Exterior, Varying Stream, Varying Hose Diameter   & 2   & 0.523   &            \\
- % 1st Floor Exterior, Smooth Bore, Varying Bail               & 2   & 5.8E-4  & \checkmark \\
 \bottomrule[1.25pt]
 \end{tabular}
 \end{table}
@@ -874,17 +875,6 @@ Tests were also conducted to examine if increasing the hose diameter to provide 
 \label{fig:Exterior_First_Floor_Varying_Hose_Size}
 \end{figure}
 
-% \clearpage
-
-% The experiments that resulted in statistically different water flux results were a first floor exterior smooth bore stream with a fully open bail to one with a half open bail. Figure~\ref{fig:Exterior_First_Floor_Varying_Bail} shows that the full bail resulted in most of the water flowing along the wall opposite the window in parabolic profile. The half open bail distribution has more water across the length of the room between the window and the wall with very little water making it the edges of the compartment.
-
-% \begin{figure}[ht]
-% \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101028_Datafile_Rate_15_16in_Smooth_Bore_Exterior}
-% \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_153737_Datafile_Rate_15_16in_Smooth_Bore_Exterior} \\ 
-% \caption[Water Flux Varying Bail Opening]{Water flux in each collection bin for a first floor exterior smooth bore with a fixed pattern from full open bail (left) and a 1/2 open bail (right).}
-% \label{fig:Exterior_First_Floor_Varying_Bail}
-% \end{figure}
-
 \chapter{Discussion}
 
 \section{Hose Stream Reach}
@@ -906,89 +896,76 @@ A formula for maximum vertical reach, or effective height, ($H$ [ft]) was also d
 Over the last 200~yrs little has changed in how nozzle reach is determined. Studies conducted by nozzle manufacturers indicate modern nozzles using a straight stream from a combination nozzle or smooth bore have an effective reach of anywhere from 45~ft to 145~ft, using the same 32$^\circ$ angle from Freeman's work~\cite{TFT_Reach,Elkhart_Reach,Akron_Reach}. Modern combination and smooth bore nozzles are commonly used for interior fire attack of residential structures, however the largest dimension within a room typically on the order of 25~ft. As a result, during an interior attack of a residential structure, the hose stream will likely impact an obstruction before it exceeds its effective reach. Even combination nozzles set to a narrow fog (30$^\circ$) are cited to have an effective reach of 40~ft to 50~ft~\cite{Elkhart_Reach}.
 
 \section{Hose Stream Dispersion}
-
+\label{sec:dispersion}
 Quantification of the impact to a hose stream once it impacts a solid obstruction (dispersion) is difficult. Additionally, visual observation gained from experience using hose streams on residential fires is nearly impossible due to smoke within the structure. Work done by many of the nozzle manufacturer's indicate the hose stream velocity to be in excess of 80~ft/s~\cite{NBFU:EffectiveReach}. That velocity, combined with the density of water being 8.3~lb/gal~\cite{SFPEHandbookPurser} results in a water stream with significant momentum. Once the stream impacts a surface, some of the momentum is absorbed (slowing down the stream) while the remainder is transmitted in different directions (redirecting the stream). 
 
-The dispersion of stream was dependent on the angle of impact. When the angle of impact was 90 degrees as shown in Figure~\ref{fig:90DegreeImpact} the stream spread out in 360$^{\circ}$. As the angle decreased towards 0$^{\circ}$ with the surface, more and more of the water maintained momentum in the direction of the initial stream. Figure~\ref{fig:SS_Dispersion_Arrow} shows the change in water dispersion as the angle decreases. 
+Stream dispersion is dependent on the angle of impact. When the angle of impact was close to 90$^{\circ}$ as shown in Figure~\ref{fig:90DegreeImpact} the stream was redirected radially, approximately in a 360$^{\circ}$ pattern. Note that since this was a horizontal flow (90$^{\circ}$ to a vertical wall), gravity did skew the dispersion downward as the arrows in Figure~\ref{fig:90DegreeImpact} indicate.  
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_AtWall_SB_Arrows.png}
-\caption{Water Dispersion Straight Stream 90~Degree Impact Angle}
+\caption[Water Dispersion Straight Stream 90$^{\circ}$ Impact Angle]{Water dispersion of straight stream impacting a wall at an approximate 90$^{\circ}$ angle.}
 \label{fig:90DegreeImpact}
 \end{figure}
 
-When the stream impacted the surface at an angle, there was limited to no ricochet off the ceiling. The stream dispersed into a fan shape and continued in the direction of travel. Once it struck the back wall, the momentum was translated down the back wall. Figure \ref{fig:Mid_Ceiling_Dispersion} shows this from below for both a smooth bore, straight stream. Figure \ref{fig:Fog_Mid_Ceiling_Dispersion} shows the dispersion from a fog stream.
+For the cases where the stream was aimed at the ceiling, a 90$^{\circ}$ angle could not have been tested without the nozzle placed being inside the compartment. Therefore, the maximum angle was defined as the angle closest to 90$^{\circ}$ while the nozzle remained exterior (recall Figures~\ref{fig:Nozzle_Direction_Exterior_1st_Floor_Attack} and \ref{fig:Nozzle_Direction_Exterior_2nd_Floor_Attack}). Figure~\ref{fig:MaxAngleCeilingImpact} shows the impact on the stream. The majority of the water was directed along the ceiling toward the wall opposite of nozzle. There was some water that was directed back in the direction towards the wall where the nozzle was positioned. Note that water did not ``bounce'' of the ceiling and fall into the center collection bins.
 
-\begin{figure}[H]
-	\centering
-	\begin{minipage}[b]{0.45\textwidth}
-		\centering
-		\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SB_FirstFloor_Under.png}
-		\subcaption{Smooth Bore}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
-		\centering
-		\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SS_FirstFloor_Under.png}
-		\subcaption{Straight Stream}
-	\end{minipage}
-	\caption{Dispersion Mid-Ceiling from Below}
-	\label{fig:Mid_Ceiling_Dispersion}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MaxAngleCeiling_SS_Arrows.png} 
+\caption[Water Dispersion Straight Stream Max Angle Ceiling]{Water dispersion of straight stream impacting a ceiling at the maximum angle.}
+\label{fig:MaxAngleCeilingImpact}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.45\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MidCeiling_Fog.png}
-	\caption{Fog Stream Dispersion Mid Ceiling}
-	\label{fig:Fog_Mid_Ceiling_Dispersion}
+As the angle between the stream and ceiling decreased (stream became more parallel to the ceiling), the momentum of the water carried more water towards the wall opposite the nozzle. Figures~\ref{fig:MidCeilingImpact} and \ref{fig:MidCeilingImpact} show the impact of decreasing the angle on the dispersion of water within the compartment for a mid ceiling nozzle direction and min angle ceiling nozzle direction respectively. When the stream impacted the ceiling at an angle, there was limited to no ricochet off the ceiling. The stream dispersed into a fan shape and continued in the direction of travel. Once it struck the back wall, the momentum was translated down the back wall. 
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SS_Arrows.png}
+\caption[Water Dispersion Straight Stream Middle Position Ceiling]{Water dispersion of straight stream impacting a ceiling at the middle position.}
+\label{fig:MidCeilingImpact}
 \end{figure}
 
-
-
-\begin{figure}[H]
-	\centering
-	\begin{minipage}[b]{.45\textwidth}
-		\centering
-		\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MaxAngleCeiling_SS_Arrows.png} 
-		\subcaption{Maximum Angle Straight Stream}
-	\end{minipage}
-	\begin{minipage}[b]{.45\textwidth}
-		\centering
-		\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SS_Arrows.png}
-		\subcaption{Mid Ceiling Straight Stream}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
-		\centering
-		\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MinAngleCeiling_SS_FirstFloor_Arrows.png}
-		\subcaption{Minimum Angle Straight Stream} 
-	\end{minipage}
-	\caption{Dispersion Angle Comparison}
-	\label{fig:SS_Dispersion_Arrow}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MinAngleCeiling_SS_FirstFloor_Arrows.png}
+\caption[Water Dispersion Straight Stream Minimum Angle Ceiling]{Water dispersion of straight stream impacting a ceiling at the minimum angle.}
+\label{fig:MinAngleCeilingImpact}
 \end{figure}
 
-Although the shape of the stream when it hits the surface has some impact on the dispersion, in general the momentum of the water carries the resulting droplets in the same general direction. As the fog stream impacted the ceiling, the momentum of the droplets still carried them in the general direction of the stream. As the angle of impact with the surface is decreased as shown in Figure \ref{fig:ImpactFogStream} the dispersion is more directional than radial with the momentum carrying more of the droplets in the original direction of the stream.
+Figure \ref{fig:Mid_Ceiling_Dispersion} provides a mid ceiling nozzle position view from the perspective of the collection buckets ``looking'' toward the ceiling for both a smooth bore stream and a straight stream. While the straight stream shows a slightly larger diameter stream before ceiling impact, both streams show similar dispersion patterns after impacting the ceiling. 
 
-\begin{figure}[H]
-	\centering
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MaxAngleCeiling_Fog_Arrows.png}
-	\subcaption{Maximum Angle Fog Stream}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	\includegraphics[width=0.95\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MidCeiling_Fog_Arrows.png} 
-	\subcaption{Mid Ceiling Fog Stream}
-	\end{minipage}
-	\caption{Water Dispersion Fog Stream Angle Comparison}
-	\label{fig:ImpactFogStream}
+\begin{figure}[!ht]
+\centering
+\centering
+\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SB_FirstFloor_Under.png} \\
+\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Exterior_MidCeiling_SS_FirstFloor_Under.png}
+\caption[Water Dispersion for Smooth Bore Stream and Straight Stream at Mid Ceiling]{Dispersion at the  mid ceiling nozzle position from below for a smooth bore stream (top) and straight stream (bottom).}
+\label{fig:Mid_Ceiling_Dispersion}
 \end{figure}
+
+Although the shape of the stream when it hits the surface has some impact on the dispersion, in general the momentum of the water carries the resulting droplets in the same general direction. For a fog stream that impacted the ceiling, the momentum of the droplets still carried them in the general direction of the stream. As the angle of impact with the surface is decreased as shown in Figure~\ref{fig:MaxAngleCeilingFogImpact} and \ref{fig:MinAngleCeilingFogImpact} the dispersion is similar to the smooth bore stream and straight stream: more directional than radial with the momentum carrying more of the droplets in the original direction of the stream.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MaxAngleCeiling_Fog_Arrows.png}
+\caption[Water Dispersion Fog Stream Maximum Angle Ceiling]{Water dispersion of fog stream impacting a ceiling at the maximum angle.}
+\label{fig:MaxAngleCeilingFogImpact}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\textwidth]{Figures/Water_Distribution/Nozzle_Directions/Interior_MidCeiling_Fog_Arrows.png} 
+\caption[Water Dispersion Straight Stream Mid Angle Ceiling]{Water dispersion of straight stream impacting a ceiling at the mid angle.}
+\label{fig:MinAngleCeilingFogImpact}
+\end{figure}
+
 
 \section{Water Distribution}
+\label{sec:water_dist}
+With the hose stream having such a high momentum, impacting a surface causes predictable dispersion, which in turn, results in predictable distribution in a room. If a stream impacts a wall at near a 90$^{\circ}$ angle the water will be distributed along that surface outward from the point of impact. The water will travel along that wall until it impacts another surface. If that happens to be a 90$^{\circ}$ wall the same dispersion will happen distributing the droplets along the new surface. This results in the distribution of the water being concentrated along the back wall and in the corners as shown in Figure \ref{fig:Interior_Atwall_Example}.
 
-With the hose stream having such a high momentum, impacting a surface causes predictable dispersion, which in turn, results in predictable distribution in a room. If a stream impacts a wall at near a 90$^{\circ}$ angle the water will be disrtibued along that surface outward from the point of impact. The water will travel along that wall until it impacts another surface. If that happens to be a 90$^{\circ}$ wall the same dispersion will happen distributing the droplets along the new surface. This results in the distribution of the water being concentrated along the back wall and in the corners as shown in Figure \ref{fig:Interior_Atwall_Example}.
-
-\begin{figure}[H]
+\begin{figure}[!ht]
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 	\centering
@@ -1004,9 +981,9 @@ With the hose stream having such a high momentum, impacting a surface causes pre
 	\label{fig:Interior_Atwall_Example}
 \end{figure}
 
-The same general principal is applied when the stream impacts a horizontal surface such as a ceiling; however, generally there will be less than a 90~Degree angle of impact. This results in more of the stream being translated along the surface in the direction the hose was aimed. The momentum the interior application was enough to carry the stream horizontally to the far wall. The stream broke up and fell along the wall to the floor below. The distribution of the water was was still concentrated along the back wall as seen in Figure \ref{fig:MaxAngle_Exterior} . The greater the angle, the more the stream dispersed the water like the 90~Degree impact, resulting in some water being transalted back in the direction the stream was applied to the front wall and down to the floor.
+The same general principal is applied when the stream impacts a horizontal surface such as a ceiling; however, generally there will be less than a 90~Degree angle of impact. This results in more of the stream being translated along the surface in the direction the hose was aimed. The momentum the interior application was enough to carry the stream horizontally to the far wall. The stream broke up and fell along the wall to the floor below. The distribution of the water was was still concentrated along the back wall as seen in Figure \ref{fig:MaxAngle_Exterior} . The greater the angle, the more the stream dispersed the water like the 90~Degree impact, resulting in some water being translated back in the direction the stream was applied to the front wall and down to the floor.
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 	\centering
@@ -1018,13 +995,13 @@ The same general principal is applied when the stream impacts a horizontal surfa
 	\includegraphics[width=0.95\textwidth]{Script_Figures/ADD_Analysis/15-12-08_113237_Datafile_Rate_Straight_Stream_Exterior.pdf}
 	\subcaption{Straight Stream Max Angle Chart}
 	\end{minipage}
-	\caption{Example of Max Angle Ceiling - Straigh Stream}
+	\caption{Example of Max Angle Ceiling - Straight Stream}
 	\label{fig:MaxAngle_Exterior}
 \end{figure}
 
 Adjusting the pattern had little effect on the distribution. The momentum of the stream still carried the water along with the same pattern. If the impact was less than 90~Degrees and the surface was the ceiling, the broken stream from the fog pattern still translated horizontally to the far wall and was distributed along the far wall. Figure \ref{fig:Interior_Fog_MidCeiling} shows an example of the fog stream as it was translated to the far wall and distributed along the back wall.
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 	\centering
 	\begin{minipage}[b]{0.45\textwidth}
 	\centering
@@ -1041,9 +1018,9 @@ Adjusting the pattern had little effect on the distribution. The momentum of the
 \end{figure}
 
 \section{Interior vs. Exterior}
-The position of application of a hose stream, be it the interior or exterior has been thought to have an impact on fire suppression. As far as dispersion and distribition are concerned there were no statistical differences between the two. The same nozzle type, applied from both the interior or exterior showed no difference in the distribition of the stream. In all instances the stream was directed into the compartment and the vast majority of the water was distributed along the oppsite wall of the structure. Due to the position of application, varying the nozzle movement had little to no impact on the distribution in either case. This was directly related to momentum of the water the reach of the stream. The effective reach significantly exceeded the room dimensions which resulted in the distribution seen. Figure \ref{fig:Interior_vs_Exterior} shows the comparison of smoothbore, straighstream and fog nozzles, for all comparison see appendix \hl{Add appendix comparing interior \&exterior}
+The position of a hose stream, be it the interior or exterior has been thought to have an impact on water distribution within a compartment. The experiments conducted in this study showed that for the same nozzle position no statistical differences occurred between first floor or second floor exterior locations. Since the compartment was rectangular, there were different numbers of collection barrels along the door wall versus the window. This prevent a direct statistical comparison of interior versus exterior streams. However, as Figure~\ref{fig:Interior_vs_Exterior} shows,for the same hose stream type the distributions for interior and exterior positions are similar. The majority of the water was distributed along the wall of the structure opposite of the nozzle. Additionally, due to the position of application, varying the nozzle movement had little to no impact on the distribution in either case. This was directly related to momentum of the water the reach of the stream. The effective reach significantly exceeded the room dimensions.  see appendix \hl{Add appendix comparing interior \&exterior}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 \centering
 \scalebox{0.8}{
 \begin{tabular*}{\textwidth}{lr}
@@ -1054,61 +1031,61 @@ The position of application of a hose stream, be it the interior or exterior has
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-07_155751_Datafile_Rate_Fog_Exterior} &
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_113802_Datafile_Rate_Fog_Interior} \\
 \end{tabular*}}
-\caption{Interior vs Exterior Application}
+\caption[Interior vs Exterior Application]{Water flux distributions for exterior (left column) versus interior (right column) locations.}
 \label{fig:Interior_vs_Exterior}
 \end{figure}
 
 \section{Tactical Choices Effecting Distribution}
 
-As a company officer and or firefighter asigned to the nozzle there are several tactical choices which have the potential to impact the dispersion and distribution of water as it applies to compartment fires. Items such as nozzle type, flow rate, and pressure are often pre-determined where as nozzle patern, bale position, angle of application, and nozzle movement are tactical choices which can be determined based on condtions.  
+As a company officer and or firefighter assigned to the nozzle there are several tactical choices which have the potential to impact the dispersion and distribution of water as it applies to compartment fires. Items such as nozzle type, flow rate, and pressure are often pre-determined where as nozzle pattern, bale position, angle of application, and nozzle movement are tactical choices which can be determined based on conditions.  
 
 \subsection{Pre-Determined Tactical Choices}
-The pre-determined tatical choices of nozzle type and flow rate were seen to have little impact on the dispersion and distribution within the comaprtment for both interior and exterior application. Figure \ref{fig:Exterior_First_Floor_Varying_Nozzle_Pressure_SB_Fixed_Pattern} in the results sections shows how increasing the pressure of a smoothbore will increase the flux, however it does not change the distribution. Similar results were seen for the straight stream (Figure \ref{fig:Exterior_First_Floor_Varying_Nozzle_Pressure_SS_Fixed_Pattern}) and fog stream (Figure \ref{fig:Interior_Varying_Nozzle_Pressure_Fog_Fixed_Pattern}). Although the nozzle type choosen had slightly different dispersion, the water was still distributed with the same general principals. The tactical choice of nozzle type, flow rate and pressure for a compartment fire may be more a function of crew size and available water supply than a function of desired water distribution. 
+The pre-determined tactical choices of nozzle type and flow rate were seen to have negligible impact on the dispersion and distribution within the compartment for both interior and exterior application. Figure~\ref{fig:Exterior_First_Floor_Varying_Nozzle_Pressure_SB_Fixed_Pattern} in the Section~\ref{sec:pressure} shows how increasing the pressure of a smooth bore stream increased the flux, however it did not change the distribution. Similar results were seen for the straight stream (Figure \ref{fig:Exterior_First_Floor_Varying_Nozzle_Pressure_SS_Fixed_Pattern}) and fog stream (Figure \ref{fig:Interior_Varying_Nozzle_Pressure_Fog_Fixed_Pattern}). The tactical choice of nozzle type, flow rate, and pressure for a compartment fire may be more a function of crew size and available water supply than a function of desired water distribution. 
 
 \subsection{Condition Based Tactical Choices}
-As a engine company makes the approach to a fire, be it an interior or an exterior attack, the firefighter assigned to the nozzle along with the officer have several tactical choices related to apllication technique. Although items such as nozzle pattern, application angle and bale position are often thought of a pre-determined beased on training, they have the potential to impact desired water distribution in compartment fire attacks. 
+As an engine company makes the approach to a fire, be it for an interior or an exterior attack, the firefighter assigned to the nozzle along with the officer have several tactical choices related to application technique. Although items such as nozzle pattern, application angle and bale position are often thought of a pre-determined based on training, they have the potential to impact desired water distribution in compartment fire attacks. 
 
 \subsubsection{Nozzle Movement}
-There are four main methods being taught for nozzle movement during suppression operations, each named for the letter they form, the `O', `T', `Z' and inverted `U' patterns. \hl{NEED REFERENCE} All four of these methods were compared to a fixed position to determine the impact of nozzle movement on distribution. Figure \ref{fig:Nozzle Movements Example, First Floor Interior} shows the fixed position in the upper left, the `O' pattern in the upper right, the `Z' pattern in the center left the `T' pattern in the center right and the inverted `U' at the bottom for a mid-ceiling application. When compared to eachother the nozzle movement has little effect on the distribution in the room. The majority of the water from the hose stream accumulates along the back wall concentrated more in the corners. Variations of nozzle movement had little impact on the distribition in the room. When the distribution was compared to the fixed pattern, the distribition along the back wall was more uniform however regarless of fixed or moving the accumulated water at the back wall was several orders of magnitude larger than a residential sprinkler. 
+There are four main methods being taught for nozzle movement during suppression operations, each named for the letter they form, the `O', `T', `Z' and inverted `U' patterns. \hl{NEED REFERENCE} All four of these methods were compared to a fixed position to determine the impact of nozzle movement on distribution. Figure~\ref{fig:Nozzle Movements Example, First Floor Interior} shows the fixed position in the upper left, the `O' pattern in the upper right, the `Z' pattern in the center left the `T' pattern in the center right and the inverted `U' at the bottom for a mid-ceiling application. When compared to each other, nozzle movement had little effect on the distribution in the compartment. The majority of the water from the hose stream accumulated along the wall opposite the doorway; concentrated in the corners. While the distribution for the fixed pattern was more uniform (flatter) compared the experiments with movement, the accumulated water at the back wall was several orders of magnitude larger than a residential sprinkler. 
 
 \begin{figure}[ht]
-\scalebox{0.8}{
 \begin{tabular*}{\textwidth}{lr}
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_101601_Datafile_Rate_Straight_Stream_Interior} &
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_102308_Datafile_Rate_Straight_Stream_Interior} \\
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_102830_Datafile_Rate_Straight_Stream_Interior} &
 \includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_103306_Datafile_Rate_Straight_Stream_Interior} \\
-\end{tabular*}}
+\end{tabular*}
 \centering
-\scalebox{0.8}{
-\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_103649_Datafile_Rate_Straight_Stream_Interior}}
-\caption{Straight Stream Varied Nozzle Movements, First Floor Interior}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-09_103649_Datafile_Rate_Straight_Stream_Interior}
+\caption[Straight Stream Varied Nozzle Movements, First Floor Interior]{Water flux distributions for interior straight streams at the mid ceiling where the nozzle pattern is fixed (upper left), an `O' pattern (upper right), a `Z' pattern (middle left), a `T' pattern (middle right) and an inverted `U' pattern. }
 \label{fig:Nozzle Movements Example, First Floor Interior}
 \end{figure}
 
+\clearpage
+
 \subsubsection{Impact Angle}
-The angle at which the stream impacted the surface was shown to have the most effect on distribution in the room. Figure \ref{fig:Interior_Varying_Nozzle_Direction_SB_Fixed_Pattern} and Figure \ref{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern} for the smoothbore interior and smoothbore exterior attack, respectivily, show varying the angle of the nozzle impact with a surface can mor effectivly distribute the water in the compartment. Rather than nozzle movement in the left and right directions during applicaiton, varying the angle of the nozzle from a steep to a shallow angle and back would provide the best distribution in the rooom.  
+The angle at which the stream impacted the surface was shown to have the most impact on distribution in the room. Figures~\ref{fig:Interior_Varying_Nozzle_Direction_SB_Fixed_Pattern} and \ref{fig:Exterior_First_Floor_Varying_Nozzle_Directions_SB_Fixed_Pattern}, for the smooth bore interior and smooth bore exterior attack, respectively, show how the variation of the angle of the nozzle impact with a surface can more effectively distribute the water in the compartment. Rather than a patterned nozzle movement application, variation of the angle of the nozzle from a steep to a shallow angle and back could provide the best distribution in the room.  
 
 \subsubsection{Bale Position}
-Another option which was seen to impact the distribution for a smooth bore nozzle was the bale position. The smoth bore nozzle often incorperates a ball valve to turn the nozzle on and off. If this valve is opened completely, the opening in the ball creates a smooth transition between the ball and the surrounding housing. If the bale is opened less than full, the water traveling through the valve becomes turbulant which effects the hose stream pattern and reach. Figure \ref{fig:Bale Position} shows how opening the turbulant pattern created when the bale is half open creates a better distribution within the compartment as the velocity of the water leaving the nozzle is reduced, reducing the effect reach of the stream.
+The degree at which the bale of the nozzle was open, approximately 50~\% to 100~\%, had an impact on the distribution of water flux within the compartment for both a smooth bore stream and straight stream. Figure~\ref{fig:SB_Exterior_First_Floor_Varying_Bail} shows that for the smooth bore stream the fully opened bail resulted in most of the water flowing into bins along the wall opposite the window with water flux in excess of a typical residential sprinkler also around the remaining perimeter of the compartment. The half open bail resulted in a distribution with high water flux in the collection bin opposite the window, however the water flux was more narrowly concentrated with little flow at the compartment perimeter. 
 
-\begin{figure}[H]
-	\centering
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	% \includegraphics[width=0.95\textwidth]{}
-	\hl{NEED FIGURE TO COMPARE TO HALF BALE AT SAME FLOW \& PRESSURE}
-	\subcaption{Full Open}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
-	\centering
-	% \includegraphics[width=0.95\textwidth]{}
-	\hl{COULD NOT FIND FIGURE OF HALF BALE}
-	\subcaption{Half Open}
-	\end{minipage}
-	\caption{Comparison of Distribution for Smooth Bore Varying Bale Position}
-	\label{fig:Bale Position}
+\begin{figure}[ht]
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_101028_Datafile_Rate_15_16in_Smooth_Bore_Exterior}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_153737_Datafile_Rate_15_16in_Smooth_Bore_Exterior} \\ 
+\caption[Water Flux Varying Bail Opening Smooth Bore]{Water flux in each collection bin for a first floor exterior smooth bore with a fixed pattern from full open bail (left) and a 1/2 open bail (right).}
+\label{fig:SB_Exterior_First_Floor_Varying_Bail}
 \end{figure}
+
+The straight stream fully open bale and half open bale water flux distributions are shown in Figure~\ref{fig:SS_Exterior_First_Floor_Varying_Bail}. The straight stream distribution with a fully open bale was similar to fully open bale smooth bore stream: significant water flux at the wall opposite the window with water flux in excess of a typical residential sprinkler also around the remaining perimeter of the compartment. In comparison, the distribution for the straight stream with a half open bale shows a significantly flatter, more uniform pattern with a majority of the collection bins in excess of a typical residential sprinkler.
+
+\begin{figure}[ht]
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_113237_Datafile_Rate_Straight_Stream_Exterior}
+\includegraphics[width=3.2in]{Script_Figures/ADD_Analysis/15-12-08_152906_Datafile_Rate_Straight_Stream_Exterior} \\ 
+\caption[Water Flux Varying Bail Opening Straight Stream]{Water flux in each collection bin for a first floor exterior straight stream with a fixed pattern from full open bail (left) and a 1/2 open bail (right).}
+\label{fig:SS_Exterior_First_Floor_Varying_Bail}
+\end{figure}
+
+\clearpage
 
 \subsection{Tactical Choices Summary}
 
