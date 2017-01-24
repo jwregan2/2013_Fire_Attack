@@ -68,12 +68,11 @@ for f in os.listdir(data_location):
 
 		print (Test_Name)
 
+		area = 17.778
 		for channel in channels:
 			#Calculate velocity
-			# conv_inch_h2o = 0.04
 			conv_pascal = 248.84
 			convert_ftpm = 196.85
-			area = 17.778
 			end_zero_time = int(Exp_Events['Elapsed_Time'][1])
 			zero_voltage = np.mean(Exp_Data[channel][0:end_zero_time])
 			pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel])  # Convert voltage to pascals
@@ -81,9 +80,14 @@ for f in os.listdir(data_location):
 			Exp_Data[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * ((Exp_Des['Temp_C'][Test_Name])+273.13)) * np.sign(pressure)
 
 		#Calculate cfm
-		CFM = area*np.mean(Exp_Data[channels],axis=1)
-		CFM_1 = area*(Exp_Data[channels[2]])
-		CFM_3 = area*np.mean(Exp_Data[channels[1:3]],axis=1)
+		if int(Exp_Num) < 18:
+			CFM = area*(Exp_Data[[channels[0],channels[2],channels[3]]].mean(axis=1))
+			CFM_1 = area*(Exp_Data[channels[2]])
+			CFM_3 = area*(Exp_Data[[channels[2],channels[3]]].mean(axis=1))
+		else:
+			CFM = area*np.mean(Exp_Data[channels],axis=1)
+			CFM_1 = area*(Exp_Data[channels[2]])
+			CFM_3 = area*np.mean(Exp_Data[channels[1:3]],axis=1)
 		zero_CFM = np.mean(CFM[0:end_zero_time])
 		zero_CFM_1 = np.mean(CFM_1[0:end_zero_time])
 		zero_CFM_3 = np.mean(CFM_3[0:end_zero_time])
