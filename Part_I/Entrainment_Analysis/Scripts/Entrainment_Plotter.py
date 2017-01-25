@@ -52,6 +52,9 @@ for f in os.listdir(data_location):
 		Test_Name = experiment[:-4]
 		Exp_Num = Test_Name[4:-7]
 
+		if Exp_Des['Test_Config'][Test_Name] == 'ignore':
+			continue
+
 		temp_time = []
 		for i in range(len(Event_Time)):
 			temp_time.append(Event_Time[i].timestamp() - Event_Time[0].timestamp())
@@ -64,7 +67,6 @@ for f in os.listdir(data_location):
 			if int(Exp_Num) < 43:
 				channels = channels_nr
 			else:
-				print('here')
 				channels = channels_nr2
 			conv_inch_h2o = 0.04
 		else:
@@ -152,6 +154,8 @@ for i in range(len(tableau20)):
 #Plotting
 plot_file = pd.read_csv(plot_file)
 for k in range(len(plot_file)):
+	if plot_file['Chart_Status'][k] == 'ignore':
+		continue
 	print('Plotting: ' + plot_file['Chart_Title'][k])
 	test_comps=[]
 	event_nums=[]
@@ -191,7 +195,8 @@ for k in range(len(plot_file)):
 				else:
 					cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
 					labels[j] = temp_read['Event'][int(event_nums[j])]
-		rects = ax.bar(ind+i*width, cfm_bars[i,:], width, color=tableau20[i])
+		uncert = 0.18*cfm_bars[i,:]
+		rects = ax.bar(ind+i*width, cfm_bars[i,:], width, color=tableau20[i],yerr=uncert,error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
 
 	box = ax.get_position()
 	ax.set_position([box.x0, box.y0, box.width * 0.7, box.height])
@@ -203,6 +208,7 @@ for k in range(len(plot_file)):
 	else:
 		ax.set_xticks(ind + width)
 	ax.set_xticklabels(labels, rotation = -15, ha = 'left')
+	ylim([plot_file['Min'][k],plot_file['Max'][k]])
 	savefig(chart_location+file_name+'.pdf')
 
 	plt.close('all')
