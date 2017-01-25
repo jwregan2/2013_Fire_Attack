@@ -23,6 +23,7 @@ Exp_Des = Exp_Des.set_index('Test_Name')
 skip_files = ['_events']
 
 channels_nr = ['BDP1V','BDP2V','BDP3V','BDP4V','BDP5V']
+channels_nr2 = ['BDP1VLR','BDP2VLR','BDP3VLR','BDP4VLR','BDP5VLR']
 channels_hr = ['BDP1VHR','BDP2VHR','BDP3VHR','BDP4VHR','BDP5VHR']
 
 # Loop through Experiment files
@@ -60,7 +61,11 @@ for f in os.listdir(data_location):
 
 		BDP_Resolution = Exp_Des['BDP_Res'][Test_Name]
 		if BDP_Resolution == 'N':
-			channels = channels_nr
+			if int(Exp_Num) < 43:
+				channels = channels_nr
+			else:
+				print('here')
+				channels = channels_nr2
 			conv_inch_h2o = 0.04
 		else:
 			channels = channels_hr
@@ -80,7 +85,7 @@ for f in os.listdir(data_location):
 			Exp_Data[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * ((Exp_Des['Temp_C'][Test_Name])+273.13)) * np.sign(pressure)
 
 		#Calculate cfm
-		if int(Exp_Num) < 18:
+		if int(Exp_Num) < 25:
 			CFM = area*(Exp_Data[[channels[0],channels[2],channels[3]]].mean(axis=1))
 			CFM_1 = area*(Exp_Data[channels[2]])
 			CFM_3 = area*(Exp_Data[[channels[2],channels[3]]].mean(axis=1))
@@ -192,7 +197,7 @@ for k in range(len(plot_file)):
 	ax.set_position([box.x0, box.y0, box.width * 0.7, box.height])
 	ax.legend(legend_names,loc='center left', bbox_to_anchor=(1, 0.5))
 	ax.set_title(plot_file['Chart_Title'][k])
-	ax.set_ylabel('CFM')
+	ax.set_ylabel('Average CFM (ft$^3$/min)')
 	if len(test_comps) == 1:
 		ax.set_xticks(ind + width/2)
 	else:
