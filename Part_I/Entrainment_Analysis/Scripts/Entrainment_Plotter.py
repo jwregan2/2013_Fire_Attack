@@ -75,7 +75,7 @@ for f in os.listdir(data_location):
 		elif BDP_Resolution == 'M':
 			channels = channels_matrix_hr
 			conv_inch_h2o = 0.2
-		elif BDP_Resolution == 'ML'
+		elif BDP_Resolution == 'ML':
 			channels = channels_matrix_lr
 			conv_inch_h2o = 0.04
 		else:
