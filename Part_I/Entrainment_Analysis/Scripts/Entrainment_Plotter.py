@@ -25,6 +25,9 @@ skip_files = ['_events']
 channels_nr = ['BDP1V','BDP2V','BDP3V','BDP4V','BDP5V']
 channels_nr2 = ['BDP1VLR','BDP2VLR','BDP3VLR','BDP4VLR','BDP5VLR']
 channels_hr = ['BDP1VHR','BDP2VHR','BDP3VHR','BDP4VHR','BDP5VHR']
+channels_matrix_hr = ['Matrix1VHR','Matrix2VHR','Matrix3VHR','Matrix4VHR','Matrix5VHR']
+channels_matrix_lr = ['Matrix1VLR','Matrix2VLR','Matrix3VLR','Matrix4VLR','Matrix5VLR']
+
 
 # Loop through Experiment files
 for f in os.listdir(data_location):
@@ -68,6 +71,12 @@ for f in os.listdir(data_location):
 				channels = channels_nr
 			else:
 				channels = channels_nr2
+			conv_inch_h2o = 0.04
+		elif BDP_Resolution == 'M':
+			channels = channels_matrix_hr
+			conv_inch_h2o = 0.2
+		elif BDP_Resolution == 'ML'
+			channels = channels_matrix_lr
 			conv_inch_h2o = 0.04
 		else:
 			channels = channels_hr

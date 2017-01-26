@@ -6,23 +6,23 @@ Manufacturer,Exp_04_102615,1.75 Automatic Nozzle 150GPM 50PSI_2015-10-26-1517,,I
 Manufacturer,Exp_05_102615,1.75 Automatic Nozzle 150GPM 75PSI_2015-10-26-1530,,Interior,,,1.5,TFT,Man. I,Combination,,150,75,N,0,10/26/15 15:30,15
 Manufacturer,Exp_06_102615,1.75 Automatic Nozzle 150GPM 100PSI_2015-10-26-1551,,Interior,,,1.5,TFT,Man. I,Combination,,150,100,N,2,10/26/15 15:51,15.56
 Manufacturer,Exp_07_102615,1.75 Automatic Nozzle 95GPM 100PSI_2015-10-26-1608,,Interior,,,1.5,TFT,Man. I,Combination,,95,100,N,0,10/26/15 16:08,15.56
-Manufacturer,Exp_08_102615,1.75 Smooth Bore 7_8In 150GPM 50PSI_2015-10-26-1620,,Interior,,,1.5,TFT,Man. I,Smooth Bore,8-Jul,150,50,N,0,10/26/15 16:20,15.56
-Manufacturer,Exp_09_102615,1.75 Smooth Bore 15_16In 180GPM 50PSI_2015-10-26-1630,,Interior,,,1.5,TFT,Man. I,Smooth Bore,15/16,180,50,N,0,10/26/15 16:30,15.56
-Manufacturer,Exp_10_102615,1.75 Smooth Bore 1In 210GPM 50PSI_2015-10-26-1640,,Interior,,,1.5,TFT,Man. I,Smooth Bore,1,210,50,N,0,10/26/15 16:40,15.56
+Manufacturer,Exp_08_102615,1.75 Smooth Bore 7_8In 150GPM 50PSI_2015-10-26-1620,,Interior,,,1.5,TFT,Man. I,Smooth Bore,8-Jul,150,50,M,0,10/26/15 16:20,15.56
+Manufacturer,Exp_09_102615,1.75 Smooth Bore 15_16In 180GPM 50PSI_2015-10-26-1630,,Interior,,,1.5,TFT,Man. I,Smooth Bore,15/16,180,50,M,0,10/26/15 16:30,15.56
+Manufacturer,Exp_10_102615,1.75 Smooth Bore 1In 210GPM 50PSI_2015-10-26-1640,,Interior,,,1.5,TFT,Man. I,Smooth Bore,1,210,50,M,0,10/26/15 16:40,15.56
 Manufacturer,Exp_11_102615,1.75 Automatic 150GPM 100PSI_2015-10-26-1656,,Interior,,,1.5,Akron,Man. III,Combination,,150,100,N,1,10/26/15 16:56,15
 Manufacturer,Exp_12_102615,1.75 Automatic 95GPM 100PSI_2015-10-26-1706,,Interior,,,1.5,Akron,Man. III,Combination,,95,100,N,3,10/26/15 17:06,15
 Manufacturer,Exp_13_102615,1.75 Automatic 150GPM 75PSI_2015-10-26-1714,,Interior,,,1.5,Akron,Man. III,Combination,,150,75,N,1,10/26/15 17:14,15
 Manufacturer,Exp_14_102615,1.75 Automatic 150GPM 50PSI_2015-10-26-1723,,Interior,,,1.5,Akron,Man. III,Combination,,150,50,N,0,10/26/15 17:23,15
-Manufacturer,Exp_15_102615,1.75 Smooth Bore 7_18in 150GPM 50PSI_2015-10-26-1732,,Interior,,,1.5,Akron,Man. III,Smooth Bore,8-Jul,150,50,N,0,10/26/15 17:32,15
-Manufacturer,Exp_16_102615,1.75 Smooth Bore 15_16in 180GPM 50PSI_2015-10-26-1737,,Interior,,,1.5,Akron,Man. III,Smooth Bore,15/16,180,50,N,0,10/26/15 17:37,12.78
-Manufacturer,Exp_17_102615,1.75 Smooth Bore 1in 210GPM 50PSI_2015-10-26-1743,,Interior,,,1.5,Akron,Man. III,Smooth Bore,1,210,50,N,0,10/26/15 17:43,12.78
+Manufacturer,Exp_15_102615,1.75 Smooth Bore 7_18in 150GPM 50PSI_2015-10-26-1732,,Interior,,,1.5,Akron,Man. III,Smooth Bore,8-Jul,150,50,M,0,10/26/15 17:32,15
+Manufacturer,Exp_16_102615,1.75 Smooth Bore 15_16in 180GPM 50PSI_2015-10-26-1737,,Interior,,,1.5,Akron,Man. III,Smooth Bore,15/16,180,50,M,0,10/26/15 17:37,12.78
+Manufacturer,Exp_17_102615,1.75 Smooth Bore 1in 210GPM 50PSI_2015-10-26-1743,,Interior,,,1.5,Akron,Man. III,Smooth Bore,1,210,50,M,0,10/26/15 17:43,12.78
 Manufacturer,Exp_18_102715,1.75 Automatic Nozzle 150GPM 100PSI_2015-10-27-0725,,Interior,,,1.5,Elkhart,Man. II,Combination,,150,100,N,0,10/27/15 7:25,7.22
 Manufacturer,Exp_19_102715,1.75 Automatic Nozzle 95GPM 100PSI_2015-10-27-0752,,Interior,,,1.5,Elkhart,Man. II,Combination,,95,100,N,2,10/27/15 7:52,7.22
 Manufacturer,Exp_20_102715,1.75 Automatic Nozzle 150GPM 75PSI_2015-10-27-0815,,Interior,,,1.5,Elkhart,Man. II,Combination,,150,75,N,1,10/27/15 8:15,7.22
 Manufacturer,Exp_21_102715,1.75 Automatic Nozzle 150GPM 50PSI_2015-10-27-0834,,Interior,,,1.5,Elkhart,Man. II,Combination,,150,50,N,3,10/27/15 8:34,7.22
-Manufacturer,Exp_22_102715,1.75 Smooth Bore 7_8in 150GPM 50PSI_2015-10-27-0843,,Interior,,,1.5,Elkhart,Man. II,Smooth Bore,8-Jul,150,50,N,1,10/27/15 8:43,8.89
-Manufacturer,Exp_23_102715,1.75 Smooth Bore 15_16in 180GPM 50PSI_2015-10-27-0852,,Interior,,,1.5,Elkhart,Man. II,Smooth Bore,15/16,180,50,N,0,10/27/15 8:52,8.89
-Manufacturer,Exp_24_102715,1.75 Smooth Bore 1in 210GPM 50PSI_2015-10-27-0901,,Interior,,,1.5,Elkhart,Man. II,Smooth Bore,1,210,50,N,1,10/27/15 9:01,8.89
+Manufacturer,Exp_22_102715,1.75 Smooth Bore 7_8in 150GPM 50PSI_2015-10-27-0843,,Interior,,,1.5,Elkhart,Man. II,Smooth Bore,8-Jul,150,50,M,1,10/27/15 8:43,8.89
+Manufacturer,Exp_23_102715,1.75 Smooth Bore 15_16in 180GPM 50PSI_2015-10-27-0852,,Interior,,,1.5,Elkhart,Man. II,Smooth Bore,15/16,180,50,M,0,10/27/15 8:52,8.89
+Manufacturer,Exp_24_102715,1.75 Smooth Bore 1in 210GPM 50PSI_2015-10-27-0901,,Interior,,,1.5,Elkhart,Man. II,Smooth Bore,1,210,50,M,1,10/27/15 9:01,8.89
 Nozzle_Movement,Exp_25_102715,1.75 Smooth Bore 1in 210GPM 50PSI - Patter Speed Test_2015-10-27-0912,,Interior,,,1.5,TFT,Man. I,Smooth Bore,1,210,50,N,0,10/27/15 9:12,8.89
 Nozzle_Movement,Exp_26_102715,1.75 Smooth Bore 1in 210GPM 50PSI - Spray and Pray Test_2015-10-27-0923,,Interior,,,1.5,TFT,Man. I,Smooth Bore,1,210,50,N,1,10/27/15 9:23,8.89
 Manufacturer,Exp_27_102715,2.5 Automatic Nozzle 1in 250GPM at 50PSI_2015-10-27-1204,,Interior,,,2.5,TFT,Man. I,Combination,,250,50,N,0,10/27/15 12:04,15
