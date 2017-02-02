@@ -104,26 +104,28 @@ for f in os.listdir(data_location):
 			CFM = area*np.mean(Exp_Data[channels],axis=1)
 			CFM_1 = area*(Exp_Data[channels[2]])
 			CFM_3 = area*np.mean(Exp_Data[channels[1:3]],axis=1)
-		# zero_CFM = np.mean(CFM[0:end_zero_time])
-		# zero_CFM_1 = np.mean(CFM_1[0:end_zero_time])
-		# zero_CFM_3 = np.mean(CFM_3[0:end_zero_time])
-		# CFM = CFM - zero_CFM
-		# CFM_1 = CFM_1 - zero_CFM_1
-		# CFM_3 = CFM_3 - zero_CFM_3
+		zero_CFM = np.mean(CFM[0:end_zero_time])
+		zero_CFM_1 = np.mean(CFM_1[0:end_zero_time])
+		zero_CFM_3 = np.mean(CFM_3[0:end_zero_time])
+		CFM = CFM - zero_CFM
+		CFM_1 = CFM_1 - zero_CFM_1
+		CFM_3 = CFM_3 - zero_CFM_3
 		cfm_avgs = []
 		for i in range(1,len(Exp_Events)):
 			pos2 = int(Exp_Events['Elapsed_Time'][i])
 			pos1 = int(Exp_Events['Elapsed_Time'][i-1])
 			cfm_avgs.append(np.mean(CFM[pos1:pos2]))
-		cfm_avgs = np.append(cfm_avgs,'NaN')
+		cfm_avgs = np.append(cfm_avgs,0)
 		Exp_Events['CFM_Avg'] = cfm_avgs
 		Exp_Events.to_csv('../Experimental_Data/'+ Test_Name + '_Events_CFM.csv')
 		time = list(range(len(Exp_Data)))
 
 		fig = figure()
-		plt.plot(time,CFM,'k-',label='CFM All')
-		plt.plot(time,CFM_3,'b--',label='CFM Middle 3')
-		plt.plot(time,CFM_1,'r-.',label='CFM Middle')
+		plt.plot(time,CFM,'r--',linewidth=1.5)
+		# plt.plot(time,CFM_3,'b--',label='CFM Middle 3')
+		# plt.plot(time,CFM_1,'r-.',label='CFM Middle')
+		for i in range(1,len(Exp_Events)):
+			plt.plot([Exp_Events['Elapsed_Time'][i-1],Exp_Events['Elapsed_Time'][i]],[cfm_avgs[i-1],cfm_avgs[i-1]],color='black',linewidth=2)
 		ax1 = plt.gca()
 		handles1, labels1 = ax1.get_legend_handles_labels()
 		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
@@ -139,14 +141,14 @@ for f in os.listdir(data_location):
 			events = Exp_Events['Event']
 			[plt.axvline(_x, color='0.50', lw=1) for _x in Exp_Events['Elapsed_Time']]
 			ax3.set_xticks(Exp_Events['Elapsed_Time'])
-			plt.setp(plt.xticks()[1], rotation=60)
+			plt.setp(plt.xticks()[1], rotation=40)
 			ax3.set_xticklabels(events.values, fontsize=8, ha='left')
 			plt.xlim([0, End_Time])
 			# Increase figure size for plot labels at top
 			fig.set_size_inches(10, 9)
 		except:
 			pass
-		plt.legend(handles1, labels1, loc='upper left', fontsize=12, handlelength=3)
+		# plt.legend(handles1, labels1, loc='upper left', fontsize=12, handlelength=3)
 		savefig(chart_location+Test_Name+'_CFM.pdf')
 		close()
 
