@@ -341,7 +341,7 @@ A series of the air entrainment experiments involved a reconfiguration of the fi
 
 \section{Equipment Used}
 
-To ensure the data collected and associated results were applicable to the majority of the fire service, a list of representative nozzles, specified flow rates/pressures, and nozzle movement techniques was created. The variables, which were tested during the air entrainment experiments are included in the Table~\ref{tab:Nozzle Selection}.
+To ensure the data collected and associated results were applicable to the majority of the fire service, a list of representative nozzles, specified flow rates/pressures, and nozzle movement techniques was created. The variables, which were used during the air entrainment experiments are included in the Table~\ref{tab:Nozzle Selection}.
 
 \begin{table}[!ht]
 \centering
@@ -454,7 +454,7 @@ The air entrainment experiments that involved the reconfiguration the first floo
 
 \chapter{Experiments Conducted}
 
-Experiments were completed to determine how air entrainment from hose streams was affected by varying equipment, spray patterns, hose stream type, and ventilation. In each experimental configuration, water was flown for approximately 60~s. An average velocity was calculated at the measurement location (Section~\ref{sec:location}) using the bi-directional probes and multiplied by the measurement area to calculate a volumetric flow rate in cubic feet per minute (CFM). To compare different configurations, an average flow rate was calculated over the duration of each specific configuration. Figure~\ref{fig:cfmplotexplainer} shows the entrained air in volumetric flow as a function of time (dashed line) and the time-averaged flow rate between `events' within the experiment (solid line). The time-averaged value is calculated between each event call-out and the value is tied to the event call-out on the left. During each test, approximately 60~s of background data was taken so the ambient conditions could be isolated from the remainder of the test. After those effects were accounted for, the average volumetric flow during the background event was approximately 0~CFM. When the straight stream flow was started, the average CFM during that event jumped to approximately 1700~CFM. Note that while the transient (dashed) data shows fluctuations typical of transient velocity data, the magnitudes of the fluctuations did not prevent distinct events from being distinguishable.
+Experiments were completed to determine how air entrainment from hose streams was affected by varying equipment, spray patterns, hose stream type, and ventilation. In each experimental configuration, water flowed for approximately 60~s. An average velocity was calculated at the measurement location (Section~\ref{sec:location}) using the bi-directional probes and the average velocity multiplied by the measurement area to calculate a volumetric flow rate in cubic feet per minute (CFM). To compare different configurations, an average flow rate was calculated over the duration for each specific configuration. Figure~\ref{fig:cfmplotexplainer} shows the entrained air in volumetric flow as a function of time (dashed line) and the time-averaged flow rate between `events' (solid line). The time-averaged value was calculated between each event call-out and the value is tied to the event call-out on the left side of the interval. During each test, approximately 60~s of background data was taken so the ambient conditions could be isolated from experimental data. After ambient fluctuations were accounted for, the average volumetric flow during the background event was approximately 0~CFM. When the straight stream flow was started in Figure~\ref{fig:cfmplotexplainer}, the average CFM during that event jumped to approximately 1700~CFM. Note that while the transient (dashed) data shows fluctuations typical of velocity data, the magnitudes of the fluctuations did not prevent distinct events from being distinguishable.
 
 \begin{figure}[!ht]
 \centering
@@ -471,6 +471,64 @@ Based on the discussion in Section~\ref{sec:uncert}, the uncertainty associated 
 \caption[Average Flow Rate Comparison]{Example of bar chart comparisons with uncertainty.}
 \label{fig:cfmbarexplainer}
 \end{figure}
+
+\clearpage
+
+\section{Manufacturer Comparison}
+
+Experiments, varying pressure/flow rate, hose stream type, and nozzle movement, were conducted to quantify potential differences in air entrainment associated with using three three different manufacturer's nozzles (MFI, MFII, and MFIII). Table~\ref{tab:Manufacturer_Comparison_Experiments} shows the configurations examined. For all three hose stream types, both a fixed pattern and an `O' pattern were used from the interior position.
+
+\begin{table}[!ht]
+\centering
+\caption{Manufacturer Comparison Experiments}
+\label{tab:Manufacturer_Comparison_Experiments}
+\begin{tabular}{cccc}
+\toprule[1.5pt]
+Hose Stream Type & Tip Size & Flow Rate & Pressure \\ 
+\midrule
+Straight Stream &       & 150 & 50 \\
+Straight Stream &       & 150 & 75 \\
+Straight Stream &       & 150 & 100 \\
+Narrow Fog      &       & 150 & 50 \\
+Narrow Fog      &       & 150 & 75 \\
+Narrow Fog      &       & 150 & 100 \\
+Smooth Bore     & 7/8   & 150 & 50 \\
+Smooth Bore     & 15/16 & 180 & 50 \\
+Smooth Bore     & 1     & 210 & 50 \\
+\bottomrule[1.25pt]
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:1_5_Interior_Combination_Manufacturer} shows the average flow rate (CFM) for both the straight stream and narrow fog hose stream types with fixed and `O' patterns under three different pressures: 50~psi, 75~psi, and 100~psi. Figure~\ref{fig:1_5_Interior_Smooth_Bore_Manufacturer} shows the average flow rate for three smooth bore nozzles; a 7/8~in. tip with 150~gpm at 50~psi, a 15/16~in. tip with 180~gpm at 50~psi, and a 1~in. tip with 210~gpm at 50~psi for both a fixed and `O' pattern.
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_50psi} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_75psi} \\
+\end{tabular*}
+\centering
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_100psi}
+\caption[Average Air Entrainment Varying Manufacturer with Combination Nozzles]{Comparison of air entrainment results of three manufacturers for straight stream and narrow fog stream in fixed and `O' patterns with 150~gpm and 50~psi (upper left), 75~psi (upper right), and 100~psi (bottom).}
+\label{fig:1_5_Interior_Combination_Manufacturer}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{tabular*}{\textwidth}{lr}
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_7_8_150gpm_50psi} &
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_15_16_180gpm_50psi} \\
+\end{tabular*}
+\centering
+\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_1_210gpm_50psi} 
+\caption[Average Air Entrainment Varying Manufacturer with Smooth Bore Nozzles]{Comparison of air entrainment results of three manufacturers for smooth bore stream in fixed and `O' patterns with 7/8~in. tip with 150~gpm at 50~psi (upper left), with 15/16~in. tip with 180~gpm at 50~psi (upper right), and 1~in. tip with 210~gpm at 50~psi (bottom).}
+\label{fig:1_5_Interior_Smooth_Bore_Manufacturer}
+\end{figure}
+
+For the straight streams and narrow fog streams with both fixed patterns and `O' patterns in Figure~\ref{fig:1_5_Interior_Combination_Manufacturer}, air entrainment for the three manufacturers was within the experimental uncertainty of the measurement. 
+
+\clearpage
+
+
+
 
 
 % \begin{itemize}
@@ -496,20 +554,6 @@ Based on the discussion in Section~\ref{sec:uncert}, the uncertainty associated 
 
 \subsubsection{Total Air Entrainment Comparison}
 
-The first test series of the air entrainment experiments looked at the differences in total entrainment given a single nozzle manufacturer with varying flow rates and pressures. These tests were conducted from both the interior and exterior of the structure at a setback distance of 18~ft. from the ventilation opening. 
-
-An `Event' is defined as a specific measurement period during the experiment in which a specific variable is being analyzed. For example, during the total air entrainment experiment for 1.5~in. combination nozzles from the interior, 6 different events were incorporated within the test: 1) Straight Stream, 2) Straight Stream `O', Straight Stream `Z', Straight Stream `n', Narrow Fog, and Narrow Fog `O'. In order to ensure consistency among results, each of the `Events' within the experiments was designed to be 1 minute in duration. 
-
-\clearpage
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=4in]{Figures/Air_Entrainment/Measurement_Locations_Secondfloor}
-	\caption{Second Floor Measurement Location}
-	\label{fig:Second_Floor_Measurement_Location}
-\end{figure}
-
-\vspace*{\baselineskip}
 
 \begin{table}[!ht]
 \centering
@@ -518,21 +562,22 @@ An `Event' is defined as a specific measurement period during the experiment in 
 \toprule[1.5pt]
 Location & Nozzle Size & Nozzle Type & Tip Size & Flow Rate & Pressure \\ 
 \midrule
-Interior & 1.5 & Combination &  & 95 & 100 \\
-Interior & 1.5 & Combination &  & 150 & 50 \\
-Interior & 1.5 & Combination &  & 150 & 75 \\
-Interior & 1.5 & Combination &  & 150 & 100 \\
-Interior & 1.5 & Smooth Bore & 7/8 & 150 & 50 \\
+Interior & 1.5 & Combination &       & 95 & 100 \\
+Interior & 1.5 & Combination &       & 150 & 50 \\
+Interior & 1.5 & Combination &       & 150 & 75 \\
+Interior & 1.5 & Combination &       & 150 & 100 \\
+Interior & 1.5 & Smooth Bore & 7/8   & 150 & 50 \\
 Interior & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
-Interior & 1.5 & Smooth Bore & 1 & 210 & 50 \\
-Interior & 2.5 & Combination &  & 250 & 50 \\
-Interior & 2.5 & Combination &  & 250 & 75 \\
-Interior & 2.5 & Combination &  & 250 & 100 \\
+Interior & 1.5 & Smooth Bore & 1     & 210 & 50 \\
+Interior & 2.5 & Combination &       & 250 & 50 \\
+Interior & 2.5 & Combination &       & 250 & 75 \\
+Interior & 2.5 & Combination &       & 250 & 100 \\
 Interior & 2.5 & Smooth Bore & 1 1/8 & 260 & 50 \\
 Interior & 2.5 & Smooth Bore & 1 1/4 & 320 & 50 \\
-Exterior & 1.5 & Combination &  & 150 & 75 \\
+\midrule
+Exterior & 1.5 & Combination &       & 150 & 75 \\
 Exterior & 1.5 & Smooth Bore & 15/16 & 180 & 50 \\
-Exterior & 2.5 & Combination &  & 250 & 75 \\
+Exterior & 2.5 & Combination &       & 250 & 75 \\
 Exterior & 2.5 & Smooth Bore & 1 1/4 & 320 & 50 \\
 \bottomrule[1.25pt]
 \end{tabular}
@@ -544,50 +589,25 @@ Exterior & 2.5 & Smooth Bore & 1 1/4 & 320 & 50 \\
 
 The second series of tests conducted to analyze air entrainment in hose streams involved varying the ventilation configurations within the flow path. The inlet and exhaust of the flow path were varied between both different sized doors as well as windows to show the effect on overall air entrainment. The tests were conducted from both the interior and the exterior of the structure with a fixed setback distance of 18~ft. from the ventilation opening. The measurement location during these experiments remained the same as that used during the total air entrainment experiments with the instrumentation remaining in the doorway at the top of the stairs on the second floor.
 
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=5in]{Figures/Air_Entrainment/Measurement_Location_VentConfig_Bottom.jpg}
-	\caption{First Floor Ventilation Configuration Interior}
-	\label{fig:First_Floor_Ventilation_Configuration_Interior}
-\end{figure}
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=6.5in]{Figures/Air_Entrainment/Measurement_Location_VentConfig_Bottom_Ext.jpg}
-	\caption{First Floor Ventilation Configuration Exterior}
-	\label{fig:First_Floor_Ventilation_Configuration_Exterior}
-\end{figure}
-
-
 In order to evaluate how ventilation openings affect the air entrainment due to hose streams, different ventilation openings were considered to include both doors as well as windows of common sizes. The measurement location within the structure was a fixed location and fixed opening size. The measurement location was the size of a common single doorway as seen below. The remainder of the ventilation openings varied between a single and double door as well as a single and double window. Additionally, a controlled door was evaluated to show the impact of a reduced inlet size on the total air entrainment in hose streams. This is a common practice among fire departments based on previous research conducted showing the benefits to closing down the flow path and limiting the available oxygen to the fire. The effect of the controlled door on air entrainment has yet been analyzed and thus was vital to be included in this study.
-
-\vspace*{\baselineskip}
 
 \begin{table}[!ht]
 \centering
 \caption{Ventilation Opening Sizes}\label{Vent_Sizes}
-\begin{tabular}{lccccc}
+\begin{tabular}{lccc}
 \toprule[1.5pt]
- & Width & Height & Width (in) & Height (in) & Area (sq. in.) \\ 
+ & Width (in) & Height (in) & Area (sq. in.) \\ 
 \midrule
-\multicolumn{1}{l}{Measurement Location} & 2' 8" & 6' 8" & 32 & \multicolumn{1}{c}{80} & 2560 \\
-\multicolumn{1}{l}{Single Window} & 2' & 4' & 24 & \multicolumn{1}{c}{48} & 1152 \\
-\multicolumn{1}{l}{Double Window} & 4' & 5' & 48 & \multicolumn{1}{c}{60} & 2880 \\
-\multicolumn{1}{l}{Single Door} & 3' & 6' 8" & 36 & \multicolumn{1}{c}{80} & 2880 \\
-\multicolumn{1}{l}{Double Door} & 6' & 6' 8" & 72 & \multicolumn{1}{c}{80} & 5760 \\
-\multicolumn{1}{l}{Controlled Door} & 8" & 6' 8" & 8 & \multicolumn{1}{c}{80} & 640 \\ 
+Measurement Location & 32 & 80 & 2560 \\
+Single Window        & 24 & 48 & 1152 \\
+Double Window        & 48 & 60 & 2880 \\
+Single Door          & 36 & 80 & 2880 \\
+Double Door          & 72 & 80 & 5760 \\
+Controlled Door      & 8  & 80 & 640 \\ 
 \bottomrule[1.25pt]
 \end{tabular}
 \end{table}
 
-% \begin{figure}[!ht]
-% 	\centering
-% 	\includegraphics[width=3.5in]{Figures/Air_Entrainment/Measurement_Location_VentConfig_Top.jpg}
-% 	\caption{Second Floor Ventilation Configuration}
-% 	\label{fig:Second_Floor_Ventilation_Configuration}
-% \end{figure}
-
-% \clearpage
 
 \begin{table}[!ht]
 \centering
@@ -687,56 +707,7 @@ After the air entrainment testing was complete and the results were analyzed, se
 
 Each of these conclusions is explained in detail below with supporting results.
 
-\section{Manufacturer Comparison}
 
-\vspace*{\baselineskip}
-
-Experiments, varying pressure/flow rate, hose stream type, and nozzle movement, were conducted to quantify potential differences in air entrainment associated with using three three different manufacturer's nozzles (MFI, MFII, and MFIII). Table~\ref{tab:Manufacturer_Comparison_Experiments} shows the configurations examined. For all three hose stream types, both a fixed pattern and an `O' pattern were used from the interior position.
-
-\begin{table}[!ht]
-\centering
-\caption{Manufacturer Comparison Experiments}
-\label{tab:Manufacturer_Comparison_Experiments}
-\begin{tabular}{cccc}
-\toprule[1.5pt]
-Hose Stream Type & Tip Size & Flow Rate & Pressure \\ 
-\midrule
-Straight Stream &       & 150 & 50 \\
-Straight Stream &       & 150 & 75 \\
-Straight Stream &       & 150 & 100 \\
-Narrow Fog      &       & 150 & 50 \\
-Narrow Fog      &       & 150 & 75 \\
-Narrow Fog      &       & 150 & 100 \\
-Smooth Bore     & 7/8   & 150 & 50 \\
-Smooth Bore     & 15/16 & 180 & 50 \\
-Smooth Bore     & 1     & 210 & 50 \\
-\bottomrule[1.25pt]
-\end{tabular}
-\end{table}
-
-Figure~\ref{fig:1_5_Interior_Combination_Manufacturer} shows the average flow rate (CFM) for both the straight stream and narrow fog hose stream types with fixed and `O' patterns under three different pressures: 50~psi, 75~psi, and 100~psi. Figure~\ref{fig:1_5_Interior_Smooth_Bore_Manufacturer} shows the average flow rate for three smooth bore nozzles; a 7/8~in. tip with 150~gpm at 50~psi, a 15/16~in. tip with 180~gpm at 50~psi, and a 1~in. tip with 210~gpm at 50~psi for both a fixed and `O' pattern.
-
-\begin{figure}[!ht]
-\begin{tabular*}{\textwidth}{lr}
-\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_50psi} &
-\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_75psi} \\
-\end{tabular*}
-\centering
-\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Combination_Nozzle_150gpm_100psi}
-\caption[Average Air Entrainment Varying Manufacturer with Combination Nozzles]{Comparison of air entrainment results of three manufacturers for straight stream and narrow fog stream in fixed and `O' patterns with 150~gpm and 50~psi (upper left), 75~psi (upper right), and 100~psi (bottom).}
-\label{fig:1_5_Interior_Combination_Manufacturer}
-\end{figure}
-
-\begin{figure}[!ht]
-\begin{tabular*}{\textwidth}{lr}
-\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_7_8_150gpm_50psi} &
-\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_15_16_180gpm_50psi} \\
-\end{tabular*}
-\centering
-\includegraphics[width=3.5in]{Script_Figures/Entrainment/Manufacturer_1_5_Smooth_Bore_Nozzle_1_210gpm_50psi} 
-\caption[Average Air Entrainment Varying Manufacturer with Smooth Bore Nozzles]{Comparison of air entrainment results of three manufacturers for smooth bore stream in fixed and `O' patterns with 7/8~in. tip with 150~gpm at 50~psi (upper left), with 15/16~in. tip with 180~gpm at 50~psi (upper right), and 1~in. tip with 210~gpm at 50~psi (bottom).}
-\label{fig:1_5_Interior_Smooth_Bore_Manufacturer}
-\end{figure}
 
 
 
@@ -746,7 +717,7 @@ Figure~\ref{fig:1_5_Interior_Combination_Manufacturer} shows the average flow ra
 
 \section{Air entrainment is dependent on hose stream type. (smooth bore, straight stream, fog)} 
 
-The intial opening occlusion test was conducted to determine how varying the hose stream type from a single nozzle can effect the air entrainment at a given setback distance (3~ft.). This test showed that given a fixed setback distance, a combination nozzle flowing a common flow rate of 150~gpm at a pressure of 50~psi had increasing air entrainment with an increase in the width of the pattern. As the pattern became wider, approaching the size of the ventilation opening, the air entrainment increased, with straight stream experiencing the smallest airflow. 
+The initial opening occlusion test was conducted to determine how varying the hose stream type from a single nozzle can effect the air entrainment at a given setback distance (3~ft.). This test showed that given a fixed setback distance, a combination nozzle flowing a common flow rate of 150~gpm at a pressure of 50~psi had increasing air entrainment with an increase in the width of the pattern. As the pattern became wider, approaching the size of the ventilation opening, the air entrainment increased, with straight stream experiencing the smallest airflow. 
 
 \begin{figure}[!ht]
 	\centering
