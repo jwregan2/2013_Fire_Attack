@@ -167,7 +167,7 @@ plot_file = pd.read_csv(plot_file)
 for k in range(len(plot_file)):
 	if plot_file['Chart_Status'][k] == 'ignore':
 		continue
-	print('Plotting: ' + plot_file['Chart_Title'][k])
+	print('Plotting: ' + plot_file['Plot_Name'][k])
 	test_comps=[]
 	event_nums=[]
 	legend_names = []
@@ -209,16 +209,17 @@ for k in range(len(plot_file)):
 		uncert = 0.18*cfm_bars[i,:]
 		rects = ax.bar(ind+i*width, cfm_bars[i,:], width, color=tableau20[i],yerr=uncert,error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
 
-	box = ax.get_position()
-	ax.set_position([box.x0, box.y0, box.width * 0.7, box.height])
-	ax.legend(legend_names,loc='center left', bbox_to_anchor=(1, 0.5))
-	ax.set_title(plot_file['Chart_Title'][k])
-	ax.set_ylabel('Average CFM (ft$^3$/min)')
+	# box = ax.get_position()
+	# ax.set_position([box.x0, box.y0, box.width * 0.7, box.height])
+	# ax.legend(legend_names,loc=plot_file['Legend_Location'][k], bbox_to_anchor=(1, 0.5))
+	ax.legend(legend_names,loc=plot_file['Legend_Location'][k],fontsize=16)
+	# ax.set_title(plot_file['Chart_Title'][k])
+	ax.set_ylabel('Average CFM (ft$^3$/min)', fontsize=16)
 	if len(test_comps) == 1:
 		ax.set_xticks(ind + width/2)
 	else:
 		ax.set_xticks(ind + width)
-	ax.set_xticklabels(labels, rotation = -15, ha = 'left')
+	ax.set_xticklabels(labels, rotation = -15, ha = 'left',fontsize=16)
 	ylim([plot_file['Min'][k],plot_file['Max'][k]])
 	savefig(chart_location+file_name+'.pdf')
 
