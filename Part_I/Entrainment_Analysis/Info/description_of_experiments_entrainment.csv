@@ -3,6 +3,7 @@ Distance_Tests,Exp_01_102615,1.5 Automatic 150GPM 50 PSI - Distance Test_2015-10
 Distance_Tests,Exp_02_102615,1.5 Automatic 150GPM 100 PSI - Distance Test_2015-10-26-1322,,Interior,,,1.5,TFT,Man. I,Combination,,150,100,N,2,10/26/15 13:22,14.44
 Door_Occlusion_Test,Exp_03_102615,1.5 Automatic 150GPM 100 PSI - Opening Occlusion Test_2015-10-26-1339,,Interior,,,1.5,TFT,Man. I,Combination,,150,100,N,13,10/26/15 13:39,14.44
 Manufacturer,Exp_04_102615,1.75 Automatic Nozzle 150GPM 50PSI_2015-10-26-1517,,Interior,,,1.5,TFT,Man. I,Combination,,150,50,N,1,10/26/15 15:17,15
+Manufacturer,Exp_04b_102615,1.75 Automatic Nozzle 150GPM 50PSI_2015-10-26-1517,,Interior,,,1.5,TFT,Man. I,Combination,,150,50,N,1,10/26/15 15:17,15
 Manufacturer,Exp_05_102615,1.75 Automatic Nozzle 150GPM 75PSI_2015-10-26-1530,,Interior,,,1.5,TFT,Man. I,Combination,,150,75,N,0,10/26/15 15:30,15
 Manufacturer,Exp_06_102615,1.75 Automatic Nozzle 150GPM 100PSI_2015-10-26-1551,,Interior,,,1.5,TFT,Man. I,Combination,,150,100,N,2,10/26/15 15:51,15.56
 Manufacturer,Exp_07_102615,1.75 Automatic Nozzle 95GPM 100PSI_2015-10-26-1608,,Interior,,,1.5,TFT,Man. I,Combination,,95,100,N,0,10/26/15 16:08,15.56
