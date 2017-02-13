@@ -181,7 +181,7 @@ for f in os.listdir(data_location):
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					# Set y-label to degrees F with LaTeX syntax
-					plt.ylabel('Temperature ($^\circ$F)', fontsize = 16)
+					plt.ylabel('Temperature ($^\circ$F)', fontsize = 32)
 					# Search for skin inside description of events file for scaling
 					if 'Skin' in group:
 						axis_scale = 'Y Scale Skin Temperature'
@@ -204,7 +204,7 @@ for f in os.listdir(data_location):
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
 					#Calculate result
 					current_data = (np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5) * 2.23694
-					plt.ylabel('Velocity (mph)', fontsize=16)
+					plt.ylabel('Velocity (mph)', fontsize=28)
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'
 					secondary_axis_label = 'Velocity (m/s)'
@@ -217,21 +217,21 @@ for f in os.listdir(data_location):
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
+					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 32)
 					axis_scale = 'Y Scale Wall Heat Flux'
 
 				if channel_list['Type'][channel] == 'Floor Heat Flux':
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
+					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 32)
 					axis_scale = 'Y Scale Floor Heat Flux'
 
 				if channel_list['Type'][channel] == 'Victim Heat Flux':
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
+					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 32)
 					axis_scale = 'Y Scale Victim Heat Flux'
 
 				# Set parameters for gas plots
@@ -241,7 +241,7 @@ for f in os.listdir(data_location):
 					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Gas Concentration (%)', fontsize = 16)
+					plt.ylabel('Gas Concentration (%)', fontsize = 32)
 					axis_scale = 'Y Scale Gas'
 
 				# If statement to find gas type in channels csv
@@ -249,7 +249,7 @@ for f in os.listdir(data_location):
 					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)
+					plt.ylabel('Gas Concentration (PPM)', fontsize = 32)
 					axis_scale = 'Y Scale Carbon Monoxide'
 
 				# Plot channel data or save channel data for later usage, depending on plot mode
@@ -258,7 +258,7 @@ for f in os.listdir(data_location):
 					lw=1.5,
 					marker=next(plot_markers),
 					markevery=int(End_Time*60/mark_freq),
-					mew=1.5,
+					mew=3,
 					mec='none',
 					ms=7,
 					label=channel_list['Title'][channel])
@@ -276,16 +276,16 @@ for f in os.listdir(data_location):
 				ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
 				ax1_xlims = ax1.axis()[0:2]
 				plt.grid(True)
-				plt.xlabel('Time (min)', fontsize=16)
-				plt.xticks(fontsize=16)
-				plt.yticks(fontsize=16)
+				plt.xlabel('Time (min)', fontsize=32)
+				plt.xticks(fontsize=28)
+				plt.yticks(fontsize=28)
 
 			# Secondary y-axis parameters
 			if secondary_axis_label:
 				ax2 = ax1.twinx()
-				ax2.set_ylabel(secondary_axis_label, fontsize=20)
-				plt.xticks(fontsize=16)
-				plt.yticks(fontsize=16)
+				ax2.set_ylabel(secondary_axis_label, fontsize=32)
+				plt.xticks(fontsize=28)
+				plt.yticks(fontsize=28)
 				if axis_scale == 'Y Scale BDP':
 					ax2.set_ylim([-secondary_axis_scale, secondary_axis_scale])
 				else:
@@ -299,11 +299,11 @@ for f in os.listdir(data_location):
 				for i in range(len(Events.index.values)):
 					EventTime[i] = (datetime.datetime.strptime(Events['Time'][Events.index.values[i]], '%H:%M:%S')-Ignition).total_seconds()
 
-					plt.axvline(EventTime[i],color='0',lw=1) 
+					plt.axvline(EventTime[i],color='0',lw=2) 
 
 				ax3.set_xticks(EventTime)
-				plt.setp(plt.xticks()[1], rotation=90)		
-				ax3.set_xticklabels(Events.index.values, fontsize=10, ha='left')
+				plt.setp(plt.xticks()[1], rotation=67.5)		
+				ax3.set_xticklabels(Events.index.values, fontsize=18, ha='left')
 				fig.set_size_inches(20, 16)
 				plt.tight_layout()
                 # # Add vertical lines and labels for timing information (if available)
@@ -323,7 +323,7 @@ for f in os.listdir(data_location):
 			except:
 				pass
 
-			plt.legend(handles1, labels1, loc='upper left', fontsize=8, handlelength=3)
+			plt.legend(handles1, labels1, loc='upper left', fontsize=24, handlelength=3)
 
             # Save plot to file
 			plt.savefig(output_location + group + '.png')
