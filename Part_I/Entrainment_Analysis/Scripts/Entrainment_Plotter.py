@@ -214,12 +214,13 @@ for k in range(len(plot_file)):
 	# ax.legend(legend_names,loc=plot_file['Legend_Location'][k], bbox_to_anchor=(1, 0.5))
 	ax.legend(legend_names,loc=plot_file['Legend_Location'][k],fontsize=16)
 	# ax.set_title(plot_file['Chart_Title'][k])
-	ax.set_ylabel('Average CFM (ft$^3$/min)', fontsize=16)
+	ax.set_ylabel('Average CFM (ft$^3$/min)', fontsize=18)
 	if len(test_comps) == 1:
 		ax.set_xticks(ind + width/2)
 	else:
 		ax.set_xticks(ind + width)
 	ax.set_xticklabels(labels, rotation = -15, ha = 'left',fontsize=16)
+	ax.tick_params(axis='both', which='major', labelsize=16)
 	ylim([plot_file['Min'][k],plot_file['Max'][k]])
 	savefig(chart_location+file_name+'.pdf')
 
