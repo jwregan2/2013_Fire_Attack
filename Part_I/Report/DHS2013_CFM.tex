@@ -542,7 +542,6 @@ Interior & 1~3/4 & Combination &       & 95 & 100 \\
 Interior & 1~3/4 & Combination &       & 150 & 50 \\
 Interior & 1~3/4 & Combination &       & 150 & 75 \\
 Interior & 1~3/4 & Combination &       & 150 & 100 \\
-\midrule
 Interior & 1~3/4 & Smooth Bore & 7/8   & 150 & 50 \\
 Interior & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
 Interior & 1~3/4 & Smooth Bore & 1     & 210 & 50 \\
@@ -550,7 +549,6 @@ Interior & 1~3/4 & Smooth Bore & 1     & 210 & 50 \\
 Interior & 2~1/2 & Combination &       & 250 & 50 \\
 Interior & 2~1/2 & Combination &       & 250 & 75 \\
 Interior & 2~1/2 & Combination &       & 250 & 100 \\
-\midrule
 Interior & 2~1/2 & Smooth Bore & 1 1/8 & 260 & 50 \\
 Interior & 2~1/2 & Smooth Bore & 1 1/4 & 320 & 50 \\
 \midrule
@@ -609,7 +607,6 @@ Interior & Double Door     & Single Window   & 1~3/4 & Combination &       & 150
 Interior & Double Door     & Single Door     & 1~3/4 & Combination &       & 150 & 75 \\
 Interior & Double Door     & Double Door     & 1~3/4 & Combination &       & 150 & 75 \\
 Interior & Controlled Door & Single Window   & 1~3/4 & Combination &       & 150 & 75 \\
-\midrule
 Interior & Single Door     & Single Window   & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
 Interior & Single Door     & Double Window   & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
 Interior & Double Door     & Single Window   & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
@@ -626,21 +623,17 @@ Exterior & Single Door     & Single Door     & 1~3/4 & Combination &       & 150
 Exterior & Single Door     & Double Door     & 1~3/4 & Combination &       & 150 & 75 \\
 Exterior & Double Door     & Single Door     & 1~3/4 & Combination &       & 150 & 75 \\
 Exterior & Double Door     & Double Door     & 1~3/4 & Combination &       & 150 & 75 \\
-\midrule
 Exterior & No Opening      & Single Window   & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
 Exterior & Single Door     & Single Window   & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
 Exterior & Single Door     & Double Window   & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
-\midrule
 Exterior & Single Door     & Single Window   & 2~1/2 & Combination &       & 250 & 75 \\
 Exterior & Single Window   & Single Door     & 2~1/2 & Combination &       & 250 & 75 \\
-\midrule
 Exterior & Single Window   & Single Door     & 2~1/2 & Smooth Bore & 1 1/4 & 320 & 50 \\
 Exterior & Single Door     & Single Window   & 2~1/2 & Smooth Bore & 1 1/4 & 320 & 50 \\
 \midrule
 Transitional & No Opening  & Single Window   & 1~3/4 & Combination &  & 150 & 75 \\
 Transitional & Single Window & Single Window & 1~3/4 & Combination &  & 150 & 75 \\
 Transitional & Single Door & Single Window   & 1~3/4 & Combination &  & 150 & 75 \\
-\midrule
 Transitional & No Opening  & Single Window   & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
 Transitional & Single Window & Single Window & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\
 Transitional & Single Door & Single Window   & 1~3/4 & Smooth Bore & 15/16 & 180 & 50 \\ 
@@ -691,6 +684,7 @@ The intent of the air entrainment experiments was to determine the average volum
 
 
 \section{Comparison of Impact of Nozzle Movement}
+\label{sec:movement}
 
 Common nozzle movements used in the fire service are the `O', `Z', and `n' patterns. Differences in the patterns were examined using a straight stream and narrow fog stream from combination nozzle as well as a smooth bore nozzle. The experiments were conducted from the interior position at a fixed setback distance of 12~ft from the external vent. For the smooth bore stream, straight stream and narrow fog stream, a fixed nozzle pattern was compared to an `O' pattern. The combination nozzle flowed 150~gpm at 50~psi and to have an equivalent flow from the smooth bore nozzle, a 7/8~in. tip was used. Figure~\ref{fig:SB_SS_NF_Movement_Comparison} shows the average air entrainment (CFM) for a fixed pattern stream compared to a stream with an `O' pattern for the three hose stream types.
 
@@ -740,45 +734,65 @@ As shown in Figure~\ref{fig:Nozzle_Movement_RotationSpeed_Comparison}, an increa
 
 \section{Comparison of Impact of Pressure and Flow Rate}
 
+The range of operating pressure and flow rate varies within the fire service due to equipment, preference, and need to name a few reasons. To determine how changes in pressure and/or flow rate influence air entrainment, experiments were conducted to quanitify this impact. From the interior position (recall Section~\ref{sec:location}), a straight stream and narrow fog stream from a combination nozzle connected to a 1~3/4~in. hoseline examined 4 flow rates and a smooth bore stream also connected to a 1~3/4~in. hoseline examined 3 flow rates. Figures~\ref{fig:SS_NF_FlowRate_Int} and \ref{fig:SB_Flowrate_Int} show the impact of flowrate changes for the combination nozzle experiments and smooth bore nozzle experiments respectively.
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Total_Entrainment_1_5_Combination_Nozzle_Interior}
-\caption[Air Entrainment Comparison of Interior Combination Nozzle from 1~3/4~in. Line]{Air entrainment comparison of combination nozzle flow rate and pressure from interior position with a 1~3/4~in. line.}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Pressure_SS_O_Int}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Pressure_NF_O_Int}
+\caption[Air Entrainment Comparison of Pressure and Flow Rate for Interior Combination Nozzle from 1~3/4~in. Line]{Air entrainment comparison of change in flow rate and pressure from interior position with a 1~3/4~in. line for a straight stream (left) and a narrow fog stream (right).}
 \label{fig:SS_NF_FlowRate_Int}
 \end{figure}
 
-
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Total_Entrainment_2_5_Combination_Nozzle_Interior}
-\caption[Air Entrainment Comparison of Interior Combination Nozzle from 2~1/2~in. Line]{Air entrainment comparison of combination nozzle flow rate and pressure from interior position with a 2~1/2~in line.}
-\label{fig:SS_NF_FlowRate_Ext}
+\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Pressure_SB_O_Int}
+\caption[Air Entrainment Comparison of Pressure and Flow Rate for Interior Smooth Bore Nozzle from 1~3/4~in. Line]{Air entrainment comparison of change in flow rate and pressure from interior position with a 1~3/4~in. line for a smooth bore stream.}
+\label{fig:SB_Flowrate_Int}
 \end{figure}
 
+The average air entrainment values for the straight stream and narrow fog stream in Figure~\ref{fig:SS_NF_FlowRate_Int} were consistent for the 150~gpm flowrate at 50~psi, 75~psi, and 100~psi as well as the 95~gpm flowrate at 100~psi. For the experiments where the nozzle was rotated in an `O' pattern, the air entrainment was also similar for both hose stream types. In the the case of the narrow fog stream with the `O' pattern, the 150~gpm flowrate at 100~psi had a higher average air flow rate, however the value still fell within the measurement uncertainty range of the other three flowrate conditions. The smooth bore stream also showed minimal variation as a function of the three flow rates tested: 150~gpm, 180~gpm, and 210~gpm all at 50~psi (Figure~\ref{fig:SB_Flowrate_Int}) for both a fixed and 'O' pattern. To further assess the impact of pressure and flowrate, Figures~\ref{fig:SS_NF_FlowRate_Int_2_5} and \ref{fig:SB_Flowrate_Int_2_5} show the average air entrainment for the interior position with a 2~1/2~in. hoseline for a combination nozzle and smooth bore nozzle.
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Total_Entrainment_1_5_Smooth_Bore_Nozzle_Interior}
-\caption[Air Entrainment Comparison of Exterior Smooth Bore Nozzle from 1~3/4~in. Line]{Air entrainment comparison of smooth bore nozzle flow rate and pressure from interior position with a 1~3/4~in line.}
-\label{fig:SB_Flowrate}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Pressure_SS_O_Int_2_5}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Pressure_NF_O_Int_2_5}
+\caption[Air Entrainment Comparison of Pressure and Flow Rate for Interior Combination Nozzle from 2~1/2~in. Line]{Air entrainment comparison of change in flow rate and pressure from interior position with a 2~1/2~in. line for a straight stream (left) and a narrow fog stream (right).}
+\label{fig:SS_NF_FlowRate_Int_2_5}
 \end{figure}
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Total_Entrainment_2_5_Smooth_Bore_Nozzle_Interior}
 \caption[Air Entrainment Comparison of Exterior Smooth Bore Nozzle from 2~1/2~in. Line]{Air entrainment comparison of smooth bore nozzle flow rate and pressure from interior position with a 2~1/2~in line.}
-\label{fig:SB_Flowrate}
+\label{fig:SB_Flowrate_Int_2_5}
 \end{figure}
 
+Similar to the 1~3/4~in. hoseline, there was negligible impact on the average air entrainment when changing pressure and flow rate for the 2~1/2~in. hoseline. For the straight stream and narrow fog stream increasing the pressure from 50~psi to 75~psi to 100~psi for a 250~gpm flow, the average air entrainment values had minimal change. The fixed nozzle pattern for the smooth bore nozzle showed an increase for the 320~gpm flow at 50~psi compared to the 260~gpm at 50~psi, however when an `O' pattern was applied, the average air entrainment values were similar (within the experimental uncertainty).
+
+To complete the assessment of the impact of flowrate and pressure on air entrainment from the interior position, the results from 1~3/4~in. hoseline experiments were compared against those that used a 2~1/2~in. hoseline. Figures~\ref{fig:SS_NF_1_5_2_5_Int} and \ref{fig:SB_1_5_2_5_Int} show the comparison between the two hoselines for a combination nozzle and smooth bore nozzle, respectively.
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/1_5_2_5_Smooth_Bore_Nozzle_Exterior}
-\caption[Air Entrainment Comparison of Exterior Smooth Bore Nozzle from 1~3/4~in LIne to 2~1/2~in. Line]{Air entrainment comparison of smooth bore nozzle flow rate and pressure from interior position with a 1~3/4~in. line to a 2~1/2~in line.}
-\label{fig:SB_Flowrate}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/1_5_2_5_SS_Nozzle_Interior}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/1_5_2_5_NF_Nozzle_Interior}
+\caption[Air Entrainment Comparison of Interior Smooth Bore Nozzle from 1~3/4~in Line to 2~1/2~in. Line]{Air entrainment comparison of a straight stream (left) and narrow fog stream (right) as a function of flow rate and pressure from interior position with a 1~3/4~in. line (180~gpm at 50~psi) to a 2~1/2~in line (320~gpm at 50~psi).}
+\label{fig:SS_NF_1_5_2_5_Int}
 \end{figure}
 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/1_5_2_5_Smooth_Bore_Nozzle_Interior}
+\caption[Air Entrainment Comparison of Interior Smooth Bore Nozzle from 1~3/4~in Line to 2~1/2~in. Line]{Air entrainment comparison of smooth bore nozzle flow rate and pressure from interior position with a 1~3/4~in. line (180~gpm at 50~psi) to a 2~1/2~in line (320~gpm at 50~psi).}
+\label{fig:SB_1_5_2_5_Int}
+\end{figure}
+
+% \begin{figure}[!ht]
+% \centering
+% \includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/1_5_2_5_Smooth_Bore_Nozzle_Exterior}
+% \caption[Air Entrainment Comparison of Exterior Smooth Bore Nozzle from 1~3/4~in Line to 2~1/2~in. Line]{Air entrainment comparison of smooth bore nozzle flow rate and pressure from exterior position with a 1~3/4~in. line (180~gpm at 50~psi) to a 2~1/2~in line (320~gpm at 50~psi).}
+% \label{fig:SB_Flowrate_Hoseline_Exterior}
+% \end{figure}
 
 \clearpage
 
@@ -807,25 +821,25 @@ As shown in Figure~\ref{fig:Nozzle_Movement_RotationSpeed_Comparison}, an increa
 \chapter{Discussion}
 
 \section{Understanding the Basics of Air Entrainment}
-As a drop of water moves though air it compresses some of the air infront of the droplet which causes a high pressure ahead of the droplet and low pressure behind the droplet. The low pressure results in a drag force behind the droplet, which pulls air along behind the droplet. As the air speeds up, additional air is pulled along due ot the bernuilli principal, which states as the velocity of a fluid increases its pressure decreases. 
+As a drop of water moves though air it compresses some of the air in front of the droplet which causes a high pressure ahead of the droplet and low pressure behind the droplet. The low pressure results in a drag force behind the droplet, which pulls air along behind the droplet. As the air speeds up, additional air is pulled along due to the Bernoulli principle, which states as the velocity of a fluid increases its pressure decreases. 
 
 \begin{figure}[!ht]
 \hl{NEED IMAGE OF DROPLET AIR FLOW}
 % \includegraphics[width=0.5\textwidth]{}
-\caption{Air Flows Around a Dropplet}
+\caption{Air Flows Around a Droplet}
 \label{fig:droplet_flow}
 \end{figure}
 
-This same concept can be applied to fire service hose streams. As the water from the stream flows through air it displaces air infront of it creating a lower pressure behind the water and pulling air along its path. Additionally the increase in the velocity of the air decreases its pressure and pulls aditional air with it. A practical application of this is the use of a hose stream for ventilation (hydraulic ventilation), where the water is directed out an opening and pulls the smoke through the same opening to ventilation the structure.
+This same concept can be applied to fire service hose streams. As the water from the stream flows through air it displaces air in front of it creating a lower pressure behind the water and pulling air along its path. Additionally the increase in the velocity of the air decreases its pressure and pulls additional air with it. A practical application of this is the use of a hose stream for ventilation (hydraulic ventilation), where the water is directed out an opening and pulls the smoke through the same opening to ventilation the structure.
 
 \begin{figure}[!ht]
 \hl{NEED IMAGE OF HYDRAULIC VENT}
 % \includegraphics[]{}
-\caption{Hydraulic Ventilaiton}
+\caption{Hydraulic Ventilation}
 \label{fig:Hydraulic_Vent}
 \end{figure}
  
-Understanding the principals of air entrainment can help firefighters understand how their actional will move more or less air. Entrainment based on several different factors including hose stream type, stream length, and nozzle movement, many of which are choices for the firefighter operating the nozzle.
+Understanding the principals of air entrainment can help firefighters understand how their action will move more or less air. Entrainment based on several different factors including hose stream type, stream length, and nozzle movement, many of which are choices for the firefighter operating the nozzle.
 
 \section{Air Entrainment is Dependent on Hose Stream Type. (Smooth bore, Straight stream, Fog)} 
 As a stream breaks up, it creates more droplets, creating more surface area of droplets, which pulls with the droplets more air. As a combination nozzle is adjusted from straight stream, to narrow fog, to wide fog, it entrains more air with the increase in the amount the stream breaks up. If the intent is to move as little air as possible, maintaining a straight stream is desired, however if the nozzle firefighter is interested in moving air, adjusting the nozzle pattern can result in significantly more air movement.
@@ -843,164 +857,9 @@ When comparing a smooth bore (solid stream) with a combination nozzle straight s
 \centering
 \hl{Need Straight Stream \& Smooth Bore Comparison}
 % \includegraphics[width=0.5\textwidth]{}
-\caption{Smooth Bore vs. Straigh Stream}
+\caption{Smooth Bore vs. Straight Stream}
 \label{fig:SB_vs_StraightStream}
 \end{figure}
-
-% The initial opening occlusion test was conducted to determine how varying the hose stream type from a single nozzle can effect the air entrainment at a given setback distance (3~ft.). This test showed that given a fixed setback distance, a combination nozzle flowing a common flow rate of 150~gpm at a pressure of 50~psi had increasing air entrainment with an increase in the width of the pattern. As the pattern became wider, approaching the size of the ventilation opening, the air entrainment increased, with straight stream experiencing the smallest airflow. 
-
-
-% Varying the hose stream type was analyzed in various other experiments as well. These were conducted with a interior fixed setback distance of 18~ft. and utilized 1.5" nozzles.
-
-% % \vspace*{\baselineskip}
-
-% \begin{table}[!ht]
-% \centering
-% \caption{Hose stream type comparison for interior 1.5" nozzles.}
-% \label{Hose_Stream_Type_Comparison}
-% \begin{tabular}{lccc}
-% \toprule[1.5pt]
-% Hose Stream Type & Flow Rate (GPM) & Pressure (PSI) & Air Entrainment (CFM) \\ 
-% \midrule
-% Straight Stream & 150 & 50 & 3440 \\
-% Straight Stream `O' & 150 & 50 & 10441 \\
-% Narrow Fog & 150 & 50 & 17645 \\
-% Narrow Fog `O' & 150 & 50 & 22873 \\
-% Smooth Bore & 150 & 50 & 3319 \\
-% Smooth Bore `O' & 150 & 50 & 9738 \\ 
-% \bottomrule[1.25pt]
-% \end{tabular}
-% \end{table}
-
-% \clearpage
-
-% \section{Air entrainment is dependent on structure size, compartmentation, and ventilation configurations.} 
-
-% The first set of experiments in which the ventilation openings were examined utilized a 1.5~in. combination (150~gpm @ 75~psi) nozzle and a smooth bore nozzle (15/16" tip, 180~gpm @ 50~psi). Four different intake openings were examined including no door, controlled door, single door, and double door. These were looking at scenarios in which a fire attack crew makes entry into the structure via a doorway and is flowing water towards an exhaust of varying size and shape. A window was not examined as one of the intake openings as the assumption was made that the attack crew would be entering the building through a door and not a window. The distance from the nozzle to the opening was 18~ft.
-
-% \begin{figure}[!ht]
-% \begin{tabular*}{\textwidth}{lr}
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_No_Door_Top} &
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Controlled_Door} \\
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Single_Door_Top} &
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Double_Door_Top} \\
-% \end{tabular*}
-% \caption{Figures showing interior air entrainment results for 1.5" combination nozzles with fixed intake openings and varying exhaust openings.}
-% \label{fig:1_5_Interior_Combination_Vents}
-% \end{figure}
-
-% \clearpage
-
-% \begin{figure}[!ht]
-% \centering
-% \includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Interior}
-% \caption{Figures showing interior air entrainment results for 1.5" smooth bore nozzles with fixed intake openings and varying exhaust openings.}
-% \label{fig:1_5_Interior_Smooth_Bore_Vents}
-% \end{figure}
-
-% Several conclusions can be drawn from the first set of ventilation experiments looking at interior attacks:
-
-% \begin{itemize}
-% 	\item As the size of the intake opening increases, so does the amount of air entrained into the hose stream.
-% 	\item Controlling the door after entry by the fire attack team significantly reduces the amount of air entrainment.
-% 	\item \hl{Something about exhaust vent sizes}
-% \end{itemize}
-
-% \clearpage
-
-% The next set of experiments utilized the same nozzles as the interior attack tests above; however these examined the differences in air entrainment from exterior streams. These tests incorporated fixed exhaust openings and varyied intake shapes and sizes. The distance from the nozzle to the opening was 18~ft.
-
-% \begin{figure}[!ht]
-% \begin{tabular*}{\textwidth}{lr}
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior_No_Door_Top} &
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior_Single_Window_Top} \\
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior_Single_Door_Top} &
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Exterior_Double_Door} \\
-% \end{tabular*}
-% \caption{Figures showing exterior air entrainment results for 1.5" combination nozzles with fixed exhaust openings and varying intake openings.}
-% \label{fig:1_5_Exterior_Combination_Vents}
-% \end{figure}
-
-% \clearpage
-
-% \begin{figure}[!ht]
-% \centering
-% \includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Exterior}
-% \caption{Figures showing exterior air entrainment results for 1.5" smooth bore nozzles with fixed exhaust openings and varying intake openings.}
-% \label{fig:1_5_Exterior_Smooth_Bore_Vents}
-% \end{figure}
-
-% Several conclusions can be drawn from the second set of ventilation experiments looking at exterior attacks:
-
-% \begin{itemize}
-% 	\item The amount of air entrained into the hose stream and moved throughout the structure is dependent on the size of the available exhaust opening.
-% 	\item The larger the intake opening, the more air available to be entrained into the hose stream.
-% \end{itemize}
-
-% \clearpage
-
-% The following experiments looked at the scenario in which a crew would be much closer to the ventilation opening, utilizing exterior streams in what is known as a transitional attack. The fire attack crew would be located on the exterior of the structure, flowing water into the building via a single window. The distance from the nozzle to the opening was less than 3~ft.
-
-% \begin{figure}[!ht]
-% \begin{tabular*}{\textwidth}{lr}
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Transitional} &
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Smooth_Bore_Nozzle_Transitional} \\
-% \end{tabular*}
-% \caption{Figures showing transitional air entrainment results for 1.5" nozzles with fixed intake openings and varying exhaust openings.}
-% \label{fig:1_5_Transitional_Vents}
-% \end{figure}
-
-% Several conclusions can be drawn from this set of ventilation experiments looking at transitional attacks:
-
-% \begin{itemize}
-% 	\item The amount of air entrained into the hose stream and moved throughout the structure is dependent on the size of the available exhaust opening.
-% 	\item The larger the exhuast opening, the more air available to be entrained into the hose stream.
-% \end{itemize}
-
-% \clearpage
-
-% Several tests were conducted with hose lines of 2.5~in. diameter in which 2.5~in. nozzles were examined as well as portable monitors.
-
-% \begin{figure}[!ht]
-% \begin{tabular*}{\textwidth}{lr}
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_2_5_Combination_Nozzle_Exterior} &
-% \includegraphics[width=3.5in]{Script_Figures/Entrainment/Vent_Configuration_2_5_Smooth_Bore_Nozzle_Exterior} \\
-% \end{tabular*}
-% \caption{Figures showing air entrainment results for 2.5" nozzles with varying exhaust and intake openings.}
-% \label{fig:2_5_Exterior_Vents}
-% \end{figure}
-
-% \clearpage
-
-% \begin{figure}[!ht]
-% 	\centering
-% 	\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Controlled_Door}
-% 	\caption{Figure showing entrainment results for varying exhaust vent configuration of an interior 1.5" combination nozzle with a fixed controlled door inlet.}
-% 	\label{fig:1_5_Interior_Vent_Configuration_Combination_Comparison_Controlled_Door}
-% \end{figure}
-
-% \begin{figure}[!ht]
-% 	\centering
-% 	\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Double_Door_Top}
-% 	\caption{Figure showing entrainment results for varying exhaust vent configuration of an interior 1.5" combination nozzle with a fixed double door inlet.}
-% 	\label{fig:1_5_Interior_Vent_Configuration_Combination_Comparison_Double_Door_Top}
-% \end{figure}
-
-% \begin{figure}[!ht]
-% 	\centering
-% 	\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_Single_Door_Top}
-% 	\caption{Figure showing entrainment results for varying exhaust vent configuration of an interior 1.5" combination nozzle with a fixed single door inlet.}
-% 	\label{fig:1_5_Interior_Vent_Configuration_Combination_Comparison_Single_Door_Top}
-% \end{figure}
-
-% \begin{figure}[!ht]
-% 	\centering
-% 	\includegraphics[width=4in]{Script_Figures/Entrainment/Vent_Configuration_1_5_Combination_Nozzle_Interior_No_Door_Top}
-% 	\caption{Figure showing entrainment results for varying exhaust vent configuration of an interior 1.5" combination nozzle with no door for an inlet.}
-% 	\label{fig:1_5_Interior_Vent_Configuration_Combination_Comparison_No_Door_Top}
-% \end{figure}
-
-% \clearpage
 
 \section{Stream Length}
 Without the aid of modern personal protective equipment, early fire service nozzles needed to be designed for reach; to provide protection for firefighters by keeping distance between them and the fire. A long reach also meant a greater ability to suppress fires on upper floors without having to drag hoselines through the building. However the further the stream travels the more air will be entrained. 
@@ -1012,10 +871,10 @@ Without the aid of modern personal protective equipment, early fire service nozz
 \label{fig:Setback}
 \end{figure}
 
-Keeping all other factors the same, as a narrow fog is moved back from and opening it exhausts more and more air from the structure. Figure \ref{fig:Setback} shows the different values recorded at 3~ft incrments back from a double door. 
+Keeping all other factors the same, as a narrow fog is moved back from and opening it exhausts more and more air from the structure. Figure \ref{fig:Setback} shows the different values recorded at 3~ft increments back from a double door. 
 
 
-If the intent of the nozzle crew is to provide additional air entrainment and in this case exhaust the nozzle should be located as far back in the room as possible. The oppsite may be true for a transitional or exterior attack where the intent is to limit the amount of air entrained in the stream as it enters an opening. Having the nozzle positioned as close to the opening as with a straight stream or smooth bore produced little to no entrainment as seen in \ref{fig:Opening_Occlusion}.
+If the intent of the nozzle crew is to provide additional air entrainment and in this case exhaust the nozzle should be located as far back in the room as possible. The opposite may be true for a transitional or exterior attack where the intent is to limit the amount of air entrained in the stream as it enters an opening. Having the nozzle positioned as close to the opening as with a straight stream or smooth bore produced little to no entrainment as seen in \ref{fig:Opening_Occlusion}.
 
 \begin{figure}
 \centering
@@ -1023,9 +882,6 @@ If the intent of the nozzle crew is to provide additional air entrainment and in
 \caption{Distance From the Opening has an Impact on Air Entrainment}
 \label{fig:ExteriorDist}
 \end{figure}
-
-
-% Over the last 200~yrs little has changed in how nozzle reach is determined. Studies conducted by nozzle manufacturers indicate modern nozzles using a straight stream from a combination nozzle or smooth bore have an effective reach of anywhere from 45~ft to 145~ft, using the same 32$^\circ$ angle from Freeman's work~\cite{TFT_Reach,Elkhart_Reach,Akron_Reach}. Modern combination and smooth bore nozzles are commonly used for interior fire attack of residential structures, however the largest dimension within a room typically on the order of 25~ft. As a result, during an interior attack of a residential structure, the hose stream will likely impact an obstruction before it exceeds its effective reach. Even combination nozzles set to a narrow fog (30$^\circ$) are cited to have an effective reach of 40~ft to 50~ft~\cite{Elkhart_Reach}.
 
 
 \section{Nozzle Movement}
@@ -1038,7 +894,7 @@ Nozzle movement or the pattern the firefighter makes with the nozzle does have a
 	\label{fig:1_5_Interior_Combination_Results_Nozzle_Movements}
 \end{figure}
 
-The speed at which the nozzle is moved or in this case rotated also has an impact on the amount of air entrained. When the number of revolutions increases from 50/min to 100/min and finally 150/min the amount of air moved increases respectivily as shown in Figure \ref{fig:Nozzle_Move_1}.
+The speed at which the nozzle is moved or in this case rotated also has an impact on the amount of air entrained. When the number of revolutions increases from 50/min to 100/min and finally 150/min the amount of air moved increases respectively as shown in Figure \ref{fig:Nozzle_Move_1}.
 
 \begin{figure}[!ht]
 \centering
@@ -1047,7 +903,7 @@ The speed at which the nozzle is moved or in this case rotated also has an impac
 \label{fig:Nozzle_Move_1}
 \end{figure}
 
-The type of pattern did not seem to have any impact on the amount of air entrained. When the nozzle was moved in a `O', `Z', or `n' pattern with keeping other variables constant the amount of air entrained was constant (Figure \ref{fig:Pattern_Compare_1}). As a comparison a purposful `O' pattern is shown adjacent a `Spray and Pray' type pattern in Figure \ref{fig:Pattern_Compare_2} where the amount of air entrained is the same for both patterns. 
+The type of pattern did not seem to have any impact on the amount of air entrained. When the nozzle was moved in a `O', `Z', or `n' pattern with keeping other variables constant the amount of air entrained was constant (Figure \ref{fig:Pattern_Compare_1}). As a comparison a purposeful `O' pattern is shown adjacent a `Spray and Pray' type pattern in Figure \ref{fig:Pattern_Compare_2} where the amount of air entrained is the same for both patterns. 
 
 \begin{figure}[!ht]
 \centering
@@ -1059,7 +915,7 @@ The type of pattern did not seem to have any impact on the amount of air entrain
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Script_Figures/Entrainment/Nozzle_Movement_Comparison_2.pdf}
-\caption{Purposful `0' vs. `Spray and Pray'}
+\caption{Purposeful `0' vs. `Spray and Pray'}
 \label{fig:Pattern_Compare_2}
 \end{figure}
 
@@ -1069,16 +925,12 @@ When the intent is to entrain as much as possible, moving the nozzle as rapidly 
 \centering
 \hl{Need figure from PPV for AirMovement}
 % \includegraphics[]{}
-\caption{Single Story Structure Exhaust - PPV \cite{Zevotek_Kerber:2016}}
+\caption{Single Story Structure Exhaust - PPV}
 \label{fig:PPV}
 \end{figure}
 
 
 \section{What did not affect Entrainment}
-
-
-
-\clearpage
 
 \chapter{Future Research Needs}
 
