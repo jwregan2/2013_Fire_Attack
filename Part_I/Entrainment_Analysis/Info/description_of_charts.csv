@@ -18,19 +18,25 @@ Combination_SS_Pattern_Comp,,,Total Air Entrainment,150 gpm @ 50 psi,upper right
 Combination_NF_Pattern_Comp,,,Total Air Entrainment,150 gpm @ 50 psi,upper left,Exp_04_102615,5|6,0,,,15000,0
 Total_Entrainment_1_5_Smooth_Bore_Nozzle_Interior,"1.5"" Smooth Bore Nozzle Interior",,Total Air Entrainment,150 gpm @ 50 psi|180 gpm @ 50 psi|210 gpm @ 50 psi,upper left,Exp_08_102615|Exp_09_102615|Exp_10_102615,1|2,0,,,8000,0
 Total_Entrainment_1_5_Smooth_Bore_Nozzle_Interior_Patterns,"1.5"" Smooth Bore Nozzle Interior",,Total Air Entrainment,150 gpm @ 50 psi|180 gpm @ 50 psi|210 gpm @ 50 psi,upper left,Exp_08_102615|Exp_09_102615|Exp_10_102615,2|3|4,0,,,8000,0
+Pressure_SS_O_Int,"1.5"" Smooth Bore Nozzle Interior",,Pressure,150 gpm @ 50 psi|150 gpm @ 75 psi|150 gpm @ 100 psi|95 gpm @ 100 psi,upper left,Exp_04_102615|Exp_05_102615|Exp_06_102615|Exp_07_102615,1|2,0,,,8000,0
+Pressure_NF_O_Int,"1.5"" Smooth Bore Nozzle Interior",,Pressure,150 gpm @ 50 psi|150 gpm @ 75 psi|150 gpm @ 100 psi|95 gpm @ 100 psi,upper left,Exp_04_102615|Exp_05_102615|Exp_06_102615|Exp_07_102615,5|6,0,,,20000,0
+Pressure_SB_O_Int,"1.5"" Smooth Bore Nozzle Interior",,Pressure,150 gpm @ 50 psi|180 gpm @ 50 psi|210 gpm @ 50 psi,upper left,Exp_08_102615|Exp_09_102615|Exp_10_102615,1|2,0,,,6000,0
+Pressure_SS_O_Int_2_5,"2.5"" Combination Nozzle Interior",,Total Air Entrainment,250 gpm @ 50 psi|250 gpm @ 75 psi|250 gpm @ 100 psi,upper left,Exp_27_102715|Exp_28_102715|Exp_29_102715,1|2,0,,,9000,0
+Pressure_NF_O_Int_2_5,"2.5"" Combination Nozzle Interior",,Total Air Entrainment,250 gpm @ 50 psi|250 gpm @ 75 psi|250 gpm @ 100 psi,upper left,Exp_27_102715|Exp_28_102715|Exp_29_102715,5|6,0,,,25000,0
 Combination_SB_Fixed_Moved_Comp,,,Total Air Entrainment,150 gpm @ 50 psi,upper left,Exp_08_102615,1|2,0,,,8000,0
 Combination_SB_Pattern_Comp,,,Total Air Entrainment,150 gpm @ 50 psi,upper right,Exp_08_102615,2|3|4,0,,,8000,0
 Total_Entrainment_2_5_Combination_Nozzle_Interior,"2.5"" Combination Nozzle Interior",,Total Air Entrainment,250 gpm @ 50 psi|250 gpm @ 75 psi|250 gpm @ 100 psi,upper left,Exp_27_102715|Exp_28_102715|Exp_29_102715,1|2|5|6,0,,,25000,0
-Total_Entrainment_2_5_Smooth_Bore_Nozzle_Interior,"2.5"" Smooth Bore Nozzle Interior",,Total Air Entrainment,260 gpm @ 50 psi|320 gpm @ 50 psi,upper left,Exp_30_102715|Exp_31_102715,1|2|3|4,0,,,10000,0
+Total_Entrainment_2_5_Smooth_Bore_Nozzle_Interior,"2.5"" Smooth Bore Nozzle Interior",,Total Air Entrainment,260 gpm @ 50 psi|320 gpm @ 50 psi,upper left,Exp_30_102715|Exp_31_102715,1|2,0,,,9000,0
 Total_Entrainment_MS_Combination_Nozzle_Interior_500gpm_100psi,MS Combination Nozzle Interior,ignore,Total Air Entrainment,500gpm @ 100psi,upper left,Exp_36_102715,2|3,0,,,0,0
 Total_Entrainment_MS_Combination_Nozzle_Interior,MS Combination Nozzle Interior,ignore,Total Air Entrainment,500gpm @ 100psi|750gpm @ 100psi,upper left,Exp_36_102715|Exp_37_102715,2,0,,,0,0
 Total_Entrainment_MS_Smooth_Bore_Nozzle_Interior,MS Smooth Bore Nozzle Interior,ignore,Total Air Entrainment,600gpm @ 80psi|800gpm @ 80psi,upper left,Exp_34_102715|Exp_35_102715,2,0,,,0,0
 Total_Entrainment_1_5_Smooth_Bore_Nozzle_Exterior,"1.5"" Smooth Bore Nozzle Exterior",,Total Air Entrainment,180 gpm @ 50 psi,upper left,Exp_38_102715,1|2|3|4,0,,,20000,0
 Total_Entrainment_2_5_Combination_Nozzle_Exterior,"2.5"" Combination Nozzle Exterior",,Total Air Entrainment,250 gpm @ 75 psi,upper left,Exp_39_102715,1|2|3|4|5|6,0,,,25000,0
 Total_Entrainment_2_5_Smooth_Bore_Nozzle_Exterior,"2.5"" Smooth Bore Nozzle Exterior",,Total Air Entrainment,320 gpm @ 50 psi,upper left,Exp_40_102715,1|2,0,,,20000,0
-1_5_2_5_Smooth_Bore_Nozzle_Interior,,,Total Air Entrainment,180 gpm @ 50 psi|320 gpm @ 50 psi,upper left,Exp_38_102715|Exp_40_102715,1|2,0,,,20000,0
-1_5_2_5_Smooth_Bore_Nozzle_Exterior,,,Total Air Entrainment,180 gpm @ 50 psi|320 gpm @ 50 psi,upper left,Exp_09_102615|Exp_31_102715,1|2,0,,,20000,0
-Room_Configuration_1_5_Combination_Nozzle_Interior_1,"1.5"" Combination Nozzle Interior",ignore,Room Configuration,150gpm @ 50psi,center left,Exp_88_102915,1|3|6|7,0,,,1000,-2000
+1_5_2_5_Smooth_Bore_Nozzle_Exterior,,,Total Air Entrainment,180 gpm @ 50 psi|320 gpm @ 50 psi,upper left,Exp_38_102715|Exp_40_102715,1|2,0,,,20000,0
+1_5_2_5_Smooth_Bore_Nozzle_Interior,,,Total Air Entrainment,180 gpm @ 50 psi|320 gpm @ 50 psi,upper left,Exp_09_102615|Exp_31_102715,1|2,0,,,8000,0
+1_5_2_5_SS_Nozzle_Interior,,,Pressure,150 gpm @ 50 psi|250 gpm @ 50 psi,upper left,Exp_04_102615|Exp_27_102715,1|2,0,,,9000,0
+1_5_2_5_NF_Nozzle_Interior,,,Pressure,150 gpm @ 50 psi|250 gpm @ 50 psi,upper left,Exp_04_102615|Exp_27_102715,5|6,0,,,20000,0
 Room_Configuration_1_5_Combination_Nozzle_Interior_2,"1.5"" Combination Nozzle Interior",ignore,Room Configuration,150gpm @ 50psi,center left,Exp_89_102915,1|3,0,,,1000,-2000
 Room_Configuration_1_5_Combination_Nozzle_Interior_3,"1.5"" Combination Nozzle Interior",ignore,Room Configuration,150gpm @ 50psi,center left,Exp_91_102915,1|3|4|6,0,,,1000,-2000
 Room_Configuration_1_5_Combination_Nozzle_Interior_4,"1.5"" Combination Nozzle Interior",ignore,Room Configuration,150gpm @ 75psi,center left,Exp_85_102915,1|3|5|7,0,,,1000,-2000
