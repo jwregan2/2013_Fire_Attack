@@ -120,37 +120,37 @@ for f in os.listdir(data_location):
 		Exp_Events.to_csv('../Experimental_Data/'+ Test_Name + '_Events_CFM.csv')
 		time = list(range(len(Exp_Data)))
 
-		# fig = figure()
-		# plt.plot(time,CFM,'r--',linewidth=1.5)
-		# # plt.plot(time,CFM_3,'b--',label='CFM Middle 3')
-		# # plt.plot(time,CFM_1,'r-.',label='CFM Middle')
-		# for i in range(1,len(Exp_Events)):
-		# 	plt.plot([Exp_Events['Elapsed_Time'][i-1],Exp_Events['Elapsed_Time'][i]],[cfm_avgs[i-1],cfm_avgs[i-1]],color='black',linewidth=2)
-		# ax1 = plt.gca()
-		# handles1, labels1 = ax1.get_legend_handles_labels()
-		# ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-		# ax1_xlims = ax1.axis()[0:2]
-		# plt.xlim([0, End_Time-Start_Time])
-		# plt.xlabel('Time (s)')
-		# plt.ylabel('CFM (ft$^3$/min)')
-		# try:
-		# 	# Add vertical lines and labels for timing information (if available)
-		# 	ax3 = ax1.twiny()
-		# 	ax3.set_xlim(ax1_xlims)
-		# 	# Remove NaN items from event timeline
-		# 	events = Exp_Events['Event']
-		# 	[plt.axvline(_x, color='0.50', lw=1) for _x in Exp_Events['Elapsed_Time']]
-		# 	ax3.set_xticks(Exp_Events['Elapsed_Time'])
-		# 	plt.setp(plt.xticks()[1], rotation=40)
-		# 	ax3.set_xticklabels(events.values, fontsize=8, ha='left')
-		# 	plt.xlim([0, End_Time])
-		# 	# Increase figure size for plot labels at top
-		# 	fig.set_size_inches(10, 9)
-		# except:
-		# 	pass
-		# # plt.legend(handles1, labels1, loc='upper left', fontsize=12, handlelength=3)
-		# savefig(chart_location+Test_Name+'_CFM.pdf')
-		# close()
+		fig = figure()
+		plt.plot(time,CFM,'r--',linewidth=1.5)
+		# plt.plot(time,CFM_3,'b--',label='CFM Middle 3')
+		# plt.plot(time,CFM_1,'r-.',label='CFM Middle')
+		for i in range(1,len(Exp_Events)):
+			plt.plot([Exp_Events['Elapsed_Time'][i-1],Exp_Events['Elapsed_Time'][i]],[cfm_avgs[i-1],cfm_avgs[i-1]],color='black',linewidth=2)
+		ax1 = plt.gca()
+		handles1, labels1 = ax1.get_legend_handles_labels()
+		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+		ax1_xlims = ax1.axis()[0:2]
+		plt.xlim([0, End_Time-Start_Time])
+		plt.xlabel('Time (s)')
+		plt.ylabel('CFM (ft$^3$/min)')
+		try:
+			# Add vertical lines and labels for timing information (if available)
+			ax3 = ax1.twiny()
+			ax3.set_xlim(ax1_xlims)
+			# Remove NaN items from event timeline
+			events = Exp_Events['Event']
+			[plt.axvline(_x, color='0.50', lw=1) for _x in Exp_Events['Elapsed_Time']]
+			ax3.set_xticks(Exp_Events['Elapsed_Time'])
+			plt.setp(plt.xticks()[1], rotation=40)
+			ax3.set_xticklabels(events.values, fontsize=8, ha='left')
+			plt.xlim([0, End_Time])
+			# Increase figure size for plot labels at top
+			fig.set_size_inches(10, 9)
+		except:
+			pass
+		# plt.legend(handles1, labels1, loc='upper left', fontsize=12, handlelength=3)
+		savefig(chart_location+Test_Name+'_CFM.pdf')
+		close()
 
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
              (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
@@ -191,41 +191,41 @@ for k in range(len(plot_file)):
 	ind = np.arange(len(event_nums))  # the x locations for the groups
 	width = 0.8/len(test_comps)  # the width of the bars
 
-	# fig, ax = plt.subplots(figsize=(10, 9))
-	# cfm_bars = np.zeros((len(test_comps),len(event_nums)))
-	# labels = ["" for x in range(len(event_nums))]
-	# for i in range(len(test_comps)):
-	# 	temp_read = pd.read_csv('../Experimental_Data/'+test_comps[i]+'_Events_CFM.csv')
-	# 	for j in range(len(event_nums)):
-	# 		if plot_file['Anomalies'][k] == 0:
-	# 			cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
-	# 			labels[j] = temp_read['Event'][int(event_nums[j])]
-	# 		elif plot_file['Anomalies'][k] == 1:
-	# 			if test_comps[i] in test_anomaly[:]:
-	# 				cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums_anomaly[j])]
-	# 			else:
-	# 				cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
-	# 				labels[j] = temp_read['Event'][int(event_nums[j])]
-	# 	uncert = 0.18*cfm_bars[i,:]
-	# 	rects = ax.bar(ind+i*width, cfm_bars[i,:], width, color=tableau20[i],yerr=uncert,error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+	fig, ax = plt.subplots(figsize=(10, 9))
+	cfm_bars = np.zeros((len(test_comps),len(event_nums)))
+	labels = ["" for x in range(len(event_nums))]
+	for i in range(len(test_comps)):
+		temp_read = pd.read_csv('../Experimental_Data/'+test_comps[i]+'_Events_CFM.csv')
+		for j in range(len(event_nums)):
+			if plot_file['Anomalies'][k] == 0:
+				cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
+				labels[j] = temp_read['Event'][int(event_nums[j])]
+			elif plot_file['Anomalies'][k] == 1:
+				if test_comps[i] in test_anomaly[:]:
+					cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums_anomaly[j])]
+				else:
+					cfm_bars[i,j] = temp_read['CFM_Avg'][int(event_nums[j])]
+					labels[j] = temp_read['Event'][int(event_nums[j])]
+		uncert = 0.18*cfm_bars[i,:]
+		rects = ax.bar(ind+i*width, cfm_bars[i,:], width, color=tableau20[i],yerr=uncert,error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
 
-	# # box = ax.get_position()
-	# # ax.set_position([box.x0, box.y0, box.width * 0.7, box.height])
-	# # ax.legend(legend_names,loc=plot_file['Legend_Location'][k], bbox_to_anchor=(1, 0.5))
-	# ax.legend(legend_names,loc=plot_file['Legend_Location'][k],fontsize=16)
-	# # ax.set_title(plot_file['Chart_Title'][k])
-	# ax.set_ylabel('Average CFM (ft$^3$/min)', fontsize=18)
-	# if len(test_comps) == 1:
-	# 	ax.set_xticks(ind + width/2)
-	# else:
-	# 	ax.set_xticks(ind + width)
-	# ax.set_xticklabels(labels, rotation = -15, ha = 'left',fontsize=16)
-	# ax.tick_params(axis='both', which='major', labelsize=16)
-	# # max_y = max(zip(cfm_bars[i,:], uncert))
-	# # plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
-	# ylim([plot_file['Min'][k],plot_file['Max'][k]])
-	# savefig(chart_location+file_name+'.pdf')
-	# plt.close('all')
+	# box = ax.get_position()
+	# ax.set_position([box.x0, box.y0, box.width * 0.7, box.height])
+	# ax.legend(legend_names,loc=plot_file['Legend_Location'][k], bbox_to_anchor=(1, 0.5))
+	ax.legend(legend_names,loc=plot_file['Legend_Location'][k],fontsize=16)
+	# ax.set_title(plot_file['Chart_Title'][k])
+	ax.set_ylabel('Average CFM (ft$^3$/min)', fontsize=18)
+	if len(test_comps) == 1:
+		ax.set_xticks(ind + width/2)
+	else:
+		ax.set_xticks(ind + width)
+	ax.set_xticklabels(labels, rotation = -15, ha = 'left',fontsize=16)
+	ax.tick_params(axis='both', which='major', labelsize=16)
+	# max_y = max(zip(cfm_bars[i,:], uncert))
+	# plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
+	ylim([plot_file['Min'][k],plot_file['Max'][k]])
+	savefig(chart_location+file_name+'.pdf')
+	plt.close('all')
 
 
 #-----------------------
