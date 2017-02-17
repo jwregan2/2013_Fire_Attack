@@ -329,3 +329,17 @@ plt.legend(['MFI','MFII','MFIII'], loc='upper left')
 fig.tight_layout()
 savefig(chart_location+'All_SS_SB_Manufacture'+'.pdf')
 
+ppv_cfm = [8620,14388]
+ppv_variance = [0.18*ppv_cfm[0],0.18*ppv_cfm[1]]
+bar_labels = ['1:1 Exhaust Ratio','2:1 Exhaust Ratio']
+x_pos = list(range(len(bar_labels)))
+width = 0.25
+fig, ax = plt.subplots(figsize=(10, 9))
+plt.bar(x_pos, ppv_cfm, yerr=ppv_variance, align='center', color=tableau20[0],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+max_y = max(zip(ppv_cfm, ppv_variance))
+plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
+plt.ylabel('Average CFM (ft$^3$/min)', fontsize=18)
+plt.xticks(x_pos, bar_labels,rotation = -15)
+ax.tick_params(axis='both', which='major', labelsize=16)
+plt.legend(['Gas PPV Fan 18” 4.8hp'], loc='upper left')
+savefig(chart_location+'PPV'+'.pdf')
