@@ -3,7 +3,6 @@ Setback_Distance_Comparison,Setback Distance Comparison,,Preliminary Testing,150
 Opening_Occlusion,Opening Occlusion,,Preliminary Testing,150gpm @ 50psi,upper left,Exp_03_102615,3|2|1,0,,,15000,0
 Nozzle_Movement_Comparison_1,Nozzle Movement Comparison - Rotation Speed,,Preliminary Testing,210 gpm @ 50 psi,upper right,Exp_25_102715,1|2|3,0,,,12000,0
 Nozzle_Movement_Comparison_2,Nozzle Movement Comparison - Patterns,,Preliminary Testing,210 gpm @ 50 psi,upper right,Exp_26_102715,1|2,0,,,10000,0
-Hose_Stream_Type_Comparison,,,Hose Stream Comparison,150gpm @ 50psi|150gpm @ 50psi|150gpm @ 50psi,upper left,Exp_08_102615|Exp_04_102615|Exp_04_102615,1,0,Exp_04_102615,5,10000,0
 Manufacturer_1_5_Combination_Nozzle_95gpm_100psi,Combination Nozzle: 95gpm @ 100psi,,Manufacturer Comparison,MFI|MFII|MFIII,upper left,Exp_07_102615|Exp_19_102715|Exp_12_102615,1|2|3|4,1,Exp_07_102615,1|2|5|6,22000,0
 Manufacturer_1_5_Combination_Nozzle_150gpm_50psi,Combination Nozzle: 150gpm @ 50psi,,Manufacturer Comparison,MFI|MFII|MFIII,upper left,Exp_04_102615|Exp_21_102715|Exp_14_102615,1|2|3|4,1,Exp_04_102615,1|2|5|6,22000,0
 Manufacturer_1_5_Combination_Nozzle_150gpm_75psi,Combination Nozzle: 150gpm @ 75psi,,Manufacturer Comparison,MFI|MFII|MFIII,upper left,Exp_05_102615|Exp_20_102715|Exp_13_102615,1|2|3|4,1,Exp_05_102615,1|2|5|6,22000,0

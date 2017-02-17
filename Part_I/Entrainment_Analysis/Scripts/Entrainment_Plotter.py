@@ -234,6 +234,10 @@ for k in range(len(plot_file)):
 
 exp04 = pd.read_csv('../Experimental_Data/Exp_04_102615_Events_CFM.csv')
 exp08 = pd.read_csv('../Experimental_Data/Exp_08_102615_Events_CFM.csv')
+exp11 = pd.read_csv('../Experimental_Data/Exp_11_102615_Events_CFM.csv')
+exp15 = pd.read_csv('../Experimental_Data/Exp_15_102615_Events_CFM.csv')
+exp18 = pd.read_csv('../Experimental_Data/Exp_18_102715_Events_CFM.csv')
+exp22 = pd.read_csv('../Experimental_Data/Exp_22_102715_Events_CFM.csv')
 
 mean_values = [exp08['CFM_Avg'][1],exp04['CFM_Avg'][1],exp04['CFM_Avg'][5]]
 variance = [0.18*exp08['CFM_Avg'][1],0.18*exp04['CFM_Avg'][1],0.18*exp04['CFM_Avg'][5]]
@@ -263,6 +267,25 @@ ax.tick_params(axis='both', which='major', labelsize=16)
 plt.legend(['150 gpm @ 50 psi'], loc='upper left')
 savefig(chart_location+'Hosestream_Type_1_5_int_move'+'.pdf')
 
+mean_values_MFI   = [exp04['CFM_Avg'][1],exp08['CFM_Avg'][1]] 
+variance_MFI      = [0.18*exp04['CFM_Avg'][1],0.18*exp08['CFM_Avg'][1]] 
+mean_values_MFII  = [exp18['CFM_Avg'][1],exp22['CFM_Avg'][1]] 
+variance_MFII     = [0.18*exp18['CFM_Avg'][1],0.18*exp22['CFM_Avg'][1]] 
+mean_values_MFIII = [exp11['CFM_Avg'][1],exp15['CFM_Avg'][1]] 
+variance_MFIII    = [0.18*exp11['CFM_Avg'][1],0.18*exp15['CFM_Avg'][1]] 
 
-
+bar_labels = [exp04['Event'][1],exp08['Event'][1]]
+x_pos = list(range(len(bar_labels)))
+width = 0.25
+fig, ax = plt.subplots(figsize=(10, 9))
+plt.bar(x_pos, mean_values_MFI, width, yerr=variance_MFI, align='center', color=tableau20[0],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+plt.bar([p + width for p in x_pos], mean_values_MFII, width,yerr=variance_MFII, align='center', color=tableau20[1],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+plt.bar([p + width*2 for p in x_pos], mean_values_MFIII, width, yerr=variance_MFIII, align='center', color=tableau20[2],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+max_y = max(zip(mean_values_MFII, variance))
+plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
+plt.ylabel('Average CFM (ft$^3$/min)', fontsize=18)
+plt.xticks([p + 1.5 * width for p in x_pos], bar_labels,rotation = -15)
+ax.tick_params(axis='both', which='major', labelsize=16)
+plt.legend(['MFI','MFII','MFIII'], loc='upper left')
+savefig(chart_location+'SS_SB_Manufacture'+'.pdf')
 
