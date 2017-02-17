@@ -221,6 +221,8 @@ for k in range(len(plot_file)):
 		ax.set_xticks(ind + width)
 	ax.set_xticklabels(labels, rotation = -15, ha = 'left',fontsize=16)
 	ax.tick_params(axis='both', which='major', labelsize=16)
+	# max_y = max(zip(cfm_bars[i,:], uncert))
+	# plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
 	ylim([plot_file['Min'][k],plot_file['Max'][k]])
 	savefig(chart_location+file_name+'.pdf')
 	plt.close('all')
