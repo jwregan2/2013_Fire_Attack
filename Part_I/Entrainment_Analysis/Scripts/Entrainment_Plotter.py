@@ -329,6 +329,33 @@ plt.legend(['MFI','MFII','MFIII'], loc='upper left')
 fig.tight_layout()
 savefig(chart_location+'All_SS_SB_Manufacture'+'.pdf')
 
+mean_values_MFI   = [exp04['CFM_Avg'][2],exp05['CFM_Avg'][2],exp06['CFM_Avg'][2],exp07['CFM_Avg'][2],exp08['CFM_Avg'][2],exp09['CFM_Avg'][2],exp10['CFM_Avg'][2]] 
+variance_MFI      = 0.18*np.asarray(mean_values_MFI)
+mean_values_MFII  = [exp21['CFM_Avg'][2],exp20['CFM_Avg'][2],exp18['CFM_Avg'][2],exp19['CFM_Avg'][2],exp22['CFM_Avg'][2],exp23['CFM_Avg'][2],exp24['CFM_Avg'][2]] 
+variance_MFII     = 0.18*np.asarray(mean_values_MFII)
+mean_values_MFIII = [exp14['CFM_Avg'][2],exp13['CFM_Avg'][2],exp11['CFM_Avg'][2],exp12['CFM_Avg'][2],exp15['CFM_Avg'][2],exp16['CFM_Avg'][2],exp17['CFM_Avg'][2]] 
+variance_MFIII    = 0.18*np.asarray(mean_values_MFIII)
+
+bar_labels = ['150 gpm @ 50 psi','150 gpm @ 75 psi','150 gpm @ 100 psi','95 gpm @ 100 psi','150 gpm @ 50 psi','180 gpm @ 50 psi','210 gpm @ 50 psi']
+# bar_labels = [exp04['Event'][1],exp05['Event'][1],exp06['Event'][1],exp07['Event'][1],exp08['Event'][1],exp09['Event'][1],exp10['Event'][1]]
+x_pos = list(range(len(bar_labels)))
+width = 0.25
+fig, ax = plt.subplots(figsize=(12, 8))
+plt.bar([p - width for p in x_pos], mean_values_MFI, width, yerr=variance_MFI, align='center', color=tableau20[0],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+plt.bar([p for p in x_pos], mean_values_MFII, width,yerr=variance_MFII, align='center', color=tableau20[1],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+plt.bar([p + width for p in x_pos], mean_values_MFIII, width, yerr=variance_MFIII, align='center', color=tableau20[2],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+max_y = max(zip(mean_values_MFII, variance))
+plt.ylim([0, (max_y[0] + max_y[1]) * 1.4])
+plt.ylabel('Average CFM (ft$^3$/min)', fontsize=18)
+plt.xticks([p for p in x_pos], bar_labels, ha='left', rotation = -30)
+ax.tick_params(axis='both', which='major', labelsize=16)
+plt.legend(['MFI','MFII','MFIII'], loc='upper left')
+fig.tight_layout()
+savefig(chart_location+'All_SS_SB_Manufacture_O'+'.pdf')
+
+
+
+
 ppv_cfm = [8620,14388]
 ppv_variance = [0.18*ppv_cfm[0],0.18*ppv_cfm[1]]
 bar_labels = ['1:1 Exhaust Ratio','2:1 Exhaust Ratio']
