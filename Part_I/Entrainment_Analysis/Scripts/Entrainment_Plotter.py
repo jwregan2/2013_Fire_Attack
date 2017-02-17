@@ -162,7 +162,7 @@ for i in range(len(tableau20)):
     r, g, b = tableau20[i]
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
-#Plotting
+Plotting
 plot_file = pd.read_csv(plot_file)
 for k in range(len(plot_file)):
 	if plot_file['Chart_Status'][k] == 'ignore':
@@ -223,5 +223,44 @@ for k in range(len(plot_file)):
 	ax.tick_params(axis='both', which='major', labelsize=16)
 	ylim([plot_file['Min'][k],plot_file['Max'][k]])
 	savefig(chart_location+file_name+'.pdf')
-
 	plt.close('all')
+
+
+#-----------------------
+# One off plots
+#-----------------------
+
+exp04 = pd.read_csv('../Experimental_Data/Exp_04_102615_Events_CFM.csv')
+exp08 = pd.read_csv('../Experimental_Data/Exp_08_102615_Events_CFM.csv')
+
+mean_values = [exp08['CFM_Avg'][1],exp04['CFM_Avg'][1],exp04['CFM_Avg'][5]]
+variance = [0.18*exp08['CFM_Avg'][1],0.18*exp04['CFM_Avg'][1],0.18*exp04['CFM_Avg'][5]]
+bar_labels = [exp08['Event'][1],exp04['Event'][1],exp04['Event'][5]]
+x_pos = list(range(len(bar_labels)))
+fig, ax = plt.subplots(figsize=(10, 9))
+plt.bar(x_pos, mean_values, yerr=variance, align='center', color=tableau20[0],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+max_y = max(zip(mean_values, variance))
+plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
+plt.ylabel('Average CFM (ft$^3$/min)', fontsize=18)
+plt.xticks(x_pos, bar_labels,rotation = -15)
+ax.tick_params(axis='both', which='major', labelsize=16)
+plt.legend(['150 gpm @ 50 psi'], loc='upper left')
+savefig(chart_location+'Hosestream_Type_1_5_int'+'.pdf')
+
+mean_values = [exp08['CFM_Avg'][2],exp04['CFM_Avg'][2],exp04['CFM_Avg'][6]]
+variance = [0.18*exp08['CFM_Avg'][2],0.18*exp04['CFM_Avg'][2],0.18*exp04['CFM_Avg'][6]]
+bar_labels = [exp08['Event'][2],exp04['Event'][2],exp04['Event'][6]]
+x_pos = list(range(len(bar_labels)))
+fig, ax = plt.subplots(figsize=(10, 9))
+plt.bar(x_pos, mean_values, yerr=variance, align='center', color=tableau20[0],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+max_y = max(zip(mean_values, variance))
+plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
+plt.ylabel('Average CFM (ft$^3$/min)', fontsize=18)
+plt.xticks(x_pos, bar_labels,rotation = -15)
+ax.tick_params(axis='both', which='major', labelsize=16)
+plt.legend(['150 gpm @ 50 psi'], loc='upper left')
+savefig(chart_location+'Hosestream_Type_1_5_int_move'+'.pdf')
+
+
+
+
