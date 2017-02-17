@@ -162,7 +162,7 @@ for i in range(len(tableau20)):
     r, g, b = tableau20[i]
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
-Plotting
+# Plotting
 plot_file = pd.read_csv(plot_file)
 for k in range(len(plot_file)):
 	if plot_file['Chart_Status'][k] == 'ignore':
