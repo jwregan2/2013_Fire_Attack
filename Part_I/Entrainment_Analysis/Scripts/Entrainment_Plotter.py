@@ -231,7 +231,7 @@ for k in range(len(plot_file)):
 #-----------------------
 # One off plots
 #-----------------------
-
+exp03 = pd.read_csv('../Experimental_Data/Exp_03_102615_Events_CFM.csv')
 exp04 = pd.read_csv('../Experimental_Data/Exp_04_102615_Events_CFM.csv')
 exp05 = pd.read_csv('../Experimental_Data/Exp_05_102615_Events_CFM.csv')
 exp06 = pd.read_csv('../Experimental_Data/Exp_06_102615_Events_CFM.csv')
@@ -353,7 +353,23 @@ plt.legend(['MFI','MFII','MFIII'], loc='upper left')
 fig.tight_layout()
 savefig(chart_location+'All_SS_SB_Manufacture_O'+'.pdf')
 
-
+mean_values_ss = [exp03['CFM_Avg'][3],exp06['CFM_Avg'][1]]
+variance_ss    = 0.18*np.asarray(mean_values_ss)
+mean_values_nf = [exp03['CFM_Avg'][2],exp06['CFM_Avg'][5]]
+variance_nf    = 0.18*np.asarray(mean_values_nf)
+bar_labels = ["3' from Opening","12' from Opening"]
+x_pos = list(range(len(bar_labels)))
+width = 0.4
+fig, ax = plt.subplots(figsize=(10, 9))
+plt.bar([p - .5*width for p in x_pos], mean_values_ss,width, yerr=variance_ss, align='center', color=tableau20[0],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+plt.bar([p + .5*width for p in x_pos], mean_values_nf,width, yerr=variance_nf, align='center', color=tableau20[1],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+max_y = max(zip(mean_values_nf, variance_nf))
+plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
+plt.ylabel('Average CFM (ft$^3$/min)', fontsize=18)
+plt.xticks([p for p in x_pos], bar_labels,rotation = -15)
+ax.tick_params(axis='both', which='major', labelsize=16)
+plt.legend(['150 gpm @ 100 psi Straight Stream','150 gpm @ 100 psi Narrow Fog'], loc='upper left')
+savefig(chart_location+'Hosestream_Setback_Comp'+'.pdf')
 
 
 ppv_cfm = [8620,14388]
