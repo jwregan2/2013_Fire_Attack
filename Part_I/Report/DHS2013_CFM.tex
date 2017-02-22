@@ -12,9 +12,9 @@
 \chead{}
 \renewcommand{\headrulewidth}{0pt}
 
-%usepackage{draftwatermaark}
-% \SetWatermarkText{DRAFT}
-% \SetWatermarkScale{1}
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT}
+\SetWatermarkScale{1}
 
 \begin{document}
 \pagenumbering{gobble}
@@ -163,7 +163,7 @@ To assist in the design and implementation of the experiments for the Fire Attac
 	\end{tabular}
 \end{table}
 
-The authors would also like to acknowledge Ira Kerber and the staff of the Delaware County Emergency Services Training Center for their assistance in conducting the air entrainment experiments.
+The authors would also like to acknowledge the staff of the Delaware County Emergency Services Training Center for their assistance in conducting the air entrainment experiments.
 
 \cleardoublepage
 \phantomsection
@@ -236,7 +236,7 @@ Nearly every firefighter training manual introduces the concept of hydraulic ven
 
 \section{Previous Research}
 
-A series of air entrainment experiments was conducted at the Rockland County, NY Fire Training Center in 2002 in with the goal to quantify the amount of air moved by various nozzles~\cite{KnappNozzles1}. Three fire service professionals: Jerry Knapp, Tim Pillsworth, and Sean White recognized the need for the nozzle firefighter to understand what happens to the fire conditions in a building as a result of their water application. It was noted that the effects of the nozzle, stream pattern, and associated air movement often go unseen as the environment is filled with smoke limiting visibility. This was the first of its kind in which the nozzles were flowed in typical fireground methods and the air moved was captured. Ventilation was provided both behind and in front of the nozzle operator. The test fixture was a modular shipping container, divided by a draft wall in which an airflow-measuring device was placed as shown in Figure~\ref{fig:Rockland_County_Test_Setup}. The device measured velocity and volumetric flow and was re-purposed from HVAC installation and duct balancing. Tests were performed looking at nozzle type, hose stream type, nozzle movements, and distance from the ventilation opening. This work led to some of the first quantified conclusions regarding air entrainment in hose streams. The tests showed that smooth bore nozzles entrained the least amount of air, followed by straight streams and fog streams from a combination nozzle. It was also seen that increasing the distance from the nozzle to the ventilation opening increased the entrainment within the hose stream. Additionally, rotating the nozzle in a clockwise fashion increased the entrainment was well~\cite{KnappNozzles1,KnappNozzles2,KnappNozzles3}.
+A series of air entrainment experiments was conducted at the Rockland County, NY Fire Training Center in 2002 in with the goal to quantify the amount of air moved by various nozzles~\cite{KnappNozzles1}. Three fire service professionals: Jerry Knapp, Tim Pillsworth, and Sean White recognized the need for the nozzle firefighter to understand what happens to the fire conditions in a building as a result of their water application. It was noted that the effects of the nozzle, stream pattern, and associated air movement often go unseen as the environment is filled with smoke limiting visibility. This was the first of its kind in which the nozzles were flowed in typical fireground methods and the air moved was captured. Ventilation was provided both behind and in front of the nozzle operator. The test fixture was a modular shipping container, divided by a draft wall in which an airflow-measuring device was placed as shown in Figure~\ref{fig:Rockland_County_Test_Setup}. The device measured velocity and volumetric flow and was re-purposed from HVAC installation and duct balancing. Tests were performed looking at nozzle type, hose stream type, nozzle movements, and distance from the ventilation opening. This work led to some of the first quantified conclusions regarding air entrainment in hose streams. The tests showed that smooth bore nozzles entrained the least amount of air, followed by straight streams and fog streams from a combination nozzle. It was also seen that increasing the distance from the nozzle to the ventilation opening increased the entrainment within the hose stream. Additionally, rotating the nozzle in a clockwise fashion increased the entrainment was well~\cite{KnappNozzles1,KnappNozzles2,KnappNozzles3}. A couple limitations to this early work were that measurements were limited to approximately 2000~ft$^3$/min and measurement losses due to the mechanical measurement device. The upper measurement limit for air entrainment also prevented the testing of larger flow rate common to 2~1/2~in. hoselines.
 
 \begin{figure}[!ht]
 	\centering
@@ -245,7 +245,7 @@ A series of air entrainment experiments was conducted at the Rockland County, NY
 	\label{fig:Rockland_County_Test_Setup}
 \end{figure}
 
-Engineers with the National Institute of Standards and Technology (NIST) conducted research on the impact of hose streams on air flows inside a structure through seven experimental series at the Delaware County Emergency Services Training Center in Sharon Hill, PA~\cite{NISTHoseStreams} in 2015. Experiments were performed which examined various hose stream types, including a straight stream, a narrow fog stream, and a wide fog stream from a combination nozzle as well as a solid stream from a smooth bore nozzle. The nozzle was placed at the threshold of the inlet vent, flowing water into the structure for all of the experiments. Nozzle movements included fixed, sweeping, and rotational patterns. The gas velocity was measured in the flow path through the use of bi-directional probes to collect both velocity and air flow rate data. It was determined that both the type of hose stream and application pattern are the critical factors when analyzing the impact to air flows inside a structure. Similar to the results found from the Rockland County experiments, it was concluded that a solid stream entrains less air than a straight stream nozzle which entrains less air than a fog pattern of varying widths. Additionally, it was found that moving and/or rotating the nozzle entrains more air than a fixed stream as seen before. 
+Engineers with the National Institute of Standards and Technology (NIST) conducted research on the impact of hose streams on air flows inside a structure through seven experimental series at the Delaware County Emergency Services Training Center in Sharon Hill, PA~\cite{NISTHoseStreams} in 2015. Experiments were performed which examined various hose stream types, including a straight stream, a narrow fog stream, and a wide fog stream from a combination nozzle as well as a solid stream from a smooth bore nozzle. The nozzle was placed at the threshold of the inlet vent, flowing water into the structure for all of the experiments. Nozzle movements included fixed, sweeping, and rotational patterns. The gas velocity was measured in the flow path through the use of bi-directional probes to collect both velocity and air flow rate data. It was determined that both the type of hose stream and application pattern are the critical factors when analyzing the impact to air flows inside a structure. Similar to the results found from the Rockland County experiments, it was concluded that a solid stream entrains less air than a straight stream nozzle which entrains less air than a fog pattern of varying widths. Additionally, it was found that moving and/or rotating the nozzle entrains more air than a fixed stream as seen before. The work conducted by NIST built upon the earlier work by Knapp et al. but was also limited by examining only combination nozzels, one 1~3/4~in. hoselines at a fixed pressure and flow rate, and only exterior flow conditions.
 
 The fire attack study is intended to close the knowledge gap and provide both context and substantiation to fire suppression methods, tools, and tactics that have been utilized for decades. The results from this study will provide the fire service with scientific based knowledge on the impact of both interior and exterior fire attack on victim survivability and firefighter safety. Part II of the study, examining air entrainment in hose streams, is the second of two series of experiments looking at the mechanics of hose streams without the presence of fire. The is intended to provide the fire service with a knowledge base into how nozzles distribute water via different hose stream types, nozzle movements, and attack locations in addition to quantifying how nozzles entrain and move air throughout a structure. By developing data in realistic structures utilizing modern fuel sources and fire scenarios, important inferences may be developed relative to different nozzles, hose stream types, techniques, and the overall use of water for fire suppression operations.
 
@@ -343,12 +343,12 @@ These experiments involved the repetition of nozzle movements and patterns; ther
 	\label{fig:Nozzle_Prop}
 \end{figure}
 
-The hose was affixed to the prop with `U' bolts and locking nuts to ensure the hose did not move during an experiment. The prop supported both 1.5~in. and 2.5~in. hoselines. To ensure the experiments were consistent (independent of variance of nozzle position on the prop), the distance from the nozzle to the ventilation opening was measured from the tip of the nozzle, and not the base of the prop.
+The hose was affixed to the prop with `U' bolts and locking nuts to ensure the hose did not move during an experiment. The prop supported both 1.5~in. and 2.5~in. hoselines. To ensure the experiments were consistent (independent of variance of nozzle position on the prop), the distance from the nozzle to the ventilation opening was measured from the tip of the nozzle, and not the base of the prop. Figure~\ref{fig:Nozzle_Prop_in_Use} shows the setup for a fixed nozzle pattern with a smooth bore nozzle.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=.6\columnwidth]{Figures/Air_Entrainment/gib_hose} 
-\caption{Nozzle Prop in Use}
+\caption[Nozzle Prop in Use]{Nozzle prop in use for a fixed pattern flow.}
 \label{fig:Nozzle_Prop_in_Use}
 \end{figure}
 
@@ -670,14 +670,14 @@ The hose stream type comparison experiments were designed to quantify difference
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=4in]{Script_Figures/Entrainment/Hosestream_Type_1_5_int}
+	\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Hosestream_Type_1_5_int}
 	\caption[Air Entrainment Comparison of Hose Stream Type Fixed Pattern]{Air entrainment for three hose stream types: smooth bore, straight stream, and narrow fog with a fixed pattern from the interior position for a flow rate of 150~gpm at 50 psi.}
 	\label{fig:hosestream_type}
 \end{figure}
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=4in]{Script_Figures/Entrainment/Hosestream_Type_1_5_int_move}
+	\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Hosestream_Type_1_5_int_move}
 	\caption[Air Entrainment Comparison of Hose Stream Type 'O' Pattern]{Air entrainment for three hose stream types: smooth bore, straight stream, and narrow fog with an 'O' pattern from the interior position for a flow rate of 150~gpm at 50 psi.}
 	\label{fig:hosestream_type_o}
 \end{figure}
@@ -694,11 +694,11 @@ Common nozzle movements used in the fire service are the `O', `Z', and `n' patte
 
 \begin{figure}[!ht]
 \begin{tabular*}{\textwidth}{lr}
-\includegraphics[width=.5\columnwidth]{Script_Figures/Entrainment/Combination_SB_Fixed_Moved_Comp} &
-\includegraphics[width=.5\columnwidth]{Script_Figures/Entrainment/Combination_SS_Fixed_Moved_Comp} \\
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Combination_SB_Fixed_Moved_Comp} &
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Combination_SS_Fixed_Moved_Comp} \\
 \end{tabular*}
 \centering
-\includegraphics[width=.5\columnwidth]{Script_Figures/Entrainment/Combination_NF_Pattern_Comp} \\
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Combination_NF_Pattern_Comp} \\
 \caption[Air Entrainment Comparison of Fixed Versus Moving Patterns]{Air entrainment for three hose stream types comparing fixed versus moving patterns: smooth bore stream (upper left), straight stream (upper right), and narrow fog (bottom).}
 \label{fig:SB_SS_NF_Movement_Comparison}
 \end{figure}
@@ -718,8 +718,8 @@ Additionally, for both the straight stream and smooth bore stream, air entrainme
 
 \begin{figure}[!ht]
 \begin{tabular*}{\textwidth}{lr}
-\includegraphics[width=.5\columnwidth]{Script_Figures/Entrainment/Combination_SB_Pattern_Comp} &
-\includegraphics[width=.5\columnwidth]{Script_Figures/Entrainment/Combination_SS_Pattern_Comp} \\
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Combination_SB_Pattern_Comp} &
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Combination_SS_Pattern_Comp} \\
 \end{tabular*}
 \caption[Air Entrainment Comparison of Movement Patterns]{Air entrainment for three nozzle movement patterns: `O', `Z', and `n' for a smooth bore stream (left) and straight stream (right).}
 \label{fig:SS_SB_Movement_Comparison}
@@ -729,7 +729,7 @@ The experiments showed that for both the straight stream and smooth bore stream 
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Nozzle_Movement_Comparison_2}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Nozzle_Movement_Comparison_2}
 \caption[Air Entrainment Comparison of `O' Pattern Versus `Spray and Pray']{Figure showing common pattern compared to no discernible pattern for an interior 1.5" smooth bore nozzle with a 1" tip.}
 \label{fig:Nozzle_Movement_PatterntoNoPattern_Comparison}
 \end{figure}
@@ -738,7 +738,7 @@ The final nozzle movement experiments were conducted to quantify potential diffe
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Nozzle_Movement_Comparison_1}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Nozzle_Movement_Comparison_1}
 \caption[Air Entrainment Comparison of Pattern Rotation Rate]{Air entrainment comparison of `O' pattern rotation rate for a 1~in. smooth bore nozzle.}
 \label{fig:Nozzle_Movement_RotationSpeed_Comparison}
 \end{figure}
@@ -746,7 +746,7 @@ The final nozzle movement experiments were conducted to quantify potential diffe
 As shown in Figure~\ref{fig:Nozzle_Movement_RotationSpeed_Comparison}, an increase in the rotation speed while applying a specified pattern yielded an increase in the air entrainment seen within the stream. Note that while there is overlap in the measurement uncertainty between 50~rpm versus 100~rpm and 100~rpm versus 150~rpm, since there is a distinct difference between 50~rpm and 150~rpm there exists confidence to conclude that nozzle rotation speed following the same pattern can entrainment additional air.
 
 \section{Comparison of Impact of Pressure and Flow Rate}
-
+\label{sec:pressure}
 The range of operating pressure and flow rate varies within the fire service due to need (potential fire hazard), equipment, and/or preference to name a few reasons. To determine how changes in pressure and/or flow rate influence air entrainment, experiments were conducted to quanitify this impact. From the interior position (recall Section~\ref{sec:location}), a straight stream and narrow fog stream from a combination nozzle connected to a 1~3/4~in. hoseline examined 4 flow rates and a smooth bore stream also connected to a 1~3/4~in. hoseline examined 3 flow rates. Figures~\ref{fig:SS_NF_FlowRate_Int} and \ref{fig:SB_Flowrate_Int} show the impact of flowrate changes for the combination nozzle experiments and smooth bore nozzle experiments respectively.
 
 \begin{figure}[!ht]
@@ -759,7 +759,7 @@ The range of operating pressure and flow rate varies within the fire service due
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Pressure_SB_O_Int}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Pressure_SB_O_Int}
 \caption[Air Entrainment Comparison of Pressure and Flow Rate for Interior Smooth Bore Nozzle from 1~3/4~in. Line]{Air entrainment comparison of change in flow rate and pressure from interior position with a 1~3/4~in. line for a smooth bore stream.}
 \label{fig:SB_Flowrate_Int}
 \end{figure}
@@ -776,11 +776,12 @@ The average air entrainment values for the straight stream and narrow fog stream
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/Total_Entrainment_2_5_Smooth_Bore_Nozzle_Interior}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/Total_Entrainment_2_5_Smooth_Bore_Nozzle_Interior}
 \caption[Air Entrainment Comparison of Exterior Smooth Bore Nozzle from 2~1/2~in. Line]{Air entrainment comparison of smooth bore nozzle flow rate and pressure from interior position with a 2~1/2~in line.}
 \label{fig:SB_Flowrate_Int_2_5}
 \end{figure}
 
+\vskip15pt
 Similar to the 1~3/4~in. hoseline, there was negligible impact on the average air entrainment when changing pressure and flow rate for the 2~1/2~in. hoseline. For the straight stream and narrow fog stream increasing the pressure from 50~psi to 75~psi to 100~psi for a 250~gpm flow, the average air entrainment values had minimal change. The fixed nozzle pattern for the smooth bore nozzle showed an increase for the 320~gpm flow at 50~psi compared to the 260~gpm at 50~psi, however when an `O' pattern was applied, the average air entrainment values were similar (within the experimental uncertainty).
 
 To complete the assessment of the impact of flowrate and pressure on air entrainment from the interior position, the results from 1~3/4~in. hoseline experiments were compared against those that used a 2~1/2~in. hoseline. Figures~\ref{fig:SS_NF_1_5_2_5_Int} and \ref{fig:SB_1_5_2_5_Int} show the comparison between the two hoselines for a combination nozzle and smooth bore nozzle, respectively.
@@ -795,7 +796,7 @@ To complete the assessment of the impact of flowrate and pressure on air entrain
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=.6\columnwidth]{Script_Figures/Entrainment/1_5_2_5_Smooth_Bore_Nozzle_Interior}
+\includegraphics[width=.45\columnwidth]{Script_Figures/Entrainment/1_5_2_5_Smooth_Bore_Nozzle_Interior}
 \caption[Air Entrainment Comparison of Interior Smooth Bore Nozzle from 1~3/4~in Line to 2~1/2~in. Line]{Air entrainment comparison of smooth bore nozzle flow rate and pressure from interior position with a 1~3/4~in. line (180~gpm at 50~psi) to a 2~1/2~in line (320~gpm at 50~psi).}
 \label{fig:SB_1_5_2_5_Int}
 \end{figure}
@@ -912,12 +913,12 @@ When using a nozzle for hydraulic ventilation the intent is to provide the great
 \section{Nozzle Movement Increases Entrainment}
 Often, engine company tactics have the goal of moving air with a hose stream. In the case of a structure fire, the intent is often to move products of combustion or `smoke'. An understanding of how different nozzle movement can entrain more air or less air can aid in accomplishing the intended tactic. 
 
-The amount of air or `smoke' moved by the nozzle is related to the speed the nozzle is moved. Moving the nozzle causes the stream to break up. As the nozzle is moved faster, the more of droplets are created and the more air is entrained. This is demonstrated in Figure~\ref{fig:Nozzle_Movement_RotationSpeed_Comparison} where the number of revolutions in an `O' pattern is increased from 50/min to 100/min and finally 150/min. As the speed of movement increased, the amount of air moved increased. A firefighter trying to move air or smoke, should increase the movement of the nozzle. Inversely, a firefighter trying to move as little air as possible should hold the nozzle as still as possible.  
+The amount of air or `smoke' moved by the nozzle is related to the speed the nozzle is moved. Moving the nozzle causes the stream to break up. As the nozzle is moved faster, the more of droplets are created and the more air is entrained. This was demonstrated in Figure~\ref{fig:Nozzle_Movement_RotationSpeed_Comparison} where the number of revolutions in an `O' pattern is increased from 50/min to 100/min and finally 150/min. As the speed of movement increased, the amount of air moved increased. A firefighter trying to move air or smoke, should increase the movement of the nozzle. Inversely, a firefighter trying to move as little air as possible should hold the nozzle as still as possible.  
 
-When the intent is to move air, the pattern chosen has little effect on the entrainment. Using a `O', `Z', `n' or just moving the nozzle rapidly `Spray and Pray' all have similar air entrainment. Figure~\ref{fig:SS_SB_Movement_Comparison} showed air entrainment of approximately 5000~CFM for all the nozzle patterns tested with a 1~3/4, regardless of pattern or nozzle type. Figure~\ref{fig:Nozzle_Movement_PatterntoNoPattern_Comparison} shows an `O' pattern compared to a `Spray and Pray' pattern.
+When the intent is to move air, the pattern chosen has little effect on the entrainment. Using a `O', `Z', `n' or just moving the nozzle rapidly `Spray and Pray' all have similar air entrainment. Figure~\ref{fig:SS_SB_Movement_Comparison} showed air entrainment of approximately 5000~CFM for all the nozzle patterns tested with a 1~3/4, regardless of pattern or nozzle type. Figure~\ref{fig:Nozzle_Movement_PatterntoNoPattern_Comparison} showed an `O' pattern compared to a `Spray and Pray' pattern.
 
 \section{Comparing Entrainment to PPV Fan Exhaust}
-When the intent is to move the most air, a fog stream in an `O' pattern, was seen to produce the most airflow. At 10~ft back from the opening values in excess of 15000~CFM were recorded. For comparison (Figure~\ref{fig:PPV}), a PPV fan was found to flow approximately 8000~CFM on a 1:1 exhaust to inlet ratio in a single story structure. When the exhaust to inlet ration was 2:1 the same fan was flowing approximately 1500~CFM \cite{Zevotek_Kerber:2016}. If the intent is to provide hydraulic ventilation, a narrow fog moved in an `O' pattern, as far back from the opening as possible, will entrain a comparable amount air as positive pressure ventilation. 
+When the intent is to move the most air, a fog stream in an `O' pattern, was seen to produce the most airflow. At 10~ft back from the opening values in excess of 15000~CFM were recorded. For comparison (Figure~\ref{fig:PPV}), a PPV fan was found to flow approximately 8000~CFM on a 1:1 exhaust to inlet ratio in a single story structure. When the exhaust to inlet ration was 2:1 the same fan was flowing approximately 15000~CFM \cite{Zevotek_Kerber:2016}. If the intent is to provide hydraulic ventilation, a narrow fog moved in an `O' pattern, as far back from the opening as possible, will entrain a comparable amount air as positive pressure ventilation. 
 
 \begin{figure}[!ht]
 \centering
@@ -927,7 +928,7 @@ When the intent is to move the most air, a fog stream in an `O' pattern, was see
 \end{figure}
 
 \section{What Did Not Affect Air Entrainment}
-Tactical choices such as nozzle pressure, nozzle flow rate and hose size (1~3/4~in. vs. 2~1/2~in.) are often thought to have additional implications other than increased flow. This did not hold true for air entrainment. Choosing a larger hose line, higher nozzle pressure or larger flow rate did not provide significant differences in the amount of air entrained. Although these choices do impact the pressure loss in the hose, nozzle reaction, manpower needed, and total water flow, they did not impact air entrainment in these experiments.
+Tactical choices such as nozzle pressure, nozzle flow rate and hose size (1~3/4~in. vs. 2~1/2~in.) are often thought to have additional implications other than increased flow. This did not hold true for air entrainment. Choosing a larger hose line, higher nozzle pressure or larger flow rate did not provide significant differences in the amount of air entrained (Section~\ref{sec:pressure}). Although these choices do impact the pressure loss in the hose, nozzle reaction, manpower needed, and total water flow, they did not impact air entrainment in these experiments.
 
 \chapter{Future Research Needs}
 
