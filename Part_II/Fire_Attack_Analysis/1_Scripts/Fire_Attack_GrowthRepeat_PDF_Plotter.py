@@ -40,6 +40,11 @@ channel_list = pd.read_csv(channel_location+'Channels.csv')
 # Set index value for channels as 'Channel'
 channel_list = channel_list.set_index('Channel')
 
+channel_list = channel_list[channel_list['Type'] == 'Temperature']
+
+channel_list = channel_list[~channel_list.index.str.contains('TCS')]
+channel_list = channel_list[~channel_list.index.str.contains('TCV')]
+
 # Create groups data by grouping channels for 'Chart'
 channel_groups = channel_list.groupby('Primary_Chart')
 # channel_groups = channel_list.groupby('Secondary_Chart')
@@ -64,6 +69,8 @@ for Vent_Type in Vent_Info.columns:
 
 	Vent_Type_Exp = Vent_Info[Vent_Type].values
 
+	running_outside_bounds = pd.DataFrame()
+
 	for group in channel_groups.groups:
 		# # Skip excluded groups listed in test description file
 		# if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
@@ -83,11 +90,12 @@ for Vent_Type in Vent_Info.columns:
 		# Begin cycling through channels
 		for channel in channel_groups.get_group(group).index.values:
 
-			print ()
-			print (channel)	
+			# print ()
+			# print (channel)	
 
 			#create average 
-			avg = pd.DataFrame()
+			avg = pd.DataFrame({'Time':np.arange(-30,2,2)})
+			avg = avg.set_index('Time')
 
 		    # Define 20 color pallet using RGB values
 			tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -119,7 +127,7 @@ for Vent_Type in Vent_Info.columns:
 				Exp_Data = pd.read_csv(data_location + 'Experiment_' + str(exp) + '_Data.csv')
 
 				if not channel in Exp_Data.columns.values:
-					print ('Cant find channel')
+					# print ('Cant find channel')
 					continue
 
 				# Get experiment name from file
@@ -140,7 +148,7 @@ for Vent_Type in Vent_Info.columns:
 				# Set index of experiment events files to Event
 				Events = Events.set_index('Event')
 
-				print (Test_Name)
+				# print (Test_Name)
 
 				# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
 				if Speed == 'low':
@@ -154,13 +162,15 @@ for Vent_Type in Vent_Info.columns:
 					mark_freq = 5
 
 				# Pull ignition time from events csv file
-				Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
+				Initiate_tactic = datetime.datetime.strptime(Events['Time'][Events.index.get_loc('Ignition')+1], '%H:%M:%S')
+
+				# Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
 				# Adjust time for ignition offset
-				Time = [((t - Ignition).total_seconds())/60 for t in Time]
+				Time = [((t - Initiate_tactic).total_seconds())/60 for t in Time]
 
 				#Get End of Experiment Time
-				End_Time = float(Vent_Info_Events[Vent_Type]['Front Door Open'])
+				End_Time = float(Vent_Info_Events[Vent_Type]['Front Door Open'])+0.5
 
 				if House == 'a':
 					scalefactor = 'ScaleFactor_A'
@@ -223,7 +233,7 @@ for Vent_Type in Vent_Info.columns:
 					axis_scale = 'Y Scale BDP'
 					secondary_axis_label = 'Velocity (m/s)'
 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) / 2.23694
-					accuracy = 0.05
+					accuracy = 0.18
 
 		        # Set parameters for heat flux plots
 
@@ -234,7 +244,7 @@ for Vent_Type in Vent_Info.columns:
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
 					axis_scale = 'Y Scale Wall Heat Flux'
-					accuracy = 0.15
+					accuracy = 0.08
 
 				if channel_list['Type'][channel] == 'Floor Heat Flux':
 					Data_Time = Time
@@ -242,7 +252,7 @@ for Vent_Type in Vent_Info.columns:
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
 					axis_scale = 'Y Scale Floor Heat Flux'
-					accuracy = 0.15
+					accuracy = 0.08
 
 				if channel_list['Type'][channel] == 'Victim Heat Flux':
 					Data_Time = Time
@@ -250,7 +260,7 @@ for Vent_Type in Vent_Info.columns:
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 16)
 					axis_scale = 'Y Scale Victim Heat Flux'
-					accuracy = 0.25
+					accuracy = 0.08
 
 				# Set parameters for gas plots
 
@@ -261,7 +271,7 @@ for Vent_Type in Vent_Info.columns:
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Gas Concentration (%)', fontsize = 16)
 					axis_scale = 'Y Scale Gas'
-					accuracy = 0.25
+					accuracy = 0.08
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Carbon Monoxide':
@@ -270,7 +280,7 @@ for Vent_Type in Vent_Info.columns:
 					current_data = current_data * scale_factor + offset
 					plt.ylabel('Gas Concentration (PPM)', fontsize = 16)
 					axis_scale = 'Y Scale Carbon Monoxide'
-					accuracy = 0.25
+					accuracy = 0.08
 
 				# Plot channel data or save channel data for later usage, depending on plot mode
 				plt.plot(Data_Time,
@@ -283,6 +293,8 @@ for Vent_Type in Vent_Info.columns:
 					ms=7,
 					label='Exp ' + str(exp) + ' ' + channel_list['Title'][channel])
 
+				# print(Data_Time)
+
 				#Caculculate Average
 				if Speed == 'high':
 						Data_Time = Data_Time[0::20]
@@ -291,21 +303,25 @@ for Vent_Type in Vent_Info.columns:
 					if House == 'a':
 						Data_Time = Data_Time[0::2]
 						current_data = current_data[0::2]
+						
+				current_data = current_data.tolist()
 
-				Time_Sec = [float(t) * 60.0 for t in Data_Time]
+				Data_Time = [round(t*60) for t in Data_Time]
+				Time_start = next (i for i,v in enumerate(Data_Time) if v >= -30) 
 
-				Time_start = next (i for i,v in enumerate(Time_Sec) if v > 0) -1 
-				Time_end = next (i for i,v in enumerate(Time_Sec) if v > End_Time*60) -1
+				data = pd.DataFrame({'Time':np.arange(-30,2,2),'Exp_'+ exp:current_data[Time_start:Time_start+16]})
+				data = data.set_index('Time')
 
-				avg = pd.concat([avg, pd.DataFrame({'Exp_ ' + exp:np.asarray(current_data[Time_start:Time_end])})], axis = 1)
+				avg = pd.concat([avg, data], axis = 1) #[Time_start:Time_end]
 			
-			# print (avg.mean(axis=1))
-			# exit()
-			plt.fill_between((avg.index*2)/60, avg.mean(axis=1)*(1-accuracy), avg.mean(axis=1)*(1+accuracy), facecolor='gray',alpha=0.5, interpolate=True,linewidth=3 )
-			
-			# plt.plot((avg.index*2)/60,avg.mean(axis=1), lw=3.0, color='black')
-			# plt.plot((avg.index*2)/60,avg.mean(axis=1)*0.85, lw=3.0, color='red')
-			# plt.plot((avg.index*2)/60,avg.mean(axis=1)*1.15, lw=3.0, color='green')
+			exceeds_mean_acc = avg.transpose() > (avg.transpose().std()+avg.transpose().mean())
+			less_mean_acc =  avg.transpose() < (avg.transpose().std()-avg.transpose().mean())
+
+			value_outside = pd.DataFrame({channel:exceeds_mean_acc.sum(axis=1)+less_mean_acc.sum(axis=1)})
+
+			running_outside_bounds = pd.concat([running_outside_bounds,value_outside], axis=1)
+
+			plt.fill_between((avg.index*2)/60, avg.mean(axis=1)-avg.std(axis=1), avg.mean(axis=1)+avg.std(axis=1), facecolor='gray',alpha=0.5, interpolate=True,linewidth=3 )
 
 			# Scale y-axis limit based on specified range in test description file
 			if axis_scale == 'Y Scale BDP':
@@ -316,7 +332,7 @@ for Vent_Type in Vent_Info.columns:
 	        # Set axis options, legend, tickmarks, etc.
 			ax1 = plt.gca()
 			handles1, labels1 = ax1.get_legend_handles_labels()
-			plt.xlim([0, End_Time-.25])
+			plt.xlim([-0.5, 0.5])
 			ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
 			ax1_xlims = ax1.axis()[0:2]
 			plt.grid(True)
@@ -338,9 +354,8 @@ for Vent_Type in Vent_Info.columns:
 
 			plt.legend(handles1, labels1, loc='upper left', fontsize=8, handlelength=3)
 
-		    # Save plot to file
-			# plt.show()
-			# exit()
 			print ('Chart Saved')
 			plt.savefig(output_location + group + channel +'.png')
 			plt.close('all')
+
+	running_outside_bounds.to_csv('../0_Images/Results/' + Vent_Type +  'Values.csv')		
