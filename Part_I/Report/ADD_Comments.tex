@@ -1,14 +1,27 @@
 \documentclass[12pt,oneside]{book}
 \input{commoncommands}
 
+\usepackage{pdflscape}
 \usepackage{longtable}
-
 \usepackage{fancyhdr}
+\usepackage{everypage}
+
 \pagestyle{fancy}
 \lhead{}
 \rhead{}
 \chead{}
 \renewcommand{\headrulewidth}{0pt}
+
+\newcommand{\Lpagenumber}{\ifdim\textwidth=\linewidth\else\bgroup
+  \dimendef\margin=0
+  \ifodd\value{page}\margin=\oddsidemargin
+  \else\margin=\evensidemargin
+  \fi
+  \raisebox{\dimexpr -\topmargin-\headheight-\headsep-0.5\linewidth}[0pt][0pt]{%
+    \rlap{\hspace{\dimexpr \margin+\textheight+\footskip}%
+    \llap{\rotatebox{90}{\thepage}}}}%
+\egroup\fi}
+\AddEverypageHook{\Lpagenumber}%
 
 \setcounter{secnumdepth}{0}
 
@@ -83,7 +96,7 @@ A special thanks to the individuals listed below who provided feedback to the pr
 	\begin{tabular}{llc}
 		\toprule[1.5pt]
 		& Name & Fire Department \\ 
-		\midrule
+		\hline
 		& Steve Brisebois  & Montreal Fire Department \\ 
 		& Matt Carrigan    & Montgomery County Fire and Rescue Service \\ 
 		& Tony Carroll     & Washington DC Fire Department \\ 
@@ -97,7 +110,7 @@ A special thanks to the individuals listed below who provided feedback to the pr
 		& Chad Green       & Anchorage Fire Department \\ 
 		\checkmark & Kelly Hanink     & Eden Prairie Fire Department \\ 
 		& Samuel Hittle    & Wichita Fire Department \\ 
-		& Jacob Hoffman    & Toledo Fire/Rescue Department \\ 
+		\checkmark & Jacob Hoffman    & Toledo Fire/Rescue Department \\ 
 		\checkmark & Josh Hummel      & Howard County Department of Fire and Rescue Services \\ 
 		\checkmark & Jerry Knapp      & West Haverstraw (NY) Fire Department \\ 
 		\checkmark & Dennis Legear    & Oakland Fire Department \\ 
@@ -114,41 +127,68 @@ A special thanks to the individuals listed below who provided feedback to the pr
 
 \newpage
 
+
+
 \chapter*{Comments and Responses}
 \label{comments}
 \addcontentsline{toc}{chapter}{\nameref{comments}}
+The following tables capture the comments from technical panel members, the response from FSRI and if the report has been updated. The fist column is the comment, often copied directly from e-mails received from the panel member. The second column is the FSRI response to the comment. \textbf{Where FSRI is requesting clarity the questions are in bold font.} If the report was changed based on the comment a \checkmark is located in the third column. 
 
-\begin{longtable}{|L{2.6in}|L{2.6in}|c|}
 
-		\toprule[1.5pt]
-		Comment/Question & Response & Report Updated \\ 
-		\toprule[1.5pt] \endfirsthead
-		\toprule[1.5pt]
-		Comment/Question & Response & Report Updated \\ 
-		\toprule[1.5pt] \endhead
-		\midrule
+\begin{landscape}
+
+\pagestyle{empty}
+\section{Chad Christensen}
+% \section{Responder 1}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
 		Is their any CO data for test 3? It says the sensors were not used? Is the data just not loaded yet or was that the burn they were having sensor issues. Sorry can't remember! &
-		Comment pertains to Fire Attack report. Added to fire attack report comments list. & \\
+		Comment pertains to fire attack report data, will answer as we get through data. & \\
 		
 		\hline
 		If I am reviewing things with an open mind and trying to be objective am I correct in that the temps with door control incorporated drop at a quicker rate than without? Between test 2 and 3? & 
-		Comment pertains to Fire Attack report. Added to fire attack report comments list. & \\
+		Comment pertains to fire attack report data, will answer as we get through data. & \\
 
 		\hline
 		Overall it also appears that water on the fire regardless of how it was applied improved conditions in the fire room and surrounding areas. Yet the straight stream seems to be most effective. Early water on the fire appears to be best for the victims inside. &
-		Comment pertains to Fire Attack report. Added to fire attack report comments list. & \\
+		Comment pertains to fire attack report data, will answer as we get through data. & \\
 
 		\hline
 		CO levels have been a big concern with guys when it comes to door control. Unless I am missing something it seems at least in my first glance, that CO levels in the survivable space are not raising until suppression? Are we making things worse by putting out the fire? It also seems that with door control CO levels didn't rise any more than without? & 
-		Comment pertains to Fire Attack report. Added to fire attack report comments list. & \\
+		Comment pertains to fire attack report data, will answer as we get through data. & \\
 
 		\hline
 		To determine the best flow type is the velocity what we should be looking at? & 
-		Comment pertains to Fire Attack report. Added to fire attack report comments list. & \\
+		Comment pertains to fire attack report data, will answer as we get through data. & \\
+
+		\hline
+\end{longtable}
+\checkmark~~indicates change made to report to address comment.
+
+\newpage
+
+\section{Kelly Hanink}
+% \section{Responder 2}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
 
 		\hline
 		Figure 5.1 (pg 48) and its associated write-up don't seem to connect exactly. I had to re-read that piece and look at the picture again to understand it. The text states that the dispersion was fairly equally radially to 360 deg with some impact by gravity. But the horizontal arrows (at 90 and 270 deg) are nearly the same as the downward one (280 deg). I just think the arrows need to be depicted a little more accurately to match the words. & 
-		Adjusted arrows to ensure the effect of gravity is better depected. & \checkmark \\  
+		Adjusted arrows to ensure the effect of gravity is better depicted. & \checkmark \\  
 
 		\hline
 		When I read the write-up about Figure 5.2 (pg 49) I thought it was lacking info, which it turns out I found in the section on water distribution in the next section. I don't know if it would be helpful to add text to the water dispersion paragraph to tell the reader about the additional effects of the high angle attack that are described further in the water distribution section or not. That might not be a thing needed in a research report. & 
@@ -156,15 +196,31 @@ A special thanks to the individuals listed below who provided feedback to the pr
 
 		\hline
 		I feel like the last two rows Table 5.1 (Tactical Choices Summary) present issues. The Nozzle Movement tactical choice states a positive impact for Interior attack from an `O' pattern at the ceiling. But the prior discussion about nozzle movement says "When compared to each other, nozzle movement had little effect on the distribution in the compartment... While the distribution for the fixed pattern was more uniform (flatter)..." Those statements don't appear to match. Further, in the nozzle movement discussion section, there doesn't seem to be any mention of nozzle movement and fog nozzles or any graphs that support the statement in the summary table that an `O' pattern provides good distribution. Or if there is, I didn't make the connection very well so you might want to look to see where things might be restated or tied together better. &
-		Changed Nozzle movement to the following "Nozzle movment had little effect on distribution." & \checkmark \\
+		Changed Nozzle movement to the following ``Nozzle movement had little effect on distribution.'' & \checkmark \\
 
 		\hline 
 		Table 5.1 In the Bale Position section, I don't think it's stated that the testing was only tested in the exterior case. Maybe that should be added to help with clarity and completeness and to support the last row of the summary table? &
-		Added verbage to Seciton 5.5.2 under bale position to indicate the expeted interior results and adjusted table to match. & \checkmark \\  
+		Added verbiage to Section 5.5.2 under bale position to indicate the expected interior results and adjusted table to match. & \checkmark \\  
 
 		\hline
-		I think it's important to include that these findings are purely distribution and not considering air entrainment so conclusions are drawn prematurely by those reading the study. (This could include the 1/2 bale smoothbore technique discussed at the end or even changing the angle of the stream in the window as it relates to air entrainment. I'm not sure if these were all tested in the entrainment piece or not) I can say that I wouldn't have drawn those conclusions as I'm reading the report for what it is, but could see it being a potential issue. & 
-		Agreed, added a paragraph to the endo of the discussion section to address this `This section discusses the tactical choices as they relate to water distribition. It is important to understand that water distribution is not the only concern when discussing fire suppression tactical choices. Other considerations, for example air entrainment, may play a role in the nozzle firefighters choice of hose stream. Fire suppression opertaions involve a significant number of varriables, making the system extermely complex. Understanding how the varriables interact is out of the scope of this particular analysis and discussion.' & \checkmark \\
+\end{longtable}
+\checkmark~~indicates change made to report to address comment.
+
+\newpage
+
+\section{Josh Hummel}
+% \section{Responder 3}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
+		I think it's important to include that these findings are purely distribution and not considering air entrainment so conclusions are drawn prematurely by those reading the study. (This could include the 1/2 bale smooth bore technique discussed at the end or even changing the angle of the stream in the window as it relates to air entrainment. I'm not sure if these were all tested in the entrainment piece or not) I can say that I wouldn't have drawn those conclusions as I'm reading the report for what it is, but could see it being a potential issue. & 
+		Agreed, added the following paragraph to the end of the discussion section to address. ``This section discusses the tactical choices as they relate to water distribution. It is important to understand that water distribution is not the only concern when discussing fire suppression tactical choices. Other considerations, for example air entrainment, may play a role in the nozzle firefighters choice of hose stream. Fire suppression operations involve a significant number of variables, making the system extremely complex. Understanding how the variables interact is out of the scope of this particular analysis and discussion.'' & \checkmark \\
 
 		\hline
 		`bale' of a nozzle instead of `bail' & 
@@ -172,11 +228,241 @@ A special thanks to the individuals listed below who provided feedback to the pr
 
 		\hline
 		`Freeman' has typo as `Freedman' & 
-		corrected typo & \checkmark \\
+		Corrected typo. & \checkmark \\
 
+		\hline
+\end{longtable}
+\checkmark~~indicates change made to report to address comment.
+
+\newpage
+
+\section{Dennis Legear}
+% \section{Responder 4}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+		
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
+		Page 4 - Is efficient in paragraph two tied to the amount of water used &
+		This is a generic background discussion on fire attack. Efficient in this case means not only the water used but things such as the time it takes, amount of damage created or even the manpower needed. & \\
+		
+		\hline
+		Having no floor in the test apparatus ``stops nozzle advancement into fire compartment, very unrealistic'' & 
+		This set of tests was intended to evaluate where water is disturbed from fire service hoses when the nozzle firefighter cannot see through the smoke to determine what is on fire. The report does not suggest that water should not be put on fire, nor is it a complete evaluation of how to apply water into compartments. It is intended to develop a fundamental knowledge base where practical application is left up to the user. & \\
+
+		\hline
+		``The goal of making the interior compartment in nozzle in the room where water application to all surface and furniture is possible bread and butter of interior attack *why I push for 2-story burns and stated in planning NO NOZZLE ALLOWED THROUGH WINDOWS'' & 
+		The intent of the interior experiments is discussed in section 3.2.1. During this round the nozzle did not extend through the window. The results of this report are comparing the nozzle at the window (not inside) to the nozzle at the door (not inside). We have clarified this in Section 2, which describes the intended research as follows ``The the experiments conducted were intended to develop a fundamental knowledge of water distribution in compartments from fire service hose streams. After development, this knowledge can be extrapolated to the infinite number of scenarios in which the fire service may be applying water. The choices of stream location were developed to achieve this objective while at the same time simulating common fireground tactics. Due to the limitations of the equipment used and the force resulting from the application of water with common fire service hoses, directing the hose stream at the collection appliance was not possible nor would it produce a reliable and realistic measurement.'' additionally we've clarified the interior position to be ``the location at which you would cool the fire compartment before entering for final suppression'' in section 3.2.1 & \checkmark\\
+
+		\hline
+		Table 3.1 - Correct to common printed flows with nozzle pressure & 
+		Corrected flow rate to match $29.7d^2\sqrt{P}$ with a 50~psi nozzle pressure for all smooth bore nozzles. Adjusted figures at the end to include correct flow rates. & \checkmark \\
+
+		\hline
+		Figure 3.7 - ``This turn a inter door into an exterior attack fixed position'', ``Very misleading a interior nozzle would only be in this position momentarily on advance maybe flowing maybe not flowing'' &
+		The nozzle prop in the picture was constructed to limit the variability in the nozzle position throughout the tests, providing repeatability. The tests were designed as described in 3.2.1, with the position chosen to remove the impact of the soffit and or doorway on results. The specific position was chosen as the closest the nozzle team could get to the compartment, to apply water to the compartment without entering it. We have addressed the interior/exterior comment in section 3.2.1 and section 2. \textbf{Do you feel this needs further clarification} & \\
+
+		\hline
+		Section 3.2.1, ``Suppression operations were conducted from the doorway adjoining the hallway to the test compartment.'' ``max angle ceiling, mid ceiling, at wall''- We talked about the dry wall in planning clearly stated the goal was nozzle past door threshold of fire compartment. &
+		The technical panel members present did not indicate this being a concern during testing. We revisited the notes from the planning meeting and did not see a reference to this.  We have addressed the interior/exterior comment in section 3.2.1 and section 2 & \\
+
+		\hline
+		Section 4 - ``application locations'' none a true interior attack in room bread and butter - knock with reach of stream/cool advance into room for base fire extinguishment no risk of regrowth. & 
+		We have addressed the interior/exterior comment in section 3.2.1 and section 2. & \\
+
+		\hline
+		Figure 4.2 - Nozzle outside the room. This is not an interior attack until the nozzle moves FWD. A interior attack as submitted and discussed at the is to get the nozzle through the door threshold. & 
+		This image is being shown to identify the direction the water was coming from. \textbf{Does it not depict this clearly?} & \\
+
+		\hline
+		Section 4.2 ``For the interior tests, both the fixed pattern and `O' pattern showed statistical differences'' Never entered the room gold standard. &
+		`Interior' is used here to describe the nozzle located at the doorway between the room and the hallway as described in 3.2.1 and section 2. \textbf{Is there a better way to identify this position?} & \\
+
+		\hline
+		Figure 4.3 - This is obvious and why nozzle must cross the threshold to gain access to properly coat room \& drywall \& full ceiling. &
+		The goal of this phase of research was to look at how the water disperses in the room. Moving the nozzle into the room does change the ability to place water, however without putting water in the compartment first you could not enter. These tests provide us with a fundamental knowledge of where water goes when applied with fire service hose streams inside a compartment. If we understand the fundamentals, we could apply the same principals to whatever hypothetical instance. We have addressed the interior/exterior issue in section 3.2.1 and section 2. & \\
+
+		\hline
+		Figure 4.4 - The probes at the end of the hallway in the burn create the same poor nozzle/water application in burns at UL. I did complain about that too. The goal of a interior attack cool the approach and with the nozzle in the room, not stop at the door. & 
+		Comment pertains to Fire Attack report. Added to fire attack report comments list. & \\
+
+		\hline 
+		Figure 4.5 - No chance of advancement into the room rapidly/regrowth risk. I recommend 2 line leave exterior line to check regrowth risk unless nozzle can be placed through the window. & 
+		This section is looking at the impact of stream type (smooth bore, straight stream and fog) on how water is distributed. It is difficult to assess regrowth based off distribution data without fire. We will address regrowth in the fire attack report. & \\ 
+		\hline
+		Section 4.3 ``exterior first floor experiments'' can allow for nozzle past sill access. & For these experiments the nozzle didn't pass the sill. & \\
+
+		\hline 
+		Section 4.3 ``for the interior tests'' before the door - cooling approach interior attack not finished. &
+		We have addressed the interior/exterior comment in section 3.2.1 and section 2, and any other comments as to the use of interior to describe the position are considered answered under this comment. & \\
+
+		\hline
+		Figure 4.26 - Does this suggest a 2 1/2~in or 2~in @ 210gpm would be better however what about sheet rock ceiling failures & 
+		The analysis of this data as discussed in section 4.5 paragraph 3, the distributions were similar, based on the measurement accuracy, the 210~gpm, 185~gpm and 165~gpm nozzle are all the same.  & \\
+
+		\hline
+		Figure 4.28 - GPM incorrect in 2 1/2~in with 1 1/4~in tip. &
+		Corrected gpm to 325. & \\
+
+		\hline
+		Section 5.5.1 - You must qualify this to not the interior nozzle never made the room. If the nozzle was operated pass the door threshold much better water distribution would be possible. Is this not why a exterior transitional attack must be follow by a interior attack! One where the nozzle enters the fire room to get have fire extinguisher and permit overhaul! &
+		This section is discussing how things such as nozzle type and flow rate effect where the water goes, not nozzle location, \textbf{Does that not come through in the discussion?} & \\
+
+		\hline
+		Figure 5.13, right image - This nozzle through window like burns? & 
+		This was just a 1/2 bale from the same level of the compartment, not through the window. & \\
+
+		\hline
+		I suggest strongly to re-title the document to \textbf{\ul{Exterior Remote Application and Interior Remote Application Water Mapping}} as that is what it is.  Anyone that reads this with fire duty under their belts will come to the same conclusion, in my opinion.  I have never since 1993 every receive instruction to stop short of the fire room, this experiment in my mind shows what happens when you stretch short by a few feet before the fire compartment.  A failure to be able to gain full access to apply water to the entire fire compartment.    & 
+		The intent of this set of experiments was to quantify water distribution. We feel the report does this adequately by developing a fundamental knowledge of how fire streams break up and distribute water. The discussion section is intended to help the reader understand this knowledge in a general way. With a firm understanding of water dispersion and distribution, nozzle firefighters can have a better understand on what they can and cannot do to effect water distribution. As far as the validity of the testing at replicating the intended fire service water application positions, it is the opinion of the team that once water could be put directly on burning surfaces, from a distance around 5~ft and 10~ft away, operating the hose stream at full flow/pressure might not be the best option for applying water efficiently. We have clarified what we mean by interior and do not feel we need to re-title the document. & \checkmark \\
+
+		\hline
+		We would like to have you send out a sample of your analysis of two experiments.  To be frank I was overwhelmed could you please send your thoughts on Experiment \#8 Interior vs  Experiment \#20 exterior.  & 
+		Comment pertains to fire attack report. Added to fire attack report comments list. We will provide an example analysis of these two experiments & \\
+
+		\hline
 
 \end{longtable}
 \checkmark~~indicates change made to report to address comment.
+
+\newpage
+
+\section{Jordan Mohr}
+% \section{Responder 5}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
+		Everything that I can see from my point of view for the water mapping looks good. The explanation for how the results were recorded, the visual charts and the brief history of how we got to this point really helps the reader understand why these tests were done. I think it was well put together and knowing that this is just a small piece will be beneficial. Personally I feel like newer members to the fire service like myself will be able to understand this and benefit from it in conjunction with our other results. & 
+		General feedback, not edits required. & \\
+ 
+ 		\hline
+\end{longtable}
+\checkmark~~indicates change made to report to address comment.
+
+\newpage
+
+\section{Jerry Knapp}
+% \section{Responder 6}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
+		On page 20 of the draft, if i understand the data correctly, the smooth bore "O" pattern nozzle movement yielded more buckets that exceeded 0.05gpm/ft2 which may be the reason for it's practical success in the field(?). & 
+		The pattern was statistically different however not practically different. The number of buckets which exceeded 0.05gpm/ft2 were similar in number just not location. (Figure 4.3 and Figure 4.4 compare these.) & \\
+ 
+ 		\hline
+\end{longtable}
+\checkmark~~indicates change made to report to address comment.
+
+\newpage
+
+\section{Hans Neiling}
+% \section{Responder 7}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
+ 		In the reports it talks about a narrow fog that would cover the window entirely, for water mapping I can guess why this test is done, but looking at the transitional attack itself that would be the wrong nozzle setting to apply this technique? & 
+ 		This will be addressed in the air entrainment report, but yes obstructing the opening will change the flow path, which can have negative consequences.  & \\
+
+ 		\hline
+\end{longtable}
+\checkmark~~indicates change made to report to address comment.
+
+\newpage
+
+\section{Jason Floyd}
+% \section{Responder 8}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
+ 		Table 3.1 - 1 1/4~in had a flow rate = 260~gpm, why was this tip used in place of 1 1/8~in, 1 1/4~in tip at 50~psi should flow 328~gpm. Should there be further explanation. &
+ 		This was a typo, we've corrected it to 325~gpm based on the formula $29.7d^2\sqrt{P}$. The nozzle was selected to bound the problem with the largest flow from a 2 1/2~in nozzle. & \\
+
+ 		\hline
+ 		This \ul{prevent} a direct statistical comparison of interior versus exterior streams. &
+ 		Corrected to \textbf{prevented}. & \checkmark \\
+
+ 		\hline
+ 		Figures 5.13 and 5.14 - Consider revising the description of the figures to include ‘full bale’ and ‘half bale’. &
+ 		Corrected to `bail' to `bale'. & \checkmark \\
+
+ 		\hline
+ 		Bale Position Half bale seems to allow for better distribution into the middle of the room but how much air are we introducing? & 
+ 		This was not tested specifically in air entrainment but a valid question. It was tested to identify the distribution, with the interest in potentially using it in sequence with a a steep angle. IE knock back gases for a a period of time, then switch to a 1/2 bale to provide surface cooling. & \\
+
+ 		\hline
+\end{longtable}
+\checkmark~~indicates change made to report to address comment.
+
+\newpage
+
+\section{Jake Hoffman}
+% \section{Responder 9}
+\begin{longtable}{|L{4in}|L{3.75in}|c|}
+
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endfirsthead
+		\hline
+		Comment/Question & Response & Report Update \\ 
+		\toprule[1.0pt] \endhead
+		\hline
+ 		5.5.3 - Angle of Impact - To kind of add on to nozzle positioning inside vs. outside the target room, would it be worthwhile to put something in the report about how your angle will vary depending on how far you are from the seat of the fire, etc. While approaching (making the hallway) if you have clear line of sight into the fire room you will most likely have ``Min Angle Ceiling'', effectively throwing most of the water at the far wall. But once you make your way into the room or are at the doorway, max angle is best to cool all surfaces. & 
+ 		While writing the discussion section we tried to keep to practical application of the positions tested, however this could be extrapolated from the data taken. One concern would be visibility, if you can't see exactly where the water is going (which is the case based on GoPro footage the burns), how would you know your water is making it into the room and not being blocked by the soffit? \textbf{If the panel feels this information is needed we can certainly add in a section which extrapolates on results more.} & \\
+ 		
+ 		\hline
+ 		``...cool fuel surfaces to restrict and slow pyrolysis...'' - I am not sure if or how we emphasize this point in our final report, but I feel it is extremely important. &
+ 		We agree and will make sure this is documented well in the final report. This section is discussing what is currently being taught and the literature which exists on the topic, however the applicability of the current information on fire suppression will be discussed further in the final report. - Comment pertains to Fire Attack report. Added to fire attack report comments list. & \\
+
+ 		\hline
+ 		In burns, nozzle was put ``Into the window'' ... Water mapping was not? &
+ 		The nozzle did not enter the window during water mapping. The tests were designed to determine where water is going when you cannot enter the compartment. If entering the compartment is possible,  it is possible to put water directly on those surfaces, however one may argue a 150~gpm 100~psi hose stream may not be the most effective/efficient delivery tool in that instance. & \\
+
+ 		\hline
+ 		I know water flux is defined on Pg5 but maybe emphasize so that the reader doesn't have to flip back to check the definition. &
+ 		\textbf{Where would you suggest adding it?} & \\
+
+ 		\hline
+ 		Nozzle Patterns and Water Distribution - We teach ``floor, wall, ceiling'' to our recruits and during a realistic interior attack this would obviously greatly alter the water distribution in the room com- pared to the experiments. Data is good, but maybe not 100\% accurate for interior approach/attack. Obviously directing stream at ``floor'' of ADD could have caused damage, hard to replicate in the lab. & 
+ 		These tests provide us with a fundamental knowledge of where water goes when applied with fire service hose streams inside a compartment. If we understand the fundamentals, we could apply the same principals to whatever hypothetical instance. \textbf{Should we emphasize the roles soffits/doorways will play on interior hose streams?} In a hallway, much of the water is not entering the room if the ``wall, floor ceiling'' or ``wall, ceiling, wall''method is being used. When being applied to the wall, the water will ride along the wall in the direction of application falling towards the floor. When applied to the ceiling it will ride the ceiling until it hits a wall/soffit and then fall down the wall to the floor (Unless the room is very large or the impact angle is close to 90 degrees). When applied to the floor it will flow along the floor until it hits an obstruction, and if it has enough momentum it will flow up that obstruction. In our structure this ``wall, ceiling wall'' method would result in almost no water in the compartment until the hose crew reached the doorway.  \textbf{Should we add a paragraph discussing this?} & \\
+
+ 		\hline
+ 		I do NOT agree that 1 line should stay exterior to ``monitor regrowth risk unless nozzle can be placed into the window.'' &
+ 		Comment pertains to fire attack report. Added to fire attack report comments list. & \\
+
+ 		\hline
+\end{longtable}
+\checkmark~~indicates change made to report to address comment.
+
+\end{landscape}
+
+\pagestyle{plain}
 
 % \chapter*{Figures}
 % \label{figs}
@@ -193,7 +479,7 @@ A special thanks to the individuals listed below who provided feedback to the pr
 
 \begin{appendix}
 
-\chapter*{Technical Panel Responses}
+\chapter*{Appendix A - Tech Panel E-Mails}
 \label{panel_responses}
 \addcontentsline{toc}{chapter}{\nameref{panel_responses}}
 
@@ -203,7 +489,7 @@ Steve,
  
 I hope all is well.  I have been swamped with recruit training and trying to finalize our turnout spec. I know I am preaching to the choir when it comes to being busy.  
  
-As we continue in in this process for the Fire Attack study one thing have have not gone on record about is the acquired structure burns.  As is everyone else I am very disappointed to know that we will not be conducting those experiments. I think we may be missing an opportunity to gain further buy in from those around the country that see the tests even though just contents fires being tested in actual structures.  We all know the lab houses are real structures too.  Yet with the opportunity to burn in the concrete buildings we can easily recreate the same environment over and over without worrying about it extending on us or getting away from us.  One of the most effective videos for training transitional attack  has been the video NIST not UL (Robyn corrected me on that at FDIC last year...ooops) with the side by side room showing how air can push products of combustion not fire. My understanding is that was a contents fire too not a structure fire.  We have not been testing structure fires for the first 24 experiments.  Why don't we continue to test contents fires and do the burns?  I know scheduling is crazy and everyone is busy. Just my thoughts and open for discussion between us.  It would allow an opportunity to test different transitional attack methods(flow pause flow pause/ or flow for 10 sec, 20 sec and so on.)  Again just my thoughts and I don't have all the info I am sure with what is needed for you guys to pull of an acquired structure burn in Columbia.   
+As we continue in in this process for the Fire Attack study one thing have have not gone on record about is the acquired structure burns.  As is everyone else I am very disappointed to know that we will not be conducting those experiments. I think we may be missing an opportunity to gain further buy in from those around the country that see the tests even though just contents fires being tested in actual structures.  We all know the lab houses are real structures too.  Yet with the opportunity to burn in the concrete buildings we can easily recreate the same environment over and over without worrying about it extending on us or getting away from us.  One of the most effective videos for training transitional attack  has been the video NIST not UL (Robin corrected me on that at FDIC last year...ooops) with the side by side room showing how air can push products of combustion not fire. My understanding is that was a contents fire too not a structure fire.  We have not been testing structure fires for the first 24 experiments.  Why don't we continue to test contents fires and do the burns?  I know scheduling is crazy and everyone is busy. Just my thoughts and open for discussion between us.  It would allow an opportunity to test different transitional attack methods(flow pause flow pause/ or flow for 10 sec, 20 sec and so on.)  Again just my thoughts and I don't have all the info I am sure with what is needed for you guys to pull of an acquired structure burn in Columbia.   
  
 As for the water mapping portion of the study.  Very interesting results.  So I am curious as to what kind of input you are looking for from us.  As I go through the data the biggest things that stick out to me are: 
 1 the smooth bore and straight stream are close in effectiveness and that is great because it can be at the choice of the user as to which nozzle they choose. 
@@ -359,12 +645,13 @@ Jerry Knapp
 
 Hi Steve,
  
-Here are my comments or observations on the water mapping research. Reading through the report you guys made my overall opinion is that there are not much differences between all of the experiments. There are some small differences between the different type of nozzles and pressures, flow rates and fog pattern. But than we talk about nuts and bolts, a couple gallon more in the back or left side of the room? To me this test tells me more about how the water is being spread inside the room and it really doesn’t matter how you apply it, as long it’s getting in that room of fire and as quick as possible. The end result will remain the same, a knockdown and it gives us time to enter en overhaul :) without getting ourselves in too dangerous situations.
+Here are my comments or observations on the water mapping research. Reading through the report you guys made my overall opinion is that there are not much differences between all of the experiments. There are some small differences between the different type of nozzles and pressures, flow rates and fog pattern. But than we talk about nuts and bolts, a couple gallon more in the back or left side of the room? To me this test tells me more about how the water is being spread inside the room and it really doesn't matter how you apply it, as long it's getting in that room of fire and as quick as possible. The end result will remain the same, a knockdown and it gives us time to enter en overhaul :) without getting ourselves in too dangerous situations.
  
-In the reports it talks about a narrow fog that would cover the window entirely, for water mapping I can guess why this test is done, but looking at the transitional attack itself that would be the wrong nozzle setting to apply this technic? we don’t want to close that window with a water pattern correct? so why was chosen for this nozzle angle and not just a angle a bit smaller that would not cover but lets say blocks only 50\% of the opening?
+In the reports it talks about a narrow fog that would cover the window entirely, for water mapping I can guess why this test is done, but looking at the transitional attack itself that would be the wrong nozzle setting to apply this technic? we don't want to close that window with a water pattern correct? so why was chosen for this nozzle angle and not just a angle a bit smaller that would not cover but lets say blocks only 50\% of the opening?
  
-As I said before I’m happy to see these results and surely that there’s not much difference between them all, which gives me a good feeling when applying water from the outside that it does the job quickly.
-Would love to see these tests with actual fire and measure what kills the fire? steam or water? to me it’s a 75\% steam and 25\% cooling by the water, a gut feeling :)
+As I said before I'm happy to see these results and surely that there's not much difference between them all, which gives me a good feeling when applying water from the outside that it does the job quickly.
+
+Would love to see these tests with actual fire and measure what kills the fire? steam or water? to me it's a 75\% steam and 25\% cooling by the water, a gut feeling :)
  
 looking forward to the next report :)
  
@@ -379,9 +666,9 @@ Steve,
 
 I apologize for my tardiness. I had Friday, February 17 as the due date in my calendar.
  
-My overall summation of the water mapping is one of surprise and enlightenment. What I `thought I was achieving on the fireground' and have been preaching is far different from the reality the experiments proved.
+My overall summation of the water mapping is one of surprise and enlightenment. What I ``thought I was achieving on the fireground'' and have been preaching is far different from the reality the experiments proved.
  
-I don’t have any real concerns regarding the experiment methodology or design. I have included some edits and questions below. I feel confident this is the first in a series of tests that will explore where our water goes. This project was a great start!
+I don't have any real concerns regarding the experiment methodology or design. I have included some edits and questions below. I feel confident this is the first in a series of tests that will explore where our water goes. This project was a great start!
  
 The droplet fallout which I perceived to assist with suppressing burning materials throughout a compartment was less evident. I have been clinging to the work done by Vestal/Bridge for years to draw this conclusion. This has also promoted additional concerns regarding the efficiency of transitional attack. The gas cooling may be shorter lived since the burning materials have not been effectively treated. Reflex time for interior attack cannot be underestimated.
  
@@ -437,7 +724,51 @@ I was genuinely impressed by this component of the project. I must keep focused 
 Sincerely,
 Jason Floyd
 
+\section{Jake Hoffman}
 
+Gentlemen,
+
+I am very sorry for my tardiness in sending you these notes.  I'm kind of all over the place so hopefully they make some sort of sense. 
+
+Bale Position
+Half bale seems to allow for better distribution into the middle of the room but how much air are we introducing?
+
+5.5.3 - Angle of Impact - To kind of add on to nozzle positioning inside vs. outside the target room, would it be worthwhile to put something in the report about how your angle will vary depending on how far you are from the seat of the fire, etc.  While approaching (making the hallway) if you have clear line of sight into the fire room you will most likely have ``Min Angle Ceiling'', effectively throwing most of the water at the far wall.  But once you make your way into the room or are at the doorway, max angle is best to cool all surfaces.
+
+Pg 3 -  ``...cool fuel surfaces to restrict and slow pyrolysis...'' - I am not sure if or how we emphasize this point in our final report, but I feel it is extremely important.  
+
+Even though people talk a big game about putting water on the fire and how we ``used to never put water on smoke...'' In reality, many people are waiting to flow water.  Modern textbooks do a very poor job of emphasizing the importance of this tactic. 
+
+I know that we are providing the data and the purpose of the panel is to guide the experiments using our experience, etc. but I feel that we need to strongly word certain topics such as this when the final report comes out. 
+
+Where we draw the line between data and tactics isn't for me to decide obviously but when it comes to nozzle work and aggression, entering the room to cool all surfaces, etc... these things seem like common knowledge to myself and other panel members, but to most of the fire service might be something they have never heard.
+
+I know water flux is defined on Pg 5 but maybe emphasize so that the reader doesn't have to flip back to check the definition. In burns, nozzle was put ``Into the window'' ... Water mapping was not?
+
+Nozzle Patterns and Water Distribution - We teach ``floor, wall, ceiling'' to our recruits and during a realistic interior attack this would obviously greatly alter the water distribution in the room compared to the experiments.  Data is good, but maybe not 100\% accurate for interior approach/attack. Obviously directing stream at ``floor'' of ADD could have caused damage, hard to replicate in the lab. 
+
+Was surprised to see that changing flow and pressure had no significant effect on distribution, only flux. 
+
+-------------------------------------------------------------------------------------------------------------- \\
+
+I like how Dennis suggest emphasizing in each table the locations that did NOT get 0.05 GPM... I figured it out while reading it no problem, but to firefighters, making it simpler and/or easier to understand quickly will get more buy in
+
+I do NOT agree with Dennis that 1 line should stay exterior to ``monitor regrowth risk unless nozzle can be placed into the window.  ''
+
+A major department in Ohio has tried this ``monitor for regrowth'' and last I knew had proceduralized it to where that first line was required to flow for X \# of seconds and must remain in position to flow again if needed until an interior line is there.  We have tried similar tactics here and the general consensus is that it is a waste of time, manpower, and a line UNLESS normal entry is impeded (hoarder conditions, tough forcible entry, commercial structure, etc).  For us in Toledo, its generally not the regrowth in the fire room that we are most worried about because as we have seen hundreds of times on TFD just in the past year or so, the transition works pretty damn well, but our concern is the fire running the void spaces, knee walls, etc. and you can't put that fire out by waiting outside to monitor for regrowth.
+
+Obviously acquired burns would have addressed this but I realize its not possible so I won't throw a temper tantrum like some.
+
+If we choose to transition the fire, we have put water on the fire and have ``reset'' it.  The best way to ``monitor for regrowth'' is to get inside, put water on the seat, and aggressively check for extension.  
+
+One of the best pieces of advice that I have ever received from a senior man was ``if you want to see more fire than anyone else, make the attic quick.''  
+
+This proves to be true on an almost daily basis and even my fat ass gets into attics because in Toledo, if its more than a contents fire, there will be fire in the attic.  Sorry for the anecdote, but I feel very strongly that leaving a line outside to monitor for regrowth is useless and a waste. (unless entry/advance is impeded as mentioned above)
+
+
+Sorry again for not having these submitted on time and sorry for the rambling.
+
+Jake
 
 \end{appendix}
 
