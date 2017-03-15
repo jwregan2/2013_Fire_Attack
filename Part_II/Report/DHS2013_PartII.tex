@@ -1,144 +1,211 @@
-\documentclass{article}
-\usepackage{float}
-\usepackage{graphicx}
-\usepackage{subfig}
-\usepackage{lipsum}
-\usepackage{tikz}
-\usepackage{eso-pic}
-\usepackage{changepage}
-\usepackage{xcolor}
-\usepackage{afterpage}
-\usepackage[document]{ragged2e}
-\usepackage[none]{hyphenat}
-\usepackage[margin=1in,footskip=0.25in]{geometry}
-\usepackage{array}
-% \usepackage{l3kernel}
-% \usepackage{l3packages}
-\usepackage{tabularx,booktabs}
-\usepackage{siunitx}
-\usepackage{color,soul}
-\usepackage{placeins}
-\usepackage{microtype}
-\usepackage[backend=biber]{biblatex}
-\usepackage[hidelinks]{hyperref}
-\usepackage[toc,page]{appendix}
-%\usepackage[toc]{glossaries}
-\usepackage[subfigure]{tocloft}
-\usepackage{rotating}
-\usepackage[printwatermark]{xwatermark}
-% \usepackage[table,xcdraw]{xcolor}
-\usepackage{xcolor}
-\hypersetup{
-	colorlinks,
-	linkcolor={black!50!black},
-	citecolor={blue!50!black},
-	urlcolor={blue!80!black}
-}
+\documentclass[12pt,oneside]{book}
+\input{commoncommands}
 
-\cftsetindents{subsection}{.25in}{.4in}
+% Rename chapter headings
+\renewcommand{\chaptername}{}
+\renewcommand{\bibname}{References}
 
-\usepackage[flushleft]{threeparttable}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\rhead{}
+\chead{}
+\renewcommand{\headrulewidth}{0pt}
 
-\definecolor{ULred}{HTML}{872434}
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT}
+\SetWatermarkScale{1}
 
-\usepackage{chngcntr}
-\counterwithin{table}{section}
-\counterwithin{figure}{section}
-
-\pdfoptionpdfminorversion=6
-%\addbibresource{FireAttackReport.bib}
-
-\setlength{\parskip}{1em}
-
-% ******* REMOVE COMMENTS AND PLACE GLOSSARY.TEX IN ROOT DIRECTORY TO ADD GLOSSARY, SEE END FOR ADDITIONAL LINES TO UNCOMMENTS *******
-%
-%\loadglsentries{glossary.tex}
-%
-%\makeglossaries
-
-% ******* REMOVE COMMENTS ON THIS BLOCK TO ADD DRAFT TO REPORT ********
-% \newsavebox\mybox
-% \savebox\mybox{\tikz[color=gray,opacity=0.5]\node{DRAFT};}
-% \newwatermark*[
-% allpages,
-% angle=65,
-% scale=15,
-% xpos=-65,
-% ypos=20
-% ]{\usebox\mybox}
+\usepackage{subcaption}
 
 \begin{document}
+\pagenumbering{gobble}
+
+\bibliographystyle{unsrt}
+%\pagestyle{empty}
+
+\begin{minipage}[t][9in][s]{6.25in}
+
+
+\headerB{
+Impact of Fire Attack Utilizing \\
+Interior and Exterior Streams on\\ 
+Firefighter Safety and Occupant \\
+Survival: Water Mapping\\
+}
+
+\normalsize
+
+\headerC{
+{
+\flushleft{
+Craig Weinschenk \\
+Keith Stakes \\
+Robin Zevotek \\
+\vspace{0.2in}
+UL Firefighter Safety Research Institute \\
+Columbia, MD 21045 \\
+\vspace*{2\baselineskip}
+
+}
+
+\vfill
+
+\flushright{
+
+\includegraphics[width=2.in]{Figures/General/FSRI_GraphicShield} \\[.3in]
+}
+}
+}
+
+\end{minipage}
+
+\newpage
+\hspace{5in}
+\newpage
+
+\frontmatter
+
+\begin{minipage}[t][9in][s]{6.25in}
+\pagenumbering{gobble}
+
+
+\headerB{
+Impact of Fire Attack Utilizing \\
+Interior and Exterior Streams on\\ 
+Firefighter Safety and Occupant \\
+Survival: Water Mapping\\
+}
+
+\headerC{
+\flushleft{
+Craig Weinschenk \\
+Keith Stakes \\
+Robin Zevotek \\
+\vspace{0.2in}
+{UL Firefighter Safety Research Institute \\
+Columbia, MD 21045 \\}}
+
+\flushleft{\today \\}
+}
+
+
+\vfill
+
+\flushright{\includegraphics[width=2in]{Figures/General/FSRI_GraphicShield}}
+
+\titlesigs
+
+\end{minipage}
+
+\frontmatter
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+\begin{minipage}[t][9in][s]{6.25in}
+
+\flushleft{In no event shall UL be responsible to anyone for whatever use or non-use is made of the information contained in this Report and in no event shall UL, its employees, or its agents incur any obligation or liability for damages including, but not limited to, consequential damage arising out of or in connection  with the use or inability to use the information contained in this Report. Information conveyed by this Report applies only to the specimens actually involved in these tests. UL has not established a factory Follow-Up Service Program to determine the conformance of subsequently produced material, nor has any provision been made to apply any registered mark of UL to such material. The issuance of this Report in no way implies Listing, Classification or Recognition by UL and does not authorize the use of UL Listing, Classification or Recognition Marks or other reference to UL on or in connection with the product or system.
+}
+
+\vspace{3in}
+
+
+\vfill
+
+\hspace{1in}
+
+\end{minipage}
+
+\newpage
+
+\chapter*{\centering Acknowledgments}
 	
-	\begin{titlepage}
-		
-		\pagecolor{ULred}\afterpage{\nopagecolor}
-		
+This work was funded through a grant from the Department of Homeland Security's Assistance to Firefighters Grant Program under the Fire Prevention and Safety Grants: Research and Development. Without this critical funding and support, this vital fire service research would not be possible.
 
-		\AddToShipoutPictureFG*{\AtPageUpperLeft{\raisebox{-\height}{\includegraphics[width=7in]{Figures/General/Part2Cover.jpg}}}} 
-
-			\vspace*{20\baselineskip} 
-
-		\huge
-		\begin{adjustwidth}{-0.5in}{-0in}
-		\color{white}
-		\textbf{Study of the Impact of Fire Attack \\ Utilizing Interior and Exterior Streams \\ on Firefighter Safety and Occupant Survival}
-		\end{adjustwidth}
-		\huge
-		\begin{adjustwidth}{-0.5in}{-0in}
-		\color{white}
-		\textbf{Part II: Full-Scale Residential Fire Experiments}
-		\end{adjustwidth}
-		\begin{adjustwidth}{-0.5in}{}
-		\color{white}
-		\vspace{.2\baselineskip}
-		\large
-		Stephen Kerber \\
-		Director \\
-		UL Firefighter Safety Research Institute \\
-		\vspace*{.5\baselineskip}
-		Robin Zevotek \\
-		Lead Engineer \\
-		UL Firefighter Safety Research Institute \\ 
-		\vspace*{.5\baselineskip}
-		Keith Stakes \\
-		Research Engineer \\
-		UL Firefighter Safety Research Institute \\
-		\vspace*{.8\baselineskip}	
-		\today
-		\vspace*{.8\baselineskip}
-		\begin{figure}[h]
-			\hspace*{-0.5in}\includegraphics[width=0.75in]{0_Images/ULLogoWhite.pdf}
-		\end{figure}
-		\end{adjustwidth}
-	\end{titlepage}
-
-\begin{center}
-	DISCLAIMER\\
-	\vspace*{\baselineskip}
-	\begin{adjustwidth}{-0.25in}{-0.25in}
-		In no event shall UL be responsible to anyone for whatever use or non-use is made of the information contained in this Report and in no event shall UL, its employees, or its agents incur any obligation or liability for damages including, but not limited to, consequential damage arising out of or in connection  with the use or inability to use the information contained in this Report. Information conveyed by this Report applies only to the specimens actually involved in these tests. UL has not established a factory Follow-Up Service Program to determine the conformance of subsequently produced material, nor has any provision been made to apply any registered mark of UL to such material. The issuance of this Report in no way implies Listing, Classification or Recognition by UL and does not authorize the use of UL Listing, Classification or Recognition Marks or other reference to UL on or in connection with the product or system.
-	\end{adjustwidth}
-\end{center}
-
-\begin{center}
-	FUNDING
 \vspace*{\baselineskip}
-\begin{adjustwidth}{-0.25in}{-0.25in}
-This work was funded through a grant from the Department of Homeland Securities Assistance to Firefighters Grant Program under the Fire Prevention and Safety Grants, Research and Development.
-\end{adjustwidth}
-\end{center}
 
 \begin{center}
-	\includegraphics[width=0.28\textwidth]{Figures/General/DHS.png}
+	\includegraphics[width=0.28\textwidth]{Figures/General/DHS}
 \end{center}
 
 \clearpage
 
-\renewcommand{\abstractname}{Abstract}
-\setlength{\emergencystretch}{5pt}
+To assist the design and implementation of the experiments for the Fire Attack study, fire service experts were gathered from across the world with knowledge in fire suppression and the impact of interior and exterior fire streams. The individuals below provided direction for the project, assisting in planing the experiments, witnessing the testing, and developing concrete conclusions. Their tireless support and effort make this project relevant to the fire service across the world. 
 
-\begin{abstract}
+
+\begin{table}[!ht]
+	\centering
+	\caption*{Fire Service Technical Panel}
+	\begin{tabular}{ll}
+		\toprule[1.5pt]
+		Name & Fire Department \\ 
+		\midrule
+		Steve Brisebois  & Montreal Fire Department \\ 
+		Matt Carrigan    & Montgomery County Fire and Rescue Service \\ 
+		Tony Carroll     & Washington DC Fire Department \\ 
+		Albert Castillo  & Houston Fire Department \\ 
+		Chad Christensen & Los Angeles County Fire Department \\ 
+		John Chubb       & Dublin Fire Brigade \\ 		 		  
+		Danny Doyle      & Pittsburgh Fire Department \\ 
+		Aaron Fields     & Seattle Fire Department \\ 
+		Jason Floyd      & Las Cruces Fire Department \\ 
+		John Gallagher   & Boston Fire Department \\ 
+		Chad Green       & Anchorage Fire Department \\ 
+		Kelly Hanink     & Eden Prairie Fire Department \\ 
+		Samuel Hittle    & Wichita Fire Department \\ 
+		Jacob Hoffman    & Toledo Fire/Rescue Department \\ 
+		Josh Hummel      & Howard County Department of Fire and Rescue Services \\ 
+		Jerry Knapp      & West Haverstraw (NY) Fire Department \\ 
+		Dennis Legear    & Oakland Fire Department (Ret.) / LEFD Consulting\\ 
+		Hans Neiling     & Zuid Limburg Fire \\ 
+		Nick Martin      & Columbia Fire Department \\ 
+		Ray McCormack    & Fire Department of New York \\ 
+		John McDonough   & New South Wales Fire Department \\ 
+		Jordan Mohr      & Sedgwick County Fire District 1 \\ 
+		Steve Pegram     & Goshen Township Fire and EMS \\ 
+		\bottomrule[1.25pt]
+	\end{tabular}
+\end{table}
+
+The authors would also like to acknowledge Adam Barowy and Greg Sutter of UL LLC for their assistance in conducting the water mapping experiments, specifically with the operation of the Actual Delivery Density apparatus.
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\chapter{List of Acronyms}
+
+\begin{tabbing}
+\hspace{1.5in} \= \\
+ADD \> Actual Delivered Density \\
+AFG \> Assistance to Firefighters Grant program  \\
+ANOVA \> Analysis of Variation \\
+DHS \> U.S Department of Homeland Security   \\   
+FEMA \> Federal Emergency Management Agency  \\
+NFPA \> National Fire Protection Association \\
+SB \> Smooth Bore \\
+SS \> Straight Stream \\
+UL FSRI \> UL Firefighter Safety Research Institute \\
+USFA \> United States Fire Administration  \\
+\end{tabbing}
+
+\newpage
+
+\mainmatter
+
+\chapter*{abstract}
 
 As research continues into how fire department interventions affect fire dyanmics in the modern fire environment; questions continue to arise on the impact and implications of interior versus exterior fire attack on both firefighter safety and occupant survivability. Previous research into various types of fire ground ventilation, flow paths, and exterior fire streams has provided the fire service with a more in-depth understanding of fire dynamics in addition to raising questions about certain fire attack methods stemming from differing traditions and myths. This knowledge gap and lack of previous research into the impact of fire streams has driven the need for further research into fire department interventions at structure fires with a focus on hose streams and suppression tactics. Statistics show that both firefighters and building occupants continue to loose their lives due to fire. As such, research into the various methods of fire attack will allow a broader understanding of how firefighter interventions on the fire ground can impact the outcome of both life safety and property protection. 
 
@@ -149,8 +216,6 @@ This study will build and expand upon the fire research conducted to date by ana
 	\item Part II: Full-scale Residential Fire Experiments.
 	\end{itemize}
 \vspace*{\baselineskip}
-
-\end{abstract}
 
 \newpage
 
@@ -206,7 +271,7 @@ This study consisted of the following tasks shown in the figure below. Part I of
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width = 6in]{Figures/General/Flow_Chart.jpg}
+	\includegraphics[width = 6in]{Figures/General/Flow_Chart}
 	\caption{Project Technical Plan Flow Chart}
 	\label{fig:TechPlanChart}
 \end{figure}
@@ -519,8 +584,8 @@ To determine the gas velocity, an array of bi-directional probes was utilized in
 \begin{figure} [H]
 	\centering
 	\begin{tabular}{c c}
-		\subfloat[Pressure Transducer Box]{\includegraphics[height = 2.5in]{0_Images/Instrumentation/PressureBox.jpg}} &
-		\subfloat[Bi-Directional Probe Array]{\includegraphics[height = 2.5in]{0_Images/Instrumentation/BDPArray.jpg}} \\
+		\includegraphics[height = 2.5in]{0_Images/Instrumentation/PressureBox.jpg} &
+		\includegraphics[height = 2.5in]{0_Images/Instrumentation/BDPArray.jpg} \\
 	\end{tabular}
 	\caption{Bi-Directional Probe}
 	\label{fig:BDP}
@@ -556,17 +621,50 @@ Gas samples were analyzed through the use of OxyMat6 and UltraMat23 Siemens gas 
 
 \begin{figure}[H]
 	\centering
-	\begin{tabular}{*3c}
-		\subfloat[Sample Line]{\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/SamplePoint.jpg}} &
-		\subfloat[Vaccum Pump - Cole Palmber L-79200-30]{\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/VaccumPump.jpg}} &
-		\subfloat[Course Filter - Solberg 842]{\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/CourseFilter.jpg}} \\
-		\subfloat[Condensing Tube]{\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/CoilCondenser.png}} &
-		\subfloat[Dririte Tube]{\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/DriRightTube.jpg}} &
-		\subfloat[Fine Filter - Perma Pure FF-250-SG-2.5G]{\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/FineFilter.jpg}} \\
-	\end{tabular}
-	\subfloat[Gas Analyzers]{\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/GasAnalyzers.jpg}}
-	\caption{Gas Analyzer Configuration}
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/SamplePoint.jpg}
+		\subcaption{Gas Sample Point}
+	\end{minipage}
+
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/VaccumPump.jpg}
+		\subcaption{Vaccum Pump - Cole Palmber L-79200-30}
+	\end{minipage}
+	
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/CourseFilter.jpg}
+		\subcaption{Course Filter - Solberg 842}
+	\end{minipage}
+	
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/CoilCondenser.png}
+		\subcaption{Condensing Tube}
+	\end{minipage}
+	
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/DriRightTube.jpg}	
+		\subcaption{Dririte Tube}
+	\end{minipage}
+
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/FineFilter.jpg}
+		\subcaption{Fine Filter - Perma Pure FF-250-SG-2.5G}
+	\end{minipage}
+
+	\begin{minipage}[b]{0.5\linewidth}
+	\centering
+		\includegraphics[width = 2in]{0_Images/Instrumentation/Gas_Analyzer/GasAnalyzers.jpg}
+		\subcaption{Gas Analyzer}
+	\end{minipage}
+	\caption{Gas Analyser Configuration}
 	\label{fig:GasAnalyzers}
+
 \end{figure}
 
 All data was logged through the use of a national instruments data acquisition system incorporating a SCXI-1001 chassis with 8 SCXI-1102C 32-Channel modules (Figure \ref{fig:DataSystem}). The system is configured for a total of 256 channels capable of reading values between 0-10 volts DC. Values are recorded once a second and translated to quantities of interest through the use of LabVIEW software specifically programmed for use with the system. Data was sampled at 1~hz across all channels.
@@ -712,7 +810,7 @@ Master Stream & Smooth Bore & 1 1/2 & 80 & 600 \\
 % \printglossary[nonumberlist]
 % \newpage
 
-\printbibliography
+\bibliography{UL_general,FireAttackReport}
 
 \clearpage
 
@@ -720,7 +818,7 @@ Master Stream & Smooth Bore & 1 1/2 & 80 & 600 \\
 
 \section{Experimental Results} \label{App:Results}
 \renewcommand{\thesubsection}{\Alph{section}}
-\counterwithin{figure}{subsection}
+% \counterwithin{figure}{subsection}
 
 \appendix
 
