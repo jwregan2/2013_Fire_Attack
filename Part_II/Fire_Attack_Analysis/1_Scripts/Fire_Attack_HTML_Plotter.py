@@ -45,8 +45,8 @@ channel_list = pd.read_csv(channel_location+'Channels.csv')
 channel_list = channel_list.set_index('Channel')
 
 # Create groups data by grouping channels for 'Chart'
-channel_groups = channel_list.groupby('Primary_Chart')
-# channel_groups = channel_list.groupby('Secondary_Chart')
+# channel_groups = channel_list.groupby('Primary_Chart')
+channel_groups = channel_list.groupby('Secondary_Chart')
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)
@@ -63,8 +63,11 @@ TOOLS = 'box_zoom,reset,hover,pan,wheel_zoom'
 # Specify name
 specific_name = 'Experiment_1_Data'
 
+experiments = ['Experiment_27_Data.csv']
+
 # Loop through Experiment files
-for f in os.listdir(data_location):
+# for f in os.listdir(data_location):
+for f in experiments:
 	if f.endswith('.csv'):
 
 		# Skip files with time information or reduced data files
@@ -91,9 +94,9 @@ for f in os.listdir(data_location):
 		# Set output location for results
 		output_location = output_location_init + Test_Name + '/'
 
-		# # If the folder exists delete it.
-		# if os.path.exists(output_location):
-		# 	shutil.rmtree(output_location)
+		# If the folder exists delete it.
+		if os.path.exists(output_location):
+			shutil.rmtree(output_location)
 
 		# If the folder doesn't exist create it.
 		if not os.path.exists(output_location):
@@ -162,7 +165,7 @@ for f in os.listdir(data_location):
 			
 			# Create figure with set x-axis, set size, and available tools in bokeh package
 			output_file(output_location + group + '.html',mode='cdn')
-			p = figure( x_axis_label='Time(min)',  height=500, width=1200, tools=TOOLS, title=group.replace('_',' '),x_range = Range1d(0,End_Time))
+			p = figure( x_axis_label='Time(min)',  height=500, width=1200, tools=TOOLS, title=group.replace('_',' '),x_range = Range1d(0,End_Time), toolbar_location="above")
 
 			# Begin cycling through channels
 			for channel in channel_groups.get_group(group).index.values:
@@ -253,7 +256,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
-					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Gas Concentration (%)'
@@ -262,7 +265,7 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Carbon Monoxide':
-					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Gas Concentration (PPM)'
@@ -272,8 +275,8 @@ for f in os.listdir(data_location):
 				x= Data_Time
 				y= current_data
 				channel_label = np.tile(channel_list['Title'][channel],[len(x),1])
-				source = ColumnDataSource({'channels':channel_label})
-				p.line(x, y, legend=channel_list['Title'][channel], line_width=2, color=next(color),source=source)
+				source = ColumnDataSource({'channels':channel_label, 'Time':x, 'Value':y})
+				p.line('Time', 'Value', legend=channel_list['Title'][channel], line_width=2, color=next(color),source=source)
 				hover=p.select(dict(type=HoverTool))
 				hover.tooltips = [('Time','$x{1.11}'),(hover_value,'$y{0.0}'),('Channel','@channels')]
 				# Scale y-axis limit based on specified range in test description file
@@ -308,4 +311,5 @@ for f in os.listdir(data_location):
 				pass
 			p.legend.location = "top_left"
 			save(p)
+
 			reset_output()
