@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.7.19)  15 MAR 2017 15:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.7.19)  16 MAR 2017 09:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1469,7 +1469,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 29.
 
-<Figures/General/FSRI_GraphicShield.pdf, id=7, 372.63354pt x 374.75298pt>
+<Figures/General/FSRI_GraphicShield.pdf, id=15, 372.63354pt x 374.75298pt>
 File: Figures/General/FSRI_GraphicShield.pdf Graphic file (type pdf)
 
 <use Figures/General/FSRI_GraphicShield.pdf>
@@ -1501,279 +1501,846 @@ l.93 \frontmatter
                   [1
 
 ]
-Package hyperref Info: Anchor `paragraph*.1' on input line 95.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+Package hyperref Info: Anchor `section.0.1' on input line 95.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 95.
 Package hyperref Info: bookmark on input line 95:
-(hyperref)             thecounter {0.0.0.0.0}
-(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 1}
-(hyperref)             reference {paragraph*.1}
-(hyperref)             toclevel {4}
+(hyperref)             thecounter {0.1}
+(hyperref)             text {\ifttl@toclabel \ttl@a \fi Instrumentation}
+(hyperref)             reference {section.0.1}
+(hyperref)             toclevel {1}
 (hyperref)             type {toc}.
-Package hyperref Info: Reference (link) `figure.caption.2' on input line 97.
-Package hyperref Info: Reference (link) `table.caption.3' on input line 97.
-Package hyperref Info: Anchor `figure.caption.2' on input line 101.
- <Howard_Exp_1.png, id=36, 677.53125pt x 435.87843pt>
-File: Howard_Exp_1.png Graphic file (type png)
+Package hyperref Info: Reference (link) `figure.caption.1' on input line 98.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 98.
 
-<use Howard_Exp_1.png>
-Package pdftex.def Info: Howard_Exp_1.png used on input line 103.
-(pdftex.def)             Requested size: 361.34999pt x 232.47768pt.
-Package hyperref Info: bookmark on input line 104:
+
+LaTeX Warning: Citation `HeatFluxRoundRobin' on page i undefined on input line 
+98.
+
+Package hyperref Info: Anchor `figure.caption.1' on input line 100.
+
+LaTeX Warning: File `0_Images/Instrumentation/Heat_Flux_Gauge.jpg' not found on
+ input line 102.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Heat_Flux_Gauge.jpg'
+ not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.102 ...ages/Instrumentation/Heat_Flux_Gauge.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 102.
+(c:/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Package hyperref Info: bookmark on input line 103:
 (hyperref)             thecounter {1}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 1 Configuration\rel
-ax }}
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Water Cooled Schmidt-Boelter H
+eat Flux Gauge\relax }}
+(hyperref)             reference {figure.caption.1}
+(hyperref)             toclevel {0}
+(hyperref)             type {lof}.
+Package hyperref Info: Reference (link) `figure.caption.2' on input line 107.
+
+
+LaTeX Warning: Citation `TemperatureHandbook' on page i undefined on input line
+ 107.
+
+Package hyperref Info: Anchor `figure.caption.2' on input line 109.
+
+LaTeX Warning: File `0_Images/Instrumentation/Thermocouple.jpg' not found on in
+put line 111.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Thermocouple.jpg' no
+t found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.111 ..._Images/Instrumentation/Thermocouple.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package hyperref Info: bookmark on input line 112:
+(hyperref)             thecounter {2}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Chromel-Alumel (Type K) Thermo
+couple\relax }}
 (hyperref)             reference {figure.caption.2}
 (hyperref)             toclevel {0}
 (hyperref)             type {lof}.
-Package hyperref Info: Anchor `table.caption.3' on input line 108.
-Package hyperref Info: bookmark on input line 110:
-(hyperref)             thecounter {1}
+Package hyperref Info: Anchor `page.i' on input line 115.
+[1
+
+Package `hyperref' Info: End of reference (link) `figure.caption.1', line 98.
+Package `hyperref' Info: End of reference (link) `figure.caption.2', line 107.
+]
+Package hyperref Info: Reference (link) `figure.caption.3' on input line 116.
+
+
+LaTeX Warning: Citation `SetraManual' on page ii undefined on input line 116.
+
+Package hyperref Info: Anchor `figure.caption.3' on input line 118.
+
+LaTeX Warning: File `0_Images/Instrumentation/Setra.jpg' not found on input lin
+e 120.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Setra.jpg' not found
+.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120 ... 3in]{0_Images/Instrumentation/Setra.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package hyperref Info: bookmark on input line 121:
+(hyperref)             thecounter {3}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 1 Interventions\relax
- }}
-(hyperref)             reference {table.caption.3}
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Setra Model 264 Differential P
+ressure Transducer\relax }}
+(hyperref)             reference {figure.caption.3}
 (hyperref)             toclevel {0}
-(hyperref)             type {lot}.
-Package hyperref Info: Anchor `page.i' on input line 121.
- [1
+(hyperref)             type {lof}.
+Package hyperref Info: Reference (link) `figure.caption.4' on input line 125.
+Package hyperref Info: Reference (link) `figure.caption.4' on input line 125.
 
-Package `hyperref' Info: End of reference (link) `figure.caption.2', line 97.
-Package `hyperref' Info: End of reference (link) `table.caption.3', line 97.
- <./Howard_Exp_1.png>]
-Package hyperref Info: Anchor `paragraph*.4' on input line 123.
-Package hyperref Info: bookmark on input line 123:
-(hyperref)             thecounter {0.0.0.0.0}
-(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 2}
-(hyperref)             reference {paragraph*.4}
-(hyperref)             toclevel {4}
-(hyperref)             type {toc}.
-Package hyperref Info: Reference (link) `figure.caption.5' on input line 125.
-Package hyperref Info: Reference (link) `table.caption.6' on input line 125.
-Package hyperref Info: Anchor `figure.caption.5' on input line 129.
+LaTeX Warning: Citation `BDPInPoolFires' on page ii undefined on input line 125
+.
 
-<Howard_Exp_2.png, id=46, 627.09282pt x 423.83344pt>
-File: Howard_Exp_2.png Graphic file (type png)
- <use Howard_Exp_2.png>
-Package pdftex.def Info: Howard_Exp_2.png used on input line 131.
-(pdftex.def)             Requested size: 361.34999pt x 244.23262pt.
-Package hyperref Info: bookmark on input line 132:
-(hyperref)             thecounter {2}
+Package hyperref Info: Anchor `page.ii' on input line 126.
+[2
+Package `hyperref' Info: End of reference (link) `figure.caption.3', line 116.
+]
+Package hyperref Info: Anchor `figure.caption.4' on input line 127.
+
+! Undefined control sequence.
+l.130 		\subfloat
+                 [Pressure Transducer Box]{\includegraphics[height = 2.5in]{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/PressureBox.jpg' not found on inp
+ut line 130.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/PressureBox.jpg' not
+ found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 ...0_Images/Instrumentation/PressureBox.jpg}
+                                                  } &
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.131 		\subfloat
+                 [Bi-Directional Probe Array]{\includegraphics[height = 2.5i...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/BDPArray.jpg' not found on input 
+line 131.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/BDPArray.jpg' not fo
+und.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.131 ...n]{0_Images/Instrumentation/BDPArray.jpg}
+                                                  } \\
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (183.11607pt too wide) in paragraph at lines 129--133
+ [][] 
+ []
+
+Package hyperref Info: bookmark on input line 133:
+(hyperref)             thecounter {4}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 2 Configuration\rel
-ax }}
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Bi-Directional Probe\relax }}
+(hyperref)             reference {figure.caption.4}
+(hyperref)             toclevel {0}
+(hyperref)             type {lof}.
+Package hyperref Info: Reference (link) `figure.caption.5' on input line 137.
+Package hyperref Info: Anchor `figure.caption.5' on input line 139.
+
+LaTeX Warning: File `0_Images/Instrumentation/Calorimetry_hood.jpg' not found o
+n input line 141.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Calorimetry_hood.jpg
+' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.141 ...ges/Instrumentation/Calorimetry_hood.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package hyperref Info: bookmark on input line 142:
+(hyperref)             thecounter {5}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Oxygen Consumption Calorimetry
+ Hood\relax }}
 (hyperref)             reference {figure.caption.5}
 (hyperref)             toclevel {0}
 (hyperref)             type {lof}.
-Package hyperref Info: Anchor `table.caption.6' on input line 136.
-Package hyperref Info: bookmark on input line 138:
-(hyperref)             thecounter {2}
+Package hyperref Info: Anchor `page.iii' on input line 145.
+[3
+Package `hyperref' Info: End of reference (link) `figure.caption.4', line 125.
+Package `hyperref' Info: End of reference (link) `figure.caption.4', line 125.
+Package `hyperref' Info: End of reference (link) `figure.caption.5', line 137.
+]
+Package hyperref Info: Reference (link) `figure.caption.6' on input line 146.
+Package hyperref Info: Reference (link) `figure.caption.7' on input line 146.
+Package hyperref Info: Anchor `figure.caption.6' on input line 148.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/BullettCam.jpg' not found on inpu
+t line 150.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/BullettCam.jpg' not 
+found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.150 ...{0_Images/Instrumentation/BullettCam.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package hyperref Info: bookmark on input line 151:
+(hyperref)             thecounter {6}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 2 Interventions\relax
- }}
-(hyperref)             reference {table.caption.6}
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Bosch VTC-206F03-4 Video Camer
+a\relax }}
+(hyperref)             reference {figure.caption.6}
 (hyperref)             toclevel {0}
-(hyperref)             type {lot}.
-Package hyperref Info: Anchor `page.ii' on input line 151.
+(hyperref)             type {lof}.
+Package hyperref Info: Anchor `page.iv' on input line 154.
+[4
+Package `hyperref' Info: End of reference (link) `figure.caption.6', line 146.
+Package `hyperref' Info: End of reference (link) `figure.caption.7', line 146.
+]
+Package hyperref Info: Anchor `figure.caption.7' on input line 155.
 
-[2
 
-Package `hyperref' Info: End of reference (link) `figure.caption.5', line 125.
-Package `hyperref' Info: End of reference (link) `table.caption.6', line 125.
- <./Howard_Exp_2.png>]
-Package hyperref Info: Anchor `page.iii' on input line 152.
- [3]
-Package hyperref Info: Anchor `paragraph*.7' on input line 154.
-Package hyperref Info: bookmark on input line 154:
-(hyperref)             thecounter {0.0.0.0.0}
-(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 3}
-(hyperref)             reference {paragraph*.7}
-(hyperref)             toclevel {4}
-(hyperref)             type {toc}.
-Package hyperref Info: Reference (link) `figure.caption.8' on input line 156.
-Package hyperref Info: Reference (link) `table.caption.9' on input line 156.
-Package hyperref Info: Anchor `figure.caption.8' on input line 160.
+LaTeX Warning: File `0_Images/Instrumentation/ISG_IR.jpg' not found on input li
+ne 157.
 
-<Howard_Exp_3.png, id=60, 689.57625pt x 334.24875pt>
-File: Howard_Exp_3.png Graphic file (type png)
- <use Howard_Exp_3.png>
-Package pdftex.def Info: Howard_Exp_3.png used on input line 162.
-(pdftex.def)             Requested size: 361.34999pt x 175.1517pt.
-Package hyperref Info: bookmark on input line 163:
-(hyperref)             thecounter {3}
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/ISG_IR.jpg' not foun
+d.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.157 ...5in]{0_Images/Instrumentation/ISG_IR.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/ISG_IR2.jpg' not found on input l
+ine 158.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/ISG_IR2.jpg' not fou
+nd.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.158 ...in]{0_Images/Instrumentation/ISG_IR2.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package hyperref Info: bookmark on input line 159:
+(hyperref)             thecounter {7}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 3 Configuration\rel
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces ISG Elite XR Fire Service Ther
+mal Imaging Camera\relax }}
+(hyperref)             reference {figure.caption.7}
+(hyperref)             toclevel {0}
+(hyperref)             type {lof}.
+Package hyperref Info: Anchor `figure.caption.8' on input line 165.
+! Undefined control sequence.
+l.168 		\subfloat
+                 [Sample Line]{\includegraphics[width = 2in]{0_Images/Instru...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/Gas_Analyzer/SamplePoint.jpg' not
+ found on input line 168.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Gas_Analyzer/SampleP
+oint.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.168 ...rumentation/Gas_Analyzer/SamplePoint.jpg}
+                                                  } &
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.169 		\subfloat
+                 [Vaccum Pump - Cole Palmber L-79200-30]{\includegraphics[wi...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/Gas_Analyzer/VaccumPump.jpg' not 
+found on input line 169.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Gas_Analyzer/VaccumP
+ump.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.169 ...trumentation/Gas_Analyzer/VaccumPump.jpg}
+                                                  } &
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.170 		\subfloat
+                 [Coarse Filter - Solberg 842]{\includegraphics[width = 2in]...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/Gas_Analyzer/CourseFilter.jpg' no
+t found on input line 170.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Gas_Analyzer/CourseF
+ilter.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.170 ...umentation/Gas_Analyzer/CourseFilter.jpg}
+                                                  } \\
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+<recently read> \subfloat 
+                          
+l.171 		\subfloat
+                 [Condensing Tube]{\includegraphics[height = 2in]{0_Images/I...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/Gas_Analyzer/CoilCondenser.png' n
+ot found on input line 171.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Gas_Analyzer/CoilCon
+denser.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.171 ...mentation/Gas_Analyzer/CoilCondenser.png}
+                                                  } &
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.172 		\subfloat
+                 [Dririte Tube]{\includegraphics[height = 2in]{0_Images/Inst...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/Gas_Analyzer/DriRightTube.jpg' no
+t found on input line 172.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Gas_Analyzer/DriRigh
+tTube.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.172 ...umentation/Gas_Analyzer/DriRightTube.jpg}
+                                                  } &
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.173 		\subfloat
+                 [Fine Filter - Perma Pure FF-250-SG-2.5G]{\includegraphics[...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/Gas_Analyzer/FineFilter.jpg' not 
+found on input line 173.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Gas_Analyzer/FineFil
+ter.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.173 ...trumentation/Gas_Analyzer/FineFilter.jpg}
+                                                  } \\
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.175 	\subfloat
+                [Gas Analyzers]{\includegraphics[width = 2in]{0_Images/Instr...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/Gas_Analyzer/GasAnalyzers.jpg' no
+t found on input line 175.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/Gas_Analyzer/GasAnal
+yzers.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.175 ...umentation/Gas_Analyzer/GasAnalyzers.jpg}
+                                                  }
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (515.0963pt too wide) in paragraph at lines 167--176
+ [][] 
+ []
+
+Package hyperref Info: bookmark on input line 176:
+(hyperref)             thecounter {8}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Gas Analyzer Configuration\rel
 ax }}
 (hyperref)             reference {figure.caption.8}
 (hyperref)             toclevel {0}
 (hyperref)             type {lof}.
-Package hyperref Info: Anchor `table.caption.9' on input line 167.
-Package hyperref Info: bookmark on input line 169:
-(hyperref)             thecounter {3}
+Package hyperref Info: Anchor `page.v' on input line 179.
+[5]
+Package hyperref Info: Reference (link) `figure.caption.9' on input line 180.
+Package hyperref Info: Anchor `figure.caption.9' on input line 182.
+
+
+LaTeX Warning: File `0_Images/Instrumentation/DataSystem.jpg' not found on inpu
+t line 184.
+
+
+! Package pdftex.def Error: File `0_Images/Instrumentation/DataSystem.jpg' not 
+found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.184 ...{0_Images/Instrumentation/DataSystem.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package hyperref Info: bookmark on input line 185:
+(hyperref)             thecounter {9}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 3 Interventions\relax
- }}
-(hyperref)             reference {table.caption.9}
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Data Acquisition System\relax 
+}}
+(hyperref)             reference {figure.caption.9}
 (hyperref)             toclevel {0}
-(hyperref)             type {lot}.
-Package hyperref Info: Anchor `page.iv' on input line 180.
-
-[4
-
-Package `hyperref' Info: End of reference (link) `figure.caption.8', line 156.
-Package `hyperref' Info: End of reference (link) `table.caption.9', line 156.
- <./Howard_Exp_3.png>]
-Package hyperref Info: Anchor `paragraph*.10' on input line 182.
-Package hyperref Info: bookmark on input line 182:
-(hyperref)             thecounter {0.0.0.0.0}
-(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 4}
+(hyperref)             type {lof}.
+Package hyperref Info: Anchor `page.vi' on input line 188.
+[6
+Package `hyperref' Info: End of reference (link) `figure.caption.9', line 180.
+]
+Package hyperref Info: Anchor `page.vii' on input line 189.
+ [7]
+Package hyperref Info: Anchor `section.0.2' on input line 191.
+Package hyperref Info: bookmark on input line 191:
+(hyperref)             thecounter {0.2}
+(hyperref)             text {\ifttl@toclabel \ttl@a \fi Test Descriptions}
+(hyperref)             reference {section.0.2}
+(hyperref)             toclevel {1}
+(hyperref)             type {toc}.
+Package hyperref Info: Anchor `paragraph*.10' on input line 193.
+Package hyperref Info: bookmark on input line 193:
+(hyperref)             thecounter {0.2.0.0.0}
+(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 1}
 (hyperref)             reference {paragraph*.10}
 (hyperref)             toclevel {4}
 (hyperref)             type {toc}.
-Package hyperref Info: Reference (link) `figure.caption.11' on input line 184.
-Package hyperref Info: Reference (link) `table.caption.12' on input line 184.
-Package hyperref Info: Anchor `figure.caption.11' on input line 188.
- <Howard_Exp_4.png, id=71, 691.08188pt x 325.215pt>
-File: Howard_Exp_4.png Graphic file (type png)
+Package hyperref Info: Reference (link) `figure.caption.11' on input line 195.
+Package hyperref Info: Reference (link) `table.caption.12' on input line 195.
+Package hyperref Info: Anchor `figure.caption.11' on input line 199.
+ <Howard_Exp_1.png, id=93, 677.53125pt x 435.87843pt>
+File: Howard_Exp_1.png Graphic file (type png)
 
-<use Howard_Exp_4.png>
-Package pdftex.def Info: Howard_Exp_4.png used on input line 190.
-(pdftex.def)             Requested size: 361.34999pt x 170.05066pt.
-Package hyperref Info: bookmark on input line 191:
-(hyperref)             thecounter {4}
+<use Howard_Exp_1.png>
+Package pdftex.def Info: Howard_Exp_1.png used on input line 201.
+(pdftex.def)             Requested size: 361.34999pt x 232.47768pt.
+Package hyperref Info: bookmark on input line 202:
+(hyperref)             thecounter {10}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 4 Configuration\rel
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 1 Configuration\rel
 ax }}
 (hyperref)             reference {figure.caption.11}
 (hyperref)             toclevel {0}
 (hyperref)             type {lof}.
-Package hyperref Info: Anchor `table.caption.12' on input line 195.
-Package hyperref Info: bookmark on input line 197:
-(hyperref)             thecounter {4}
+Package hyperref Info: Anchor `table.caption.12' on input line 206.
+Package hyperref Info: bookmark on input line 208:
+(hyperref)             thecounter {1}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 4 Interventions\relax
+p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 1 Interventions\relax
  }}
 (hyperref)             reference {table.caption.12}
 (hyperref)             toclevel {0}
 (hyperref)             type {lot}.
-Package hyperref Info: Anchor `page.v' on input line 208.
- [5
+Package hyperref Info: Anchor `page.viii' on input line 219.
+ [8
 
-Package `hyperref' Info: End of reference (link) `figure.caption.11', line 184.
+Package `hyperref' Info: End of reference (link) `figure.caption.11', line 195.
 
-Package `hyperref' Info: End of reference (link) `table.caption.12', line 184.
- <./Howard_Exp_4.png>]
-Package hyperref Info: Anchor `paragraph*.13' on input line 210.
-Package hyperref Info: bookmark on input line 210:
-(hyperref)             thecounter {0.0.0.0.0}
-(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 5}
+Package `hyperref' Info: End of reference (link) `table.caption.12', line 195.
+ <./Howard_Exp_1.png>]
+Package hyperref Info: Anchor `paragraph*.13' on input line 221.
+Package hyperref Info: bookmark on input line 221:
+(hyperref)             thecounter {0.2.0.0.0}
+(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 2}
 (hyperref)             reference {paragraph*.13}
 (hyperref)             toclevel {4}
 (hyperref)             type {toc}.
-Package hyperref Info: Reference (link) `figure.caption.14' on input line 212.
-Package hyperref Info: Reference (link) `table.caption.15' on input line 212.
-Package hyperref Info: Anchor `figure.caption.14' on input line 216.
+Package hyperref Info: Reference (link) `figure.caption.14' on input line 223.
+Package hyperref Info: Reference (link) `table.caption.15' on input line 223.
+Package hyperref Info: Anchor `figure.caption.14' on input line 227.
 
-<Howard_Exp_5.png, id=81, 626.34pt x 416.30531pt>
-File: Howard_Exp_5.png Graphic file (type png)
- <use Howard_Exp_5.png>
-Package pdftex.def Info: Howard_Exp_5.png used on input line 218.
-(pdftex.def)             Requested size: 361.34999pt x 240.18044pt.
-Package hyperref Info: bookmark on input line 219:
-(hyperref)             thecounter {5}
+<Howard_Exp_2.png, id=103, 627.09282pt x 423.83344pt>
+File: Howard_Exp_2.png Graphic file (type png)
+ <use Howard_Exp_2.png>
+Package pdftex.def Info: Howard_Exp_2.png used on input line 229.
+(pdftex.def)             Requested size: 361.34999pt x 244.23262pt.
+Package hyperref Info: bookmark on input line 230:
+(hyperref)             thecounter {11}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 5 Configuration\rel
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 2 Configuration\rel
 ax }}
 (hyperref)             reference {figure.caption.14}
 (hyperref)             toclevel {0}
 (hyperref)             type {lof}.
-Package hyperref Info: Anchor `table.caption.15' on input line 223.
-Package hyperref Info: bookmark on input line 225:
-(hyperref)             thecounter {5}
+Package hyperref Info: Anchor `table.caption.15' on input line 234.
+Package hyperref Info: bookmark on input line 236:
+(hyperref)             thecounter {2}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 5 Interventions\relax
+p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 2 Interventions\relax
  }}
 (hyperref)             reference {table.caption.15}
 (hyperref)             toclevel {0}
 (hyperref)             type {lot}.
-Package hyperref Info: Anchor `page.vi' on input line 242.
+Package hyperref Info: Anchor `page.ix' on input line 249.
 
-[6
+[9
 
-Package `hyperref' Info: End of reference (link) `figure.caption.14', line 212.
+Package `hyperref' Info: End of reference (link) `figure.caption.14', line 223.
 
-Package `hyperref' Info: End of reference (link) `table.caption.15', line 212.
- <./Howard_Exp_5.png>]
-Package hyperref Info: Anchor `paragraph*.16' on input line 244.
-Package hyperref Info: bookmark on input line 244:
-(hyperref)             thecounter {0.0.0.0.0}
-(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 6}
+Package `hyperref' Info: End of reference (link) `table.caption.15', line 223.
+ <./Howard_Exp_2.png>]
+Package hyperref Info: Anchor `page.x' on input line 250.
+ [10]
+Package hyperref Info: Anchor `paragraph*.16' on input line 252.
+Package hyperref Info: bookmark on input line 252:
+(hyperref)             thecounter {0.2.0.0.0}
+(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 3}
 (hyperref)             reference {paragraph*.16}
 (hyperref)             toclevel {4}
 (hyperref)             type {toc}.
-Package hyperref Info: Reference (link) `figure.caption.17' on input line 246.
-Package hyperref Info: Reference (link) `table.caption.18' on input line 246.
-Package hyperref Info: Anchor `figure.caption.17' on input line 250.
- <Howard_Exp_6.png, id=91, 685.05937pt x 334.24875pt>
-File: Howard_Exp_6.png Graphic file (type png)
+Package hyperref Info: Reference (link) `figure.caption.17' on input line 254.
+Package hyperref Info: Reference (link) `table.caption.18' on input line 254.
+Package hyperref Info: Anchor `figure.caption.17' on input line 258.
 
-<use Howard_Exp_6.png>
-Package pdftex.def Info: Howard_Exp_6.png used on input line 252.
-(pdftex.def)             Requested size: 361.34999pt x 176.30945pt.
-Package hyperref Info: bookmark on input line 253:
-(hyperref)             thecounter {6}
+<Howard_Exp_3.png, id=118, 689.57625pt x 334.24875pt>
+File: Howard_Exp_3.png Graphic file (type png)
+ <use Howard_Exp_3.png>
+Package pdftex.def Info: Howard_Exp_3.png used on input line 260.
+(pdftex.def)             Requested size: 361.34999pt x 175.1517pt.
+Package hyperref Info: bookmark on input line 261:
+(hyperref)             thecounter {12}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 6 Configuration\rel
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 3 Configuration\rel
 ax }}
 (hyperref)             reference {figure.caption.17}
 (hyperref)             toclevel {0}
 (hyperref)             type {lof}.
-Package hyperref Info: Anchor `table.caption.18' on input line 257.
-Package hyperref Info: bookmark on input line 259:
-(hyperref)             thecounter {6}
+Package hyperref Info: Anchor `table.caption.18' on input line 265.
+Package hyperref Info: bookmark on input line 267:
+(hyperref)             thecounter {3}
 (hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
-p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 6 Interventions\relax
+p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 3 Interventions\relax
  }}
 (hyperref)             reference {table.caption.18}
 (hyperref)             toclevel {0}
 (hyperref)             type {lot}.
-Package hyperref Info: Anchor `page.vii' on input line 279.
- [7
+Package hyperref Info: Anchor `page.xi' on input line 278.
 
-Package `hyperref' Info: End of reference (link) `figure.caption.17', line 246.
+[11
 
-Package `hyperref' Info: End of reference (link) `table.caption.18', line 246.
+Package `hyperref' Info: End of reference (link) `figure.caption.17', line 254.
+
+Package `hyperref' Info: End of reference (link) `table.caption.18', line 254.
+ <./Howard_Exp_3.png>]
+Package hyperref Info: Anchor `paragraph*.19' on input line 280.
+Package hyperref Info: bookmark on input line 280:
+(hyperref)             thecounter {0.2.0.0.0}
+(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 4}
+(hyperref)             reference {paragraph*.19}
+(hyperref)             toclevel {4}
+(hyperref)             type {toc}.
+Package hyperref Info: Reference (link) `figure.caption.20' on input line 282.
+Package hyperref Info: Reference (link) `table.caption.21' on input line 282.
+Package hyperref Info: Anchor `figure.caption.20' on input line 286.
+ <Howard_Exp_4.png, id=128, 691.08188pt x 325.215pt>
+File: Howard_Exp_4.png Graphic file (type png)
+
+<use Howard_Exp_4.png>
+Package pdftex.def Info: Howard_Exp_4.png used on input line 288.
+(pdftex.def)             Requested size: 361.34999pt x 170.05066pt.
+Package hyperref Info: bookmark on input line 289:
+(hyperref)             thecounter {13}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 4 Configuration\rel
+ax }}
+(hyperref)             reference {figure.caption.20}
+(hyperref)             toclevel {0}
+(hyperref)             type {lof}.
+Package hyperref Info: Anchor `table.caption.21' on input line 293.
+Package hyperref Info: bookmark on input line 295:
+(hyperref)             thecounter {4}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 4 Interventions\relax
+ }}
+(hyperref)             reference {table.caption.21}
+(hyperref)             toclevel {0}
+(hyperref)             type {lot}.
+Package hyperref Info: Anchor `page.xii' on input line 306.
+ [12
+
+Package `hyperref' Info: End of reference (link) `figure.caption.20', line 282.
+
+Package `hyperref' Info: End of reference (link) `table.caption.21', line 282.
+ <./Howard_Exp_4.png>]
+Package hyperref Info: Anchor `paragraph*.22' on input line 308.
+Package hyperref Info: bookmark on input line 308:
+(hyperref)             thecounter {0.2.0.0.0}
+(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 5}
+(hyperref)             reference {paragraph*.22}
+(hyperref)             toclevel {4}
+(hyperref)             type {toc}.
+Package hyperref Info: Reference (link) `figure.caption.23' on input line 310.
+Package hyperref Info: Reference (link) `table.caption.24' on input line 310.
+Package hyperref Info: Anchor `figure.caption.23' on input line 314.
+
+<Howard_Exp_5.png, id=138, 626.34pt x 416.30531pt>
+File: Howard_Exp_5.png Graphic file (type png)
+ <use Howard_Exp_5.png>
+Package pdftex.def Info: Howard_Exp_5.png used on input line 316.
+(pdftex.def)             Requested size: 361.34999pt x 240.18044pt.
+Package hyperref Info: bookmark on input line 317:
+(hyperref)             thecounter {14}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 5 Configuration\rel
+ax }}
+(hyperref)             reference {figure.caption.23}
+(hyperref)             toclevel {0}
+(hyperref)             type {lof}.
+Package hyperref Info: Anchor `table.caption.24' on input line 321.
+Package hyperref Info: bookmark on input line 323:
+(hyperref)             thecounter {5}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 5 Interventions\relax
+ }}
+(hyperref)             reference {table.caption.24}
+(hyperref)             toclevel {0}
+(hyperref)             type {lot}.
+Package hyperref Info: Anchor `page.xiii' on input line 340.
+
+[13
+
+Package `hyperref' Info: End of reference (link) `figure.caption.23', line 310.
+
+Package `hyperref' Info: End of reference (link) `table.caption.24', line 310.
+ <./Howard_Exp_5.png>]
+Package hyperref Info: Anchor `paragraph*.25' on input line 342.
+Package hyperref Info: bookmark on input line 342:
+(hyperref)             thecounter {0.2.0.0.0}
+(hyperref)             text {\ifttl@toclabel \ttl@a \fi Experiment 6}
+(hyperref)             reference {paragraph*.25}
+(hyperref)             toclevel {4}
+(hyperref)             type {toc}.
+Package hyperref Info: Reference (link) `figure.caption.26' on input line 344.
+Package hyperref Info: Reference (link) `table.caption.27' on input line 344.
+Package hyperref Info: Anchor `figure.caption.26' on input line 348.
+
+<Howard_Exp_6.png, id=149, 685.05937pt x 334.24875pt>
+File: Howard_Exp_6.png Graphic file (type png)
+ <use Howard_Exp_6.png>
+Package pdftex.def Info: Howard_Exp_6.png used on input line 350.
+(pdftex.def)             Requested size: 361.34999pt x 176.30945pt.
+Package hyperref Info: bookmark on input line 351:
+(hyperref)             thecounter {15}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@figure}}{\@nameuse {thefigure}}}{\ignorespaces Experiment 6 Configuration\rel
+ax }}
+(hyperref)             reference {figure.caption.26}
+(hyperref)             toclevel {0}
+(hyperref)             type {lof}.
+Package hyperref Info: Anchor `table.caption.27' on input line 355.
+Package hyperref Info: bookmark on input line 357:
+(hyperref)             thecounter {6}
+(hyperref)             text {\protect \numberline {\caption@lstfmt {\@nameuse {
+p@table}}{\@nameuse {thetable}}}{\ignorespaces Experiment 6 Interventions\relax
+ }}
+(hyperref)             reference {table.caption.27}
+(hyperref)             toclevel {0}
+(hyperref)             type {lot}.
+Package hyperref Info: Anchor `page.xiv' on input line 377.
+
+[14
+
+Package `hyperref' Info: End of reference (link) `figure.caption.26', line 344.
+
+Package `hyperref' Info: End of reference (link) `table.caption.27', line 344.
  <./Howard_Exp_6.png>]
-Package hyperref Info: Anchor `page.viii' on input line 280.
- [8]
-
+Package hyperref Info: Anchor `page.xv' on input line 378.
+ [15] 
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 282.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 282.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 380.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 380.
 (./Howard_Experiments.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 282.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 282.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 380.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 380.
 Package rerunfilecheck Info: File `Howard_Experiments.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 282.
+(rerunfilecheck)             Checksum: 4DFBD3474D5AC63CA6E32F4C0D4DCA80;104.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 380.
  ) 
 Here is how much of TeX's memory you used:
- 30895 strings out of 493013
- 599436 string characters out of 6136993
- 622307 words of memory out of 5000000
- 33913 multiletter control sequences out of 15000+600000
- 36772 words of font info for 62 fonts, out of 8000000 for 9000
+ 30999 strings out of 493013
+ 600746 string characters out of 6136993
+ 622929 words of memory out of 5000000
+ 33965 multiletter control sequences out of 15000+600000
+ 44722 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,11n,54p,10411b,731s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
-/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a
-.pfb>
-Output written on Howard_Experiments.pdf (11 pages, 854704 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fo
+nts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/ti
+mes/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:
+/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Howard_Experiments.pdf (18 pages, 888330 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
- 28 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 193 PDF objects out of 1000 (max. 8388607)
+ 156 compressed objects within 2 object streams
+ 46 named destinations out of 1000 (max. 500000)
+ 64 words of extra memory for PDF output out of 10000 (max. 10000000)
 
