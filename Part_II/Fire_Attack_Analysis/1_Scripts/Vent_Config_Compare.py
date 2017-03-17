@@ -9,6 +9,8 @@ events_location = '../3_Info/Events/'
 channel_list = pd.read_csv('../3_Info/Channels.csv')
 channel_list = channel_list.set_index('Channel')
 
+channel_list = channel_list.groupby('Primary_Chart')
+
 vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 
 exp_des = pd.read_csv('../3_Info/Description_of_Experiments.csv')
@@ -27,7 +29,10 @@ for exp in exp_des.index.values:
 print ('Reading in Experiment Data \n')
 all_exp_data = {}
 
+experiments = ['Experiment_1_Data', 'Experiment_2_Data']
+
 for exp in exp_des.index.values:
+# for exp in experiments:
 	data = pd.read_csv(data_location +  exp + '.csv')
 	all_exp_data[exp] = data.set_index('Elapsed Time')
 
@@ -48,56 +53,64 @@ for exp in exp_des.index.values:
 
 running_comp = {}
 
-for channel in channel_list.index:
+for vent in vent_info.columns:
+	comp_data = pd.DataFrame({'Time':np.arange(-30,-5,2)})
+	comp_data = comp_data.set_index('Time')
 
-	for vent in vent_info.columns:
+	for exp in vent_info[vent].dropna():
 
-		comp_data = pd.DataFrame({'Time':np.arange(-30,-5,2)})
-		comp_data = comp_data.set_index('Time')
+		# if exp not in experiments:
+		# 	continue
 
+		data = all_exp_data[exp]
 
-		for exp in vent_info[vent].dropna():
-
-			if channel not in all_exp_data[exp]:
-				continue
-
-			data = all_exp_data[exp][channel]
-
-			if exp_des['Speed'][exp] == 'high':
-					data = data[-30:-5:20]
-
-			if exp_des['Speed'][exp] == 'low':
-				if exp_des['House'][exp] == 'a':
-					data = data[-30:-5:2]
-				if exp_des['House'][exp] == 'b':
-					data = data[-30:-5]
-
-			data.name = exp
-
-			data = data.reset_index(drop=True)
+			# fire_room_channels=['1TC1', '1TC3', '1TC5', '1TC7']
 			
+			# fire_room_temps = pd.DataFrame({'1TC1':all_exp_data['Experiment_2_Data']['1TC1'], '1TC3':all_exp_data['Experiment_2_Data']['1TC3'], '1TC5':all_exp_data['Experiment_2_Data']['1TC5'], '1TC7':all_exp_data['Experiment_2_Data']['1TC7']})
 
-			if len(data) != 13:
-				data = data[0:13]
+			# print (fire_room_temps[0:10])
+			# print (fire_room_temps.mean(axis=1)[0:10])
+			# exit()
 
-			data.index = np.arange(-30,-5,2)
+		if exp_des['Speed'][exp] == 'high':
+				data = data[-30:-5:20]
 
-			comp_data = pd.concat([comp_data,data], axis=1, join='inner')
-		
-		comp_data = comp_data.mean()
-		comp_data.name = channel
+		if exp_des['Speed'][exp] == 'low':
+			if exp_des['House'][exp] == 'a':
+				data = data[-30:-5:2]
+			if exp_des['House'][exp] == 'b':
+				data = data[-30:-5]
+
+		data.name = exp
+
+		data = data.reset_index(drop=True)
+
+		if len(data) != 13:
+			data = data[0:13]
+
+		data.index = np.arange(-30,-5,2)
 
 		if vent not in running_comp:
-			running_comp[vent] = comp_data
+			running_comp[vent] = {}
+			running_comp[vent][exp] = data
 		else:
-			running_comp[vent] = pd.concat([running_comp[vent], comp_data], axis=1)
+			running_comp[vent][exp] = data
 
-	# for vent in vent_info.columns:
-	# 	print (running_comp[vent].mean())
-	# 	# running_comp[vent].append(running_comp[vent].mean()) 
+No_Vent_Temps = {}
 
-print (running_comp['Single_Vent'].mean())
-# print (running_comp['Single_Vent'])
+for exp in vent_info['No_Vent'].dropna():
 
-	# print (running_comp['No_Vent'] > running_comp['No_Vent'] + running_comp['No_Vent'].std())
-	# print (running_comp['No_Vent'] < running_comp['No_Vent'] - running_comp['No_Vent'].std())
+	Bedroom_1_Temps = pd.DataFrame()
+
+	for channel in channel_list.get_group('Bedroom_1_Temps').index.values:
+		
+		Temp = pd.DataFrame(running_comp['No_Vent'][exp][channel])
+		Temp = Temp.mean()
+
+		Bedroom_1_Temps = pd.concat([Bedroom_1_Temps, Temp])
+
+	print(Bedroom_1_Temps)
+	No_Vent_Temps[exp]=Bedroom_1_Temps.mean()
+
+print(No_Vent_Temps)
+
