@@ -271,7 +271,7 @@ for f in os.listdir(data_location):
 				EventTime=list(range(len(Events.index.values)))
 
 				for i in range(len(Events.index.values)):
-					EventTime[i] = (datetime.datetime.strptime(Events['Elapsed_Time'][Events.index.values[i]], '%H:%M:%S')-Ignition).total_seconds()
+					EventTime[i] = (datetime.datetime.strptime(Events['Elapsed_Time'][i], '%H:%M:%S')-Ignition).total_seconds()
 
 					plt.axvline(EventTime[i],color='0',lw=2) 
 
