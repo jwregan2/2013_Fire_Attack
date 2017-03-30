@@ -1,9 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd 
+import os
+import re
 from matplotlib.path import Path
 from matplotlib.spines import Spine
 from matplotlib.projections.polar import PolarAxes
 from matplotlib.projections import register_projection
+
+def natural_keys(text):
+
+    def atoi(text):
+        return int(text) if text.isdigit() else text
+
+    return [atoi(c) for c in re.split('(\d+)', text)]
 
 def _radar_factory(num_vars):
     theta = 2*np.pi * np.linspace(0, 1-1./num_vars, num_vars)
@@ -54,28 +64,112 @@ def _radar_factory(num_vars):
     register_projection(RadarAxes)
     return theta
 
-def radar_graph(labels = [], values = [], upper = [], lower=[]):
+def radar_graph(labels = [], values = pd.DataFrame(), ytitle = [], fill = []):
     N = len(labels) 
     theta = _radar_factory(N)
-    # max_val = max(max(upper), max(values), max(lower), 700)
-    fig = plt.figure()
+
+    fig = plt.figure(figsize=(20,15))
     ax = fig.add_subplot(1, 1, 1, projection='radar')
-    ax.plot(theta, values, color='k')
-    ax.plot(theta, upper, color='g')
-    ax.plot(theta, lower, color='g')
+    
+    values = values.reindex(columns=sorted(values.columns, key=natural_keys))
+
+    for column in values.columns.values:
+        ax.plot(theta, values[column], label=column[:-5].replace('_', ' '), lw=2)
+
+    # Add the shaded area
+
+    if fill == True:
+        val_mean = data.mean(axis=1).tolist()
+
+        shade_min = [val-(val*.15) for val in val_mean]
+        shade_max = [val+(val*.15) for val in val_mean]
+
+        ax.fill(theta, shade_max, color="#666666")
+        ax.fill(theta, shade_min, color='white')
+
     ax.set_varlabels(labels)
-    # plt.show()
-    # plt.savefig("radar.png", dpi=100)
 
-labels = ['Experiment_4', 'Experiment 6', 'Experiment 5', 'Experiment 3', 'Experiment 2', 'Experiment 1']
-temps = [435.7, 362.6, 469.3, 468.5, 400.3, 507.0]
+    plt.legend(bbox_to_anchor=(-.3 , 1), loc=2, borderaxespad=0., fontsize=20)
+    plt.yticks(fontsize=18)
+    ax.get_xaxis().set_tick_params(direction='out')
+    plt.xticks(fontsize=15)
+    y_lim = ax.get_ylim()
+    ax.text(.5,y_lim[1]*1.05, ytitle, fontsize = 20)
+    ax.set_ylim(bottom=0)
 
-average = np.mean(temps)
-std_Dev = np.std(temps)
+# -------------------------------Plot the repeatibility plots and save-------------------------------
+data_location = '../2_Data/'
+events_location = '../3_Info/Events/'
+output_location = '../0_Images/Results/Script_Figures/Repeatibility'
+vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 
-temp_upper = [average * 1.20] * 6
-temp_lower = [average * .80] * 6
+if not os.path.exists(output_location):
+    os.makedirs(output_location)
 
-radar_graph(labels, temps, temp_lower, temp_upper)
+for vent in vent_info.columns.values:
+    repeatibility_data = pd.read_csv(data_location + '/Repeatibility_Data/' + vent + '.csv')
+    
+    for name, group in repeatibility_data.groupby('Type'):
+        if name == 'Heat Flux':
+            labels = [l.replace('_',' ') for l in group['Location']]
+            ytitle = 'Heat Flux (kW/m2)'
+        if name == 'Temperature': 
+            labels = [l.replace('_',' ')[:-6] for l in group['Location']]
+            ytitle = 'Temperature (F)'
+       
+        group = group.drop('Type', 1)
+        data = group.drop('Location', 1)
 
-plt.show()
+        radar_graph(labels, data, ytitle, fill=True)
+
+        plt.savefig(output_location + '/' + vent + '_' + name + '.pdf')
+        plt.close('all')
+
+# -------------------------------Plot FED at Fire Department Intervention and save-------------------------------
+data_location = '../2_Data/FED/'
+events_location = '../3_Info/Events/'
+output_location = '../0_Images/Results/Script_Figures/FED'
+FED_vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
+
+if not os.path.exists(output_location):
+    os.makedirs(output_location)
+
+data_files = ['Intervention_FED.csv', 'Intervention_Plus60_FED.csv', 'Intervention_FED_Temp.csv', 'Intervention_Plus60_FED_Temp.csv']
+# data_files = ['Intervention_FED_Temp.csv']
+
+for data_sets in data_files:
+
+    #-------------Plot FED for datasets---------------
+    FED_data = pd.read_csv(data_location+data_sets).set_index('Locations')
+
+    for vent in FED_vent_info:
+        
+        labels=[]
+        data=[]
+
+        if 'Temp' in data_sets:
+            vics = ['FED_Temp_Vic1', 'FED_Temp_Vic2', 'FED_Temp_Vic3', 'FED_Temp_Vic4']
+            name = 'Temp'
+        else:
+            vics = ['FED_Vic1', 'FED_Vic2', 'FED_Vic3', 'FED_Vic4']
+            name = 'Gas'
+
+        labels = vics
+
+        data = pd.DataFrame({'Locations':vics}).set_index('Locations')
+
+        for exp in vent_info[vent].dropna():
+
+            if exp not in FED_data:
+                continue
+
+            data = pd.concat([data, FED_data[exp]], axis = 1)
+
+        ytitle = 'Fractional Effective Dose'
+
+        radar_graph(labels, data, ytitle, fill = False)
+        if '60' in data_sets:          
+            plt.savefig(output_location + '/' + vent + '_' + name + '_' +'_Plus60' + '.pdf')
+        else:
+            plt.savefig(output_location + '/' + vent + '_' + name + '_' + '.pdf')
+        plt.close('all')
