@@ -259,6 +259,11 @@ for exp in exp_des.index.values:
 			if victim_loc + chan in channels_to_skip[exp]:
 				continue
 
+			#Skip the victim #2 for times when the bedroom door was accidently left open.
+			if exp in ['Experiment_1_Data', 'Experimeng_14_Data']:
+				if victim_loc == '2':
+					continue
+
 			scalefactor = channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][victim_loc+chan]
 			
 			offset = channel_list['Offset'][victim_loc+chan]
@@ -291,7 +296,7 @@ for exp in exp_des.index.values:
 			else:
 				all_FED[exp] = pd.concat([all_FED[exp], val], axis = 1)
 
-			vent_config = 'Two_Vent'
+			vent_config = 'Single_Vent'
 
 			if exp in vent_info[vent_config].dropna().tolist():
 				if chan == 'COV':

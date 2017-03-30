@@ -44,9 +44,12 @@ channel_list = pd.read_csv(channel_location+'Channels.csv')
 # Set index value for channels as 'Channel'
 channel_list = channel_list.set_index('Channel')
 
+#Read in updated transport times
+updated_transport_times = pd.read_csv('../3_Info/Updated_Transport_Times.csv').set_index('Experiment')
+
 # Create groups data by grouping channels for 'Chart'
-# channel_groups = channel_list.groupby('Primary_Chart')
-channel_groups = channel_list.groupby('Secondary_Chart')
+channel_groups = channel_list.groupby('Primary_Chart')
+# channel_groups = channel_list.groupby('Secondary_Chart')
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)
@@ -63,11 +66,11 @@ TOOLS = 'box_zoom,reset,hover,pan,wheel_zoom'
 # Specify name
 specific_name = 'Experiment_1_Data'
 
-experiments = ['Experiment_27_Data.csv']
+# experiments = ['Experiment_27_Data.csv']
 
 # Loop through Experiment files
-# for f in os.listdir(data_location):
-for f in experiments:
+for f in os.listdir(data_location):
+# for f in experiments:
 	if f.endswith('.csv'):
 
 		# Skip files with time information or reduced data files
@@ -137,11 +140,11 @@ for f in experiments:
 		# Sets scale factor (heat flux constants) and transport time (gas) based on which house the experiment was done in
 		if House == 'a':
 			scalefactor = 'ScaleFactor_A'
-			Transport_Time = 'Transport_Time_A'
+			Transport_Time = 'A'
 
 		if House == 'b':
 			scalefactor = 'ScaleFactor_B'
-			Transport_Time = 'Transport_Time_B'
+			Transport_Time = 'B'
 
 		# Begin plotting
 
@@ -256,7 +259,7 @@ for f in experiments:
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
-					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t-float(updated_transport_times['Victim_'+ channel[0] + '_' + Transport_Time][experiment[:-4]])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Gas Concentration (%)'
@@ -265,11 +268,12 @@ for f in experiments:
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Carbon Monoxide':
-					Data_Time = [t-float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					Data_Time = [t-float(updated_transport_times['Victim_'+ channel[0] + '_' + Transport_Time][experiment[:-4]])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Gas Concentration (PPM)'
 					axis_scale = 'Y Scale Carbon Monoxide'
+					hover_value = 'Carbon Monoxide'
 
 				# Plot channel data with legend from channel list and using tableau colors, in addition to x-axis range
 				x= Data_Time
