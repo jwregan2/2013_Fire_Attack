@@ -125,51 +125,49 @@ for vent in vent_info.columns.values:
         plt.savefig(output_location + '/' + vent + '_' + name + '.pdf')
         plt.close('all')
 
-# -------------------------------Plot FED at Fire Department Intervention and save-------------------------------
-data_location = '../2_Data/FED/'
-events_location = '../3_Info/Events/'
-output_location = '../0_Images/Results/Script_Figures/FED'
-FED_vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
+# # -------------------------------Plot FED at Fire Department Intervention and save[NOT WORKING]-------------------------------
+# data_location = '../2_Data/FED/'
+# events_location = '../3_Info/Events/'
+# output_location = '../0_Images/Results/Script_Figures/FED_Bar'
+# FED_info = pd.read_csv('../3_Info/Vent_Info.csv')
 
-if not os.path.exists(output_location):
-    os.makedirs(output_location)
+# if not os.path.exists(output_location):
+#     os.makedirs(output_location)
 
-data_files = ['Intervention_FED.csv', 'Intervention_Plus60_FED.csv', 'Intervention_FED_Temp.csv', 'Intervention_Plus60_FED_Temp.csv']
-# data_files = ['Intervention_FED_Temp.csv']
+# data_files = ['Intervention_FED.csv', 'Intervention_Plus60_FED.csv', 'Intervention_FED_Temp.csv', 'Intervention_Plus60_FED_Temp.csv']
+# # data_files = ['Intervention_FED_Temp.csv']
 
-for data_sets in data_files:
+# for data_sets in data_files:
+#     if not os.path.exists(output_location + '/' + data_sets[:-4]):
+#         os.makedirs(output_location + '/' + data_sets[:-4])
+    
+#     FED_data = pd.read_csv(data_location+data_sets).set_index('Locations')
+#     for vent in FED_info:
+#         if 'Temp' in data_sets:
+#             vics = ['FED_Temp_Vic1', 'FED_Temp_Vic2', 'FED_Temp_Vic3', 'FED_Temp_Vic4']
+#             name = 'Temp'
+#         else:
+#             vics = ['FED_Vic1', 'FED_Vic2', 'FED_Vic3', 'FED_Vic4']
+#             name = 'Gas'
 
-    #-------------Plot FED for datasets---------------
-    FED_data = pd.read_csv(data_location+data_sets).set_index('Locations')
+#         exp_data = pd.DataFrame({'Locations':vics}).set_index('Locations')
 
-    for vent in FED_vent_info:
+#         for exp in FED_info[vent].dropna():
+
+#             if exp not in FED_data:
+#                 continue
+                        
+#             exp_data = pd.concat([exp_data, FED_data[exp]], axis = 1)
+#         print (exp_data)
+#         exit()
+#         for vic in vics:
+
+#             ytitle = 'Fractional Effective Dose'
+#             labels = 
+#             radar_graph(labels, data, ytitle, fill = False)
         
-        labels=[]
-        data=[]
-
-        if 'Temp' in data_sets:
-            vics = ['FED_Temp_Vic1', 'FED_Temp_Vic2', 'FED_Temp_Vic3', 'FED_Temp_Vic4']
-            name = 'Temp'
-        else:
-            vics = ['FED_Vic1', 'FED_Vic2', 'FED_Vic3', 'FED_Vic4']
-            name = 'Gas'
-
-        labels = vics
-
-        data = pd.DataFrame({'Locations':vics}).set_index('Locations')
-
-        for exp in vent_info[vent].dropna():
-
-            if exp not in FED_data:
-                continue
-
-            data = pd.concat([data, FED_data[exp]], axis = 1)
-
-        ytitle = 'Fractional Effective Dose'
-
-        radar_graph(labels, data, ytitle, fill = False)
-        if '60' in data_sets:          
-            plt.savefig(output_location + '/' + vent + '_' + name + '_' +'_Plus60' + '.pdf')
-        else:
-            plt.savefig(output_location + '/' + vent + '_' + name + '_' + '.pdf')
-        plt.close('all')
+#         if '60' in data_sets:          
+#             plt.savefig(output_location + '/' + vent + '_' + name + '_' +'_Plus60' + '.pdf')
+#         else:
+#             plt.savefig(output_location + '/' + vent + '_' + name + '_' + '.pdf')
+#         plt.close('all')
