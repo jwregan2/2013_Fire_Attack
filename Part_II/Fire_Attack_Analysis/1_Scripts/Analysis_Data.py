@@ -35,9 +35,11 @@ for exp in exp_des.index.values:
 #Read in all experiment data to dictionary 'all_exp_data' with the dataframe value = 'Experiment_X_Data'
 print ('\n')
 print ('Reading in Experiment Data \n')
-all_exp_data = {}
 
+all_exp_data = {}
+avg_first_event = pd.DataFrame()
 ignition_seconds ={}
+
 for exp in exp_des.index.values:
 
 	data = pd.read_csv(data_location +  exp + '.csv')
@@ -56,15 +58,10 @@ for exp in exp_des.index.values:
 			time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in data['Elapsed Time']]
 
 	# print (all_exp_events[exp[:-4]+'Events']['Time'][1])
-	event = datetime.datetime.strptime(all_exp_events[exp[:-4]+'Events']['Time'][1], '%H:%M:%S')
+	event = datetime.datetime.strptime(all_exp_events[exp[:-4]+'Events']['Time'][0], '%H:%M:%S')
 	first_event = datetime.datetime.strptime(all_exp_events[exp[:-4]+'Events']['Time'][1], '%H:%M:%S')
-	
-	Event_one = (first_event - event).total_seconds()
-	ignition_seconds[exp] = (first_event-event).total_seconds()
 
-
-
-	# print (exp + 'First Event = ' + str(Event_one) + ' For - ' +  str(all_exp_events[exp[:-4]+'Events'].index[1])) 
+	avg_first_event[exp] = [(first_event - event).total_seconds()]
 
 	#Adjust time to be every 2 seconds regardless of the drift. 
 	time = [int((t - event).total_seconds()) for t in time]
@@ -223,10 +220,10 @@ all_FED_Temp = {}
 print ('\n')
 print ('Calculating FED')
 
-f1 = plt.figure(1)
-f2 = plt.figure(2)
-f3 = plt.figure(3)
-f4 = plt.figure(4)
+for vent_config in vent_info:
+	for victim_loc in Victim_Locations:
+		for gas in ['COV', 'CO2V', 'O2V']:
+			plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + gas)
 
 for exp in exp_des.index.values:
 	print (exp)
@@ -296,12 +293,10 @@ for exp in exp_des.index.values:
 			else:
 				all_FED[exp] = pd.concat([all_FED[exp], val], axis = 1)
 
-			vent_config = 'Single_Vent'
-
-			if exp in vent_info[vent_config].dropna().tolist():
-				if chan == 'COV':
-					plt.figure(int(victim_loc))
-					plt.plot(all_FED[exp][victim_loc + 'COV'], label = exp.replace('_', ' '))
+			for vent_config in vent_info:
+				if exp in vent_info[vent_config].dropna().tolist():
+					plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + chan)
+					plt.plot(all_FED[exp][victim_loc + chan], label = exp.replace('_', ' '))
 
 		if all_FED[exp].empty:
 			continue
@@ -381,29 +376,41 @@ for exp in exp_des.index.values:
 	else:
 		all_FED_Temp[exp] = exp_FED_Temp
 
-plt.figure(1)
-plt.legend()
-plt.savefig('../0_Images/Results/Script_Figures/CO_Line/' + vent_config + '_Victim_1.pdf')
-plt.axvline(0, color = 'black')
-plt.close('1')
+if not os.path.exists('../0_Images/Results/Script_Figures/Gas_Compare/'):
+	os.makedirs('../0_Images/Results/Script_Figures/Gas_Compare/')
 
-plt.figure(2)
-plt.legend()
-plt.savefig('../0_Images/Results/Script_Figures/CO_Line/' + vent_config + '_Victim_2.pdf')
-plt.axvline(0, color = 'black')
-plt.close()
+for vent_config in vent_info:
+	event_time = np.average([avg_first_event[t] for t in vent_info[vent_config].dropna()])
+	min_time = np.min([avg_first_event[t] for t in vent_info[vent_config].dropna()])
+	max_time = np.max([avg_first_event[t] for t in vent_info[vent_config].dropna()])
 
-plt.figure(3)
-plt.legend()
-plt.savefig('../0_Images/Results/Script_Figures/CO_Line/' + vent_config + '_Victim_3.pdf')
-plt.axvline(0, color = 'black')
-plt.close()
+	for victim_loc in Victim_Locations:
+		for gas in ['COV', 'CO2V', 'O2V']:
+			plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + gas)
 
-plt.figure(4)
-plt.legend()
-plt.savefig('../0_Images/Results/Script_Figures/CO_Line/' + vent_config + '_Victim_4.pdf')
-plt.axvline(0, color = 'black')
-plt.close()
+			if gas == 'O2V':
+				plt.legend(loc = 'lower left')
+			else:
+				plt.legend(loc = 'upper left')
+			
+			plt.title(vent_config.replace('_', ' ') + ' Victim ' + victim_loc + ' ' + gas)
+			plt.xlabel('Time (seconds)')
+	
+			if gas == 'COV':
+				plt.ylabel('CO (PPM)')
+				plt.ylim([0,50000])
+			else:
+				plt.ylabel('Percent ' + gas[:-1])
+				plt.ylim([0,25])
+
+			plt.xlim([0,600])
+			plt.axvline(0, color = 'black')
+			plt.axvline(event_time, color = 'black')
+			plt.axvspan(min_time, max_time, alpha=0.5, color='grey')
+			plt.savefig('../0_Images/Results/Script_Figures/Gas_Compare/' + vent_config + '_Victim_' + victim_loc + '_' + gas + '.pdf')
+			plt.close()		
+
+plt.close('all')
 
 #----------------------------Uncomment to plot FED Charts by Victim, Attack, and Vent Config-----------------------
 if not os.path.exists('../0_Images/Results/Script_Figures/FED_Line/'):
@@ -422,7 +429,6 @@ for compare in FED_info:
 				continue
 
 			p = plt.plot(all_FED[exp][victim], label=exp.replace('_', ' '))
-		plt.axvline(ignition_seconds[exp], color = 'black')
 		plt.title(compare.replace('_',' '))
 		plt.legend()
 		plt.savefig('../0_Images/Results/Script_Figures/FED_Line/' + compare + '_' + victim + '.pdf')
