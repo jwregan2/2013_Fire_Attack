@@ -6,7 +6,9 @@
 
 *.DS_Store
 *.aux
-*.fdb_latemk
+*.bbl
+*.blg
+*.fdb_latexmk
 *.lof
 *.log
 *.lot
