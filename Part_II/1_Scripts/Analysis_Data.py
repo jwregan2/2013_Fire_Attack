@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 data_location = '../2_Data/'
 events_location = '../3_Info/Events/'
 
-
 channel_list = pd.read_csv('../3_Info/Channels.csv').set_index('Channel')
 channels_grouped = channel_list.groupby('Primary_Chart')
 
@@ -120,7 +119,6 @@ for exp in exp_des.index.values:
 # 		running_comp[vent][exp] = data
 
 
-
 # repeatability_data  = {}
 
 # if not os.path.exists(output_location):
@@ -226,7 +224,7 @@ for vent_config in vent_info:
 			plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + gas)
 
 for exp in exp_des.index.values:
-	print (exp + 'FED Calculated')
+	print (exp + ' FED Calculated')
 
 	if exp_des['Speed'][exp] == 'high':
 			# s = all_exp_data[exp].index.to_series().astype(int)
@@ -376,17 +374,18 @@ for exp in exp_des.index.values:
 	else:
 		all_FED_Temp[exp] = exp_FED_Temp
 
-if not os.path.exists('../0_Images/Results/Script_Figures/Gas_Compare/'):
-	os.makedirs('../0_Images/Results/Script_Figures/Gas_Compare/')
+#-------------------------------Gas Comparison Plots--------------------------------
+# Need to uncomment lines 294-297 to plot gas comparison
+chart_output_location = '../0_Images/Script_Figures/Gas_Compare/'
+
+if not os.path.exists(chart_output_location):
+	os.makedirs(chart_output_location)
 
 for vent_config in vent_info:
 	event_time = np.average([avg_first_event[t] for t in vent_info[vent_config].dropna()])
 	min_time = np.min([avg_first_event[t] for t in vent_info[vent_config].dropna()])
 	max_time = np.max([avg_first_event[t] for t in vent_info[vent_config].dropna()])
-	if vent_config == 'Single_Vent':
-		print(event_time)
-		exit()
-		
+
 	for victim_loc in Victim_Locations:
 
 
@@ -412,21 +411,25 @@ for vent_config in vent_info:
 			plt.axvline(0, color = 'black')
 			plt.axvline(event_time, color = 'black')
 			plt.axvspan(min_time, max_time, alpha=0.5, color='grey')
-			plt.savefig('../0_Images/Results/Script_Figures/Gas_Compare/' + vent_config + '_Victim_' + victim_loc + '_' + gas + '.pdf')
+			plt.savefig(chart_output_location + vent_config + '_Victim_' + victim_loc + '_' + gas + '.pdf')
 			plt.close()		
 
 plt.close('all')
 
 #----------------------------Uncomment to plot FED Charts by Victim, Attack, and Vent Config-----------------------
-if not os.path.exists('../0_Images/Results/Script_Figures/FED_Line/'):
-	os.makedirs('../0_Images/Results/Script_Figures/FED_Line/')
+chart_output_location = '../0_Images/Script_Figures/FED/FED_Line/'
 
-for compare in FED_info:
+if not os.path.exists(chart_output_location):
+	os.makedirs(chart_output_location)
+
+# for compare in FED_info:
+for compare in vent_info:
 	# print (compare)
 	for vic in Victim_Locations:
 		victim = 'FED_Vic' + vic
 		# print(victim)
-		for exp in FED_info[compare].dropna():
+		# for exp in FED_info[compare].dropna():
+		for exp in vent_info[compare].dropna():
 			# print(exp)
 			if exp not in all_FED:
 				continue
@@ -436,7 +439,7 @@ for compare in FED_info:
 			p = plt.plot(all_FED[exp][victim], label=exp.replace('_', ' '))
 		plt.title(compare.replace('_',' '))
 		plt.legend()
-		plt.savefig('../0_Images/Results/Script_Figures/FED_Line/' + compare + '_' + victim + '.pdf')
+		plt.savefig(chart_output_location + compare + '_' + victim + '.pdf')
 		plt.close('all')
 
 #Create Data for each victim package during each experiment at the time of FD intervention
