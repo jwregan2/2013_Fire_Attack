@@ -1,0 +1,19 @@
+Time,Elapsed_Time,Event
+2017-03-07-14:36:59,0:00:00,Background
+2017-03-07-14:38:59,0:02:00,Straight Stream Fixed Max Angle
+2017-03-07-14:40:00,0:03:00,Straight Stream 'O' Max Angle
+2017-03-07-14:41:00,0:04:00,Straight Stream Fixed Mid Ceiling
+2017-03-07-14:42:00,0:05:00,Straight Stream 'O' Mid Ceiling
+2017-03-07-14:43:00,0:06:00,Straight Stream Fixed Out Window
+2017-03-07-14:44:00,0:07:00,Straight Stream 'O' Out Window
+2017-03-07-14:45:01,0:08:00,Straight Stream Room Sweep
+2017-03-07-14:46:01,0:09:00,No Action
+2017-03-07-14:55:01,0:18:00,Narrow Fog Fixed Max Angle
+2017-03-07-14:56:01,0:19:00,Narrow Fog 'O' Max Angle
+2017-03-07-14:57:03,0:20:02,Narrow Fog Fixed Mid Ceiling
+2017-03-07-14:58:04,0:21:03,Narrow Fog 'O' Mid Ceiling
+2017-03-07-14:59:04,0:22:03,Narrow Fog Fixed Out Window
+2017-03-07-15:00:04,0:23:03,Narrow Fog 'O' Out Window
+2017-03-07-15:01:04,0:24:03,Narrow Fog Room Sweep
+2017-03-07-15:02:05,0:25:04,No Action
+2017-03-07-15:04:04,0:27:03,End Experiment

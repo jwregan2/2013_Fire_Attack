@@ -25,13 +25,13 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
 
 data_location = '../0_Data/Fire_Experiment_Data/CSV/'
 
-channel_location = '../1_Info/'
+channel_location = '../1_Info/Fire/'
 
-chart_location = '../1_Info/'
+chart_location = '../1_Info/Fire/'
 
 output_location_init = '../2_Plots/Fire_Experiment_Plots/'
 
-info_file = '../1_Info/Description_of_Experiments.csv'
+info_file = '../1_Info/Fire/Description_of_Experiments.csv'
 
 # Read in channel list
 channel_list = pd.read_csv(channel_location+'Channels_List.csv')
@@ -82,12 +82,6 @@ for f in os.listdir(data_location):
 		if not os.path.exists(output_location):
 			os.makedirs(output_location)
 
-		# Get which house from description of events file
-		House = Exp_Des['House'][Test_Name]
-
-		# Get which data speed from description of events file
-		Speed = Exp_Des['Speed'][Test_Name]
-
 		# Read in each experiment event file
 		Events = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
 
@@ -96,36 +90,19 @@ for f in os.listdir(data_location):
 
 		print ()
 		print (Test_Name)
-		 
-		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
-		if Speed == 'low':
-			#Set time to elapsed time column in experimental data.
-			Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
-			mark_freq = 15
-
-		if Speed == 'high':
-			#Set time to elapsed time column in experimental data.
-			Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
-			mark_freq = 5
+		
+		#Set time to elapsed time column in experimental data.
+		Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+		mark_freq = 15
 
 		# Pull ignition time from events csv file
 		Ignition = datetime.datetime.strptime(Events['Elapsed_Time']['Ignition'], '%H:%M:%S')
-
-		# Set time to Elapsed Time
-		# Exp_Data['Elapsed Time'] = Exp_Data['Elapsed Time'].values - Ignition
-		# Time = Exp_Data['Elapsed Time'].values - Ignition
 
 		# Adjust time for ignition offset
 		Time = [((t - Ignition).total_seconds())/60 for t in Time]
 
 		#Get End of Experiment Time
 		End_Time = (datetime.datetime.strptime(Events['Time']['End Experiment'], '%Y-%m-%d-%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Ignition'], '%Y-%m-%d-%H:%M:%S')).total_seconds()/60
-		
-		if House == 'a':
-			scalefactor = 'ScaleFactor_A'
-
-		if House == 'b':
-			scalefactor = 'ScaleFactor_B'
 
 		# Begin plotting
 
@@ -168,7 +145,7 @@ for f in os.listdir(data_location):
 				# 	continue
 
                 # Set scale factor and offset
-				scale_factor = channel_list[scalefactor][channel]
+				scale_factor = channel_list['ScaleFactor'][channel]
 				offset = channel_list['Offset'][channel]
 				current_data = Exp_Data[channel]
 
@@ -198,28 +175,26 @@ for f in os.listdir(data_location):
 					# Define cutoff and fs for filtering 
 					cutoff = 50
 					fs = 700
-					current_data = current_data - np.average(current_data[:90]) + 2.5
+					current_data = current_data - np.average(current_data[:90])
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
 					#Calculate result
-					current_data = (np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5) * 2.23694
+					current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
 					plt.ylabel('Velocity (mph)', fontsize=28)
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'
 					secondary_axis_label = 'Velocity (m/s)'
 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) / 2.23694
 
-				# Set parameters for velocity plots
+				# Set parameters for pressure plots
 
-                # If statement to find velocity type in channels csv
+                # If statement to find pressure type in channels csv
 				if channel_list['Type'][channel] == 'Pressure':
 					Data_Time = Time
 					cutoff = 50
 					fs = 700
-					current_data = current_data - np.average(current_data[:90]) + 2.5
+					current_data = scale_factor * current_data + offset 
+					current_data = current_data - np.average(current_data[:90])
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
-					# zero_data = current_data[15:105].mean()
-					# current_data = current_data - zero_data
-					# current_data = pd.to_numeric(current_data.map(lambda x: '%1.3f' % x))
 					plt.ylabel('Pressure (Pa)', fontsize=28)
 					line_style = '-'
 					axis_scale = 'Y Scale PRESSURE'
@@ -235,10 +210,11 @@ for f in os.listdir(data_location):
 					mew=3,
 					mec='none',
 					ms=7,
-					label=channel_list['Title'][channel])
+					label=channel_list['Title'][channel],
+					linewidth=1.5)
 
 				# Scale y-axis limit based on specified range in test description file
-				if axis_scale == 'Y Scale BDP':
+				if axis_scale == 'Y Scale BDP' or axis_scale == 'Y Scale PRESSURE':
 					plt.ylim([-np.float(Exp_Des[axis_scale][Test_Name]), np.float(Exp_Des[axis_scale][Test_Name])])
 				else:
 					plt.ylim([0, np.float(Exp_Des[axis_scale][Test_Name])])

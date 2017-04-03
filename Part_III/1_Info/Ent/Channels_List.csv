@@ -1,0 +1,47 @@
+Channel,Title,ScaleFactor,Offset,Primary_Chart,Secondary_Chart,Type
+BDP11T,,,,,,BDP_Temperature
+BDP12T,,,,,,BDP_Temperature
+BDP13T,,,,,,BDP_Temperature
+BDP14T,,,,,,BDP_Temperature
+BDP15T,,,,,,BDP_Temperature
+BDP21T,,,,,,BDP_Temperature
+BDP22T,,,,,,BDP_Temperature
+BDP23T,,,,,,BDP_Temperature
+BDP24T,,,,,,BDP_Temperature
+BDP25T,,,,,,BDP_Temperature
+BDP31T,,,,,,BDP_Temperature
+BDP32T,,,,,,BDP_Temperature
+BDP33T,,,,,,BDP_Temperature
+BDP34T,,,,,,BDP_Temperature
+BDP35T,,,,,,BDP_Temperature
+BDP41T,,,,,,BDP_Temperature
+BDP42T,,,,,,BDP_Temperature
+BDP43T,,,,,,BDP_Temperature
+BDP44T,,,,,,BDP_Temperature
+BDP45T,,,,,,BDP_Temperature
+BDP11V,Bedroom 1 Window Bottom,9.964,24.91,Bedroom_1_Window,,BDP_Velocity
+BDP12V,Bedroom 1 Window Bottom Middle,9.964,24.91,Bedroom_1_Window,,BDP_Velocity
+BDP13V,Bedroom 1 Window Middle,9.964,24.91,Bedroom_1_Window,,BDP_Velocity
+BDP14V,Bedroom 1 Window Top Middle,9.964,24.91,Bedroom_1_Window,,BDP_Velocity
+BDP15V,Bedroom 1 Window Top,9.964,24.91,Bedroom_1_Window,,BDP_Velocity
+BDP21V,Bedroom 1 Inside Door Bottom,9.964,24.91,Bedroom_1_Inside_Door,,BDP_Velocity
+BDP22V,Bedroom 1 Inside Door Bottom Middle,9.964,24.91,Bedroom_1_Inside_Door,,BDP_Velocity
+BDP23V,Bedroom 1 Inside Door Middle,9.964,24.91,Bedroom_1_Inside_Door,,BDP_Velocity
+BDP24V,Bedroom 1 Inside Door Top Middle,9.964,24.91,Bedroom_1_Inside_Door,,BDP_Velocity
+BDP25V,Bedroom 1 Inside Door Top Middle,9.964,24.91,Bedroom_1_Inside_Door,,BDP_Velocity
+BDP31V,Bedroom 1 Outside Door Bottom,9.964,24.91,Bedroom_1_Outside_Door,,BDP_Velocity
+BDP32V,Bedroom 1 Outside Door Bottom Middle,9.964,24.91,Bedroom_1_Outside_Door,,BDP_Velocity
+BDP33V,Bedroom 1 Outside Door Middle,9.964,24.91,Bedroom_1_Outside_Door,,BDP_Velocity
+BDP34V,Bedroom 1 Outside Door Top Middle,9.964,24.91,Bedroom_1_Outside_Door,,BDP_Velocity
+BDP35V,Bedroom 1 Outside Door Top,9.964,24.91,Bedroom_1_Outside_Door,,BDP_Velocity
+BDP41V,Start Hall Door Bottom,9.964,24.91,Start_Hall_Door,,BDP_Velocity
+BDP42V,Start Hall Door Bottom Middle,9.964,24.91,Start_Hall_Door,,BDP_Velocity
+BDP43V,Start Hall Door Middle,9.964,24.91,Start_Hall_Door,,BDP_Velocity
+BDP44V,Start Hall Door Top Middle,9.964,24.91,Start_Hall_Door,,BDP_Velocity
+BDP45V,Start Hall Door Top,9.964,24.91,Start_Hall_Door,,BDP_Velocity
+PT11V,Bedroom Bottom,49.91,124.54,Bedroom_1_Pressure,,Pressure
+PT14V,Bedroom Middle,49.91,124.54,Bedroom_1_Pressure,,Pressure
+PT17V,Bedroom Top,49.91,124.54,Bedroom_1_Pressure,,Pressure
+PT21V,Hallway Bottom,49.91,124.54,Hallway_Pressure,,Pressure
+PT24V,Hallway Middle,49.91,124.54,Hallway_Pressure,,Pressure
+PT27V,Hallway Top,49.91,124.54,Hallway_Pressure,,Pressure
