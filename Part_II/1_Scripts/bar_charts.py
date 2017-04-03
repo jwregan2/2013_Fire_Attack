@@ -6,7 +6,7 @@ import os
 
 data_location = '../2_Data/FED/'
 events_location = '../3_Info/Events/'
-output_location = '../0_Images/Results/Script_Figures/FED_Bar'
+output_location = '../0_Images/Script_Figures/FED/FED_Bar'
 FED_info = pd.read_csv('../3_Info/Vent_Info.csv')
 
 if not os.path.exists(output_location):
