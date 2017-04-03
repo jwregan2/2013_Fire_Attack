@@ -100,7 +100,7 @@ def radar_graph(labels = [], values = pd.DataFrame(), ytitle = [], fill = []):
 # -------------------------------Plot the repeatibility plots and save-------------------------------
 data_location = '../2_Data/'
 events_location = '../3_Info/Events/'
-output_location = '../0_Images/Results/Script_Figures/Repeatibility'
+output_location = '../0_Images/Script_Figures/Repeatibility'
 vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 
 if not os.path.exists(output_location):
@@ -111,8 +111,9 @@ for vent in vent_info.columns.values:
     
     for name, group in repeatibility_data.groupby('Type'):
         if name == 'Heat Flux':
-            labels = [l.replace('_',' ') for l in group['Location']]
-            ytitle = 'Heat Flux (kW/m2)'
+            continue
+            # labels = [l.replace('_',' ') for l in group['Location']] # COMMENT OUT CONTINUE ABOVE AND COMMENT IN 115 & 116 for HF Plots
+            # ytitle = 'Heat Flux (kW/m2)'
         if name == 'Temperature': 
             labels = [l.replace('_',' ')[:-6] for l in group['Location']]
             ytitle = 'Temperature (F)'
