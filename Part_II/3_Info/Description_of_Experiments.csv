@@ -1,0 +1,26 @@
+Experiment,Old_Number,Experiments To Compare,Compare Exp,House,Speed,Excluded Groups,Excluded Channels,Y Scale Temperature,Y Scale Skin Temperature,Y Scale BDP,Y Scale Wall Heat Flux,Y Scale Floor Heat Flux,Y Scale Victim Heat Flux,Y Scale Gas,Y Scale Carbon Monoxide
+Experiment_1_Data,1,2|3|4|5|6|12|17,0,a,low,Bedroom_1_Window|Bedroom_2_Window,3BDP4V|5BDP2V|6BDP5V|4O2V,2000,200,17.9,80,15,35,25,50000
+Experiment_2_Data,2,3|5|6|20,0,a,low,Bedroom_1_Window|Bedroom_2_Window,4BDP4V|5BDP3V|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_3_Data,3,4|6,0,b,low,Bedroom_1_Window|Bedroom_2_Window|Victim_1_Gas|Victim_1_Carbon_Monoxide|Victim_2_Gas|Victim_2_Carbon_Monoxide|Victim_3_Gas|Victim_3_Carbon_Monoxide|Victim_4_Gas|Victim_4_Carbon_Monoxide,1COV|2COV|3COV|4COV|1O2V|2O2V|3O2V|4OV2|1CO2V|2CO2V|3CO2V|4CO2V,2000,200,17.9,80,15,35,25,50000
+Experiment_4_Data,4,8,0,a,low,Bedroom_2_Window|Victim_3_Gas|Victim_3_Carbon_Monoxide,3BDP4V|4BDP4V|5BDP3V|5HFS|1COV|1CO2V|1O2V|3COV|3CO2V|3O2V|4COV|4O2V|4CO2V,2000,200,17.9,80,15,35,25,50000
+Experiment_5_Data,5,6|11,0,a,high,Bedroom_1_Window|Bedroom_2_Window,3BDP2V|3TCS3|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_6_Data,6,20,0,b,low,Bedroom_1_Window|Bedroom_2_Window,2BDP3V|3TC3|3TCS9|3TCS10|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_7_Data,7,6|8|11|13|18|20,0,b,high,Bedroom_2_Window,1TCS7|3TCS9|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_8_Data,8,6|15|18|20,0,a,high,Bedroom_2_Window,5BDP3V|2HFS|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_9_Data,7A,1|7|8|10|17,0,b,high,Bedroom_2_Window|Victim_5_Skin_Temps,3TCS10|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_10_Data,7B,21,0,b,high,Bedroom_2_Window,5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_11_Data,10,8|16,0,a,high,Bedroom_2_Window,4BDP4V|2HFS|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_12_Data,11,7|8|11|17,0,b,low,Bedroom_2_Window,1BDP4V,2000,200,17.9,80,15,35,25,50000
+Experiment_13_Data,12,14|15|16|17|22,0,b,high,Victim_5_Skin_Temps,1BDP4V,2000,200,17.9,80,15,35,25,50000
+Experiment_14_Data,14,8|16|17|22,0,a,low,None,5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_15_Data,13,7|14|17,0,a,low,Victim_2_Gas|Victim_3_Gas,5BDP3V|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_16_Data,15,17,0,a,high,None,3TCS3,2000,200,17.9,80,15,35,25,50000
+Experiment_17_Data,16,0,0,b,low,None,2BDP3V|3TCS9,2000,200,17.9,80,15,35,25,50000
+Experiment_18_Data,17,19|20|22,0,b,low,Bedroom_2_Window,5TCS10|2HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_19_Data,18,8|23,0,b,high,Bedroom_2_Window,3TCS10|2TCS6|2TCS8|2TCS10|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_20_Data,19,0,0,a,high,Bedroom_2_Window,5TCS10|3TCS3|2HFS|5HFS|1COV|1CO2V|1O2V,2000,200,17.9,80,15,35,25,50000
+Experiment_21_Data,19A,0,7,b,high,Bedroom_2_Window,5HFS|1COV|1CO2V|1O2V|3COV|3CO2V|3O2V,2000,200,17.9,80,15,35,25,50000
+Experiment_22_Data,20,15|23,0,a,low,None,3HFS|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_23_Data,21,0,0,b,low,None,3TCS10,2000,200,17.9,80,15,35,25,50000
+Experiment_24_Data,31,0,0,b,high,None,1BDP1V|2HFS|5HFS|2COV|2CO2V|2O2V,2000,200,17.9,80,15,35,25,50000
+Experiment_27_Data,17,,,a,low,None,None,2000,200,17.9,80,15,35,25,50000
