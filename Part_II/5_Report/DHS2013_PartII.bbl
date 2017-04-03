@@ -1,0 +1,25 @@
+\begin{thebibliography}{1}
+
+\bibitem{NFFF}
+National Fallen~Firefighter Foundation.
+\newblock Report of the 2nd national fire service research agenda symposium.
+\newblock Report, National Fire Academy.
+
+\bibitem{HeatFluxRoundRobin}
+William~M. Pitts, Annageri~V. Murthy, John~L. De~Ris, Jean-Remy Filtz, Kjell
+  Nygard, Debbie Smith, and Ingrid Wetterlund.
+\newblock Round robbin study of total heat flux gauge calibration at fire
+  laboratories.
+\newblock 41.6:459--475.
+
+\bibitem{TemperatureHandbook}
+{\em The Temperature Handbook}.
+\newblock Omega Engineering, 7 edition.
+
+\bibitem{BDPInPoolFires}
+L.A Lent and M.E. Schneider.
+\newblock The design and application of bi-directional velocity probes for
+  measurements in large pool fires.
+\newblock 26(4):25--32.
+
+\end{thebibliography}
