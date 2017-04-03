@@ -1,7 +1,15 @@
 *CFM.png
 /Part_I/Entrainment_Analysis/Figures_New
-/Part_II/Report/DHS2013_PartII.pdf
+/Part_II/5_Report/DHS2013_PartII.pdf
 /Part_II/Fire_Attack_Analysis/0_Images/Script_Figures
 /Part_II/Fire_Attack_Analysis/2_Data/FED
 
 *.DS_Store
+*.aux
+*.fdb_latemk
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
