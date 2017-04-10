@@ -1,8 +1,11 @@
+#Run notes. Must be run affter Build_Data_Dictionary.py to build pickle file of data.
+
 import pandas as pd
 import os
 import datetime as datetime
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 data_location = '../2_Data/'
 events_location = '../3_Info/Events/'
@@ -13,8 +16,6 @@ channels_grouped = channel_list.groupby('Primary_Chart')
 vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 FED_info = pd.read_csv('../3_Info/FED_Info.csv')
 
-transport_times = pd.read_csv('../3_Info/Updated_Transport_Times.csv').set_index('Experiment') 
-
 exp_des = pd.read_csv('../3_Info/Description_of_Experiments.csv').set_index('Experiment')
 
 channels_to_skip = {}
@@ -22,62 +23,13 @@ channels_to_skip = {}
 for exp in exp_des.index.values:
 	channels_to_skip[exp] = exp_des['Excluded Channels'][exp].split('|')
 
-#Read in all experiment events to dictionary 'all_exp_events' with dataframe value = 'Experiment_X_Event'
-print ('Reading in Experiment Events \n')
-all_exp_events = {}
+#Read in pickle file for data
+all_exp_data = pickle.load( open( data_location + 'all_exp_data.p', 'rb' ) )
+all_exp_events = pickle.load( open (events_location + 'all_exp_events.p', 'rb'))
 
-for exp in exp_des.index.values:
-	exp = exp[:-4] + 'Events'
-	events = pd.read_csv(events_location + exp + '.csv')
-	all_exp_events[exp] = events.set_index('Event')
-	print (exp + ' Read')
-#Read in all experiment data to dictionary 'all_exp_data' with the dataframe value = 'Experiment_X_Data'
-print ('\n')
-print ('Reading in Experiment Data \n')
+print(all_exp_data['Experiment_1_Data'].head())
 
-all_exp_data = {}
-avg_first_event = pd.DataFrame()
-ignition_seconds ={}
-
-for exp in exp_des.index.values:
-
-	data = pd.read_csv(data_location +  exp + '.csv')
-	
-	all_exp_data[exp] = pd.DataFrame()
-
-	if exp_des['Speed'][exp] == 'high':
-		data = data[::20]
-		time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in data['Elapsed Time']]
-
-	if exp_des['Speed'][exp] == 'low':
-		if exp_des['House'][exp] == 'a':
-			data= data[::2]
-			time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in data['Elapsed Time']]
-		if exp_des['House'][exp] == 'b':
-			time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in data['Elapsed Time']]
-
-	# print (all_exp_events[exp[:-4]+'Events']['Time'][1])
-	event = datetime.datetime.strptime(all_exp_events[exp[:-4]+'Events']['Time'][0], '%H:%M:%S')
-	first_event = datetime.datetime.strptime(all_exp_events[exp[:-4]+'Events']['Time'][1], '%H:%M:%S')
-
-	avg_first_event[exp] = [(first_event - event).total_seconds()]
-
-	#Adjust time to be every 2 seconds regardless of the drift. 
-	time = [int((t - event).total_seconds()) for t in time]
-	
-	if time[0] % 2 != 0:
-		time[0] = time[0]+1
-	
-	new_time = np.arange(time[0], time[-1], 2)
-
-	if len(new_time) < len(data.index):		
-		add_time = np.arange(new_time[-1]+2, new_time[-1]+(len(data.index)-len(new_time)+2)*2,2)
-		new_time = np.append(new_time, add_time)
-
-	data['Time'] = new_time[:len(data.index)]
-
-	all_exp_data[exp] = data.set_index('Time')
-	print(exp + ' Read')
+# print (all_exp_events['Experiment_1_Data'].head())
 
 # # -------------------------------Calculate and output Repeatibility Data-------------------------------
 # running_comp = {}
@@ -214,14 +166,10 @@ Victim_Locations = ['1','2','3','4']
 
 all_FED = {}
 all_FED_Temp = {}
+all_FED_Conv = {}
 
 print ('\n')
 print ('Calculating FED')
-
-for vent_config in vent_info:
-	for victim_loc in Victim_Locations:
-		for gas in ['COV', 'CO2V', 'O2V']:
-			plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + gas)
 
 for exp in exp_des.index.values:
 	print (exp + ' FED Calculated')
@@ -241,7 +189,10 @@ for exp in exp_des.index.values:
 		all_FED[exp] = pd.DataFrame()
 	
 	if exp not in all_FED_Temp:
-		all_FED_Temp[exp] = {}
+		all_FED_Temp[exp] = pd.DataFrame()
+
+	if exp not in all_FED_Conv:
+		all_FED_Conv[exp] = pd.DataFrame()
 
 	exp_FED = pd.DataFrame({'Time':all_exp_data[exp].index.values})
 	exp_FED = exp_FED.set_index('Time')
@@ -249,8 +200,10 @@ for exp in exp_des.index.values:
 	exp_FED_Temp = pd.DataFrame({'Time':all_exp_data[exp].index.values})
 	exp_FED_Temp = exp_FED_Temp.set_index('Time')
 
+	exp_FED_Conv = pd.DataFrame({'Time':all_exp_data[exp].index.values}).set_index('Time')
+
 	for victim_loc in Victim_Locations:
-		for chan in ['COV', 'CO2V', 'O2V', 'HFS']:
+		for chan in ['COV', 'CO2V', 'O2V', 'HFS', 'TCV1']:
 			if victim_loc + chan in channels_to_skip[exp]:
 				continue
 
@@ -269,7 +222,7 @@ for exp in exp_des.index.values:
 			else:
 				val = all_exp_data[exp][victim_loc + chan]
 
-			if chan != 'HFS':
+			if chan != 'HFS' or 'TCV1':
 				if transport_times['Victim_' + victim_loc + '_' + exp_des['House'][exp].upper()][exp] == 'Bad_Data':
 					continue
 				else:
@@ -291,10 +244,11 @@ for exp in exp_des.index.values:
 			else:
 				all_FED[exp] = pd.concat([all_FED[exp], val], axis = 1)
 
-			for vent_config in vent_info:
-				if exp in vent_info[vent_config].dropna().tolist():
-					plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + chan)
-					plt.plot(all_FED[exp][victim_loc + chan], label = exp.replace('_', ' '))
+			# #Plot gas charts
+			# for vent_config in vent_info:
+			# 	if exp in vent_info[vent_config].dropna().tolist():
+			# 		plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + chan)
+			# 		plt.plot(all_FED[exp][victim_loc + chan], label = exp.replace('_', ' '))
 
 		if all_FED[exp].empty:
 			continue
@@ -364,6 +318,24 @@ for exp in exp_des.index.values:
 			else:
 				exp_FED_Temp = pd.concat([exp_FED_Temp,FED_Temp_sum], axis=1)
 
+		if victim_loc + 'TCV1' in all_FED[exp]:
+			t_conv = 2e18 * all_FED[exp][victim_loc + 'TCV1']**-9.0403 + 1e8 * all_FED[exp][victim_loc + 'TCV1']**-3.10898
+	
+			FED_Conv = (1/t_conv)*time_step
+
+			FED_Conv_sum = []
+
+			FED_Conv_sum = [FED_Conv[0:val].sum() for val in np.arange(0,len(FED_Conv))]
+
+			FED_Conv_sum = pd.DataFrame({'Time':FED_Conv.index.values, 'FED_Conv_Vic' + victim_loc: FED_Conv_sum}).set_index('Time')
+			
+			if exp_FED_Conv.empty:
+				exp_FED_Conv = FED_Conv_sum
+			else:
+				exp_FED_Conv = pd.concat([exp_FED_Conv,FED_Conv_sum], axis=1)
+
+			# print (victim_loc + 'TCV1')
+
 	if exp_FED.empty:
 		all_FED.pop(exp)
 	else:
@@ -374,50 +346,106 @@ for exp in exp_des.index.values:
 	else:
 		all_FED_Temp[exp] = exp_FED_Temp
 
-#-------------------------------Gas Comparison Plots--------------------------------
-# Need to uncomment lines 294-297 to plot gas comparison
-chart_output_location = '../0_Images/Script_Figures/Gas_Compare/'
+	if exp_FED_Conv.empty:
+		all_FED_Conv.pop(exp)
+	else:
+		all_FED_Conv[exp] = exp_FED_Conv
 
-if not os.path.exists(chart_output_location):
-	os.makedirs(chart_output_location)
+# #-------------------------------Gas Comparison Plots--------------------------------
+# chart_output_location = '../0_Images/Script_Figures/Gas_Compare/'
 
-for vent_config in vent_info:
-	event_time = np.average([avg_first_event[t] for t in vent_info[vent_config].dropna()])
-	min_time = np.min([avg_first_event[t] for t in vent_info[vent_config].dropna()])
-	max_time = np.max([avg_first_event[t] for t in vent_info[vent_config].dropna()])
+# if not os.path.exists(chart_output_location):
+# 	os.makedirs(chart_output_location)
 
-	for victim_loc in Victim_Locations:
+# for vent_config in vent_info:
+# 	event_time = np.average([avg_first_event[t] for t in vent_info[vent_config].dropna()])
+# 	min_time = np.min([avg_first_event[t] for t in vent_info[vent_config].dropna()])
+# 	max_time = np.max([avg_first_event[t] for t in vent_info[vent_config].dropna()])
+
+# 	for victim_loc in Victim_Locations:
 
 
-		for gas in ['COV', 'CO2V', 'O2V']:
-			plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + gas)
+# 		for gas in ['COV', 'CO2V', 'O2V']:
+# 			plt.figure(vent_config + '_Victim_' +  victim_loc + '_' + gas)
 
-			if gas == 'O2V':
-				plt.legend(loc = 'lower left')
-			else:
-				plt.legend(loc = 'upper left')
+# 			if gas == 'O2V':
+# 				plt.legend(loc = 'lower left')
+# 			else:
+# 				plt.legend(loc = 'upper left')
 			
-			plt.title(vent_config.replace('_', ' ') + ' Victim ' + victim_loc + ' ' + gas)
-			plt.xlabel('Time (seconds)')
+# 			plt.title(vent_config.replace('_', ' ') + ' Victim ' + victim_loc + ' ' + gas)
+# 			plt.xlabel('Time (seconds)')
 	
-			if gas == 'COV':
-				plt.ylabel('CO (PPM)')
-				plt.ylim([0,50000])
-			else:
-				plt.ylabel('Percent ' + gas[:-1])
-				plt.ylim([0,25])
+# 			if gas == 'COV':
+# 				plt.ylabel('CO (PPM)')
+# 				plt.ylim([0,50000])
+# 			else:
+# 				plt.ylabel('Percent ' + gas[:-1])
+# 				plt.ylim([0,25])
 
-			plt.xlim([0,600])
-			plt.axvline(0, color = 'black')
-			plt.axvline(event_time, color = 'black')
-			plt.axvspan(min_time, max_time, alpha=0.5, color='grey')
-			plt.savefig(chart_output_location + vent_config + '_Victim_' + victim_loc + '_' + gas + '.pdf')
-			plt.close()		
+# 			plt.xlim([0,600])
+# 			plt.axvline(0, color = 'black')
+# 			plt.axvline(event_time, color = 'black')
+# 			plt.axvspan(min_time, max_time, alpha=0.5, color='grey')
+# 			plt.savefig(chart_output_location + vent_config + '_Victim_' + victim_loc + '_' + gas + '.pdf')
+# 			plt.close()		
 
-plt.close('all')
+# plt.close('all')
 
-#----------------------------Uncomment to plot FED Charts by Victim, Attack, and Vent Config-----------------------
-chart_output_location = '../0_Images/Script_Figures/FED/FED_Line/'
+# #----------------------------Uncomment to plot FED Charts by Victim, Attack, and Vent Config-----------------------
+# chart_output_location = '../0_Images/Script_Figures/FED/FED_Line/'
+
+# if not os.path.exists(chart_output_location):
+# 	os.makedirs(chart_output_location)
+
+# # for compare in FED_info:
+# for compare in vent_info:
+# 	# print (compare)
+# 	for vic in Victim_Locations:
+# 		victim = 'FED_Vic' + vic
+# 		# print(victim)
+# 		# for exp in FED_info[compare].dropna():
+# 		for exp in vent_info[compare].dropna():
+# 			# print(exp)
+# 			if exp not in all_FED:
+# 				continue
+# 			if victim not in all_FED[exp]:
+# 				continue
+
+# 			p = plt.plot(all_FED[exp][victim], label=exp.replace('_', ' '))
+# 		plt.title(compare.replace('_',' '))
+# 		plt.legend()
+# 		plt.savefig(chart_output_location + compare + '_' + victim + '.pdf')
+# 		plt.close('all')
+
+# #----------------------------Uncomment to plot FED TEMP Charts by Victim, Attack, and Vent Config-----------------------
+# chart_output_location = '../0_Images/Script_Figures/FED/FED_Line/Temp/'
+
+# if not os.path.exists(chart_output_location):
+# 	os.makedirs(chart_output_location)
+
+# # for compare in FED_info:
+# for compare in vent_info:
+# 	# print (compare)
+# 	for vic in Victim_Locations:
+# 		victim = 'FED_Temp_Vic' + vic
+# 		# print(victim)
+# 		# for exp in FED_info[compare].dropna():
+# 		for exp in vent_info[compare].dropna():
+# 			# print(exp)
+# 			if exp not in all_FED_Temp:
+# 				continue
+# 			if victim not in all_FED_Temp[exp]:
+# 				continue
+
+# 			p = plt.plot(all_FED_Temp[exp][victim], label=exp.replace('_', ' '))
+# 		plt.title(compare.replace('_',' '))
+# 		plt.legend()
+# 		plt.savefig(chart_output_location + compare + '_' + victim + '.pdf')
+# 		plt.close('all')
+
+#----------------------------Uncomment to plot FED TEMP Conv Charts by Victim, Attack, and Vent Config-----------------------
+chart_output_location = '../0_Images/Script_Figures/FED/FED_Line/Temp_Conv/'
 
 if not os.path.exists(chart_output_location):
 	os.makedirs(chart_output_location)
@@ -426,17 +454,19 @@ if not os.path.exists(chart_output_location):
 for compare in vent_info:
 	# print (compare)
 	for vic in Victim_Locations:
-		victim = 'FED_Vic' + vic
+		victim = 'FED_Conv_Vic' + vic
 		# print(victim)
 		# for exp in FED_info[compare].dropna():
 		for exp in vent_info[compare].dropna():
 			# print(exp)
-			if exp not in all_FED:
+			if exp not in all_FED_Conv:
 				continue
-			if victim not in all_FED[exp]:
+			if victim not in all_FED_Conv[exp]:
 				continue
 
-			p = plt.plot(all_FED[exp][victim], label=exp.replace('_', ' '))
+			# print(victim)3
+			p = plt.plot(all_FED_Conv[exp][victim], label=exp.replace('_', ' '))
+		
 		plt.title(compare.replace('_',' '))
 		plt.legend()
 		plt.savefig(chart_output_location + compare + '_' + victim + '.pdf')
