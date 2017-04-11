@@ -1,4 +1,9 @@
-#Run notes. Must be run affter Build_Data_Dictionary.py to build pickle file of data.
+#******************************** Run notes *******************************
+# Must be run affter Build_Data_Dictionary.py to build pickle file of data.
+# Calculates the average temperature at each tree over the 30 seconds prior to the first event
+# And saves the data as a .csv file in the ../2_Data/Repeatibility_Data/ folder
+# Uses vent_info.csv to determine the ventilation profile each experiment. 
+
 
 import pandas as pd
 import os
@@ -14,7 +19,6 @@ channel_list = pd.read_csv('../3_Info/Channels.csv').set_index('Channel')
 channels_grouped = channel_list.groupby('Primary_Chart')
 
 vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
-FED_info = pd.read_csv('../3_Info/FED_Info.csv')
 
 exp_des = pd.read_csv('../3_Info/Description_of_Experiments.csv').set_index('Experiment')
 
@@ -24,8 +28,8 @@ for exp in exp_des.index.values:
 	channels_to_skip[exp] = exp_des['Excluded Channels'][exp].split('|')
 
 #Read in pickle file for data
-all_exp_data = pickle.load( open( data_location + 'all_exp_data.p', 'rb' ) )
-all_exp_events = pickle.load( open (events_location + 'all_exp_events.p', 'rb'))
+all_exp_data = pickle.load( open( data_location + 'all_exp_data.dict', 'rb' ) )
+all_exp_events = pickle.load( open (events_location + 'all_exp_events.dict', 'rb'))
 
 
 # -------------------------------Calculate and output Repeatibility Data-------------------------------
@@ -34,8 +38,6 @@ running_comp = {}
 output_location = '../2_Data/Repeatibility_Data'
 
 for vent in vent_info.columns:
-	comp_data = pd.DataFrame({'Time':np.arange(-60,-5,2)})
-	comp_data = comp_data.set_index('Time')
 
 	for exp in vent_info[vent].dropna():
 
@@ -45,7 +47,9 @@ for vent in vent_info.columns:
 		if exp not in running_comp[vent]:
 			running_comp[vent][exp] = pd.DataFrame()
 
-		running_comp[vent][exp] = all_exp_data[exp]
+		first_event = all_exp_events[exp[:-4] + 'Events']['Time_Seconds'].ix[1]
+
+		running_comp[vent][exp] = all_exp_data[exp].ix[first_event-30:first_event]	
 
 repeatability_data  = {}
 
@@ -58,12 +62,18 @@ for vent in vent_info.columns.values:
 		repeatability_data[vent] = {}
 
 	for exp in vent_info[vent].dropna():
-
-		Experiment_Data = pd.DataFrame()
+		print (exp)
 
 		for channel_group in channels_grouped.groups:
 
+			if channel_list['Type'][channels_grouped.get_group(channel_group).index.values[0]] != 'Temperature':
+				continue
+
+			if 'Skin' in channel_group:
+				continue
+
 			group_values = pd.DataFrame()
+
 
 			for channel in channels_grouped.get_group(channel_group).index.values:
 
@@ -77,18 +87,12 @@ for vent in vent_info.columns.values:
 
 				group_values = pd.concat([group_values, value], axis =1)
 
-			if channel_list['Type'][channel] == 'Temperature':
-				group_values = group_values.mean(axis=1)
+			group_values = group_values.mean(axis=1)
 
 			if exp not in repeatability_data[vent]:
 				repeatability_data[vent][exp] = {}
 
-			if channel_list['Type'][channel] == 'Temperature':
-				repeatability_data[vent][exp][channel_group]=group_values.mean()
-
-			elif 'Flux' in channel_list['Type'][channel]:
-				for chan in group_values:
-					repeatability_data[vent][exp][chan]=group_values[chan].mean()
+			repeatability_data[vent][exp][channel_group]=group_values.mean()
 
 	repeatability_data_csv = pd.DataFrame.from_dict(repeatability_data[vent])
 	repeatability_data_csv = repeatability_data_csv.reset_index()

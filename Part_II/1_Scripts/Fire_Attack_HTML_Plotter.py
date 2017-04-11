@@ -263,6 +263,8 @@ for f in os.listdir(data_location):
 					Data_Time = [t-float(updated_transport_times['Victim_'+ channel[0] + '_' + Transport_Time][experiment[:-4]])/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
+					if channel[1:] == 'O2V':
+						current_data = (current_data - current_data[:90].mean()) + 20.95
 					y_label='Gas Concentration (%)'
 					axis_scale = 'Y Scale Gas'
 					hover_value = 'Gas'

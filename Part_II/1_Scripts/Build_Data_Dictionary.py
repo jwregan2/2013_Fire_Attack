@@ -1,3 +1,6 @@
+# ******************************* Run Notes ********************************
+# Creates the .dict files for the as a pickle object to be read for analysis
+
 import pandas as pd
 import os
 import datetime as datetime
@@ -41,14 +44,22 @@ all_exp_events = {}
 
 for exp in exp_des.index.values:
 	exp = exp[:-4] + 'Events'
-	events = pd.read_csv(events_location + exp + '.csv')
-	all_exp_events[exp] = events.set_index('Event')
+	all_exp_events[exp] = pd.read_csv(events_location + exp + '.csv').set_index('Event')
+
+	events = [int((t - pd.to_datetime(all_exp_events[exp]['Time']['Ignition'])).total_seconds()) for t in pd.to_datetime(all_exp_events[exp]['Time']).tolist()]
+
+	for e in np.arange(0,len(events)):
+		if events[e] % 2 != 0:
+			events[e] = events [e] + 1
+
+	all_exp_events[exp]['Time_Seconds'] = events
+
 	print (exp + ' Read')
 
 pickle.dump(all_exp_events, open (events_location + 'all_exp_events.dict' , 'wb'))
 
 print ('\n')
-print ('-------------- all_exp_events.p dumped to data location folder ------------------')
+print ('-------------- all_exp_events.dict dumped to data folder ------------------')
 
 
 #Read in all experiment data to dictionary 'all_exp_data' with the dataframe value = 'Experiment_X_Data' save to pickle file all_exp_data.p
@@ -94,8 +105,6 @@ for exp in exp_des.index.values:
 	data = data.ix[abs(data['Time'][0]):]
 	all_exp_data[exp] = data.set_index('Time')
 
-	standard_channels = ['Temperature', 'Heat_Flux', 'Gas', 'Carbon Monoxide']
-
 	for channel in channel_list.index.values:
 
 		#Skip channels listed in experiment discription file
@@ -114,6 +123,7 @@ for exp in exp_des.index.values:
 		
 		#If statement to find gas or carbon monoxide type in channels csv
 		if channel_list['Type'][channel] in ['Gas', 'Carbon Monoxide']:
+			
 			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel]  + channel_list['Offset'][channel]
 
 			#Update Data based on transport time
@@ -126,7 +136,7 @@ for exp in exp_des.index.values:
 
 			#Normalize Oxygen to 20.95 and round to 2
 			if channel[1:] == 'O2V':
-				all_exp_data[exp][channel] = all_exp_data[exp][channel] - np.average(all_exp_data[exp][channel][:90]) + 20.95
+				all_exp_data[exp][channel] = (all_exp_data[exp][channel] - all_exp_data[exp][channel][:90].mean()) + 20.95
 				all_exp_data[exp][channel] = all_exp_data[exp][channel].round(2)
 
 			if channel[1:] == 'CO2V':
@@ -154,9 +164,8 @@ for exp in exp_des.index.values:
 
 	print (exp + ' Read')
 
-
 pickle.dump(all_exp_data, open (data_location + 'all_exp_data.dict' , 'wb'))
 
 print ('\n')
-print ('-------------- all_exp_data.p dumped to data location folder ------------------')
+print ('-------------- all_exp_data.dict dumped to data folder ------------------')
 

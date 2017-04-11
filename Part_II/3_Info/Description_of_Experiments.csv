@@ -7,7 +7,7 @@ Experiment_5_Data,5,6|11,0,a,high,Bedroom_1_Window|Bedroom_2_Window,3BDP2V|3TCS3
 Experiment_6_Data,6,20,0,b,low,Bedroom_1_Window|Bedroom_2_Window,2BDP3V|3TC3|3TCS9|3TCS10|5HFS,2000,200,17.9,80,15,35,25,50000
 Experiment_7_Data,7,6|8|11|13|18|20,0,b,high,Bedroom_2_Window,1TCS7|3TCS9|5HFS,2000,200,17.9,80,15,35,25,50000
 Experiment_8_Data,8,6|15|18|20,0,a,high,Bedroom_2_Window,5BDP3V|2HFS|5HFS,2000,200,17.9,80,15,35,25,50000
-Experiment_9_Data,7A,1|7|8|10|17,0,b,high,Bedroom_2_Window|Victim_5_Skin_Temps,3TCS10|5HFS,2000,200,17.9,80,15,35,25,50000
+Experiment_9_Data,7A,1|7|8|10|17,0,b,high,Bedroom_2_Window|Victim_5_Skin_Temps,3TCS10|5HFS|5TCV1|5TCV3|5TCV5|5TCV7,2000,200,17.9,80,15,35,25,50000
 Experiment_10_Data,7B,21,0,b,high,Bedroom_2_Window,5HFS,2000,200,17.9,80,15,35,25,50000
 Experiment_11_Data,10,8|16,0,a,high,Bedroom_2_Window,4BDP4V|2HFS|5HFS,2000,200,17.9,80,15,35,25,50000
 Experiment_12_Data,11,7|8|11|17,0,b,low,Bedroom_2_Window,1BDP4V,2000,200,17.9,80,15,35,25,50000
