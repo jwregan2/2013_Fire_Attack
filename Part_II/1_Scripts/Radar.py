@@ -1,3 +1,7 @@
+# ********************* Run Notes ***************************
+# Must be run after the Build_Dictionary.py and Calculate_Repeatibility Data.py to create
+# datafiles for the plots. 
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd 
@@ -107,68 +111,15 @@ if not os.path.exists(output_location):
     os.makedirs(output_location)
 
 for vent in vent_info.columns.values:
+    # print (vent)
     repeatibility_data = pd.read_csv(data_location + '/Repeatibility_Data/' + vent + '.csv')
     
-    for name, group in repeatibility_data.groupby('Type'):
-        if name == 'Heat Flux':
-            continue
-            # labels = [l.replace('_',' ') for l in group['Location']] # COMMENT OUT CONTINUE ABOVE AND COMMENT IN 115 & 116 for HF Plots
-            # ytitle = 'Heat Flux (kW/m2)'
-        if name == 'Temperature': 
-            labels = [l.replace('_',' ')[:-6] for l in group['Location']]
-            ytitle = 'Temperature (F)'
-       
-        group = group.drop('Type', 1)
-        data = group.drop('Location', 1)
+    for exp in repeatibility_data:
+        labels = [l.replace('_',' ')[:-6] for l in repeatibility_data['Location']]
+        data = repeatibility_data.drop('Type', 1)
+        data = data.drop('Location', 1)
 
-        radar_graph(labels, data, ytitle, fill=True)
+        radar_graph(labels, data, 'Temperature F', fill=True)
 
-        plt.savefig(output_location + '/' + vent + '_' + name + '.pdf')
+        plt.savefig(output_location + '/' + vent + '.pdf')
         plt.close('all')
-
-# # -------------------------------Plot FED at Fire Department Intervention and save[NOT WORKING]-------------------------------
-# data_location = '../2_Data/FED/'
-# events_location = '../3_Info/Events/'
-# output_location = '../0_Images/Results/Script_Figures/FED_Bar'
-# FED_info = pd.read_csv('../3_Info/Vent_Info.csv')
-
-# if not os.path.exists(output_location):
-#     os.makedirs(output_location)
-
-# data_files = ['Intervention_FED.csv', 'Intervention_Plus60_FED.csv', 'Intervention_FED_Temp.csv', 'Intervention_Plus60_FED_Temp.csv']
-# # data_files = ['Intervention_FED_Temp.csv']
-
-# for data_sets in data_files:
-#     if not os.path.exists(output_location + '/' + data_sets[:-4]):
-#         os.makedirs(output_location + '/' + data_sets[:-4])
-    
-#     FED_data = pd.read_csv(data_location+data_sets).set_index('Locations')
-#     for vent in FED_info:
-#         if 'Temp' in data_sets:
-#             vics = ['FED_Temp_Vic1', 'FED_Temp_Vic2', 'FED_Temp_Vic3', 'FED_Temp_Vic4']
-#             name = 'Temp'
-#         else:
-#             vics = ['FED_Vic1', 'FED_Vic2', 'FED_Vic3', 'FED_Vic4']
-#             name = 'Gas'
-
-#         exp_data = pd.DataFrame({'Locations':vics}).set_index('Locations')
-
-#         for exp in FED_info[vent].dropna():
-
-#             if exp not in FED_data:
-#                 continue
-                        
-#             exp_data = pd.concat([exp_data, FED_data[exp]], axis = 1)
-#         print (exp_data)
-#         exit()
-#         for vic in vics:
-
-#             ytitle = 'Fractional Effective Dose'
-#             labels = 
-#             radar_graph(labels, data, ytitle, fill = False)
-        
-#         if '60' in data_sets:          
-#             plt.savefig(output_location + '/' + vent + '_' + name + '_' +'_Plus60' + '.pdf')
-#         else:
-#             plt.savefig(output_location + '/' + vent + '_' + name + '_' + '.pdf')
-#         plt.close('all')

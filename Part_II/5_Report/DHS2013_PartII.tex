@@ -18,6 +18,7 @@
 % \SetWatermarkScale{1}
 
 \usepackage{subcaption}
+\usepackage{xfrac}
 
 \begin{document}
 \pagenumbering{gobble}
@@ -1609,10 +1610,30 @@ In the `Two Vent' profile there were 8 experiments. he average temperature for t
 \label{fig:repeat_Two_Vent}
 \end{figure}
 
-\section{Effect of Ventilation Profile on Tenability}
-This section identifies the effect of ventilation profile on the victim tenability (FED) at the four victim locations (Hallway, Bedroom 3, Bedroom 4, and Living room)
+\section{Victim Survivability \& Tenability}
+The survivability of a particular fire scenario is difficult to quantify. Factors such as age, gender, and overall health all play a role in how an individual responds to the environment found inside a structure fire. Correlations exist for estimating the threshold from heat energy that would result in a fatality for fifty percent of the general population. Additional correlations exist for irritant and toxic gases however, they focus more on tenability (the dose required for the potential occupant to become incapacitated) and not on survivability (the dose required to cause a fatality). Although it is possible to estimate the survivability based on temperature alone and the tenability based on gas concentrations, no reliable method exists to estimate the combined effects of both temperature and toxic gases. \cite{SFPE:Purser}
 
-\subsection{Before Fire Department Arrival}
+Both temperature exposure and toxic gas exposure can be quantified though the used of a Fractional Effective Dose (FED) concept where the FED is equal to the dose received in a given time divided by the effective dose required for a desired endpoint be it incapacitation or death. 
+
+\begin{equation}
+	FED = \frac{\text{Dose received at time } t(Ct)}{\text{Effective } Ct \text{ dose to cause incapacitation or death}}
+\end{equation} 
+
+Two methods exist for estimating the effective dose of heat energy received over time, one based on gas temperature and one based on the total heat flux. The method based on total energy flux is the integral from the start of exposure $t_1$ to the end of exposure $t_2$ of the exposure $q$ at time $t$ to the four thirds power, divided by $r$ the heat exposure dose for the endpoint of fatality, $16.7(\sfrac{kW}{m^2})^{\sfrac{4}{3}}$, all multiplied by the exposure time step $\Delta t$ in minutes. \cite{SFPE:Purser}
+
+\begin{equation} \label{TotalFlux_FED}
+	FED = \int_{t_1}^{t_2} \left( \frac{q^{4/3}}{r} \right) \Delta t
+\end{equation}
+
+The method based on gas temperature as show in equation \ref{GasTemp_FED} is the the integral from the start of exposure $t_1$ to the end of exposure $t_2$ of the gas temperature $T$ in $^{\circ}C$ at time $t$ to the $-9.0403$ power, multiplied by $\num{2e18}$ added to the gas temperature $T$ in $^{\circ}C$ at time $t$ to the $-3.10898$ power multiplied by $\num{e8}$ all multiplied by the time step $\Delta t$ in minutes. \cite{SFPE:Purser}
+
+\begin{equation} \label{GasTemp_FED}
+	FED = \int_{t_1}^{t_2} \left( \num{2e18} \times T^{-9.0403} + \num{e8} \times T^{-3.10898} \right) \Delta t
+\end{equation}
+
+This section will analyze the experiments conducted for survivability based on temperature an tenability based on gas concentrations in the period prior to fire department arrival and then as they relate to the possible fire suppression tactics. 
+
+\subsection{Prior Fire Department Arrival}
 This section looks at the specific time period prior to fire department intervention quantifying tenability of the four locations. 
 \bf{\hl{Compare 1-6 vs. 7-12 \& 18-21 \&27 vs. 13-17 \& 22-24}} \\
 
