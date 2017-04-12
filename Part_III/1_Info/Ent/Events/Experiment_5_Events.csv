@@ -1,0 +1,18 @@
+Time,Elapsed_Time,Event
+2017-04-10-10:29:00,0:00:00,Background
+2017-04-10-10:31:00,0:02:00,At Window Straight Stream Fixed
+2017-04-10-10:32:01,0:03:00,At Window Straight Stream 'O'
+2017-04-10-10:33:01,0:04:00,At Window Narrow Fog Fixed
+2017-04-10-10:34:01,0:05:00,At Window Narrow Fog 'O'
+2017-04-10-10:35:02,0:06:00,No Action
+2017-04-10-10:36:02,0:07:00,6' Straight Stream Fixed
+2017-04-10-10:37:02,0:08:00,6' Straight Stream 'O'
+2017-04-10-10:38:02,0:09:00,6' Narrow Fog Fixed
+2017-04-10-10:39:03,0:10:00,6' Narrow Fog 'O'
+2017-04-10-10:40:03,0:11:00,No Action
+2017-04-10-10:41:03,0:12:00,12' Straight Stream Fixed
+2017-04-10-10:42:04,0:13:00,12' Straight Stream 'O'
+2017-04-10-10:43:04,0:14:00,12' Narrow Fog Fixed
+2017-04-10-10:44:05,0:15:00,12' Narrow Fog 'O'
+2017-04-10-10:45:05,0:16:00,No Action
+2017-04-10-10:46:00,0:18:00,End Experiment
