@@ -29,7 +29,7 @@ channel_location = '../3_Info/'
 
 chart_location = '../3_Info/'
 
-output_location_init = '../0_Images/Results/'
+output_location_init = '../0_Images/Script_Figures/Results/'
 
 info_file = '../3_Info/Description_of_Experiments.csv'
 
@@ -326,6 +326,6 @@ for f in os.listdir(data_location):
 			plt.legend(handles1, labels1, loc='upper left', fontsize=24, handlelength=3)
 
             # Save plot to file
-			plt.savefig(output_location + group + '.png')
+			plt.savefig(output_location + group + '.pdf')
 			plt.close('all')
    
