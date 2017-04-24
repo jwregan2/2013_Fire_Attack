@@ -12,10 +12,10 @@
 \chead{}
 \renewcommand{\headrulewidth}{0pt}
 
-% % UN COMMENT TO PLACE WATERMARK
-% \usepackage{draftwatermark}
-% \SetWatermarkText{DRAFT}
-% \SetWatermarkScale{1}
+% UN COMMENT TO PLACE WATERMARK
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT}
+\SetWatermarkScale{1}
 
 \usepackage{subcaption}
 \usepackage{xfrac}
@@ -1654,7 +1654,7 @@ Figure \ref{fig:Vent_Profile-No_Vent} represents the no ventilation configuratio
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.75\textwidth]{../0_Images/Ventilation_Configurations/No_Vent.png}
+	\includegraphics[width=.65\textwidth]{../0_Images/Ventilation_Configurations/No_Vent.png}
 	\caption{Ventilation Configuration - No Ventilation (Experiments 1-6)}
 	\label{fig:Vent_Profile-No_Vent}
 \end{figure}
@@ -1680,7 +1680,7 @@ Figure \ref{fig:Vent_Profile-Single_Vent} represents the ventilation configurati
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.75\textwidth]{../0_Images/Ventilation_Configurations/Single_Vent.png}
+	\includegraphics[width=.65\textwidth]{../0_Images/Ventilation_Configurations/Single_Vent.png}
 	\caption{Ventilation Configuration - Single Window Vent (Experiments 7-12 \& 18-21)}
 	\label{fig:Vent_Profile-Single_Vent}
 \end{figure}
@@ -1696,9 +1696,9 @@ Figure \ref{fig:FED_SingleVent} illistrates the average fractional effective dos
 	\label{fig:FED_SingleVent}
 \end{figure}
 
-The single window vent experiments reached flahover and a steady state much faster than the no ventilation case. The fire deparment intervention was preformed 1~minute 30~ seconds earlier limiting the time available for the gases too reach the victim locations. This resulted in an FED from toxic gases at the time of intervention which indicates a tenable and survivable space at each location. The FED at the victim 3 location began to increase just before intervention, indicating the time to untenablility and fatalatiy is approaching. 
+The fire deparment intervention was preformed in just over 5~minutes limiting the time available for the gases too reach the victim locations. This resulted in an FED from toxic gases at the time of intervention which indicates a tenable and survivable space at each location. The FED at the victim 3 location began to increase just before intervention, indicating the time to untenablility and fatalatiy is approaching. 
 
-The survivability in terms of heat energy was also less due to the decreased durratoin. It was still driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows almost no increase prior to fire department intervention. When both radiatitive and convective heat transfer are examined, all of the victim locations are below the threshold for fatality in 50~\% of the population. Similar to the no ventilation case, Victim 1, was shown to have the highest FED value due to the proximity of the fire however the other four locations show almost no FED. 
+The survivability in terms of heat energy was also less due to the decreased durratoin of exposure. It was driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows almost no increase prior to fire department intervention. When both radiatitive and convective heat transfer are examined, all of the victim locations are below the threshold for fatality in 50~\% of the population. The victim 1 location, had the highest FED value due to the proximity of the fire however the other four locations show almost no FED. 
 
 \subsubsection{Two Window Vents, Two Rooms of Fire}
 
@@ -1706,7 +1706,7 @@ Figure \ref{fig:Vent_Profile-Two_Vent} represents the ventilation configuration 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.75\textwidth]{../0_Images/Ventilation_Configurations/Two_Vent.png}
+	\includegraphics[width=.65\textwidth]{../0_Images/Ventilation_Configurations/Two_Vent.png}
 	\caption{Ventilation Configuration - Single Window Vent (Experiments 13-17 \& 22-24)}
 	\label{fig:Vent_Profile-Two_Vent}
 \end{figure}
@@ -1722,7 +1722,33 @@ Figure \ref{fig:FED_TwoVent} illistrates the average fractional effective dose o
 	\label{fig:FED_TwoVent}
 \end{figure}
 
+The tenibility and survivability based on toxic gas was again driven by the elevtaiton in the space. With two rooms of fire and two ventilation openings the victim 3 location on the bed in the open bedroom exceeded a FED of 3 in just under 5~minutes. The smoke took longer to reach the 1~ft level, thus all other victim locations show almost no increase in FED at fire departmetn intervention.
+
+The survivability in terms of heat energy was driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows a fatal dose of energy in just over three minutes at the victim 1 location and no increase prior to fire department intervention at the remainder of the 4 victim locations. When both radiatitive and convective heat transfer are examined, the victim 1 location recieves a fatal dose in just under 3~minutes 30~seconds. After that point the FED is driven by the elevation in the space with locations in the hot gas layer recieving more FED than those at the floor. After the 5~minute mark all victim locations are recieving a thermal FED with the exception of the victim 2 location behind the closed door.  
+
 \subsubsection{FED Ventilation Comparison}
+When comparing the FED for the three ventilation cases it is important to consider both the size of the fire and the timing. Although it may appear initially the case with no ventilation resulted in higher FED values, however that is because it involved a greater duration. Three experiments were conducted with delayed water appliation to determine evaluate the effect of delayed water. 
+
+A comparison of the FED for each vicim location is shown in Figure \ref{fig:FED_Base} where a FED of 1.0 for the thermal values of convective and total flux represents the lethal concentration for 50~\% of the population (LC50) and  a FED of 1.0 for the toxic gases represents a untenible condition where occupants would not be able to self rescue. 
+
+Experiment 1 had no ventilation, see figure \ref{fig:FED_NoVent} for the ventilation profile. The front door was opened at 8~minutes 17~seconds. Experiment 12 had the bedroom 2 window open, see figure \ref{fig:FED_SingleVent} for the the ventilation profile. The front door was opened at 5~minutes and 57~seconds. Experiment 17 had two rooms a fire in bedroom 1 and bedroom 2 with both bedroom windows open, see figure \ref{fig:FED_TwoVent} for the ventilation profile. The front door was opened at 5~minutes and 27~seconds. 
+
+The 'Total Flux' value refers to the FED calculated from equation \ref{TotalFlux_FED}, the 'Convective' value refers to the FED calculated from equation \ref{GasTemp_FED} and the 'Toxic Gas' value refers to the FED calcualted from equation \ref{GasTemp_FED}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{../0_Images/Script_Figures/FED/FED_Base/Victim_1}
+	\includegraphics[width=0.4\textwidth]{../0_Images/Script_Figures/FED/FED_Base/Victim_2}
+	\includegraphics[width=0.4\textwidth]{../0_Images/Script_Figures/FED/FED_Base/Victim_3}
+	\includegraphics[width=0.4\textwidth]{../0_Images/Script_Figures/FED/FED_Base/Victim_4}
+	\includegraphics[width=0.4\textwidth]{../0_Images/Script_Figures/FED/FED_Base/Victim_5}
+	\caption[Ventilation Comparison - FED]{Ventilation Comparison - Fractional Effective Dose. Upper left is victim 1, upper right is victim 2. Middle left is victim 3, middle right is victim 4. Lower center is victim 5. A FED of 1.0 for thermal values is the LC50 for thermal exposure. A FED of 1.0 for toxic gasses represents untenibile conditions.}
+	\label{fig:FED_Base}
+\end{figure}
+
+The victim location 1 shows that the in the two vent case the thermal hazard is the most significant, for the no vent case it is the toxic gases. In the victim 2 case, being behind the closed door provides a survivable and tenable atmosphere. At the victim 3 location the driving hazard is the toxic gases which accumulate first for the two room fire, followed by the no vent case and lastly by th event case. In all instances the toxic gases exceed a FED of 3.0 by just over 8~minutes. The Victim 4 location is far enough from the fire thermal hazards are not as significant however toxic gases are a hazard. Once the door gets opened at 5~minutes and 27~seconds in the two vent case, and 8~minutes and 17~seconds in the no vent case, the ambien air slows the increas of FED. No toxic gas values were availble at victim 5 however the values were below the LC50 for thermal hazards. 
+
+\clearpage
 
 This section looks at the specific time period prior to fire department intervention quantifying tenability of the four locations. 
 \bf{\hl{Compare 1-6 vs. 7-12 \& 18-21 \&27 vs. 13-17 \& 22-24}} \\
