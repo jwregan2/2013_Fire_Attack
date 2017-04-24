@@ -24,6 +24,20 @@ vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 
 victims = ['Victim_1', 'Victim_2', 'Victim_3', 'Victim_4', 'Victim_5']
 
+# ---------------------------------Plot Baseline Data With No Intervention----------------------------- 
+x = np.linspace(1,100,100)
+log = np.log(x)
+
+exp = np.exp(30)
+print (exp)
+
+print(np.log(exp))
+exit()
+
+plt.plot(log, x)
+plt.show()
+exit()
+
 
 # ---------------------------------Plot Baseline Data With No Intervention----------------------------- 
 
@@ -36,11 +50,11 @@ dose_types = {'Toxic_Gas':FED_Gas, 'Convective':FED_Temp_Conv, 'Total_Flux':FED_
 if not os.path.exists(output_location):
 	os.makedirs(output_location)
 marker={'Toxic_Gas':"o", 'Convective':"s", 'Total_Flux':"v"}
-# marker={'Experiment_1_Data':"o", 'Experiment_12_Data':"s", 'Experiment_17_Data':"v"}
-# color ={'Toxic_Gas':'blue', 'Convective':'green', 'Total_Flux':'red'}
 color = {'Experiment_1_Data':'blue', 'Experiment_12_Data':'green', 'Experiment_17_Data':'red'}
 
 for vic in victims:
+	
+
 	for exp in experiments:
 		if exp == 'Experiment_1_Data' and vic == 'Victim_2':
 			continue
@@ -51,30 +65,28 @@ for vic in victims:
 				data.index = data.index/60
 				plt.plot(data, label = 'Exp ' + exp[11:-5] + ' ' + dose_type.replace('_',' '), lw = 2, marker = marker[dose_type], color = color[exp], markevery=10)
 
-	# plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Front Door Open']/60, color = 'black', lw=3)
-	# plt.text(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Front Door Open']/60,  3*1.2, 'Front Door Open',  horizontalalignment='left', verticalalignment = 'center', rotation = 55)
-	# plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Attack Team Enters']/60, color = 'black', lw=3)
-	# plt.text(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Attack Team Enters']/60, 3*1.2, 'Attack Team Enters' , horizontalalignment='left', verticalalignment = 'center', rotation = 55)
+	L = plt.legend()
+	num_entries = len(L.get_texts())
 
-	if vic in ['Victim_1', 'Victim_3', 'Victim_4']:
-		plt.ylim([0,3])
-	elif vic == 'Victim_2':
-		plt.ylim([0,.25])
-	else:
-		plt.ylim([0,.5])
-	
-	h, l = ax.Axes.get_legend_handles_labels()
-	print (h)
-	print (l)
-	# print (len(plt.Axes.get_legend_handles_labels()))
-	exit()
+	plt.ylim([0,3])
+	plt.axhline(1, color = 'black', lw = 2)
 
+	# if vic in ['Victim_1', 'Victim_3', 'Victim_4']:
+	# 	plt.ylim([0,3])
+	# elif vic == 'Victim_2':
+	# 	plt.ylim([0,.25])
+	# else:
+	# 	plt.ylim([0,.5])
+	plt.title(vic.replace('_', ' '), fontsize = 20)
 	plt.xlim([0,all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Attack Team Enters']/60])
 	plt.ylabel('Fractional Effective Dose', fontsize = 18)
 	plt.xlabel('Time (min)', fontsize = 18)
 	plt.xticks(fontsize = 18)
 	plt.yticks(fontsize = 18)
-	plt.legend(bbox_to_anchor=(1.005  , 1), loc='upper left', ncol=1, fontsize = 16)
+	
+	pos_legend = 1 - (num_entries*.1025)
+
+	plt.legend(bbox_to_anchor=(1.005  , 1 - pos_legend/2), loc='upper left', ncol=1, fontsize = 16)
 	plt.subplots_adjust(top= 0.75, bottom=0.15, right=0.62)
 	plt.savefig(output_location + vic + '.pdf')
 	plt.close('all')
