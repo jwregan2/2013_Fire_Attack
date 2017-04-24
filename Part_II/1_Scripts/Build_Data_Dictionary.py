@@ -38,6 +38,21 @@ channels_to_skip = {}
 for exp in exp_des.index.values:
 	channels_to_skip[exp] = exp_des['Excluded Channels'][exp].split('|')
 
+channels_to_trim = {}
+
+#Generate pandas dataframe for each experiment with a list of channels to trim and what time. Index for dataframe is channel name. 
+for exp in exp_des.index.values:
+	if exp_des['Trimmed_Channels'][exp] == 'None':
+		continue
+	
+	channels_to_trim[exp] = exp_des['Trimmed_Channels'][exp].split('|')
+	
+	chans, times = zip(*[val.split('_') for val in channels_to_trim[exp]])
+	times = [int(t) for t in times]
+
+	channels_to_trim[exp] = pd.DataFrame({'Channel':chans, 'Time':times}).set_index('Channel')
+	
+
 #Read in all experiment events to dictionary 'all_exp_events' with dataframe value = 'Experiment_X_Event' save to pickle file all_exp_events.p
 print ('Reading in Experiment Events \n')
 all_exp_events = {}
@@ -91,9 +106,12 @@ for exp in exp_des.index.values:
 
 	#Adjust time to be every 2 seconds regardless of the drift. 
 	time = [int((t - ignition).total_seconds()) for t in time]
-	
+
 	if time[0] % 2 != 0:
 		time[0] = time[0]+1
+
+	if time[-1] % 2 != 0:
+		time[-1] = time[-1]+1
 	
 	new_time = np.arange(time[0], time[-1], 2)
 
@@ -102,8 +120,11 @@ for exp in exp_des.index.values:
 		new_time = np.append(new_time, add_time)
 
 	data['Time'] = new_time[:len(data.index)]
-	data = data.ix[abs(data['Time'][0]):]
-	all_exp_data[exp] = data.set_index('Time')
+	data.set_index('Time', inplace = True)
+
+	data = data.ix[0:all_exp_events[exp[:-4]+'Events']['Time_Seconds']['End Experiment']]
+
+	all_exp_data[exp] = data
 
 	for channel in channel_list.index.values:
 
@@ -145,7 +166,7 @@ for exp in exp_des.index.values:
 			if channel[1:] == 'COV':
 				all_exp_data[exp][channel] = all_exp_data[exp][channel].round(0)
 
-		if channel_list['Type'][channel] == 'Heat_Flux':
+		if channel_list['Type'][channel] in ['Heat Flux', 'Victim Heat Flux']:
 			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel]  + channel_list['Offset'][channel]
 			all_exp_data[exp][channel] = all_exp_data[exp][channel].round(2)
 
@@ -161,6 +182,13 @@ for exp in exp_des.index.values:
 			#Calculate new index for velocity result
 			all_exp_data[exp][channel[:-1]] = (np.sign(all_exp_data[exp][channel]-2.5)*0.070*((all_exp_data[exp][channel[:-1]+'T']+273.15)*(99.6*abs(all_exp_data[exp][channel]-2.5)))**0.5) * 2.23694
 			all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]].round(2)
+
+		if exp in channels_to_trim:
+			if channel in channels_to_trim[exp].index:
+				if channel_list['Type'][channel] == 'Velocity':
+					all_exp_data[exp][channel[:-1]] = all_exp_data[exp].ix[channel[:-1]][:ind(channels_to_trim[exp]['Time'][channel])]
+				else:
+					all_exp_data[exp][channel] = all_exp_data[exp][channel][:int(channels_to_trim[exp]['Time'][channel]/2)]
 
 	print (exp + ' Read')
 

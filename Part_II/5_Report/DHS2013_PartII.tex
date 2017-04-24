@@ -1585,7 +1585,7 @@ In the `No Vent' profile there were six experiments. The average temperate for t
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../0_Images/Script_Figures/Repeatibility/No_Vent_Temperature}
+\includegraphics[width=\textwidth]{../0_Images/Script_Figures/Repeatibility/No_Vent}
 \caption{Average Thermocouple Array Temperatures - No Ventilation}
 \label{fig:repeat_No_Vent}
 \end{figure}
@@ -1595,7 +1595,7 @@ In the `Single Vent' profile there were 10 experiments. The average temperature 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../0_Images/Script_Figures/Repeatibility/Single_Vent_Temperature}
+\includegraphics[width=\textwidth]{../0_Images/Script_Figures/Repeatibility/Single_Vent}
 \caption{Average Thermocouple Array Temperatures - Single Vent}
 \label{fig:repeat_Single_Vent}
 \end{figure}
@@ -1605,7 +1605,7 @@ In the `Two Vent' profile there were 8 experiments. he average temperature for t
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../0_Images/Script_Figures/Repeatibility/Two_Vent_Temperature}
+\includegraphics[width=\textwidth]{../0_Images/Script_Figures/Repeatibility/Two_Vent}
 \caption{Average Thermocouple Array Temperatures - Two Vent}
 \label{fig:repeat_Two_Vent}
 \end{figure}
@@ -1617,6 +1617,7 @@ Both temperature exposure and toxic gas exposure can be quantified though the us
 
 \begin{equation}
 	FED = \frac{\text{Dose received at time } t(Ct)}{\text{Effective } Ct \text{ dose to cause incapacitation or death}}
+	\label{FED_gas}
 \end{equation} 
 
 Two methods exist for estimating the effective dose of heat energy received over time, one based on gas temperature and one based on the total heat flux. The method based on total energy flux is the integral from the start of exposure $t_1$ to the end of exposure $t_2$ of the exposure $q$ at time $t$ to the four thirds power, divided by $r$ the heat exposure dose for the endpoint of fatality, $16.7(\sfrac{kW}{m^2})^{\sfrac{4}{3}}$, all multiplied by the exposure time step $\Delta t$ in minutes. \cite{SFPE:Purser}
@@ -1631,9 +1632,98 @@ The method based on gas temperature as show in equation \ref{GasTemp_FED} is the
 	FED = \int_{t_1}^{t_2} \left( \num{2e18} \times T^{-9.0403} + \num{e8} \times T^{-3.10898} \right) \Delta t
 \end{equation}
 
-This section will analyze the experiments conducted for survivability based on temperature an tenability based on gas concentrations in the period prior to fire department arrival and then as they relate to the possible fire suppression tactics. 
+To determine survivability and tenability a package of sensors were utilized to simulate victims at five different locations within the structure as illistrated in figure \ref{fig:vic_loc}. Victim 1 was located at the end of the hall outside the fire room(s); Victim 2 was located on the bed in Bedroom 3 where the bedroom door was closed; Victim 3 was located on the bed in Bedroom 4 where the bedroom door was open; Victim 4 was located in the Livingroom near the entrance to the hall; and Victim 5 was located as remote from the fire room(s) as possible in the back right corner of the Diningroom. Each location included an array of thermocouples at 1~ft, 3~ft, 5~ft and 7~ft above the floor and schmidt-bloter total heat flux gauge oriented such that the view range of the gauge was directed vertically at 1~ft above the floor. Additionally Victims 1-4 had a gas measurement point analyzing carbon monoxide (CO), carbon dioxide (CO$_{2}$) and oxygen (O$_{2}$) located 1~ft above the floor. Figure XX shows an example of the sensors used. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../0_Images/Victim_Locations}
+	\caption{Victim Locations}
+	\label{fig:vic_loc}
+\end{figure}
+
+The CO, CO$_{2}$, and O$_{2}$ values from the gas analyzers were utilized in equation \ref{FED_gas} to determine the fraction of dose required for untenability. A value of 1 represents untenabile and a value of 3 represents a potentially fatal dose. The gas temperature recorded via the 1~ft thermocouple was used in equation \ref{GasTemp_FED} to determine the fraction of a fatal dose recieved via convective heat transfer, where a value of 1 is equivilant to a fatal dose in 50~\% of the population. The total heat flux recorded at the  schmidt-bolter heat flux gauge was used in equation \ref{TotalFlux_FED} to determine the fraction of a fatal does recieved via both convective and radiative heat transfer, where a value of 1 is equivilant to a fatal dose in 50~\% of the population, .  
+
+This section will analyze the experiments conducted for survivability of the five victim locations shown in  based on temperature an tenability based on gas concentrations in the period prior to fire department arrival and then as they relate to the possible fire suppression tactics. 
 
 \subsection{Prior Fire Department Arrival}
+To examine the potential survivability and tenability prior to fire department intervention the experiments were grouped by the available ventilation. The average fractional effective dose over time was calculated for each victim location along with the value of one standard deviation. 
+
+\subsubsection{No Ventilation}
+
+Figure \ref{fig:Vent_Profile-No_Vent} represents the no ventilation configuration where all exterior windows/doors were closed. The fire was located in bedroom 1 and fire department intervention occured at 6~minutes and 58~seconds, after the fire reached a ventilation limited state . 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.75\textwidth]{../0_Images/Ventilation_Configurations/No_Vent.png}
+	\caption{Ventilation Configuration - No Ventilation (Experiments 1-6)}
+	\label{fig:Vent_Profile-No_Vent}
+\end{figure}
+
+ Figure \ref{fig:FED_NoVent} illistrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corispoinding to the victim location. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/No_Vent}
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/No_Vent} 
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/No_Vent}
+	\caption[No Vent Fractional Effective Dose]{No Ventilation Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concnetration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\label{fig:FED_NoVent}
+\end{figure}
+
+With regards to the toxic gases both survivability and tenability are related to the elevaction in the space, along with the proximity to the fire. Victim 3 located on the bed in the open bedroom, once the smoke layer reached the victim the FED increased rapidly, excceding an FED of 3 between 5~min 30~sec and 6~min 30~sec. The smoke took significantly longer to reach Victims located at the floor level, resulting in a lower FED at the time of fire department arrival. Victim 4 being more remote to the fire shows a higher FED than victim 1 near the fire as the flowpath carried the smoke to the floor level in the remote locations first as the ambient air was drawn back to the fire keeping Victim 1 in the ambient air longer. 
+
+The survivability in terms of heat energy is driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows almost no increase prior to fire department arrival. When both radiatitive and convective heat transfer are examined, all of the victim locations are below the threshold for fatality in 50~\% of the population. Victim 1, was shown to have the highest FED value due to the proximity of the fire followed by the victim 3 location which is within the hot gas layer. For the remainder of the locations FED was driven by the proximity to the fire where victim 4 was closer than victim 5. The effectivness of a closed bedrom door is illistrated by the victim 2 location value being the lowest. 
+
+\subsubsection{Sigle Window Vent}
+
+Figure \ref{fig:Vent_Profile-Single_Vent} represents the ventilation configuration where all exterior windows/doors were closed with the exception of the bedroom 1 window. The fire was located in bedroom 1 and fire department intervention occured  at 5~minutes and 26~seconds, after the fire reached a flashover. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.75\textwidth]{../0_Images/Ventilation_Configurations/Single_Vent.png}
+	\caption{Ventilation Configuration - Single Window Vent (Experiments 7-12 \& 18-21)}
+	\label{fig:Vent_Profile-Single_Vent}
+\end{figure}
+
+Figure \ref{fig:FED_SingleVent} illistrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corispoinding to the victim location. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/Single_Vent}
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/Single_Vent} 
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/Single_Vent}
+	\caption[Single Window Vent Fractional Effective Dose]{Single Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concnetration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\label{fig:FED_SingleVent}
+\end{figure}
+
+The single window vent experiments reached flahover and a steady state much faster than the no ventilation case. The fire deparment intervention was preformed 1~minute 30~ seconds earlier limiting the time available for the gases too reach the victim locations. This resulted in an FED from toxic gases at the time of intervention which indicates a tenable and survivable space at each location. The FED at the victim 3 location began to increase just before intervention, indicating the time to untenablility and fatalatiy is approaching. 
+
+The survivability in terms of heat energy was also less due to the decreased durratoin. It was still driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows almost no increase prior to fire department intervention. When both radiatitive and convective heat transfer are examined, all of the victim locations are below the threshold for fatality in 50~\% of the population. Similar to the no ventilation case, Victim 1, was shown to have the highest FED value due to the proximity of the fire however the other four locations show almost no FED. 
+
+\subsubsection{Two Window Vents, Two Rooms of Fire}
+
+Figure \ref{fig:Vent_Profile-Two_Vent} represents the ventilation configuration where all exterior windows/doors were closed with the exception of the bedrom 1 and bedroom 2 windows. The fire was located in both bedroom 1 and bedroom 2. Fire department intervention occured at 5~minutes and 24~seconds, after the fire reached a flashover. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.75\textwidth]{../0_Images/Ventilation_Configurations/Two_Vent.png}
+	\caption{Ventilation Configuration - Single Window Vent (Experiments 13-17 \& 22-24)}
+	\label{fig:Vent_Profile-Two_Vent}
+\end{figure}
+
+Figure \ref{fig:FED_TwoVent} illistrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corispoinding to the victim location. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/Two_Vent}
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/Two_Vent} 
+	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/Two_Vent}
+	\caption[Two Window Vent Fractional Effective Dose]{Two Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concnetration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\label{fig:FED_TwoVent}
+\end{figure}
+
+\subsubsection{FED Ventilation Comparison}
+
 This section looks at the specific time period prior to fire department intervention quantifying tenability of the four locations. 
 \bf{\hl{Compare 1-6 vs. 7-12 \& 18-21 \&27 vs. 13-17 \& 22-24}} \\
 
