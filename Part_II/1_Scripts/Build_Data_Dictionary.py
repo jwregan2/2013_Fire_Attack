@@ -7,6 +7,7 @@ import datetime as datetime
 import numpy as np
 from scipy.signal import butter, filtfilt
 import pickle
+import matplotlib.pyplot as plt
 
 # Define filter for low pass filtering of pressure/temperature for BDP
 def butter_lowpass(cutoff, fs, order=5):
@@ -46,16 +47,17 @@ for exp in exp_des.index.values:
 		continue
 	
 	channels_to_trim[exp] = exp_des['Trimmed_Channels'][exp].split('|')
-	
+
 	chans, times = zip(*[val.split('_') for val in channels_to_trim[exp]])
 	times = [int(t) for t in times]
 
 	channels_to_trim[exp] = pd.DataFrame({'Channel':chans, 'Time':times}).set_index('Channel')
 	
 
-#Read in all experiment events to dictionary 'all_exp_events' with dataframe value = 'Experiment_X_Event' save to pickle file all_exp_events.p
+#Read in all experiment events to dictionary 'all_exp_events' with dataframe value = 'Experiment_X_Event' save to pickle file all_exp_events.dict
 print ('Reading in Experiment Events \n')
 all_exp_events = {}
+ignition_date_time = {}
 
 for exp in exp_des.index.values:
 	exp = exp[:-4] + 'Events'
@@ -76,8 +78,7 @@ pickle.dump(all_exp_events, open (events_location + 'all_exp_events.dict' , 'wb'
 print ('\n')
 print ('-------------- all_exp_events.dict dumped to data folder ------------------')
 
-
-#Read in all experiment data to dictionary 'all_exp_data' with the dataframe value = 'Experiment_X_Data' save to pickle file all_exp_data.p
+#Read in all experiment data to dictionary 'all_exp_data' with the dataframe value = 'Experiment_X_Data' save to pickle file all_exp_data.dict
 print ('\n')
 print ('Reading in Experiment Data \n')
 
@@ -104,22 +105,30 @@ for exp in exp_des.index.values:
 	# print (all_exp_events[exp[:-4]+'Events']['Time'][1])
 	ignition = datetime.datetime.strptime(all_exp_events[exp[:-4]+'Events']['Time'][0], '%H:%M:%S')
 
+	# ignition_seconds = int((ignition-time[0]).total_seconds())
+	# if ignition_seconds % 2 != 0:
+	# 	ignition_seconds = ignition_seconds + 1
+
+	# #Set the ignition datetime for use with flow data
+	# ignition_date_time[exp] = data['Time'][ignition_seconds]
+
 	#Adjust time to be every 2 seconds regardless of the drift. 
 	time = [int((t - ignition).total_seconds()) for t in time]
 
-	if time[0] % 2 != 0:
-		time[0] = time[0]+1
+	# if time[0] % 2 != 0:
+	# 	time[0] = time[0]+1
 
-	if time[-1] % 2 != 0:
-		time[-1] = time[-1]+1
+	# if time[-1] % 2 != 0:
+	# 	time[-1] = time[-1]+1
 	
-	new_time = np.arange(time[0], time[-1], 2)
+	# new_time = np.arange(time[0], time[-1], 2)
 
-	if len(new_time) < len(data.index):		
-		add_time = np.arange(new_time[-1]+2, new_time[-1]+(len(data.index)-len(new_time)+2)*2,2)
-		new_time = np.append(new_time, add_time)
+	# if len(new_time) < len(data.index):		
+	# 	add_time = np.arange(new_time[-1]+2, new_time[-1]+(len(data.index)-len(new_time)+2)*2,2)
+	# 	new_time = np.append(new_time, add_time)
 
-	data['Time'] = new_time[:len(data.index)]
+	# data['Time'] = new_time[:len(data.index)]
+	data['Time'] = time
 	data.set_index('Time', inplace = True)
 
 	data = data.ix[0:all_exp_events[exp[:-4]+'Events']['Time_Seconds']['End Experiment']]
@@ -142,18 +151,18 @@ for exp in exp_des.index.values:
 			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel] + channel_list['Offset'][channel]
 			all_exp_data[exp][channel] = all_exp_data[exp][channel].round(1)
 		
-		#If statement to find gas or carbon monoxide type in channels csv
-		if channel_list['Type'][channel] in ['Gas', 'Carbon Monoxide']:
+		# #If statement to find gas or carbon monoxide type in channels csv
+		# if channel_list['Type'][channel] in ['Gas', 'Carbon Monoxide']:
 			
-			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel]  + channel_list['Offset'][channel]
+		# 	all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel]  + channel_list['Offset'][channel]
 
-			#Update Data based on transport time
-			transport = int(transport_times['Victim_' + channel[0] + '_' + exp_des['House'][exp].upper()][exp])	
+		# 	#Update Data based on transport time
+		# 	transport = int(transport_times['Victim_' + channel[0] + '_' + exp_des['House'][exp].upper()][exp])	
 
-			if transport % 2 != 0:
-				transport = transport - 1
+		# 	if transport % 2 != 0:
+		# 		transport = transport - 1
 
-			all_exp_data[exp][channel] = pd.DataFrame({'Time':all_exp_data[exp].index.values[:-int(transport/2)], 'channel':all_exp_data[exp][channel][int(transport/2):]}).set_index('Time')
+		# 	all_exp_data[exp][channel] = pd.DataFrame({'Time':all_exp_data[exp].index.values[:-int(transport/2)], 'channel':all_exp_data[exp][channel][int(transport/2):]}).set_index('Time')
 
 			#Normalize Oxygen to 20.95 and round to 2
 			if channel[1:] == 'O2V':
@@ -166,7 +175,7 @@ for exp in exp_des.index.values:
 			if channel[1:] == 'COV':
 				all_exp_data[exp][channel] = all_exp_data[exp][channel].round(0)
 
-		if channel_list['Type'][channel] in ['Heat Flux', 'Victim Heat Flux']:
+		if channel_list['Type'][channel] in ['Wall Heat Flux', 'Floor Heat Flux', 'Victim Heat Flux']:
 			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel]  + channel_list['Offset'][channel]
 			all_exp_data[exp][channel] = all_exp_data[exp][channel].round(2)
 
@@ -183,17 +192,49 @@ for exp in exp_des.index.values:
 			all_exp_data[exp][channel[:-1]] = (np.sign(all_exp_data[exp][channel]-2.5)*0.070*((all_exp_data[exp][channel[:-1]+'T']+273.15)*(99.6*abs(all_exp_data[exp][channel]-2.5)))**0.5) * 2.23694
 			all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]].round(2)
 
+
 		if exp in channels_to_trim:
 			if channel in channels_to_trim[exp].index:
 				if channel_list['Type'][channel] == 'Velocity':
-					all_exp_data[exp][channel[:-1]] = all_exp_data[exp].ix[channel[:-1]][:ind(channels_to_trim[exp]['Time'][channel])]
+					if channel[:-1] in all_exp_data[exp]:
+						all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]][:int(channels_to_trim[exp]['Time'][channel]/2)]
 				else:
 					all_exp_data[exp][channel] = all_exp_data[exp][channel][:int(channels_to_trim[exp]['Time'][channel]/2)]
 
 	print (exp + ' Read')
 
-pickle.dump(all_exp_data, open (data_location + 'all_exp_data.dict' , 'wb'))
+pickle.dump(all_exp_data, open (data_location + 'all_exp_data_origT.dict' , 'wb'))
 
 print ('\n')
-print ('-------------- all_exp_data.dict dumped to data folder ------------------')
+print ('-------------- all_exp_data_origT.dict dumped to data folder ------------------')
+
+# Read in all flow data to dictionary 'all_flow_data' with dataframe value = 'Experiment_X_Data' save to pickle file all_flow_data.dict
+print ('Reading in Flow Data \n')
+
+first_flow_time = pd.read_csv('../3_Info/First_Flow_Time.csv').set_index('Experiment')
+
+all_flow_data = {}
+
+for exp in exp_des.index.values:
+
+	if os.path.isfile((data_location + exp[:-4] + 'Flow.csv')):
+
+		all_flow_data[exp] = pd.read_csv(data_location + exp[:-4] + 'Flow.csv')
+		all_flow_data[exp]['Time'] = [datetime.datetime.strptime(t, '%M:%S.%f') for t in all_flow_data[exp]['Time']]
+		all_flow_data[exp]['Time'] = [(t-all_flow_data[exp]['Time'][0]).total_seconds() for t in all_flow_data[exp]['Time']]
+
+		flow_time = all_flow_data[exp]['Time'][np.argmax(all_flow_data[exp]['GPM']>20)]
+		
+		all_flow_data[exp]['Time'] = all_flow_data[exp]['Time'] + (first_flow_time['First_Flow'][exp] - flow_time)
+
+		all_flow_data[exp].set_index('Time', inplace=True)
+		
+		all_flow_data[exp] = all_flow_data[exp][::10]
+
+		print (exp[:-4].replace('_', ' ') + 'Flow Read')
+
+pickle.dump(all_flow_data, open (data_location + 'all_flow_data.dict' , 'wb'))
+
+print ('\n')
+print ('-------------- all_exp_events.dict dumped to data folder ------------------')
 

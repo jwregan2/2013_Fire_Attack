@@ -25,18 +25,18 @@ vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 victims = ['Victim_1', 'Victim_2', 'Victim_3', 'Victim_4', 'Victim_5']
 
 # ---------------------------------Plot Baseline Data With No Intervention----------------------------- 
-x = np.linspace(1,100,100)
-log = np.log(x)
+# x = np.linspace(1,100,100)
+# log = np.log(x)
 
-exp = np.exp(30)
-print (exp)
+# exp = np.exp(30)
+# print (exp)
 
-print(np.log(exp))
-exit()
+# print(np.log(exp))
+# exit()
 
-plt.plot(log, x)
-plt.show()
-exit()
+# plt.plot(log, x)
+# plt.show()
+# exit()
 
 
 # ---------------------------------Plot Baseline Data With No Intervention----------------------------- 
