@@ -24,20 +24,6 @@ vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 
 victims = ['Victim_1', 'Victim_2', 'Victim_3', 'Victim_4', 'Victim_5']
 
-# ---------------------------------Plot Baseline Data With No Intervention----------------------------- 
-# x = np.linspace(1,100,100)
-# log = np.log(x)
-
-# exp = np.exp(30)
-# print (exp)
-
-# print(np.log(exp))
-# exit()
-
-# plt.plot(log, x)
-# plt.show()
-# exit()
-
 
 # ---------------------------------Plot Baseline Data With No Intervention----------------------------- 
 
@@ -70,13 +56,6 @@ for vic in victims:
 
 	plt.ylim([0,3])
 	plt.axhline(1, color = 'black', lw = 2)
-
-	# if vic in ['Victim_1', 'Victim_3', 'Victim_4']:
-	# 	plt.ylim([0,3])
-	# elif vic == 'Victim_2':
-	# 	plt.ylim([0,.25])
-	# else:
-	# 	plt.ylim([0,.5])
 	plt.title(vic.replace('_', ' '), fontsize = 20)
 	plt.xlim([0,all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Attack Team Enters']/60])
 	plt.ylabel('Fractional Effective Dose', fontsize = 18)
@@ -90,8 +69,6 @@ for vic in victims:
 	plt.subplots_adjust(top= 0.75, bottom=0.15, right=0.62)
 	plt.savefig(output_location + vic + '.pdf')
 	plt.close('all')
-
-exit()
 
 # -----------------------Plot Average of FED Gas based on Vent to FD Intervention----------------------
 output_location = '../0_Images/Script_Figures/FED/FED_Avg_Gas/'

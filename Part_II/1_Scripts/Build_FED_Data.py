@@ -30,7 +30,7 @@ for exp in exp_des.index.values:
 	channels_to_skip[exp] = exp_des['Excluded Channels'][exp].split('|')
 
 #Read in pickle file for data
-all_exp_data = pickle.load( open( data_location + 'all_exp_data.dict', 'rb' ) )
+all_exp_data = pickle.load( open( data_location + 'all_exp_FED_data.dict', 'rb' ) )
 all_exp_events = pickle.load( open (events_location + 'all_exp_events.dict', 'rb'))
 
 output_location = '../2_Data/FED/'
