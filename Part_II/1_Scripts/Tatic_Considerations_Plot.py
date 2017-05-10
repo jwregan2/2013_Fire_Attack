@@ -20,7 +20,7 @@ output_location = '../0_Images/Script_Figures/Tactical_Considerations/'
 if not os.path.exists(output_location):
 	os.makedirs(output_location)
 
-all_exp_data = pickle.load(open(data_location + 'all_exp_data_origT.dict', 'rb'))
+all_exp_data = pickle.load(open(data_location + 'all_exp_data.dict', 'rb'))
 
 all_flow_data = pickle.load(open(data_location + 'all_flow_data.dict', 'rb'))
 
@@ -98,10 +98,15 @@ for exp in experiment:
 
 		axis_scale = Exp_Des['Y Scale Temperature'][exp]
 
+		if Exp_Des['Speed'][exp] == 'high':
+			mark = 100
+		if Exp_Des['Speed'][exp] == 'low':
+			mark = 5
+
 		for channel in sorted(channels[sensor], reverse=True):
 			if channel in channels_to_skip[exp]:
 				continue
-			ax1.plot(all_exp_data[exp][channel].index/60, all_exp_data[exp][channel], lw = 2, marker=next(plot_markers), markevery=5,
+			ax1.plot(all_exp_data[exp][channel].index/60, all_exp_data[exp][channel], lw = 2, marker=next(plot_markers), markevery=mark,
 						label = all_channels['Title'][channel])
 		
 		flow_data = all_flow_data[exp]['GPM'] 
