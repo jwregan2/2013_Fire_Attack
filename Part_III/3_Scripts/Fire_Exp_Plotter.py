@@ -40,8 +40,8 @@ channel_list = pd.read_csv(channel_location+'Channels_List.csv')
 channel_list = channel_list.set_index('Channel')
 
 # Create groups data by grouping channels for 'Chart'
-channel_groups = channel_list.groupby('Primary_Chart')
-# channel_groups = channel_list.groupby('Secondary_Chart')
+# channel_groups = channel_list.groupby('Primary_Chart')
+channel_groups = channel_list.groupby('Secondary_Chart')
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)

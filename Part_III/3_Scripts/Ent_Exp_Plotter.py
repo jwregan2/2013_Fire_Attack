@@ -157,7 +157,7 @@ for f in os.listdir(data_location):
                 # If statement to find velocity type in channels csv
 				if channel_list['Type'][channel] == 'BDP_Velocity':
 					Data_Time = Time
-					# Define cutoff and fs for filtering 
+					# Define cutoff and fs for filtering that
 					cutoff = 50
 					fs = 700
 					current_data = current_data - np.average(current_data[:90])
