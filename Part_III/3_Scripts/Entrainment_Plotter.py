@@ -11,7 +11,7 @@ from itertools import cycle
 
 data_location = '../0_Data/Ent_Experiment_Data/CSV/'
 event_location = '../1_Info/Ent/Events/'
-chart_location = '../2_Plots/CFM/'
+chart_location = '../2_Plots/Flow_Plots/'
 
 # info_file = '../Info/description_of_experiments_entrainment.csv'
 # plot_file = '../Info/description_of_charts.csv'
@@ -33,22 +33,22 @@ for f in os.listdir(data_location):
 			continue
 
 		# Read in experiment file
-		experiment = f
+		File_Name = f[:-4]
+
+		# Get experiment name from file
+		Test_Name = File_Name[:-5]
+		Exp_Num = Test_Name[11:]
 
 		# exp = experiment[11:-9]
-		Exp_Data = pd.read_csv(data_location + experiment)
+		Exp_Data = pd.read_csv(data_location + f)
 		data_copy = Exp_Data.drop('Elapsed Time', axis=1)
-		data_copy = data_copy.rolling(window=1, center=True).mean()
+		data_copy = data_copy.rolling(window=5, center=True).mean()
 		data_copy.insert(0, 'Elapsed Time', Exp_Data['Elapsed Time'])
 		data_copy = data_copy.dropna()
 		Exp_Data = data_copy
 
-		Exp_Events = pd.read_csv(event_location + experiment[:-9]+'_Events.csv')
+		Exp_Events = pd.read_csv(event_location+Test_Name+'_Events.csv')
 		Event_Time = [datetime.datetime.strptime(t, '%Y-%m-%d-%H:%M:%S') for t in Exp_Events['Time']]
-
-		# Get experiment name from file
-		Test_Name = experiment[:-4]
-		Exp_Num = Test_Name[4:-7]
 
 		# if Exp_Des['Test_Config'][Test_Name] == 'ignore':
 		# 	continue
@@ -84,22 +84,29 @@ for f in os.listdir(data_location):
 		CFM = CFM - zero_CFM
 		CFM_1 = CFM_1 - zero_CFM_1
 		CFM_3 = CFM_3 - zero_CFM_3
-		cfm_avgs = []
+		cfm_avgs = [0]
+		event_times_sec = []
+		# Grab hh:mm:ss from event file and calc avg CFM between events
 		for i in range(1,len(Exp_Events)):
-			pos2 = int(Exp_Events['Elapsed_Time'][i])
-			pos1 = int(Exp_Events['Elapsed_Time'][i-1])
+			pos2_hr, pos2_min, pos2_sec = Exp_Events['Elapsed_Time'][i].split(':')
+			pos1_hr, pos1_min, pos1_sec = Exp_Events['Elapsed_Time'][i-1].split(':')
+			pos2 = 3600*int(pos2_hr)+60*int(pos2_min)+int(pos2_sec)
+			pos1 = 3600*int(pos1_hr)+60*int(pos1_min)+int(pos1_sec)
 			cfm_avgs.append(np.mean(CFM[pos1:pos2]))
-		cfm_avgs = np.append(cfm_avgs,0)
-		Exp_Events['CFM_Avg'] = cfm_avgs
-		Exp_Events.to_csv('../Experimental_Data/'+ Test_Name + '_Events_CFM.csv')
+			event_times_sec.append(pos1)
+		event_times_sec.append(pos2)
+
+		# # save avg CFM to new event file
+		# Exp_Events['CFM_Avg'] = cfm_avgs
+		# Exp_Events.to_csv('../Experimental_Data/'+ Test_Name + '_Events_CFM.csv')
 		time = list(range(len(Exp_Data)))
 
 		fig = figure()
 		plt.plot(time,CFM,'r--',linewidth=1.5)
 		plt.plot(time,CFM_3,'b--',label='CFM Middle 3')
 		plt.plot(time,CFM_1,'r-.',label='CFM Middle')
-		for i in range(1,len(Exp_Data)):
-			plt.plot([Exp_Events['Elapsed_Time'][i-1],Exp_Events['Elapsed_Time'][i]],[cfm_avgs[i-1],cfm_avgs[i-1]],color='black',linewidth=2)
+		for i in range(1,len(Exp_Events)):
+			plt.plot([event_times_sec[i-1],event_times_sec[i]],[cfm_avgs[i],cfm_avgs[i]],color='black',linewidth=2)
 		ax1 = plt.gca()
 		handles1, labels1 = ax1.get_legend_handles_labels()
 		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
@@ -113,8 +120,8 @@ for f in os.listdir(data_location):
 			ax3.set_xlim(ax1_xlims)
 			# Remove NaN items from event timeline
 			events = Exp_Events['Event']
-			[plt.axvline(_x, color='0.50', lw=1) for _x in Exp_Events['Elapsed_Time']]
-			ax3.set_xticks(Exp_Events['Elapsed_Time'])
+			[plt.axvline(_x, color='0.50', lw=1) for _x in event_times_sec]
+			ax3.set_xticks(event_times_sec)
 			plt.setp(plt.xticks()[1], rotation=40)
 			ax3.set_xticklabels(events.values, fontsize=8, ha='left')
 			plt.xlim([0, End_Time])
