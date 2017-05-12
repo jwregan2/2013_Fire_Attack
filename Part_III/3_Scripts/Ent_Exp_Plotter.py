@@ -72,7 +72,8 @@ for f in os.listdir(data_location):
 		Exp_Num = Test_Name[:-5]
 
 		# Set output location for results
-		output_location = output_location_init + Test_Name + '/'
+		# output_location = output_location_init + Test_Name + '/'
+		output_location = output_location_init
 
 		# # If the folder exists delete it.
 		# if os.path.exists(output_location):
@@ -248,6 +249,6 @@ for f in os.listdir(data_location):
 			plt.legend(handles1, labels1, loc='upper left', fontsize=24, handlelength=3)
 
             # Save plot to file
-			plt.savefig(output_location + group + '.png')
+			plt.savefig(output_location+Exp_Num+'_'+group+'.pdf')
 			plt.close('all')
    
