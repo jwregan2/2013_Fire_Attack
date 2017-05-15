@@ -1,0 +1,10 @@
+Fig_Name,Bar_Groups,Event_Group_Ref,Stream,Pattern,Event_Label_Order,Experiments,Same_Events,Change Sign
+Experiments_1+2_hall_locations.pdf,Start Hall|Mid Hall|End Hall,Same,Straight Stream|Straight Stream|Narrow Fog|Narrow Fog,Fixed|WCW|Fixed|'O',Stream|Pattern|Group,Experiment_1|Experiment_2,True,False
+Experiment_3_hall_Locations.pdf,Start Hall|Mid Hall|End Hall,Same,Straight Stream|Straight Stream|Narrow Fog|Narrow Fog,Fixed|WCW|Fixed|'O',Stream|Pattern|Group,Experiment_3,True,False
+Experiment_4_three_targets_BR1_door.pdf,Max Angle|Mid Ceiling|Out Window,Same,Straight Stream|Straight Stream|Narrow Fog|Narrow Fog,Fixed|'O'|Fixed|'O',Stream|Pattern|Group,Experiment_4,True,False
+Experiment_4_sweeping_BR1_door.pdf,Room,Same,Straight Stream|Narrow Fog,Sweep|Sweep,Stream|Group|Pattern,Experiment_4,True,False
+Experiments_5+6_three_distances_from_window.pdf,At Window|6ft from Window|12ft from Window,At Window|6'|12',Straight Stream|Straight Stream|Narrow Fog|Narrow Fog,Fixed|'O'|Fixed|'O',Group|Stream|Pattern,Experiment_5|Experiment_6,True,True
+Experiments_8+9_10+11_max_angle.pdf,Max Angle Fixed|Max Angle Sweeping,Same,Straight Stream|Smooth Bore,None,Stream|Group,"Experiment_8,Experiment_9|Experiment_10,Experiment_11",False,True
+Experiments_8+9_10+11_whip.pdf,Whip,Same,Narrow Fog|Half Bale,None,Stream|Group,"Experiment_8,Experiment_9|Experiment_10,Experiment_11",False,True
+Experiments_12+13_24ft_48ft_from_window.pdf,24ft from Window|48ft from Window,24'|48',Straight Stream,Fixed,Group|Stream|Pattern,Experiment_12|Experiment_13,True,True
+Experiments_5+6_12+13_five_distances_from_window.pdf,At Window|6ft from Window|12ft from Window|24ft from Window|48ft from Window,At Window|6'|12'|24'|48',Straight Stream,Fixed,Group|Stream|Pattern,"Experiment_5,Experiment_6|Experiment_5,Experiment_6|Experiment_5,Experiment_6|Experiment_12,Experiment_13|Experiment_12,Experiment_13",False,False
