@@ -54,6 +54,8 @@ for index, row in info_df.iterrows():
 	nrows = len(event_group_labels)
 	bar_group_values = np.empty([nrows,ncols])
 
+	add_value = True
+
 	if row['Same_Events']:		# identical experiment files
 		i = 0
 		for group in event_group_labels:
@@ -140,7 +142,11 @@ for index, row in info_df.iterrows():
 						print('[ERROR]: INVALID ENTRY IN event_order')
 						sys.exit()
 
-				Test_Names = experiment_files[j] 	# loop through each experiment
+				if index == 8 and i > 2:
+					Test_Names = experiment_files[-1]
+				else:
+					Test_Names = experiment_files[j]
+
 				CFM_ls = []
 
 				for Test_Name in Test_Names.split(','):
@@ -155,12 +161,7 @@ for index, row in info_df.iterrows():
 					
 					print(Test_Name+' '+event_label)
 
-					try:
-						event_index = Exp_Events[Exp_Events['Event']==event_label].index.tolist()[0]
-					except(IndexError):
-						print('Event: '+event_label+' not found in '+Test_Name+' Event File')
-						add_value = False
-						continue
+					event_index = Exp_Events[Exp_Events['Event']==event_label].index.tolist()[0]
 
 					h, mm, ss = Exp_Events['Elapsed_Time'][event_index].split(':')
 					start_time = 3600*int(h)+60*int(mm)+int(ss)
@@ -188,15 +189,13 @@ for index, row in info_df.iterrows():
 					# Add cfm to list of data
 					CFM_ls.append(area*np.mean(Exp_Data_event[BDP_channels],axis=1))
 					print(np.mean(area*np.mean(Exp_Data_event[BDP_channels],axis=1)))
-					add_value = True
 
-				if add_value:
-					bar_group_values[i,j] = np.mean(CFM_ls)
-					j = j+1
-				else:
-					continue
+				bar_group_values[i,j] = np.mean(CFM_ls)
+				j = j+1
+
 			i = i+1
-		
+	
+	print()
 	# Fix specific group label
 	if event_group_labels[0] == 'Room':
 		event_group_labels[0] = 'Room Sweep'

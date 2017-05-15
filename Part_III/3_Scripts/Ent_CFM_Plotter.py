@@ -91,13 +91,13 @@ for f in os.listdir(data_location):
 			CFM = area*np.mean(Exp_Data[good_channels],axis=1)
 			zero_CFM = np.mean(CFM[0:end_zero_time])
 			CFM = CFM - zero_CFM
-			if len(good_channels) == len(channels):
-				CFM_1 = area*(Exp_Data[channels[2]])
-				CFM_3 = area*np.mean(Exp_Data[channels[1:4]],axis=1)
-				zero_CFM_1 = np.mean(CFM_1[0:end_zero_time])
-				zero_CFM_3 = np.mean(CFM_3[0:end_zero_time])
-				CFM_1 = CFM_1 - zero_CFM_1
-				CFM_3 = CFM_3 - zero_CFM_3
+			# if len(good_channels) == len(channels):
+			# 	CFM_1 = area*(Exp_Data[channels[2]])
+			# 	CFM_3 = area*np.mean(Exp_Data[channels[1:4]],axis=1)
+			# 	zero_CFM_1 = np.mean(CFM_1[0:end_zero_time])
+			# 	zero_CFM_3 = np.mean(CFM_3[0:end_zero_time])
+			# 	CFM_1 = CFM_1 - zero_CFM_1
+			# 	CFM_3 = CFM_3 - zero_CFM_3
 			cfm_avgs = [0]
 
 			# Calc avg CFM between events
@@ -117,9 +117,9 @@ for f in os.listdir(data_location):
 			plt.xticks(fontsize=16)
 			plt.yticks(fontsize=16)
 			plt.plot(time,CFM,'r--',lw=1.5, label='CFM All')
-			if len(good_channels) == len(channels):
-				plt.plot(time,CFM_3,'b--',lw=1.5, label='CFM Middle 3')
-				plt.plot(time,CFM_1,'r-.',lw=1.5, label='CFM Middle')
+			# if len(good_channels) == len(channels):
+			# 	plt.plot(time,CFM_3,'b--',lw=1.5, label='CFM Middle 3')
+			# 	plt.plot(time,CFM_1,'r-.',lw=1.5, label='CFM Middle')
 			
 			# plot avg lines between each event
 			for i in range(1,len(Exp_Events)):
