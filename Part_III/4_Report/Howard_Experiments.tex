@@ -15,6 +15,7 @@
 \usepackage{draftwatermark}
 \SetWatermarkText{DRAFT}
 \SetWatermarkScale{1}
+\usepackage{placeins}
 
 \begin{document}
 \pagenumbering{gobble}
@@ -413,31 +414,31 @@ Experiment 6 was a room and contents fire in the bedroom of the structure testin
 
 \paragraph{Effect of Vent Ahead of Hose Stream} \mbox{}
 
-Experiments~1--3 followed an identical sequence of events. During Experiments~1 and 2, the window in Bedroom~1 was opened. During Experiment~3, however, the Bedroom~1 window was closed, removing the vent opening ahead of the hose stream. Figs.~\ref{fig:Exps1_and_2_bar_graph} and \ref{fig:Exp3_bar_graph} contain bar graphs of the average flow in CFM through the hallway door during the different configurations tested for Experiments~1 and~2 and Experiment~3, respectively. Note, negative air flow is indicative of flow out of the structure through the hall doorway, and positive air flow is indicative of flow into the structure through the doorway.
-\\
-\begin{figure}[H]{}
+Experiments~1--3 followed an identical sequence of events. During Experiments~1 and 2, the window in Bedroom~1 was opened. During Experiment~3, however, the Bedroom~1 window was closed, removing the vent opening ahead of the hose stream. Figs.~\ref{fig:Exps1_and_2_bar_graph} and \ref{fig:Exp3_bar_graph} contain bar graphs of the average flow in CFM through the hallway door during the different configurations tested for Experiments~1 and~2 and Experiment~3, respectively. Note, negative CFM is indicative of flow down the hall and out the structure through the hall doorway, and positive CFM is indicative of flow in the opposite direction: into the structure through the hall doorway.
+
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\columnwidth]{../2_Plots/Ent_Experiment_Plots/Bar_Graphs/Experiments_1+2_hall_locations}
-	\caption{Average CFM at Hallway Door for Different Configurations during Experiments~1 and~2}
+	\caption{Average air flow in CFM through hall entrance doorway (positive values indicate flow through doorway and into the structure towards the bedroom) for the different configurations tested during Experiments~1 and~2.}
 	\label{fig:Exps1_and_2_bar_graph}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\columnwidth]{../2_Plots/Ent_Experiment_Plots/Bar_Graphs/Experiment_3_hall_locations}
-	\caption{Average CFM at Hallway Door for Different Configurations during Experiment~3}
+	\caption{Average air flow in CFM through hall entrance doorway (positive values indicate flow through doorway and into the structure towards the bedroom) for the different configurations tested during Experiment~3.}
 	\label{fig:Exp3_bar_graph}
 \end{figure}
 
-Looking at the two figures, it can be seen that a vent ahead of the hose stream can have a drastic effect on air movement in the structure. With no vent present, the amount of air flow out of the structure through the hall doorway increased significantly. This can be attributed to the fact that the hall doorway was the only vent opening present. When the bedroom window was opened, providing an additional vent, air flow through the hall doorway decreased because a second opening to relieve pressure was present. Furthermore, while applying a narrow fog in an `O' pattern at the start of the hallway and middle of the hallway, the average flow through the hall doorway is positive, meaning that the hose stream is causing air to be entrained through the doorway in the direction of towards the bedroom. 
+Looking at the two figures, it can be seen that a vent ahead of the hose stream can have a drastic effect on air movement in the structure. With no vent present, the amount of air flow out of the structure through the hall doorway increased significantly. This can be attributed to the fact that the hall doorway was the only vent opening present. When the bedroom window was opened, providing an additional vent, air flow through the hall doorway decreased because the second opening helped relieve pressure. Furthermore, while applying a narrow fog in an `O' pattern at the start of the hallway and middle of the hallway and a vent opened ahead (Fig.~\ref{fig:Exps1_and_2_bar_graph}), the average flow through the hall doorway is positive, meaning that the hose stream is causing air to be entrained through the doorway in the direction of towards the bedroom. [SENTENCE ABOUT POSITION IN HALL?]
 
-\clearpage
+\FloatBarrier
 
 \paragraph{Effect of Increasing Stream Length Flowing into Window} \mbox{}
 
-Between Experiments~5, 6, 12, and 13, a fixed straight stream was applied into the bedroom through the window at locations of at the window, 6~ft from the window, 12~ft from the window, 24~ft from the window, and 48~ft from the window. Fig.~\ref{fig:Exps5_6_12_and_13_bar_graph} contains a bar graph of the average flow of air through the hall door in CFM during the straight stream application at these distances. Note, positive CFM values are indicative of flow through the doorway and out the structure.
-\\
-\begin{figure}[H]
+Between Experiments~5, 6, 12, and 13, a fixed straight stream was applied into the bedroom through the window from the following locations: at the edge of the window, 6~ft from the window, 12~ft from the window, 24~ft from the window, and 48~ft from the window. Fig.~\ref{fig:Exps5_6_12_and_13_bar_graph} contains a bar graph of the average flow of air through the hall door in CFM during the straight stream application at these distances. In the provided figure, a positive CFM value is indicative of flow through the hall doorway and out the structure.
+
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\columnwidth]{../2_Plots/Ent_Experiment_Plots/Bar_Graphs/Experiments_5+6_12+13_five_distances_from_window}
 	\caption{Average CFM through hall door while applying straight stream into the bedroom through the window from locations of at the Window, 6~ft from the window, 12~ft from the window, 24~ft from the window, and 48~ft from the window.}
@@ -446,13 +447,35 @@ Between Experiments~5, 6, 12, and 13, a fixed straight stream was applied into t
 
 Overall, from Fig.~\ref{fig:Exps5_6_12_and_13_bar_graph}, it was observed that more distance between the nozzle and the window, the more air flow through the hall doorway. This occurs because as the length of the hose stream increases, the spread of water droplets at the end of the stream increases. 
 
-\clearpage
+\FloatBarrier
+
+\paragraph{Flow from Hallway into Bedroom} \mbox{}
+
+Experiment~4 involved flowing water in a straight stream and narrow fog stream from the end of the hallway into the bedroom. Fig.~\ref{fig:Exp4_three targets_bar_graph} compares the average CFM through entrance doorway to the hall for the two streams applied in a fixed manner and in an `O' pattern aimed at max angle, mid ceiling, and out the window. Fig.~\ref{fig:Exp4_sweeping_bar_graph} contains a similar bar graph comparing the average flow in CFM through the same doorway for a straight stream and narrow fog applied from the hallway into the bedroom in a sweeping pattern. For both figures, positive CFM values indicate flow from the exterior through the entrance doorway of the hall and towards the bedroom. [REFERENCE TO EXP DESCRIPTION]. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{../2_Plots/Ent_Experiment_Plots/Bar_Graphs/Experiment_4_three_targets_BR1_door}
+	\caption{Average air flow in CFM through hallway door (positive flow is into the structure through the doorway and down the hallway towards the bedroom) while applying a straight stream and narrow fog in a fixed position and an `O' pattern from the end of the hallway into the bedroom aimed at max angle, mid ceiling, and out the window.}
+	\label{fig:Exp4_three targets_bar_graph}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{../2_Plots/Ent_Experiment_Plots/Bar_Graphs/Experiment_4_sweeping_BR1_door}
+	\caption{Average air flow in CFM through hallway door (positive flow is into the structure through the doorway and down the hallway towards the bedroom) while applying a straight stream and narrow fog in a sweeping pattern from the end of the hallway into the bedroom.}
+	\label{fig:Exp4_sweeping_bar_graph}
+\end{figure}
+
+Figs.~\ref{fig:Exp4_three targets_bar_graph} and~\ref{fig:Exp4_sweeping_bar_graph} show that entrainment occurred through the hall doorway during the application of the straight stream in an `O' pattern and both applications of the narrow fog aimed out the window. Additionally, the narrow fog entrained significantly more air compared to the straight stream in an `O' pattern. This result is reasonable as the configuration simulates hydraulic ventilation described in [REFER TO EARLIER EXPLANATION]. Flowing water with the stream aimed at max angle and mid ceiling did not cause entrainment through the hallway entrance door for any of the hose stream and application pattern combinations. The only other hose stream and application pattern combination that caused air to flow from the exterior through the hall doorway towards the bedroom was the narrow fog in a sweeping pattern.
+
+\FloatBarrier
 
 \paragraph{Straight Stream and Smooth Bore Comparison} \mbox{}
 
 During Experiments~8 and~9, a combination nozzle set to straight stream was used to apply water through the bedroom window from the exterior of the structure at the `max angle' position with the hose stream fixed and with the sweeping pattern. During Experiments~10 and~11, a smooth bore nozzle with a 7/8~in tip was used to apply water in an identical manner. Fig.~\ref{fig:Exps8_9_10_and_11_bar_graph} contains a bar graph of the average air flow in CFM through the hallway door for each of the configurations. Note, positive flow is in the direction of through the doorway to the exterior of the structure. 
-\\
-\begin{figure}[H]
+
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\columnwidth]{../2_Plots/Ent_Experiment_Plots/Bar_Graphs/Experiments_8+9_10+11_max_angle}
 	\caption{Average air flow in CFM through hall door (positive flow is through the doorway to the exterior of the structure) while applying a straight stream and stream from a smooth bore nozzle into the bedroom through the window at the max angle position in a fixed position and sweeping pattern.}
@@ -462,15 +485,32 @@ During Experiments~8 and~9, a combination nozzle set to straight stream was used
 From Fig.~\ref{fig:Exps8_9_10_and_11_bar_graph}, the amount of air flow caused by the straight stream is indistinguishable (i.e., within the uncertainty bounds of) from the amount of air flow caused by the stream from the smooth bore nozzle.
 
 Additionally, during Experiments~8 and~9, a narrow fog was applied into the bedroom from the same position using the ``whip'' pattern. A stream from the smooth bore nozzle with the bale half opened was applied in an identical manner during Experiments~10 and~11. Looking at Fig.~\ref{fig:Exps8_9_10_and_11_whip_bar_graph}, which contains a bar graph of the average flow through the hall doorway in CFM for the two streams applied in the ``whip'' pattern, no noticeable differences between the amount of flow through the hallway door caused by the two configurations were observed.
-\\
-\begin{figure}[H]
+
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\columnwidth]{../2_Plots/Ent_Experiment_Plots/Bar_Graphs/Experiments_8+9_10+11_whip}
 	\caption{Average air flow in CFM through hall door (positive flow is through the doorway to the exterior of the structure) while applying a narrow fog and stream from a smooth bore nozzle with the bale opened half way into the bedroom through the window in the ``whip'' pattern.}
 	\label{fig:Exps8_9_10_and_11_whip_bar_graph}
 \end{figure}
 
-% \clearpage
+\FloatBarrier
+
+\paragraph{Straight Stream and Narrow Fog Comparison} \mbox{}
+
+In general, the narrow fog stream produced greater air flow through the hall entrance doorway than the straight stream for the different configurations. Referring back to Fig.~\ref{fig:Exps1_and_2_bar_graph}, air entrainment, or flow into the structure, occurred during Experiments~1 and~2 for only two configurations: the narrow fog applied in the `O' pattern at the start of the hallway and at the middle of the hallway. Comparing the average CFM value of the straight stream in the fixed position to the average CFM value of the narrow fog in the fixed position and the average CFM value of the straight stream being applied in a moving pattern (WCW) [INCLUDE APPLICATION PATTERN EXPLANATIONS IN EARLIER SECTION] to the average value of the narrow fog being applied in a moving pattern (`O'), the magnitude of the average CFM was always larger for the narrow fog stream, indicating that the narrow fog caused more air movement than the straight stream. [ANYTHING ABOUT EXPERIMENT 3 HERE?] 
+
+In addition to flowing a fixed straight stream through the bedroom window from the exterior of the structure at locations of at the window, 6~ft from the window, and 12~ft from the window, a straight stream in the `O' pattern, a narrow fog in the fixed pattern, and a narrow fog in the `O' pattern were also applied in a similar manner. Fig.~\ref{fig:Exps5_and_6_three_distances} contains a bar graph of the average air flow in CFM for each configuration tested during Experiments~5 and~6. In the provided figure, positive CFM values indicate air flow in the direction of down the hall through the hall entrance doorway and out to the exterior.  
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\columnwidth]{../2_Plots/Ent_Experiment_Plots/Bar_Graphs/Experiments_5+6_three_distances_from_window}
+	\caption{Average air flow in CFM through hall door (positive flow is through the doorway to the exterior of the structure) while applying a narrow fog and stream from a smooth bore nozzle with the bale opened half way into the bedroom through the window in the ``whip'' pattern.}
+	\label{fig:Exps5_and_6_three_distances}
+\end{figure}
+
+Comparing the average CFM values produced by the straight stream and narrow fog stream applied in the fixed position and in the `O' pattern, the average CFM of air flow produced by the narrow fog was always greater in magnitude compared to the corresponding CFM generated by the straight stream.
+
+\FloatBarrier
 
 % \begin{appendices}
 % \section*{Experimental Results} \label{App:Results}
