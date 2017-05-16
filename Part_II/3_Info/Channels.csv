@@ -187,3 +187,5 @@ Channel,Title,ScaleFactor_A,ScaleFactor_B,Offset,Transport_Time_A,Transport_Time
 7BDP3V,Front Door Middle,1,1,0,0,0,Front_Door_Flow,,Velocity
 7BDP2V,Front Door Bottom Middle,1,1,0,0,0,Front_Door_Flow,,Velocity
 7BDP1V,Front Door Bottom,1,1,0,0,0,Front_Door_Flow,,Velocity
+1PT1,Bedroom 2 Pressure 1 ft,4.96,4.96,-12.4,0,0,Bedroom_2_Pressure,,Pressure
+1PT7,Bedroom 2 Pressure 7 ft,4.96,4.96,-12.4,0,0,Bedroom_2_Pressure,,Pressure

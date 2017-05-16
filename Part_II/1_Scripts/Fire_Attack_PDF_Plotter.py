@@ -252,6 +252,19 @@ for f in os.listdir(data_location):
 					plt.ylabel('Gas Concentration (PPM)', fontsize = 32)
 					axis_scale = 'Y Scale Carbon Monoxide'
 
+				# If statement to find pressure type in channels csv
+				if channel_list['Type'][channel] == 'Pressure':
+					Data_Time = Time
+
+					# Set data to include slope and intercept
+					current_data = current_data * scale_factor + offset
+					current_data = current_data - np.average(current_data[0:60])
+
+					# Set y-label to degrees F with LaTeX syntax
+					plt.ylabel('Pressure (Pa)', fontsize = 16)
+					# Search for skin inside description of events file for scaling
+					axis_scale = 'Y Scale Pressure'
+
 				# Plot channel data or save channel data for later usage, depending on plot mode
 				plt.plot(Data_Time,
 					current_data,
