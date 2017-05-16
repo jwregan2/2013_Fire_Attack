@@ -209,7 +209,11 @@ for index, row in info_df.iterrows():
 
 	fig, ax = plt.subplots(figsize=(10, 9))
 	x_pos = list(range(len(event_group_labels)))
-	width=0.85*(1./ncols)
+	if ncols*nrows >= 4:
+		width=0.85*(1./ncols)
+	else:
+		width=0.65*(1./ncols)
+	
 	column_ID = 0
 	for stream in stream_ls:
 		if pattern_ls[0] != 'None':
