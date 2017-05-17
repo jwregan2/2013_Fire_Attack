@@ -1617,8 +1617,15 @@ Both temperature exposure and toxic gas exposure can be quantified though the us
 
 \begin{equation}
 	FED = \frac{\text{Dose received at time } t(Ct)}{\text{Effective } Ct \text{ dose to cause incapacitation or death}}
-	\label{FED_gas}
+	\label{FED_general}
 \end{equation} 
+
+The fractional from carbon monoxide exposure can be calculated as shown in equation \ref{FED_gas} \cite{SFPE:Purser}. The total FED is the integral over the time of exposure $t_1$ to $t_2$ of $3.17 \times  10^{-5}$ multiplied by $CO$, the carbon monoxide concentration in ppm, multiplied by $V$, the volume of air breathed per minute, all divided by $D$ the exposure dose of percent carboxyhemoglobin (COHb) for incapacitation, multiplied by the time step. For this analysis a value of $25~L/min$ was used for $V$, for a victim walking to escape, and a value of 30~\% (COHb) for $D$ for an incapacitating dose.
+
+\begin{equation}
+	FED = \int_{t_1}^{t_2}\left(\frac{3.17 \times 10^{-5} \left(CO\right)^{1.036} \left(V\right)}{D}\right) \Delta t
+	\label{FED_gas}
+\end{equation}
 
 Two methods exist for estimating the effective dose of heat energy received over time, one based on gas temperature and one based on the total heat flux. The method based on total energy flux is the integral from the start of exposure $t_1$ to the end of exposure $t_2$ of the exposure $q$ at time $t$ to the four thirds power, divided by $r$ the heat exposure dose for the endpoint of fatality, $16.7(\sfrac{kW}{m^2})^{\sfrac{4}{3}}$, all multiplied by the exposure time step $\Delta t$ in minutes. \cite{SFPE:Purser}
 
@@ -1632,7 +1639,7 @@ The method based on gas temperature as show in equation \ref{GasTemp_FED} is the
 	FED = \int_{t_1}^{t_2} \left( \num{2e18} \times T^{-9.0403} + \num{e8} \times T^{-3.10898} \right) \Delta t
 \end{equation}
 
-To determine survivability and tenability a package of sensors were utilized to simulate victims at five different locations within the structure as illistrated in figure \ref{fig:vic_loc}. Victim 1 was located at the end of the hall outside the fire room(s); Victim 2 was located on the bed in Bedroom 3 where the bedroom door was closed; Victim 3 was located on the bed in Bedroom 4 where the bedroom door was open; Victim 4 was located in the Livingroom near the entrance to the hall; and Victim 5 was located as remote from the fire room(s) as possible in the back right corner of the Diningroom. Each location included an array of thermocouples at 1~ft, 3~ft, 5~ft and 7~ft above the floor and schmidt-bloter total heat flux gauge oriented such that the view range of the gauge was directed vertically at 1~ft above the floor. Additionally Victims 1-4 had a gas measurement point analyzing carbon monoxide (CO), carbon dioxide (CO$_{2}$) and oxygen (O$_{2}$) located 1~ft above the floor. Figure XX shows an example of the sensors used. 
+To determine survivability and tenability a package of sensors were utilized to simulate victims at five different locations within the structure as illustrated in figure \ref{fig:vic_loc}. Victim 1 was located at the end of the hall outside the fire room(s); Victim 2 was located on the bed in Bedroom 3 where the bedroom door was closed; Victim 3 was located on the bed in Bedroom 4 where the bedroom door was open; Victim 4 was located in the Living room near the entrance to the hall; and Victim 5 was located as remote from the fire room(s) as possible in the back right corner of the Dining room. Each location included an array of thermocouples at 1~ft, 3~ft, 5~ft and 7~ft above the floor and schmidt-bloter total heat flux gauge oriented such that the view range of the gauge was directed vertically at 1~ft above the floor. Additionally Victims 1-4 had a gas measurement point analyzing carbon monoxide (CO), carbon dioxide (CO$_{2}$) and oxygen (O$_{2}$) located 1~ft above the floor. Figure XX shows an example of the sensors used. 
 
 \begin{figure}[H]
 	\centering
@@ -1641,7 +1648,7 @@ To determine survivability and tenability a package of sensors were utilized to 
 	\label{fig:vic_loc}
 \end{figure}
 
-The CO, CO$_{2}$, and O$_{2}$ values from the gas analyzers were utilized in equation \ref{FED_gas} to determine the fraction of dose required for untenability. A value of 1 represents untenabile and a value of 3 represents a potentially fatal dose. The gas temperature recorded via the 1~ft thermocouple was used in equation \ref{GasTemp_FED} to determine the fraction of a fatal dose recieved via convective heat transfer, where a value of 1 is equivilant to a fatal dose in 50~\% of the population. The total heat flux recorded at the  schmidt-bolter heat flux gauge was used in equation \ref{TotalFlux_FED} to determine the fraction of a fatal does recieved via both convective and radiative heat transfer, where a value of 1 is equivilant to a fatal dose in 50~\% of the population, .  
+The CO, CO$_{2}$, and O$_{2}$ values from the gas analyzers were utilized in equation \ref{FED_gas} to determine the fraction of dose required for untenability. A value of 1 represents untenable and a value of 3 represents a potentially fatal dose. The gas temperature recorded via the 1~ft thermocouple was used in equation \ref{GasTemp_FED} to determine the fraction of a fatal dose received via convective heat transfer, where a value of 1 is equivalent to a fatal dose in 50~\% of the population. The total heat flux recorded at the  schmidt-bolter heat flux gauge was used in equation \ref{TotalFlux_FED} to determine the fraction of a fatal does received via both convective and radiative heat transfer, where a value of 1 is equivalent to a fatal dose in 50~\% of the population, .  
 
 This section will analyze the experiments conducted for survivability of the five victim locations shown in  based on temperature an tenability based on gas concentrations in the period prior to fire department arrival and then as they relate to the possible fire suppression tactics. 
 
@@ -1650,7 +1657,7 @@ To examine the potential survivability and tenability prior to fire department i
 
 \subsubsection{No Ventilation}
 
-Figure \ref{fig:Vent_Profile-No_Vent} represents the no ventilation configuration where all exterior windows/doors were closed. The fire was located in bedroom 1 and fire department intervention occured at 6~minutes and 58~seconds, after the fire reached a ventilation limited state . 
+Figure \ref{fig:Vent_Profile-No_Vent} represents the no ventilation configuration where all exterior windows/doors were closed. The fire was located in bedroom 1 and fire department intervention occurred at 6~minutes and 58~seconds, after the fire reached a ventilation limited state . 
 
 \begin{figure}[H]
 	\centering
@@ -1659,24 +1666,24 @@ Figure \ref{fig:Vent_Profile-No_Vent} represents the no ventilation configuratio
 	\label{fig:Vent_Profile-No_Vent}
 \end{figure}
 
- Figure \ref{fig:FED_NoVent} illistrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corispoinding to the victim location. 
+ Figure \ref{fig:FED_NoVent} illistrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corresponding to the victim location. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/No_Vent}
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/No_Vent} 
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/No_Vent}
-	\caption[No Vent Fractional Effective Dose]{No Ventilation Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concnetration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\caption[No Vent Fractional Effective Dose]{No Ventilation Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concentration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
 	\label{fig:FED_NoVent}
 \end{figure}
 
-With regards to the toxic gases both survivability and tenability are related to the elevaction in the space, along with the proximity to the fire. Victim 3 located on the bed in the open bedroom, once the smoke layer reached the victim the FED increased rapidly, excceding an FED of 3 between 5~min 30~sec and 6~min 30~sec. The smoke took significantly longer to reach Victims located at the floor level, resulting in a lower FED at the time of fire department arrival. Victim 4 being more remote to the fire shows a higher FED than victim 1 near the fire as the flowpath carried the smoke to the floor level in the remote locations first as the ambient air was drawn back to the fire keeping Victim 1 in the ambient air longer. 
+With regards to the toxic gases both survivability and tenability are related to the elevation in the space, along with the proximity to the fire. Victim 3 located on the bed in the open bedroom, once the smoke layer reached the victim the FED increased rapidly, exceeding an FED of 3 between 5~min 30~sec and 6~min 30~sec. The smoke took significantly longer to reach Victims located at the floor level, resulting in a lower FED at the time of fire department arrival. Victim 4 being more remote to the fire shows a higher FED than victim 1 near the fire as the flow path carried the smoke to the floor level in the remote locations first as the ambient air was drawn back to the fire keeping Victim 1 in the ambient air longer. 
 
-The survivability in terms of heat energy is driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows almost no increase prior to fire department arrival. When both radiatitive and convective heat transfer are examined, all of the victim locations are below the threshold for fatality in 50~\% of the population. Victim 1, was shown to have the highest FED value due to the proximity of the fire followed by the victim 3 location which is within the hot gas layer. For the remainder of the locations FED was driven by the proximity to the fire where victim 4 was closer than victim 5. The effectivness of a closed bedrom door is illistrated by the victim 2 location value being the lowest. 
+The survivability in terms of heat energy is driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows almost no increase prior to fire department arrival. When both radiative and convective heat transfer are examined, all of the victim locations are below the threshold for fatality in 50~\% of the population. Victim 1, was shown to have the highest FED value due to the proximity of the fire followed by the victim 3 location which is within the hot gas layer. For the remainder of the locations FED was driven by the proximity to the fire where victim 4 was closer than victim 5. The effectiveness of a closed bedroom door is illustrated by the victim 2 location value being the lowest. 
 
-\subsubsection{Sigle Window Vent}
+\subsubsection{Single Window Vent}
 
-Figure \ref{fig:Vent_Profile-Single_Vent} represents the ventilation configuration where all exterior windows/doors were closed with the exception of the bedroom 1 window. The fire was located in bedroom 1 and fire department intervention occured  at 5~minutes and 26~seconds, after the fire reached a flashover. 
+Figure \ref{fig:Vent_Profile-Single_Vent} represents the ventilation configuration where all exterior windows/doors were closed with the exception of the bedroom 1 window. The fire was located in bedroom 1 and fire department intervention occurred  at 5~minutes and 26~seconds, after the fire reached a flashover. 
 
 \begin{figure}[H]
 	\centering
@@ -1685,24 +1692,24 @@ Figure \ref{fig:Vent_Profile-Single_Vent} represents the ventilation configurati
 	\label{fig:Vent_Profile-Single_Vent}
 \end{figure}
 
-Figure \ref{fig:FED_SingleVent} illistrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corispoinding to the victim location. 
+Figure \ref{fig:FED_SingleVent} illustrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corresponding to the victim location. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/Single_Vent}
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/Single_Vent} 
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/Single_Vent}
-	\caption[Single Window Vent Fractional Effective Dose]{Single Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concnetration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\caption[Single Window Vent Fractional Effective Dose]{Single Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concentration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
 	\label{fig:FED_SingleVent}
 \end{figure}
 
-The fire deparment intervention was preformed in just over 5~minutes limiting the time available for the gases too reach the victim locations. This resulted in an FED from toxic gases at the time of intervention which indicates a tenable and survivable space at each location. The FED at the victim 3 location began to increase just before intervention, indicating the time to untenablility and fatalatiy is approaching. 
+The fire department intervention was preformed in just over 5~minutes limiting the time available for the gases too reach the victim locations. This resulted in an FED from toxic gases at the time of intervention which indicates a tenable and survivable space at each location. The FED at the victim 3 location began to increase just before intervention, indicating the time to untenability and fatality is approaching. 
 
-The survivability in terms of heat energy was also less due to the decreased durratoin of exposure. It was driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows almost no increase prior to fire department intervention. When both radiatitive and convective heat transfer are examined, all of the victim locations are below the threshold for fatality in 50~\% of the population. The victim 1 location, had the highest FED value due to the proximity of the fire however the other four locations show almost no FED. 
+The survivability in terms of heat energy was also less due to the decreased duration of exposure. It was driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows almost no increase prior to fire department intervention. When both radiative and convective heat transfer are examined, all of the victim locations are below the threshold for fatality in 50~\% of the population. The victim 1 location, had the highest FED value due to the proximity of the fire however the other four locations show almost no FED. 
 
 \subsubsection{Two Window Vents, Two Rooms of Fire}
 
-Figure \ref{fig:Vent_Profile-Two_Vent} represents the ventilation configuration where all exterior windows/doors were closed with the exception of the bedrom 1 and bedroom 2 windows. The fire was located in both bedroom 1 and bedroom 2. Fire department intervention occured at 5~minutes and 24~seconds, after the fire reached a flashover. 
+Figure \ref{fig:Vent_Profile-Two_Vent} represents the ventilation configuration where all exterior windows/doors were closed with the exception of the bedroom 1 and bedroom 2 windows. The fire was located in both bedroom 1 and bedroom 2. Fire department intervention occurred at 5~minutes and 24~seconds, after the fire reached a flashover. 
 
 \begin{figure}[H]
 	\centering
@@ -1711,29 +1718,29 @@ Figure \ref{fig:Vent_Profile-Two_Vent} represents the ventilation configuration 
 	\label{fig:Vent_Profile-Two_Vent}
 \end{figure}
 
-Figure \ref{fig:FED_TwoVent} illistrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corispoinding to the victim location. 
+Figure \ref{fig:FED_TwoVent} illustrates the average fractional effective dose over time at each of the victim locations relative to toxic gases, convective heat transfer and both radiative and convective heat transfer. The shaded areas represent +/- one standard deviation from the average value with the shaded color corresponding to the victim location. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/Two_Vent}
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/Two_Vent} 
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/Two_Vent}
-	\caption[Two Window Vent Fractional Effective Dose]{Two Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concnetration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\caption[Two Window Vent Fractional Effective Dose]{Two Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concentration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
 	\label{fig:FED_TwoVent}
 \end{figure}
 
-The tenibility and survivability based on toxic gas was again driven by the elevtaiton in the space. With two rooms of fire and two ventilation openings the victim 3 location on the bed in the open bedroom exceeded a FED of 3 in just under 5~minutes. The smoke took longer to reach the 1~ft level, thus all other victim locations show almost no increase in FED at fire departmetn intervention.
+The tenability and survivability based on toxic gas was again driven by the elevation in the space. With two rooms of fire and two ventilation openings the victim 3 location on the bed in the open bedroom exceeded a FED of 3 in just under 5~minutes. The smoke took longer to reach the 1~ft level, thus all other victim locations show almost no increase in FED at fire department intervention.
 
-The survivability in terms of heat energy was driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows a fatal dose of energy in just over three minutes at the victim 1 location and no increase prior to fire department intervention at the remainder of the 4 victim locations. When both radiatitive and convective heat transfer are examined, the victim 1 location recieves a fatal dose in just under 3~minutes 30~seconds. After that point the FED is driven by the elevation in the space with locations in the hot gas layer recieving more FED than those at the floor. After the 5~minute mark all victim locations are recieving a thermal FED with the exception of the victim 2 location behind the closed door.  
+The survivability in terms of heat energy was driven more by the radiative energy transfer than the convective. The FED based strictly on convective transfer shows a fatal dose of energy in just over three minutes at the victim 1 location and no increase prior to fire department intervention at the remainder of the 4 victim locations. When both radiative and convective heat transfer are examined, the victim 1 location receives a fatal dose in just under 3~minutes 30~seconds. After that point the FED is driven by the elevation in the space with locations in the hot gas layer receiving more FED than those at the floor. After the 5~minute mark all victim locations are receiving a thermal FED with the exception of the victim 2 location behind the closed door.  
 
 \subsubsection{FED Ventilation Comparison}
-When comparing the FED for the three ventilation cases it is important to consider both the size of the fire and the timing. Although it may appear initially the case with no ventilation resulted in higher FED values, however that is because it involved a greater duration. Three experiments were conducted with delayed water appliation to determine evaluate the effect of delayed water. 
+When comparing the FED for the three ventilation cases it is important to consider both the size of the fire and the timing. Although it may appear initially the case with no ventilation resulted in higher FED values, however that is because it involved a greater duration. Three experiments were conducted with delayed water application to determine evaluate the effect of delayed water. 
 
-A comparison of the FED for each vicim location is shown in Figure \ref{fig:FED_Base} where a FED of 1.0 for the thermal values of convective and total flux represents the lethal concentration for 50~\% of the population (LC50) and  a FED of 1.0 for the toxic gases represents a untenible condition where occupants would not be able to self rescue. 
+A comparison of the FED for each victim location is shown in Figure \ref{fig:FED_Base} where a FED of 1.0 for the thermal values of convective and total flux represents the lethal concentration for 50~\% of the population (LC50) and  a FED of 1.0 for the toxic gases represents a untenable condition where occupants would not be able to self rescue. 
 
 Experiment 1 had no ventilation, see figure \ref{fig:FED_NoVent} for the ventilation profile. The front door was opened at 8~minutes 17~seconds. Experiment 12 had the bedroom 2 window open, see figure \ref{fig:FED_SingleVent} for the the ventilation profile. The front door was opened at 5~minutes and 57~seconds. Experiment 17 had two rooms a fire in bedroom 1 and bedroom 2 with both bedroom windows open, see figure \ref{fig:FED_TwoVent} for the ventilation profile. The front door was opened at 5~minutes and 27~seconds. 
 
-The 'Total Flux' value refers to the FED calculated from equation \ref{TotalFlux_FED}, the 'Convective' value refers to the FED calculated from equation \ref{GasTemp_FED} and the 'Toxic Gas' value refers to the FED calcualted from equation \ref{GasTemp_FED}.
+The 'Total Flux' value refers to the FED calculated from equation \ref{TotalFlux_FED}, the 'Convective' value refers to the FED calculated from equation \ref{GasTemp_FED} and the 'Toxic Gas' value refers to the FED calculated from equation \ref{GasTemp_FED}.
 
 \begin{figure}[H]
 	\centering
@@ -1742,11 +1749,11 @@ The 'Total Flux' value refers to the FED calculated from equation \ref{TotalFlux
 	\includegraphics[width=0.4\textwidth]{../0_Images/Script_Figures/FED/FED_Base/Victim_3}
 	\includegraphics[width=0.4\textwidth]{../0_Images/Script_Figures/FED/FED_Base/Victim_4}
 	\includegraphics[width=0.4\textwidth]{../0_Images/Script_Figures/FED/FED_Base/Victim_5}
-	\caption[Ventilation Comparison - FED]{Ventilation Comparison - Fractional Effective Dose. Upper left is victim 1, upper right is victim 2. Middle left is victim 3, middle right is victim 4. Lower center is victim 5. A FED of 1.0 for thermal values is the LC50 for thermal exposure. A FED of 1.0 for toxic gasses represents untenibile conditions.}
+	\caption[Ventilation Comparison - FED]{Ventilation Comparison - Fractional Effective Dose. Upper left is victim 1, upper right is victim 2. Middle left is victim 3, middle right is victim 4. Lower center is victim 5. A FED of 1.0 for thermal values is the LC50 for thermal exposure. A FED of 1.0 for toxic gases represents untenabile conditions.}
 	\label{fig:FED_Base}
 \end{figure}
 
-The victim location 1 shows that the in the two vent case the thermal hazard is the most significant, for the no vent case it is the toxic gases. In the victim 2 case, being behind the closed door provides a survivable and tenable atmosphere. At the victim 3 location the driving hazard is the toxic gases which accumulate first for the two room fire, followed by the no vent case and lastly by th event case. In all instances the toxic gases exceed a FED of 3.0 by just over 8~minutes. The Victim 4 location is far enough from the fire thermal hazards are not as significant however toxic gases are a hazard. Once the door gets opened at 5~minutes and 27~seconds in the two vent case, and 8~minutes and 17~seconds in the no vent case, the ambien air slows the increas of FED. No toxic gas values were availble at victim 5 however the values were below the LC50 for thermal hazards. 
+The victim location 1 shows that the in the two vent case the thermal hazard is the most significant, for the no vent case it is the toxic gases. In the victim 2 case, being behind the closed door provides a survivable and tenable atmosphere. At the victim 3 location the driving hazard is the toxic gases which accumulate first for the two room fire, followed by the no vent case and lastly by th event case. In all instances the toxic gases exceed a FED of 3.0 by just over 8~minutes. The Victim 4 location is far enough from the fire thermal hazards are not as significant however toxic gases are a hazard. Once the door gets opened at 5~minutes and 27~seconds in the two vent case, and 8~minutes and 17~seconds in the no vent case, the ambient air slows the increase of FED. No toxic gas values were available at victim 5 however the values were below the LC50 for thermal hazards. 
 
 \clearpage
 
@@ -1777,7 +1784,7 @@ How does the ventilation and number of rooms of fire effect the ability of the t
 Can you create pressure, thus moving ``Products of Combustion''.
 
 \subsection{Interior}
-This section will evauate the impact of different advancement types during an interior attack on the safety of fire suppresision personel.  
+This section will evaluate the impact of different advancement types during an interior attack on the safety of fire suppression personnel.  
 
 	\subsubsection{Impact of Advancement Type on Pressure Created}
 
@@ -1803,12 +1810,22 @@ This section will evauate the impact of different advancement types during an in
 
 \normalfont
 
-\section{Comparison of Interior Tactics}
+\section{Flowing While Moving vs. Shutting Down to Move}
+The were two methods of approach to the fire. The first titled `flow and move' involved flowing the hose line while moving down the hallway towards the fire room. The second titled `shutdown and move' involved flowing the nozzle from a fixed position, shutting it down, moving up to the next position, flowing again, shutting it down and moving to the next position until the crew reached the fire room. This section will compare these two tactics as they relate to temperatures in the approach path and temperatures in the fire room for the three ventilation cases tested. 
 
-\subsection{Flowing While Moving vs. Shutting Down to Move}
+\subsection{Single Bedroom Fire - No Ventilation}
+In the single room fires with no ventilation the two approach tactics were utilized. Figure \ref{fig:Vent_Profile-No_Vent} represents the no ventilation configuration where all exterior windows/doors were closed. Figure 
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.45\textwidth]{}
+% \includegraphics[width=0.45\textwidth]{}
+% \caption{}
+% \label{}
+% \end{figure}
 
 \section{Impact of Water Usage}
-The amount of water used during each suppression tactic was measured from the start of the experiment until the fire was extinsuished. Some hot spots remained, however no visiable flame or smoldering existed. Figure \ref{fig:water_flow_all} illistrates the water used in all experiments. The average water used varried from as little as 30.6 gallons in a single room exterior attack to as much as 257.2 gallons in a two room interior attack.
+The amount of water used during each suppression tactic was measured from the start of the experiment until the fire was extinguished. Some hot spots remained, however no visible flame or smoldering existed. Figure \ref{fig:water_flow_all} illustrates the water used in all experiments. The average water used varied from as little as 30.6 gallons in a single room exterior attack to as much as 257.2 gallons in a two room interior attack.
 
 \begin{figure}[H]
 \centering
@@ -1826,11 +1843,11 @@ In the single room interior attacks the water usage did not vary with additional
 \includegraphics[width=0.45\textwidth]{../0_Images/Script_Figures/Water_Flow/Two_Vent_Interior}
 \includegraphics[width=0.45\textwidth]{../0_Images/Script_Figures/Water_Flow/Single_Vent_Exterior}
 \includegraphics[width=0.45\textwidth]{../0_Images/Script_Figures/Water_Flow/Two_Vent_Exterior}
-\caption[Water Usage vs. Ventiltation]{Water Usage During suppression. Upper left is no vetilation configuration interior attack, upper right is a single bedroom window open with a single room of fire interior attack, middle left is two bedroom open windows with two rooms of fire interior attack, middle right is a single bedroom window open with a single room of fire exterior attack, bottom center is two bedroom windows open with two rooms of fire exteior attack}
+\caption[Water Usage vs. Ventilation]{Water Usage During suppression. Upper left is no ventilation configuration interior attack, upper right is a single bedroom window open with a single room of fire interior attack, middle left is two bedroom open windows with two rooms of fire interior attack, middle right is a single bedroom window open with a single room of fire exterior attack, bottom center is two bedroom windows open with two rooms of fire exterior attack}
 \label{fig:water_flow_vent_compare}
 \end{figure}
 
-The interior suppression tactics utilized some water for cooling the approach so to the fire. To provide a direction comparison Figure \ref{fig:Door_vs_window} shows the comparison of the amount of water used on a single room fire from both the window and the door. The door values ar adjusted to remove the water used for the cooling during the approach which did not contribute to suppresion. For the doorway, the total flow was calcuated from the point the crew was capable of directing water into the fire room until the completion of the experiment. For the window, the crew did not utilize water while approaching the fire thus all water usage was accounted for. In order to provide an accurate comparison only single room fires with a open window were utilize. Additionally the point where water was capable of entering the room during a flow and move approach was not posible thus only shutdown and move approaches were utilized.
+The interior suppression tactics utilized some water for cooling the approach so to the fire. To provide a direction comparison Figure \ref{fig:Door_vs_window} shows the comparison of the amount of water used on a single room fire from both the window and the door. The door values are adjusted to remove the water used for the cooling during the approach which did not contribute to suppression. For the doorway, the total flow was calculated from the point the crew was capable of directing water into the fire room until the completion of the experiment. For the window, the crew did not utilize water while approaching the fire thus all water usage was accounted for. In order to provide an accurate comparison only single room fires with a open window were utilize. Additionally the point where water was capable of entering the room during a flow and move approach was not posible thus only shutdown and move approaches were utilized.
 
 \begin{figure}[H]
 \centering
@@ -1839,7 +1856,7 @@ The interior suppression tactics utilized some water for cooling the approach so
 \label{fig:Door_vs_window}
 \end{figure}
 
-As expected, adjusting the interior tactic water useage as described above results in an average usage of 51.7 gallons for the window and 59.6 gallons in the doorway. When taking into account the accurancy of the measurement device thses two values can be considered the same.  
+As expected, adjusting the interior tactic water usage as described above results in an average usage of 51.7 gallons for the window and 59.6 gallons in the doorway. When taking into account the accuracy of the measurement device theses two values can be considered the same.  
 
 % The main variations in interior attack methods are the nozzle used and the approach tactic. The nozzle varried between a combination nozzle and a smooth bore nozzle. The approach methods varried betweeen moving down the hallways while flowing the nozzle (flow and move) and flowing the nozzle from a fixed position, shutting it down and moving up to the next position where the line was again opened and flowed from that position (shutdown and move). Figure \ref{fig:Flow_vs_Shutdown_Smooth_Combo} shows the flow and move vs. the shutdown and move for the different nozzles. No appreciable difference is seen between the nozzle choices however less water is used in the shutdown and move case.
 
