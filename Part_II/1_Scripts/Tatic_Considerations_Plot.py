@@ -15,7 +15,7 @@ import matplotlib.transforms as mtransforms
 
 data_location = '../2_Data/'
 info_location = '../3_Info/'
-output_location = '../0_Images/Script_Figures/Tactical_Considerations/Bedroom_1/'
+output_location = '../0_Images/Script_Figures/Tactical_Considerations/Flow_vs_Shutdown/'
 
 if not os.path.exists(output_location):
 	os.makedirs(output_location)
@@ -136,5 +136,8 @@ for exp in experiment:
 		h2, l2 = ax2.get_legend_handles_labels()
 		ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=24, handlelength=3)
 
-		plt.savefig(output_location + exp[:-5] + ' ' + sensor +'.pdf')
+		if not os.path.exists(output_location +  exp[:-5] + '/'):
+			os.makedirs(output_location +  exp[:-5] + '/')
+
+		plt.savefig(output_location +  exp[:-5] + '/' + sensor +'.pdf')
 		plt.close('all')
