@@ -74,7 +74,7 @@ event_row_nums = [5,5,5,2]
 # 	comparison set (i.e., each array in comparison_sets)
 sensor_groups = np.array([ ['End_Hall_Temps','Middle_Hall_Temps','Victim_1_Temps','Victim_3_Temps'],
 						   ['End_Hall_Temps','Middle_Hall_Temps','Victim_1_Temps'], 
-						   ['End_Hall_Temps','Middle_Hall_Temps','Start of Hall','Victim_1_Temps','Victim_3_Temps'],
+						   ['End_Hall_Temps','Middle_Hall_Temps','Start_Hall_Temps','Victim_1_Temps','Victim_3_Temps'],
 						   ['Bedroom_1_Temps'] ])
 
 # Loop through experiments in each comparison set
@@ -115,7 +115,10 @@ for Exp_Set in comparison_sets:
 			#Set time to elapsed time column in experimental data.
 			Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
 			mark_freq = 15
-			extinguish_index = Exp_Data[Exp_Data['Elapsed Time']==extinguish_time].index.tolist()[0]
+			try:
+				extinguish_index = Exp_Data[Exp_Data['Elapsed Time']==extinguish_time].index.tolist()[0]
+			except IndexError:
+				extinguish_index = Exp_Data[Exp_Data['Elapsed Time']=='0'+extinguish_time].index.tolist()[0]
 			nth_row = 1
 		elif Speed == 'high':
 			#Set time to elapsed time column in experimental data.
@@ -183,7 +186,7 @@ for Exp_Set in comparison_sets:
 
 	knock_back_time_df = knock_back_time_df.set_index('Sensor Group')
 	print(knock_back_time_df)
-	exit()
+	print()
 	set_num = set_num+1
 
 	# # Begin plotting
