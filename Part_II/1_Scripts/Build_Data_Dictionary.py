@@ -198,10 +198,12 @@ for exp in exp_des.index.values:
 
 	if exp_des['Speed'][exp] == 'high':
 		time = time[::20]
+		all_exp_FED_data[exp] = all_exp_FED_data[exp][::20]
 
 	if exp_des['Speed'][exp] == 'low':
 		if exp_des['House'][exp] == 'a':
 			time = time[::2]
+			all_exp_FED_data[exp] = all_exp_FED_data[exp][::2]
 
 	if time[0] % 2 != 0:
 		time[0] = time[0]-1
@@ -215,7 +217,7 @@ for exp in exp_des.index.values:
 		add_time = np.arange(new_time[-1]+2, new_time[-1]+(len(all_exp_FED_data[exp].index)-len(new_time)+2)*2,2)
 		new_time = np.append(new_time, add_time)
 
-	all_exp_FED_data[exp]['Time'] = new_time[:len(data.index)]
+	all_exp_FED_data[exp]['Time'] = new_time[:len(all_exp_FED_data[exp].index)]
 
 	all_exp_FED_data[exp].set_index('Time', inplace=True)
 

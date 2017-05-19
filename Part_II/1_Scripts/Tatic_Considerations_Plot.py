@@ -39,7 +39,7 @@ print ('---------------------------------Plot Flow & Move vs. Shutdown and Move 
 
 experiments = {'No':['Experiment_2_Data', 'Experiment_6_Data'], 'Single':['Experiment_7_Data', 'Experiment_8_Data'], 'Two':['Experiment_13_Data','Experiment_14_Data']}
 
-experiment = ['Experiment_2_Data', 'Experiment_6_Data','Experiment_7_Data', 'Experiment_8_Data', 'Experiment_13_Data','Experiment_14_Data']
+experiment = ['Experiment_3_Data', 'Experiment_2_Data', 'Experiment_6_Data','Experiment_7_Data', 'Experiment_8_Data', 'Experiment_13_Data','Experiment_14_Data']
 
 channels = {'End_Hall':['3TC7','3TC6','3TC5','3TC4','3TC3','3TC2','3TC1'], 
 			'Mid_Hall':['4TC1','4TC2','4TC3','4TC4','4TC5','4TC6','4TC7'],
@@ -65,7 +65,7 @@ for exp in experiment:
 		#Create figure
 		fig = plt.figure()
 		
-		plt.style.use('ggplot')
+		# plt.style.use('ggplot')
 
 		# Define 20 color pallet using RGB values
 		tableau20 = [(255, 127, 14), (255, 187, 120), 
@@ -88,16 +88,16 @@ for exp in experiment:
 		ax1_xlims = ax1.axis()[0:2]
 		plt.ylim([0, Exp_Des['Y Scale Temperature'][exp]])
 		plt.grid(True)
-		plt.xlabel('Time (min)', fontsize=32)
-		plt.xticks(fontsize=28)
-		plt.yticks(fontsize=28)
-		plt.ylabel('Temperature ($^\circ$F)', fontsize = 32)
+		plt.xlabel('Time (min)', fontsize=48)
+		plt.xticks(fontsize=44)
+		plt.yticks(fontsize=44)
+		plt.ylabel('Temperature ($^\circ$F)', fontsize = 48)
 
 		ax2 = ax1.twinx()
-		ax2.plot(all_flow_data[exp].index.values/60, all_flow_data[exp]['Total Gallons'], lw=4, color='#1f77b4',)
-		ax2.set_ylim(0,350)
-		ax2.set_ylabel('Total Flow (Gallons)', fontsize=32)
-		ax2.tick_params(axis='y', labelsize=28)
+		ax2.plot(all_flow_data[exp].index.values/60, all_flow_data[exp]['Total Gallons'], lw=6, color='#1f77b4',)
+		ax2.set_ylim(0,400)
+		ax2.set_ylabel('Total Flow (Gallons)', fontsize=48)
+		ax2.tick_params(axis='y', labelsize=44)
 
 		axis_scale = Exp_Des['Y Scale Temperature'][exp]
 
@@ -109,7 +109,7 @@ for exp in experiment:
 		for channel in sorted(channels[sensor], reverse=True):
 			if channel in channels_to_skip[exp]:
 				continue
-			ax1.plot(all_exp_data[exp][channel].index/60, all_exp_data[exp][channel], lw = 2, marker=next(plot_markers), markevery=mark,
+			ax1.plot(all_exp_data[exp][channel].index/60, all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
 						label = all_channels['Title'][channel])
 		
 		flow_data = all_flow_data[exp]['GPM'] 
@@ -119,25 +119,43 @@ for exp in experiment:
 		else:
 			fill = Exp_Des['Y Scale Temperature'][exp]	
 		
+		
+
 		if 'Burst Suppression' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-			ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Burst Suppression']/60, lw = 2, color='black')
+			if exp == 'Experiment_14_Data':
+				burst = -0.1
+			else:
+				burst = 0
+			ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Burst Suppression']/60, lw = 4, color='black')
+			ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Burst Suppression']/60+burst, Exp_Des['Y Scale Temperature'][exp], 'Burst Suppression',
+				ha='left', va='bottom', rotation=45, fontsize=34)
 		
 		if 'Hall Suppression' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-			ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Hall Suppression']/60, lw = 2, color='black')
+			ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Hall Suppression']/60, lw = 4, color='black')
+			ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Hall Suppression']/60, Exp_Des['Y Scale Temperature'][exp], 'Hall Suppression', 
+				ha='left', va='bottom', rotation=45, fontsize=34)
 
 		ax1.fill_between(flow_data.index.values/60, 0,  fill, where =  flow_data > 10, facecolor='blue', alpha=0.3)
 
+
+
 		plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60, 
 		# plt.xlim([0, 
-					all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60])
-		fig.set_size_inches(20, 16)
+					# all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60])
+					np.minimum(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60, np.max(all_flow_data[exp].index.values)/60)])
+
+		if exp == 'Experiment_14_Data':
+			plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60,12])
+		
+		fig.set_size_inches(20, 18)
 		
 		h1, l1 = ax1.get_legend_handles_labels()
 		h2, l2 = ax2.get_legend_handles_labels()
-		ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=24, handlelength=3)
+		ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=3, labelspacing=.15 )
 
 		if not os.path.exists(output_location +  exp[:-5] + '/'):
 			os.makedirs(output_location +  exp[:-5] + '/')
 
+		plt.subplots_adjust(top=0.80)
 		plt.savefig(output_location +  exp[:-5] + '/' + sensor +'.pdf')
 		plt.close('all')
