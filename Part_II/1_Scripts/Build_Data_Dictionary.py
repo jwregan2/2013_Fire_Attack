@@ -5,9 +5,10 @@ import pandas as pd
 import os
 import datetime as datetime
 import numpy as np
-from scipy.signal import butter, filtfilt
+from scipy.signal import butter, filtfilt,savgol_filter
 import pickle
 import matplotlib.pyplot as plt
+
 
 # Define filter for low pass filtering of pressure/temperature for BDP
 def butter_lowpass(cutoff, fs, order=5):
@@ -20,6 +21,11 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
     b, a = butter_lowpass(cutoff, fs, order=order)
     y = filtfilt(b, a, data)
     return y
+
+def moving_average(a, n=3) :
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n
 
 data_location = '../2_Data/'
 events_location = '../3_Info/Events/'
@@ -172,14 +178,24 @@ for exp in exp_des.index.values:
 		if channel_list['Type'][channel] == 'Velocity':
 
 			# Define cutoff and fs for filtering 
-			cutoff = 50
-			fs = 700
-			all_exp_data[exp][channel] = all_exp_data[exp][channel] - np.average(all_exp_data[exp][channel][:90]) + 2.5
-			all_exp_data[exp][channel] = butter_lowpass_filtfilt(all_exp_data[exp][channel], cutoff, fs)
-			
+			if exp_des['Speed'][exp] == 'high':
+				cutoff = 50
+				fs = 700
+				all_exp_data[exp][channel] = all_exp_data[exp][channel] - np.average(all_exp_data[exp][channel][:90]) + 2.5
+				# all_exp_data[exp][channel] = savgol_filter(all_exp_data[exp][channel], 75, 3)
+			else: 
+				all_exp_data[exp][channel] = all_exp_data[exp][channel] - np.average(all_exp_data[exp][channel][:90]) + 2.5
+				# all_exp_data[exp][channel] = savgol_filter(all_exp_data[exp][channel], 11, 3)
+
+
 			#Calculate new index for velocity result
 			all_exp_data[exp][channel[:-1]] = (np.sign(all_exp_data[exp][channel]-2.5)*0.070*((all_exp_data[exp][channel[:-1]+'T']+273.15)*(99.6*abs(all_exp_data[exp][channel]-2.5)))**0.5) * 2.23694
 			all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]].round(2)
+
+			if exp_des['Speed'][exp] == 'high':
+				all_exp_data[exp][channel[:-1]] = savgol_filter(all_exp_data[exp][channel[:-1]],75,3)
+			if exp_des['Speed'][exp] == 'low':
+				all_exp_data[exp][channel[:-1]] = savgol_filter(all_exp_data[exp][channel[:-1]],11,3)
 
 		if exp in channels_to_trim:
 			if channel in channels_to_trim[exp].index:
@@ -245,7 +261,7 @@ for exp in exp_des.index.values:
 		all_flow_data[exp]['Time'] = [datetime.datetime.strptime(t, '%M:%S.%f') for t in all_flow_data[exp]['Time']]
 		all_flow_data[exp]['Time'] = [(t-all_flow_data[exp]['Time'][0]).total_seconds() for t in all_flow_data[exp]['Time']]
 
-		flow_time = all_flow_data[exp]['Time'][np.argmax(all_flow_data[exp]['GPM']>20)]
+		flow_time = all_flow_data[exp]['Time'][np.argmax(all_flow_data[exp]['GPM']>10)]
 		
 		all_flow_data[exp]['Time'] = all_flow_data[exp]['Time'] + (first_flow_time['First_Flow'][exp] - flow_time)
 
