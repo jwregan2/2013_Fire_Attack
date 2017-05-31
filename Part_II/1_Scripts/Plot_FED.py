@@ -16,7 +16,7 @@ data_location = '../2_Data/FED/'
 events_location = '../3_Info/Events/'
 
 all_exp_events = pickle.load(open(events_location + 'all_exp_events.dict', 'rb'))
-all_exp_data = pickle.load(open('../2_Data/all_exp_data.dict', 'rb'))
+all_exp_data = pickle.load(open('../2_Data/all_exp_FED_data.dict', 'rb'))
 FED_Gas = pickle.load(open(data_location + 'FED_Gas.dict', 'rb'))
 FED_Temp_Flux = pickle.load(open(data_location + 'FED_Temp_Flux.dict', 'rb'))
 FED_Temp_Conv = pickle.load(open(data_location + 'FED_Temp_Conv.dict', 'rb'))

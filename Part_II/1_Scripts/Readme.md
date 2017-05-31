@@ -6,10 +6,11 @@ The scripts need to be run in the following order for inclusion in the report:
 
 1. Fire_attack_PDF_Plotter.py
 2. Build_Data_Distionary.py
-3. Calculate_Repeatibility_Data.py
-4. Plot_FED.py
-5. Water_Flow_Plotter.py
-6. Tatic_Results_Plot.py
+3. Build_FED_Data.py
+4. Calculate_Repeatibility_Data.py
+5. Plot_FED.py
+6. Water_Flow_Plotter.py
+7. Experiment_Analysis_Plotter.py
 
 For windows users the scripts can be run by double clicking 'Execute_Report_Scripts.bat'.
 
