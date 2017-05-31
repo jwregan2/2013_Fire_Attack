@@ -9,6 +9,8 @@ echo "Build FED Data"
 python Build_FED_Data.py
 echo "Calculating Repeatibility Data"
 python Calculate_Repeatibility_Data.py
+echo "Building Repeatability Radar Plots"
+python Radar.py
 echo "Plotting FED"
 python Plot_FED.py
 echo "Plotting Water Flow Charts"
