@@ -5,7 +5,7 @@ This folder contains the scripts to be plotted for the DHS 2013 Fire Attack Proj
 The scripts need to be run in the following order for inclusion in the report:
 
 1. Fire_attack_PDF_Plotter.py
-2. Build_Data_Distionary.py
+2. Build_Data_Dictionary.py
 3. Calculate_Repeatibility_Data.py
 4. Plot_FED.py
 5. Water_Flow_Plotter.py
