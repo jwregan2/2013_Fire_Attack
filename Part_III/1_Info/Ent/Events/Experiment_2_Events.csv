@@ -1,16 +1,16 @@
 Time,Elapsed_Time,Event
 2017-03-07-12:30:00,0:00:00,Background
-2017-03-07-12:30:59,0:01:00,Straight Stream Fixed Start Hall
-2017-03-07-12:32:01,0:02:00,Straight Stream WCW Start Hall
-2017-03-07-12:33:01,0:03:00,Narrow Fog Fixed Start Hall
+2017-03-07-12:30:59,0:00:59,Straight Stream Fixed Start Hall
+2017-03-07-12:32:01,0:01:59,Straight Stream WCW Start Hall
+2017-03-07-12:33:01,0:03:01,Narrow Fog Fixed Start Hall
 2017-03-07-12:34:01,0:04:00,Narrow Fog 'O' Start Hall
 2017-03-07-12:35:01,0:05:00,No Action
-2017-03-07-12:36:01,0:06:00,Straight Stream Fixed Mid Hall
+2017-03-07-12:36:01,0:06:01,Straight Stream Fixed Mid Hall
 2017-03-07-12:37:01,0:07:00,Straight Stream WCW Mid Hall
-2017-03-07-12:38:01,0:08:00,Narrow Fog Fixed Mid Hall
-2017-03-07-12:39:02,0:09:00,Narrow Fog 'O' Mid Hall
-2017-03-07-12:40:02,0:10:00,No Action
-2017-03-07-12:46:02,0:16:00,Straight Stream Fixed End Hall
+2017-03-07-12:38:01,0:08:01,Narrow Fog Fixed Mid Hall
+2017-03-07-12:39:02,0:09:01,Narrow Fog 'O' Mid Hall
+2017-03-07-12:40:02,0:10:01,No Action
+2017-03-07-12:46:02,0:16:01,Straight Stream Fixed End Hall
 2017-03-07-12:47:02,0:17:00,Straight Stream WCW End Hall
 2017-03-07-12:48:02,0:18:00,Narrow Fog Fixed End Hall
 2017-03-07-12:49:02,0:19:00,Narrow Fog 'O' End Hall

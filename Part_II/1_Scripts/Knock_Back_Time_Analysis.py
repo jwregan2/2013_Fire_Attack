@@ -1,3 +1,17 @@
+# ******************************** Run notes *******************************
+# Script calculates the knock back times for different sets of experiments:
+# 	INTERIOR:
+# 		Compare 2, 7, 13 (Flow and move SB)
+# 		Compare 6, 8, 14 (Shutdown and move SB)
+# 		Compare 11, 16 (flow and move Fog)
+# 	EXTERIOR:
+# 		Compare 18, 20, (just initial hit) vs. 22, 24 (just bedroom 1)
+# 		Compare 22 (BD1 and interior) vs. 24 (BD1, BD2, and Interior)		
+# 
+# Times are calculated based on the following criteria:
+# 
+#
+
 import pandas as pd 
 import os as os
 import numpy as np 
