@@ -1,7 +1,8 @@
-##########################################################
-# Script generates CFM plots from BDP1 (window) and BDP4 #
-# 	(hallway door) data for entrainment experiments      #
-##########################################################
+#########################################################################
+# Script generates CFM bar graphs for entrainment experiments specified
+# 	in the file bar_graph_list.csv located in the info directory
+#########################################################################
+
 import pandas as pd 
 import os as os
 import numpy as np 
@@ -53,8 +54,6 @@ for index, row in info_df.iterrows():
 	ncols = len(stream_ls)
 	nrows = len(event_group_labels)
 	bar_group_values = np.empty([nrows,ncols])
-
-	add_value = True
 
 	if row['Same_Events']:		# identical experiment files
 		i = 0
@@ -113,8 +112,8 @@ for index, row in info_df.iterrows():
 						Exp_Data_event[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * (25+273.13)) * np.sign(pressure)
 					
 					# Add cfm to list of data
-					CFM_ls.append(area*np.mean(Exp_Data_event[BDP_channels],axis=1))
-					print(np.mean(area*np.mean(Exp_Data_event[BDP_channels],axis=1)))
+					CFM_ls.append(area*np.mean(Exp_Data_event[BDP_channels]))
+					print(np.mean(area*np.mean(Exp_Data_event[BDP_channels])))
 
 				bar_group_values[i,j] = np.mean(CFM_ls)
 				j = j+1
@@ -187,8 +186,8 @@ for index, row in info_df.iterrows():
 						Exp_Data_event[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * (25+273.13)) * np.sign(pressure)
 					
 					# Add cfm to list of data
-					CFM_ls.append(area*np.mean(Exp_Data_event[BDP_channels],axis=1))
-					print(np.mean(area*np.mean(Exp_Data_event[BDP_channels],axis=1)))
+					CFM_ls.append(area*np.mean(Exp_Data_event[BDP_channels]))
+					print(np.mean(area*np.mean(Exp_Data_event[BDP_channels])))
 
 				bar_group_values[i,j] = np.mean(CFM_ls)
 				j = j+1
@@ -209,29 +208,67 @@ for index, row in info_df.iterrows():
 
 	fig, ax = plt.subplots(figsize=(10, 9))
 	x_pos = list(range(len(event_group_labels)))
+
+	# Check if 4 or more bars are to be plotted & adjust width accordingly
+	# 	(Note: ncols = number of bars per group, nrows = number of groups)
 	if ncols*nrows >= 4:
 		width=0.85*(1./ncols)
+		filler_bars = False
 	else:
+		filler_bars = True 	# make psuedo bars to keep width reasonable	
 		width=0.65*(1./ncols)
 	
 	column_ID = 0
 	for stream in stream_ls:
+		# Set legend label for given bar
 		if pattern_ls[0] != 'None':
 			bar_label = stream+' '+pattern_ls[column_ID]
 		else:
 			bar_label = stream
+
+		# Make list of each group of bars & and make all values positive, if desired
 		stream_pattern_values = bar_group_values[:,column_ID].tolist()
 		if row['Change Sign']:
 			stream_pattern_values = [value*-1. for value in stream_pattern_values]
+
+		# Make list of error bar variances
 		stream_pattern_variance = [value*0.18 for value in stream_pattern_values]
-		plt.bar([x+width*column_ID for x in x_pos], stream_pattern_values, width,
-			yerr=stream_pattern_variance, 
-			color=tableau20[column_ID], label=bar_label, 
-			error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+
+		# Plot bars for specific stream/pattern combo & move to next set of bars
+		if filler_bars: # leave space for filler bars
+			if len(x_pos) == 1:
+				plt.bar([x+width*(column_ID+1) for x in x_pos], stream_pattern_values, width=width,
+					yerr=stream_pattern_variance, 
+					color=tableau20[column_ID], label=bar_label, 
+					error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+			else:
+				plt.bar([x*0.75+width*(x+1) for x in x_pos], stream_pattern_values, width=width,
+					yerr=stream_pattern_variance, 
+					color=tableau20[column_ID], label=bar_label, 
+					error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
+		else:
+			plt.bar([x+width*column_ID for x in x_pos], stream_pattern_values, width=width,
+				yerr=stream_pattern_variance, 
+				color=tableau20[column_ID], label=bar_label, 
+				error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
 		column_ID = column_ID+1
+
+	# Add filler bars (if applicable) & set x-axis ticks/labels
+	if filler_bars:
+		if len(x_pos) == 1:
+			plt.bar([x_pos[0],x_pos[0]+(ncols+1)*width], [0,0], width=width)
+			tick_offset = 1.5*width
+		else:
+			plt.bar([1.25*x+tick_offset*(x+1) for x in x_pos], [0,0], width=width, color='red')
+			tick_offset = width
+		plt.xticks([0.75*x+tick_offset*(x+1) for x in x_pos], event_group_labels, rotation = -15)
+		ax.tick_params(axis='both', which='major', labelsize=16)
+	else:
+		plt.xticks([x+(ncols-1)*0.5*width for x in x_pos], event_group_labels, rotation = -15)
+		ax.tick_params(axis='both', which='major', labelsize=16)
+	
+	# Set y-axis label and legend & save figure
 	plt.ylabel('Average CFM (ft$^3$/min)', fontsize=18)
-	plt.xticks([x+(ncols-1)*0.5*width for x in x_pos], event_group_labels, rotation = -15)
-	ax.tick_params(axis='both', which='major', labelsize=16)
 	plt.legend(loc=leg_loc,fontsize=11)
 	savefig(chart_location+fig_name)
 	print('Saved '+fig_name)
