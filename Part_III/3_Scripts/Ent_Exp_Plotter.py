@@ -9,7 +9,7 @@ from pylab import *
 import datetime
 import shutil
 from dateutil.relativedelta import relativedelta
-from scipy.signal import butter, filtfilt
+from scipy.signal import butter, filtfilt, savgol_filter
 from itertools import cycle
 
 # Define filter for low pass filtering of pressure/temperature for BDP
@@ -105,11 +105,10 @@ for f in os.listdir(data_location):
 		# Adjust time for ignition offset
 		Time = [((t - Background).total_seconds())/60 for t in Time]
 
-		#Get End of Experiment Time
+		# Get End of Experiment Time
 		End_Time = (datetime.datetime.strptime(Events['Time']['End Experiment'], '%Y-%m-%d-%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Background'], '%Y-%m-%d-%H:%M:%S')).total_seconds()/60
 
 		# Begin plotting
-
 		for group in channel_groups.groups:
 			# Skip excluded groups listed in test description file
 			# if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
@@ -166,7 +165,9 @@ for f in os.listdir(data_location):
 					fs = 700
 					current_data = current_data - np.average(current_data[:90])
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
-					#Calculate result
+					# current_data = savgol_filter(current_data,11,3)
+					# current_data = current_data.rolling(window=5, center=True).mean()
+					# Calculate result
 					current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
 					plt.ylabel('Velocity (mph)', fontsize=28)
 					line_style = '-'

@@ -8,9 +8,9 @@
 # 		Compare 18, 20, (just initial hit) vs. 22, 24 (just bedroom 1)
 # 		Compare 22 (BD1 and interior) vs. 24 (BD1, BD2, and Interior)		
 # 
-# Times are calculated based on the following criteria:
-# 
-#
+# Times are currently determined using the following criteria:
+# 	t = 0 at the start of water flow (event times still need to be verified from video)
+#	
 
 import pandas as pd 
 import os as os
@@ -36,7 +36,6 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
     return y
 
 # Set file locations
-
 data_location = '../2_Data/Smaller_Data/'
 
 channel_location = '../3_Info/'
@@ -135,7 +134,7 @@ for Exp_Set in comparison_sets:
 				extinguish_index = Exp_Data[Exp_Data['Elapsed Time']=='0'+extinguish_time].index.tolist()[0]
 			nth_row = 1
 		elif Speed == 'high':
-			#Set time to elapsed time column in experimental data.
+			# Set time to elapsed time column in experimental data.
 			Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
 			mark_freq = 5
 			nth_row = 10
