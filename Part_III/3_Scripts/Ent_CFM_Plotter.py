@@ -13,6 +13,7 @@ from itertools import cycle
 from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 from matplotlib import colors as mcolors
+from scipy.signal import savgol_filter
 
 # Set file locations
 data_location = '../0_Data/Ent_Experiment_Data/CSV/'
@@ -41,6 +42,16 @@ for f in os.listdir(data_location):
 		
 		skip_channels = Exp_Des['Excluded Channels'][File_Name].split('|')
 		
+		# Savgol filter
+		# Raw_Data = pd.read_csv(data_location + f)
+		# Exp_Data = pd.DataFrame(Raw_Data['Elapsed Time'].values.astype(object), columns=['Elapsed Time'])
+		# data_copy = Raw_Data.drop('Elapsed Time', axis=1)
+		# data_copy = data_copy.drop('Time', axis=1)
+		# for column in data_copy:
+		# 	filtered_data = savgol_filter(data_copy[column],11,3)
+		# 	Exp_Data[column] = filtered_data
+
+		# Moving average filter
 		Exp_Data = pd.read_csv(data_location + f)
 		data_copy = Exp_Data.drop('Elapsed Time', axis=1)
 		data_copy = data_copy.rolling(window=5, center=True).mean()
