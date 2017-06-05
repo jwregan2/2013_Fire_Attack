@@ -16,3 +16,5 @@ echo "Plotting Water Flow Charts"
 Python.exe Water_Flow_Plotter.py
 echo "Plotting Experiment Analysis Plots"
 Python.exe Experiment_Analysis_Plotter.py
+echo "Plotting Knock Back Analysis Plots"
+Python.exe Knock_Back_Time_Analysis.py
