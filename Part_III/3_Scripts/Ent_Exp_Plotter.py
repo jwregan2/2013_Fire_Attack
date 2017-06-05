@@ -58,7 +58,6 @@ skip_files = ['example']
 # Loop through Experiment files
 for f in os.listdir(data_location):
 	if f.endswith('.csv'):
-
 		# Skip files with time information or reduced data files
 		if any([substring in f.lower() for substring in skip_files]):
 			continue
@@ -73,6 +72,9 @@ for f in os.listdir(data_location):
 
 		# Grab experiment number from test name
 		Exp_Num = Test_Name[:-5]
+
+		if Exp_Num != 'Experiment_1':
+			continue
 
 		# Set output location for results
 		# output_location = output_location_init + Test_Name + '/'
@@ -168,7 +170,8 @@ for f in os.listdir(data_location):
 					# current_data = savgol_filter(current_data,11,3)
 					# current_data = current_data.rolling(window=5, center=True).mean()
 					# Calculate result
-					current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
+					# current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
+					current_data = (np.sign(current_data)*0.070*((255.)*(9.96*abs(current_data)))**0.5) * 2.23694
 					plt.ylabel('Velocity (mph)', fontsize=28)
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'
@@ -253,6 +256,7 @@ for f in os.listdir(data_location):
 			plt.legend(handles1, labels1, loc='upper left', fontsize=24, handlelength=3)
 
             # Save plot to file
-			plt.savefig(output_location+Exp_Num+'_'+group+'.pdf')
+			plt.savefig(output_location+Exp_Num+'_'+group+'.jpg')
 			plt.close('all')
+	exit()
    
