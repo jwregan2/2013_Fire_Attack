@@ -69,18 +69,25 @@ skip_files = ['example']
 comparison_sets = np.array([ [2,7,13],
 							 [6,8,14],
 							 [11,16],
-							 [18,20,22,24] ])
-#,[22,24] ])
+							 [18,20,22,24],
+							 [22,24] ])
 
 # List of suppression event row number in event time file for each comparison set
-event_row_nums = [5,5,5,2]
+event_row_nums = [5,5,5,2,2]
 
 # Create numpy array with sensors to be used for analysis of each 
 # 	comparison set (i.e., each array in comparison_sets)
-sensor_groups = np.array([ ['End_Hall_Temps','Middle_Hall_Temps','Victim_1_Temps','Victim_3_Temps','Bedroom_1_Temps'],
-						   ['End_Hall_Temps','Middle_Hall_Temps','Victim_1_Temps','Bedroom_1_Temps'], 
-						   ['End_Hall_Temps','Middle_Hall_Temps','Start_Hall_Temps','Victim_1_Temps','Victim_3_Temps','Bedroom_1_Temps'],
-						   ['Bedroom_1_Temps'] ])
+# sensor_groups = np.array([ ['End_Hall_Temps','Middle_Hall_Temps','Victim_1_Temps','Victim_3_Temps','Bedroom_1_Temps'],
+# 						   ['End_Hall_Temps','Middle_Hall_Temps','Victim_1_Temps','Bedroom_1_Temps'], 
+# 						   ['End_Hall_Temps','Middle_Hall_Temps','Start_Hall_Temps','Victim_1_Temps','Victim_3_Temps','Bedroom_1_Temps'],
+# 						   ['Bedroom_1_Temps'],
+# 						   ['Bedroom_1_Temps','End_Hall_Temps','Bedroom_2_Temps','Bedroom_4_Temps'] ])
+
+sensor_groups = np.array([ ['Bedroom_1_Temps'],
+						   ['Bedroom_1_Temps'], 
+						   ['Bedroom_1_Temps'],
+						   ['Bedroom_1_Temps'],
+						   ['Bedroom_1_Temps','End_Hall_Temps','Bedroom_2_Temps','Bedroom_4_Temps'] ])
 
 # Define 20 color pallet using RGB values
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -99,7 +106,7 @@ markers = ['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H']
 # Loop through experiments in each comparison set
 set_idx = 0 	# variable used to ID each comparison set of experiments
 for Exp_Set in comparison_sets:
-	extinguish_event_index = event_row_nums[set_idx]-1
+	extinguish_event_idx = event_row_nums[set_idx]-1
 	print('--- Comparing Experiments from set',Exp_Set,' ---')
 	knock_back_time_df = pd.DataFrame(sensor_groups[set_idx],columns=['Sensor Group'])
 	for Exp_Num in Exp_Set:
@@ -120,8 +127,13 @@ for Exp_Set in comparison_sets:
 
 		print('Loaded data and event files for '+Test_Name)
 
-		extinguish_time = Events['Time'].iloc[extinguish_event_index] 	# event time listed in form h:mm:ss
-		
+		if set_idx == 4: # Multiple events for comparison between Exp 22 and 24	
+			event_times = Events['Time'].iloc[extinguish_event_idx:-1]
+			event_labels = Events.index.values.astype(str)[extinguish_event_idx:-1]
+			extinguish_time = event_times[0]
+		else:
+			extinguish_time = Events['Time'].iloc[extinguish_event_idx] 	# event time listed in form h:mm:ss
+
 		# Uncomment to print times in order to verify they are correct
 		# print('Check Times:')
 		# print('    Extinguish time = '+str(extinguish_time))
@@ -134,17 +146,29 @@ for Exp_Set in comparison_sets:
 			else:
 				data_per_sec = 1 	# Data collected every second
 				extinguish_idx = Exp_Data[Exp_Data['Elapsed Time']==extinguish_time].index.tolist()[0]
+				if set_idx == 4: 	# Get index for each event so they can be marked on plot
+					event_idxs = []
+					for timestamp in event_times:
+						event_idxs.append(Exp_Data[Exp_Data['Elapsed Time']==timestamp].index.tolist()[0])
 		elif Speed == 'high':
 			data_per_sec = 10 	# Data collected every 0.1 second
 			extinguish_idx = Exp_Data[Exp_Data['Elapsed Time']==extinguish_time[2:]+'.0'].index.tolist()[0]
+			if set_idx == 4: 	# Get index for each event so they can be marked on plot
+				event_idxs = []
+				for timestamp in event_times:
+					event_idxs.append(Exp_Data[Exp_Data['Elapsed Time']==timestamp[2:]+'.0'].index.tolist()[0])
 		else:
 			print('[ERROR!]: data speed not set properly!')
 			print(' 	Speed = '+Speed)
 			exit()
 
 		# Get start/end index for data to plot
-		start_df_idx = int(extinguish_idx-data_per_sec*6)
-		end_df_idx = int(extinguish_idx+data_per_sec*60)
+		if set_idx == 4: 	# Different range for comparison between Exp 22 and 24
+			start_df_idx = int(extinguish_idx-data_per_sec*6)
+			end_df_idx = int(event_idxs[-1]+data_per_sec*60)			
+		else:
+			start_df_idx = int(extinguish_idx-data_per_sec*6)
+			end_df_idx = int(extinguish_idx+data_per_sec*60)
 		
 		# Uncomment to print times in order to verify they are correct
 		# print('    Extinguish time = '+str(Exp_Data['Elapsed Time'].iloc[extinguish_idx]))
@@ -208,9 +232,6 @@ for Exp_Set in comparison_sets:
 
 		# Iterate through sensor groups for each comparison set
 		for group in sensor_groups[set_idx]:
-			# Only consider bedroom 1 temps for now
-			if group != 'Bedroom_1_Temps':
-				continue
 
 			# Get list of channel names
 			channel_names = channel_groups.get_group(group).index.values
@@ -220,12 +241,11 @@ for Exp_Set in comparison_sets:
 
 			# Create figure to plot temperatures
 			fig = plt.figure()
-			plt.rc('axes', color_cycle=tableau20)
+			plt.rc('axes', prop_cycle=(cycler('color',tableau20)))
 			plot_markers = cycle(markers)
 
 			# Print 'Plotting Chart XX'
 			print ('Plotting '+group.replace('_',' ')+' for '+Test_Name)
-			print()
 
 			# Iterate through sensor group channels
 			for channel in channel_names:
@@ -259,12 +279,6 @@ for Exp_Set in comparison_sets:
 			# Set y-label to degrees F with LaTeX syntax
 			plt.ylabel('Temperature ($^\circ$F)', fontsize=20)
 
-			# Set secondary y-axis label to degrees C
-			secondary_axis_label = 'Temperature ($^\circ$C)'
-			
-			# Set scaling dependent on axis scale defined above
-			secondary_axis_scale = 2000. * 5/9 - 32
-
             # Set axis options, legend, tickmarks, etc.
 			ax1 = plt.gca()
 			handles1, labels1 = ax1.get_legend_handles_labels()
@@ -278,27 +292,38 @@ for Exp_Set in comparison_sets:
 
 			# Secondary y-axis parameters
 			# ax2 = ax1.twinx()
-			# ax2.set_ylabel(secondary_axis_label, fontsize=32)
+			# ax2.set_ylabel('Temperature ($^\circ$C)', fontsize=32)
 			# plt.xticks(fontsize=28)
 			# plt.yticks(fontsize=28)
-			# ax2.set_ylim([0, secondary_axis_scale])
+			# ax2.set_ylim([0, 2000. * 5/9 - 32])
 
 			# Secondary x-axis for event info
 			ax3=ax1.twiny()
-			ax3.set_xlim(-6,end_time)
-			plt.axvline(0,color='0',lw=2) 
-			ax3.set_xticks([0])
-			plt.setp(plt.xticks()[1], rotation=60)		
-			ax3.set_xticklabels(['Start Suppression'], fontsize=10, ha='left')
-			fig.set_size_inches(9, 8)
+			ax3.set_xlim(-6,end_time-1)
+			if set_idx == 4: 	# Multiple events for Exp 22 and 24 comparison
+				[plt.axvline((idx-extinguish_idx)/data_per_sec,color='0',lw=2) for idx in event_idxs]
+				ax3.set_xticks([(idx-extinguish_idx)/data_per_sec for idx in event_idxs])
+				plt.setp(plt.xticks()[1], rotation=45)		
+				ax3.set_xticklabels([label for label in event_labels], fontsize=10, ha='left')
+				fig.set_size_inches(8, 8)
+			else:
+				plt.axvline(0,color='0',lw=2) 
+				ax3.set_xticks([0])
+				plt.setp(plt.xticks()[1], rotation=45)		
+				ax3.set_xticklabels(['Start Suppression'], fontsize=10, ha='left')
+				fig.set_size_inches(9, 8)
 			plt.tight_layout()
 			
 			plt.legend(handles1, labels1, loc='upper right', fontsize=10, handlelength=3)
 
-	        # Save plot to file
-			plt.savefig(output_location+Test_Name+'_'+group+'.pdf')
+			# Save plot to file
+			if set_idx == 4:
+				plt.savefig(output_location+Test_Name+'_'+group+'_full.pdf')
+			else:
+				plt.savefig(output_location+Test_Name+'_'+group+'.pdf')
+			
 			plt.close('all')
-
+		print()
 			# # Store initial temperatures at start of extinguishment
 			# initial_temps = np.mean(group_data[:].iloc[data_per_sec*5-data_per_sec+1:data_per_sec*5+1])
 			# print('Check initial temperatures calculated over correct range:')
@@ -333,6 +358,5 @@ for Exp_Set in comparison_sets:
 
 	# knock_back_time_df = knock_back_time_df.set_index('Sensor Group')
 	# print(knock_back_time_df)
-	# print()
 	set_idx = set_idx+1
    
