@@ -102,8 +102,8 @@ for index, row in info_df.iterrows():
 					Exp_Data = pd.read_csv(data_location+Test_Name+'_Data.csv')
 
 					# Make list of BDP & Pressure channels
-					if Exp_Num == '3':	# Bad BDP for Experiment 3 
-						BDP_channels = ['BDP41V','BDP42V','BDP43V','BDP45V']
+					if Exp_Num == '3':	# Bad BDPs for Experiment 3 
+						BDP_channels = ['BDP42V','BDP43V','BDP45V']
 					else:
 						BDP_channels = ['BDP41V','BDP42V','BDP43V','BDP44V','BDP45V']
 					Pressure_channels = ['PT21V','PT24V','PT27V']
@@ -121,7 +121,10 @@ for index, row in info_df.iterrows():
 						zero_voltage = np.mean(Exp_Data[channel][0:end_zero_time])
 						pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel]-zero_voltage)  # Convert voltage to pascals
 						# Calculate flowrate
-						Exp_Data_event[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * (25+273.13)) * np.sign(pressure)
+						if int(Exp_Num) > 4:
+							Exp_Data_event[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * (Exp_Data[channel[:-1]+'T']+273.15)) * np.sign(pressure)
+						else:
+							Exp_Data_event[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * 289.) * np.sign(pressure)
 
 					# Calculate pressure
 					for channel in Pressure_channels:
@@ -206,7 +209,7 @@ for index, row in info_df.iterrows():
 					BDP_channels = ['BDP41V','BDP42V','BDP43V','BDP44V','BDP45V']
 					Pressure_channels = ['PT21V','PT24V','PT27V']
 
-					Exp_Data_event = Exp_Data.loc[start_time:end_time, BDP_channels+Pressure_channels]
+					Exp_Data_event = Exp_Data.loc[start_time:end_time, :]
 
 					# Define conversion constants
 					conv_inch_h2o = 0.04
@@ -217,9 +220,12 @@ for index, row in info_df.iterrows():
 					# Calculate velocity
 					for channel in BDP_channels:
 						zero_voltage = np.mean(Exp_Data[channel][0:end_zero_time])
-						pressure = conv_inch_h2o * conv_pascal * (Exp_Data[channel]-zero_voltage)  # Convert voltage to pascals
+						pressure = conv_inch_h2o * conv_pascal * (Exp_Data_event[channel]-zero_voltage)  # Convert voltage to pascals
 						# Calculate flowrate
-						Exp_Data_event[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * (25+273.13)) * np.sign(pressure)
+						if int(Exp_Num) > 4:
+							Exp_Data_event[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * (Exp_Data_event[channel[:-1]+'T']+273.13)) * np.sign(pressure)
+						else:
+							Exp_Data_event[channel] = convert_ftpm * 0.0698 * np.sqrt(np.abs(pressure) * 289.) * np.sign(pressure)
 
 					# Calculate pressure
 					for channel in Pressure_channels:

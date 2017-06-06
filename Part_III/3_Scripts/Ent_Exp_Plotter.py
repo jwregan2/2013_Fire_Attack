@@ -72,7 +72,7 @@ for f in os.listdir(data_location):
 
 		# Grab experiment number from test name
 		Exp_Num = Test_Name[:-5]
-
+	
 		# Set output location for results
 		# output_location = output_location_init + Test_Name + '/'
 		output_location = output_location_init
@@ -143,8 +143,8 @@ for f in os.listdir(data_location):
 					continue
 
                 # Skip excluded channels listed in test description file
-				# if any([substring in channel for substring in Exp_Des['Excluded Channels'][Test_Name].split('|')]):
-				# 	continue
+				if any([substring in channel for substring in Exp_Des['Excluded Channels'][Test_Name].split('|')]):
+					continue
 
                 # Set scale factor and offset
 				scale_factor = channel_list['ScaleFactor'][channel]
@@ -162,12 +162,10 @@ for f in os.listdir(data_location):
 					# Define cutoff and fs for filtering that
 					cutoff = 50
 					fs = 700
-					current_data = current_data - np.average(current_data[:90])
+					current_data = current_data - np.average(current_data[:45])
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
-					# current_data = savgol_filter(current_data,11,3)
-					# current_data = current_data.rolling(window=5, center=True).mean()
 					# Calculate result
-					if int(Exp_Num[-1]) > 4:
+					if int(Exp_Num[11:]) > 4:
 						current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
 					else:
 						current_data = (np.sign(current_data)*0.070*((289.)*(9.96*abs(current_data)))**0.5) * 2.23694
@@ -185,7 +183,7 @@ for f in os.listdir(data_location):
 					cutoff = 50
 					fs = 700
 					current_data = scale_factor * current_data + offset 
-					current_data = current_data - np.average(current_data[:90])
+					current_data = current_data - np.average(current_data[:45])
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
 					plt.ylabel('Pressure (Pa)', fontsize=28)
 					line_style = '-'
