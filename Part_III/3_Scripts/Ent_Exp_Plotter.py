@@ -73,9 +73,6 @@ for f in os.listdir(data_location):
 		# Grab experiment number from test name
 		Exp_Num = Test_Name[:-5]
 
-		if Exp_Num != 'Experiment_1':
-			continue
-
 		# Set output location for results
 		# output_location = output_location_init + Test_Name + '/'
 		output_location = output_location_init
@@ -170,8 +167,10 @@ for f in os.listdir(data_location):
 					# current_data = savgol_filter(current_data,11,3)
 					# current_data = current_data.rolling(window=5, center=True).mean()
 					# Calculate result
-					# current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
-					current_data = (np.sign(current_data)*0.070*((255.)*(9.96*abs(current_data)))**0.5) * 2.23694
+					if int(Exp_Num[-1]) > 4:
+						current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
+					else:
+						current_data = (np.sign(current_data)*0.070*((289.)*(9.96*abs(current_data)))**0.5) * 2.23694
 					plt.ylabel('Velocity (mph)', fontsize=28)
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'
@@ -256,7 +255,6 @@ for f in os.listdir(data_location):
 			plt.legend(handles1, labels1, loc='upper left', fontsize=24, handlelength=3)
 
             # Save plot to file
-			plt.savefig(output_location+Exp_Num+'_'+group+'.jpg')
+			plt.savefig(output_location+Exp_Num+'_'+group+'.pdf')
 			plt.close('all')
-	exit()
    
