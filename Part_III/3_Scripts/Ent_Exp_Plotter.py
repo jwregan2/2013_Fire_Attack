@@ -58,7 +58,6 @@ skip_files = ['example']
 # Loop through Experiment files
 for f in os.listdir(data_location):
 	if f.endswith('.csv'):
-
 		# Skip files with time information or reduced data files
 		if any([substring in f.lower() for substring in skip_files]):
 			continue
@@ -168,7 +167,10 @@ for f in os.listdir(data_location):
 					# current_data = savgol_filter(current_data,11,3)
 					# current_data = current_data.rolling(window=5, center=True).mean()
 					# Calculate result
-					current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
+					if int(Exp_Num[-1]) > 4:
+						current_data = (np.sign(current_data)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(9.96*abs(current_data)))**0.5) * 2.23694
+					else:
+						current_data = (np.sign(current_data)*0.070*((289.)*(9.96*abs(current_data)))**0.5) * 2.23694
 					plt.ylabel('Velocity (mph)', fontsize=28)
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'

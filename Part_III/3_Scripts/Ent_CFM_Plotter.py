@@ -157,23 +157,3 @@ for f in os.listdir(data_location):
 			plt.legend(handles1, labels1, loc='upper right', fontsize=10, handlelength=3)
 			savefig(chart_location+Test_Name+'_CFM_'+channel[:4]+'.pdf')
 			close()
-
-		#-----------------------
-		# One off bar plots example
-		#-----------------------
-		# exp04 = pd.read_csv('../Experimental_Data/Exp_04_102615_Events_CFM.csv')
-		# exp08 = pd.read_csv('../Experimental_Data/Exp_08_102615_Events_CFM.csv')
-
-		# mean_values = [exp08['CFM_Avg'][1],exp04['CFM_Avg'][1],exp04['CFM_Avg'][5]]
-		# variance = [0.18*exp08['CFM_Avg'][1],0.18*exp04['CFM_Avg'][1],0.18*exp04['CFM_Avg'][5]]
-		# bar_labels = [exp08['Event'][1],exp04['Event'][1],exp04['Event'][5]]
-		# x_pos = list(range(len(bar_labels)))
-		# fig, ax = plt.subplots(figsize=(10, 9))
-		# plt.bar(x_pos, mean_values, yerr=variance, align='center', color=tableau20[0],error_kw=dict(ecolor='black', lw=1.5, capsize=4, capthick=1.5))
-		# max_y = max(zip(mean_values, variance))
-		# plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
-		# plt.ylabel('Average CFM (ft$^3$/min)', fontsize=18)
-		# plt.xticks(x_pos, bar_labels,rotation = -15)
-		# ax.tick_params(axis='both', which='major', labelsize=16)
-		# plt.legend(['150 gpm @ 50 psi'], loc='upper left')
-		# savefig(chart_location+'Hosestream_Type_1_5_int'+'.pdf')
