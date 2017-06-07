@@ -400,6 +400,11 @@ for index, row in info_df.iterrows():
 	# Set y-axis label and legend & save figure
 	plt.ylabel('Average Pressure (psi)', fontsize=18)
 	plt.legend(loc=leg_loc,fontsize=11)
+	if not os.path.exists(Pressure_graph_dir):
+		os.makedirs(Pressure_graph_dir)
+
 	savefig(Pressure_graph_dir+fig_name)
+
+
 	print('Saved '+fig_name+' (Pressure)')
 	print()
