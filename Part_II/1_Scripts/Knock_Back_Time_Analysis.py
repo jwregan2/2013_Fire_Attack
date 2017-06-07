@@ -316,6 +316,9 @@ for Exp_Set in comparison_sets:
 			
 			plt.legend(handles1, labels1, loc='upper right', fontsize=10, handlelength=3)
 
+			if not os.path.exists(output_location):
+				os.makedirs(output_location)
+
 			# Save plot to file
 			if set_idx == 4:
 				plt.savefig(output_location+Test_Name+'_'+group+'_full.pdf')
