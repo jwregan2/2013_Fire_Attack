@@ -20,6 +20,7 @@ import matplotlib.pyplot as plt
 from pylab import * 
 import datetime
 import shutil
+import pickle
 from dateutil.relativedelta import relativedelta
 from scipy.signal import butter, filtfilt
 from itertools import cycle
@@ -44,6 +45,9 @@ channel_location = '../3_Info/'
 output_location = '../0_Images/Script_Figures/Knock_Back/'
 
 info_file = '../3_Info/Description_of_Experiments.csv'
+
+# Load flow data from dictionary using pickle
+all_flow_data = pickle.load(open('../2_Data/all_flow_data.dict', 'rb'))
 
 # Read in channel list
 channel_list = pd.read_csv(channel_location+'Channels.csv')
@@ -106,6 +110,9 @@ markers = ['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H']
 # Loop through experiments in each comparison set
 set_idx = 0 	# variable used to ID each comparison set of experiments
 for Exp_Set in comparison_sets:
+###### Skip plotting flow for plots with multiple events until others sets plotted with flow	
+	if set_idx == 4:
+		continue
 	extinguish_event_idx = event_row_nums[set_idx]-1
 	print('--- Comparing Experiments from set',Exp_Set,' ---')
 	knock_back_time_df = pd.DataFrame(sensor_groups[set_idx],columns=['Sensor Group'])
@@ -115,8 +122,9 @@ for Exp_Set in comparison_sets:
 		Test_Name = 'Experiment_'+Exp_Num
 		File_Name = Test_Name+'_Data'
 
-		# Read in experimental data
+		# Read in experimental data and flow data
 		Exp_Data = pd.read_csv(data_location+File_Name+'.csv')
+		Exp_Flow_Data = all_flow_data[File_Name]
 
 		# Get house & data speed
 		House = Exp_Des.loc[File_Name, 'House']
@@ -133,6 +141,9 @@ for Exp_Set in comparison_sets:
 			extinguish_time = event_times[0]
 		else:
 			extinguish_time = Events['Time'].iloc[extinguish_event_idx] 	# event time listed in form h:mm:ss
+
+		start_flow_idx = float(extinguish_time[-5:-3])*60+float(extinguish_time[-2:]) - 6.0
+		end_flow_idx = float(extinguish_time[-5:-3])*60+float(extinguish_time[-2:])+60.1
 
 		# Uncomment to print times in order to verify they are correct
 		# print('Check Times:')
@@ -188,47 +199,15 @@ for Exp_Set in comparison_sets:
 			print(' 	House = '+House)
 			exit()
 
-		# # Original criteria analysis based on (T_max-T_min)
-		# delta_T_col = []
-		# knock_back_time_col = []
-		# for group in sensor_groups[set_idx]:
-		# 	channel_names = channel_groups.get_group(group).index.values
-		# 	group_data = Exp_Data[channel_names][extinguish_idx-data_per_sec+1:]
-		# 	initial_temps = np.mean(group_data[:].iloc[:data_per_sec])		
-		# 	count = 0
-		# 	entireloop = True
-		# 	for index,row in group_data.iterrows():
-		# 		count = count + 1
-		# 		if count != data_per_sec:
-		# 			continue
-		# 		else:
-		# 			count = 0
-		# 			sec_values = np.mean(group_data[:].loc[-data_per_sec+1+index:index])
-		# 			max_T = max(sec_values)
-		# 			min_T = min(sec_values)
-		# 			if (max_T-min_T) < 30 and max_T < 100:
-		# 				avg_next_5s = np.mean(group_data[:].iloc[index-extinguish_idx:index-extinguish_idx+5*data_per_sec])
-		# 				max_avg = max(avg_next_5s)
-		# 				min_avg = min(avg_next_5s)
-		# 				if max_avg-min_avg < 30:
-		# 					delta_Ts = initial_temps-sec_values
-		# 					delta_T_col.append(max(delta_Ts)) 
-		# 					knock_back_time_col.append((index-extinguish_idx)/data_per_sec)
-		# 					entireloop = False						
-		# 					break
-			
-		# 	if entireloop: 	# Criteria never met; enter placeholder numbers for df
-		# 		delta_T_col.append(100000)
-		# 		knock_back_time_col.append(100000)
-
-		# knock_back_time_df['Exp. '+Exp_Num+' Delta T'] = delta_T_col
-		# knock_back_time_df['Exp. '+Exp_Num+' Knock Back Time'] = knock_back_time_col
-
 		delta_T_col = []
 		knock_back_time_col = []
 
 		# Set marker frequency based on sampling rate
 		mark_freq = 10*data_per_sec
+
+##### MAKE DF FOR FLOW DATA ALONG EVENT RANGE; CHECK SAMPLE RATE IN FLOW DATA FILES
+		flow_data = Exp_Flow_Data[:].loc[start_flow_idx:end_flow_idx]
+		flow_times = flow_data.index.values - start_flow_idx - 6.0
 
 		# Iterate through sensor groups for each comparison set
 		for group in sensor_groups[set_idx]:
@@ -236,16 +215,32 @@ for Exp_Set in comparison_sets:
 			# Get list of channel names
 			channel_names = channel_groups.get_group(group).index.values
 
-			# Make dataframe of channels from 5 seconds before extinguishment to 60 seconds after
+			# Make dataframe of channels from 6 seconds before extinguishment to 60 seconds after
 			group_data = Exp_Data[channel_names][start_df_idx:end_df_idx+1]
-
-			# Create figure to plot temperatures
-			fig = plt.figure()
-			plt.rc('axes', prop_cycle=(cycler('color',tableau20)))
-			plot_markers = cycle(markers)
 
 			# Print 'Plotting Chart XX'
 			print ('Plotting '+group.replace('_',' ')+' for '+Test_Name)
+
+			# Create figure to plot temperatures
+			fig = plt.figure()
+			plt.rc('axes', prop_cycle=(cycler('color',tableau20[2:]))) # ignore first two colors (blue shade used on plots)
+			plot_markers = cycle(markers)
+
+			ax1 = plt.gca()
+			ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+			ax1_xlims = ax1.axis()[0:2]
+			plt.ylim([0, 1600])
+			plt.grid(True)
+			plt.xlabel('Time (sec)', fontsize=48)
+			plt.xticks(fontsize=44)
+			plt.yticks(fontsize=44)
+
+			# Plot flow data on secondary axis & set axis label/ticks
+			ax2 = ax1.twinx()
+			ax2.plot(flow_times, flow_data['Total Gallons'], lw=6, color='#1f77b4',)
+			ax2.set_ylim(0,400)
+			ax2.set_ylabel('Total Flow (Gallons)', fontsize=48)
+			ax2.tick_params(axis='y', labelsize=44)
 
 			# Iterate through sensor group channels
 			for channel in channel_names:
@@ -272,49 +267,39 @@ for Exp_Set in comparison_sets:
 				current_data = current_data * scale_factor + offset
 
 				# Plot channel data
-				plt.plot(time, current_data, lw=1.5,
+				ax1.plot(time, current_data, lw=4,
 					marker=next(plot_markers), markevery=int(mark_freq),
-					mew=3, mec='none', ms=7, label=channel_list['Title'][channel])
+					mew=3, mec='none', ms=12, label=channel_list['Title'][channel])
+
+			plt.xlim([-6, 60])
+			fig.set_size_inches(20, 18)
 
 			# Set y-label to degrees F with LaTeX syntax
-			plt.ylabel('Temperature ($^\circ$F)', fontsize=20)
+			ax1.set_ylim(150,1600)
+			ax1.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
 
-            # Set axis options, legend, tickmarks, etc.
-			ax1 = plt.gca()
+			plt.subplots_adjust(top=0.8)
+
+			# # Secondary x-axis for event info
+			# ax3=ax1.twiny()
+			# ax3.set_xlim(-6,end_time-1)
+			# if set_idx == 4: 	# Multiple events for Exp 22 and 24 comparison
+			# 	[plt.axvline((idx-extinguish_idx)/data_per_sec,color='0',lw=2) for idx in event_idxs]
+			# 	ax3.set_xticks([(idx-extinguish_idx)/data_per_sec for idx in event_idxs])
+			# 	plt.setp(plt.xticks()[1], rotation=45)		
+			# 	ax3.set_xticklabels([label for label in event_labels], fontsize=10, ha='left')
+			# 	fig.set_size_inches(8, 8)
+			# else:
+			# 	plt.axvline(0,color='0',lw=2) 
+			# 	ax3.set_xticks([0])
+			# 	plt.setp(plt.xticks()[1], rotation=45)		
+			# 	ax3.set_xticklabels(['Start Suppression'], fontsize=10, ha='left')
+			# 	fig.set_size_inches(9, 5)
+			# plt.tight_layout()
+
 			handles1, labels1 = ax1.get_legend_handles_labels()
-			plt.xlim([-6, end_time-1])
-			ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-			ax1_xlims = ax1.axis()[0:2]
-			plt.xticks(fontsize=16)
-			plt.yticks(fontsize=16)
-			plt.grid(True)
-			plt.xlabel('Time (sec)', fontsize=20)
-
-			# Secondary y-axis parameters
-			# ax2 = ax1.twinx()
-			# ax2.set_ylabel('Temperature ($^\circ$C)', fontsize=32)
-			# plt.xticks(fontsize=28)
-			# plt.yticks(fontsize=28)
-			# ax2.set_ylim([0, 2000. * 5/9 - 32])
-
-			# Secondary x-axis for event info
-			ax3=ax1.twiny()
-			ax3.set_xlim(-6,end_time-1)
-			if set_idx == 4: 	# Multiple events for Exp 22 and 24 comparison
-				[plt.axvline((idx-extinguish_idx)/data_per_sec,color='0',lw=2) for idx in event_idxs]
-				ax3.set_xticks([(idx-extinguish_idx)/data_per_sec for idx in event_idxs])
-				plt.setp(plt.xticks()[1], rotation=45)		
-				ax3.set_xticklabels([label for label in event_labels], fontsize=10, ha='left')
-				fig.set_size_inches(8, 8)
-			else:
-				plt.axvline(0,color='0',lw=2) 
-				ax3.set_xticks([0])
-				plt.setp(plt.xticks()[1], rotation=45)		
-				ax3.set_xticklabels(['Start Suppression'], fontsize=10, ha='left')
-				fig.set_size_inches(9, 8)
-			plt.tight_layout()
-			
-			plt.legend(handles1, labels1, loc='upper right', fontsize=10, handlelength=3)
+			ax1.legend(handles1, labels1, loc='upper right', fontsize=40, handlelength=3, labelspacing=.15)
+			plt.subplots_adjust(top=.9)
 
 			if not os.path.exists(output_location):
 				os.makedirs(output_location)
@@ -327,39 +312,6 @@ for Exp_Set in comparison_sets:
 			
 			plt.close('all')
 		print()
-			# # Store initial temperatures at start of extinguishment
-			# initial_temps = np.mean(group_data[:].iloc[data_per_sec*5-data_per_sec+1:data_per_sec*5+1])
-			# print('Check initial temperatures calculated over correct range:')
-			# print(group_data[:].iloc[data_per_sec*5-data_per_sec+1:data_per_sec*5+1])
-			# print()
 
-			# count = 0
-			# entireloop = True
-			# for index,row in group_data.iterrows():
-			# 	count = count + 1
-			# 	if count != data_per_sec:
-			# 		continue
-			# 	else:
-			# 		count = 0
-			# 		sec_values = np.mean(group_data[:].loc[-data_per_sec+1+index:index])
-			# 		max_T = max(sec_values)
-			# 		min_T = min(sec_values)
-			# 		if (max_T-min_T) < 30 and max_T < 100:
-			# 			avg_next_5s = np.mean(group_data[:].iloc[index-extinguish_idx:index-extinguish_idx+5*data_per_sec])
-			# 			max_avg = max(avg_next_5s)
-			# 			min_avg = min(avg_next_5s)
-			# 			if max_avg-min_avg < 30:
-			# 				delta_Ts = initial_temps-sec_values
-			# 				delta_T_col.append(max(delta_Ts)) 
-			# 				knock_back_time_col.append((index-extinguish_idx)/data_per_sec)
-			# 				entireloop = False						
-			# 				break
-
-	# 	knock_back_time_df['Exp. '+Exp_Num+' Delta T'] = delta_T_col
-	# 	knock_back_time_df['Exp. '+Exp_Num+' Knock Back Time'] = knock_back_time_col
-
-
-	# knock_back_time_df = knock_back_time_df.set_index('Sensor Group')
-	# print(knock_back_time_df)
 	set_idx = set_idx+1
    
