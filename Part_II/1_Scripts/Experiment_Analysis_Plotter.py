@@ -10,7 +10,6 @@ import datetime
 import shutil
 from dateutil.relativedelta import relativedelta
 from scipy.signal import butter, filtfilt
-from itertools import cycle
 import matplotlib.transforms as mtransforms
 from matplotlib.path import Path
 import matplotlib.patches as patches
@@ -33,6 +32,18 @@ all_channels = pd.read_csv(info_location + 'Channels.csv').set_index('Channel')
 Exp_Des = pd.read_csv(info_location + 'Description_of_Experiments.csv').set_index('Experiment')
 
 channels_to_skip = {}
+
+# Define 17 color pallet using RGB values - Removed Blue due to water flow potting.
+tableau20 = [(255, 127, 14), (255, 187, 120), 
+(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
+(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
+(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
+(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+
+# Define RGB values in pallet 
+for i in range(len(tableau20)):
+		r, g, b = tableau20[i]
+		tableau20[i] = (r / 255., g / 255., b / 255.)
 
 print ('-------------------------------------- Plotting Line Charts ----------------------------------')
 
@@ -64,20 +75,9 @@ for section in experiment.keys():
 
 			#Create figure
 			fig = plt.figure()
-			
+			fig.set_size_inches(8, 6)
+
 			# plt.style.use('ggplot')
-
-			# Define 20 color pallet using RGB values
-			tableau20 = [(255, 127, 14), (255, 187, 120), 
-			(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
-			(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
-			(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
-			(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
-
-			# Define RGB values in pallet 
-			for i in range(len(tableau20)):
-					r, g, b = tableau20[i]
-					tableau20[i] = (r / 255., g / 255., b / 255.)
 
 			# Plot style - cycle through 20 color pallet and define markers to cycle through
 			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
@@ -101,7 +101,10 @@ for section in experiment.keys():
 
 			axis_scale = Exp_Des['Y Scale Temperature'][exp]
 
-			mark = 5
+			if Exp_Des['Speed'][exp] == 'high':
+				mark = 100
+			if Exp_Des['Speed'][exp] == 'low':
+				mark = 5
 
 			for channel in sorted(channels[section][sensor], reverse=True):
 				if channel in channels_to_skip[exp]:
@@ -193,7 +196,7 @@ for section in experiment.keys():
 			plt.savefig(output_location_section +  exp[:-5] + '/' + sensor +'.pdf')
 		plt.close('all')
 
-print ('---------------------------------Plotting Heatflux & Temperature Plot -----------------------------')
+print ('---------------------------------Plotting Thermal Classes Plot -----------------------------')
 
 experiments = ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_14_Data']
 
@@ -215,72 +218,60 @@ for exp in experiments:
 	for chan in channels.index:
 
 		location.append(channels['Location'][chan])
-		data_temp.append((all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean()-32)*5/9)
+		# data_temp.append((all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean()-32)*5/9)
+		data_temp.append(all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean())
 		data_HF.append(all_exp_data[exp][channels['Heat_Flux'][chan]][times[exp]:times[exp]+60].mean())
 
 	plot_data[exp] = list(zip(location, data_HF, data_temp))
 
+for exp in experiments:
+	print ('Plotting ' + exp.replace('_', ' '))
+	fig = plt.figure()
+	fig.set_size_inches(8, 6)
+	ax = plt.gca()
 
-fig = plt.figure()
-ax = plt.gca()
+	ax.set_xlabel('Heat Flux (kW/m$^2$)',fontsize=16)
+	ax.set_ylabel('Temperature ($^{\circ}$F)',fontsize=16)
+	ax.set_axisbelow(True)
+	plt.grid(linestyle='-',linewidth = 1.5)
+	ax.set_xscale('log')
+	ax.set_yscale('log')
+	ax.set_xlim([.1,200])
+	ax.set_ylim([(10*(9/5)+32),1200*(9/5)+32])
+	plt.xticks(fontsize=16)
+	plt.yticks(fontsize=16)
+	for axis in [ax.xaxis, ax.yaxis]:
+			 axis.set_major_formatter(ScalarFormatter())
 
-ax.set_xlabel('Heat Flux (kW/m$^2$)',fontsize=16)
-ax.set_ylabel('Temperature ($^{\circ}$C)',fontsize=16)
-ax.set_axisbelow(True)
-plt.grid(linestyle='-',linewidth = 1.5)
-ax.set_xscale('log')
-ax.set_yscale('log')
-ax.set_xlim([.1,200])
-ax.set_ylim([10,1200])
-plt.xticks(fontsize=16)
-plt.yticks(fontsize=16)
-for axis in [ax.xaxis, ax.yaxis]:
-		 axis.set_major_formatter(ScalarFormatter())
+	plt.fill_between([0,200],[(10*(9/5)+32),(10*(9/5)-32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.4)
+	plt.fill_between([12,200],[(200*(9/5)+32),(200*(9/5)+32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.86)
+	plt.text(60, 430*(9/5)+32, 'EMERGENCY', va='center', ha='center', color='white', fontsize=16)
 
-plt.fill_between([0,200],[10,10],[1200,1200], color = 'r',alpha=0.4)
-plt.fill_between([12,200],[200,200],[1200,1200], color = 'r',alpha=0.86)
-plt.text(50, 430, 'EMERGENCY', va='center', ha='center', color='white', fontsize=16)
+	plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'w')
+	plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y', alpha = 0.4)
+	plt.fill_between([2,12],[(70*(9/5)+32),(70*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y',alpha=0.85)
+	plt.text(4.75, 115*(9/5)+32, 'ORDINARY', va='center', ha='center', color='white', fontsize=16)
 
-plt.fill_between([0,12],[10,10],[200, 200], color = 'w')
-plt.fill_between([0,12],[10,10],[200, 200], color = 'y', alpha = 0.4)
-plt.fill_between([2,12],[70,70],[200,200], color = 'y',alpha=0.85)
-plt.text(4.75, 115, 'ORDINARY', va='center', ha='center', color='white', fontsize=16)
-
-plt.fill_between([0,2], [10,10], [70,70], color = 'w')
-plt.fill_between([0,2], [10,10], [70,70], color = 'g', alpha = 0.4)
-plt.fill_between([1,2],[20,20],[70,70], color = 'g' , alpha=0.85)
-plt.text(1.4, 37,'R\nO\nU\nT\nI\nN\nE', va='center', ha='center', color='white', fontsize=18, linespacing=.8)
-
-
-for exp in plot_data.keys():
-	# Define 20 color pallet using RGB values
-	tableau20 = [(255, 127, 14), (255, 187, 120), 
-	(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
-	(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
-	(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
-	(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
-
-	# Define RGB values in pallet 
-	for i in range(len(tableau20)):
-			r, g, b = tableau20[i]
-			tableau20[i] = (r / 255., g / 255., b / 255.)
+	plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'w')
+	plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g', alpha = 0.4)
+	plt.fill_between([1,2], [(20*(9/5)+32),(20*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g' , alpha=0.85)
+	plt.text(1.4, 39*(9/5)+32,'R\nO\nU\nT\nI\nN\nE', va='center', ha='center', color='white', fontsize=16, linespacing=.8)
 
 	# Plot style - cycle through 20 color pallet and define markers to cycle through
 	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 	plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-
 	for point in plot_data[exp]:
 		plt.plot(point[1],point[2], label = point[0], marker = next(plot_markers), color='black', markersize = 10, linestyle='none' )
 		# plt.text(point[1],point[2], exp[11:-5], va='center', ha='center', color = 'w', fontsize=10)
 
-plt.legend(channels['Location'].tolist(), numpoints=1, loc='upper left')
-fig.set_size_inches(10, 7)
-plt.tight_layout()	
+	plt.legend(channels['Location'].tolist(), numpoints=1, loc='upper left')
+	fig.set_size_inches(10, 7)
+	plt.tight_layout()	
 
-if not os.path.exists(output_location + '/Thermal_Class/'):
-	os.makedirs(output_location + '/Thermal_Class/')
+	if not os.path.exists(output_location + '/Thermal_Class/'):
+		os.makedirs(output_location + '/Thermal_Class/')
 
-plt.savefig(output_location + '/Thermal_Class/'  + 'Thermal_Exposure.pdf')
-plt.close('all')
+	plt.savefig(output_location + '/Thermal_Class/'  + exp[:-4] + 'Thermal_Exposure.pdf')
+	plt.close('all')
 

@@ -11,6 +11,9 @@ import matplotlib.pyplot as plt
 import matplotlib.axes as ax
 import os
 import pickle
+from itertools import cycle
+import matplotlib.transforms as mtransforms
+from pylab import * 
 
 data_location = '../2_Data/FED/'
 events_location = '../3_Info/Events/'
@@ -24,6 +27,17 @@ vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 
 victims = ['Victim_1', 'Victim_2', 'Victim_3', 'Victim_4', 'Victim_5']
 
+#Define color pallet
+tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
+(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
+(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
+(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
+(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+
+# Define RGB values in pallet 
+for i in range(len(tableau20)):
+		r, g, b = tableau20[i]
+		tableau20[i] = (r / 255., g / 255., b / 255.)
 
 # ---------------------------------Plot Baseline Data With No Intervention----------------------------- 
 
@@ -35,21 +49,27 @@ dose_types = {'Toxic_Gas':FED_Gas, 'Convective':FED_Temp_Conv, 'Total_Flux':FED_
 
 if not os.path.exists(output_location):
 	os.makedirs(output_location)
-marker={'Toxic_Gas':"o", 'Convective':"s", 'Total_Flux':"v"}
-color = {'Experiment_1_Data':'blue', 'Experiment_12_Data':'green', 'Experiment_17_Data':'red'}
+
+marker = {'Toxic_Gas':"s", 'Convective':"o", 'Total_Flux':"d"}
+color = {'Experiment_1_Data':tableau20[0], 'Experiment_12_Data':tableau20[1], 'Experiment_17_Data':tableau20[2]}
 
 for vic in victims:
 	
+	# Create figure
+	fig = plt.figure()
+	fig.set_size_inches(8, 6)
 
 	for exp in experiments:
 		if exp == 'Experiment_1_Data' and vic == 'Victim_2':
 			continue
+		
 		for dose_type in dose_types:
 			if vic in dose_types[dose_type][exp]:
 				end_time = all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Attack Team Enters']
 				data = dose_types[dose_type][exp][vic].ix[:end_time]
 				data.index = data.index/60
-				plt.plot(data, label = 'Exp ' + exp[11:-5] + ' ' + dose_type.replace('_',' '), lw = 2, marker = marker[dose_type], color = color[exp], markevery=10)
+				plt.plot(data, label = 'Exp ' + exp[11:-5] + ' ' + dose_type.replace('_',' '), lw = 2, marker = marker[dose_type], 
+					color = color[exp], markevery=20)
 
 	L = plt.legend()
 	num_entries = len(L.get_texts())
@@ -89,6 +109,15 @@ for vent in vent_info:
 values = pd.DataFrame()
 
 for vent in vent_info:
+
+	# Create figure
+	fig = plt.figure()
+	fig.set_size_inches(8, 6)
+
+	# Plot style - cycle through 20 color pallet and define markers to cycle through
+	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+	plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
 	for vic in victims:
 
 		values = pd.DataFrame()
@@ -106,7 +135,7 @@ for vent in vent_info:
 		values = values.ix[0:interventions['Time'][vent]]
 		
 		if not values.empty:
-			p = plt.plot(values.index/60, values.mean(axis=1), label = vic.replace('_', ' '), lw = 2)
+			p = plt.plot(values.index/60, values.mean(axis=1), marker = next(plot_markers), markevery=20, label = vic.replace('_', ' '), lw = 2)
 			std = values.std(axis=1)
 			min_values = (values.mean(axis=1)-std).tolist()
 			for v in np.arange(len(min_values)):
@@ -148,6 +177,15 @@ for vent in vent_info:
 values = pd.DataFrame()
 
 for vent in vent_info:
+
+	# Create figure
+	fig = plt.figure()
+	fig.set_size_inches(8, 6)
+
+	# Plot style - cycle through 20 color pallet and define markers to cycle through
+	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+	plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
 	for vic in victims:
 
 		values = pd.DataFrame()
@@ -165,7 +203,7 @@ for vent in vent_info:
 		values = values.ix[0:interventions['Time'][vent]]
 		
 		if not values.empty:
-			p = plt.plot(values.index/60, values.mean(axis=1), label = vic.replace('_', ' '), lw = 2)
+			p = plt.plot(values.index/60, values.mean(axis=1), marker = next(plot_markers), markevery=20, label = vic.replace('_', ' '), lw = 2)
 			std = values.std(axis=1)
 			min_values = (values.mean(axis=1)-std).tolist()
 			for v in np.arange(len(min_values)):
@@ -207,6 +245,15 @@ for vent in vent_info:
 values = pd.DataFrame()
 
 for vent in vent_info:
+
+	# Create figure
+	fig = plt.figure()
+	fig.set_size_inches(8, 6)
+
+	# Plot style - cycle through 20 color pallet and define markers to cycle through
+	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+	plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
 	for vic in victims:
 
 		values = pd.DataFrame()
@@ -228,7 +275,7 @@ for vent in vent_info:
 		values = values.ix[0:interventions['Time'][vent]]
 		
 		if not values.empty:
-			p = plt.plot(values.index/60, values.mean(axis=1), label = vic.replace('_', ' '), lw = 2)
+			p = plt.plot(values.index/60, values.mean(axis=1), marker = next(plot_markers), markevery=20, label = vic.replace('_', ' '), lw = 2)
 			std = values.std(axis=1)
 			min_values = (values.mean(axis=1)-std).tolist()
 			for v in np.arange(len(min_values)):
@@ -236,8 +283,6 @@ for vent in vent_info:
 					min_values[v] = 0
 			max_values = values.mean(axis=1)+std
 
-			# plt.plot(max_values, color = 'black')
-			# plt.plot(values.index.values, min_values, color = 'black')
 			plt.fill_between(values.index.values/60, max_values, min_values, color=p[0].get_color(), alpha=0.15)
 	
 	plt.ylim([0,1])
@@ -261,6 +306,14 @@ if not os.path.exists(output_location):
 for vic in victims:
 
 	for vent in vent_info:
+
+		# Create figure	
+		fig = plt.figure()
+		fig.set_size_inches(8, 6)
+
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 	
 		createplot = False
 
@@ -271,7 +324,7 @@ for vic in victims:
 
 			if vic in FED_Gas[exp]:
 				createplot = True
-				plt.plot(FED_Gas[exp][vic], label = exp[:-4].replace('_', ' ' ), lw = 2)
+				plt.plot(FED_Gas[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
 				if 'Front Door Open' in all_exp_events[exp[:-4]+'Events'].index: 
 					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Front Door Open'], lw = 2, color = 'black')
 
@@ -293,6 +346,13 @@ for vic in victims:
 
 	for vent in vent_info:
 	
+		# Create figure	
+		fig = plt.figure()
+		fig.set_size_inches(8, 6)
+
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 		createplot = False
 
 		for exp in vent_info[vent].dropna():
@@ -302,7 +362,7 @@ for vic in victims:
 
 			if vic in FED_Temp_Flux[exp]:
 				createplot = True
-				plt.plot(FED_Temp_Flux[exp][vic], label = exp[:-4].replace('_', ' ' ), lw = 2)
+				plt.plot(FED_Temp_Flux[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
 				if 'Hall Suppression' in all_exp_events[exp[:-4]+'Events'].index: 
 					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression'], lw = 2, color = 'black')
 
@@ -324,6 +384,14 @@ for vic in victims:
 
 	for vent in vent_info:
 	
+		# Create figure	
+		fig = plt.figure()
+		fig.set_size_inches(8, 6)
+
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
 		createplot = False
 
 		for exp in vent_info[vent].dropna():
@@ -333,7 +401,7 @@ for vic in victims:
 
 			if vic in FED_Temp_Conv[exp]:
 				createplot = True
-				plt.plot(FED_Temp_Conv[exp][vic], label = exp[:-4].replace('_', ' ' ), lw = 2)
+				plt.plot(FED_Temp_Conv[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
 				if 'Hall Suppression' in all_exp_events[exp[:-4]+'Events'].index: 
 					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression'], lw = 2, color = 'black')
 
