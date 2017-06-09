@@ -2,7 +2,7 @@ echo "Running Python Scripts Necessary for Part II of Fire Attack Report"
 
 echo "Plotting General Results Plots"
 Python.exe Fire_Attack_PDF_Plotter.py
-echo "Building Data Diectionary"
+echo "Building Data Dictionary"
 Python.exe Build_Data_Dictionary.py
 echo "Calculate FED Data"
 Python.exe Build_FED_Data.py
