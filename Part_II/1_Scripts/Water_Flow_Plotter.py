@@ -21,11 +21,18 @@ output_location = '../0_Images/Script_Figures/Water_Flow/'
 all_flow_data = {}
 
 # Define 20 color pallet using RGB values
-tableau20 = [(255, 127, 14), (255, 187, 120), 
+tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
 (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
 (148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
 (227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
 (188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+
+# # Define 20 color pallet using RGB values
+# tableau20 = [(255, 127, 14), (255, 187, 120), 
+# (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
+# (148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
+# (227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
+# (188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
 
 # Define RGB values in pallet 
 for i in range(len(tableau20)):
@@ -50,11 +57,14 @@ print ('------------ All Flow Data ------------------')
 
 width = 1
 
-start = 0
+start = 0.5
 
 labels = []
 labels_x = []
 labels_pos = []
+
+fig = plt.figure()
+fig.set_size_inches(8, 6)
 
 for vent in tactic_info:
 
@@ -84,7 +94,7 @@ for vent in tactic_info:
 plt.legend(bbox_to_anchor=(1.01 , .8), loc='upper left', ncol=1, fontsize = 16)
 plt.tick_params(axis='x',which='both',bottom='off',top='off',labelbottom='on')
 plt.xticks(labels_pos, labels, rotation = 45, fontsize = 16, horizontalalignment='right' )
-plt.xlim([0 , end + 0.5*width])
+plt.xlim([0 , end])
 plt.subplots_adjust(bottom=0.35, right=0.625)
 plt.ylabel('Total Gallons', fontsize=18)
 plt.savefig(output_location + 'Water_Flow' +'.pdf')
@@ -95,6 +105,10 @@ plt.close('all')
 print ('------------ Flow Data by Vent Configuration ------------------')
 
 for vent in tactic_info:
+
+	fig = plt.figure()
+	fig.set_size_inches(8, 6)
+
 	print (vent)
 	num_exp = len (tactic_info[vent].dropna())
 	
@@ -114,8 +128,9 @@ for vent in tactic_info:
 		
 		if exp[:-4]+'Flow' not in all_flow_data.keys():
 			continue	
-		
-		plt.bar(x, np.round(all_flow_data[exp[:-4] + 'Flow']['Total Gallons'].max(),2), width, label = exp[:-5].replace('_',' '),color=next(prop_iter)['color'])
+
+		plt.bar(x+.5, np.round(all_flow_data[exp[:-4] + 'Flow']['Total Gallons'].max(),2), width, label = exp[:-5].replace('_',' '),color=next(prop_iter)['color'])
+
 		if exp == 'Experiment_22_Data':
 			pos = -18
 		else: 
@@ -159,7 +174,8 @@ plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 prop_iter = iter(plt.rcParams['axes.prop_cycle'])
 
 
-plt.figure(figsize=(9,5))
+fig = plt.figure()
+fig.set_size_inches(9, 5)
 
 for vent in vents:
 	labels.append(vent.replace('_',' '))
@@ -167,11 +183,12 @@ for vent in vents:
 	data = []
 	x = []
 	x_start = x_value
+
 	for exp in flow_move[vent]:
 		
 		if exp in all_flow_data.keys():
 			data.append(np.round(all_flow_data[exp[:-4] + 'Flow']['Total Gallons'].max(),2))
-			x.append(x_value)
+			x.append(x_value+.5)
 			x_value = x_value + width
 
 	plt.bar(x, data, width,color=tableau20[0])
@@ -182,17 +199,17 @@ for vent in vents:
 	for exp in shut_move[vent]:
 		if exp in all_flow_data.keys():
 			data.append(np.round(all_flow_data[exp[:-4] + 'Flow']['Total Gallons'].max(),2))
-			x.append(x_value)
+			x.append(x_value+.5)
 			x_value = x_value + width
 
 	plt.bar(x, data, width, color=tableau20[2])
 
-	x_end = x_value
+	x_end = x_value +.5
 
 	label_pos.append(np.average([x_start,x_end]))
 	x_value = x_value + 1
 
-plt.xlim([0,x_end+.5])
+plt.xlim([0,x_end])
 plt.tick_params(axis='x',which='both',bottom='off',top='off',labelbottom='on')
 
 plt.xticks(label_pos, labels, rotation = 45, fontsize = 16, horizontalalignment='right')
@@ -286,7 +303,8 @@ x_value = 0.5
 plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 prop_iter = iter(plt.rcParams['axes.prop_cycle'])
 
-plt.figure(figsize=(9,5))
+fig = plt.figure()
+fig.set_size_inches(9, 5)
 
 for tactic in tactics:
 	labels.append(tactic.replace('_',' '))
@@ -345,22 +363,10 @@ for exp in all_flow_data.keys():
 	if not os.path.exists(output_location):
 	    os.makedirs(output_location)
 
-	#Create figure
 	fig = plt.figure()
+	fig.set_size_inches(8, 6)
 	
 	# plt.style.use('ggplot') 
-
-	# Define 20 color pallet using RGB values
-	tableau20 = [(255, 127, 14), (255, 187, 120), 
-	(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
-	(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
-	(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
-	(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
-
-	# Define RGB values in pallet 
-	for i in range(len(tableau20)):
-			r, g, b = tableau20[i]
-			tableau20[i] = (r / 255., g / 255., b / 255.)
 
 	# Plot style - cycle through 20 color pallet and define markers to cycle through
 	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
