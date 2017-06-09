@@ -1,5 +1,5 @@
 # ******************************* Run Notes ********************************
-# Creates the .dict files for the as a pickle object to be read for analysis
+# Creates the .dict files for pickle to read as an object during analysis
 
 import pandas as pd
 import os
@@ -7,6 +7,7 @@ import datetime as datetime
 import numpy as np
 from scipy.signal import butter, filtfilt,savgol_filter
 import pickle
+import math
 import matplotlib.pyplot as plt
 
 
@@ -117,33 +118,34 @@ for exp in exp_des.index.values:
 
 	all_exp_data[exp] = data
 
+	if exp_des['Speed'][exp] == 'high':
+		new_exp_df = pd.DataFrame(np.arange(0,all_exp_data[exp].index.values[-1]+1,1), columns=['Time'])
+		new_exp_df = new_exp_df.set_index('Time')
+	
 	# step = [j-i for i, j in zip(all_exp_data[exp].index.tolist()[:-1], all_exp_data[exp].index.tolist()[1:])]
 	# plt.plot(step)
 	# plt.show()
 	# exit()
 
 	for channel in channel_list.index.values:
-
-		#Skip channels listed in experiment discription file
+		# Skip channels listed in experiment description file
 		if channel in channels_to_skip[exp]: 
 			continue
 
 		if channel not in all_exp_data[exp]:
 			continue
 
-		# If statement to find temperature type in channels csv
+		# If statements to find data type of channel & process data accordingly
+		# Temperature
 		if channel_list['Type'][channel] == 'Temperature':
-			
 			# Set data to include slope and intercept
 			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel] + channel_list['Offset'][channel]
-			all_exp_data[exp][channel] = all_exp_data[exp][channel].round(1)
+			rounding_value = 1
 		
-		#If statement to find gas or carbon monoxide type in channels csv
-		if channel_list['Type'][channel] in ['Gas', 'Carbon Monoxide']:
-			
+		# Gas or carbon monoxide 
+		elif channel_list['Type'][channel] in ['Gas', 'Carbon Monoxide']:
+			# Set data to include slope and intercept & shift based on transport time
 			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel]  + channel_list['Offset'][channel]
-
-			#Update Data based on transport time
 			transport = int(transport_times['Victim_' + channel[0] + '_' + exp_des['House'][exp].upper()][exp])	
 
 			if transport % 2 != 0:
@@ -151,52 +153,49 @@ for exp in exp_des.index.values:
 
 			if exp_des['Speed'][exp] == 'high':
 				all_exp_data[exp][channel] = pd.DataFrame({'channel':all_exp_data[exp][channel][int(transport):].tolist()})
-
-			if exp_des['Speed'][exp] == 'low':
+			
+			elif exp_des['Speed'][exp] == 'low':
 				if exp_des['House'][exp] == 'a':
 					all_exp_data[exp][channel] = pd.DataFrame({'channel':all_exp_data[exp][channel][int(transport):].tolist()})
-
-				if exp_des['House'][exp] == 'b':
+				elif exp_des['House'][exp] == 'b':
 					all_exp_data[exp][channel] = pd.DataFrame({'channel':all_exp_data[exp][channel][int(transport/2):].tolist()})
 			
 			#Normalize Oxygen to 20.95 and round to 2
 			if channel[1:] == 'O2V':
 				all_exp_data[exp][channel] = (all_exp_data[exp][channel] - all_exp_data[exp][channel][:90].mean()) + 20.95
-				all_exp_data[exp][channel] = all_exp_data[exp][channel].round(2)
+				rounding_value = 2
 
-			if channel[1:] == 'CO2V':
-				all_exp_data[exp][channel] = all_exp_data[exp][channel].round(2)
+			elif channel[1:] == 'CO2V':
+				rounding_value = 2
 
-			if channel[1:] == 'COV':
-				all_exp_data[exp][channel] = all_exp_data[exp][channel].round(0)
+			elif channel[1:] == 'COV':
+				rounding_value = 0
 
-		if channel_list['Type'][channel] in ['Wall Heat Flux', 'Floor Heat Flux', 'Victim Heat Flux']:
+		# Heat flux
+		elif channel_list['Type'][channel] in ['Wall Heat Flux', 'Floor Heat Flux', 'Victim Heat Flux']:
+			# Set data to include slope and intercept
 			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel]  + channel_list['Offset'][channel]
-			all_exp_data[exp][channel] = all_exp_data[exp][channel].round(2)
+			rounding_value = 2
 
-        # If statement to find velocity type in channels csv
-		if channel_list['Type'][channel] == 'Velocity':
+        # Velocity
+		elif channel_list['Type'][channel] == 'Velocity':
+			# Zero voltage
+			all_exp_data[exp][channel] = all_exp_data[exp][channel] - np.average(all_exp_data[exp][channel][:90]) + 2.5
 
-			# Define cutoff and fs for filtering 
-			if exp_des['Speed'][exp] == 'high':
-				cutoff = 50
-				fs = 700
-				all_exp_data[exp][channel] = all_exp_data[exp][channel] - np.average(all_exp_data[exp][channel][:90]) + 2.5
-				# all_exp_data[exp][channel] = savgol_filter(all_exp_data[exp][channel], 75, 3)
-			else: 
-				all_exp_data[exp][channel] = all_exp_data[exp][channel] - np.average(all_exp_data[exp][channel][:90]) + 2.5
-				# all_exp_data[exp][channel] = savgol_filter(all_exp_data[exp][channel], 11, 3)
-
-
-			#Calculate new index for velocity result
+			# Convert voltage to velocity
 			all_exp_data[exp][channel[:-1]] = (np.sign(all_exp_data[exp][channel]-2.5)*0.070*((all_exp_data[exp][channel[:-1]+'T']+273.15)*(99.6*abs(all_exp_data[exp][channel]-2.5)))**0.5) * 2.23694
-			all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]].round(2)
+			rounding_value = 2
 
 			if exp_des['Speed'][exp] == 'high':
 				all_exp_data[exp][channel[:-1]] = savgol_filter(all_exp_data[exp][channel[:-1]],75,3)
-			if exp_des['Speed'][exp] == 'low':
+			elif exp_des['Speed'][exp] == 'low':
 				all_exp_data[exp][channel[:-1]] = savgol_filter(all_exp_data[exp][channel[:-1]],11,3)
 
+		all_exp_data[exp][channel] = all_exp_data[exp][channel].round(rounding_value)
+		
+		if len(channel)==6:
+			if channel[1:4]=='BDP':
+				all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]].round(rounding_value)
 		if exp in channels_to_trim:
 			if channel in channels_to_trim[exp].index:
 				if channel_list['Type'][channel] == 'Velocity':
@@ -204,6 +203,31 @@ for exp in exp_des.index.values:
 						all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]][:int(channels_to_trim[exp]['Time'][channel]/2)]
 				else:
 					all_exp_data[exp][channel] = all_exp_data[exp][channel][:int(channels_to_trim[exp]['Time'][channel]/2)]
+
+		# Average data over each second & add to new df if sampling at high rate
+		if exp_des['Speed'][exp] == 'high':
+			new_channel_data = all_exp_data[exp][channel][9:].rolling(window=10, center=False).mean()
+			new_channel_data = new_channel_data.dropna()
+			new_channel_data = new_channel_data[::10]
+			new_exp_df[channel] = new_channel_data.round(rounding_value)
+			if len(channel)==6:
+				if channel[1:4]=='BDP':
+					new_channel_data = all_exp_data[exp][channel[:-1]][9:].rolling(window=10, center=False).mean()
+					new_channel_data = new_channel_data.dropna()
+					new_channel_data = new_channel_data[::10]
+					new_exp_df[channel[:-1]] = new_channel_data.round(rounding_value)
+
+			# 	for n in range(0,new_exp_df.index.values[-1]+1):
+			# 		orig_avg = round(np.mean(all_exp_data[exp][channel].iloc[n*10+9:19+n*10]),rounding_value)
+			# 		new_value = new_exp_df[channel].iloc[n]
+			# 		diff = round(orig_avg - new_value,rounding_value)
+			# 		if abs(diff) > 2.*rounding_value:
+			# 			print(n)
+			# 			print(diff)
+			# 			print(orig_avg, new_value)
+
+	if exp_des['Speed'][exp] == 'high':
+		all_exp_data[exp] = new_exp_df.dropna()
 
 	all_exp_FED_data[exp] = all_exp_data[exp].reset_index()
 
@@ -213,10 +237,10 @@ for exp in exp_des.index.values:
 	time = all_exp_FED_data[exp]['Time'].tolist()
 
 	if exp_des['Speed'][exp] == 'high':
-		time = time[::20]
-		all_exp_FED_data[exp] = all_exp_FED_data[exp][::20]
+		time = time[::2]
+		all_exp_FED_data[exp] = all_exp_FED_data[exp][::2]
 
-	if exp_des['Speed'][exp] == 'low':
+	elif exp_des['Speed'][exp] == 'low':
 		if exp_des['House'][exp] == 'a':
 			time = time[::2]
 			all_exp_FED_data[exp] = all_exp_FED_data[exp][::2]
