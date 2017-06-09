@@ -177,23 +177,6 @@ for Exp_Set in comparison_sets:
 		# set index to match plot's time axis
 		flow_data['Plot Time'] = flow_data.index.values - start_df_idx
 		flow_data = flow_data.set_index('Plot Time')
-
-		# if House == 'a':
-		# 	scalefactor = 'ScaleFactor_A'
-		# 	Transport_Time = 'Transport_Time_A'
-		# elif House == 'b':
-		# 	scalefactor = 'ScaleFactor_B'
-		# 	Transport_Time = 'Transport_Time_B'
-		# else:
-		# 	print('[ERROR!]: House label not set properly!')
-		# 	print(' 	House = '+House)
-		# 	exit()
-
-		# Set marker frequency based on sampling rate
-		# if Exp_Des['Speed'][File_Name] == 'high':
-		# 	mark_freq = 100
-		# elif Exp_Des['Speed'][File_Name] == 'low':
-		# 	mark_freq = 5
 			
 		# Iterate through sensor groups for each comparison set
 		for group in sensor_groups[set_idx]:

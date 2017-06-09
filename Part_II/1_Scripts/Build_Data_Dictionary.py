@@ -7,6 +7,7 @@ import datetime as datetime
 import numpy as np
 from scipy.signal import butter, filtfilt,savgol_filter
 import pickle
+import math
 import matplotlib.pyplot as plt
 
 
@@ -120,7 +121,7 @@ for exp in exp_des.index.values:
 	if exp_des['Speed'][exp] == 'high':
 		new_exp_df = pd.DataFrame(np.arange(0,all_exp_data[exp].index.values[-1]+1,1), columns=['Time'])
 		new_exp_df = new_exp_df.set_index('Time')
-
+	
 	# step = [j-i for i, j in zip(all_exp_data[exp].index.tolist()[:-1], all_exp_data[exp].index.tolist()[1:])]
 	# plt.plot(step)
 	# plt.show()
@@ -191,7 +192,10 @@ for exp in exp_des.index.values:
 				all_exp_data[exp][channel[:-1]] = savgol_filter(all_exp_data[exp][channel[:-1]],11,3)
 
 		all_exp_data[exp][channel] = all_exp_data[exp][channel].round(rounding_value)
-
+		
+		if len(channel)==6:
+			if channel[1:4]=='BDP':
+				all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]].round(rounding_value)
 		if exp in channels_to_trim:
 			if channel in channels_to_trim[exp].index:
 				if channel_list['Type'][channel] == 'Velocity':
@@ -206,17 +210,24 @@ for exp in exp_des.index.values:
 			new_channel_data = new_channel_data.dropna()
 			new_channel_data = new_channel_data[::10]
 			new_exp_df[channel] = new_channel_data.round(rounding_value)
-			# for n in range(0,new_exp_df.index.values[-1]+1):
-			# 	orig_avg = round(np.mean(all_exp_data[exp][channel].iloc[n*10+9:19+n*10]),rounding_value)
-			# 	new_value = new_exp_df[channel].iloc[n]
-			# 	diff = round(orig_avg - new_value,rounding_value)
-			# 	if abs(diff) > 2.*rounding_value:
-			# 		print(n)
-			# 		print(diff)
-			# 		print(orig_avg, new_value)
+			if len(channel)==6:
+				if channel[1:4]=='BDP':
+					new_channel_data = all_exp_data[exp][channel[:-1]][9:].rolling(window=10, center=False).mean()
+					new_channel_data = new_channel_data.dropna()
+					new_channel_data = new_channel_data[::10]
+					new_exp_df[channel[:-1]] = new_channel_data.round(rounding_value)
+
+			# 	for n in range(0,new_exp_df.index.values[-1]+1):
+			# 		orig_avg = round(np.mean(all_exp_data[exp][channel].iloc[n*10+9:19+n*10]),rounding_value)
+			# 		new_value = new_exp_df[channel].iloc[n]
+			# 		diff = round(orig_avg - new_value,rounding_value)
+			# 		if abs(diff) > 2.*rounding_value:
+			# 			print(n)
+			# 			print(diff)
+			# 			print(orig_avg, new_value)
 
 	if exp_des['Speed'][exp] == 'high':
-		all_exp_data[exp] = new_exp_df
+		all_exp_data[exp] = new_exp_df.dropna()
 
 	all_exp_FED_data[exp] = all_exp_data[exp].reset_index()
 
