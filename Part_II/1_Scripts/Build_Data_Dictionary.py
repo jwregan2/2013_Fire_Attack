@@ -191,11 +191,21 @@ for exp in exp_des.index.values:
 			elif exp_des['Speed'][exp] == 'low':
 				all_exp_data[exp][channel[:-1]] = savgol_filter(all_exp_data[exp][channel[:-1]],11,3)
 
+		#Pressure
+		elif channel_list['Type'][channel] == 'Pressure':
+			#Zero Voltage
+			all_exp_data[exp][channel] = all_exp_data[exp][channel] - np.average(all_exp_data[exp][channel][:90]) + 2.5
+
+			#Convert to Pascal
+			all_exp_data[exp][channel] = all_exp_data[exp][channel] * channel_list['ScaleFactor_' + exp_des['House'][exp].upper()][channel]  + channel_list['Offset'][channel]
+			rounding_value = 0
+
 		all_exp_data[exp][channel] = all_exp_data[exp][channel].round(rounding_value)
 		
 		if len(channel)==6:
 			if channel[1:4]=='BDP':
 				all_exp_data[exp][channel[:-1]] = all_exp_data[exp][channel[:-1]].round(rounding_value)
+
 		if exp in channels_to_trim:
 			if channel in channels_to_trim[exp].index:
 				if channel_list['Type'][channel] == 'Velocity':
