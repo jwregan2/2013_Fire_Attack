@@ -216,16 +216,10 @@ for Exp_Set in comparison_sets:
 			ax3=ax1.twiny()
 			ax3.set_zorder(ax1.get_zorder())
 			ax3.set_xlim([-6, xaxis_lim])
-			# if set_idx == 4: 	# Multiple events for Exp 22 and 24 comparison
 			[ax3.axvline((idx-start_df_idx),color='0',lw=4) for idx in event_times]
 			ax3.set_xticks([(idx-start_df_idx) for idx in event_times])
 			plt.setp(plt.xticks()[1], rotation=45)		
 			ax3.set_xticklabels([label for label in event_labels], fontsize=30, ha='left')
-			# else:
-			# 	ax3.axvline(0,color='0',lw=4) 
-			# 	ax3.set_xticks([0])
-			# 	plt.setp(plt.xticks()[1], rotation=45)		
-			# 	ax3.set_xticklabels([Events.index.values[extinguish_event_idx]], fontsize=30, ha='left')
 
 			fig.set_size_inches(20, 18)
 			
