@@ -6,6 +6,7 @@
 \renewcommand{\bibname}{References}
 
 \usepackage{fancyhdr}
+\usepackage{placeins}
 \pagestyle{fancy}
 \lhead{}
 \rhead{}
@@ -43,7 +44,7 @@ Survival: Full Scale Experiments\\
 \flushleft{
 Robin Zevotek \\
 Keith Stakes \\
-Joseph Willi
+Joseph Willi \\
 \vspace{0.2in}
 UL Firefighter Safety Research Institute \\
 Columbia, MD 21045 \\
@@ -1835,48 +1836,59 @@ This section looks at the effect of different fire department tactics on tenabil
 \textbf{\hl{Compare 13-16 vs. 22-24 (Two Vent)}} \\
 
 \section{Effect of Ventilation Profile on Knock Back Capability}
-In the following section, knock back times are compared between experiments from five different groups that were formed based on fire attack method. Three of the sets involved an interior fire attack method, and two sets involved an exterior fire attack method. This section compares the temperature data from the experiments in each set to determine how ventilation profile and fire size affect the ability of the different attack methods to knock back the fire. 
+In the following section, the time to ``knock back'' the fire is compared between the experiments in five different groups that were formed based on fire attack method. Three of the sets involved an interior fire attack method, and two sets involved an exterior fire attack method. The differentiating factor between the experiments within each group is the ventilation profile. The following subsections use the temperature data from experiments to determine how ventilation profile affects the ability of the different attack methods to knock back the fire. 
 
-\subsection{Interior}
-The differentiating factor between the three sets of interior fire attack experiments is the type of method used to extinguish the fire, and the differentiating factor between the experiments within each set is the ventilation profile and fire size. 
-
-The first set of experiments contains experiments that used the ``flow and move'' attack method with a solid stream from a smooth bore nozzle. The group is composed of Experiments~2, 7, and 13, which contained the `No Vent', `Single Vent', and `Two Vent' ventilation profiles, respectively.
+\subsection{Flow \& Move with Solid Stream}
+The first set of experiments is composed of Experiments~2, 7, and 13, which contained the `No Vent', `Single Vent', and `Two Vent' ventilation profile, respectively. The `flow and move' attack method with a solid stream from a smooth bore nozzle was the primary attack method used during each experiment. Figure~\ref{fig:knockback_int_1} contains a plot of the Bedroom~1 (fire room) temperatures from six seconds before the interior suppression event to one minute after the event for each experiment.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_2_Bedroom_1_Temps}
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_7_Bedroom_1_Temps}
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_13_Bedroom_1_Temps}
-	\caption[]{Experiments 2 (top left), 7 (top right), and 13 (bottom) Bedroom 1 temperatures around time of suppression}
+	\caption[Flow \& Move with Solid Stream --- Bedroom~1 Temperatures]{Bedroom~1 temperatures six seconds before the interior suppression event to one minute after the event during Experiments~2 (top left), 7 (top right), and 13 (bottom). The `flow and move' method with a solid stream from a smooth bore nozzle was the primary attack method used during each experiments.}
 	\label{fig:knockback_int_1}
 \end{figure}
-\clearpage
+\FloatBarrier
 
-The second set of experiments contains experiments that used the ``shutdown and move'' attack method with a solid stream from a smooth bore nozzle. The group is composed of Experiments~6, 8, and 14, which contained the `No Vent', `Single Vent', and `Two Vent' ventilation profiles, respectively.
+Looking at the plots, the Bedroom~1 temperatures before the suppression event for Experiment~2 are indicative of temperatures before flashover (i.e., a significant temperature distribution is present), while the Bedroom~1 temperatures at the same time during Experiments~7 and 13 are indicative of a room in the flashover state. The `Single Vent' and `Two Vent' configurations used during Experiments~7 and 13 provided a steady source of oxygen to the fire room through the Bedroom~1 window unlike the `No Vent' configuration used during Experiment~2. 
 
-\begin{figure}[!ht]
+Despite the difference in the temperature distribution before suppression, the Bedroom~1 temperatures behaved similarly after suppression began in each experiment; the measured temperatures in the fire room fell below 400~$^\circ$F within 30 seconds after the start of suppression and eventually converged to a value near 200~$^\circ$F by 50 seconds after the start of suppression. 
+
+\subsection{Shutdown \& Move with Solid Stream}
+The second set of experiments is composed of Experiments~6, 8, and 14, which contained the `No Vent', `Single Vent', and `Two Vent' ventilation profile, respectively. The `shutdown and move' attack method with a solid stream from a smooth bore nozzle was the primary attack method used during each experiment. Figure~\ref{fig:knockback_int_2} contains a plot of the Bedroom~1 (fire room) temperatures from six seconds before the interior suppression event to one minute after the event for each experiment.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_6_Bedroom_1_Temps}
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_8_Bedroom_1_Temps}
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_14_Bedroom_1_Temps}
-	\caption[]{Experiments 6 (top left), 8 (top right), and 14 (bottom) Bedroom 1 temperatures around time of suppression}
+	\caption[Shutdown \& Move with Solid Stream---Bedroom~1 Temperatures]{Bedroom~1 temperatures six seconds before the interior suppression event to one minute after the event during Experiments~6 (top left), 8 (top right), and 14 (bottom). The `shutdown and move' method with a solid stream from a smooth bore nozzle was the primary attack method used during each experiments.}
 	\label{fig:knockback_int_2}
 \end{figure}
-\clearpage
+\FloatBarrier
 
-The third set of experiments contains experiments that used the ``flow and move'' attack method with a narrow fog stream from a combination nozzle. The group is composed of Experiments~11 and 16, which contained the `Single Vent' and `Two Vent' ventilation profiles, respectively.
+As in the previous comparison of experiments, the temperature distribution before suppression for the experiment with the `No Vent' configuration, Experiment~6, was significantly larger than the temperature distribution present at the same time during the other two experiments. Again, due to the lack of a steady oxygen source to the fire room in the `No Vent' scenario, the room wasn't able to transition to the flashover stage like it did in Experiments~8 and 14, which contained the `Single Vent' and `Two Vent' configurations. 
+
+Despite the difference in the initial temperature distribution, the Bedroom~1 temperatures decreased at a similar rate in each of the three experiments; the temperatures only begin to significantly decrease after the third period of water flow (around 30 seconds after the initial suppression event), when the attack crew was at the end of the hall near the doorway of Bedroom~1. For Experiment~6, all temperatures dropped below 400~$^\circ$F by the end of the third instance of water flow. The same may also be true for the temperatures during the same period for Experiment~8. Based on the sharp rise in temperature measured at 1~ft, 3~ft, and 5~ft above the floor and the erratic behavior that occurred in the temperature data at the same locations later in the experiment (after the period shown in the plot), it is likely that the thermocouples at the three locations were hit by water during the third suppression event, which adversely affected the temperature data. However, the temperature 7~ft above the floor declined at a rate similar to Experiment~6 and decreased to approximately 200~$^\circ$F by the end of the third instance of water flow like Experiment~6. Note, although temperatures began to sharply decline during the third instance of water flow during Experiment~14, the temperatures didn't drop below 400~$^\circ$F until the next period of water flow around the 45 second mark. The longer duration of Bedroom~1 temperature decline might be due to the fact that the `Two Vent' setup used during Experiment~14 contained two fire rooms, so the attack crew divided the water application between two rooms instead of using all the water to extinguish the fire in Bedroom~1. [CHECK VIDEO TO CONFIRM]  
+
+\subsection{Flow \& Move with Narrow Fog}
+The third set of experiments is composed of Experiments~11 and 16, which contained the `Single Vent' and `Two Vent' ventilation profile, respectively. The `flow and move' attack method with a narrow fog stream from a combination nozzle was the primary attack method used during both experiments. Figure~\ref{fig:knockback_int_3} contains a plot of the Bedroom~1 (fire room) temperatures from six seconds before the interior suppression event to one minute after the event for each experiment.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_11_Bedroom_1_Temps}
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_16_Bedroom_1_Temps}
-	\caption[]{Experiments 11 (left) and 16 (right) Bedroom 1 temperatures around time of suppression}
+	\caption[Flow \& Move with Narrow Fog --- Bedroom~1 Temperatures]{Bedroom~1 temperatures six seconds before the interior suppression event to one minute after the event during Experiments~11 (left) and 16 (right). The `flow and move' method with a narrow fog stream from a combination nozzle was the primary attack method used during each experiment.}
 	\label{fig:knockback_int_3}
 \end{figure}
-\clearpage
+\FloatBarrier
 
-\subsection{Exterior}
-\textbf{\hl{Compare 18,20, (just initial hit) vs. 22,24 (just bedroom 1)}}
+Looking at the two plots, the attack crew flowing water in a narrow fog stream for less than 30 seconds while moving down the hall during Experiment~11 caused all Bedroom~1 temperatures to decrease to under 200~$^\circ$F. The same intervention during Experiment~16 caused three of the four Bedroom~1 temperatures to decrease to values around 200~$^\circ$F. The faster rate of Bedroom~1 temperature decline that occurred during Experiment~11 is a result of the `Single Vent' configuration having only one fire room, while the `Two Vent' configuration used during Experiment~16 had two fire rooms.
+
+\subsection{Exterior Attack at Bedroom~1 Window}
+The fourth set of experiments is composed of Experiments~18, 20, 22, and 24, which all began with an exterior attack at  
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_18_Bedroom_1_Temps}
@@ -1888,7 +1900,7 @@ The third set of experiments contains experiments that used the ``flow and move'
 \end{figure}
 \clearpage
 
-\textbf{\hl{Compare 22 (BD1 and interior) vs. 24 (BD1, BD2, and Interior)}}
+\subsection{Exterior Attack at Bedroom~1 Window}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Knock_Back/Experiment_22_Bedroom_1_Temps_full}
