@@ -94,12 +94,18 @@ for i in range(len(tableau20)):
 # List of markers for plots & frequency of marker on plot
 markers = ['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H']
 
-mark_freq = 5
-
 # Loop through experiments in each comparison set
 set_idx = 0 	# variable used to ID each comparison set of experiments
 for Exp_Set in comparison_sets:
 	extinguish_event_idx = event_row_nums[set_idx]-1
+	if set_idx==4:
+		mark_freq = 10
+		xaxis_lim = 95
+		x_ticks = [0,15,30,45,60,75,90]
+	else:
+		mark_freq = 5
+		xaxis_lim = 60
+		x_ticks = [0,10,20,30,40,50]
 	print('----- Comparing Experiments from set',Exp_Set,' -----')
 	for Exp_Num in Exp_Set:
 		# Define experiment number, test name, and data file name
@@ -112,65 +118,31 @@ for Exp_Set in comparison_sets:
 		Exp_Flow_Data = all_flow_data[File_Name]
 		Events = all_exp_events[Test_Name+'_Events']
 
-		# # Get house & data speed
-		# House = Exp_Des.loc[File_Name, 'House']
-		# Speed = Exp_Des.loc[File_Name, 'Speed']
-
 		print('Loaded data and event files for '+Test_Name)
 
 		# Grab event times & labels (if applicable)
-		if set_idx == 4: # Multiple events for comparison between Exp 22 and 24	
-			event_times = Events['Time_Seconds'].iloc[extinguish_event_idx:-1]
-			event_labels = Events.index.values[extinguish_event_idx:-1]
-			start_df_idx = event_times[0]
-			end_df_idx = event_times[-1]
-		else:
-			start_df_idx = Events['Time_Seconds'].iloc[extinguish_event_idx]
-			end_df_idx = start_df_idx+60
-
-		# # Grab ignition time & use (later) to determine flow data start/end index
-		# ignition_timestamp = Events['Time'].iloc[0]
-		# ignition_time = float(ignition_timestamp[-5:-3])*60+float(ignition_timestamp[-2:])
-
-		# # If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv file
-		# if Speed == 'low':
-		# 	if Exp_Num == '6' or Exp_Num == '18':	
-		# 		data_per_sec = 0.5		# Data collected every other second 
-		# 		extinguish_idx = Exp_Data[Exp_Data['Elapsed Time']=='0'+extinguish_time].index.tolist()[0] 		# timestamp of form hh:mm:ss				
-		# 	else:
-		# 		data_per_sec = 1 	# Data collected every second
-		# 		extinguish_idx = Exp_Data[Exp_Data['Elapsed Time']==extinguish_time].index.tolist()[0]
-		# 		if set_idx == 4: 	# Get index for each event so they can be marked on plot
-		# 			event_idxs = []
-		# 			for timestamp in event_times:
-		# 				event_idxs.append(Exp_Data[Exp_Data['Elapsed Time']==timestamp].index.tolist()[0])
-		# elif Speed == 'high':
-		# 	data_per_sec = 10 	# Data collected every 0.1 second
-		# 	extinguish_idx = Exp_Data[Exp_Data['Elapsed Time']==extinguish_time[2:]+'.0'].index.tolist()[0]
-		# 	if set_idx == 4: 	# Get index for each event so they can be marked on plot
-		# 		event_idxs = []
-		# 		for timestamp in event_times:
-		# 			event_idxs.append(Exp_Data[Exp_Data['Elapsed Time']==timestamp[2:]+'.0'].index.tolist()[0])
-		# else:
-		# 	print('[ERROR!]: data speed not set properly!')
-		# 	print(' 	Speed = '+Speed)
-		# 	exit()
-
-		# Get start/end index for exp data and flow data
-		# start_flow_idx = float(extinguish_time[-5:-3])*60+float(extinguish_time[-2:])-ignition_time
-		# if set_idx == 4: 	# Different end index for comparison between Exp 22 and 24
-		# 	end_df_idx = int(event_times[-1])
-		# 	# end_flow_idx = float(event_idxs[-1])+60-ignition_time
-		# else:
-		# 	end_df_idx = int(extinguish_idx+data_per_sec*60)
-		# 	end_flow_idx = float(extinguish_time[-5:-3])*60+float(extinguish_time[-2:])+60-ignition_time
-
-		# Uncomment to print times in order to verify they are correct
-		# print('    Extinguish time = '+str(Exp_Data['Elapsed Time'].iloc[extinguish_idx]))
-		# print('    Extinguish index = '+str(extinguish_idx))
-		# print('    Start dataframe at '+str(Exp_Data['Elapsed Time'].iloc[start_df_idx]))
-		# print('    End dataframe at '+str(Exp_Data['Elapsed Time'].iloc[end_df_idx]))
-		# print()
+		start_df_idx = Events['Time_Seconds'].iloc[extinguish_event_idx]
+		end_df_idx = start_df_idx+xaxis_lim
+		# if set_idx >= 3: # Multiple events for comparison between Exp 22 and 24
+		event_times = []
+		event_labels = []
+		for index,row in Events.iloc[extinguish_event_idx:-1,:].iterrows():
+			time = row['Time_Seconds']
+			if time-start_df_idx < xaxis_lim:
+				event_times.append(time)
+				event = index
+				if event == 'Suppression BR1 Window Solid Stream':
+					event_labels.append('Suppr. BR1 Window Solid')
+				elif event == 'Exterior Suppression BR1 Window Solid Stream':
+					event_labels.append('Suppr. BR1 Window Solid')
+				elif event == 'Exterior Suppression BR1 Window Straight Stream':
+					event_labels.append('Suppr. BR1 Window Straight')
+				elif event == 'Exterior Suppression BR2 Window Straight Stream':
+					event_labels.append('Suppr. BR2 Window Straight')
+				else:
+					event_labels.append(event)
+			else:
+				continue
 
 		# Create df of flow data to plot
 		flow_data = Exp_Flow_Data[:].loc[start_df_idx:end_df_idx]
@@ -192,7 +164,6 @@ for Exp_Set in comparison_sets:
 
 			# Create figure to plot temperatures
 			fig = plt.figure()
-			# plt.rc('axes', prop_cycle=(cycler('color',tableau20[2:])))
 			mpl.rcParams['axes.prop_cycle'] = cycler(color=tableau20[2:]) # ignore first two colors (blue shade used on plots)
 			plot_markers = cycle(markers)
 
@@ -202,15 +173,15 @@ for Exp_Set in comparison_sets:
 			plt.ylim([0, 1800])
 			plt.grid(True)
 			plt.xlabel('Time (sec)', fontsize=48)
-			plt.xticks(fontsize=44)
+			plt.xticks(x_ticks, fontsize=44)
 			plt.yticks(fontsize=44)
 
 			# Shade blue areas on plot when flow occurs
-			ax1.fill_between(flow_data.index.values, 0, 1800, where=flow_data['GPM']>10, facecolor='blue', alpha=0.1)
-			
+			plt.fill_between(flow_data.index.values, 0, 1800, where=flow_data['GPM']>10, facecolor='blue', alpha=0.3)
+
 			# Plot flow data on secondary axis & set axis label/ticks
 			ax2 = ax1.twinx()
-			ax2.plot(flow_data.index.values, flow_data['Total Gallons'], lw=6, color='#1f77b4',)
+			plt.plot(flow_data.index.values, flow_data['Total Gallons'], lw=6, color='#1f77b4')
 			ax2.set_ylim(0,200)
 			ax2.set_ylabel('Total Flow (Gallons)', fontsize=48)
 			ax2.tick_params(labelsize=44)
@@ -221,65 +192,55 @@ for Exp_Set in comparison_sets:
 				if pd.isnull(channel):
 					continue
 
-				# if any([(int(channel[-1]) == num) for num in skip_TCs]):
-				# 	print('Skipped '+channel)
-				# 	continue
-
-				if int(channel[-1]) in skip_TCs:
-					print('Skipped '+channel)
+				if int(channel[-1]) in skip_TCs:	# only plot TC 7, 5, 3, & 1
 					continue
 
 	   			# Skip excluded channels listed in test description file
 				if channel in channels_to_skip[File_Name]:
 					continue
-
-	            # Set scale factor and offset
-				# scale_factor = channel_list[scalefactor][channel]
-				# offset = channel_list['Offset'][channel]
 				
 				# Define channel data and time
 				current_data = group_data[channel]
-				
-				# Set data to include slope and intercept
-				# current_data = current_data * scale_factor + offset
 
 				# Plot channel data
 				ax1.plot(group_data[channel].index.values-start_df_idx, current_data, lw=4,
 					marker=next(plot_markers), markevery=int(mark_freq),
 					mew=3, mec='none', ms=20, label=all_channels['Title'][channel])
 
-			plt.xlim([-6, end_df_idx-start_df_idx-1])
+			plt.xlim([-6, xaxis_lim])
+
+			ax1.set_zorder(ax2.get_zorder()+1) # put ax in front of ax2 
+			ax1.patch.set_visible(False) # hide the 'canvas' 
 
 			# Secondary x-axis for event info
-			# ax3=ax1.twiny()
-			# # ax3.set_xlim(-6,end_time-1)
+			ax3=ax1.twiny()
+			ax3.set_zorder(ax1.get_zorder())
+			ax3.set_xlim([-6, xaxis_lim])
 			# if set_idx == 4: 	# Multiple events for Exp 22 and 24 comparison
-			# 	[plt.axvline((idx-extinguish_idx)/data_per_sec,color='0',lw=4) for idx in event_idxs]
-			# 	ax3.set_xticks([(idx-extinguish_idx)/data_per_sec for idx in event_idxs])
-			# 	plt.setp(plt.xticks()[1], rotation=45)		
-			# 	ax3.set_xticklabels([label for label in event_labels], fontsize=34, ha='left')
+			[ax3.axvline((idx-start_df_idx),color='0',lw=4) for idx in event_times]
+			ax3.set_xticks([(idx-start_df_idx) for idx in event_times])
+			plt.setp(plt.xticks()[1], rotation=45)		
+			ax3.set_xticklabels([label for label in event_labels], fontsize=30, ha='left')
 			# else:
-			# 	plt.axvline(0,color='0',lw=4) 
+			# 	ax3.axvline(0,color='0',lw=4) 
 			# 	ax3.set_xticks([0])
 			# 	plt.setp(plt.xticks()[1], rotation=45)		
-			# 	ax3.set_xticklabels(['Start Suppression'], fontsize=34, ha='left')
+			# 	ax3.set_xticklabels([Events.index.values[extinguish_event_idx]], fontsize=30, ha='left')
 
 			fig.set_size_inches(20, 18)
-
-			handles1, labels1 = ax1.get_legend_handles_labels()
-			ax1.legend(handles1, labels1, loc='upper right', fontsize=40, handlelength=3, labelspacing=.15)
 			
 			# Set y-label to degrees F with LaTeX syntax
-			ax1.set_ylim(150,1800)
+			ax1.set_ylim(100,1800)
 			ax1.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
 
-			plt.tight_layout()
-			# plt.subplots_adjust(top=0.8)	
-			# plt.subplots_adjust(top=0.9)
+			handles1, labels1 = ax1.get_legend_handles_labels()
+			plt.legend(handles1, labels1, loc='upper right', fontsize=40, handlelength=3, labelspacing=.15)
 
+			plt.tight_layout()
+			
 			# Save plot to file
-			if set_idx == 4:
-				plt.savefig(output_location+Test_Name+'_'+group+'_full.pdf') # used for Exp 22/24 comparison containing multiple events 
+			if set_idx == 4: 	# used for Exp 22/24 comparison containing multiple events
+				plt.savefig(output_location+Test_Name+'_'+group+'_full.pdf') 
 			else:
 				plt.savefig(output_location+Test_Name+'_'+group+'.pdf')
 			
