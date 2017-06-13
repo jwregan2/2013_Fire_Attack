@@ -8,10 +8,7 @@
 # 		Compare 18, 20, (just initial hit) vs. 22, 24 (just bedroom 1)
 # 		Compare 22 (BD1 and interior) vs. 24 (BD1, BD2, and Interior)		
 # 
-# Currently, script set up to generate plots of Bedroom 1 temperature data
-# 	over duration from 6 seconds before start of suppression to 60 seconds after 
-# 	start of suppression
-#
+
 
 import pandas as pd 
 import os as os
@@ -79,6 +76,12 @@ sensor_groups = np.array([ ['Bedroom_1_Temps'],
 
 skip_TCs = [6,4,2]
 
+save_dirs = ['Flow_and_Move_Solid_Stream/', 
+			 'Shutdown_and_Move_Solid_Stream/',
+			 'Flow_and_Move_Narrow_Fog/',
+			 'Ext_BR1_Window_Initial_Hit/',
+			 'Ext_BR1_Window_and_Events_After/']
+
 # Define 20 color pallet using RGB values
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
 (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
@@ -97,15 +100,27 @@ markers = ['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H']
 # Loop through experiments in each comparison set
 set_idx = 0 	# variable used to ID each comparison set of experiments
 for Exp_Set in comparison_sets:
+	# Determine extinguish event row number index
 	extinguish_event_idx = event_row_nums[set_idx]-1
-	if set_idx==4:
-		mark_freq = 10
-		xaxis_lim = 95
-		x_ticks = [0,15,30,45,60,75,90]
-	else:
+	# Set marker freq & time axis limit + labels
+	if set_idx<4:
 		mark_freq = 5
-		xaxis_lim = 60
-		x_ticks = [0,10,20,30,40,50]
+		if set_idx == 3:
+			xaxis_lims = [-4,24]
+			x_ticks = [0,5,10,15,20]
+		else:
+			xaxis_lims = [-6,60]
+			x_ticks = [0,10,20,30,40,50]
+	else:
+		mark_freq = 12
+		xaxis_lims = [-6,96]
+		x_ticks = [0,15,30,45,60,75,90]
+
+	save_dir = output_location+save_dirs[set_idx]
+	# Create dir if doesn't exist
+	if not os.path.exists(save_dir):
+		os.makedirs(save_dir)
+		
 	print('----- Comparing Experiments from set',Exp_Set,' -----')
 	for Exp_Num in Exp_Set:
 		# Define experiment number, test name, and data file name
@@ -120,15 +135,16 @@ for Exp_Set in comparison_sets:
 
 		print('Loaded data and event files for '+Test_Name)
 
-		# Grab event times & labels (if applicable)
+		# Save initial suppression event time & end plot time (according to data time)
 		start_df_idx = Events['Time_Seconds'].iloc[extinguish_event_idx]
-		end_df_idx = start_df_idx+xaxis_lim
-		# if set_idx >= 3: # Multiple events for comparison between Exp 22 and 24
+		end_df_idx = start_df_idx+xaxis_lims[1]
+
+		# Determine events that will be included in plot & their specific times
 		event_times = []
 		event_labels = []
 		for index,row in Events.iloc[extinguish_event_idx:-1,:].iterrows():
 			time = row['Time_Seconds']
-			if time-start_df_idx < xaxis_lim:
+			if time-start_df_idx < xaxis_lims[1]:
 				event_times.append(time)
 				event = index
 				if event == 'Suppression BR1 Window Solid Stream':
@@ -156,30 +172,34 @@ for Exp_Set in comparison_sets:
 			# Get list of channel names
 			channel_names = all_channels[all_channels['Primary_Chart']==group].index.values
 
-			# Make df of channel data
-			group_data = Exp_Data[channel_names].loc[start_df_idx-6:end_df_idx]
+			# Make df of channel data to plot
+			group_data = Exp_Data[channel_names].loc[start_df_idx+xaxis_lims[0]:end_df_idx]
 
-			# Print 'Plotting Chart XX'
+			# Print 'Plotting [group] for [Test_Name]'
 			print ('Plotting '+group.replace('_',' ')+' for '+Test_Name)
 
-			# Create figure to plot temperatures
+			# Create figure to plot data on
 			fig = plt.figure()
-			mpl.rcParams['axes.prop_cycle'] = cycler(color=tableau20[2:]) # ignore first two colors (blue shade used on plots)
+
+			# Set plot colors/markers (ignore first 2 colors -- blue shade used on flow plots)
+			mpl.rcParams['axes.prop_cycle'] = cycler(color=tableau20[2:])
 			plot_markers = cycle(markers)
 
+			# Set up primary x & y axes
 			ax1 = plt.gca()
 			ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
 			ax1_xlims = ax1.axis()[0:2]
 			plt.ylim([0, 1800])
-			plt.grid(True)
-			plt.xlabel('Time (sec)', fontsize=48)
-			plt.xticks(x_ticks, fontsize=44)
 			plt.yticks(fontsize=44)
+			plt.xticks(x_ticks, fontsize=44)
+			plt.xlabel('Time (sec)', fontsize=48)
+			ax1.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
+			plt.grid(True)
 
-			# Shade blue areas on plot when flow occurs
+			# Shade blue areas on plot for periods during which flow occurs
 			plt.fill_between(flow_data.index.values, 0, 1800, where=flow_data['GPM']>10, facecolor='blue', alpha=0.3)
 
-			# Plot flow data on secondary axis & set axis label/ticks
+			# Plot flow data on secondary axis & set axis parameters
 			ax2 = ax1.twinx()
 			plt.plot(flow_data.index.values, flow_data['Total Gallons'], lw=6, color='#1f77b4')
 			ax2.set_ylim(0,200)
@@ -188,56 +208,47 @@ for Exp_Set in comparison_sets:
 
 			# Iterate through sensor group channels
 			for channel in channel_names:
-				# Skip plot quantity if channel name is blank
+				# Skip plot quantity if channel name is blank, TC not desired, or 
+				# 	channel listed under 'Excluded Channels' in description file
 				if pd.isnull(channel):
 					continue
-
-				if int(channel[-1]) in skip_TCs:	# only plot TC 7, 5, 3, & 1
+				elif int(channel[-1]) in skip_TCs:	# only plot TC 7, 5, 3, & 1
 					continue
-
-	   			# Skip excluded channels listed in test description file
-				if channel in channels_to_skip[File_Name]:
+				elif channel in channels_to_skip[File_Name]:
 					continue
 				
-				# Define channel data and time
-				current_data = group_data[channel]
-
-				# Plot channel data
-				ax1.plot(group_data[channel].index.values-start_df_idx, current_data, lw=4,
+				# Plot channel data on primary y axis
+				ax1.plot(group_data[channel].index.values-start_df_idx, group_data[channel], lw=4,
 					marker=next(plot_markers), markevery=int(mark_freq),
 					mew=3, mec='none', ms=20, label=all_channels['Title'][channel])
 
-			plt.xlim([-6, xaxis_lim])
+			plt.xlim(xaxis_lims)
 
-			ax1.set_zorder(ax2.get_zorder()+1) # put ax in front of ax2 
-			ax1.patch.set_visible(False) # hide the 'canvas' 
+			ax1.set_zorder(ax2.get_zorder()+1) # put temp data in front of flow data 
+			ax1.patch.set_visible(False) # hide 'canvas' of ax1 so flow plot is visible 
 
-			# Secondary x-axis for event info
+			# Set up secondary x-axis & add event lines/labels
 			ax3=ax1.twiny()
-			ax3.set_zorder(ax1.get_zorder())
-			ax3.set_xlim([-6, xaxis_lim])
-			[ax3.axvline((idx-start_df_idx),color='0',lw=4) for idx in event_times]
-			ax3.set_xticks([(idx-start_df_idx) for idx in event_times])
-			plt.setp(plt.xticks()[1], rotation=45)		
+			ax3.set_zorder(ax1.get_zorder()) # put lines in front of all data
+			ax3.set_xlim(xaxis_lims)
+			[ax3.axvline((time-start_df_idx),color='0',lw=4) for time in event_times]
+			ax3.set_xticks([(time-start_df_idx) for time in event_times])
+			plt.setp(plt.xticks()[1], rotation=45)
 			ax3.set_xticklabels([label for label in event_labels], fontsize=30, ha='left')
 
 			fig.set_size_inches(20, 18)
 			
-			# Set y-label to degrees F with LaTeX syntax
+			# Set primary y axis range
 			ax1.set_ylim(100,1800)
-			ax1.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
 
+			# Add legend to figure
 			handles1, labels1 = ax1.get_legend_handles_labels()
 			plt.legend(handles1, labels1, loc='upper right', fontsize=40, handlelength=3, labelspacing=.15)
 
 			plt.tight_layout()
 			
-			# Save plot to file
-			if set_idx == 4: 	# used for Exp 22/24 comparison containing multiple events
-				plt.savefig(output_location+Test_Name+'_'+group+'_full.pdf') 
-			else:
-				plt.savefig(output_location+Test_Name+'_'+group+'.pdf')
-			
+			# Save figure to corresponding directory 
+			plt.savefig(save_dir+Test_Name+'_'+group+'.pdf')
 			plt.close('all')
 		print()
 
