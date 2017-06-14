@@ -852,9 +852,9 @@ Combination & 	N/A 	& 	75 					& 150 \\ \hline
 \caption{Experiments 1 through 6}
 \centering
 \scalebox{0.75}{
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|l|}
 \hline
-\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}		& \multirow{2}{*}{Ventilation Parameters} \\ 
+\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}		& \multicolumn{1}{c|}{\multirow{2}{*}{Ventilation Parameters}} \\ 
 								& 	Method	   	& 								& 									& 								& 										\\ 
 \hline \hline
 \multirow{2}{*}{1}	& \multirow{2}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application w/ Combination;} 									& \multirow{2}{*}{Flow path between front door \& BR1 fire} \\
@@ -863,10 +863,10 @@ Combination & 	N/A 	& 	75 					& 150 \\ \hline
 	2							& Interior  	& Smooth Bore 					& 	Flow \& Move 					&  Solid Stream 				& Flow path between front door \& BR1 fire 	\\
 \hline
 \multirow{2}{*}{3}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Smooth Bore} 	& \multirow{2}{*}{Shutdown \& Move}	& \multirow{2}{*}{Solid Stream} & Flow path between front door \& BR1 fire \\
-					& 							& 								& 									& 								& 	w/ door control 	\\
+					& 							& 								& 									& 								& ~~w/ door control 	\\
 \hline
 \multirow{2}{*}{4}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Smooth Bore} 	& \multirow{2}{*}{Flow \& Move} 	& \multirow{2}{*}{Solid Stream} & Flow path between front door \& BR1 fire 	\\
- 					& 							& 								& 									& 								& 	w/ coordinated horizontal vent 				\\
+ 					& 							& 								& 									& 								& ~~w/ coordinated horizontal vent 				\\
 \hline
 \multirow{2}{*}{5}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Shutdown \& Move} &  Narrow Fog, near to far 		& \multirow{2}{*}{Flow path between front door \& BR1 fire} \\
  					& 							& 								& 									&  along hall centerline		& 		\\
@@ -1044,14 +1044,38 @@ The results of Experiment 6 can be found in Appendix~\ref{App:Exp6Results}. To v
 
 \subsection{Single Room - Single Vent}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=7in]{Figures/General/Exp7to12.png}
-	\caption{Experiments 7 to 12}
-	\label{fig:Exp7to12}
-\end{figure}
+\begin{table}[!ht]
+\caption{Experiments 7 through 12}
+\centering
+\scalebox{0.75}{
+\begin{tabular}{|c|c|c|c|c|l|}
+\hline
+\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}	& \multicolumn{1}{c|}{\multirow{2}{*}{Ventilation Parameters}} \\ 
+								& 	Method	   	& 								& 									& 									& 										\\ 
+\hline \hline
+\multirow{2}{*}{7}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Smooth Bore} 	& \multirow{2}{*}{Flow \& Move}		& \multirow{2}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window 	\\
+\hline
+\multirow{2}{*}{8}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Smooth Bore} 	& \multirow{2}{*}{Shutdown \& Move}	& \multirow{2}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; 	\\
+ 					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window 	\\
+\hline
+\multirow{2}{*}{9}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Flow \& Move}		& \multirow{2}{*}{Straight Stream} 	& Flow paths between front door \& BR1 fire; \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window 	\\
+\hline
+\multirow{2}{*}{10}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Shutdown \& Move}	& \multirow{2}{*}{Straight Stream} 	& Flow paths between front door \& BR1 fire; 	\\
+ 					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window 	\\
+\hline
+\multirow{2}{*}{11}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Flow \& Move} 	&  \multirow{2}{*}{Narrow Fog} 		& Flow paths between front door \& BR1 fire; 	\\
+ 					& 							& 								& 									&  									& ~~BR1 fire \& BR1 window 	\\
+\hline
+\multirow{2}{*}{12}	& \multirow{2}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application w/ Combination;} 										& Flow paths between front door \& BR1 fire; 	\\
+					& 							& \multicolumn{3}{c|}{Flow \& Move; Straight Stream} 													& ~~BR1 fire \& BR1 window 	\\
+\hline
+\end{tabular}}
+\label{table:Exp7to12}
+\end{table}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=5in]{Figures/General/Exps7through12.png}
 	\caption{Configurations for Experiments 7 to 12}
@@ -1218,14 +1242,40 @@ The results of Experiment 12 can be found in Appendix~\ref{App:Exp12Results}. To
 
 \subsection{Two Room - Two Vent}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=7in]{Figures/General/Exp13to17.png}
-	\caption{Experiments 13 to 17}
-	\label{fig:Exp13to17}
-\end{figure}
+\begin{table}[!ht]
+\caption{Experiments 13 through 17}
+\centering
+\scalebox{0.75}{
+\begin{tabular}{|c|c|c|c|c|l|}
+\hline
+\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}	& \multicolumn{1}{c|}{\multirow{2}{*}{Ventilation Parameters}} \\ 
+								& 	Method	   	& 								& 									& 									& 										\\ 
+\hline \hline
+\multirow{3}{*}{13}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
+					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
+					& 							& 								& 									& 									& ~~\& BR2 window \\
+\hline
+\multirow{3}{*}{14}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
+					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
+					& 							& 								& 									& 									& ~~\& BR2 window \\
+\hline
+\multirow{3}{*}{15}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
+					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
+					& 							& 								& 									& 									& ~~\& BR2 window w/ door control \\
+\hline
+\multirow{3}{*}{16}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Combination} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Narrow Fog} 		& Flow paths between front door \& BR1 fire; BR1 fire \\
+					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
+					& 							& 								& 									& 									& ~~\& BR2 window \\
+\hline
+\multirow{3}{*}{17}	& \multirow{3}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application w/}														& Flow paths between front door \& BR1 fire; BR1 fire \\
+					& 							& \multicolumn{3}{c|}{Combination; Flow \& Move;}														& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
+					& 							& \multicolumn{3}{c|}{Straight Stream}																	& ~~\& BR2 window \\
+\hline
+\end{tabular}}
+\label{table:Exp13to17}
+\end{table}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=5in]{Figures/General/Exps13through17.png}
 	\caption{Configurations for Experiments 13 to 17}
@@ -1880,7 +1930,7 @@ Despite the difference in Bedroom~1 temperatures before suppression, the Bedroom
 
 It's possible that all Bedroom~1 temperatures in Experiment~8 behaved in a manner similar to Experiment~6. At the very least, the Bedroom~1 temperature 7~ft above the floor behaved in a manner similar to Experiment~6. However, the true response of the other three Bedroom~1 temperatures to the third period of water flow is unknown. Based on the sharp rise in the temperature 1~ft, 3~ft, and 5~ft above the floor during the third period of water flow and erratic behavior that exists in the temperature data from the same locations later in the experiment, it is likely that the thermocouples at the three locations came into contact with water, which adversely affected their measurement capability. 
 
-Although the Bedroom~1 temperatures began to sharply decline during the third instance of water flow during Experiment~14, the temperatures didn't drop below 400~$^\circ$F until the fourth period of water flow around 45 seconds after the start of suppression. The longer duration of Bedroom~1 temperature decline might be due to the fact that the `Two Vent' setup used during Experiment~14 contained two fire rooms, so the attack crew divided water between the two rooms instead of using all the water to extinguish the fire in Bedroom~1. [CHECK VIDEO TO CONFIRM] 
+Although the Bedroom~1 temperatures began to sharply decline during the third instance of water flow during Experiment~14, the temperatures didn't drop below 400~$^\circ$F until the fourth period of water flow around 45 seconds after the start of suppression. The longer duration of Bedroom~1 temperature decline might be due to the fact that the `Two Vent' setup used during Experiment~14 contained two fire rooms, so the attack crew divided water between the two rooms instead of using all the water to extinguish the fire in Bedroom~1.
 
 \FloatBarrier
 
@@ -1918,7 +1968,7 @@ The value to which the temperatures decreased is dependent upon the experimental
 
 \FloatBarrier
 
-\subsection{Exterior Attack at Bedroom~1 Window followed by Second Attack} % Better section title?
+\subsection{Exterior Attack at Bedroom~1 Window Followed by Additional Attack}
 Experiments~22 and 24 each had a similar initial suppression event that involved flowing water from the exterior of the structure into the fire room through the window of Bedroom~1 using a solid stream from a smooth bore nozzle and a straight stream from a combination nozzle, respectively. Both experiments contained the `Two Vent' ventilation profile. However, the interventions performed after the initial suppression event differ between the two experiments. 
 
 After the initial exterior attack in Experiment~22, the attack crew performed an interior attack that resembled the `shutdown and move' attack method. After the initial exterior attack in Experiment~24, the attack crew moved to the window of Bedroom~2 and performed a second exterior attack by flowing water into the second fire room through the window of Bedroom~2. The temperatures measured by four different thermocouple arrays over the duration from six seconds before the start of the initial exterior suppression event to 95 seconds after were plotted for each experiment. Figure~\ref{fig:knockback_ext_2} contains a plot of the Bedroom~1 temperatures and a plot of the Bedroom~2 temperatures for each experiment. A plot of the temperatures at the end of the hallway and a plot the Bedroom~4 temperatures for each experiment are provided in Figure~\ref{fig:knockback_ext_3}.
@@ -2025,25 +2075,25 @@ Figure \ref{fig:push_fire_exterior} shows the flows at the front door, start of 
 \label{fig:push_fire_exterior}
 \end{figure}
 
-The front door being closed for the first two experiments, 18 and 20 yields no change to the flow at the door from water application. In the third experiment, 21, the front door was open when water was applied. The flow at the top middle probe went from approximetly 0 to an inflow of 1.5~m/s. This indicates more air being drawn in when water flow occured in the window. Following the water flow the probes were moved to allow for the attack crew to enter which is the return to 0 for several seconds. When the probes were put back in place the gas velocities were of the same magnitude as they were before they were moved. 
+The front door being closed for the first two experiments, 18 and 20 yields no change to the flow at the door from water application. In the third experiment, 21, the front door was open when water was applied. The flow at the top middle probe went from approximately 0 to an inflow of 1.5~m/s. This indicates more air being drawn in when water flow occured in the window. Following the water flow the probes were moved to allow for the attack crew to enter which is the return to 0 for several seconds. When the probes were put back in place the gas velocities were of the same magnitude as they were before they were moved. 
 
-At the start of the hallway the application of water decreased the velocity of the gasses at the top of the hallway from 5~m/s to 2.5~m/s indicating less products of combustion were flowing towards the door immediatly following water application.
+At the start of the hallway the application of water decreased the velocity of the gasses at the top of the hallway from 5~m/s to 2.5~m/s indicating less products of combustion were flowing towards the door immediately following water application.
 
 At the window the water was applied from, the flow of gasses when from a bi-directional vent with inflow only on the bottom probe and outflow on the upper four probes to complete inflow. This was due both to the cooling of the gases causing contraction and the air entrainment in the stream entering the window. 
 
-When the end of the hallway values are evaluated with the window values it becomes apparent that entrainment is not the predominent reason for inflow in the window. The lack of increased flow at the start of the hallway even when the front door is open creating a flow path, indicates the predominent mechinsim of flow change was due to the cooling gasses contracting. This is only appicable when a straight stream or solid stream are used. 
+When the end of the hallway values are evaluated with the window values it becomes apparent that entrainment is not the predominant reason for inflow in the window. The lack of increased flow at the start of the hallway even when the front door is open creating a flow path, indicates the predominant mechanism of flow change was due to the cooling gasses contracting. This is only applicable when a straight stream or solid stream are used. 
 
 \hl{Making a figure of the fog vs. the SS with the window vent. Demonstrating its difficult to push against a dead end.}
 \hl{Check Bedroom Door Probes}
 
 Figure X shows the results when a 
 
-During exterior suppresion it is also possible to alter the flow of products of combustion in the space. When a solid stream or straight stream is used, limiting the air entrainment, the 
+During exterior suppression it is also possible to alter the flow of products of combustion in the space. When a solid stream or straight stream is used, limiting the air entrainment, the 
 \textbf{\hl{Compare 20(door closed) vs 21 (front door open)}} \\
 \textbf{\hl{Compare 19(one room fire) vs 23 (two rooms fire)}} \\
 
 \section{Impact of ``Whip'' on Regrowth}
-\textbf{\hl{compare 18 (no whip) vs 20(whip) (front door closed)}} \\
+Experiment~?? included an exterior attack at the window of Bedroom~?. After approximately ? seconds of flow, the nozzle was advanced past the window and water was applied in a ``whip'' motion for ? seconds. Some technical panel members noticed that flame reappeared in the fire room almost immediately following the application of water in the ``whip'' pattern and inquired if applying water in the ``whip'' pattern significantly affects fire regrowth.   \\
 
 \section{Impact of Door Control}
 \textbf{\hl{Compare 3 (door control) with 6 (no control)}} \\
