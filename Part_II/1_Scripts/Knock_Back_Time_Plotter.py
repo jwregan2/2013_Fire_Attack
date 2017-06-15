@@ -1,14 +1,14 @@
-# ******************************** Run notes ***********************************
-# Script used to compare knock back time for various experiments, specifically:
-# 	INTERIOR:
-# 		Compare 2, 7, 13 (Flow and move SB)
-# 		Compare 6, 8, 14 (Shutdown and move SB)
-# 		Compare 11, 16 (flow and move Fog)
-# 	EXTERIOR:
-# 		Compare 18, 20, (just initial hit) vs. 22, 24 (just bedroom 1)
-# 		Compare 22 (BD1 and interior) vs. 24 (BD1, BD2, and Interior)		
+# ******************************** Run notes ****************************************************
+# Script used to generate plots for 5.3 Effect of Ventilation Profile on Knock Back Capability:
+# 	- Comparing 5 sets of experiments, specifically:	 
+# 		INTERIOR:
+# 			Compare 2, 7, 13 (Flow and move SB)
+# 			Compare 6, 8, 14 (Shutdown and move SB)
+# 			Compare 11, 16 (flow and move Fog)
+# 		EXTERIOR:
+# 			Compare 18, 20, (just initial hit) vs. 22, 24 (just bedroom 1)
+# 			Compare 22 (BD1 and interior) vs. 24 (BD1, BD2, and Interior)		
 # 
-
 
 import pandas as pd 
 import os as os
@@ -22,18 +22,6 @@ import pickle
 from dateutil.relativedelta import relativedelta
 from scipy.signal import butter, filtfilt
 from itertools import cycle
-
-# Define filter for low pass filtering of pressure/temperature for BDP
-def butter_lowpass(cutoff, fs, order=5):
-    nyq = 0.5 * fs
-    normal_cutoff = cutoff / nyq
-    b, a = butter(order, normal_cutoff, btype='low', analog=False)
-    return b, a
-
-def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
-    b, a = butter_lowpass(cutoff, fs, order=order)
-    y = filtfilt(b, a, data)
-    return y
 
 # Set file locations
 data_location = '../2_Data/'
