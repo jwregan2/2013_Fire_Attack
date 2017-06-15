@@ -92,7 +92,7 @@ for Exp_Set in comparison_sets:
 	extinguish_event_idx = event_row_nums[set_idx]-1
 	# Set marker freq & time axis limit + labels
 	if set_idx<4:
-		mark_freq = 5
+		marker_freq = 6
 		if set_idx == 3:
 			xaxis_lims = [-4,24]
 			x_ticks = [0,5,10,15,20]
@@ -100,7 +100,7 @@ for Exp_Set in comparison_sets:
 			xaxis_lims = [-6,60]
 			x_ticks = [0,10,20,30,40,50]
 	else:
-		mark_freq = 12
+		marker_freq = 12
 		xaxis_lims = [-6,96]
 		x_ticks = [0,15,30,45,60,75,90]
 
@@ -153,7 +153,13 @@ for Exp_Set in comparison_sets:
 		# set index to match plot's time axis
 		flow_data['Plot Time'] = flow_data.index.values - start_df_idx
 		flow_data = flow_data.set_index('Plot Time')
-			
+		
+		# Adjust marker freq to fit data sampling rate
+		if Exp_Num=='6' or Exp_Num=='18':
+			mark_freq = marker_freq*0.5
+		else:
+			mark_freq = marker_freq
+
 		# Iterate through sensor groups for each comparison set
 		for group in sensor_groups[set_idx]:
 
@@ -222,7 +228,7 @@ for Exp_Set in comparison_sets:
 			[ax3.axvline((time-start_df_idx),color='0',lw=4) for time in event_times]
 			ax3.set_xticks([(time-start_df_idx) for time in event_times])
 			plt.setp(plt.xticks()[1], rotation=45)
-			ax3.set_xticklabels([label for label in event_labels], fontsize=30, ha='left')
+			ax3.set_xticklabels(event_labels, fontsize=30, ha='left')
 
 			fig.set_size_inches(20, 18)
 			
