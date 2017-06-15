@@ -295,7 +295,10 @@ for exp in exp_des.index.values:
 		all_flow_data[exp]['Time'] = [datetime.datetime.strptime(t, '%M:%S.%f') for t in all_flow_data[exp]['Time']]
 		all_flow_data[exp]['Time'] = [(t-all_flow_data[exp]['Time'][0]).total_seconds() for t in all_flow_data[exp]['Time']]
 
-		flow_time = all_flow_data[exp]['Time'][np.argmax(all_flow_data[exp]['GPM']>10)]
+		if exp == 'Experiment_19_Data':
+			flow_time = all_flow_data[exp]['Time'][np.argmax(all_flow_data[exp]['GPM']>25)]
+		else:
+			flow_time = all_flow_data[exp]['Time'][np.argmax(all_flow_data[exp]['GPM']>10)]
 		
 		all_flow_data[exp]['Time'] = all_flow_data[exp]['Time'] + (first_flow_time['First_Flow'][exp] - flow_time)
 
