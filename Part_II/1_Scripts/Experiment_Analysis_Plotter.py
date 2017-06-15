@@ -136,7 +136,7 @@ for section in experiment.keys():
 					fill_max = float(Exp_Des['Y Scale Pressure'][exp])
 					y_title = 'Pressure (Pa)'
 				else:
-					fill_min = -float(Exp_Des['Y Scale Temperature'][exp])
+					fill_min = 0
 					fill_max = float(Exp_Des['Y Scale Temperature'][exp])
 					y_title = 'Temperature ($^\circ$F)'
 
@@ -144,16 +144,21 @@ for section in experiment.keys():
 					channel_name = channel + 'V'
 				else:
 					channel_name = channel
- 
+
+				if sensor == 'Bedroom_1_Window_Flow' or sensor == 'Bedroom_1_Door':
+					channel_label = 'Bed' + all_channels['Title'][channel_name][7:]
+				else:
+					channel_label = all_channels['Title'][channel_name]
+
 				ax1.plot(all_exp_data[exp][channel].index/60, all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
-							label = all_channels['Title'][channel_name])
+							label = channel_label)
 
 				if exp in all_flow_data.keys():
 					flow_data = all_flow_data[exp]['GPM'] 
 					ax1.fill_between(flow_data.index.values/60, fill_min,  fill_max, where =  flow_data > 10, facecolor='blue', alpha=0.1)
 
 			if 'Burst Suppression' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-				if exp in ['Experiment_8_Data', 'Experiment_14_Data']:
+				if exp in ['Experiment_8_Data', 'Experiment_14_Data', 'Experiment_18_Data']:
 					burst = -0.1
 				else:
 					burst = 0
@@ -166,20 +171,33 @@ for section in experiment.keys():
 				ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Hall Suppression']/60, fill_max, 'Hall Suppression', 
 					ha='left', va='bottom', rotation=45, fontsize=34)
 
-			if 'Front Door Open' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-				ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']/60, lw = 4, color='black')
-				ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']/60, fill_max, 'Front Door Open', 
-					ha='left', va='bottom', rotation=45, fontsize=34)
+			if exp not in ['Experiment_18_Data', 'Experiment_19_Data']:
+				if 'Front Door Open' in all_exp_events[exp[:-4]+ 'Events'].index.values:
+					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']/60, lw = 4, color='black')
+					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']/60, fill_max, 'Front Door Open', 
+						ha='left', va='bottom', rotation=45, fontsize=34)
 
 			if 'Exterior Suppression BR1 Window Solid Stream' in all_exp_events[exp[:-4]+ 'Events'].index.values:
 				ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Solid Stream']/60, lw = 4, color='black')
 				ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Solid Stream']/60, fill_max, 'Exterior Suppression', 
 					ha='left', va='bottom', rotation=45, fontsize=34)
 
-			if 'Exterior Suppression BR1 Window Narrow Fog' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-				ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Narrow Fog']/60, lw = 4, color='black')
-				ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Narrow Fog']/60, fill_max, 'Exterior Suppression Fog', 
-					ha='left', va='bottom', rotation=45, fontsize=34)
+			if exp == 'Experiment_19_Data':
+				if 'Exterior Suppression BR1 Window Narrow Fog' in all_exp_events[exp[:-4]+ 'Events'].index.values:
+					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Narrow Fog']/60, lw = 4, color='black')
+					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Narrow Fog']/60, fill_max, 'Fog Suppression', 
+						ha='left', va='bottom', rotation=45, fontsize=34)
+				if 'Exterior Suppression BR1 Window Straight Stream' in all_exp_events[exp[:-4]+ 'Events'].index.values:
+					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Straight Stream']/60, lw = 4, color='black')
+					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Straight Stream' ]/60, fill_max, 'SS Suppression', 
+						ha='left', va='bottom', rotation=45, fontsize=34)
+
+				if sensor == 'Bedroom_1_Door': 
+					ax1.add_patch(patches.Rectangle((all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Straight Stream' ]/60, fill_min),   # (x,y)
+				    								all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60 - all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Straight Stream' ]/60,          # width
+					    							fill_max - fill_min,          # height
+					    							facecolor='grey', alpha=0.5))
+
 
 			if 'Suppression BR1 Window Solid Stream' in all_exp_events[exp[:-4]+ 'Events'].index.values:
 				ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Suppression BR1 Window Solid Stream']/60, lw = 4, color='black')
@@ -206,17 +224,31 @@ for section in experiment.keys():
 				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-60)/60,
 					np.minimum(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60, np.max(all_flow_data[exp].index.values)/60)])
 			
+			if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
+				plt.subplots_adjust(top=0.70, right = 0.75)
+				if exp == 'Experiment_19_Data':
+					plt.subplots_adjust(top=0.70, right = 0.65)
+			else:
+				plt.subplots_adjust(top=0.70)
+
 			fig.set_size_inches(20, 18)
 			
 			if exp in all_flow_data.keys():
 				h1, l1 = ax1.get_legend_handles_labels()
 				h2, l2 = ax2.get_legend_handles_labels()
-				ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=3, labelspacing=.15)
+				if section == 'Pushing_Fire':
+					if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
+						ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.4, 1.03), loc='lower right', fontsize=40, handlelength=3, labelspacing=.15)
+						if exp == 'Experiment_19_Data':
+							ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.65, 1.03), loc='lower right', fontsize=40, handlelength=1.5, labelspacing=.15)
+					else:
+						ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.13, 1.03), loc='lower right', fontsize=40, handlelength=3, labelspacing=.15)
+				else: 
+					ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=3, labelspacing=.15)
 
 			ax1.set_ylim(fill_min,fill_max)
+
 			ax1.set_ylabel(y_title, fontsize = 48)
-			
-			plt.subplots_adjust(top=0.8)
 
 			if section == 'Flow_vs_Shutdown':
 				if exp in ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data']:
