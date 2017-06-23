@@ -51,7 +51,8 @@ for exp in Exp_Des.index.values:
 	channels_to_skip[exp] = Exp_Des['Excluded Channels'][exp].split('|')
 
 experiment = {'Flow_vs_Shutdown':['Experiment_3_Data', 'Experiment_2_Data', 'Experiment_6_Data','Experiment_7_Data', 'Experiment_8_Data', 'Experiment_9_Data', 'Experiment_10_Data', 'Experiment_13_Data','Experiment_14_Data'],
-			'Pushing_Fire':['Experiment_7_Data','Experiment_8_Data','Experiment_9_Data','Experiment_10_Data','Experiment_11_Data','Experiment_18_Data','Experiment_19_Data','Experiment_20_Data','Experiment_21_Data']}
+			'Pushing_Fire':['Experiment_7_Data','Experiment_8_Data','Experiment_9_Data','Experiment_10_Data','Experiment_11_Data','Experiment_18_Data','Experiment_19_Data','Experiment_20_Data','Experiment_21_Data'],
+			'Door_Control':['Experiment_3_Data', 'Experiment_6_Data', 'Experiment_14_Data', 'Experiment_15_Data']}
 
 channels = {'Flow_vs_Shutdown':{'End_Hall':['3TC7','3TC6','3TC5','3TC4','3TC3','3TC2','3TC1'], 
 							'Bedroom_1_Temperature':['1TC1', '1TC3', '1TC5', '1TC7'],
@@ -59,8 +60,10 @@ channels = {'Flow_vs_Shutdown':{'End_Hall':['3TC7','3TC6','3TC5','3TC4','3TC3','
 			'Pushing_Fire':{'Start_Hall_Flow':['6BDP1','6BDP2','6BDP3','6BDP4','6BDP5'],
 							'Bedroom_1_Window_Flow':['1BDP1','1BDP2','1BDP3','1BDP4','1BDP5'],
 							'Front_Door_Flow':['7BDP1','7BDP2','7BDP3','7BDP4','7BDP5'],
-							'Bedroom_1_Door':['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5']}
-			}
+							'Bedroom_1_Door':['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5']},
+			'Door_Control':{'Bedroom_1_Temperature':['1TC1', '1TC3', '1TC5', '1TC7'],
+							'Start_Hall_Flow':['6BDP1','6BDP2','6BDP3','6BDP4','6BDP5'],
+							'Hall_Heat_Flux':['1HF1','1HF3','1HF5']}}
 
 for section in experiment.keys():
 	
@@ -121,8 +124,8 @@ for section in experiment.keys():
 
 				if 'HF' in channel:
 					fill_min = 0
-					fill_max = float(Exp_Des['Y Scale HF'][exp])
-					y_title = 'Heat Flux (kW/m$^2$'
+					fill_max = float(Exp_Des['Y Scale Wall Heat Flux'][exp])
+					y_title = 'Heat Flux (kW/m$^2$)'
 				elif 'BDP' in channel:
 					if sensor == 'Bedroom_1_Window_Flow':
 						fill_min = float(-Exp_Des['Y Scale BDP'][exp]) - 5
@@ -218,6 +221,9 @@ for section in experiment.keys():
 				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60,12])
 			if exp == 'Experiment_17_Data':
 				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60,10])
+
+			if section == 'Door_Control':
+				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60)-.5, (all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60) + 1])
 			
 			#For Exterior Attacks Set the graph to start 60 seconds before attack. 
 			if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
