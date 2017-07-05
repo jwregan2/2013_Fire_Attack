@@ -120,7 +120,7 @@ for Exp_Set in comparison_sets:
 
 		# Create df of flow data to plot
 		flow_data = Exp_Flow_Data[:].loc[start_df_idx:end_df_idx]
-
+		
 		# set index to match plot's time axis
 		flow_data['Plot Time'] = flow_data.index.values - start_df_idx
 		flow_data = flow_data.set_index('Plot Time')
@@ -185,9 +185,9 @@ for Exp_Set in comparison_sets:
 		# Print 'Plotting [group] for [Test_Name]'
 		print ('Plotting '+group.replace('_',' ')+' for '+Test_Name)
 
-		print('  TC_7ft increase: '+str(delta_T)+' deg C')
+		print('  TC_7ft increase: '+str(delta_T)+' deg F')
 		print('  Duration of increase: '+str(delta_t)+' sec')
-		print('  Rate of increase: '+str(round(delta_T/delta_t,1))+' deg C/sec')
+		print('  Rate of increase: '+str(round(delta_T/delta_t,1))+' deg F/sec')
 
 		# Create figure to for data plot
 		fig = plt.figure()
@@ -197,7 +197,7 @@ for Exp_Set in comparison_sets:
 		plot_markers = cycle(markers)
 
 		# Set marker freq according to data sampling rate
-		if Exp_Num=='18':
+		if Exp_Num == '18':
 			mark_freq = 5
 		else:
 			mark_freq = 10
