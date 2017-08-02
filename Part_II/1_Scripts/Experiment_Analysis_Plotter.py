@@ -27,6 +27,14 @@ all_flow_data = pickle.load(open(data_location + 'all_flow_data.dict', 'rb'))
 
 all_exp_events = pickle.load(open(info_location + '/Events/all_exp_events.dict', 'rb'))
 
+# print (all_exp_events['Experiment_3_Events'])
+
+# plt.plot(all_flow_data['Experiment_3_Data']['GPM'])
+# plt.axvline(512.0, lw=1)
+# plt.axvline(524.4, lw=1)
+# plt.show()
+# exit()
+
 all_channels = pd.read_csv(info_location + 'Channels.csv').set_index('Channel')
 
 Exp_Des = pd.read_csv(info_location + 'Description_of_Experiments.csv').set_index('Experiment')
@@ -60,10 +68,21 @@ channels = {'Flow_vs_Shutdown':{'End_Hall':['3TC7','3TC6','3TC5','3TC4','3TC3','
 			'Pushing_Fire':{'Start_Hall_Flow':['6BDP1','6BDP2','6BDP3','6BDP4','6BDP5'],
 							'Bedroom_1_Window_Flow':['1BDP1','1BDP2','1BDP3','1BDP4','1BDP5'],
 							'Front_Door_Flow':['7BDP1','7BDP2','7BDP3','7BDP4','7BDP5'],
-							'Bedroom_1_Door':['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5']},
+							'Bedroom_1_Door':['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5'],
+							'Bedroom_2_Door':['3BDP1','3BDP2','3BDP3','3BDP4','3BDP5'],
+							'Bedroom_3_Door':['5BDP1','5BDP2','5BDP3','5BDP4','5BDP5']},
 			'Door_Control':{'Bedroom_1_Temperature':['1TC1', '1TC3', '1TC5', '1TC7'],
 							'Start_Hall_Flow':['6BDP1','6BDP2','6BDP3','6BDP4','6BDP5'],
-							'Hall_Heat_Flux':['1HF1','1HF3','1HF5']}}
+							'Hall_Heat_Flux':['1HF1','1HF3','1HF5'],
+							'Start_Hall_Temp':['5TC7','5TC6','5TC5','5TC4','5TC3','5TC2','5TC1']}}
+
+interior = ['Experiment_1_Data', 'Experiment_2_Data', 'Experiment_3_Data','Experiment_4_Data', 'Experiment_5_Data', 
+			'Experiment_6_Data', 'Experiment_7_Data', 'Experiment_8_Data','Experiment_9_Data', 'Experiment_10_Data',
+			'Experiment_11_Data', 'Experiment_12_Data', 'Experiment_13_Data','Experiment_14_Data', 'Experiment_15_Data',
+			'Experiment_16_Data', 'Experiment_17_Data']
+
+exterior = ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data','Experiment_21_Data', 'Experiment_22_Data', 
+			'Experiment_23_Data', 'Experiment_24_Data', 'Experiment_27_Data']
 
 for section in experiment.keys():
 	
@@ -130,6 +149,9 @@ for section in experiment.keys():
 					if sensor == 'Bedroom_1_Window_Flow':
 						fill_min = float(-Exp_Des['Y Scale BDP'][exp]) - 5
 						fill_max = float(Exp_Des['Y Scale BDP'][exp]) + 5
+					if sensor == 'Bedroom_2_Door':
+						fill_min = float(-Exp_Des['Y Scale BDP'][exp]) + 8
+						fill_max = float(Exp_Des['Y Scale BDP'][exp]) - 8
 					else:
 						fill_min = float(-Exp_Des['Y Scale BDP'][exp])
 						fill_max = float(Exp_Des['Y Scale BDP'][exp])
@@ -152,7 +174,7 @@ for section in experiment.keys():
 				else:
 					channel_name = channel
 
-				if sensor == 'Bedroom_1_Window_Flow' or sensor == 'Bedroom_1_Door':
+				if sensor == 'Bedroom_1_Window_Flow' or sensor == 'Bedroom_1_Door' or sensor == 'Bedroom_2_Door':
 					channel_label = 'Bed' + all_channels['Title'][channel_name][7:]
 					if channel_label[-6:] == 'Middle':
 						if channel_label == 'Middle':
@@ -169,53 +191,40 @@ for section in experiment.keys():
 					flow_data = all_flow_data[exp]['GPM'] 
 					ax1.fill_between(flow_data.index.values/60, fill_min,  fill_max, where =  flow_data > 10, facecolor='blue', alpha=0.1)
 
-			if not section == 'Door_Control':
-				if 'Burst Suppression' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-					if exp in ['Experiment_8_Data', 'Experiment_14_Data', 'Experiment_18_Data']:
-						burst = -0.1
-					else:
-						burst = 0
-					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Burst Suppression']/60, lw = 4, color='black')
-					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Burst Suppression']/60+burst, fill_max, 'Burst Suppression',
-						ha='left', va='bottom', rotation=45, fontsize=34)
-			
-			if not section == 'Door_Control':
-				if 'Hall Suppression' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Hall Suppression']/60, lw = 4, color='black')
-					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Hall Suppression']/60, fill_max, 'Hall Suppression', 
-						ha='left', va='bottom', rotation=45, fontsize=34)
+			# Plot flow markers for initial water flow for both intereior and exterior fire attacks.
+			if exp in interior:
+				for flow in ['Burst Suppression', 'Hall Suppression']:
+					if flow not in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
+						continue
+					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, lw=4, color='black')
+					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, fill_max, flow, ha='left', 
+						va='bottom', rotation=45, fontsize=34)
 
-			if exp not in ['Experiment_18_Data', 'Experiment_19_Data']:
+			
+			if exp in exterior:
+				for flow in ['BR1 Window Suppression','BR1 Window Solid Stream','BR1 Window Narrow Fog', 
+							'BR1 Window Straight Stream','BR1 Window Solid Stream', 'BR2 Window Straight Stream',
+							'BR4 Window Straight Stream']:
+					if flow not in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
+						continue
+					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, lw=4, color='black')
+					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, fill_max, flow, ha='left', 
+						va='bottom', rotation=45, fontsize=34)
+
+			# Plot front door open for experiments where door was opened
+			if exp not in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data']:
 				if 'Front Door Open' in all_exp_events[exp[:-4]+ 'Events'].index.values:
 					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']/60, lw = 4, color='black')
 					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']/60, fill_max, 'Front Door Open', 
 						ha='left', va='bottom', rotation=45, fontsize=34)
 
-			if 'Exterior Suppression BR1 Window Solid Stream' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-				ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Solid Stream']/60, lw = 4, color='black')
-				ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Solid Stream']/60, fill_max, 'SS Suppression', 
-					ha='left', va='bottom', rotation=45, fontsize=34)
-
-			if exp == 'Experiment_19_Data':
-				if 'Exterior Suppression BR1 Window Narrow Fog' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Narrow Fog']/60, lw = 4, color='black')
-					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Narrow Fog']/60, fill_max, 'Fog Suppression', 
-						ha='left', va='bottom', rotation=45, fontsize=34)
-				if 'Exterior Suppression BR1 Window Straight Stream' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Straight Stream']/60, lw = 4, color='black')
-					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Straight Stream' ]/60, fill_max, 'SS Suppression', 
-						ha='left', va='bottom', rotation=45, fontsize=34)
-
-				if sensor == 'Bedroom_1_Door': 
-					ax1.add_patch(patches.Rectangle((all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Straight Stream' ]/60, fill_min),   # (x,y)
-				    								all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60 - all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Exterior Suppression BR1 Window Straight Stream' ]/60,          # width
-					    							fill_max - fill_min,          # height
-					    							facecolor='grey', alpha=0.5))
-
-			if 'Suppression BR1 Window Solid Stream' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-				ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Suppression BR1 Window Solid Stream']/60, lw = 4, color='black')
-				ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Suppression BR1 Window Solid Stream']/60, fill_max, 'Exterior Suppression', 
-					ha='left', va='bottom', rotation=45, fontsize=34)
+			if section == 'Door_Control':
+				if exp == 'Experiment_3_Data':
+					ax1.axvline(521/60, lw=4, color = 'black')
+					ax1.text(519/60, fill_max, 'Door Controlled', ha='left', va='bottom', rotation=45, fontsize=34)
+				if exp == 'Experiment_15_Data':
+					ax1.axvline(351/60, lw=4, color = 'black')
+					ax1.text(351/60, fill_max, 'Door Controlled', ha='left', va='bottom', rotation=45, fontsize=34)
 
 			if exp in all_flow_data.keys():
 				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60, 
@@ -233,8 +242,13 @@ for section in experiment.keys():
 				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60,10])
 
 			if section == 'Door_Control':
-				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-15)/60, 
-					(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]+90)/60])
+				if exp == 'Experiment_6_Data':
+					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-15)/60, 
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]+105)/60])
+				else:
+					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-15)/60, 
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]+90)/60])
+
 			
 			#For Exterior Attacks Set the graph to start 60 seconds before attack. 
 			if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
@@ -243,7 +257,7 @@ for section in experiment.keys():
 						
 			#For Pushing Fire Set chart to end 60 seconds after suppression
 			if section == 'Pushing_Fire':
-				if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
+				if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data']:
 					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-15)/60,
 						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]+90)/60])
 				else:
@@ -289,6 +303,9 @@ for section in experiment.keys():
 			if not os.path.exists(output_location_section +  exp[:-5] + '/'):
 				os.makedirs(output_location_section +  exp[:-5] + '/')
 
+			# plt.show()
+			# exit()
+			
 			plt.savefig(output_location_section +  exp[:-5] + '/' + sensor +'.pdf')
 		plt.close('all')
 
