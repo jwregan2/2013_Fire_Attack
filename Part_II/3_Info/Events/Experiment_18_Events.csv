@@ -1,8 +1,8 @@
-Event,Time,
+Event,Time,Flow_Time
 Ignition,0:05:06,
-Exterior Suppression BR1 Window Solid Stream,0:10:27,
+BR1 Window Solid Stream,0:10:27,322.1
 Front Door Open,0:10:41,
 Attack Team Enters,0:10:48,
-Burst Suppression,0:10:51,
-Room Suppression,0:11:13,
+Burst Suppression,0:10:51,341.6
+Room Suppression,0:11:13,363.6
 End Experiment,0:17:10,

@@ -1,7 +1,7 @@
-Event,Time
-Ignition,0:05:07
-Exterior Suppression BR1 Window Narrow Fog,0:10:33
-Front Door Open,0:10:48
-Attack Team Enters,0:10:57
-Hall Suppression ,0:11:08
-End Experiment,0:17:12
+Event,Time,Flow_Time
+Ignition,0:05:07,
+BR1 Window Narrow Fog,0:10:33,326
+Front Door Open,0:10:48,
+Attack Team Enters,0:10:57,
+Hall Suppression ,0:11:08,359.4
+End Experiment,0:17:12,
