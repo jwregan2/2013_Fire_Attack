@@ -31,8 +31,10 @@ def moving_average(a, n=3) :
 data_location = '../2_Data/'
 events_location = '../3_Info/Events/'
 
-channel_list = pd.read_csv('../3_Info/Channels.csv').set_index('Channel')
-channels_grouped = channel_list.groupby('Primary_Chart')
+main_channel_list = pd.read_csv('../3_Info/Channels.csv').set_index('Channel')
+gas_channel_list =pd.read_csv('../3_Info/Gas_Channels.csv').set_index('Channel')
+
+channels_grouped = main_channel_list.groupby('Primary_Chart')
 
 vent_info = pd.read_csv('../3_Info/Vent_Info.csv')
 FED_info = pd.read_csv('../3_Info/FED_Info.csv')
@@ -94,12 +96,15 @@ all_exp_FED_data = {}
 
 for exp in exp_des.index.values:
 
+# for exp in ['Experiment_25_Data']:
+
 	data = pd.read_csv(data_location +  exp + '.csv')
 	
 	all_exp_data[exp] = pd.DataFrame()
 	all_exp_FED_data[exp] = pd.DataFrame()
 	
 	#Adjust time to lowest common sample rate (2 seoncds) and truncate date to be from 0 to end experiment
+
 	if exp_des['Speed'][exp] == 'high':
 		time = [datetime.datetime.strptime(t, '%H:%M:%S.%f') for t in data['Elapsed Time']]
 
@@ -126,6 +131,11 @@ for exp in exp_des.index.values:
 	# plt.plot(step)
 	# plt.show()
 	# exit()
+
+	if exp == 'Experiment_25_Data':
+		channel_list = gas_channel_list
+	else:
+		channel_list = main_channel_list
 
 	for channel in channel_list.index.values:
 		# Skip channels listed in experiment description file

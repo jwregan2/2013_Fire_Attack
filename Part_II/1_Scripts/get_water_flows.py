@@ -22,9 +22,6 @@ flow_times = {}
 all_flow_data = pickle.load(open(data_location + 'all_flow_data.dict', 'rb'))
 all_event_data = pickle.load(open(info_location + 'Events/all_exp_events.dict', 'rb'))
 
-print (all_event_data['Experiment_6_Events'])
-exit()
-
 for exp in list(all_flow_data.keys()):
 	print(exp)
 	
@@ -53,6 +50,4 @@ for exp in list(all_flow_data.keys()):
 
 	flow_times[exp].to_csv(output_location + exp + '.csv')
 
-plt.plot(all_flow_data['Experiment_24_Data']['GPM'])
-plt.show()
 
