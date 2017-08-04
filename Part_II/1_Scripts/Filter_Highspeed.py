@@ -20,10 +20,12 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
     return y
 
 #Set High Speed Data Location
-data_location = '../../../../Desktop/FireAttackData/'
+# data_location = '../../../../Desktop/FireAttackData/'
+data_location = '../2_Data/'
 
 # Get list of files in 2_Data Directory
-experiments = os.listdir(data_location)
+# experiments = os.listdir(data_location)
+experiments = ['Experiment_25_Data.csv']
 
 for experiment in experiments:
 	
@@ -46,5 +48,5 @@ for experiment in experiments:
 
 		New_Data = New_Data.rename(columns={'index': 'Elapsed Time'})
 
-		New_Data.to_csv(data_location + '/Resampled_Data/' + experiment, index=False)
+		New_Data.to_csv(data_location + experiment[:-4] + '_new.csv' , index=False)
 

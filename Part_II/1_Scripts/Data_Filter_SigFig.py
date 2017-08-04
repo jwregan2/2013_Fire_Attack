@@ -23,7 +23,8 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
 data_location = '../2_Data/'
 
 # Get list of files in 2_Data Directory
-experiments = os.listdir(data_location)
+# experiments = os.listdir(data_location)
+experiments = ['Experiment_25_Data.csv']
 
 for experiment in experiments:
 	
@@ -48,7 +49,7 @@ for experiment in experiments:
 			else:
 				Exp_Data[channel] = Exp_Data[channel].map(lambda x: '%2.3f' % x)
 
-		Exp_Data.to_csv(data_location + '/Smaller_Data/' + experiment, index=False)
+		Exp_Data.to_csv(data_location + experiment[:-4] + '_new.csv', index=False)
 
 
 
