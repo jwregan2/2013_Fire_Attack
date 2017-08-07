@@ -1,19 +1,18 @@
 Event,Time,Flow_Time
 Ignition,0:02:01,
-Pulse 1,0:07:50,346.24
-Pulse 2,0:08:03,359.34
-Sweep Pulse 1,0:08:59,373.54
-Sweep Pulse 2,0:10:43,388.54
-Narrow Fog Sweep 1,0:12:33,414.34
-Narrow Fog Sweep 2,0:13:17,517.34
-Short Pilse 1,0:14:46,620.44
-Short Pulse 2,0:15:08,673.84
-Long Pulse 1,0:15:31,762.94
-Long Pulse 2,0:16:15,784.74
-Sweep Pulse 3,0:16:54,807.54
-Narrow Fog Sweep 3,0:19:13,851.44
-Straight Stream Back Corner,0:21:04,890.24
-Straight Stream Transitional Sweep,0:21:47,1029.44
-Suppression,0:22:47,1140.94
-Fan On,0:24:47,
+Pulse 1 - 95gpm,0:07:50,346.24
+Pulse 2 -  95gpm,0:08:03,359.34
+Long Pulse 1 - 95gpm,0:08:59,373.54
+Long Pulse 2 - 95gpm,0:10:43,388.54
+Sweep Pulse 1 - 95gpm,0:12:33,414.34
+Sweep Pulse 2 - 95gpm,0:13:17,517.34
+Narrow Fog Sweep 1 - 95gpm,0:14:46,620.44
+Narrow Fog Sweep 2 - 95gpm,0:15:08,673.84
+Pulse 1 - 150gpm,0:15:31,762.94
+Pulse 2 - 150gpm,0:16:15,784.74
+Long Pulse 1 - 150gpm,0:16:54,807.54
+Long Pulse 2 - 150gpm,0:19:13,851.44
+Sweep Pulse  - 150gpm,0:21:04,890.24
+Narrow Fog Sweep  - 150gpm,0:21:47,1029.44
+Wall Ceiling Wall(Corner) - 150gpm,0:22:47,1140.94
 End Experiment,0:25:47,
