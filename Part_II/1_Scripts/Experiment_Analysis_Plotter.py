@@ -395,15 +395,97 @@ exterior = ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data','Ex
 
 print ('---------------------------------Plotting Gas Cooling Plots -----------------------------')
 
-gas_cooling_plots = pd.DataFrame('1TC':['1TC7','1TC6','1TC5','1TC4','1TC3','1TC2','1TC1'],
-						   		'2TC':['2TC7','2TC6','2TC5','2TC4','2TC3','2TC2','2TC1'],
-						   		'3TC':['3TC7','3TC6','3TC5','3TC4','3TC3','3TC2','3TC1'],
-						   		'4TC':['4TC7','4TC6','4TC5','4TC4','4TC3','4TC2','4TC1'],
-						   		'5TC':['5TC7','5TC6','5TC5','5TC4','5TC3','5TC2','5TC1'],
-						   		'6TC':['6TC7','6TC6','6TC5','6TC4','6TC3','6TC2','6TC1'],
-						   		'7TC':['7TC7','7TC6','7TC5','7TC4','7TC3','7TC2','7TC1'],
-						   		'7ft':['1TC7','2TC7','3TC7','4TC7','5TC7','6TC7','7TC7'])
+gas_cooling_plots = pd.DataFrame({'1TC':['1TC7','1TC6','1TC5','1TC4','1TC3','1TC2','1TC1'],
+						   		 '2TC':['3TC7','3TC6','3TC5','3TC4','3TC3','3TC2','3TC1'],
+						   		 '3TC':['7TC7','7TC6','7TC5','7TC4','7TC3','7TC2','7TC1'],
+						   		 '4TC':['8TC7','8TC6','8TC5','8TC4','8TC3','8TC2','8TC1']})
+
+
+chart_limits = {'Pulse_95gpm':[340,370], 'Long_Pulse_95gpm':[370,410], 'Sweep_Pulse_95gpm':[410,615],
+				'Narrow_Fog_Sweep_95pgm':[615, 750], 'Pulse_150gpm':[750, 800], 'Long_Pulse_150gpm':[800,845],
+				'Sweep_Pulse_150gpm':[845, 885], 'Narrow_Fog_Sweep_150gpm':[885,1015],
+				'Wall_Ceiling_Wall_150gpm':[1015,1070]}
+
+exp = 'Experiment_25_Data'
 
 for plot in gas_cooling_plots.columns:
-	print (plot)
+	
+	print('Plotting '+ plot)
+	
+	for chart in list(chart_limits.keys()):
+		
+		#Create figure
+		fig = plt.figure()
+		fig.set_size_inches(8, 6)
+
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+		if plot == '1TC':
+			y_max = 2000
+		else:
+			y_max = 800
+
+		ax1 = plt.gca()
+		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+		ax1_xlims = ax1.axis()[0:2]
+		plt.ylim([0, y_max]) #Exp_Des['Y Scale Temperature'][exp]])
+		plt.grid(True)
+		plt.xlabel('Time (seconds)', fontsize=48)
+		plt.xticks(fontsize=44)
+		plt.yticks(fontsize=44)
+
+		if exp in all_flow_data.keys():
+			ax2 = ax1.twinx()
+			ax2.plot(all_flow_data[exp].index.values, all_flow_data[exp]['GPM'], lw=6, color='#1f77b4',)
+			ax2.set_ylim(0  ,160)
+			ax2.set_ylabel('Flow Rate (Gallons Per Minute)', fontsize=48)
+			ax2.tick_params(axis='y', labelsize=44)
+
+		chart_length = chart_limits[chart][1] - chart_limits[chart][0]
+
+		if chart_length > 50:
+			mark = int(chart_length * (4/50))
+		else: 
+			mark = 4 
+
+		for channel in gas_cooling_plots[plot]:
+
+			channel_label = all_gas_channels['Title'][channel]
+
+			ax1.plot(all_exp_data[exp][channel].index, all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
+								label = channel_label, markersize=15 )
+
+		h1, l1 = ax1.get_legend_handles_labels()
+		h2, l2 = ax2.get_legend_handles_labels()
+		ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.215, 1.03), loc='lower right', fontsize=40, handlelength=2, labelspacing=.15)
+
+
+		for flow in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
+			if all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow] < chart_limits[chart][1]:
+				if all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow] > chart_limits[chart][0]:
+					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], lw=4, color='black')
+					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], 
+						y_max, flow, ha='left', 
+						va='bottom', rotation=45, fontsize=34)
+
+		plt.subplots_adjust(top=0.65, right=0.85)
+		plt.xlim(chart_limits[chart])
+		fig.set_size_inches(20, 18)
+
+		if not os.path.exists(output_location + '/Gas_Cooling/' + chart + '/'):
+			os.makedirs(output_location + '/Gas_Cooling/' + chart + '/')
+
+		plt.savefig(output_location + '/Gas_Cooling/' + chart + '/' + plot + '.pdf')
+		plt.close('all')
+
+start_stop = [[344.24,355.24], [357.24,369.54], [371.54,384.54],
+			[386.54,410.44], [412.44,513.34], [515.34,616.44], [618.44,669.84],
+			[671.84,758.94], [760.94,780.74], [782.74,803.54], [805.54,847.44],
+			[849.44,886.24], [888.24,1025.44], [1027.44,1136.94], [1138.94,1170.94]]
+
+for vals in start_stop:
+	print(all_flow_data[exp]['Total Gallons'][vals[1]]-all_flow_data[exp]['Total Gallons'][vals[0]])
+
 
