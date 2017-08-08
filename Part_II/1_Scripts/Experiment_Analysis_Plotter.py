@@ -401,10 +401,10 @@ gas_cooling_plots = pd.DataFrame({'1TC':['1TC7','1TC6','1TC5','1TC4','1TC3','1TC
 						   		 '4TC':['8TC7','8TC6','8TC5','8TC4','8TC3','8TC2','8TC1']})
 
 
-chart_limits = {'Pulse_95gpm':[340,370], 'Long_Pulse_95gpm':[370,410], 'Sweep_Pulse_95gpm':[410,615],
-				'Narrow_Fog_Sweep_95pgm':[615, 750], 'Pulse_150gpm':[750, 800], 'Long_Pulse_150gpm':[800,845],
-				'Sweep_Pulse_150gpm':[845, 885], 'Narrow_Fog_Sweep_150gpm':[885,1015],
-				'Wall_Ceiling_Wall_150gpm':[1015,1070]}
+chart_limits = {'Pulse_95gpm':[340,370], 'Long_Pulse_95gpm':[370,405], 'Sweep_Pulse_95gpm':[405,590],
+				'Narrow_Fog_Sweep_95gpm':[590, 750], 'Pulse_150gpm':[750, 800], 'Long_Pulse_150gpm':[800,870],
+				'Sweep_Pulse_150gpm':[870, 1005], 'Narrow_Fog_Sweep_150gpm':[1005,1100],
+				'Wall_Ceiling_Wall_150gpm':[1100,1200]}
 
 exp = 'Experiment_25_Data'
 
