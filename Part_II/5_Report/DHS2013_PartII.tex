@@ -1753,13 +1753,22 @@ The method based on gas temperature as show in equation \ref{GasTemp_FED} is the
 	FED = \int_{t_1}^{t_2} \left( \num{2e18} \times T^{-9.0403} + \num{e8} \times T^{-3.10898} \right) \Delta t
 \end{equation}
 
-To determine survivability and tenability a package of sensors were utilized to simulate victims at five different locations within the structure as illustrated in figure \ref{fig:vic_loc}. Victim 1 was located at the end of the hall outside the fire room(s); Victim 2 was located on the bed in Bedroom 3 where the bedroom door was closed; Victim 3 was located on the bed in Bedroom 4 where the bedroom door was open; Victim 4 was located in the Living room near the entrance to the hall; and Victim 5 was located as remote from the fire room(s) as possible in the back right corner of the Dining room. Each location included an array of thermocouples at 1~ft, 3~ft, 5~ft and 7~ft above the floor and schmidt-bloter total heat flux gauge oriented such that the view range of the gauge was directed vertically at 1~ft above the floor. Additionally Victims 1-4 had a gas measurement point analyzing carbon monoxide (CO), carbon dioxide (CO$_{2}$) and oxygen (O$_{2}$) located 1~ft above the floor. Figure XX shows an example of the sensors used. 
+To determine survivability and tenability a package of sensors were utilized to simulate victims at five different locations within the structure as illustrated in figure \ref{fig:vic_loc}. Victim 1 was located at the end of the hall outside the fire room(s); Victim 2 was located on the bed in Bedroom 3 where the bedroom door was closed; Victim 3 was located on the bed in Bedroom 4 where the bedroom door was open; Victim 4 was located in the Living room near the entrance to the hall; and Victim 5 was located as remote from the fire room(s) as possible in the back right corner of the Dining room. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{../0_Images/Victim_Locations}
+	\includegraphics[width=\textwidth]{../0_Images/Instrumentation/Victim_Locations}
 	\caption{Victim Locations}
 	\label{fig:vic_loc}
+\end{figure}
+
+Each location included an array of thermocouples at 1~ft, 3~ft, 5~ft and 7~ft above the floor and schmidt-bloter total heat flux gauge oriented such that the view range of the gauge was directed vertically at 1~ft above the floor. Victims 1-4 had a gas measurement point analyzing carbon monoxide (CO), carbon dioxide (CO$_{2}$) and oxygen (O$_{2}$) located 1~ft above the floor. In addition to the sensors, instrumented pig skins were utilized to simulate human skin at each victim location. Figure \ref{fig:vic_package} shows an example of a victim package. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=5in]{../0_Images/Instrumentation/Victim_Package}
+	\caption{Example victim package.}
+	\label{fig:vic_package}
 \end{figure}
 
 The CO, CO$_{2}$, and O$_{2}$ values from the gas analyzers were utilized in equation \ref{FED_gas} to determine the fraction of dose required for untenability. A value of 1 represents untenable and a value of 3 represents a potentially fatal dose. The gas temperature recorded via the 1~ft thermocouple was used in equation \ref{GasTemp_FED} to determine the fraction of a fatal dose received via convective heat transfer, where a value of 1 is equivalent to a fatal dose in 50~\% of the population. The total heat flux recorded at the  schmidt-bolter heat flux gauge was used in equation \ref{TotalFlux_FED} to determine the fraction of a fatal does received via both convective and radiative heat transfer, where a value of 1 is equivalent to a fatal dose in 50~\% of the population, .  
@@ -1787,7 +1796,7 @@ Figure \ref{fig:Vent_Profile-No_Vent} represents the no ventilation configuratio
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/No_Vent}
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/No_Vent} 
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/No_Vent}
-	\caption[No Vent Fractional Effective Dose]{No Ventilation Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concentration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\caption[No Vent Fractional Effective Dose]{No Ventilation Fractional Effective Dose Prior to Fire Department Arrival. Upper left chart is based on gas concentration, upper right chart is based on convective heat transfer and bottom chart is based on both convective and radiative transfer.}
 	\label{fig:FED_NoVent}
 \end{figure}
 
@@ -1813,7 +1822,7 @@ Figure \ref{fig:FED_SingleVent} illustrates the average fractional effective dos
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/Single_Vent}
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/Single_Vent} 
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/Single_Vent}
-	\caption[Single Window Vent Fractional Effective Dose]{Single Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concentration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\caption[Single Window Vent Fractional Effective Dose]{Single Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Upper left chart is based on gas concentration, upper right chart is based on convective heat transfer and bottom chart is based on both convective and radiative transfer.}
 	\label{fig:FED_SingleVent}
 \end{figure}
 
@@ -1839,7 +1848,7 @@ Figure \ref{fig:FED_TwoVent} illustrates the average fractional effective dose o
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/Two_Vent}
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_Conv/Two_Vent} 
 	\includegraphics[width=.45\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/Two_Vent}
-	\caption[Two Window Vent Fractional Effective Dose]{Two Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Left is based on gas concentration, center is based on convective heat transfer and right is based on both convective and radiative transfer}
+	\caption[Two Window Vent Fractional Effective Dose]{Two Window Vent Fractional Effective Dose Prior to Fire Department Arrival. Upper left chart is based on gas concentration, upper right chart is based on convective heat transfer and bottom chart is based on both convective and radiative transfer.}
 	\label{fig:FED_TwoVent}
 \end{figure}
 
@@ -1869,21 +1878,54 @@ The 'Total Flux' value refers to the FED calculated from equation \ref{TotalFlux
 
 The victim location 1 shows that the in the two vent case the thermal hazard is the most significant, for the no vent case it is the toxic gases. In the victim 2 case, being behind the closed door provides a survivable and tenable atmosphere. At the victim 3 location the driving hazard is the toxic gases which accumulate first for the two room fire, followed by the no vent case and lastly by th event case. In all instances the toxic gases exceed a FED of 3.0 by just over 8~minutes. The Victim 4 location is far enough from the fire thermal hazards are not as significant however toxic gases are a hazard. Once the door gets opened at 5~minutes and 27~seconds in the two vent case, and 8~minutes and 17~seconds in the no vent case, the ambient air slows the increase of FED. No toxic gas values were available at victim 5 however the values were below the LC50 for thermal hazards. 
 
+\subsubsection{}
 \clearpage
 
+\subsection{Effect of No Intervention}
+
+THIS SECTION IS UNDER DEVELOPMENT WITH THE UNIVERSITY OF ILLINOIS.
+
+% To evaluate the effect of no intervention three experiments were conducted where fire department intervnetion was delayed to analyze the effect not intervening has on potential trapped occupants. Experiments 1 was the delayed intervention experiment when no vetilation was provided. Experiment 12 was the delayed intervention where the ventilaiton configuration was one room of fire with one window vent. Experiment 17 was the delayed intervention experiment where the ventilation configuration was two rooms of fire, each with one window vent. Figures \ref{fig:Vent_Profile-No_Vent}, \ref{fig:Vent_Profile-Single_Vent} and \ref{fig:Vent_Profile-Two_Vent} show the no vent, single vent and two vent configuratoins respectivily.  
+
+% \subsubsection{Pig Skin Temperatures}
+% The surface and subsurface tempature of the pig skins can be utilized to quantify the impact of fire department intervention. Table \ref{tab:pig_skin_temp_increase} shows the average temperature recorded on the surface and subsurface of the pig skin in both the cases where a fire department intervention was preformed as compared to those where no intervention is preformed.  
+
+% \begin{table}[H]
+% \centering
+% \caption[Pig Skin Temperature - Intervention vs. Non-Intervention]{Average surface and subsurface pig skin temperatures in experiments where intervention was performed vs. those where intervention was delayed. \cite{Traina_VictimTenibility}}
+% \begin{tabular}{|C{1.0in}|C{1.2in}|C{.85in}|C{.7in}|C{.85in}|C{.7in}|}
+% \hline
+% Venitlation Configuration & Action & Avg. Max Surface Temperature ($^{\circ}$F) & Standard Deviation ($^{\circ}$F) & Avg. Max Subdermal Temperature ($^{\circ}$F) & Standard Deviation ($^{\circ}$F) \\ \hline
+% \multirow{2}{*}{No Vent} & Intervention & 123.6 & 10.8 & 110.3 & 3.6 \\ \cline{2-6}
+% & No Intervention & 284.0 & \cellcolor{gray} & 162.1 & \cellcolor{gray} \\ \hline
+% \multirow{2}{*}{Single Vent} & Intervention & 124.2 & 9.7 & 103.5 & 4.1 \\ \cline{2-6}
+% & No Intervention & 225.0 & \cellcolor{gray} & 151.7 & \cellcolor{gray} \\ \hline
+% \multirow{2}{*}{Single Vent} & FD Intervention & 207.2 &  45.9 & 132.6 & 8.5 \\ \cline{2-6}
+% & Intervention & 478.4 & \cellcolor{gray} & 173.5 & \cellcolor{gray} \\ \hline
+% \end{tabular}
+% \label{tab:pig_skin_temp_increase}
+% \end{table}
+
 \subsection{Effect of Fire Department Intervention}
-This section looks at the difference between fire department intervention and delayed intervention quantifying tenability of the four locations. This will be an average value of all interventions compared to the value with delayed intervention. \\
-\textbf{\hl{Compare 1 vs. 2-6 (No Vent)}} \\
-\textbf{\hl{Compare 12 vs. 7-11 \& 18-21 \& 27 (Single Vent)}} \\
-\textbf{\hl{Compare 17 vs. 13-16 \& 22-24 (Two Vent)}} \\
+
+THIS SECTION IS UNDER DEVELOPMENT WITH THE UNIVERSITY OF ILLINOIS.
+
+% This section looks at the difference between fire department intervention and delayed intervention quantifying tenability of the four locations. This will be an average value of all interventions compared to the value with delayed intervention. \\
+
+% \textbf{\hl{Compare 1 vs. 2-6 (No Vent)}} \\
+% \textbf{\hl{Compare 12 vs. 7-11 \& 18-21 \& 27 (Single Vent)}} \\
+% \textbf{\hl{Compare 17 vs. 13-16 \& 22-24 (Two Vent)}} \\
 
 \subsection{Interior vs. Exterior}
-This section looks at the effect of different fire department tactics on tenability. Specifically the difference in FED from onset of intervention to onset plus longest intervention time. \\
-\textbf{\hl{Compare 7-11 vs. 18-21 \& 27 (Single Vent)}} \\
-\textbf{\hl{Compare 13-16 vs. 22-24 (Two Vent)}} \\
+
+THIS SECTION IS UNDER DEVELOPMENT WITH THE UNIVERSITY OF ILLINOIS.
+
+% This section looks at the effect of different fire department tactics on tenability. Specifically the difference in FED from onset of intervention to onset plus longest intervention time. \\
+% \textbf{\hl{Compare 7-11 vs. 18-21 \& 27 (Single Vent)}} \\
+% \textbf{\hl{Compare 13-16 vs. 22-24 (Two Vent)}} \\
 
 \section{Effect of Ventilation Profile on Knock Back Capability}
-In the following subsections, the temperatures measured within the fire room are used to determine the time to ``knock back'' the fire, which is defined as the period from initial water application to when all measured temperatures in the fire room are less than 400~$^\circ$F---the upper temperature limit of the `ordinary' thermal class for firefighter operating conditions proposed by Uteh~\hl{[CITE]}. The ``knock back'' times are compared between experiments in five different groups based on fire attack method. Three of the groups contain experiments that used an interior fire attack method, and two of the sets contain experiments in which the first suppression event was an exterior fire attack. The differentiating factor between experiments within the three interior fire attack groups is the ventilation profile, while the main difference between experiments within the two other groups is the ventilation profile and the fire attack method used after the initial exterior suppression event.
+In the following subsections, the temperatures measured within the fire room are used to determine the time to ``knock back'' the fire, which is defined as the period from initial water application to when all measured temperatures in the fire room are less than 400~$^\circ$F, the upper temperature limit of the `ordinary' thermal class for firefighter operating conditions proposed by Uteh~\hl{[CITE]}. The ``knock back'' times are compared between experiments in five different groups based on fire attack method. Three of the groups contain experiments that used an interior fire attack method, and two of the sets contain experiments in which the first suppression event was an exterior fire attack. The differentiating factor between experiments within the three interior fire attack groups is the ventilation profile, while the main difference between experiments within the two other groups is the ventilation profile and the fire attack method used after the initial exterior suppression event.
 
 \subsection{Flow \& Move with Solid Stream}
 The `flow and move' method with a solid stream from a smooth bore nozzle was the primary fire attack method used during Experiments~2, 7, and 13, which contained the `No Vent', `Single Vent', and `Two Vent' ventilation profiles, respectively. Figure~\ref{fig:knockback_int_1} contains a plot of the Bedroom~1 temperatures over the duration from six seconds before the start of interior suppression to one minute after for each experiment.
@@ -2288,8 +2330,8 @@ The interior suppression tactics utilized some water for cooling the approach so
 
 As expected, adjusting the interior tactic water usage as described above results in an average usage of 51.7 gallons for the window and 59.6 gallons in the doorway. When taking into account the accuracy of the measurement device theses two values can be considered the same.  
 
-\section{Gas Cooling}
-In order to anslyze the effect of gas cooling the interior walls of the structre were removed with the exception of the master bedroom wall seperating the master bedroom from the rest of the structure. The open floor plan allowed for the analysis of gas cooling as a result of indirect attack, when the fire can not be accessed with the hose stream without crawling into the structure through the flow path. Four different application methods `Pulse', `Long Pulse', `Sweeping Pulse' and `Narrow Fog Sweep' were utilized at two different flow rates, 95~gpm and 150~gpm. Table \ref{tab:Gas_Cooling_Techniques} lists the application techniques, flow rate, and average flor for each of the methods and flows used. 
+\section{Large Volumne Gas Cooling}
+In order to anslyze the effect of gas cooling in a large space under challanging conditions the interior walls of the structre were removed with the exception of the master bedroom wall seperating the master bedroom from the rest of the structure. The open floor plan allowed for the analysis of gas cooling as a result of indirect attack, when the fire can not be accessed with the hose stream without crawling into the structure through the flow path. Four different application methods `Pulse', `Long Pulse', `Sweeping Pulse' and `Narrow Fog Sweep' were utilized at two different flow rates, 95~gpm and 150~gpm. Table \ref{tab:Gas_Cooling_Techniques} lists the application techniques, flow rate, and average flor for each of the methods and flows used. 
 
 \begin{table}[H]
 \centering
@@ -2310,7 +2352,7 @@ Narrow Fog Sweep & 150 & 8.16 \\ \hline
 \end{table}
 
 \subsection{Pulse}
-The common techniqued used for gas cooling while approaching a fire is the short pulse. Figure \ref{fig:gas_pulse_95} shows the effect of the gas temperatures in the area of the attack team when a utilizing a pulse techniques with a 95~gpm nozzle. With less than a gallon of water, even in a wide fog pattern has little to no effect on temperature near the approach crew. The fire comparment is also un-effected. 
+The common techniqued used for gas cooling while approaching a fire is the short pulse. The combination nozzle is set to a wide fog pattern and the nozzle is open and closed rapidly, remaining open for less than 1~second. Figure \ref{fig:gas_pulse_95} shows the effect of the gas temperatures in the area of the attack team when a utilizing a pulse techniques with a 95~gpm nozzle. With less than a gallon of water, even in a wide fog pattern has little to no effect on temperature near the approach crew. The fire comparment is also un-effected. 
 
 \begin{figure}[H]
 \centering
@@ -2318,7 +2360,7 @@ The common techniqued used for gas cooling while approaching a fire is the short
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Pulse_95gpm/2TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Pulse_95gpm/3TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Pulse_95gpm/4TC}
-\caption[Gas Cooling - Pulse 95~gpm]{Effect of pulse technique using 95~gpm nozzle Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\caption[Gas Cooling - Pulse 95~gpm]{Effectiveness of `Pulse' technique using 95~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
 \label{fig:gas_pulse_95}
 \end{figure}
 
@@ -2330,7 +2372,7 @@ Increasing the flow rate of the nozzle has does not change the impact of the tac
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Pulse_150gpm/2TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Pulse_150gpm/3TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Pulse_150gpm/4TC}
-\caption[Gas Cooling - Pulse 150~gpm]{Effect of pulse technique using 150~gpm nozzle Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\caption[Gas Cooling - Pulse 150~gpm]{Effectiveness of `Pulse' technique using 150~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
 \label{fig:gas_pulse_150}
 \end{figure}
 
@@ -2343,7 +2385,7 @@ Increasing the length of the pulse to increase the total flow by a factor of two
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Long_Pulse_95gpm/2TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Long_Pulse_95gpm/3TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Long_Pulse_95gpm/4TC}
-\caption[Gas Cooling - Long Pulse 95~gpm]{Effect of long pulse technique using 95~gpm nozzle Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\caption[Gas Cooling - Long Pulse 95~gpm]{Effectiveness of `Long Pulse' technique using 95~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
 \label{fig:gas_long_pulse_95}
 \end{figure}
 
@@ -2355,26 +2397,113 @@ As shown in figure \ref{fig:gas_long_pulse_150} increasing the flow rate to 150~
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Long_Pulse_150gpm/2TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Long_Pulse_150gpm/3TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Long_Pulse_150gpm/4TC}
-\caption[Gas Cooling - Long Pulse 150~gpm]{Effect of long pulse technique using 150~gpm nozzle Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\caption[Gas Cooling - Long Pulse 150~gpm]{Effectiveness of `Long Pulse' technique using 150~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
 \label{fig:gas_long_pulse_150}
 \end{figure}
 
 \subsection {Sweeping Pulse}
+To increase the volume of water and the application location a longer pulse, moved horizontal from right to left in the space in a sweeping motion was used. Figure \ref{fig:gas_sweep_pulse_95} shows the impact of the sweeping pulse on the tempatures in fire compartment and the area around the attack crew. The sweeping pulse has a more significant impact on the temperatures with temperatures in the fire compartment reacting due to the mixing and more significant cooling in the area of the attack crew. Although the cooling is more significnat than the pulse and long pulse the temperatures still return to the state they were prior to water application within 15~seconds.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Sweep_Pulse_95gpm/1TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Sweep_Pulse_95gpm/2TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Sweep_Pulse_95gpm/3TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Sweep_Pulse_95gpm/4TC}
+\caption[Gas Cooling - Sweeping Pulse 95~gpm]{Effectiveness of `Sweeping Pulse' technique using 95~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\label{fig:gas_sweep_pulse_95}
+\end{figure}
+
+As shown in figure \ref{fig:gas_sweep_pulse_150} increasing the flow rate to 150~gpm increases further increases the cooling however the temperatures rebound within 15~seconds. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Sweep_Pulse_150gpm/1TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Sweep_Pulse_150gpm/2TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Sweep_Pulse_150gpm/3TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Sweep_Pulse_150gpm/4TC}
+\caption[Gas Cooling - Sweeping Pulse 150~gpm]{Effectiveness of `Sweeping Pulse' technique using 150~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\label{fig:gas_sweep_pulse_150}
+\end{figure}
+
 
 \subsection {Narrow Fog Sweep}
+Adjusting the pattern to a narrow fog from the wide fog pattern will increase the reach of the stream. Figure \ref{fig:gas_narrow_fog_95} shows the impact of the narrow fog sweep on the tempatures in fire compartment and the area around the attack crew. Increasing the reach of the stream over the pulse, long pulse and sweeping pulse has even more impact on the temperature reduction and temperatures take longer to rebound, approximetly 20~seconds after application.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Narrow_Fog_Sweep_95gpm/1TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Narrow_Fog_Sweep_95gpm/2TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Narrow_Fog_Sweep_95gpm/3TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Narrow_Fog_Sweep_95gpm/4TC}
+\caption[Gas Cooling - Narrow Fog Sweep 95~gpm]{Effectiveness of `Narrow Fog Sweep' technique using 95~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\label{fig:gas_narrow_fog_95}
+\end{figure}
+
+As shown in figure \ref{fig:gas_narrow_fog_150} increasing the flow rate to 150~gpm significantly increases the cooling and it increases the time to it takes the temperature to rebound from 20~seconds to 30~seconds. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Narrow_Fog_Sweep_150gpm/1TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Narrow_Fog_Sweep_150gpm/2TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Narrow_Fog_Sweep_150gpm/3TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Narrow_Fog_Sweep_150gpm/4TC}
+\caption[Gas Cooling - Narrow Fog Sweep 150~gpm]{Effectiveness of `Narrow Fog Sweep' technique using 150~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\label{fig:gas_narrow_fog_150}
+\end{figure}
+
+\subsection{Straight Stream}
+To compare the cooling tactics to the approach tactics used in the hallway suppression experiments the same `Wall, Ceiling, Wall' technique was used, directed as much as possible towards the fire compartment with the 150~gpm setting. Figure  \ref{fig:gas_wall_ceiling_wall_150} shows the impact of the narrow fog sweep on the tempatures in fire compartment and the area around the attack crew. The wall ceiling wall technique has the most effect on gas temperatures in the area it was applied. It also has a slight effect on temperatures in the fire compartment. It also increases the time it takes the temperatures to rebound over the other gas cooling techniques to approximety 50~seconds.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Wall_Ceiling_Wall_150gpm/1TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Wall_Ceiling_Wall_150gpm/2TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Wall_Ceiling_Wall_150gpm/3TC}
+\includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Wall_Ceiling_Wall_150gpm/4TC}
+\caption[Gas Cooling - Straight Stream 150~gpm]{Effectiveness of `Wall, Ceiling, Wall' technique using 150~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team.}
+\label{fig:gas_wall_ceiling_wall_150}
+\end{figure}
 
 \clearpage
 
-
 \chapter{Tactical Considerations}
 
-\section{There are Survivable Spaces on Arrival}
-\hl{A description of how tenability is effected by fire location prior to fire department interaction (Table of tenability broken up by vent configuration). Additionally comparing each delayed suppression case to the earlier cases.} \textbf{GAVIN}
+\section{There are Survivable Spaces on Arrival at a Single Family Residential Home}
+When occupants become trapped in a structure fire, the number one priority for the arriving fire crews is rescue. A emphasis is often placed on the risk profile of a given scenerio. The larger the benift, the larger the risk which can be considered. Understanding the potential for a victim to survive a given environment is important to determining the potential benifit. If a victim can survive the environment, risking crews on a interior search prior to fire control is of greater benifit than if no survivabile spaces. 
+
+To things impact the surviviability of a given space in the structure, the proximity to the fire and the elevation in the space. The proximity to the fire compartment relates to the thermal exposure where the elevation in the space relates to the exposure to toxic gasses. 
+
+An occupant inside the compartment of origin would not have survived to the point of fire department intervention in any of the experiments. All of the reached flashover prior to fire departemnt intervention. Occupants just outside the compartment of origin (hallway of the bedroom fire) were exposed to levels which exceeded the survivablility threshold base on thermal exposure. Figure \ref{fig:FED_heat_TC} illistrates the thermal exposure calculated in the form of fractional effective dose where a value of 1.0 represents a fatal does. Vicim 1, which was closest to the fire recieved the highest does where victim 5 was furtherest from the origin and recieved the losest dose.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.32\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/No_Vent}
+\includegraphics[width=0.32\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/Single_Vent}
+\includegraphics[width=0.32\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Temp_FLux/Two_Vent}
+\caption[Thermal Exposure Total Flux - Three Ventilation Configurations]{Fractional effective dose of thermal exposure based on total flux to the surface. Left is the no ventilation case, center is the single vent with a single room of fire case and right is the two rooms of fire with two vent case. The shaded areas represent the various +/- one standard deviation for the average value recorded.}
+\label{fig:FED_heat_TC}
+\end{figure}
+
+When the toxic gas exposure is concerned, the elevation in the space is the larger component. Victim 3 was located on the bed in the bedroom down the hall from the fire room, yet because of the elevation in all three ventilation cases recieved the largest dose. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.32\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/No_Vent}
+\includegraphics[width=0.32\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/Single_Vent}
+\includegraphics[width=0.32\textwidth]{../0_Images/Script_Figures/FED/FED_Avg_Gas/Two_Vent}
+\caption[Toxic Gas Exposure - Three Ventilation Configurations]{Fractional effective dose of toxic gas exposure based on CO, CO$_2$ and O$_2$. Left is the no ventilation case, center is the single vent with a single room of fire case and right is the two rooms of fire with two vent case. The shaded areas represent the various +/- one standard deviation for the average value recorded.}
+\label{fig:FED_gas_TC}
+\end{figure}
+
+When developing a risk profile for a given scenerio identifing the survivable spaces is important. Areas furthers from the compartment of origin and low in the space have the best chance of survival. Areas closest to the fire and high in the space have the least chance of survival. 
 
 \section{Fire Doesn't Care What Direction Water Comes From}
+The application of water, weather from the interior or exterior into the fire compartment has a positive impact on everything. Temperature and production of toxic gases are reduced making tactical ventilation effective. The tactical choice on where to apply water from should not be based on 
 
 \section{If you know where the water needs to go, you don't need much}
+
+\section{Cool as you approach}
 
 \section{Water Flow can Impact Flow path}
 
@@ -2388,6 +2517,7 @@ As shown in figure \ref{fig:gas_long_pulse_150} increasing the flow rate to 150~
 
 \section{What doesn't have major effects on fire suppression in a residential environment.}
 
+\section{Gas Cooling}
 
 \chapter{Future Research Needs}
 
