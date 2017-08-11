@@ -321,5 +321,5 @@ for exp in exp_des.index.values:
 pickle.dump(all_flow_data, open (data_location + 'all_flow_data.dict' , 'wb'))
 
 print ('\n')
-print ('-------------- all_exp_events.dict dumped to data folder ------------------')
+print ('-------------- all_flow_data.dict dumped to data folder ------------------')
 
