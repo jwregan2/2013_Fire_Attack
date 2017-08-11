@@ -430,6 +430,7 @@ for plot in gas_cooling_plots.columns:
 		ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
 		ax1_xlims = ax1.axis()[0:2]
 		plt.ylim([0, y_max]) #Exp_Des['Y Scale Temperature'][exp]])
+		plt.ylabel('Temperature ($^\circ$F)', fontsize=48)
 		plt.grid(True)
 		plt.xlabel('Time (seconds)', fontsize=48)
 		plt.xticks(fontsize=44)
@@ -471,6 +472,8 @@ for plot in gas_cooling_plots.columns:
 
 		plt.subplots_adjust(top=0.65, right=0.85)
 		plt.xlim(chart_limits[chart])
+		ax1.tick_params(axis='x', which='major', pad=15)
+
 		fig.set_size_inches(20, 18)
 
 		if not os.path.exists(output_location + '/Gas_Cooling/' + chart + '/'):

@@ -195,67 +195,92 @@ for i in range(len(tableau20)):
 # 			plt.savefig(output_location_section +  exp[:-5] + '/' + sensor +'.pdf')
 # 		plt.close('all')
 
+# print ('-------------------------------------- Plotting Steam Expansion Chart ----------------------------------')
+
+# #Create figure
+# fig = plt.figure()
+
+# # plt.style.use('ggplot')
+
+# # Plot style - cycle through 20 color pallet and define markers to cycle through
+# plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+# plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+# ax1 = plt.gca()
+# ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+# ax1_xlims = ax1.axis()[0:2]
+# plt.ylim([0, Exp_Des['Y Scale Temperature'][exp]])
+# plt.ylabel('Velocity (m/s', fontsize=48)
+# plt.grid(True)
+# plt.xlabel('Time (seconds)', fontsize=48)
+# plt.xticks(fontsize=44)
+# plt.yticks(fontsize=44)
+
+# window = all_exp_data['Experiment_18_Data'][['1BDP1','1BDP2','1BDP3','1BDP4','1BDP5']]
+# door = all_exp_data['Experiment_18_Data'][['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5']]
 
 
-#Create figure
-fig = plt.figure()
+# plt.plot(window.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Window Velocity', markersize=15)
+# plt.plot(door.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Door Velocity', markersize=15)
 
-# plt.style.use('ggplot')
+# plt.ylim([-10,10])
+# plt.axvline(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'], lw=4, color='black')
+# plt.text(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'],10, 'BR1 Window Solid Stream', ha='left', 
+# 					va='bottom', rotation=45, fontsize=34)
 
-# Plot style - cycle through 20 color pallet and define markers to cycle through
-plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+# plt.axhline(0, lw=7, color = 'black')
 
-ax1 = plt.gca()
-ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-ax1_xlims = ax1.axis()[0:2]
-plt.ylim([0, Exp_Des['Y Scale Temperature'][exp]])
-plt.ylabel('Velocity (m/s', fontsize=48)
-plt.grid(True)
-plt.xlabel('Time (seconds)', fontsize=48)
-plt.xticks(fontsize=44)
-plt.yticks(fontsize=44)
-
-window = all_exp_data['Experiment_18_Data'][['1BDP1','1BDP2','1BDP3','1BDP4','1BDP5']]
-door = all_exp_data['Experiment_18_Data'][['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5']]
+# flow_data = all_flow_data['Experiment_18_Data']['GPM'] 
+# plt.fill_between(flow_data.index.values, -10,  10, where =  flow_data > 10, facecolor='blue', alpha=0.1)
 
 
-plt.plot(window.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Window Velocity', markersize=15)
-plt.plot(door.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Door Velocity', markersize=15)
+# ax2 = ax1.twinx()
+# ax2.set_ylim(0,2000)
+# ax2.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
+# ax2.tick_params(axis='y', labelsize=44)
 
-plt.ylim([-10,10])
-plt.axvline(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'], lw=4, color='black')
-plt.text(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'],10, 'BR1 Window Solid Stream', ha='left', 
-					va='bottom', rotation=45, fontsize=34)
+# roomtemp = all_exp_data['Experiment_18_Data'][['1TC1','1TC3','1TC5','1TC7']]
+# ax2.plot (roomtemp.mean(axis=1), lw = 4, color='green', markevery=5, label = 'Avg. Room Temp', markersize=15)
 
-plt.axhline(0, lw=7, color = 'black')
+# h1, l1 = ax1.get_legend_handles_labels()
+# h2, l2 = ax2.get_legend_handles_labels()
+# ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=2, labelspacing=.15)
 
-flow_data = all_flow_data['Experiment_18_Data']['GPM'] 
-plt.fill_between(flow_data.index.values, -10,  10, where =  flow_data > 10, facecolor='blue', alpha=0.1)
+# plt.xlim([315,350])
+# plt.subplots_adjust(top=0.70, left=.15, right=0.88)
+# fig.set_size_inches(20, 18) 
+# plt.tick_params(axis='x', which='major', pad=20)
+
+# if not os.path.exists(output_location +  'Steam_Expansion/'):
+# 	os.makedirs(output_location +  'Steam_Expansion/')
+
+# plt.savefig(output_location +  'Steam_Expansion/Experiment_18.pdf')
+# plt.close('all')
+
+# print ('-------------------------------------- Plotting Moisture Chart ----------------------------------')
+
+# data_location_moisture = data_location + 'Laser/'
+
+# experiments = os.listdir(data_location_moisture)
+
+# exp_info = pd.read_csv(info_location + 'Moisture_Info.csv').set_index('Experiment')
+# exp_info_grouped = exp_info.groupby('Vent')
+
+# all_data = {}
+# low = pd.DataFrame()
+# high = pd.DataFrame()
+
+# for exp in experiments:
+
+# 	all_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp).set_index('Time')
+# 	all_data[exp[:-4]] = all_data[exp[:-4]][all_data[exp[:-4]].index > 0]
+
+# for group in exp_info_grouped.groups.keys():
+
+# 	for exp in exp_info_grouped.groups[group].values:
+
+# 		print (all_data[exp][all_data[exp].index > 0])
 
 
-ax2 = ax1.twinx()
-ax2.set_ylim(0,2000)
-ax2.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
-ax2.tick_params(axis='y', labelsize=44)
+# exit()
 
-roomtemp = all_exp_data['Experiment_18_Data'][['1TC1','1TC3','1TC5','1TC7']]
-ax2.plot (roomtemp.mean(axis=1), lw = 4, color='green', markevery=5, label = 'Avg. Room Temp', markersize=15)
-
-h1, l1 = ax1.get_legend_handles_labels()
-h2, l2 = ax2.get_legend_handles_labels()
-ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=2, labelspacing=.15)
-
-plt.xlim([315,350])
-plt.subplots_adjust(top=0.70, left=.15, right=0.88)
-fig.set_size_inches(20, 18) 
-plt.tick_params(axis='x', which='major', pad=20)
-
-if not os.path.exists(output_location +  'Steam_Expansion/'):
-	os.makedirs(output_location +  'Steam_Expansion/')
-
-plt.savefig(output_location +  'Steam_Expansion/Experiment_18.pdf')
-plt.close('all')
-
-
-	
