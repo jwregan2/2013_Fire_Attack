@@ -18,4 +18,6 @@ python Water_Flow_Plotter.py
 echo "Plotting Experiment Analysis Plots"
 python Experiment_Analysis_Plotter.py
 echo "Plotting Knock Back Analysis Plots"
-python Knock_Back_Time_Analysis.py
+python Knock_Back_Time_Plotter.py
+echo "Plotting Tactical Considerations Plots"
+python Tactical_Considerations_Plotter.py

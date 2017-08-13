@@ -52,210 +52,210 @@ for i in range(len(tableau20)):
 		r, g, b = tableau20[i]
 		tableau20[i] = (r / 255., g / 255., b / 255.)
 
-# print ('-------------------------------------- Plotting Line Charts ----------------------------------')
+print ('-------------------------------------- Plotting Line Charts ----------------------------------')
 
-# tactic_consid = {'regrowth':['Experiment_27_Data'], 'expansion':['Experiment_18_Data', 'Experiment_19_Data']} #, 'Experiment_20_Data', 'Experiment_21_Data']}
+tactic_consid = {'regrowth':['Experiment_27_Data'], 'expansion':['Experiment_18_Data', 'Experiment_19_Data']} #, 'Experiment_20_Data', 'Experiment_21_Data']}
 
-# plots = {'regrowth':{'8TC':['8TC7', '8TC5', '8TC3', '8TC1'],
-# 					 '4TC':['4TC7', '4TC5', '4TC3', '4TC1']},
-# 		 'expansion':{'2BDP':['2BDP5', '2BDP4', '2BDP3', '2BDP2', '2BDP1'],
-# 		 			  '1BDP':['1BDP5', '1BDP4', '1BDP3', '1BDP2', '1BDP1']}}
+plots = {'regrowth':{'8TC':['8TC7', '8TC5', '8TC3', '8TC1'],
+					 '4TC':['4TC7', '4TC5', '4TC3', '4TC1']},
+		 'expansion':{'2BDP':['2BDP5', '2BDP4', '2BDP3', '2BDP2', '2BDP1'],
+		 			  '1BDP':['1BDP5', '1BDP4', '1BDP3', '1BDP2', '1BDP1']}}
 
-# limits = {'regrowth':[356, 406], 'expansion':[310, 350]}
+limits = {'regrowth':[356, 406], 'expansion':[310, 350]}
 
-# for tc in tactic_consid.keys():
+for tc in tactic_consid.keys():
 	
-# 	print ('--------------------------------- ' + tc.replace('_',' ') + ' -----------------------------')
+	print ('--------------------------------- ' + tc.replace('_',' ') + ' -----------------------------')
 	
-# 	output_location_section = output_location + tc + '/'
+	output_location_section = output_location + tc + '/'
 
-# 	for exp in tactic_consid[tc]:
+	for exp in tactic_consid[tc]:
 
-# 		print ('Plotting ' + exp[:-5].replace('_',' '))
+		print ('Plotting ' + exp[:-5].replace('_',' '))
 
-# 		for sensor in plots[tc]:
-# 			# if sensor == 'Bedroom_1_Door':
-# 			# 	if not exp == 'Experiment_19_Data':
-# 			# 		continue
+		for sensor in plots[tc]:
+			# if sensor == 'Bedroom_1_Door':
+			# 	if not exp == 'Experiment_19_Data':
+			# 		continue
 
-# 			h1 = l1 = h2 = l2 = []
+			h1 = l1 = h2 = l2 = []
 
-# 			#Create figure
-# 			fig = plt.figure()
+			#Create figure
+			fig = plt.figure()
 
-# 			# plt.style.use('ggplot')
+			# plt.style.use('ggplot')
 
-# 			# Plot style - cycle through 20 color pallet and define markers to cycle through
-# 			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-# 			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+			# Plot style - cycle through 20 color pallet and define markers to cycle through
+			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-# 			ax1 = plt.gca()
-# 			ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-# 			ax1_xlims = ax1.axis()[0:2]
-# 			plt.ylim([0, Exp_Des['Y Scale Temperature'][exp]])
-# 			plt.grid(True)
-# 			plt.xlabel('Time (seconds)', fontsize=48)
-# 			plt.xticks(fontsize=44)
-# 			plt.yticks(fontsize=44)
+			ax1 = plt.gca()
+			ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+			ax1_xlims = ax1.axis()[0:2]
+			plt.ylim([0, Exp_Des['Y Scale Temperature'][exp]])
+			plt.grid(True)
+			plt.xlabel('Time (seconds)', fontsize=48)
+			plt.xticks(fontsize=44)
+			plt.yticks(fontsize=44)
 
-# 			if exp in all_flow_data.keys():
-# 				ax2 = ax1.twinx()
-# 				ax2.plot(all_flow_data[exp].index.values/60, all_flow_data[exp]['Total Gallons'], lw=6, color='#1f77b4',)
-# 				ax2.set_ylim(0,100)
-# 				ax2.set_ylabel('Total Flow (Gallons)', fontsize=48)
-# 				ax2.tick_params(axis='y', labelsize=44)
+			if exp in all_flow_data.keys():
+				ax2 = ax1.twinx()
+				ax2.plot(all_flow_data[exp].index.values/60, all_flow_data[exp]['Total Gallons'], lw=6, color='#1f77b4',)
+				ax2.set_ylim(0,100)
+				ax2.set_ylabel('Total Flow (Gallons)', fontsize=48)
+				ax2.tick_params(axis='y', labelsize=44)
 
-# 			axis_scale = Exp_Des['Y Scale Temperature'][exp]
+			axis_scale = Exp_Des['Y Scale Temperature'][exp]
 
-# 			chart_length = limits[tc][1] - limits[tc][0]
+			chart_length = limits[tc][1] - limits[tc][0]
 
-# 			if chart_length > 50:
-# 				mark = int(chart_length * (4/50))
-# 			else: 
-# 				mark = 4 
+			if chart_length > 50:
+				mark = int(chart_length * (4/50))
+			else: 
+				mark = 4 
 
-# 			channels = plots[tc][sensor]
+			channels = plots[tc][sensor]
 
-# 			for channel in sorted(channels, reverse=True):
-# 				if channel in channels_to_skip[exp]:
-# 					continue
-# 				if 'BDP' in channel:
-# 					if channel + 'V' in channels_to_skip[exp]:
-# 						continue
+			for channel in sorted(channels, reverse=True):
+				if channel in channels_to_skip[exp]:
+					continue
+				if 'BDP' in channel:
+					if channel + 'V' in channels_to_skip[exp]:
+						continue
 
-# 				if 'HF' in channel:
-# 					fill_min = 0
-# 					fill_max = float(Exp_Des['Y Scale Wall Heat Flux'][exp])
-# 					y_title = 'Heat Flux (kW/m$^2$)'
-# 				elif 'BDP' in channel:
-# 					if sensor == 'Bedroom_1_Window_Flow':
-# 						fill_min = float(-Exp_Des['Y Scale BDP'][exp]) - 5
-# 						fill_max = float(Exp_Des['Y Scale BDP'][exp]) + 5
-# 					if sensor == 'Bedroom_2_Door':
-# 						fill_min = float(-Exp_Des['Y Scale BDP'][exp]) + 8
-# 						fill_max = float(Exp_Des['Y Scale BDP'][exp]) - 8
-# 					else:
-# 						fill_min = float(-Exp_Des['Y Scale BDP'][exp])
-# 						fill_max = float(Exp_Des['Y Scale BDP'][exp])
-# 					y_title = 'Velocity (m/s)'
-# 				elif 'PT' in channel:
-# 					fill_min = -float(Exp_Des['Y Scale Pressure'][exp])
-# 					fill_max = float(Exp_Des['Y Scale Pressure'][exp])
-# 					y_title = 'Pressure (Pa)'
-# 				elif 'O2' in channel:
-# 					fill_min = 0
-# 					fill_max = 25
-# 					y_title = 'Percent Oxygen'
-# 				else:
-# 					fill_min = 0
-# 					fill_max = float(Exp_Des['Y Scale Temperature'][exp])
-# 					y_title = 'Temperature ($^\circ$F)'
+				if 'HF' in channel:
+					fill_min = 0
+					fill_max = float(Exp_Des['Y Scale Wall Heat Flux'][exp])
+					y_title = 'Heat Flux (kW/m$^2$)'
+				elif 'BDP' in channel:
+					if sensor == 'Bedroom_1_Window_Flow':
+						fill_min = float(-Exp_Des['Y Scale BDP'][exp]) - 5
+						fill_max = float(Exp_Des['Y Scale BDP'][exp]) + 5
+					if sensor == 'Bedroom_2_Door':
+						fill_min = float(-Exp_Des['Y Scale BDP'][exp]) + 8
+						fill_max = float(Exp_Des['Y Scale BDP'][exp]) - 8
+					else:
+						fill_min = float(-Exp_Des['Y Scale BDP'][exp])
+						fill_max = float(Exp_Des['Y Scale BDP'][exp])
+					y_title = 'Velocity (m/s)'
+				elif 'PT' in channel:
+					fill_min = -float(Exp_Des['Y Scale Pressure'][exp])
+					fill_max = float(Exp_Des['Y Scale Pressure'][exp])
+					y_title = 'Pressure (Pa)'
+				elif 'O2' in channel:
+					fill_min = 0
+					fill_max = 25
+					y_title = 'Percent Oxygen'
+				else:
+					fill_min = 0
+					fill_max = float(Exp_Des['Y Scale Temperature'][exp])
+					y_title = 'Temperature ($^\circ$F)'
 
-# 				if 'BDP' in channel:
-# 					channel_name = channel + 'V'
-# 				else:
-# 					channel_name = channel
+				if 'BDP' in channel:
+					channel_name = channel + 'V'
+				else:
+					channel_name = channel
 				
-# 				channel_label = all_channels['Title'][channel_name]
+				channel_label = all_channels['Title'][channel_name]
 
-# 				ax1.plot(all_exp_data[exp][channel].index, all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
-# 							label = channel_label, markersize=15)
+				ax1.plot(all_exp_data[exp][channel].index, all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
+							label = channel_label, markersize=15)
 
-# 				if exp in all_flow_data.keys():
-# 					flow_data = all_flow_data[exp]['GPM'] 
-# 					ax1.fill_between(flow_data.index.values, fill_min,  fill_max, where =  flow_data > 10, facecolor='blue', alpha=0.1)
+				if exp in all_flow_data.keys():
+					flow_data = all_flow_data[exp]['GPM'] 
+					ax1.fill_between(flow_data.index.values, fill_min,  fill_max, where =  flow_data > 10, facecolor='blue', alpha=0.1)
 
-# 			for flow in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
-# 				ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], lw=4, color='black')
-# 				ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], fill_max, flow, ha='left', 
-# 					va='bottom', rotation=45, fontsize=34)
+			for flow in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
+				ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], lw=4, color='black')
+				ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], fill_max, flow, ha='left', 
+					va='bottom', rotation=45, fontsize=34)
 
-# 			if exp in all_flow_data.keys():
-# 				h1, l1 = ax1.get_legend_handles_labels()
-# 				h2, l2 = ax2.get_legend_handles_labels()
-# 				ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(-.3, 1.1), loc='lower left', fontsize=40, handlelength=2, labelspacing=.15)
+			if exp in all_flow_data.keys():
+				h1, l1 = ax1.get_legend_handles_labels()
+				h2, l2 = ax2.get_legend_handles_labels()
+				ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(-.3, 1.1), loc='lower left', fontsize=40, handlelength=2, labelspacing=.15)
 			
-# 			fig.set_size_inches(20, 18) 
-# 			plt.subplots_adjust(top=0.70, left=0.2)
+			fig.set_size_inches(20, 18) 
+			plt.subplots_adjust(top=0.70, left=0.2)
 
-# 			ax1.set_ylim(fill_min,fill_max)
+			ax1.set_ylim(fill_min,fill_max)
 
-# 			ax1.set_ylabel(y_title, fontsize = 48)
+			ax1.set_ylabel(y_title, fontsize = 48)
 
-# 			ax1.set_xlim(limits[tc][0],limits[tc][1])
+			ax1.set_xlim(limits[tc][0],limits[tc][1])
 
-# 			if tc == 'regrowth':
-# 				ax1.tick_params(axis='x', which='major', pad=15)
-# 				x = linspace(limits[tc][0],limits[tc][1], 6)
-# 				plt.xticks(x, x-366)
+			if tc == 'regrowth':
+				ax1.tick_params(axis='x', which='major', pad=15)
+				x = linspace(limits[tc][0],limits[tc][1], 6)
+				plt.xticks(x, x-366)
 
-# 			if not os.path.exists(output_location_section +  exp[:-5] + '/'):
-# 				os.makedirs(output_location_section +  exp[:-5] + '/')
+			if not os.path.exists(output_location_section +  exp[:-5] + '/'):
+				os.makedirs(output_location_section +  exp[:-5] + '/')
 
-# 			plt.savefig(output_location_section +  exp[:-5] + '/' + sensor +'.pdf')
-# 		plt.close('all')
+			plt.savefig(output_location_section +  exp[:-5] + '/' + sensor +'.pdf')
+		plt.close('all')
 
-# print ('-------------------------------------- Plotting Steam Expansion Chart ----------------------------------')
+print ('-------------------------------------- Plotting Steam Expansion Chart ----------------------------------')
 
-# #Create figure
-# fig = plt.figure()
+#Create figure
+fig = plt.figure()
 
-# # plt.style.use('ggplot')
+# plt.style.use('ggplot')
 
-# # Plot style - cycle through 20 color pallet and define markers to cycle through
-# plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-# plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+# Plot style - cycle through 20 color pallet and define markers to cycle through
+plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-# ax1 = plt.gca()
-# ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-# ax1_xlims = ax1.axis()[0:2]
-# plt.ylim([0, Exp_Des['Y Scale Temperature'][exp]])
-# plt.ylabel('Velocity (m/s', fontsize=48)
-# plt.grid(True)
-# plt.xlabel('Time (seconds)', fontsize=48)
-# plt.xticks(fontsize=44)
-# plt.yticks(fontsize=44)
+ax1 = plt.gca()
+ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+ax1_xlims = ax1.axis()[0:2]
+plt.ylim([0, Exp_Des['Y Scale Temperature'][exp]])
+plt.ylabel('Velocity (m/s', fontsize=48)
+plt.grid(True)
+plt.xlabel('Time (seconds)', fontsize=48)
+plt.xticks(fontsize=44)
+plt.yticks(fontsize=44)
 
-# window = all_exp_data['Experiment_18_Data'][['1BDP1','1BDP2','1BDP3','1BDP4','1BDP5']]
-# door = all_exp_data['Experiment_18_Data'][['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5']]
-
-
-# plt.plot(window.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Window Velocity', markersize=15)
-# plt.plot(door.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Door Velocity', markersize=15)
-
-# plt.ylim([-10,10])
-# plt.axvline(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'], lw=4, color='black')
-# plt.text(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'],10, 'BR1 Window Solid Stream', ha='left', 
-# 					va='bottom', rotation=45, fontsize=34)
-
-# plt.axhline(0, lw=7, color = 'black')
-
-# flow_data = all_flow_data['Experiment_18_Data']['GPM'] 
-# plt.fill_between(flow_data.index.values, -10,  10, where =  flow_data > 10, facecolor='blue', alpha=0.1)
+window = all_exp_data['Experiment_18_Data'][['1BDP1','1BDP2','1BDP3','1BDP4','1BDP5']]
+door = all_exp_data['Experiment_18_Data'][['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5']]
 
 
-# ax2 = ax1.twinx()
-# ax2.set_ylim(0,2000)
-# ax2.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
-# ax2.tick_params(axis='y', labelsize=44)
+plt.plot(window.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Window Velocity', markersize=15)
+plt.plot(door.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Door Velocity', markersize=15)
 
-# roomtemp = all_exp_data['Experiment_18_Data'][['1TC1','1TC3','1TC5','1TC7']]
-# ax2.plot (roomtemp.mean(axis=1), lw = 4, color='green', markevery=5, label = 'Avg. Room Temp', markersize=15)
+plt.ylim([-10,10])
+plt.axvline(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'], lw=4, color='black')
+plt.text(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'],10, 'BR1 Window Solid Stream', ha='left', 
+					va='bottom', rotation=45, fontsize=34)
 
-# h1, l1 = ax1.get_legend_handles_labels()
-# h2, l2 = ax2.get_legend_handles_labels()
-# ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=2, labelspacing=.15)
+plt.axhline(0, lw=7, color = 'black')
 
-# plt.xlim([315,350])
-# plt.subplots_adjust(top=0.70, left=.15, right=0.88)
-# fig.set_size_inches(20, 18) 
-# plt.tick_params(axis='x', which='major', pad=20)
+flow_data = all_flow_data['Experiment_18_Data']['GPM'] 
+plt.fill_between(flow_data.index.values, -10,  10, where =  flow_data > 10, facecolor='blue', alpha=0.1)
 
-# if not os.path.exists(output_location +  'Steam_Expansion/'):
-# 	os.makedirs(output_location +  'Steam_Expansion/')
 
-# plt.savefig(output_location +  'Steam_Expansion/Experiment_18.pdf')
-# plt.close('all')
+ax2 = ax1.twinx()
+ax2.set_ylim(0,2000)
+ax2.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
+ax2.tick_params(axis='y', labelsize=44)
+
+roomtemp = all_exp_data['Experiment_18_Data'][['1TC1','1TC3','1TC5','1TC7']]
+ax2.plot (roomtemp.mean(axis=1), lw = 4, color='green', markevery=5, label = 'Avg. Room Temp', markersize=15)
+
+h1, l1 = ax1.get_legend_handles_labels()
+h2, l2 = ax2.get_legend_handles_labels()
+ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=2, labelspacing=.15)
+
+plt.xlim([315,350])
+plt.subplots_adjust(top=0.70, left=.15, right=0.88)
+fig.set_size_inches(20, 18) 
+plt.tick_params(axis='x', which='major', pad=20)
+
+if not os.path.exists(output_location +  'Steam_Expansion/'):
+	os.makedirs(output_location +  'Steam_Expansion/')
+
+plt.savefig(output_location +  'Steam_Expansion/Experiment_18.pdf')
+plt.close('all')
 
 # print ('-------------------------------------- Plotting Moisture Chart ----------------------------------')
 
