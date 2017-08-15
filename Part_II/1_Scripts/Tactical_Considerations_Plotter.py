@@ -257,30 +257,4 @@ if not os.path.exists(output_location +  'Steam_Expansion/'):
 plt.savefig(output_location +  'Steam_Expansion/Experiment_18.pdf')
 plt.close('all')
 
-# print ('-------------------------------------- Plotting Moisture Chart ----------------------------------')
-
-# data_location_moisture = data_location + 'Laser/'
-
-# experiments = os.listdir(data_location_moisture)
-
-# exp_info = pd.read_csv(info_location + 'Moisture_Info.csv').set_index('Experiment')
-# exp_info_grouped = exp_info.groupby('Vent')
-
-# all_data = {}
-# low = pd.DataFrame()
-# high = pd.DataFrame()
-
-# for exp in experiments:
-
-# 	all_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp).set_index('Time')
-# 	all_data[exp[:-4]] = all_data[exp[:-4]][all_data[exp[:-4]].index > 0]
-
-# for group in exp_info_grouped.groups.keys():
-
-# 	for exp in exp_info_grouped.groups[group].values:
-
-# 		print (all_data[exp][all_data[exp].index > 0])
-
-
-# exit()
 
