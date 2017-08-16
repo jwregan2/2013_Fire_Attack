@@ -412,3 +412,24 @@ for vic in victims:
 			plt.savefig(output_location + vent + '_' + vic + '.pdf')
 			plt.close('all')
 
+output_location = '../0_Images/Script_Figures/Additoinal_FED/'
+
+for exp in ['Experiment_1', 'Experiment_2', 'Experiment_3', 'Experiment_4', 'Experiment_5', 'Experiment_6',
+			'Experiment_7', 'Experiment_8', 'Experiment_9', 'Experiment_10', 'Experiment_11', 'Experiment_12',
+			'Experiment_13', 'Experiment_14', 'Experiment_15', 'Experiment_16', 'Experiment_17', 'Experiment_18',
+			'Experiment_19', 'Experiment_20', 'Experiment_21', 'Experiment_22', 'Experiment_23', 'Experiment_24']:
+
+	plt.plot(FED_Temp_Flux[exp + '_Data']['OutSideFR'].index/60,FED_Temp_Flux[exp + '_Data']['OutSideFR'], label='Heat Flux FED')
+	plt.plot(FED_Temp_Conv[exp + '_Data']['OutSideFR_1'].index/60,FED_Temp_Conv[exp + '_Data']['OutSideFR_1'], label='1ft Temp FED')
+	plt.plot(FED_Temp_Conv[exp + '_Data']['OutSideFR_3'].index/60,FED_Temp_Conv[exp + '_Data']['OutSideFR_3'], label='3ft Temp FED')
+	plt.axvline(all_exp_events[exp + '_Events']['Time_Seconds']['Front Door Open']/60, color = 'black')
+	plt.xlim([0,10])
+	plt.ylim([0,3])
+	plt.legend()
+
+	if not os.path.exists(output_location):
+		os.makedirs(output_location)
+
+	plt.savefig(output_location + exp + '_FED.png')
+	plt.close('all')
+
