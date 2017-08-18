@@ -119,7 +119,7 @@ for vent in vent_info.columns.values:
         data = repeatibility_data.drop('Type', 1)
         data = data.drop('Location', 1)
 
-        radar_graph(labels, data, 'Temperature F', fill=True)
+        radar_graph(labels, data, 'Temperature F', fill=False)
 
         plt.savefig(output_location + '/' + vent + '.pdf')
         plt.close('all')
