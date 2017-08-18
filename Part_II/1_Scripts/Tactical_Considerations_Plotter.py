@@ -233,7 +233,6 @@ plt.axhline(0, lw=7, color = 'black')
 flow_data = all_flow_data['Experiment_18_Data']['GPM'] 
 plt.fill_between(flow_data.index.values, -10,  10, where =  flow_data > 10, facecolor='blue', alpha=0.1)
 
-
 ax2 = ax1.twinx()
 ax2.set_ylim(0,2000)
 ax2.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
@@ -257,4 +256,12 @@ if not os.path.exists(output_location +  'Steam_Expansion/'):
 plt.savefig(output_location +  'Steam_Expansion/Experiment_18.pdf')
 plt.close('all')
 
+print ('---------- Calculating Flow During Steam Expansion Chart ----------------')
+
+initial = all_flow_data['Experiment_18_Data']['Total Gallons'][all_flow_data['Experiment_18_Data']['Total Gallons'].index>321].iloc[0]
+final =  all_flow_data['Experiment_18_Data']['Total Gallons'][all_flow_data['Experiment_18_Data']['Total Gallons'].index>335].iloc[0]
+
+total = final-initial
+
+print ('The total number of Gallons of Water Applied is ' + str(round(total,3)) + ' gallons.')
 
