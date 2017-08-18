@@ -118,8 +118,8 @@ for exp in exp_des.index.values:
 
 				for f in all_exp_data[exp][victim_loc + 'TCV1'].index.values:
 
-					if all_exp_data[exp][victim_loc + 'TCV1'][f] > 50:
-						FED_conv[int(f/2)] = (1/(2e18 * all_exp_data[exp][victim_loc + 'TCV1'][f]**-9.0403 + 1e8 * all_exp_data[exp][victim_loc + 'TCV1'][f]**-3.10898))*time_step
+					# if all_exp_data[exp][victim_loc + 'TCV1'][f] > 50:
+					FED_conv[int(f/2)] = (1/(2e18 * all_exp_data[exp][victim_loc + 'TCV1'][f]**-9.0403 + 1e8 * all_exp_data[exp][victim_loc + 'TCV1'][f]**-3.10898))*time_step
 
 				FED_Temp_Conv[exp]['Victim_' + victim_loc] = [FED_conv[0:val].sum() for val in np.arange(0,len(FED_conv))]
 
@@ -136,6 +136,8 @@ for exp in exp_des.index.values:
 		FED_Temp_Flux[exp]['OutSideFR'] = [FED_flux[0:val].sum() for val in np.arange(0,len(FED_flux))]
 
 	if '3TC1' in all_exp_data[exp]:
+		all_exp_data[exp]['3TC1'] = (all_exp_data[exp]['3TC1']-32)/1.8
+
 		FED_conv = np.zeros(len(all_exp_data[exp]['3TC1']))
 
 		for f in all_exp_data[exp]['3TC1'].index.values:
@@ -146,6 +148,8 @@ for exp in exp_des.index.values:
 		FED_Temp_Conv[exp]['OutSideFR_1'] = [FED_conv[0:val].sum() for val in np.arange(0,len(FED_conv))]
 
 	if '3TC3' in all_exp_data[exp]:
+		all_exp_data[exp]['3TC3'] = (all_exp_data[exp]['3TC3']-32)/1.8
+		
 		FED_conv = np.zeros(len(all_exp_data[exp]['3TC3']))
 
 		for f in all_exp_data[exp]['3TC3'].index.values:
@@ -155,6 +159,22 @@ for exp in exp_des.index.values:
 
 		FED_Temp_Conv[exp]['OutSideFR_3'] = [FED_conv[0:val].sum() for val in np.arange(0,len(FED_conv))]
 
+	if '2HF' in all_exp_data[exp]:
+		t_rad = 16.7/(all_exp_data[exp]['2HF']**1.33)
+		FED_flux = (1/t_rad)*time_step
+		FED_Temp_Flux[exp]['Mid_Hall'] = [FED_flux[0:val].sum() for val in np.arange(0,len(FED_flux))]
+
+	if '4TC1' in all_exp_data[exp]:
+		all_exp_data[exp]['4TC1'] = (all_exp_data[exp]['4TC1']-32)/1.8
+
+		FED_conv = np.zeros(len(all_exp_data[exp]['4TC1']))
+
+		for f in all_exp_data[exp]['4TC1'].index.values:
+
+			if all_exp_data[exp]['4TC1'][f] > 50:
+				FED_conv[int(f/2)] = (1/(2e18 * all_exp_data[exp]['4TC1'][f]**-9.0403 + 1e8 * all_exp_data[exp]['4TC1'][f]**-3.10898))*time_step
+
+		FED_Temp_Conv[exp]['Mid_Hall'] = [FED_conv[0:val].sum() for val in np.arange(0,len(FED_conv))]
 
 pickle.dump(FED_Gas, open (output_location + 'FED_Gas.dict' , 'wb'))
 print ('-------------- FED_Gas.dict dumped to ../Data/FED folder ------------------')
