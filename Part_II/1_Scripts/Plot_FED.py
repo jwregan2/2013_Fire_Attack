@@ -60,6 +60,7 @@ for vic in victims:
 	fig.set_size_inches(8, 6)
 
 	for exp in experiments:
+
 		if exp == 'Experiment_1_Data' and vic == 'Victim_2':
 			continue
 		
@@ -71,13 +72,27 @@ for vic in victims:
 				plt.plot(data, label = 'Exp ' + exp[11:-5] + ' ' + dose_type.replace('_',' '), lw = 2, marker = marker[dose_type], 
 					color = color[exp], markevery=20)
 
+
+				if dose_type == 'Total_Flux':
+					fatal_time = data[data > 1].index
+					if fatal_time.empty == False:
+						print (exp + ',' + vic + ',' + dose_type + ',' + str(data[data > 1].index[0]))
+				if dose_type == 'Toxic_Gas':
+					fatal_time = data[data > 3].index
+					if fatal_time.empty == False:
+						print (exp + ',' + vic + ',' + dose_type + ',' + str(data[data > 3].index[0]))
+				if dose_type == 'Convective':
+					fatal_time = data[data > 1].index
+					if fatal_time.empty == False:
+						print (exp + ',' + vic + ',' + dose_type + ',' + str(data[data > 1].index[0]))
+
 	L = plt.legend()
 	num_entries = len(L.get_texts())
 
 	plt.ylim([0,3])
 	plt.axhline(1, color = 'black', lw = 2)
 	plt.title(vic.replace('_', ' '), fontsize = 20)
-	plt.xlim([0,all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Attack Team Enters']/60])
+	# plt.xlim([0,all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Attack Team Enters']/60])
 	plt.ylabel('Fractional Effective Dose', fontsize = 18)
 	plt.xlabel('Time (min)', fontsize = 18)
 	plt.xticks(fontsize = 18)
@@ -296,140 +311,145 @@ for vent in vent_info:
 	plt.savefig(output_location + vent + '.pdf')
 	plt.close('all')
 
-#------------------------------------------Plot Line Charts for FED-----------------------------------------------
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# ++++++++++++++++++++++++++++++++++++++++ BELOW NOT USED IN REPORT ++++++++++++++++++++++++++++++++++++++++++++++++++++
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-output_location = '../0_Images/Script_Figures/FED/FED_Line_Gas/'
+# #------------------------------------------Plot Line Charts for FED-----------------------------------------------
 
-if not os.path.exists(output_location):
-    os.makedirs(output_location)
 
-for vic in victims:
+# output_location = '../0_Images/Script_Figures/FED/FED_Line_Gas/'
 
-	for vent in vent_info:
+# if not os.path.exists(output_location):
+#     os.makedirs(output_location)
 
-		# Create figure	
-		fig = plt.figure()
-		fig.set_size_inches(8, 6)
+# for vic in victims:
 
-		# Plot style - cycle through 20 color pallet and define markers to cycle through
-		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+# 	for vent in vent_info:
+
+# 		# Create figure	
+# 		fig = plt.figure()
+# 		fig.set_size_inches(8, 6)
+
+# 		# Plot style - cycle through 20 color pallet and define markers to cycle through
+# 		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+# 		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 	
-		createplot = False
+# 		createplot = False
 
-		for exp in vent_info[vent].dropna():
+# 		for exp in vent_info[vent].dropna():
 			
-			if vic == 'Victim_2' and exp == 'Experiment_1_Data':
-				continue
+# 			if vic == 'Victim_2' and exp == 'Experiment_1_Data':
+# 				continue
 
-			if vic in FED_Gas[exp]:
-				createplot = True
-				plt.plot(FED_Gas[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
-				if 'Front Door Open' in all_exp_events[exp[:-4]+'Events'].index: 
-					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Front Door Open'], lw = 2, color = 'black')
+# 			if vic in FED_Gas[exp]:
+# 				createplot = True
+# 				plt.plot(FED_Gas[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
+# 				if 'Front Door Open' in all_exp_events[exp[:-4]+'Events'].index: 
+# 					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Front Door Open'], lw = 2, color = 'black')
 
-		if createplot == True:
-			plt.legend()
-			plt.xlabel('Time (s)')
-			plt.ylabel('Fractional Effective Dose')
-			plt.savefig(output_location + vent + '_' + vic + '.pdf')
-			plt.close('all')
+# 		if createplot == True:
+# 			plt.legend()
+# 			plt.xlabel('Time (s)')
+# 			plt.ylabel('Fractional Effective Dose')
+# 			plt.savefig(output_location + vent + '_' + vic + '.pdf')
+# 			plt.close('all')
 
-output_location = '../0_Images/Script_Figures/FED/FED_Line_TempFlux/'
+# output_location = '../0_Images/Script_Figures/FED/FED_Line_TempFlux/'
 
-if not os.path.exists(output_location):
-    os.makedirs(output_location)
+# if not os.path.exists(output_location):
+#     os.makedirs(output_location)
 
-victims = ['Victim_1', 'Victim_2', 'Victim_3', 'Victim_4', 'Victim_5']
+# victims = ['Victim_1', 'Victim_2', 'Victim_3', 'Victim_4', 'Victim_5']
 
-for vic in victims:
+# for vic in victims:
 
-	for vent in vent_info:
+# 	for vent in vent_info:
 	
-		# Create figure	
-		fig = plt.figure()
-		fig.set_size_inches(8, 6)
+# 		# Create figure	
+# 		fig = plt.figure()
+# 		fig.set_size_inches(8, 6)
 
-		# Plot style - cycle through 20 color pallet and define markers to cycle through
-		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
-		createplot = False
+# 		# Plot style - cycle through 20 color pallet and define markers to cycle through
+# 		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+# 		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+# 		createplot = False
 
-		for exp in vent_info[vent].dropna():
+# 		for exp in vent_info[vent].dropna():
 			
-			if vic == 'Victim_2' and exp == 'Experiment_1_Data':
-				continue
+# 			if vic == 'Victim_2' and exp == 'Experiment_1_Data':
+# 				continue
 
-			if vic in FED_Temp_Flux[exp]:
-				createplot = True
-				plt.plot(FED_Temp_Flux[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
-				if 'Hall Suppression' in all_exp_events[exp[:-4]+'Events'].index: 
-					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression'], lw = 2, color = 'black')
+# 			if vic in FED_Temp_Flux[exp]:
+# 				createplot = True
+# 				plt.plot(FED_Temp_Flux[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
+# 				if 'Hall Suppression' in all_exp_events[exp[:-4]+'Events'].index: 
+# 					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression'], lw = 2, color = 'black')
 
-		if createplot == True:
-			plt.legend()
-			plt.xlabel('Time (s)')
-			plt.ylabel('Fractional Effective Dose')
-			plt.savefig(output_location + vent + '_' + vic + '.pdf')
-			plt.close('all')
+# 		if createplot == True:
+# 			plt.legend()
+# 			plt.xlabel('Time (s)')
+# 			plt.ylabel('Fractional Effective Dose')
+# 			plt.savefig(output_location + vent + '_' + vic + '.pdf')
+# 			plt.close('all')
 
-output_location = '../0_Images/Script_Figures/FED/FED_Line_TempConv/'
+# output_location = '../0_Images/Script_Figures/FED/FED_Line_TempConv/'
 
-if not os.path.exists(output_location):
-    os.makedirs(output_location)
+# if not os.path.exists(output_location):
+#     os.makedirs(output_location)
 
-victims = ['Victim_1', 'Victim_2', 'Victim_3', 'Victim_4', 'Victim_5']
+# victims = ['Victim_1', 'Victim_2', 'Victim_3', 'Victim_4', 'Victim_5']
 
-for vic in victims:
+# for vic in victims:
 
-	for vent in vent_info:
+# 	for vent in vent_info:
 	
-		# Create figure	
-		fig = plt.figure()
-		fig.set_size_inches(8, 6)
+# 		# Create figure	
+# 		fig = plt.figure()
+# 		fig.set_size_inches(8, 6)
 
-		# Plot style - cycle through 20 color pallet and define markers to cycle through
-		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+# 		# Plot style - cycle through 20 color pallet and define markers to cycle through
+# 		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+# 		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-		createplot = False
+# 		createplot = False
 
-		for exp in vent_info[vent].dropna():
+# 		for exp in vent_info[vent].dropna():
 			
-			if vic == 'Victim_2' and exp == 'Experiment_1_Data':
-				continue			
+# 			if vic == 'Victim_2' and exp == 'Experiment_1_Data':
+# 				continue			
 
-			if vic in FED_Temp_Conv[exp]:
-				createplot = True
-				plt.plot(FED_Temp_Conv[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
-				if 'Hall Suppression' in all_exp_events[exp[:-4]+'Events'].index: 
-					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression'], lw = 2, color = 'black')
+# 			if vic in FED_Temp_Conv[exp]:
+# 				createplot = True
+# 				plt.plot(FED_Temp_Conv[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
+# 				if 'Hall Suppression' in all_exp_events[exp[:-4]+'Events'].index: 
+# 					plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression'], lw = 2, color = 'black')
 
-		if createplot == True:
-			plt.legend()
-			plt.xlabel('Time (s)')
-			plt.ylabel('Fractional Effective Dose')
-			plt.savefig(output_location + vent + '_' + vic + '.pdf')
-			plt.close('all')
+# 		if createplot == True:
+# 			plt.legend()
+# 			plt.xlabel('Time (s)')
+# 			plt.ylabel('Fractional Effective Dose')
+# 			plt.savefig(output_location + vent + '_' + vic + '.pdf')
+# 			plt.close('all')
 
-output_location = '../0_Images/Script_Figures/Additoinal_FED/'
+# output_location = '../0_Images/Script_Figures/Additoinal_FED/'
 
-for exp in ['Experiment_1', 'Experiment_2', 'Experiment_3', 'Experiment_4', 'Experiment_5', 'Experiment_6',
-			'Experiment_7', 'Experiment_8', 'Experiment_9', 'Experiment_10', 'Experiment_11', 'Experiment_12',
-			'Experiment_13', 'Experiment_14', 'Experiment_15', 'Experiment_16', 'Experiment_17', 'Experiment_18',
-			'Experiment_19', 'Experiment_20', 'Experiment_21', 'Experiment_22', 'Experiment_23', 'Experiment_24']:
+# for exp in ['Experiment_1', 'Experiment_2', 'Experiment_3', 'Experiment_4', 'Experiment_5', 'Experiment_6',
+# 			'Experiment_7', 'Experiment_8', 'Experiment_9', 'Experiment_10', 'Experiment_11', 'Experiment_12',
+# 			'Experiment_13', 'Experiment_14', 'Experiment_15', 'Experiment_16', 'Experiment_17', 'Experiment_18',
+# 			'Experiment_19', 'Experiment_20', 'Experiment_21', 'Experiment_22', 'Experiment_23', 'Experiment_24']:
 
-	plt.plot(FED_Temp_Flux[exp + '_Data']['OutSideFR'].index/60,FED_Temp_Flux[exp + '_Data']['OutSideFR'], label='Heat Flux FED')
-	plt.plot(FED_Temp_Conv[exp + '_Data']['OutSideFR_1'].index/60,FED_Temp_Conv[exp + '_Data']['OutSideFR_1'], label='1ft Temp FED')
-	plt.plot(FED_Temp_Conv[exp + '_Data']['OutSideFR_3'].index/60,FED_Temp_Conv[exp + '_Data']['OutSideFR_3'], label='3ft Temp FED')
-	plt.axvline(all_exp_events[exp + '_Events']['Time_Seconds']['Front Door Open']/60, color = 'black')
-	plt.xlim([0,10])
-	plt.ylim([0,3])
-	plt.legend()
+# 	plt.plot(FED_Temp_Flux[exp + '_Data']['OutSideFR'].index/60,FED_Temp_Flux[exp + '_Data']['OutSideFR'], label='Heat Flux FED')
+# 	plt.plot(FED_Temp_Conv[exp + '_Data']['OutSideFR_1'].index/60,FED_Temp_Conv[exp + '_Data']['OutSideFR_1'], label='1ft Temp FED')
+# 	plt.plot(FED_Temp_Conv[exp + '_Data']['OutSideFR_3'].index/60,FED_Temp_Conv[exp + '_Data']['OutSideFR_3'], label='3ft Temp FED')
+# 	plt.axvline(all_exp_events[exp + '_Events']['Time_Seconds']['Front Door Open']/60, color = 'black')
+# 	plt.xlim([0,10])
+# 	plt.ylim([0,3])
+# 	plt.legend()
 
-	if not os.path.exists(output_location):
-		os.makedirs(output_location)
+# 	if not os.path.exists(output_location):
+# 		os.makedirs(output_location)
 
-	plt.savefig(output_location + exp + '_FED.png')
-	plt.close('all')
+# 	plt.savefig(output_location + exp + '_FED.png')
+# 	plt.close('all')
 
