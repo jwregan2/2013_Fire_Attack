@@ -1,7 +1,8 @@
-Event,Time,Flow_Time
-Ignition,0:02:06,
-Front Door Open,0:07:32,
-Attack Team Enters,0:07:46,
-Burst Suppression,0:07:48,343
-Hall Suppression,0:07:57,351.7
-End Experiment,0:14:03,
+Event,Flow_Time,Results_Time,Time
+Ignition,,0:02:06,0:02:06
+Interior Attack Start,,0:07:32,
+Front Door Open,,,0:07:32
+Suppression Crew Enters,,,0:07:46
+Burst Suppression,343.0,,0:07:48
+Hall Suppression,351.7,,0:07:57
+End Experiment,,0:14:03,0:14:03

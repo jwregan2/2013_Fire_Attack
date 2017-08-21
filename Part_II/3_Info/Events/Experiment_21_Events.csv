@@ -1,7 +1,8 @@
-Event,Time,Flow_Time
-Ignition,0:02:09,
-Front Door Open,0:08:33,
-BR1 Window Solid Stream,0:08:50,401.1
-Attack Team Enters,0:09:14,
-Room Suppression,0:09:53,461.6
-End Experiment,0:14:32,
+Event,Flow_Time,Results_Time,Time
+Ignition,,0:02:09,0:02:09
+Transitional Attack Start,,0:08:33,
+Front Door Open,,,0:08:33
+BR1 Window Solid Stream,401.1,,0:08:50
+Suppression Crew Enters,,,0:09:14
+Room Suppression,461.6,,0:09:53
+End Experiment,,0:14:32,0:14:32

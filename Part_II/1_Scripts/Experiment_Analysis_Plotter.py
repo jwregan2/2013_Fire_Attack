@@ -227,19 +227,19 @@ for section in experiment.keys():
 					ax1.text(351/60, fill_max, 'Door Controlled', ha='left', va='bottom', rotation=45, fontsize=34)
 
 			if exp in all_flow_data.keys():
-				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60, 
+				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60, 
 				# plt.xlim([0, 
 							# all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60])
 							np.minimum(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60, np.max(all_flow_data[exp].index.values)/60)])
 			else:
-				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60, 
+				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60, 
 							10.5])
 
 			#For Experiment 14 & 17 Adjust the end chart time.
 			if exp == 'Experiment_14_Data':
-				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60,12])
+				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60,12])
 			if exp == 'Experiment_17_Data':
-				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60,10])
+				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60,10])
 			if exp == 'Experiment_25_Data':
 				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][0]-0)/60,
 					# all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60] )
@@ -247,26 +247,26 @@ for section in experiment.keys():
 
 			if section == 'Door_Control':
 				if exp == 'Experiment_6_Data':
-					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-15)/60, 
-						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]+105)/60])
+					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15)/60, 
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+105)/60])
 				else:
-					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-15)/60, 
-						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]+90)/60])
+					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15)/60, 
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+90)/60])
 
 			
 			#For Exterior Attacks Set the graph to start 60 seconds before attack. 
 			if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
-				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-60)/60,
+				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-60)/60,
 					np.minimum(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60, np.max(all_flow_data[exp].index.values)/60)])
 						
 			#For Pushing Fire Set chart to end 60 seconds after suppression
 			if section == 'Pushing_Fire':
 				if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data']:
-					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]-15)/60,
-						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]+90)/60])
+					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15)/60,
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+90)/60])
 				else:
-					plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]/60,
-						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][1]+90)/60])
+					plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60,
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+90)/60])
 
 			if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
 				plt.subplots_adjust(top=0.70, right = 0.85)
