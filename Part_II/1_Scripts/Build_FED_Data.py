@@ -120,6 +120,7 @@ for exp in exp_des.index.values:
 
 					# if all_exp_data[exp][victim_loc + 'TCV1'][f] > 50:
 					FED_conv[int(f/2)] = (1/(2e18 * all_exp_data[exp][victim_loc + 'TCV1'][f]**-9.0403 + 1e8 * all_exp_data[exp][victim_loc + 'TCV1'][f]**-3.10898))*time_step
+					# FED_conv[int(f/2)] = ((all_exp_data[exp][victim_loc + 'TCV1'][f]**3.61)/(4.1*10**8)) * time_step
 
 				FED_Temp_Conv[exp]['Victim_' + victim_loc] = [FED_conv[0:val].sum() for val in np.arange(0,len(FED_conv))]
 
