@@ -52,7 +52,7 @@ comparison_sets = np.array([ [2,7,13],
 							 [22,24] ])
 
 # List of suppression event row number in event time file for each comparison set
-event_row_nums = [5,5,5,2,2]
+event_row_nums = [6,6,6,3,3]
 
 # Create numpy array with sensors to be used for analysis of each 
 # 	comparison set (i.e., each array in comparison_sets)
@@ -86,8 +86,7 @@ for i in range(len(tableau20)):
 markers = ['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H']
 
 # Loop through experiments in each comparison set
-set_idx = 0 	# variable used to ID each comparison set of experiments
-for Exp_Set in comparison_sets:
+for set_idx, Exp_Set in enumerate(comparison_sets):
 	# Determine extinguish event row number index
 	extinguish_event_idx = event_row_nums[set_idx]-1
 	# Set marker freq & time axis limit + labels
@@ -120,6 +119,10 @@ for Exp_Set in comparison_sets:
 		Exp_Data = all_exp_data[File_Name]
 		Exp_Flow_Data = all_flow_data[File_Name]
 		Events = all_exp_events[Test_Name+'_Events']
+		# print(Test_Name)
+		# print('--------------------')
+		# print(Events['Time_Seconds'])
+		# print()
 
 		print('Loaded data and event files for '+Test_Name)
 
@@ -130,26 +133,16 @@ for Exp_Set in comparison_sets:
 		# Determine events that will be included in plot & their specific times
 		event_times = []
 		event_labels = []
+
 		for index,row in Events.iloc[extinguish_event_idx:-1,:].iterrows():
 			time = row['Time_Seconds']
 			if time-start_df_idx < xaxis_lims[1]:
 				event_times.append(time)
-				event = index
-				if event == 'Suppression BR1 Window Solid Stream':
-					event_labels.append('Suppr. BR1 Window Solid')
-				elif event == 'Exterior Suppression BR1 Window Solid Stream':
-					event_labels.append('Suppr. BR1 Window Solid')
-				elif event == 'Exterior Suppression BR1 Window Straight Stream':
-					event_labels.append('Suppr. BR1 Window Straight')
-				elif event == 'Exterior Suppression BR2 Window Straight Stream':
-					event_labels.append('Suppr. BR2 Window Straight')
-				else:
-					event_labels.append(event)
-			else:
-				continue
+				event_labels.append(index)
 
 		# Create df of flow data to plot
 		flow_data = Exp_Flow_Data[:].loc[start_df_idx:end_df_idx]
+
 		# set index to match plot's time axis
 		flow_data['Plot Time'] = flow_data.index.values - start_df_idx
 		flow_data = flow_data.set_index('Plot Time')
@@ -245,6 +238,4 @@ for Exp_Set in comparison_sets:
 			plt.savefig(save_dir+Test_Name+'_'+group+'.pdf')
 			plt.close('all')
 		print()
-
-	set_idx = set_idx+1
    
