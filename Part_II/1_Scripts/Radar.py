@@ -111,9 +111,9 @@ if not os.path.exists(output_location):
     os.makedirs(output_location)
 
 for vent in vent_info.columns.values:
-    # print (vent)
+    print (vent)
     repeatibility_data = pd.read_csv(data_location + '/Repeatibility_Data/' + vent + '.csv')
-    
+
     for exp in repeatibility_data:
         labels = [l.replace('_',' ')[:-6] for l in repeatibility_data['Location']]
         data = repeatibility_data.drop('Type', 1)

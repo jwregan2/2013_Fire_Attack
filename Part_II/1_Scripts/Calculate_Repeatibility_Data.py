@@ -31,7 +31,7 @@ for exp in exp_des.index.values:
 all_exp_data = pickle.load( open( data_location + 'all_exp_data.dict', 'rb' ) )
 all_exp_events = pickle.load( open (events_location + 'all_exp_events.dict', 'rb'))
 
-
+print (all_exp_events['Experiment_2_Events'])
 # -------------------------------Calculate and output Repeatibility Data-------------------------------
 running_comp = {}
 
@@ -47,7 +47,10 @@ for vent in vent_info.columns:
 		if exp not in running_comp[vent]:
 			running_comp[vent][exp] = pd.DataFrame()
 
-		first_event = all_exp_events[exp[:-4] + 'Events']['Time_Seconds'].ix[1]
+		if exp == 'Experiment_1_Data':
+			first_event = all_exp_events[exp[:-4] + 'Events']['Time_Seconds'].ix[1]
+		else:
+			first_event = all_exp_events[exp[:-4] + 'Events']['Time_Seconds'].ix[2]
 
 		running_comp[vent][exp] = all_exp_data[exp].ix[first_event-30:first_event]	
 
