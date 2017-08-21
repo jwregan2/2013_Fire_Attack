@@ -70,15 +70,20 @@ ignition_date_time = {}
 
 for exp in exp_des.index.values:
 	exp = exp[:-4] + 'Events'
-	all_exp_events[exp] = pd.read_csv(events_location + exp + '.csv').set_index('Event')
+	all_exp_events[exp] = pd.read_csv(events_location + exp + '.csv', dtype={'Time':object}).set_index('Event')
 
-	events = [int((t - pd.to_datetime(all_exp_events[exp]['Time']['Ignition'])).total_seconds()) for t in pd.to_datetime(all_exp_events[exp]['Time']).tolist()]
+	ignition = pd.to_datetime(all_exp_events[exp]['Time']['Ignition'])
+	all_exp_events[exp]['Time_Seconds'] = np.nan
+	all_exp_events[exp]['Results_Time_Seconds'] = np.nan
+	for event in all_exp_events[exp]['Time'].dropna().index.values:	
+		all_exp_events[exp].loc[event,'Time_Seconds'] = int((pd.to_datetime(all_exp_events[exp]['Time'][event]) - ignition).total_seconds())
+		if all_exp_events[exp]['Time_Seconds'][event] % 2 != 0:
+			all_exp_events[exp].loc[event,'Time_Seconds'] = all_exp_events[exp]['Time_Seconds'][event] + 1
+	
+	if exp != 'Experiment_25_Events':
 
-	for e in np.arange(0,len(events)):
-		if events[e] % 2 != 0:
-			events[e] = events [e] + 1
-
-	all_exp_events[exp]['Time_Seconds'] = events
+		for event in all_exp_events[exp]['Results_Time'].dropna().index.values:	
+			all_exp_events[exp].loc[event,'Results_Time_Seconds'] = int((pd.to_datetime(all_exp_events[exp]['Results_Time'][event]) - ignition).total_seconds())
 
 	print (exp + ' Read')
 

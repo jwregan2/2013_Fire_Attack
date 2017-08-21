@@ -306,7 +306,7 @@ for f in os.listdir(data_location):
 						ax3.set_xticks(EventTime)
 						plt.setp(plt.xticks()[1], rotation=80)
 						ax3.set_xticklabels(Events.index.values, fontsize=8, ha='left')
-						# fig.set_size_inches(20, 16)
+						fig.set_size_inches(20, 16)
 					except:
 						pass
 

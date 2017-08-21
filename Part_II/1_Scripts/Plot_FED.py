@@ -66,7 +66,7 @@ for vic in victims:
 		
 		for dose_type in dose_types:
 			if vic in dose_types[dose_type][exp]:
-				end_time = all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Attack Team Enters']
+				end_time = all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Suppression Crew Enters']
 				data = dose_types[dose_type][exp][vic].ix[:end_time]
 				data.index = data.index/60
 				plt.plot(data, label = 'Exp ' + exp[11:-5] + ' ' + dose_type.replace('_',' '), lw = 2, marker = marker[dose_type], 

@@ -53,7 +53,7 @@ Exp_Des = Exp_Des.set_index('Experiment')
 skip_files = ['example']
 
 # Loop through Experiment files
-for f in os.listdir(data_location):
+for f in ['Experiment_27_Data.csv']: #os.listdir(data_location):
 	if f.endswith('.csv'):
 
 		# Skip files with time information or reduced data files
@@ -72,7 +72,10 @@ for f in os.listdir(data_location):
 		Exp_Num = Test_Name[:-5]
 
 		# Set output location for results
-		output_location = output_location_init + Test_Name + '/'
+		if Test_Name == 'Experiment_27_Data':
+			output_location = output_location_init + 'Experiment_26_Data' + '/'
+		else:
+			output_location = output_location_init + Test_Name + '/'
 
 		# # If the folder exists delete it.
 		# if os.path.exists(output_location):
@@ -307,16 +310,23 @@ for f in os.listdir(data_location):
 			try:
 				ax3=ax1.twiny()
 				ax3.set_xlim(0,End_Time)
-				EventTime=list(range(len(Events.index.values)))
 
-				for i in range(len(Events.index.values)):
-					EventTime[i] = (datetime.datetime.strptime(Events['Time'][Events.index.values[i]], '%H:%M:%S')-Ignition).total_seconds()
+				i = 0
 
+				EventTime = np.empty(len(Events['Results_Time'].dropna().index.values))
+				EventTime[:] = nan
+				EventLabel = ['']*len(Events['Results_Time'].dropna().index.values)
+
+				for e in Events['Results_Time'].dropna().index.values:
+					# print (e)
+					EventTime[i] = (datetime.datetime.strptime(Events['Results_Time'][e], '%H:%M:%S')-Ignition).total_seconds()
+					EventLabel[i] = e
 					plt.axvline(EventTime[i],color='0',lw=2) 
-
+					i = i + 1
+				
 				ax3.set_xticks(EventTime)
 				plt.setp(plt.xticks()[1], rotation=67.5)		
-				ax3.set_xticklabels(Events.index.values, fontsize=18, ha='left')
+				ax3.set_xticklabels(EventLabel, fontsize=18, ha='left')
 				fig.set_size_inches(20, 16)
 				plt.tight_layout()
                 # # Add vertical lines and labels for timing information (if available)
@@ -338,7 +348,7 @@ for f in os.listdir(data_location):
 
 			plt.legend(handles1, labels1, loc='upper left', fontsize=24, handlelength=3)
 
-            # Save plot to file
+			# Save plot to file
 			plt.savefig(output_location + group + '.pdf')
 			plt.close('all')
    
