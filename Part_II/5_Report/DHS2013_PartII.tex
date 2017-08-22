@@ -2168,13 +2168,15 @@ Ventilation Configuration & Action & Avg. Max Surface Temperature ($^{\circ}$F) 
 
 There are many terms to describe the amount of "water" in the air.  Humidity, vapor, moisture, and steam are a few terms which are generally used to address the topic of water in the air, but these terms and others have very specific meanings in engineering use.  There are many ways to understand the amount of water dissolved into the air or other gaseous environment, the two that we will discuss here are relative humidity and \% moisture by volume.  
 
-Relative humidity is a ratio of the amount of moisture in the air relative to the maximum amount of moisture the air can hold at a given temperature up to 100~$^o$C (212~$^o$F).  The amount of moisture the air (or gas) can hold is dependent on the temperature of the air (or gas).  Percent moisture by volume is the ratio of the number of H_{2}O molecules per unit volume relative to the total number of molecules per unit volume.  This value is an absolute value and does not change with temperature.  This is the value that will be used to assess the amount of moisture inside the test structure during the fire experiments.  
+Relative humidity is a ratio of the amount of moisture in the air relative to the maximum amount of moisture the air can hold at a given temperature up to 100~$^\circ$C (212~$^\circ$F).  The amount of moisture the air (or gas) can hold is dependent on the temperature of the air (or gas).  Percent moisture by volume is the ratio of the number of H$_{2}$O molecules per unit volume relative to the total number of molecules per unit volume.  This value is an absolute value and does not change with temperature.  This is the value that will be used to assess the amount of moisture inside the test structure during the fire experiments.  
 
-Examples of the relationship between relative humidity and \% moisture at temperatures below 100~$^o$C (212~$^o$F).  Lets say that the air temperature is 29.4~$^o$C (85~$^o$F) and the RH is 50\%, then the \%moisture by volume would be 2\%.   If the air temperature increased to 36.7~$^o$C (98~$^o$F) and the RH remained at 50\%, the \% moisture by volume would have increased to 3\%.  If the temperature remained at 36.7~$^o$C (98~$^o$F) and the RH increased to 100\%, then the \% moisture by volume would have increased to 6\%. 
+Examples of the relationship between relative humidity and \% moisture at temperatures below 100~$^\circ$C (212~$^\circ$F).  Lets say that the air temperature is 29.4~$^\circ$C (85~$^\circ$F) and the RH is 50\%, then the \%moisture by volume would be 2\%.   If the air temperature increased to 36.7~$^\circ$C (98~$^\circ$F) and the RH remained at 50\%, the \% moisture by volume would have increased to 3\%.  If the temperature remained at 36.7~$^\circ$C (98~$^\circ$F) and the RH increased to 100\%, then the \% moisture by volume would have increased to 6\%. 
 
 Another item to keep in mind regarding moisture in the form of steam.  Steam cannot be seen.  The cloud that most people refer to as steam is moisture or water vapor that has condensed into water droplets.   
 
-Measurement of the moisture content in the fire environment is challenging. Conventional measurement devices are not robust enough to withstand the environmental conditions inside a structure fire. The measurement techniques developed for this project attempted to quantify the water vapor using three different techniques. The most successful technique was effective at measuring water vapor for at least a portion of 11 out of 26 experiments. Three different scenarios provided complete water vapor concentration data and were successful for the entire duration of the experiment. The majority of the measurements were taken in Bedroom 4 at a height of 2~ft - 6~in. Three measurements were taken at a height of 3~ft - 6~in. Table \ref{tab:water_vapor_summary} lists the water vapor measurements at ignition, 5~seconds prior to water application and the peak recorded during the experiment.
+Measurement of the moisture content in the fire environment is challenging. Conventional measurement devices are not robust enough to withstand the environmental conditions inside a structure fire. The measurement techniques developed for this project attempted to quantify the water vapor using three different techniques. The most successful technique was effective at measuring water vapor for at least a portion of 11 out of 26 experiments. Three different scenarios provided complete water vapor concentration data and were successful for the entire duration of the experiment. The measurements were taken at three different elevations in Bedroom~4, a height of 1~ft (floor level), a height of 2~ft - 6~in (bed level) and in the smoke layer at a height of 4~ft - 6~in. Table \ref{tab:water_vapor_summary} lists the water vapor measurements at ignition, 5~seconds prior to water application and the peak recorded during the experiment.
+
+\hl{The table below is under development with the University of Illinois. An abnormality was noted on 8/22/17 in the data and it is being checked before being included.}
 
 \begin{table}[H]
 	\centering
@@ -2182,25 +2184,27 @@ Measurement of the moisture content in the fire environment is challenging. Conv
 	\begin{tabular}{|c|C{.25\textwidth}|C{0.25\textwidth}|C{0.25\textwidth}|}
 	\hline
 	Experiment & Water Concentration at Ignition & Water Concentration 5~seconds Prior to Water Application (\%~Change)& Peak Water Concentration (\%~Change) \\ \hline \hline
-	4			&	1.7\%	& 4.1\%  (+2.4\%)  & 4.1\%  (+2.4\%) \\ \hline
-	6			&	1.1\%	& 4.4\%  (+3.3\%)  & 5.0\%  (+3.9\%) \\ \hline
-	7			&	1.7\%	& 2.0\%  (+0.3\%)  & 5.5\%  (+3.8\%) \\ \hline
-	13			&	1.6\%	& 4.9\%  (+3.3\%)  & 4.0\%  (+2.4\%) \\ \hline
-	16			&	1.5\%	& 3.4\%  (+1.8\%)  & 4.0\%  (+2.5\%) \\ \hline
-	18			&	0.9\%	& 1.1\%  (+0.2\%)  & 2.0\%  (+1.1\%) \\ \hline
-	19			&	1.4\%	& 1.1\%  (-0.2\%)  & 3.3\%  (+1.9\%) \\ \hline
-	20			&	2.0\%	& 2.2\%  (+0.2\%)  & 5.7\%  (+3.7\%) \\ \hline
-	10*			&	2.2\%	& 5.0\%  (+2.8\%)  & 9.1\%  (+6.9\%) \\ \hline
-	11*			&	1.6\%	& 4.7\%  (+3.0\%)  & 6.8\%  (+5.2\%) \\ \hline
-	21*			&	2.2\%	& 4.4\%  (+2.3\%)  & 8.0\%  (+5.8\%) \\ \hline \hline
-	Average		&	1.3\%	& 2.2\%  (+0.9\%)  & 4.0\%  (+3.6\%) \\ \hline
+	% 4			&	1.7\%	& 4.1\%  (+2.4\%)  & 4.1\%  (+2.4\%) \\ \hline
+	% 6			&	1.1\%	& 4.4\%  (+3.3\%)  & 5.0\%  (+3.9\%) \\ \hline
+	% 7			&	1.7\%	& 2.0\%  (+0.3\%)  & 5.5\%  (+3.8\%) \\ \hline
+	% 13			&	1.6\%	& 4.9\%  (+3.3\%)  & 4.0\%  (+2.4\%) \\ \hline
+	% 16			&	1.5\%	& 3.4\%  (+1.8\%)  & 4.0\%  (+2.5\%) \\ \hline
+	% 18			&	0.9\%	& 1.1\%  (+0.2\%)  & 2.0\%  (+1.1\%) \\ \hline
+	% 19			&	1.4\%	& 1.1\%  (-0.2\%)  & 3.3\%  (+1.9\%) \\ \hline
+	% 20			&	2.0\%	& 2.2\%  (+0.2\%)  & 5.7\%  (+3.7\%) \\ \hline
+	% 10*			&	2.2\%	& 5.0\%  (+2.8\%)  & 9.1\%  (+6.9\%) \\ \hline
+	% 11*			&	1.6\%	& 4.7\%  (+3.0\%)  & 6.8\%  (+5.2\%) \\ \hline
+	% 21*			&	2.2\%	& 4.4\%  (+2.3\%)  & 8.0\%  (+5.8\%) \\ \hline \hline
+	% Average		&	1.3\%	& 2.2\%  (+0.9\%)  & 4.0\%  (+3.6\%) \\ \hline
 	\end{tabular}
 	\\
-	* Measurement taken at 3~ft - 6~in above floor.
+	% * Measurement taken at 3~ft - 6~in above floor.
 	\label{tab:water_vapor_summary}
 \end{table}
 
-Increases in water vapor appeared to correlate with the smoke layer descending in the room where the water vapor was measured. The measurements taken higher in the space (in the smoke layer) resulted in higher values being recorded. On average the location where the laser was located saw an increase of 0.9\% water vapor concentration prior to the flow of water and a total increase at the peak of the experiment of 3.6
+Increases in water vapor appeared to correlate with the smoke layer descending in the room where the water vapor was measured. The measurements taken higher in the space (in the smoke layer) resulted in higher values being recorded. 
+
+% On average the location where the laser was located saw an increase of 0.9\% water vapor concentration prior to the flow of water and a total increase at the peak of the experiment of 3.6
 
 The laser measurement technique often encountered a low transmission level prior to the end of the experiment, resulting in an incomplete time history for moisture limiting further analysis.   
 
@@ -2680,14 +2684,12 @@ In order to analyze the effect of gas cooling in a large space under challenging
 
 Pulse techniques were not used during the fire attack experiments as other variables were chosen to examine.  Further research is needed to examine these techniques and different types of tools used to implement these techniques.
 
-\hl{NEED TO ADD PHOTOS}
-
 \begin{table}[H]
 \centering
 \caption{Gas Cooling Application Techniques}
 \begin{tabular}{|c|c|c|}
 \hline
-Technique & Flow Rate (gpm) & Average Flow (Gallons)\\ \hline
+Technique & Flow Rate (gpm) & Average Flow (Gallons)\\ \hline \hline
 Pulse & 95 & 0.87 \\ \hline
 Long Pulse & 95 & 1.68 \\ \hline
 Sweeping Pulse & 95 & 5.83 \\ \hline
@@ -3046,32 +3048,34 @@ In the presence of sufficient oxygen, fuel and oxygen provided with sufficient h
 
 Although in a house fire fuels are more complex than methane, and sufficient oxygen does not exist for complete combustion, CO$_2$ and H$_2$O are still a portion of the bi-products of combustion. In the fire service the products of combustion are generalized as the term smoke. Smoke contains things such as soot, carbon monoxide, carbon dioxide, hydrogen cyanide and water vapor among many other substances. The water vapor created by the combustion reaction is not trivial. Table \ref{tab:water_vapor_summary_tc} shows the the increase in the water vapor from ignition until 5~seconds prior to water application, along with the peak measured during the experiment. 
 
+\hl{The table below is under development with the University of Illinois. An abnormality was noted on 8/22/17 in the data and being checked before being included.}
+
 \begin{table}[H]
 	\centering
 	\caption{Summary of Water Vapor Measurements During Experiments}
 	\begin{tabular}{|c|C{.25\textwidth}|C{0.25\textwidth}|C{0.25\textwidth}|}
 	\hline
 	Experiment & Water Concentration at Ignition & Water Concentration 5~seconds Prior to Water Application (\%~Change) & Peak Water Concentration (\%~Change) \\ \hline \hline
-	4			&	1.7\%		& 4.1\%      	 (+2.4\%)  	    & 4.1\%       (+2.4\%) \\ \hline
-	6			&	1.1\%		& 4.4\%      	 (+3.3\%)  	    & 5.0\%       (+3.9\%) \\ \hline
-	7			&	1.7\%		& 2.0\%      	 (+0.3\%)  	    & 5.5\%       (+3.8\%) \\ \hline
-	13			&	1.6\%		& 4.9\%      	 (+3.3\%)  	    & 4.0\%       (+2.4\%) \\ \hline
-	16			&	1.5\%		& 3.4\%      	 (+1.8\%)  	    & 4.0\%       (+2.5\%) \\ \hline
-	18			&	0.9\%		& 1.1\%      	 (+0.2\%)  	    & 2.0\%       (+1.1\%) \\ \hline
-	19			&	1.4\%		& 1.1\%      	 (-0.2\%)  	    & 3.3\%       (+1.9\%) \\ \hline
-	20			&	2.0\%		& 2.2\%      	 (+0.2\%)  	    & 5.7\%       (+3.7\%) \\ \hline
-	10*			&	2.2\%		& 5.0\%      	 (+2.8\%)  	    & 9.1\%       (+6.9\%) \\ \hline
-	11*			&	1.6\%		& 4.7\%      	 (+3.0\%)  	    & 6.8\%       (+5.2\%) \\ \hline
-	21*			&	2.2\%		& 4.4\%      	 (+2.3\%)  	    & 8.0\%       (+5.8\%) \\ \hline \hline
-	Average		&	1.3\%		& 2.2\%      	 (+0.9\%)  	    & 4.0\%       (+3.6\%) \\ \hline
-	Std. Dev. 	&	$\pm$0.4\%	& $\pm$1.5\%	 ($\pm$1.32\%)  & $\pm$2.0\%  ($\pm$1.7\%) \\ \hline
+	% 4			&	1.7\%		& 4.1\%      	 (+2.4\%)  	    & 4.1\%       (+2.4\%) \\ \hline
+	% 6			&	1.1\%		& 4.4\%      	 (+3.3\%)  	    & 5.0\%       (+3.9\%) \\ \hline
+	% 7			&	1.7\%		& 2.0\%      	 (+0.3\%)  	    & 5.5\%       (+3.8\%) \\ \hline
+	% 13			&	1.6\%		& 4.9\%      	 (+3.3\%)  	    & 4.0\%       (+2.4\%) \\ \hline
+	% 16			&	1.5\%		& 3.4\%      	 (+1.8\%)  	    & 4.0\%       (+2.5\%) \\ \hline
+	% 18			&	0.9\%		& 1.1\%      	 (+0.2\%)  	    & 2.0\%       (+1.1\%) \\ \hline
+	% 19			&	1.4\%		& 1.1\%      	 (-0.2\%)  	    & 3.3\%       (+1.9\%) \\ \hline
+	% 20			&	2.0\%		& 2.2\%      	 (+0.2\%)  	    & 5.7\%       (+3.7\%) \\ \hline
+	% 10*			&	2.2\%		& 5.0\%      	 (+2.8\%)  	    & 9.1\%       (+6.9\%) \\ \hline
+	% 11*			&	1.6\%		& 4.7\%      	 (+3.0\%)  	    & 6.8\%       (+5.2\%) \\ \hline
+	% 21*			&	2.2\%		& 4.4\%      	 (+2.3\%)  	    & 8.0\%       (+5.8\%) \\ \hline \hline
+	% Average		&	1.3\%		& 2.2\%      	 (+0.9\%)  	    & 4.0\%       (+3.6\%) \\ \hline
+	% Std. Dev. 	&	$\pm$0.4\%	& $\pm$1.5\%	 ($\pm$1.32\%)  & $\pm$2.0\%  ($\pm$1.7\%) \\ \hline
 	\end{tabular}
 	\\
-	* Measurement taken at 3~ft above floor.
+	% * Measurement taken at 3~ft above floor.
 	\label{tab:water_vapor_summary_tc}
 \end{table}
 
-On average the water vapor in the environment increased from ignition until 5~seconds before water application by 0.9\%. Additionally the water vapor increased on average after water application by another 2.7\% however the standard deviation was $\pm$1.32\% and $\pm$1.7\% respectively. Statistically, no conclusions can be drawn about the increase in water vapor from the application of water, regardless of the direction water was applied from.
+% On average the water vapor in the environment increased from ignition until 5~seconds before water application by 0.9\%. Additionally the water vapor increased on average after water application by another 2.7\% however the standard deviation was $\pm$1.32\% and $\pm$1.7\% respectively. Statistically, no conclusions can be drawn about the increase in water vapor from the application of water, regardless of the direction water was applied from.
 
 \section{Flow vs. Shutdown} \label{tc:flow_vs_shutdown}
 Hoseline advancement techniques differ from department to department, however generally two types of advancement were found through a poll of the project technical panel. The first titled `Flow and Move' involved getting in a position to approach the fire down a hallway and flowing the hoseline while moving down the hallway towards the seat of the fire. The second titled `Shutdown and Move' involved shutting off the hoseline at the bale to allow the advancing suppression crew to move closer to the seat of the fire. Although this may be a tactical choice based on crew size, experience, and training, the approaches differ in how they effect the environment around and ahead of the suppression crew. 
