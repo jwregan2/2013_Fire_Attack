@@ -21,3 +21,5 @@ echo "Plotting Knock Back Analysis Plots"
 python Knock_Back_Time_Plotter.py
 echo "Plotting Tactical Considerations Plots"
 python Tactical_Considerations_Plotter.py
+echo "Creating Appendix B"
+python Create_Latex_AppendixB.py
