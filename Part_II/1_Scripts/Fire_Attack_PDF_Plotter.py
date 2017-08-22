@@ -53,7 +53,7 @@ Exp_Des = Exp_Des.set_index('Experiment')
 skip_files = ['example']
 
 # Loop through Experiment files
-for f in ['Experiment_27_Data.csv']: #os.listdir(data_location):
+for f in os.listdir(data_location):
 	if f.endswith('.csv'):
 
 		# Skip files with time information or reduced data files
