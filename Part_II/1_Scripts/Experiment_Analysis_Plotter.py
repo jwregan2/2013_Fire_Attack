@@ -13,6 +13,7 @@ from scipy.signal import butter, filtfilt
 import matplotlib.transforms as mtransforms
 from matplotlib.path import Path
 import matplotlib.patches as patches
+from natsort import natsorted
 
 data_location = '../2_Data/'
 info_location = '../3_Info/'
@@ -504,29 +505,40 @@ all_laser_data = {}
 low = pd.DataFrame()
 high = pd.DataFrame()
 
-for exp in sorted(experiments):
+for exp in natsorted(experiments):
 	if exp.endswith('.csv'):
 		all_laser_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp).set_index('Time')
 
-		flow_time = all_exp_events[exp[:-4]+'_Events']['Flow_Time'].min()
+		# print(all_laser_data[exp[:-4]].head())
+		# exit()
+		# print(all_laser_data[exp[:-4]]['Time'].index[0])
+
+		# print (exp[:-4] + ' time step is: ' + str((all_laser_data[exp[:-4]].index[1] - all_laser_data[exp[:-4]].index[0])*60))
+
+		all_laser_data[exp[:-4]]['TimeStep'] = all_laser_data[exp[:-4]].index
+		all_laser_data[exp[:-4]]['TimeStep'] = (all_laser_data[exp[:-4]]['TimeStep'] - all_laser_data[exp[:-4]]['TimeStep'].shift()).fillna(0)
+		# print(exp[:-4].replace('_', ' ') + ', time step is: ' + str(round(all_laser_data[exp[:-4]]['TimeStep'].mean()*60,3)))
+
+		# flow_time = all_exp_events[exp[:-4]+'_Events']['Flow_Time'].min()
 
 		# print (flow_time/60)
-		time = flow_time+45
-
+		# time = flow_time+60
+		time = 0.1
 
 		inter = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index > time/60].iloc[0].max()
+		# print (inter)
+		# exit()
 
 		if inter == 0:
 			low = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index < time/60]['Low'].max()
 			high = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index < time/60]['High'].max()
 			inter = max([low,high])
 
-		print(exp[:-4])
-		print (inter)
-		print (time)
+		print(exp[:-4] + ',' + str(inter) + ',' + str(time))
+		# max_val = all_laser_data[exp[:-4]].max(axis=1)
+		# max_val = max_val.max()
 
-
-
+		# print (exp[:-4]+ ','+str(max_val))
 
 		# if all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index > all_exp_events[exp[:-4]+'_Events']['Time_Seconds'][1]/60].iloc[0].max() == 0:
 		# 	low = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index < all_exp_events[exp[:-4]+'_Events']['Time_Seconds'][1]/60]['Low'].max()
@@ -547,10 +559,22 @@ for vent in exp_info.groupby('Vent').groups.keys():
 
 		print ('Plotting ' + vent + ', ' + loc + ' chart')
 		
+		# Create figure
+		fig = plt.figure()
+		fig.set_size_inches(8, 6)
+
+		# plt.style.use('ggplot')
+
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
 		for exp in exp_info_grouped.groups[(vent,loc)].values:
 			data = all_laser_data[exp][['Low','High']].max(axis=1)
+			data = data.replace(0.0, np.nan)
 
-			plt.plot(data, label = exp.replace('_', ' '))
+			plt.plot(data.index, data.values, label = exp.replace('_', ' '), marker=next(plot_markers), markevery=10)
+
 			plt.axvline(all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60, color = 'black')
 			if exp in ['Experiment_19','Experiment_21']:
 				plt.text((all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60)+0.1, 12.5, exp.replace('_', ' '), ha='left', va='bottom', rotation=45)
@@ -578,51 +602,94 @@ for vent in exp_info.groupby('Vent').groups.keys():
 		plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '.pdf' )
 		plt.close('all')
 
-# print ('---------- Average Moisture Charts by Vent & Location -----')
+print ('---------- Average Moisture Charts by Vent & Location -----')
 
-# for vent in exp_info.groupby('Vent').groups.keys():
+for exp in natsorted(experiments):
+	if exp.endswith('.csv'):
+		all_laser_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp)
+		all_laser_data[exp[:-4]]['Time'] = all_laser_data[exp[:-4]]['Time'] * 60
+		all_laser_data[exp[:-4]]['Time'] = all_laser_data[exp[:-4]]['Time'].round()
+		all_laser_data[exp[:-4]] = all_laser_data[exp[:-4]].drop_duplicates(subset='Time', keep='first')
+		all_laser_data[exp[:-4]].set_index('Time', inplace=True)
+
+for vent in exp_info.groupby('Vent').groups.keys():
 	
-# 	for loc in exp_info.groupby('Location').groups.keys():
+	for loc in exp_info.groupby('Location').groups.keys():
 		
-# 		combo = (vent,loc)
+		combo = (vent,loc)
 
-# 		if combo not in exp_info_grouped.groups.keys():
-# 			continue
+		if combo not in exp_info_grouped.groups.keys():
+			continue
 
-# 		if len(exp_info_grouped.groups[(vent,loc)].values) > 1:
+		if len(exp_info_grouped.groups[(vent,loc)].values) > 1:
 
-# 			print ('Plotting ' + vent + ', ' + loc + ' Average Chart')
+			print ('Plotting ' + vent + ', ' + loc + ' Average Chart')
 			
-# 			data = pd.DataFrame()
+			#Create figure
+			fig = plt.figure()
+			fig.set_size_inches(8, 6)
 
-# 			for exp in exp_info_grouped.groups[(vent,loc)].values:
-# 				new_data = all_laser_data[exp][['Low','High']].max(axis=1)
-# 				new_data.name = exp
+			# plt.style.use('ggplot')
 
-# 				try:
-# 					data = pd.concat([data, new_data], axis=1)
-# 				except:
-# 					pass
+			# Plot style - cycle through 20 color pallet and define markers to cycle through
+			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-# 			data = data.replace(0.0, np.nan)
 
-# 			avg, = plt.plot(data.mean(axis=1), label = 'Average')
-# 			plt.fill_between(data.mean(axis=1)+data.std(axis=1), data.mean(axis=1)+data.std(axis=1), color=avg.get_color(), alpha=0.3)
+			data = pd.DataFrame()
 
-# 		plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '_Average.pdf' )
-# 		plt.close('all')
+			first_flow = 20*60
 
-# plt.close('all')
-# plt.plot(all_laser_data['Experiment_20']['Low'], color='blue')
-# plt.plot(all_laser_data['Experiment_20']['High'], color='blue')
-# plt.plot(all_laser_data['Experiment_21']['Low'], color='red')
-# plt.plot(all_laser_data['Experiment_21']['High'], color='red')
-# plt.xlim([0,10])
+			for exp in exp_info_grouped.groups[(vent,loc)].values:
+				# plot_data = all_laser_data[exp][['Low','High']].max(axis=1)
+				# plt.plot(plot_data.replace(0.0, np.nan), label=exp.replace('_', ' '))
+				
+				new_data = all_laser_data[exp][['Low','High']].max(axis=1)
+				new_data.name = exp
 
-# # plt.axvline(6+52/60, color='black')
-# # plt.axvline(7+24/60, color='black')
+				try:
+					data = pd.concat([data, new_data], axis=1)
+				except:
+					pass
+
+				first_flow = min(all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60, first_flow)
+
+			data = data.replace(0.0, np.nan)
+			data['Average'] = data.mean(axis=1) 
+			
+			# plt.plot(data.index/60, data.max(axis=1), label='Maximum', marker=next(plot_markers), markevery=20, markersize=5 )
+			avg, = plt.plot(data.index/60, data.mean(axis=1), label='Average', marker=next(plot_markers), markevery=20, markersize=5 )
+			# plt.plot(data.index/60, data.min(axis=1), label='Minimum', marker=next(plot_markers), markevery=20, markersize=5 )
+			plt.fill_between(data.index/60, data.max(axis=1), data.min(axis=1), color='grey', alpha=0.3)
+
+			plt.legend()
+			# plt.xlim([0,first_flow])
+			plt.xlim([0,12])
+			plt.ylim([0,12])
+			plt.yticks(np.arange(0, 12, 1))
+			plt.xlabel('Time (Minutes)')
+			plt.ylabel('Precent Moisture By Volume')
+
+			plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '_Average.pdf' )
+			plt.close('all')
+
+# exps = ['Experiment_7_Data', 'Experiment_10_Data']
+
+# for exp in exps:
+
+# 	plt.plot(all_laser_data[exp[:-5]]['High'].replace(0.0, np.nan), label=exp.replace('_', ' '))
+
+# plt.xlim([0,700])
+# plt.legend()
 # plt.show()
 
-# exit()
+# exps = ['Experiment_7_Data','Experiment_10_Data','Experiment_11_Data','Experiment_21_Data']
+
+# for exp in exps:
+# 	data = all_exp_data[exp][['1TC7','1TC5','1TC3','1TC1']].mean(axis=1)
+# 	plt.plot(data, label=exp.replace('_', ' '))
+
+# plt.legend()
+# plt.show()
 
 
