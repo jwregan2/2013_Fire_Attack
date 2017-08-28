@@ -33,6 +33,8 @@ output_location_init = '../0_Images/Script_Figures/Results/'
 
 info_file = '../3_Info/Description_of_Experiments.csv'
 
+transport_times = pd.read_csv('../3_Info/Updated_Transport_Times.csv').set_index('Experiment')
+
 # Read in channel list
 channel_list = pd.read_csv(channel_location+'Channels.csv')
 
@@ -51,6 +53,11 @@ Exp_Des = Exp_Des.set_index('Experiment')
 
 # Set files to skip in experimental directory
 skip_files = ['example']
+
+event_label_size = 28
+axis_title_size = 32
+tic_label_size = 28
+legend_font_size = 24
 
 # Loop through Experiment files
 for f in os.listdir(data_location):
@@ -184,7 +191,7 @@ for f in os.listdir(data_location):
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					# Set y-label to degrees F with LaTeX syntax
-					plt.ylabel('Temperature ($^\circ$F)', fontsize = 32)
+					plt.ylabel('Temperature ($^\circ$F)', fontsize = axis_title_size)
 					# Search for skin inside description of events file for scaling
 					if 'Skin' in group:
 						axis_scale = 'Y Scale Skin Temperature'
@@ -207,7 +214,7 @@ for f in os.listdir(data_location):
 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
 					#Calculate result
 					current_data = (np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5) * 2.23694
-					plt.ylabel('Velocity (mph)', fontsize=28)
+					plt.ylabel('Velocity (mph)', fontsize=axis_title_size)
 					line_style = '-'
 					axis_scale = 'Y Scale BDP'
 					secondary_axis_label = 'Velocity (m/s)'
@@ -220,39 +227,41 @@ for f in os.listdir(data_location):
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 32)
+					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
 					axis_scale = 'Y Scale Wall Heat Flux'
 
 				if channel_list['Type'][channel] == 'Floor Heat Flux':
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 32)
+					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
 					axis_scale = 'Y Scale Floor Heat Flux'
 
 				if channel_list['Type'][channel] == 'Victim Heat Flux':
 					Data_Time = Time
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = 32)
+					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
 					axis_scale = 'Y Scale Victim Heat Flux'
 
 				# Set parameters for gas plots
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
-					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					updated_transport = transport_times['Victim_' + channel[0] + '_' + str(House.upper())][Test_Name]
+					Data_Time = [t-float(updated_transport)/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Gas Concentration (%)', fontsize = 32)
+					plt.ylabel('Gas Concentration (%)', fontsize = axis_title_size)
 					axis_scale = 'Y Scale Gas'
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Carbon Monoxide':
-					Data_Time = [t+float(channel_list[Transport_Time][channel])/60.0 for t in Time]
+					updated_transport = transport_times['Victim_' + channel[0] + '_' + str(House.upper())][Test_Name]
+					Data_Time = [t-float(updated_transport)/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
-					plt.ylabel('Gas Concentration (PPM)', fontsize = 32)
+					plt.ylabel('Gas Concentration (PPM)', fontsize = axis_title_size)
 					axis_scale = 'Y Scale Carbon Monoxide'
 
 				# If statement to find pressure type in channels csv
@@ -264,7 +273,7 @@ for f in os.listdir(data_location):
 					current_data = current_data - np.average(current_data[0:60])
 
 					# Set y-label to degrees F with LaTeX syntax
-					plt.ylabel('Pressure (Pa)', fontsize = 16)
+					plt.ylabel('Pressure (Pa)', fontsize = axis_title_size)
 					# Search for skin inside description of events file for scaling
 					axis_scale = 'Y Scale Pressure'
 
@@ -292,16 +301,16 @@ for f in os.listdir(data_location):
 				ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
 				ax1_xlims = ax1.axis()[0:2]
 				plt.grid(True)
-				plt.xlabel('Time (min)', fontsize=32)
-				plt.xticks(fontsize=28)
-				plt.yticks(fontsize=28)
+				plt.xlabel('Time (min)', fontsize=axis_title_size)
+				plt.xticks(fontsize=tic_label_size)
+				plt.yticks(fontsize=tic_label_size)
 
 			# Secondary y-axis parameters
 			if secondary_axis_label:
 				ax2 = ax1.twinx()
-				ax2.set_ylabel(secondary_axis_label, fontsize=32)
-				plt.xticks(fontsize=28)
-				plt.yticks(fontsize=28)
+				ax2.set_ylabel(secondary_axis_label, fontsize=axis_title_size)
+				plt.xticks(fontsize=tic_label_size)
+				plt.yticks(fontsize=tic_label_size)
 				if axis_scale == 'Y Scale BDP':
 					ax2.set_ylim([-secondary_axis_scale, secondary_axis_scale])
 				else:
@@ -326,7 +335,7 @@ for f in os.listdir(data_location):
 				
 				ax3.set_xticks(EventTime)
 				plt.setp(plt.xticks()[1], rotation=67.5)		
-				ax3.set_xticklabels(EventLabel, fontsize=18, ha='left')
+				ax3.set_xticklabels(EventLabel, fontsize=event_label_size, ha='left')
 				fig.set_size_inches(20, 16)
 				plt.tight_layout()
                 # # Add vertical lines and labels for timing information (if available)
@@ -344,9 +353,10 @@ for f in os.listdir(data_location):
                 # # Increase figure size for plot labels at top
                 # fig.set_size_inches(10, 6)
 			except:
+				print('Error Setting Secondary Axis')
 				pass
 
-			plt.legend(handles1, labels1, loc='upper left', fontsize=24, handlelength=3)
+			plt.legend(handles1, labels1, loc='upper left', fontsize=legend_font_size, handlelength=2)
 
 			# Save plot to file
 			plt.savefig(output_location + group + '.pdf')
