@@ -216,10 +216,10 @@ for k in range(len(plot_file)):
 	# ax.set_title(plot_file['Chart_Title'][k])
 	ax.set_ylabel('Average CFM (ft$^3$/min)', fontsize=18)
 	if len(test_comps) == 1:
-		ax.set_xticks(ind + width/2)
+		ax.set_xticks(ind)
 	else:
-		ax.set_xticks(ind + width)
-	ax.set_xticklabels(labels, rotation = -15, ha = 'left',fontsize=16)
+		ax.set_xticks(ind + ((width/2)*len(test_comps))-width/2)
+	ax.set_xticklabels(labels, rotation = -15, ha='left', fontsize=16)
 	ax.tick_params(axis='both', which='major', labelsize=16)
 	# max_y = max(zip(cfm_bars[i,:], uncert))
 	# plt.ylim([0, (max_y[0] + max_y[1]) * 1.1])
