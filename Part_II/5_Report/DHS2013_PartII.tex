@@ -2167,13 +2167,13 @@ Ventilation Configuration & Action & Avg. Max Surface Temperature ($^{\circ}$F) 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|C{0.15\textwidth}|c|c|c|c|}
-\hline
-\multicolumn{2}{c|}{}								& \multicolumn{2}{|c|}{Location 1}	 												& \multicolumn{2}{|c|}{Location 3}  							\\ \cline{3-6}
-Test Type 	& Suppression Tactic 					& Pre-Water 							&  Post-Water								& Pre-Water						& Post-Water 					\\ \hline
+\begin{tabular}{|C{0.05\textwidth}|C{0.15\textwidth}|c|c|c|c|}
+\cline{3-6}
+\multicolumn{2}{C{0.2\textwidth}|}{}								& \multicolumn{2}{c|}{Location 1}	 												& \multicolumn{2}{c|}{Location 3}  							\\ \hline
+Test Type 	& Suppression Tactic 					& Pre-Water 							&  Post-Water								& Pre-Water						& Post-Water 					\\ \hline \hline
 \multirow{4}{*}{1}	& \multirow{3}{*}{Interior}		& (3) 1$^{st}$ degree 					& (1) 2$^{nd}$ degree 						& (1) 2$^{nd}$ degree 			& (1) 2$^{nd}$ degree 			\\ 
 					&								& (2) no damage 						& (3) 1$^{st}$ degree 						& (2) 1$^{st}$ degree 			& (4) 1$^{st}$ degree 			\\ 
-					&								&										& (1) no damage 							& (2) 2$^{nd}$ degree 			&								\\ \cline{2-6}
+					&								&										& (1) no damage 							& (2) no damage 	 			&								\\ \cline{2-6}
 					& Delayed 						& 4$^{th}$ degree 						& 4$^{th}$ degree 							& 3$^{rd}$-4$^{th}$ degree 		& 3$^{rd}$-4$^{th}$ degree 		\\ \hline
 \multirow{5}{*}{2}	& \multirow{2}{*}{Interior} 	& (2) 2$^{nd}$ degree 					& (3) 2$^{nd}$ degree 						& \multirow{2}{*}{(5) no damge}	& \multirow{2}{*}{(5) no damge}	\\ 
 					&								& (3) 1$^{st}$ degree 					& (2) 1$^{st}$ degree 						&								&								\\ \cline{2-6} 
@@ -2245,7 +2245,11 @@ Measurement of the moisture content in the fire environment is challenging. Conv
 	\label{tab:water_vapor_summary}
 \end{table}
 
-Increases in water vapor appeared to correlate with the smoke layer descending in the room where the water vapor was measured. The measurements taken higher in the space (in the smoke layer) resulted in higher values being recorded. The laser measurement technique often encountered a low transmission level (due to smoke obscuration) prior to the end of the experiment, resulting in an incomplete time history for moisture. Once the smoke cleared the transmission level often increased and the signal returned.  Figure \ref{fig:moisture_plots} shows the time history of each moisture measurement grouped by the ventilation configuration and elevation of the reading.
+Increases in water vapor appeared to correlate with the smoke layer descending in the room where the water vapor was measured. The measurements taken higher in the space (in the smoke layer) resulted in higher values being recorded. When the measurement was taken at the 1~ft level there was limited increase in moisture content between 5~seconds prior to suppression and 60~seconds after suppression. At the higher elevations in the space (in the smoke layer) the moisture would increase between approximately 2\% by volume during the period between 5~seconds prior to and 60~seconds after suppression however it would increase by a similar amount from ignition until the time of 5~seconds prior to suppression. 
+
+This suggests that at the 1~ft level in a bedroom not in the flow path, where water is not applied in the room, moisture content is not increasing during suppression activities. At the higher elevations it is not possible to determine weather the increase is due to the application of water or due to transport time for the products of combustion to reach the location of the sensor. 
+
+The laser measurement technique utilized encountered a low transmission level (due to smoke obscuration) prior to the end of the experiment, resulting in an incomplete time history for moisture. Once the smoke cleared the transmission level often increased and the signal returned.  Figure \ref{fig:moisture_plots} shows the time history of each moisture measurement grouped by the ventilation configuration and elevation of the reading.
 
 \begin{figure}[H]
 \centering
@@ -2259,7 +2263,7 @@ Increases in water vapor appeared to correlate with the smoke layer descending i
 \label{fig:moisture_plots}
 \end{figure}
 
-In Experiments~6,~18~,~and~19 moisture was recorded throughout the entire experiment. The measurement did not exceed 4\% by volume at the 1~ft level. This is consistent with other ventilation configurations where the sensor was located at 1~ft.  When the sensor was moved vertically in the space the moisture measurement increased, and at the 5~ft level the maximum recorded was greater than 11\%.  
+In Experiments~6,~18~,~and~19 moisture was recorded throughout the entire experiment. The measurement did not exceed 5\% by volume at the 1~ft level. This is consistent with other ventilation configurations where the sensor was located at 1~ft.  When the sensor was moved vertically in the space the moisture measurement increased, and at the 5~ft level the maximum recorded was more than double that at 11\%.   
 
 \section{Effect of Ventilation Configuration on Knock Back Capability}
 In the following subsections, the temperatures measured within the fire room are used to determine the time to ``knock back'' the fire, which is defined as the period from initial water application to when all measured temperatures in the fire room are less than 400~$^\circ$F, the upper temperature limit of the `ordinary' thermal class for firefighter operating conditions proposed by Utech~\hl{[CITE]}. The ``knock back'' times are compared between experiments in five different groups based on fire attack method. Three of the groups contain experiments that used an interior fire attack method, and two of the sets contain experiments in which the first suppression event was an exterior fire attack. The differentiating factor between experiments within the three interior fire attack groups is the ventilation configuration, while the main difference between experiments within the two other groups is the ventilation configuration and the fire attack method used after the initial exterior suppression event.
@@ -3085,7 +3089,7 @@ In the example above the line is operated for approximately 11~seconds, with a t
 
 % THIS SECTION IS UNDER DEVELOPMENT WITH THE UNIVERSITY OF ILLINOIS.
 
-In the presence of sufficient oxygen, fuel and oxygen provided with sufficient heat results in combustion. As seen in Equation \ref{eq:comb_methane} the complete combustion of methane results in the products of carbon monoxide and water vapor(steam). 
+In the presence of oxygen, fuel provided with sufficient heat results in combustion. As seen in Equation \ref{eq:comb_methane} the complete combustion of methane ($\ce{CH4}$) results in the products of carbon dioxide ($\ce{CO2}$) and water vapor($\ce{CO2}$) also known as steam. 
 
 \begin{equation}
 \ce{CH4 + 2O2 -> CO2 + 2H2O}
@@ -3124,9 +3128,11 @@ Although in a house fire fuels are more complex than methane, and sufficient oxy
 	\label{tab:water_vapor_summary_tc}
 \end{table}
 
-As the moisture was measured at higher elevations in the space, more moisture was detected. On average the maximum moisture measured at the 1~ft level was 4.52\% by volume in the no vent case, 2.98\% by volume in the single vent case and 3.99\% in the two vent case. Compared to the 5~ft single vent case were the average was approximately double that at 8.37\% by volume. When the measurement was taken at the 1~ft level there was limited increase in moisture content between 5~seconds prior to suppression and 60~seconds after suppression. At the higher elevations in the space (in the smoke layer) the moisture would increase between approximately 2\% by volume during the period between 5~seconds prior to and 60~seconds after suppression however it would increase by a similar amount from ignition until the time of 5~seconds prior to suppression. 
+As the moisture was measured at higher elevations in the space, more moisture was detected. Even prior to suppression, at elevations in the smoke layer (5~ft), water vapor increased by a factor of 2. 
 
-This suggests that at the 1~ft level in a bedroom not in the flow path, where water is not applied in the room, moisture content is not increasing during suppression activities. At the higher elevations it is not possible to determine weather the increase is due to the application of water or due to transport time for the products of combustion to reach the location of the sensor. 
+When the measurement was taken at the 1~ft level there was limited increase in moisture content between 5~seconds prior to suppression and 60~seconds after suppression. At the higher elevations in the space (in the smoke layer) the moisture would increase between approximately 2\% by volume during the period between 5~seconds prior to and 60~seconds after suppression however it would increase by a similar amount from ignition until the time of 5~seconds prior to suppression. 
+
+This suggests that at the 1~ft level in a bedroom outside the flow path, where water is not applied in the room, moisture content is not increasing during suppression activities. At the higher elevations, moisture content is increasing however it is not possible to determine weather the increase is due to the application of water or due to transport time for the products of combustion to reach the location of the sensor. With no appreciable increasue in moisture content at the 1~ft level even after suppression, it is not possible the suppression is causing a victim further damage due to steam. 
 
 \section{Flow vs. Shutdown} \label{tc:flow_vs_shutdown}
 Hoseline advancement techniques differ from department to department, however generally two types of advancement were found through a poll of the project technical panel. The first titled `Flow and Move' involved getting in a position to approach the fire down a hallway and flowing the hoseline while moving down the hallway towards the seat of the fire. The second titled `Shutdown and Move' involved shutting off the hoseline at the bale to allow the advancing suppression crew to move closer to the seat of the fire. Although this may be a tactical choice based on crew size, experience, and training, the approaches differ in how they effect the environment around and ahead of the suppression crew. 
