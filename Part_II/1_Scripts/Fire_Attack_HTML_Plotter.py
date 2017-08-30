@@ -35,9 +35,11 @@ channel_location = '../3_Info/'
 
 chart_location = '../3_Info/'
 
-output_location_init = '../0_Images/Results/HTML/'
+output_location_init = '../0_Images/Script_Figures/HTML_Results/'
 
 info_file = '../3_Info/Description_of_Experiments.csv'
+
+transport_times = pd.read_csv('../3_Info/Updated_Transport_Times.csv').set_index('Experiment')
 
 # Read in channel list
 channel_list = pd.read_csv(channel_location+'Channels.csv')
@@ -96,7 +98,10 @@ for f in os.listdir(data_location):
 		Exp_Num = Test_Name[:-5]
 
 		# Set output location for results
-		output_location = output_location_init + Test_Name + '/'
+		if Test_Name == 'Experiment_27_Data':
+			output_location = output_location_init + 'Experiment_26_Data' + '/'
+		else:
+			output_location = output_location_init + Test_Name + '/'
 
 		# If the folder exists delete it.
 		if os.path.exists(output_location):
@@ -117,6 +122,9 @@ for f in os.listdir(data_location):
 
 		# Set index of experiment events files to Event
 		Events = Events.set_index('Event')
+
+		print ()
+		print (Test_Name)
 
 		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
 		if Speed == 'low':
@@ -207,7 +215,7 @@ for f in os.listdir(data_location):
 					# Set secondary y-axis label to degrees C
 					secondary_axis_label = 'Temperature (Degrees C)'
 					#Set scaling dependent on axis scale defined above
-					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 5/9 - 32
+					secondary_axis_scale = (np.float(Exp_Des[axis_scale][Test_Name]) - 32) * (5/9)
 					hover_value = 'Temperature'
 
                 # Set parameters for velocity plots
@@ -260,7 +268,8 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Gas':
-					Data_Time = [t-float(updated_transport_times['Victim_'+ channel[0] + '_' + Transport_Time][experiment[:-4]])/60.0 for t in Time]
+					updated_transport = transport_times['Victim_' + channel[0] + '_' + str(House.upper())][Test_Name]
+					Data_Time = [t-float(updated_transport)/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					if channel[1:] == 'O2V':
@@ -271,12 +280,25 @@ for f in os.listdir(data_location):
 
 				# If statement to find gas type in channels csv
 				if channel_list['Type'][channel] == 'Carbon Monoxide':
-					Data_Time = [t-float(updated_transport_times['Victim_'+ channel[0] + '_' + Transport_Time][experiment[:-4]])/60.0 for t in Time]
+					updated_transport = transport_times['Victim_' + channel[0] + '_' + str(House.upper())][Test_Name]
+					Data_Time = [t-float(updated_transport)/60.0 for t in Time]
 					# Set data to include slope and intercept
 					current_data = current_data * scale_factor + offset
 					y_label='Gas Concentration (PPM)'
 					axis_scale = 'Y Scale Carbon Monoxide'
 					hover_value = 'Carbon Monoxide'
+				
+				# If statement to find pressure type in channels csv
+				if channel_list['Type'][channel] == 'Pressure':
+					Data_Time = Time
+
+					# Set data to include slope and intercept
+					current_data = current_data * scale_factor + offset
+					current_data = current_data - np.average(current_data[0:60])
+					y_label= 'Pressure (Pa)'
+					axis_scale = 'Y Scale Pressure'
+					hover_value = 'Pressure'
+
 
 				# Plot channel data with legend from channel list and using tableau colors, in addition to x-axis range
 				x= Data_Time
@@ -307,15 +329,17 @@ for f in os.listdir(data_location):
 				else:
 					p.extra_y_ranges={secondary_axis_label:Range1d(0,secondary_axis_scale)}
 					p.add_layout(LinearAxis(y_range_name=secondary_axis_label, axis_label=secondary_axis_label), 'right')
-			try:
-				for event in Events.index.values:
-						if not event == 'Ignition' and not event =='End Experiment':
-							EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
-							EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
-							p.renderers.extend([EventLine])
-							p.text(EventTime/60, Exp_Des[axis_scale][Test_Name]*.95, text=[event], angle=1.57, text_align='right')
-			except:
-				pass
+
+
+			for event in Events.index.values:
+					if pd.isnull(Events['Time'][event]):
+						continue
+					if not event == 'Ignition' and not event =='End Experiment':
+						EventTime = (datetime.datetime.strptime(Events['Time'][event], '%H:%M:%S')-Ignition).total_seconds()
+						EventLine = Span(location=EventTime/60, dimension='height', line_color='black', line_width=3)
+						p.renderers.extend([EventLine])
+						p.text(EventTime/60, Exp_Des[axis_scale][Test_Name]*.95, text=[event], angle=1.57, text_align='right')
+
 			p.legend.location = "top_left"
 			save(p)
 

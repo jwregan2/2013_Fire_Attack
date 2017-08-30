@@ -200,7 +200,7 @@ for f in os.listdir(data_location):
 					# Set secondary y-axis label to degrees C
 					secondary_axis_label = 'Temperature ($^\circ$C)'
 					#Set scaling dependent on axis scale defined above
-					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) * 5/9 - 32
+					secondary_axis_scale = (np.float(Exp_Des[axis_scale][Test_Name]) - 32) * (5/9)
 
                 # Set parameters for velocity plots
 
@@ -313,6 +313,8 @@ for f in os.listdir(data_location):
 				plt.yticks(fontsize=tic_label_size)
 				if axis_scale == 'Y Scale BDP':
 					ax2.set_ylim([-secondary_axis_scale, secondary_axis_scale])
+				elif axis_scale == 'Y Scale Temperature'
+					ax2.set_ylim([-17.78, secondary_axis_scale])
 				else:
 					ax2.set_ylim([0, secondary_axis_scale])
 
