@@ -314,85 +314,85 @@ for i in range(len(tableau20)):
 # 			plt.savefig(output_location_section +  exp[:-5] + '/' + sensor +'.pdf')
 # 		plt.close('all')
 
-print ('---------------------------------Plotting Thermal Classes Plot -----------------------------')
+# print ('---------------------------------Plotting Thermal Classes Plot -----------------------------')
 
-experiments = ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data', 'Experiment_18_Data', 'Experiment_20_Data', 'Experiment_21_Data']
+# experiments = ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data', 'Experiment_18_Data', 'Experiment_20_Data', 'Experiment_21_Data']
 
-channels = pd.DataFrame({'Location':['End Hall 1 FT', 'End Hall 3 FT', 'End Hall 5 FT', 'Mid Hall 1 FT', 'Start Hall 1 FT'], 
-						'Temp':['3TC1','3TC3','3TC5','4TC1','5TC1'], 
-						'Heat_Flux':['1HF1','1HF3','1HF5','2HF','3HF']})
+# channels = pd.DataFrame({'Location':['End Hall 1 FT', 'End Hall 3 FT', 'End Hall 5 FT', 'Mid Hall 1 FT', 'Start Hall 1 FT'], 
+# 						'Temp':['3TC1','3TC3','3TC5','4TC1','5TC1'], 
+# 						'Heat_Flux':['1HF1','1HF3','1HF5','2HF','3HF']})
 
 
-vent_info = pd.read_csv(info_location + 'Vent_Info_Events.csv').set_index('Event')
+# vent_info = pd.read_csv(info_location + 'Vent_Info_Events.csv').set_index('Event')
 
-times = {'Experiment_1_Data':408, 'Experiment_12_Data':324, 'Experiment_17_Data':312, 'Experiment_18_Data':342, 'Experiment_20_Data':454, 'Experiment_21_Data':425}
+# times = {'Experiment_1_Data':408, 'Experiment_12_Data':324, 'Experiment_17_Data':312, 'Experiment_18_Data':342, 'Experiment_20_Data':454, 'Experiment_21_Data':425}
 
-plot_data = {}
+# plot_data = {}
 
-for exp in experiments:
-	data_temp = []
-	data_HF = []
-	location = []
-	for chan in channels.index:
+# for exp in experiments:
+# 	data_temp = []
+# 	data_HF = []
+# 	location = []
+# 	for chan in channels.index:
 
-		location.append(channels['Location'][chan])
-		# data_temp.append((all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean()-32)*5/9)
-		data_temp.append(all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean())
-		data_HF.append(all_exp_data[exp][channels['Heat_Flux'][chan]][times[exp]:times[exp]+60].mean())
+# 		location.append(channels['Location'][chan])
+# 		# data_temp.append((all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean()-32)*5/9)
+# 		data_temp.append(all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean())
+# 		data_HF.append(all_exp_data[exp][channels['Heat_Flux'][chan]][times[exp]:times[exp]+60].mean())
 
-	data_HF = [0.15 if d < 0 else d for d in data_HF]
-	plot_data[exp] = list(zip(location, data_HF, data_temp))
+# 	data_HF = [0.15 if d < 0 else d for d in data_HF]
+# 	plot_data[exp] = list(zip(location, data_HF, data_temp))
 
-for exp in experiments:
-	print ('Plotting ' + exp.replace('_', ' '))
-	fig = plt.figure()
-	fig.set_size_inches(8, 6)
-	ax = plt.gca()
+# for exp in experiments:
+# 	print ('Plotting ' + exp.replace('_', ' '))
+# 	fig = plt.figure()
+# 	fig.set_size_inches(8, 6)
+# 	ax = plt.gca()
 
-	ax.set_xlabel('Heat Flux (kW/m$^2$)',fontsize=16)
-	ax.set_ylabel('Temperature ($^{\circ}$F)',fontsize=16)
-	ax.set_axisbelow(True)
-	plt.grid(linestyle='-',linewidth = 1.5)
-	ax.set_xscale('log')
-	ax.set_yscale('log')
-	ax.set_xlim([.1,200])
-	ax.set_ylim([(10*(9/5)+32),1200*(9/5)+32])
-	plt.xticks(fontsize=16)
-	plt.yticks(fontsize=16)
-	for axis in [ax.xaxis, ax.yaxis]:
-			 axis.set_major_formatter(ScalarFormatter())
+# 	ax.set_xlabel('Heat Flux (kW/m$^2$)',fontsize=16)
+# 	ax.set_ylabel('Temperature ($^{\circ}$F)',fontsize=16)
+# 	ax.set_axisbelow(True)
+# 	plt.grid(linestyle='-',linewidth = 1.5)
+# 	ax.set_xscale('log')
+# 	ax.set_yscale('log')
+# 	ax.set_xlim([.1,200])
+# 	ax.set_ylim([(10*(9/5)+32),1200*(9/5)+32])
+# 	plt.xticks(fontsize=16)
+# 	plt.yticks(fontsize=16)
+# 	for axis in [ax.xaxis, ax.yaxis]:
+# 			 axis.set_major_formatter(ScalarFormatter())
 
-	plt.fill_between([0,200],[(10*(9/5)+32),(10*(9/5)-32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.4)
-	plt.fill_between([12,200],[(200*(9/5)+32),(200*(9/5)+32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.86)
-	plt.text(60, 430*(9/5)+32, 'EMERGENCY', va='center', ha='center', color='white', fontsize=16)
+# 	plt.fill_between([0,200],[(10*(9/5)+32),(10*(9/5)-32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.4)
+# 	plt.fill_between([12,200],[(200*(9/5)+32),(200*(9/5)+32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.86)
+# 	plt.text(60, 430*(9/5)+32, 'EMERGENCY', va='center', ha='center', color='white', fontsize=16)
 
-	plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'w')
-	plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y', alpha = 0.4)
-	plt.fill_between([2,12],[(70*(9/5)+32),(70*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y',alpha=0.85)
-	plt.text(4.75, 115*(9/5)+32, 'ORDINARY', va='center', ha='center', color='white', fontsize=16)
+# 	plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'w')
+# 	plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y', alpha = 0.4)
+# 	plt.fill_between([2,12],[(70*(9/5)+32),(70*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y',alpha=0.85)
+# 	plt.text(4.75, 115*(9/5)+32, 'ORDINARY', va='center', ha='center', color='white', fontsize=16)
 
-	plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'w')
-	plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g', alpha = 0.4)
-	plt.fill_between([1,2], [(20*(9/5)+32),(20*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g' , alpha=0.85)
-	plt.text(1.4, 39*(9/5)+32,'R\nO\nU\nT\nI\nN\nE', va='center', ha='center', color='white', fontsize=16, linespacing=.8)
+# 	plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'w')
+# 	plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g', alpha = 0.4)
+# 	plt.fill_between([1,2], [(20*(9/5)+32),(20*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g' , alpha=0.85)
+# 	plt.text(1.4, 39*(9/5)+32,'R\nO\nU\nT\nI\nN\nE', va='center', ha='center', color='white', fontsize=16, linespacing=.8)
 
-	# Plot style - cycle through 20 color pallet and define markers to cycle through
-	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-	plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+# 	# Plot style - cycle through 20 color pallet and define markers to cycle through
+# 	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+# 	plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-	for point in plot_data[exp]:
-		plt.plot(point[1],point[2], label = point[0], marker = next(plot_markers), color='black', markersize = 10, linestyle='none' )
-		# plt.text(point[1],point[2], exp[11:-5], va='center', ha='center', color = 'w', fontsize=10)
+# 	for point in plot_data[exp]:
+# 		plt.plot(point[1],point[2], label = point[0], marker = next(plot_markers), color='black', markersize = 10, linestyle='none' )
+# 		# plt.text(point[1],point[2], exp[11:-5], va='center', ha='center', color = 'w', fontsize=10)
 
-	plt.legend(channels['Location'].tolist(), numpoints=1, loc='upper left')
-	fig.set_size_inches(10, 7)
-	plt.tight_layout()	
+# 	plt.legend(channels['Location'].tolist(), numpoints=1, loc='upper left')
+# 	fig.set_size_inches(10, 7)
+# 	plt.tight_layout()	
 
-	if not os.path.exists(output_location + '/Thermal_Class/'):
-		os.makedirs(output_location + '/Thermal_Class/')
+# 	if not os.path.exists(output_location + '/Thermal_Class/'):
+# 		os.makedirs(output_location + '/Thermal_Class/')
 
-	plt.savefig(output_location + '/Thermal_Class/'  + exp[:-4] + 'Thermal_Exposure.pdf')
-	plt.close('all')
+# 	plt.savefig(output_location + '/Thermal_Class/'  + exp[:-4] + 'Thermal_Exposure.pdf')
+# 	plt.close('all')
 
 # print ('---------------------------------Plotting Gas Cooling Plots -----------------------------')
 
@@ -510,43 +510,71 @@ for exp in natsorted(experiments):
 	if exp.endswith('.csv'):
 		all_laser_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp).set_index('Time')
 
-		# print(all_laser_data[exp[:-4]].head())
-		# exit()
-		# print(all_laser_data[exp[:-4]]['Time'].index[0])
+		all_laser_data[exp[:-4]] = all_laser_data[exp[:-4]].replace(0.0, np.nan)
 
-		# print (exp[:-4] + ' time step is: ' + str((all_laser_data[exp[:-4]].index[1] - all_laser_data[exp[:-4]].index[0])*60))
+		# Create figure
+		fig = plt.figure()
+		fig.set_size_inches(8, 6)
 
-		all_laser_data[exp[:-4]]['TimeStep'] = all_laser_data[exp[:-4]].index
-		all_laser_data[exp[:-4]]['TimeStep'] = (all_laser_data[exp[:-4]]['TimeStep'] - all_laser_data[exp[:-4]]['TimeStep'].shift()).fillna(0)
-		# print(exp[:-4].replace('_', ' ') + ', time step is: ' + str(round(all_laser_data[exp[:-4]]['TimeStep'].mean()*60,3)))
+		# plt.style.use('ggplot')
 
-		# flow_time = all_exp_events[exp[:-4]+'_Events']['Flow_Time'].min()
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-		# print (flow_time/60)
-		# time = flow_time+60
-		time = 0.1
+		plt.plot(all_laser_data[exp[:-4]].index, all_laser_data[exp[:-4]], marker=next(plot_markers), markevery=10)
 
-		inter = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index > time/60].iloc[0].max()
-		# print (inter)
-		# exit()
+		for event in all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index:
+			if event != 'Ignition' and event != 'End Experiment':
+				plt.axvline(all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds'][event]/60, color = 'black', lw=2)
+		
+		plt.xlim([0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60])
+		plt.ylim([0,12])
+		plt.yticks(np.arange(0, 12, 1))
+		plt.subplots_adjust(top=0.80)
+		plt.xlabel('Time (Minutes)', fontsize=38)
+		plt.ylabel('Moisture Content (\% Volume)', fontsize=38)
 
-		if inter == 0:
-			low = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index < time/60]['Low'].max()
-			high = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index < time/60]['High'].max()
-			inter = max([low,high])
+		plt.show()
 
-		# print(exp[:-4] + ',' + str(inter) + ',' + str(time))
-		# max_val = all_laser_data[exp[:-4]].max(axis=1)
-		# max_val = max_val.max()
+		# *************************************************************************************************************
+		# *********** This was an attempt at plotting average moisture. Data was not robust enough to work ************
+		# ***********		 			Goes with section below on average moisture Plot 		 		   ************
+		# *************************************************************************************************************
+		# all_laser_data[exp[:-4]]['TimeStep'] = all_laser_data[exp[:-4]].index
+		# all_laser_data[exp[:-4]]['TimeStep'] = (all_laser_data[exp[:-4]]['TimeStep'] - all_laser_data[exp[:-4]]['TimeStep'].shift()).fillna(0)
 
-		# print (exp[:-4]+ ','+str(max_val))
 
-		# if all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index > all_exp_events[exp[:-4]+'_Events']['Time_Seconds'][1]/60].iloc[0].max() == 0:
-		# 	low = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index < all_exp_events[exp[:-4]+'_Events']['Time_Seconds'][1]/60]['Low'].max()
-		# 	high = all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index < all_exp_events[exp[:-4]+'_Events']['Time_Seconds'][1]/60]['High'].max()
-		# 	print (exp[:-4] + ' ' + str(max([low,high])))
-		# else:
-		# 	print (exp[:-4] + ' ' + str(all_laser_data[exp[:-4]][all_laser_data[exp[:-4]].index > all_exp_events[exp[:-4]+'_Events']['Time_Seconds'][1]/60].iloc[0].max()))
+moisture_table = pd.DataFrame({'Experiment':[], 'Ignition':[], '5_Seconds_Prior':[], 'Increase_Prior':[], '60_Seconds_Post':[], 
+								'Increase_Post':[], 'Max_Value':[], 'Increase_Max':[],}).set_index('Experiment')
+
+for vent in exp_info.groupby('Vent').groups.keys():
+	
+	for loc in exp_info.groupby('Location').groups.keys():
+		
+		combo = (vent,loc)
+		
+		if combo not in exp_info_grouped.groups.keys():
+			continue
+
+		for exp in exp_info_grouped.groups[(vent,loc)].values:
+			ignition = flow_time = all_exp_events[exp+'_Events']['Flow_Time'].min()
+			flow_time = all_exp_events[exp+'_Events']['Flow_Time'].min()
+
+			start,stop = [all_laser_data[exp].index > -0.5,all_laser_data[exp].index < 0.0]
+			vals = [a and b for a,b in zip(start,stop)]
+			moisture_table.ix[exp, 'Ignition'] = all_laser_data[exp][vals].mean().max()
+			
+			moisture_table.ix[exp, '5_Seconds_Prior'] = all_laser_data[exp][all_laser_data[exp].index > (flow_time-5)/60].iloc[0].max()
+			moisture_table.ix[exp, '60_Seconds_Post'] = all_laser_data[exp][all_laser_data[exp].index > (flow_time+60)/60].iloc[0].max()
+			moisture_table.ix[exp, 'Max_Value'] = all_laser_data[exp].ix[all_laser_data[exp].index > 0 ,['Low', 'High']].max().max()
+			moisture_table.ix[exp, 'Increase_Prior'] = moisture_table.ix[exp, '5_Seconds_Prior'] - moisture_table.ix[exp, 'Ignition']
+			moisture_table.ix[exp, 'Increase_Post'] = moisture_table.ix[exp, '60_Seconds_Post'] - moisture_table.ix[exp, 'Ignition']
+			moisture_table.ix[exp, 'Increase_Max'] = moisture_table.ix[exp, 'Max_Value'] - moisture_table.ix[exp, 'Ignition']
+
+moisture_table = moisture_table.round(2)
+moisture_table.to_latex('../5_Report/Moisture_Table.tex')
+
 
 print ('---------- Plotting Moisture Charts by Vent & Location -----')
 for vent in exp_info.groupby('Vent').groups.keys():
@@ -604,94 +632,79 @@ for vent in exp_info.groupby('Vent').groups.keys():
 		plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '.pdf' )
 		plt.close('all')
 
-print ('---------- Average Moisture Charts by Vent & Location -----')
+# ****************************************************************************************************************************************
+# ************************* This was an attempt at plotting average moisture. Data was not robust enough to work *************************
+# ****************************************************************************************************************************************
 
-for exp in natsorted(experiments):
-	if exp.endswith('.csv'):
-		all_laser_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp)
-		all_laser_data[exp[:-4]]['Time'] = all_laser_data[exp[:-4]]['Time'] * 60
-		all_laser_data[exp[:-4]]['Time'] = all_laser_data[exp[:-4]]['Time'].round()
-		all_laser_data[exp[:-4]] = all_laser_data[exp[:-4]].drop_duplicates(subset='Time', keep='first')
-		all_laser_data[exp[:-4]].set_index('Time', inplace=True)
+# print ('---------- Average Moisture Charts by Vent & Location -----')
 
-for vent in exp_info.groupby('Vent').groups.keys():
+# for exp in natsorted(experiments):
+# 	if exp.endswith('.csv'):
+# 		all_laser_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp)
+# 		all_laser_data[exp[:-4]]['Time'] = all_laser_data[exp[:-4]]['Time'] * 60
+# 		all_laser_data[exp[:-4]]['Time'] = all_laser_data[exp[:-4]]['Time'].round()
+# 		all_laser_data[exp[:-4]] = all_laser_data[exp[:-4]].drop_duplicates(subset='Time', keep='first')
+# 		all_laser_data[exp[:-4]].set_index('Time', inplace=True)
+
+# for vent in exp_info.groupby('Vent').groups.keys():
 	
-	for loc in exp_info.groupby('Location').groups.keys():
+# 	for loc in exp_info.groupby('Location').groups.keys():
 		
-		combo = (vent,loc)
+# 		combo = (vent,loc)
 
-		if combo not in exp_info_grouped.groups.keys():
-			continue
+# 		if combo not in exp_info_grouped.groups.keys():
+# 			continue
 
-		if len(exp_info_grouped.groups[(vent,loc)].values) > 1:
+# 		if len(exp_info_grouped.groups[(vent,loc)].values) > 1:
 
-			print ('Plotting ' + vent + ', ' + loc + ' Average Chart')
+# 			print ('Plotting ' + vent + ', ' + loc + ' Average Chart')
 			
-			#Create figure
-			fig = plt.figure()
-			fig.set_size_inches(8, 6)
+# 			#Create figure
+# 			fig = plt.figure()
+# 			fig.set_size_inches(8, 6)
 
-			# plt.style.use('ggplot')
+# 			# plt.style.use('ggplot')
 
-			# Plot style - cycle through 20 color pallet and define markers to cycle through
-			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+# 			# Plot style - cycle through 20 color pallet and define markers to cycle through
+# 			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+# 			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
 
-			data = pd.DataFrame()
+# 			data = pd.DataFrame()
 
-			first_flow = 20*60
+# 			first_flow = 20*60
 
-			for exp in exp_info_grouped.groups[(vent,loc)].values:
-				# plot_data = all_laser_data[exp][['Low','High']].max(axis=1)
-				# plt.plot(plot_data.replace(0.0, np.nan), label=exp.replace('_', ' '))
+# 			for exp in exp_info_grouped.groups[(vent,loc)].values:
+# 				# plot_data = all_laser_data[exp][['Low','High']].max(axis=1)
+# 				# plt.plot(plot_data.replace(0.0, np.nan), label=exp.replace('_', ' '))
 				
-				new_data = all_laser_data[exp][['Low','High']].max(axis=1)
-				new_data.name = exp
+# 				new_data = all_laser_data[exp][['Low','High']].max(axis=1)
+# 				new_data.name = exp
 
-				try:
-					data = pd.concat([data, new_data], axis=1)
-				except:
-					pass
+# 				try:
+# 					data = pd.concat([data, new_data], axis=1)
+# 				except:
+# 					pass
 
-				first_flow = min(all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60, first_flow)
+# 				first_flow = min(all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60, first_flow)
 
-			data = data.replace(0.0, np.nan)
-			data['Average'] = data.mean(axis=1) 
+# 			data = data.replace(0.0, np.nan)
+# 			data['Average'] = data.mean(axis=1) 
 			
-			# plt.plot(data.index/60, data.max(axis=1), label='Maximum', marker=next(plot_markers), markevery=20, markersize=5 )
-			avg, = plt.plot(data.index/60, data.mean(axis=1), label='Average', marker=next(plot_markers), markevery=20, markersize=5 )
-			# plt.plot(data.index/60, data.min(axis=1), label='Minimum', marker=next(plot_markers), markevery=20, markersize=5 )
-			plt.fill_between(data.index/60, data.max(axis=1), data.min(axis=1), color='grey', alpha=0.3)
+# 			# plt.plot(data.index/60, data.max(axis=1), label='Maximum', marker=next(plot_markers), markevery=20, markersize=5 )
+# 			avg, = plt.plot(data.index/60, data.mean(axis=1), label='Average', marker=next(plot_markers), markevery=20, markersize=5 )
+# 			# plt.plot(data.index/60, data.min(axis=1), label='Minimum', marker=next(plot_markers), markevery=20, markersize=5 )
+# 			plt.fill_between(data.index/60, data.max(axis=1), data.min(axis=1), color='grey', alpha=0.3)
 
-			plt.legend()
-			# plt.xlim([0,first_flow])
-			plt.xlim([0,12])
-			plt.ylim([0,12])
-			plt.yticks(np.arange(0, 12, 1))
-			plt.xlabel('Time (Minutes)')
-			plt.ylabel('Precent Moisture By Volume')
+# 			plt.legend()
+# 			# plt.xlim([0,first_flow])
+# 			plt.xlim([0,12])
+# 			plt.ylim([0,12])
+# 			plt.yticks(np.arange(0, 12, 1))
+# 			plt.xlabel('Time (Minutes)')
+# 			plt.ylabel('Precent Moisture By Volume')
 
-			plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '_Average.pdf' )
-			plt.close('all')
-
-# exps = ['Experiment_7_Data', 'Experiment_10_Data']
-
-# for exp in exps:
-
-# 	plt.plot(all_laser_data[exp[:-5]]['High'].replace(0.0, np.nan), label=exp.replace('_', ' '))
-
-# plt.xlim([0,700])
-# plt.legend()
-# plt.show()
-
-# exps = ['Experiment_7_Data','Experiment_10_Data','Experiment_11_Data','Experiment_21_Data']
-
-# for exp in exps:
-# 	data = all_exp_data[exp][['1TC7','1TC5','1TC3','1TC1']].mean(axis=1)
-# 	plt.plot(data, label=exp.replace('_', ' '))
-
-# plt.legend()
-# plt.show()
+# 			plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '_Average.pdf' )
+# 			plt.close('all')
 
 
