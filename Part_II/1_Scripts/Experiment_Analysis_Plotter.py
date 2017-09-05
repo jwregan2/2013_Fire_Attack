@@ -492,12 +492,11 @@ for i in range(len(tableau20)):
 # for vals in start_stop:
 # 	print(all_flow_data[exp]['Total Gallons'][vals[1]]-all_flow_data[exp]['Total Gallons'][vals[0]])
 
-print ('-------------------------------------- Developing Moisture Table ----------------------------------')
+print ('-------------------------------------- Reading Moisture Data ----------------------------------')
 
-data_location_moisture = data_location + 'Laser/'
+data_location_moisture = '../2_Data/Laser/'
 
 experiments = os.listdir(data_location_moisture)
-
 
 exp_info = pd.read_csv(info_location + 'Moisture_Info.csv').set_index('Experiment')
 exp_info_grouped = exp_info.groupby(['Vent', 'Location'])
@@ -508,46 +507,17 @@ high = pd.DataFrame()
 
 for exp in natsorted(experiments):
 	if exp.endswith('.csv'):
+		print ('	Reading ' + exp[:-4].replace('_', ' '))
 		all_laser_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp).set_index('Time')
 
 		all_laser_data[exp[:-4]] = all_laser_data[exp[:-4]].replace(0.0, np.nan)
 
-		# Create figure
-		fig = plt.figure()
-		fig.set_size_inches(8, 6)
-
-		# plt.style.use('ggplot')
-
-		# Plot style - cycle through 20 color pallet and define markers to cycle through
-		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
-
-		plt.plot(all_laser_data[exp[:-4]].index, all_laser_data[exp[:-4]], marker=next(plot_markers), markevery=10)
-
-		for event in all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index:
-			if event != 'Ignition' and event != 'End Experiment':
-				plt.axvline(all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds'][event]/60, color = 'black', lw=2)
-		
-		plt.xlim([0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60])
-		plt.ylim([0,12])
-		plt.yticks(np.arange(0, 12, 1))
-		plt.subplots_adjust(top=0.80)
-		plt.xlabel('Time (Minutes)', fontsize=38)
-		plt.ylabel('Moisture Content (\% Volume)', fontsize=38)
-
-		plt.show()
-
-		# *************************************************************************************************************
-		# *********** This was an attempt at plotting average moisture. Data was not robust enough to work ************
-		# ***********		 			Goes with section below on average moisture Plot 		 		   ************
-		# *************************************************************************************************************
-		# all_laser_data[exp[:-4]]['TimeStep'] = all_laser_data[exp[:-4]].index
-		# all_laser_data[exp[:-4]]['TimeStep'] = (all_laser_data[exp[:-4]]['TimeStep'] - all_laser_data[exp[:-4]]['TimeStep'].shift()).fillna(0)
-
+print ('-------------------------------------- Developing Moisture Table ----------------------------------')
 
 moisture_table = pd.DataFrame({'Experiment':[], 'Ignition':[], '5_Seconds_Prior':[], 'Increase_Prior':[], '60_Seconds_Post':[], 
 								'Increase_Post':[], 'Max_Value':[], 'Increase_Max':[],}).set_index('Experiment')
 
+max_std = 0
 for vent in exp_info.groupby('Vent').groups.keys():
 	
 	for loc in exp_info.groupby('Location').groups.keys():
@@ -571,12 +541,155 @@ for vent in exp_info.groupby('Vent').groups.keys():
 			moisture_table.ix[exp, 'Increase_Prior'] = moisture_table.ix[exp, '5_Seconds_Prior'] - moisture_table.ix[exp, 'Ignition']
 			moisture_table.ix[exp, 'Increase_Post'] = moisture_table.ix[exp, '60_Seconds_Post'] - moisture_table.ix[exp, 'Ignition']
 			moisture_table.ix[exp, 'Increase_Max'] = moisture_table.ix[exp, 'Max_Value'] - moisture_table.ix[exp, 'Ignition']
+			
+			start,stop = [all_laser_data[exp].index > -2.0,all_laser_data[exp].index < 0.0]
+			vals = [a and b for a,b in zip(start,stop)]
+
+			background = all_laser_data[exp][vals].max(axis=1)
+			max_std = max(background.std(), max_std)
+			print ('	' + exp + ' Measurment Uncertianty is: ' + str(round(background.std(),2)))
+	
+print('	Maximum Uncertianty is: ' + str(round(max_std,2)))
+
+moisture_table.ix['Average_4_6'] = moisture_table.loc[['Experiment_4','Experiment_6']].mean()
+moisture_table.ix['Average_18_19'] = moisture_table.loc[['Experiment_18','Experiment_19']].mean()
+moisture_table.ix['Average_7_10_11_21'] = moisture_table.loc[['Experiment_7','Experiment_10', 'Experiment_11', 'Experiment_21']].mean()
 
 moisture_table = moisture_table.round(2)
+
+moisture_table['5_Seconds_Prior'] = moisture_table['5_Seconds_Prior'].apply(str) + ' (' + moisture_table['Increase_Prior'].apply(str) + ')'
+moisture_table['60_Seconds_Post'] = moisture_table['60_Seconds_Post'].apply(str) + ' (' + moisture_table['Increase_Post'].apply(str) + ')'
+moisture_table['Max_Value'] = moisture_table['Max_Value'].apply(str) + ' (' + moisture_table['Increase_Max'].apply(str) + ')'
+
+moisture_table = moisture_table.replace('nan', 'N/A', regex=True)
+
+moisture_table = moisture_table[['Ignition', '5_Seconds_Prior', '60_Seconds_Post', 'Max_Value',]]
+moisture_table = moisture_table.reindex(['Experiment_4', 'Experiment_6','Average_4_6', 'Experiment_18', 'Experiment_19', 'Average_18_19', 
+										'Experiment_20', 'Experiment_7', 'Experiment_10', 'Experiment_11', 'Experiment_21', 'Average_7_10_11_21', 
+										'Experiment_16', 'Experiment_13'])
+
+
+moisture_table.columns = [x.strip().replace('_', ' ') for x in moisture_table.columns]
+moisture_table.index = [x.strip().replace('_', ' ') for x in moisture_table.index]
+
 moisture_table.to_latex('../5_Report/Moisture_Table.tex')
+
+print ('-------------------------------------- Reading Skin Temp Data ----------------------------------')
+
+data_location_skin_temp = '../2_Data/Skin_Temp_Data/'
+
+experiments = os.listdir(data_location_skin_temp)
+
+all_skin_data = {}
+
+for exp in natsorted(experiments):
+	if exp.endswith('.csv'):
+		print ('	Reading ' + exp[:-4].replace('_', ' '))
+		all_skin_data[exp[:-4]] = pd.read_csv(data_location_skin_temp + exp).set_index('Time')
+
+print ('-------------------------------------- Developing Necrosis Depth Table and Plotting Comparison Charts----------------------------------')
+
+for vic in ['Vic 1 necrosis depth', 'Vic 3 necrosis depth']:
+	necrosis_table = pd.DataFrame({'Experiment':[], 'Ignition':[], '5_Seconds_Prior':[], '60_Seconds_Post':[], 
+									 'Max_Value':[], }).set_index('Experiment')
+
+	vent_info = pd.read_csv(info_location + 'Water_Flow_Info.csv')
+
+	for vent in vent_info:
+		print ('	------------ No Vent Experiments ------------')
+		for exp in natsorted(vent_info[vent].dropna()):
+			print ('	Plotting ' + exp[:-5])
+
+			# *********************************************************************************************************************************
+			# ******************************************* Plotting Necrosis Depth Comparison Charts *******************************************
+			# *********************************************************************************************************************************
+			# Create figure
+			# fig = plt.figure()
+			# fig.set_size_inches(8, 6)
+			# plt.xticks(fontsize=28)
+			# plt.yticks(fontsize=28)
+			# plt.grid(True)
+
+			# # Plot style - cycle through 20 color pallet and define markers to cycle through
+			# plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+			# plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+			# # ax1.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
+
+
+			# # ax1.plot(all_skin_data[exp].index, all_skin_data[exp][vic], label=vic, marker=next(plot_markers), markevery=10)
+
+			# # Plot the events on a secondary x axis. 
+			# # ax3.set_xlim(0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60)
+
+			# i = 0
+
+			# EventTime = np.empty(len(all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index))
+			# EventTime[:] = nan
+			# EventLabel = ['']*len(all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index)
+
+			# for e in all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index:
+			# 	EventTime[i] = all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds'][e]/60
+			# 	EventLabel[i] = e
+			# 	plt.axvline(EventTime[i],color='0',lw=2) 
+			# 	i = i + 1
+
+			# plt.ylim([0,12])
+			# ax1.set_yticks(np.arange(0, 12, 1))
+
+			# ax1.legend(fontsize=24, handlelength=2)
+			# plt.subplots_adjust(top=0.80)
+			# ax1.set_xlabel('Time (Minutes)', fontsize=38)
+			# ax1.set_ylabel('Necrosis Depth (mm)', fontsize=38)
+			# plt.xticks(fontsize=28)
+			# plt.yticks(fontsize=28)
+			# plt.tight_layout()
+
+			# *********************************************************************************************************************************
+			# *********************************************** Building Necrosis Depth Table ***************************************************
+			# *********************************************************************************************************************************
+
+			ignition = all_exp_events[exp[:-4]+'Events']['Results_Time_Seconds'].min()
+			
+			if 'Flow_Time' not in all_exp_events[exp[:-4]+'Events']:
+				flow_time = all_exp_events[exp[:-4]+'Events']['Results_Time_Seconds'].dropna()[1]
+			else:
+				flow_time = all_exp_events[exp[:-4]+'Events']['Flow_Time'].min()
+
+			necrosis_table.ix[exp, 'Ignition'] = all_skin_data[exp][all_skin_data[exp].index > (ignition)/60][vic].iloc[0]
+			
+			necrosis_table.ix[exp, '5_Seconds_Prior'] = all_skin_data[exp][all_skin_data[exp].index > (flow_time-5)/60].iloc[0][vic]
+			necrosis_table.ix[exp, '60_Seconds_Post'] = all_skin_data[exp][all_skin_data[exp].index > (flow_time+60)/60].iloc[0][vic]
+			necrosis_table.ix[exp, 'Max_Value'] = all_skin_data[exp].ix[all_skin_data[exp].index > 0][vic].max()
+			# necrosis_table.ix[exp, 'Increase_Prior'] = necrosis_table.ix[exp, '5_Seconds_Prior'] - necrosis_table.ix[exp, 'Ignition']
+			# necrosis_table.ix[exp, 'Increase_Post'] = necrosis_table.ix[exp, '60_Seconds_Post'] - necrosis_table.ix[exp, 'Ignition']
+			# necrosis_table.ix[exp, 'Increase_Max'] = necrosis_table.ix[exp, 'Max_Value'] - necrosis_table.ix[exp, 'Ignition']
+		
+		necrosis_table.ix[vent] = necrosis_table.loc[[x for x in vent_info[vent].dropna() if x not in ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data']]].mean()	
+
+	necrosis_table = necrosis_table.round(3)
+
+	# necrosis_table['5_Seconds_Prior'] = necrosis_table['5_Seconds_Prior'].apply(str) + ' (' + necrosis_table['Increase_Prior'].apply(str) + ')'
+	# necrosis_table['60_Seconds_Post'] = necrosis_table['60_Seconds_Post'].apply(str) + ' (' + necrosis_table['Increase_Post'].apply(str) + ')'
+	# necrosis_table['Max_Value'] = necrosis_table['Max_Value'].apply(str) + ' (' + necrosis_table['Increase_Max'].apply(str) + ')'
+
+	necrosis_table = necrosis_table.replace('nan', 'N/A', regex=True)
+
+	necrosis_table = necrosis_table[['Ignition', '5_Seconds_Prior', '60_Seconds_Post', 'Max_Value',]]
+	# necrosis_table = necrosis_table.reindex(['Experiment_4', 'Experiment_6','Average_4_6', 'Experiment_18', 'Experiment_19', 'Average_18_19', 
+	# 										'Experiment_20', 'Experiment_7', 'Experiment_10', 'Experiment_11', 'Experiment_21', 'Average_7_10_11_21', 
+	# 										'Experiment_16', 'Experiment_13'])
+
+	necrosis_table.columns = [x.strip().replace('_', ' ') for x in necrosis_table.columns]
+	necrosis_table.index = [x.strip().replace('_', ' ') for x in necrosis_table.index]
+
+	necrosis_table.to_latex('../5_Report/' + vic[:5].replace(' ', '_') + '_Necrosis_Depth_Table.tex')
+
+	# Save Figure
 
 
 print ('---------- Plotting Moisture Charts by Vent & Location -----')
+
 for vent in exp_info.groupby('Vent').groups.keys():
 	
 	for loc in exp_info.groupby('Location').groups.keys():
@@ -586,11 +699,12 @@ for vent in exp_info.groupby('Vent').groups.keys():
 		if combo not in exp_info_grouped.groups.keys():
 			continue
 
-		print ('Plotting ' + vent + ', ' + loc + ' chart')
+		print ('	Plotting ' + vent + ', ' + loc + ' chart')
 		
 		# Create figure
 		fig = plt.figure()
 		fig.set_size_inches(8, 6)
+
 
 		# plt.style.use('ggplot')
 

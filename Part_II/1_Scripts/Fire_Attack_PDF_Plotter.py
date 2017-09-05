@@ -8,6 +8,8 @@ import shutil
 from dateutil.relativedelta import relativedelta
 from scipy.signal import butter, filtfilt
 from itertools import cycle
+import pickle 
+from natsort import natsorted
 
 # Define filter for low pass filtering of pressure/temperature for BDP
 def butter_lowpass(cutoff, fs, order=5):
@@ -30,6 +32,8 @@ channel_location = '../3_Info/'
 chart_location = '../3_Info/'
 
 output_location_init = '../0_Images/Script_Figures/Results/'
+
+info_location = '../3_Info/'
 
 info_file = '../3_Info/Description_of_Experiments.csv'
 
@@ -54,10 +58,28 @@ Exp_Des = Exp_Des.set_index('Experiment')
 # Set files to skip in experimental directory
 skip_files = ['example']
 
+all_exp_events = pickle.load(open(info_location + '/Events/all_exp_events.dict', 'rb'))
+
 event_label_size = 28
 axis_title_size = 32
 tic_label_size = 28
 legend_font_size = 24
+
+
+# **************************************************************************************
+# ************** Define 20 Color Pallet for Plots and set as RGB Values ****************
+# **************************************************************************************
+
+tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
+(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
+(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
+(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
+(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+
+# Define RGB values in pallet 
+for i in range(len(tableau20)):
+		r, g, b = tableau20[i]
+		tableau20[i] = (r / 255., g / 255., b / 255.)
 
 # # Loop through Experiment files
 for f in os.listdir(data_location):
@@ -144,18 +166,6 @@ for f in os.listdir(data_location):
 
             #Create figure
 			fig = plt.figure()
-
-            # Define 20 color pallet using RGB values
-			tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
-			(44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
-			(148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
-			(227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
-			(188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
-			
-			# Define RGB values in pallet 
-			for i in range(len(tableau20)):
-					r, g, b = tableau20[i]
-					tableau20[i] = (r / 255., g / 255., b / 255.)
 
 			# Plot style - cycle through 20 color pallet and define markers to cycle through
 			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
@@ -340,20 +350,6 @@ for f in os.listdir(data_location):
 				ax3.set_xticklabels(EventLabel, fontsize=event_label_size, ha='left')
 				fig.set_size_inches(20, 16)
 				plt.tight_layout()
-                # # Add vertical lines and labels for timing information (if available)
-                # ax3 = ax1.twiny()
-                # ax3.set_xlim(ax1_xlims)
-                # # Remove NaN items from event timeline
-                # events = all_times[test_name].dropna()
-                # # Ignore events that are commented starting with a pound sign
-                # events = events[~events.str.startswith('#')]
-                # [plt.axvline(_x - start_of_test, color='0.50', lw=1) for _x in events.index.values]
-                # ax3.set_xticks(events.index.values - start_of_test)
-                # plt.setp(plt.xticks()[1], rotation=60)
-                # ax3.set_xticklabels(events.values, fontsize=8, ha='left')
-                # plt.xlim([0, end_of_test - start_of_test])
-                # # Increase figure size for plot labels at top
-                # fig.set_size_inches(10, 6)
 			except:
 				print('Error Setting Secondary Axis')
 				pass
@@ -363,4 +359,146 @@ for f in os.listdir(data_location):
 			# Save plot to file
 			plt.savefig(output_location + group + '.pdf')
 			plt.close('all')
-   
+
+print ('-------------------------------------- Plotting Moisture Results Charts ----------------------------------')
+
+data_location_moisture = '../2_Data/Laser/'
+
+experiments = os.listdir(data_location_moisture)
+
+exp_info = pd.read_csv(info_location + 'Moisture_Info.csv').set_index('Experiment')
+exp_info_grouped = exp_info.groupby(['Vent', 'Location'])
+
+all_laser_data = {}
+low = pd.DataFrame()
+high = pd.DataFrame()
+
+for exp in natsorted(experiments):
+	if exp.endswith('.csv'):
+		print ('	Plotting ' + exp[:-4].replace('_', ' '))
+		all_laser_data[exp[:-4]] = pd.read_csv(data_location_moisture + exp).set_index('Time')
+
+		all_laser_data[exp[:-4]] = all_laser_data[exp[:-4]].replace(0.0, np.nan)
+
+		# Create figure
+		fig = plt.figure()
+		fig.set_size_inches(20, 16)
+		ax1 = plt.gca()
+		ax1.set_xlim(0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60)
+
+		plt.xticks(fontsize=28)
+		plt.yticks(fontsize=28)
+		plt.grid(True)
+
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+		ax1.plot(all_laser_data[exp[:-4]].index, all_laser_data[exp[:-4]].max(axis=1), label='Bedroom 4 Moisture', marker=next(plot_markers), markevery=10)
+
+		ax3=ax1.twiny()
+		
+
+		ax3.set_xlim(0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60)
+
+		i = 0
+
+		EventTime = np.empty(len(all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index))
+		EventTime[:] = nan
+		EventLabel = ['']*len(all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index)
+
+		for e in all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index:
+			EventTime[i] = all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds'][e]/60
+			EventLabel[i] = e
+			plt.axvline(EventTime[i],color='0',lw=2) 
+			i = i + 1
+		
+		ax3.set_xticks(EventTime)
+		plt.setp(plt.xticks()[1], rotation=67.5)		
+		ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')	
+		
+		plt.ylim([0,12])
+		ax1.set_yticks(np.arange(0, 12, 1))
+
+		ax1.legend(fontsize=24, handlelength=2)
+		plt.subplots_adjust(top=0.80)
+		ax1.set_xlabel('Time (Minutes)', fontsize=38)
+		ax1.set_ylabel('Moisture Content (\% Volume)', fontsize=38)
+		plt.xticks(fontsize=28)
+		plt.yticks(fontsize=28)
+		plt.tight_layout()
+
+
+		plt.savefig('../0_Images/Script_Figures/Results/' + exp[:-4] + '_Data/Bedroom_4_Moisture.pdf')
+
+		plt.close('all')
+
+print ('-------------------------------------- Plotting Necrosis Depth Results Charts ----------------------------------')
+
+data_location_skin = '../2_Data/Skin_Temp_Data/'
+
+experiments = os.listdir(data_location_skin)
+
+for exp in natsorted(experiments):
+	if exp.endswith('.csv'):
+		print ('	Plotting ' + exp[:-4].replace('_', ' '))
+		
+		data = pd.read_csv(data_location_skin + exp).set_index('Time')
+		exp = exp[:-4]
+
+		if Exp_Des['Speed'][exp] == 'high':
+			markers = 1000
+		if Exp_Des['Speed'][exp] == 'low':
+			markers = 10
+
+		# Create figure
+		fig = plt.figure()
+		fig.set_size_inches(20, 16)
+		ax1 = plt.gca()
+		ax1.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
+
+		plt.xticks(fontsize=28)
+		plt.yticks(fontsize=28)
+		plt.grid(True)
+
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+		ax1.plot(data.index, data['Vic 1 necrosis depth'], label='Victim 1', marker=next(plot_markers), markevery=markers)
+		ax1.plot(data.index, data['Vic 3 necrosis depth'], label='Victim 3', marker=next(plot_markers), markevery=markers)
+
+		ax3=ax1.twiny()
+
+		ax3.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
+
+		i = 0
+
+		EventTime = np.empty(len(all_exp_events[exp[:-5] +'_Events']['Results_Time'].dropna().index))
+		EventTime[:] = nan
+		EventLabel = ['']*len(all_exp_events[exp[:-5] +'_Events']['Results_Time'].dropna().index)
+
+		for e in all_exp_events[exp[:-5]+'_Events']['Results_Time'].dropna().index:
+			EventTime[i] = all_exp_events[exp[:-5]+'_Events']['Results_Time_Seconds'][e]/60
+			EventLabel[i] = e
+			plt.axvline(EventTime[i],color='0',lw=2) 
+			i = i + 1
+		
+		ax3.set_xticks(EventTime)
+		plt.setp(plt.xticks()[1], rotation=67.5)		
+		ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')	
+		
+		plt.ylim([0,12])
+		ax1.set_yticks(np.arange(0, 12, 1))
+
+		ax1.legend(fontsize=24, handlelength=2)
+		plt.subplots_adjust(top=0.80)
+		ax1.set_xlabel('Time (Minutes)', fontsize=38)
+		ax1.set_ylabel('Necrosis Depth (mm)', fontsize=38)
+		plt.xticks(fontsize=28)
+		plt.yticks(fontsize=28)
+		plt.tight_layout()
+
+		plt.savefig('../0_Images/Script_Figures/Results/' + exp + '/Victim_Necrosis_Depth.pdf')
+
+		plt.close('all')
