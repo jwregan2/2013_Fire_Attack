@@ -323,7 +323,7 @@ for f in os.listdir(data_location):
 				plt.yticks(fontsize=tic_label_size)
 				if axis_scale == 'Y Scale BDP':
 					ax2.set_ylim([-secondary_axis_scale, secondary_axis_scale])
-				elif axis_scale == 'Y Scale Temperature'
+				elif axis_scale == 'Y Scale Temperature':
 					ax2.set_ylim([-17.78, secondary_axis_scale])
 				else:
 					ax2.set_ylim([0, secondary_axis_scale])
