@@ -2767,35 +2767,61 @@ Additionally it should be noted that the data sets overlap such that the fastest
 
 \begin{table} [H]
 \centering
-\caption{Summary of Tatic Times From Initial Action}
-\begin{tabular}{|C{0.05\textwidth}|C{0.15\textwidth}|C{0.25\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
+\caption{Summary of Tatic Times for Interior Shutdown and Move Attack (Time~min:sec)}
+\begin{tabular}{|C{0.05\textwidth}|C{0.15\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
 \hline
 
-Experiment & Ventilation Configuration & Tactic & Exterior Flow (Time~min:sec) & Exterior Travel (Time~min:sec) & "Door Read" (Time~min:sec) & Interior Flow (Time~min:sec) & Interior Travel (Time~min:sec) & Victim 4 (Time~min:sec) & Victim 1 (Time~min:Sec) & Tactic Time (Time~min:sec) \\ \hline \hline
-1 		& No Vent    	& Interior Shut \& Move Delayed    & N/A    & N/A    & N/A    & N/A    & N/A    & 18:33 & 19:32   & N/A   \\ \hline   
-2 		& No Vent    	& Interior Flow \& Move            & N/A    & N/A    & 00:12  & 00:36  & 00:33  & 00:22  & 01:19  & 00:56 \\ \hline  
-3 		& No Vent    	& Interior Shut \& Move            & N/A    & N/A    & N/A    & 00:47  & 00:41  & 00:12  & 00:54  & 01:04 \\ \hline  
-4 		& No Vent    	& Interior Flow \& Move            & N/A    & N/A    & 00:12  & 00:34  & 00:25  & 00:20  & 00:54  & 00:52 \\ \hline  
-5 		& No Vent    	& Interior Shut \& Move            & N/A    & N/A    & 00:12  & 00:41  & 00:32  & 00:21  & 00:59  & 01:00 \\ \hline  
-6 		& No Vent    	& Interior Shut \& Move            & N/A    & N/A    & 00:14  & 00:40  & 00:32  & 00:23  & 01:00  & 00:54 \\ \hline  
-7 		& Single Vent	& Interior Flow \& Move            & N/A    & N/A    & 00:11  & 00:32  & 00:22  & 00:16  & 00:40  & 00:49 \\ \hline  
-8 		& Single Vent	& Interior Shut \& Move            & N/A    & N/A    & 00:13  & 00:39  & 00:32  & 00:28  & 00:58  & 00:53 \\ \hline  
-9 		& Single Vent	& Interior Flow \& Move            & N/A    & N/A    & 00:11  & 00:22  & 00:19  & 00:21  & 00:42  & 00:37 \\ \hline  
-10		& Single Vent	& Interior Shut \& Move            & N/A    & N/A    & 00:11  & 00:41  & 00:32  & 00:20  & 00:55  & 00:56 \\ \hline  
-11		& Single Vent	& Interior Flow \& Move            & N/A    & N/A    & 00:10  & 00:29  & 00:23  & 00:22  & 00:45  & 00:47 \\ \hline  
-12		& Single Vent	& Interior Flow \& Move Delayed    & N/A    & N/A    & N/A    & N/A    & N/A    & 07:39  & 08:14  & N/A   \\ \hline  
-13		& Two Vent   	& Interior Flow \& Move            & N/A    & N/A    & 00:11  & 00:42  & 00:32  & 00:25  & 00:57  & 01:03 \\ \hline  
-14		& Two Vent   	& Interior Shut \& Move            & N/A    & N/A    & 00:13  & 00:41  & 00:34  & 00:21  & 00:55  & 00:53 \\ \hline  
-15		& Two Vent   	& Interior Shut \& Move            & N/A    & N/A    & N/A    & 00:48  & 00:40  & 00:20  & 00:52  & 01:04 \\ \hline  
-16		& Two Vent   	& Interior Flow \& Move            & N/A    & N/A    & 00:10  & 00:38  & 00:26  & 00:19  & 00:45  & 00:54 \\ \hline  
-17		& Two Vent   	& Interior Flow \& Move Delayed    & N/A    & N/A    & N/A    & N/A    & N/A    & 05:12  & 05:35  & N/A   \\ \hline  
-18		& Single Vent	& Transitional No Whip             & 00:10  & 00:07  & 00:07  & 00:06  & 00:15  & 00:27  & 00:46  & 00:48 \\ \hline 
-19		& Single Vent	& Transitional Fog Whip Delayed    & 00:11 Fog 00:18 Stright Stream & 00:21  & N/A    &        &        & 03:54  & 04:10  &       \\ \hline 
-20		& Single Vent	& Transitional Half Bale Whip      & 00:13  & 00:29  & 00:12  & N/A    & 00:14  & 00:49  & 01:02  & 01:00 \\ \hline 
-21		& Single Vent	& Transitional Half Bale Whip      & 00:14  & 00:07  & 00:40  & N/A    & 00:14  & 00:47  & 01:01  & 00:40 \\ \hline 
-22		& Single Vent	& Transitional Half Bale Whip      & 00:22  & 00:07  & 00:04  & 00:47  & 00:43  & 00:36  & 01:17  & 01:29 \\ \hline 
-23		& Two Vent   	& Occlude Opening 1 Window         & 00:16  & 00:08  & 00:07  & 01:01  & 00:35  & 00:36  & 01:07  & 01:35 \\ \hline 
-24		& Two Vent   	& Transitional Fog Whip Both Rooms & 00:43  & 00:18  & 00:13  & N/A    & 00:14  & 01:42  & 01:11  & 01:22 \\ \hline \hline
+Experiment & Ventilation Configuration & "Door Read" & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+
+1 		& No Vent     & N/A    & N/A    & N/A    & 18:33 & 19:32   & N/A   \\ \hline 
+3 		& No Vent     & N/A    & 00:47  & 00:41  & 00:12  & 00:54  & 01:04 \\ \hline 
+5 		& No Vent     & 00:12  & 00:41  & 00:32  & 00:21  & 00:59  & 01:00 \\ \hline  
+6 		& No Vent     & 00:14  & 00:40  & 00:32  & 00:23  & 01:00  & 00:54 \\ \hline 
+8 		& Single Vent & 00:13  & 00:39  & 00:32  & 00:28  & 00:58  & 00:53 \\ \hline 
+10		& Single Vent & 00:11  & 00:41  & 00:32  & 00:20  & 00:55  & 00:56 \\ \hline 
+14		& Two Vent    & 00:13  & 00:41  & 00:34  & 00:21  & 00:55  & 00:53 \\ \hline  
+15		& Two Vent    & N/A    & 00:48  & 00:40  & 00:20  & 00:52  & 01:04 \\ \hline 
+\end{tabular}
+\end{table} 
+
+\begin{table} [H]
+\centering
+\caption{Summary of Tatic Times for Interior Flow and Move Attack (Time~min:sec)}
+\begin{tabular}{|C{0.05\textwidth}|C{0.15\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
+\hline
+
+Experiment & Ventilation Configuration & "Door Read" & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+
+2 		& No Vent    	& 00:12  & 00:36  & 00:33  & 00:22  & 01:19  & 00:56 \\ \hline  
+4 		& No Vent    	& 00:12  & 00:34  & 00:25  & 00:20  & 00:54  & 00:52 \\ \hline  
+7 		& Single Vent	& 00:11  & 00:32  & 00:22  & 00:16  & 00:40  & 00:49 \\ \hline  
+9 		& Single Vent	& 00:11  & 00:22  & 00:19  & 00:21  & 00:42  & 00:37 \\ \hline  
+11		& Single Vent	& 00:10  & 00:29  & 00:23  & 00:22  & 00:45  & 00:47 \\ \hline  
+12		& Single Vent	& N/A    & N/A    & N/A    & 07:39  & 08:14  & N/A   \\ \hline  
+13		& Two Vent   	& 00:11  & 00:42  & 00:32  & 00:25  & 00:57  & 01:03 \\ \hline  
+16		& Two Vent   	& 00:10  & 00:38  & 00:26  & 00:19  & 00:45  & 00:54 \\ \hline  
+17		& Two Vent   	& N/A    & N/A    & N/A    & 05:12  & 05:35  & N/A   \\ \hline
+\end{tabular}
+\end{table} 
+
+
+% To turn the page along with the table for .pdf purposes 
+\begin{landscape}
+\begin{table} [H]
+\centering
+\caption{Summary of Tatic Times for Transitional Attack (Time~min:sec)}
+\begin{tabular}{|C{0.05\textwidth}|C{0.15\textwidth}|C{0.20\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
+\hline
+
+Experiment & Ventilation Configuration & Tactic & Exterior Flow & Exterior Travel & "Door Read" & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+  
+18		& Single Vent	& No Whip             & 00:10  & 00:07  & 00:07  & 00:06  & 00:15  & 00:27  & 00:46  & 00:48 \\ \hline 
+19		& Single Vent	& Fog Whip Delayed    & 00:11 Fog 00:18 Stright Stream & 00:21  & N/A    &        &        & 03:54  & 04:10  &       \\ \hline 
+20		& Single Vent	& Half Bale Whip      & 00:13  & 00:29  & 00:12  & N/A    & 00:14  & 00:49  & 01:02  & 01:00 \\ \hline 
+21		& Single Vent	& Half Bale Whip      & 00:14  & 00:07  & 00:40  & N/A    & 00:14  & 00:47  & 01:01  & 00:40 \\ \hline 
+22		& Single Vent	& Half Bale Whip      & 00:22  & 00:07  & 00:04  & 00:47  & 00:43  & 00:36  & 01:17  & 01:29 \\ \hline 
+23		& Two Vent   	& Occlude Opening 1 Window & 00:16  & 00:08  & 00:07  & 01:01  & 00:35  & 00:36  & 01:07  & 01:35 \\ \hline 
+24		& Two Vent   	& Fog Whip Both Rooms & 00:43  & 00:18  & 00:13  & N/A    & 00:14  & 01:42  & 01:11  & 01:22 \\ \hline \hline
 
 % Average$^1$& \cellcolor{gray}	& \cellcolor{gray}         & 00:28  & 00:58 \\ \hline 
 % Std Dev$^1$& \cellcolor{gray}	& \cellcolor{gray}         & 00:15  & 00:14 \\ \hline \hline
@@ -2811,6 +2837,7 @@ Note: Experiments where delayed suppression occurred excluded from averages. \\
 2 \- Average and Std. Dev. includes all interior experiments; 2-11, 13-16, 18, and 20-24. \\
 3 \- Average and Std. Dev. includes all transitional experiments; 18, and 20-24. \\
 \end{table} 
+\end{landscape}
 
 \section{Impact of Water Usage}
 The amount of water used during each suppression tactic was measured from the start of the experiment until the fire was extinguished. Some hot spots remained, however no visible flame or smoldering existed. Figure \ref{fig:water_flow_all} illustrates the water used in all experiments. The average water used varied from as little as 30.6 gallons in a single room exterior attack to as much as 257.2 gallons in a two room interior attack.
