@@ -316,7 +316,7 @@ for section in experiment.keys():
 
 print ('---------------------------------Plotting Thermal Classes Plot -----------------------------')
 
-experiments = ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data', 'Experiment_18_Data', 'Experiment_20_Data', 'Experiment_21_Data', 'Experiment_22_Data']
+experiments = ['Experiment_1_Data', 'Experiment_7_Data', 'Experiment_12_Data', 'Experiment_17_Data', 'Experiment_18_Data', 'Experiment_20_Data', 'Experiment_21_Data', 'Experiment_22_Data']
 
 channels = pd.DataFrame({'Location':['End Hall 1 FT', 'End Hall 3 FT', 'End Hall 5 FT', 'Mid Hall 1 FT', 'Start Hall 1 FT'], 
 						'Temp':['3TC1','3TC3','3TC5','4TC1','5TC1'], 
@@ -325,7 +325,7 @@ channels = pd.DataFrame({'Location':['End Hall 1 FT', 'End Hall 3 FT', 'End Hall
 
 vent_info = pd.read_csv(info_location + 'Vent_Info_Events.csv').set_index('Event')
 
-times = {'Experiment_1_Data':408, 'Experiment_12_Data':324, 'Experiment_17_Data':312, 'Experiment_18_Data':342, 'Experiment_20_Data':454, 'Experiment_21_Data':425, 'Experiment_22_Data':343}
+times = {'Experiment_1_Data':408, 'Experiment_7_Data':382, 'Experiment_12_Data':324, 'Experiment_17_Data':312, 'Experiment_18_Data':342, 'Experiment_20_Data':454, 'Experiment_21_Data':425, 'Experiment_22_Data':343}
 
 plot_data = {}
 
@@ -391,7 +391,7 @@ for exp in experiments:
 	if not os.path.exists(output_location + '/Thermal_Class/'):
 		os.makedirs(output_location + '/Thermal_Class/')
 
-	plt.savefig(output_location + '/Thermal_Class/'  + exp[:-4] + 'Thermal_Exposure.pdf')
+	plt.savefig(output_location + '/Thermal_Class/'  + exp[:-4] + '_' + str(times[exp]) +'_Thermal_Exposure.pdf')
 	plt.close('all')
 
 print ('---------------------------------Plotting Gas Cooling Plots -----------------------------')
