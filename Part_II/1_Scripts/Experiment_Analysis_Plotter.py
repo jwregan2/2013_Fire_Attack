@@ -316,8 +316,6 @@ for section in experiment.keys():
 
 print ('---------------------------------Plotting Thermal Classes Plot -----------------------------')
 
-experiments = ['Experiment_1_Data', 'Experiment_7_Data', 'Experiment_12_Data', 'Experiment_17_Data', 'Experiment_18_Data', 'Experiment_20_Data', 'Experiment_21_Data', 'Experiment_22_Data']
-
 channels = pd.DataFrame({'Location':['End Hall 1 FT', 'End Hall 3 FT', 'End Hall 5 FT', 'Mid Hall 1 FT', 'Start Hall 1 FT'], 
 						'Temp':['3TC1','3TC3','3TC5','4TC1','5TC1'], 
 						'Heat_Flux':['1HF1','1HF3','1HF5','2HF','3HF']})
@@ -325,74 +323,80 @@ channels = pd.DataFrame({'Location':['End Hall 1 FT', 'End Hall 3 FT', 'End Hall
 
 vent_info = pd.read_csv(info_location + 'Vent_Info_Events.csv').set_index('Event')
 
-times = {'Experiment_1_Data':408, 'Experiment_7_Data':382, 'Experiment_12_Data':324, 'Experiment_17_Data':312, 'Experiment_18_Data':342, 'Experiment_20_Data':454, 'Experiment_21_Data':425, 'Experiment_22_Data':343}
+charts = {'Experiment_1_Data':[544], 'Experiment_4_Data':[504,544], 'Experiment_7_Data':[352,392], 'Experiment_12_Data':[392], 'Experiment_13_Data':[341,381],
+		 'Experiment_17_Data':[336], 'Experiment_18_Data':[290,336], 'Experiment_20_Data':[454], 'Experiment_21_Data':[425], 'Experiment_22_Data':[313,354]}
+
+# charts = {'Experiment_18_Data':[290,326]}
 
 plot_data = {}
 
-for exp in experiments:
-	data_temp = []
-	data_HF = []
-	location = []
-	for chan in channels.index:
+for exp in charts.keys():
+	for time in charts[exp]:
+		data_temp = []
+		data_HF = []
+		location = []
+		for chan in channels.index:
 
-		location.append(channels['Location'][chan])
-		# data_temp.append((all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean()-32)*5/9)
-		data_temp.append(all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+30].mean())
-		data_HF.append(all_exp_data[exp][channels['Heat_Flux'][chan]][times[exp]:times[exp]+30].mean())
+			location.append(channels['Location'][chan])
+			# data_temp.append((all_exp_data[exp][channels['Temp'][chan]][times[exp]:times[exp]+60].mean()-32)*5/9)
 
-	data_HF = [0.15 if d < 0 else d for d in data_HF]
-	plot_data[exp] = list(zip(location, data_HF, data_temp))
+			data_temp.append(all_exp_data[exp][channels['Temp'][chan]].ix[time:time+30].mean())
+			data_HF.append(all_exp_data[exp][channels['Heat_Flux'][chan]].ix[time:time+30].mean())
 
-for exp in experiments:
-	print ('Plotting ' + exp.replace('_', ' '))
-	fig = plt.figure()
-	fig.set_size_inches(8, 6)
-	ax = plt.gca()
+		data_HF = [0.15 if d < 0 else d for d in data_HF]
+		plot_data[exp + '_' + str(time)] = list(zip(location, data_HF, data_temp))
 
-	ax.set_xlabel('Heat Flux (kW/m$^2$)',fontsize=16)
-	ax.set_ylabel('Temperature ($^{\circ}$F)',fontsize=16)
-	ax.set_axisbelow(True)
-	plt.grid(linestyle='-',linewidth = 1.5)
-	ax.set_xscale('log')
-	ax.set_yscale('log')
-	ax.set_xlim([.1,200])
-	ax.set_ylim([(10*(9/5)+32),1200*(9/5)+32])
-	plt.xticks(fontsize=16)
-	plt.yticks(fontsize=16)
-	for axis in [ax.xaxis, ax.yaxis]:
-			 axis.set_major_formatter(ScalarFormatter())
+for exp in charts.keys():
+	for time in charts[exp]:
+		print ('Plotting ' + exp.replace('_', ' '))
+		fig = plt.figure()
+		fig.set_size_inches(8, 6)
+		ax = plt.gca()
 
-	plt.fill_between([0,200],[(10*(9/5)+32),(10*(9/5)-32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.4)
-	plt.fill_between([12,200],[(200*(9/5)+32),(200*(9/5)+32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.86)
-	plt.text(60, 430*(9/5)+32, 'EMERGENCY', va='center', ha='center', color='white', fontsize=16)
+		ax.set_xlabel('Heat Flux (kW/m$^2$)',fontsize=16)
+		ax.set_ylabel('Temperature ($^{\circ}$F)',fontsize=16)
+		ax.set_axisbelow(True)
+		plt.grid(linestyle='-',linewidth = 1.5)
+		ax.set_xscale('log')
+		ax.set_yscale('log')
+		ax.set_xlim([.1,200])
+		ax.set_ylim([(10*(9/5)+32),1200*(9/5)+32])
+		plt.xticks(fontsize=16)
+		plt.yticks(fontsize=16)
+		for axis in [ax.xaxis, ax.yaxis]:
+				 axis.set_major_formatter(ScalarFormatter())
 
-	plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'w')
-	plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y', alpha = 0.4)
-	plt.fill_between([2,12],[(70*(9/5)+32),(70*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y',alpha=0.85)
-	plt.text(4.75, 115*(9/5)+32, 'ORDINARY', va='center', ha='center', color='white', fontsize=16)
+		plt.fill_between([0,200],[(10*(9/5)+32),(10*(9/5)-32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.4)
+		plt.fill_between([12,200],[(200*(9/5)+32),(200*(9/5)+32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.86)
+		plt.text(60, 430*(9/5)+32, 'EMERGENCY', va='center', ha='center', color='white', fontsize=16)
 
-	plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'w')
-	plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g', alpha = 0.4)
-	plt.fill_between([1,2], [(20*(9/5)+32),(20*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g' , alpha=0.85)
-	plt.text(1.4, 39*(9/5)+32,'R\nO\nU\nT\nI\nN\nE', va='center', ha='center', color='white', fontsize=16, linespacing=.8)
+		plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'w')
+		plt.fill_between([0,12],[(10*(9/5)+32),(10*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y', alpha = 0.4)
+		plt.fill_between([2,12],[(70*(9/5)+32),(70*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y',alpha=0.85)
+		plt.text(4.75, 115*(9/5)+32, 'ORDINARY', va='center', ha='center', color='white', fontsize=16)
 
-	# Plot style - cycle through 20 color pallet and define markers to cycle through
-	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-	plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+		plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'w')
+		plt.fill_between([0,2], [(10*(9/5)+32),(10*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g', alpha = 0.4)
+		plt.fill_between([1,2], [(20*(9/5)+32),(20*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g' , alpha=0.85)
+		plt.text(1.4, 39*(9/5)+32,'R\nO\nU\nT\nI\nN\nE', va='center', ha='center', color='white', fontsize=16, linespacing=.8)
 
-	for point in plot_data[exp]:
-		plt.plot(point[1],point[2], label = point[0], marker = next(plot_markers), color='black', markersize = 10, linestyle='none' )
-		# plt.text(point[1],point[2], exp[11:-5], va='center', ha='center', color = 'w', fontsize=10)
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-	plt.legend(channels['Location'].tolist(), numpoints=1, loc='upper left')
-	fig.set_size_inches(10, 7)
-	plt.tight_layout()	
+		for point in plot_data[exp + '_' + str(time)]:
+			plt.plot(point[1],point[2], label = point[0], marker = next(plot_markers), color='black', markersize = 10, linestyle='none' )
+			# plt.text(point[1],point[2], exp[11:-5], va='center', ha='center', color = 'w', fontsize=10)
 
-	if not os.path.exists(output_location + '/Thermal_Class/'):
-		os.makedirs(output_location + '/Thermal_Class/')
+		plt.legend(channels['Location'].tolist(), numpoints=1, loc='upper left')
+		fig.set_size_inches(10, 7)
+		plt.tight_layout()	
 
-	plt.savefig(output_location + '/Thermal_Class/'  + exp[:-4] + '_' + str(times[exp]) +'_Thermal_Exposure.pdf')
-	plt.close('all')
+		if not os.path.exists(output_location + '/Thermal_Class/'):
+			os.makedirs(output_location + '/Thermal_Class/')
+
+		plt.savefig(output_location + '/Thermal_Class/'  + exp[:-4] + str(time) +'_Thermal_Exposure.pdf')
+		plt.close('all')
 
 print ('---------------------------------Plotting Gas Cooling Plots -----------------------------')
 
