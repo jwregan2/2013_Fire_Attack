@@ -593,14 +593,16 @@ for exp in natsorted(experiments):
 
 print ('-------------------------------------- Developing Necrosis Depth Table and Plotting Comparison Charts----------------------------------')
 
-for vic in ['Vic 1 necrosis depth', 'Vic 3 necrosis depth']:
+plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+
+for vic in ['Vic 1 necrosis depth', 'Vic 3 necrosis depth', 'Vic 1, surface necrosis', 'Vic 3, surface necrosis']:
 	necrosis_table = pd.DataFrame({'Experiment':[], 'Ignition':[], '5_Seconds_Prior':[], '60_Seconds_Post':[], 
 									 'Max_Value':[], }).set_index('Experiment')
 
 	vent_info = pd.read_csv(info_location + 'Water_Flow_Info.csv')
 
 	for vent in vent_info:
-		print ('	------------ No Vent Experiments ------------')
+		print ('	------------ Plotting ' + vent.replace('_',' ') + ' ' + vic.replace(',','') + ' ------------')
 		for exp in natsorted(vent_info[vent].dropna()):
 			print ('	Plotting ' + exp[:-5])
 
@@ -608,46 +610,56 @@ for vic in ['Vic 1 necrosis depth', 'Vic 3 necrosis depth']:
 			# ******************************************* Plotting Necrosis Depth Comparison Charts *******************************************
 			# *********************************************************************************************************************************
 			# Create figure
-			# fig = plt.figure()
-			# fig.set_size_inches(8, 6)
-			# plt.xticks(fontsize=28)
-			# plt.yticks(fontsize=28)
-			# plt.grid(True)
+			fig = plt.figure()
+			fig.set_size_inches(20, 16)
+			plt.xticks(fontsize=28)
+			plt.yticks(fontsize=28)
+			plt.grid(True)
+			ax1 = plt.gca()
 
-			# # Plot style - cycle through 20 color pallet and define markers to cycle through
-			# plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-			# plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+			# Plot style - cycle through 20 color pallet and define markers to cycle through
+			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-			# # ax1.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
+			ax1.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
 
 
-			# # ax1.plot(all_skin_data[exp].index, all_skin_data[exp][vic], label=vic, marker=next(plot_markers), markevery=10)
+			ax1.plot(all_skin_data[exp].index, all_skin_data[exp][vic], label=vic, marker=next(plot_markers), markevery=20 )
 
 			# # Plot the events on a secondary x axis. 
-			# # ax3.set_xlim(0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60)
+			# ax3.set_xlim(0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60)
 
-			# i = 0
+			i = 0
 
-			# EventTime = np.empty(len(all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index))
-			# EventTime[:] = nan
-			# EventLabel = ['']*len(all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index)
+			EventTime = np.empty(len(all_exp_events[exp[:-4]+'Events']['Results_Time'].dropna().index))
+			EventTime[:] = nan
+			EventLabel = ['']*len(all_exp_events[exp[:-4]+'Events']['Results_Time'].dropna().index)
 
-			# for e in all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index:
-			# 	EventTime[i] = all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds'][e]/60
-			# 	EventLabel[i] = e
-			# 	plt.axvline(EventTime[i],color='0',lw=2) 
-			# 	i = i + 1
+			for e in all_exp_events[exp[:-4]+'Events']['Results_Time'].dropna().index:
+				EventTime[i] = all_exp_events[exp[:-4]+'Events']['Results_Time_Seconds'][e]/60
+				EventLabel[i] = e
+				plt.axvline(EventTime[i],color='0',lw=2) 
+				i = i + 1
 
-			# plt.ylim([0,12])
-			# ax1.set_yticks(np.arange(0, 12, 1))
+				
 
-			# ax1.legend(fontsize=24, handlelength=2)
-			# plt.subplots_adjust(top=0.80)
-			# ax1.set_xlabel('Time (Minutes)', fontsize=38)
-			# ax1.set_ylabel('Necrosis Depth (mm)', fontsize=38)
-			# plt.xticks(fontsize=28)
-			# plt.yticks(fontsize=28)
-			# plt.tight_layout()
+			plt.ylim([0,12])
+			ax1.set_yticks(np.arange(0, 12, 1))
+
+			ax1.legend(fontsize=24, handlelength=2)
+			plt.subplots_adjust(top=0.80)
+			ax1.set_xlabel('Time (Minutes)', fontsize=38)
+			ax1.set_ylabel('Necrosis Depth (mm)', fontsize=38)
+			plt.xticks(fontsize=28)
+			plt.yticks(fontsize=28)
+			plt.tight_layout()
+
+			# Save Figure
+			if not os.path.exists(output_location + '/Skin_Necrosis/' + exp + '/'):
+				os.makedirs(output_location + '/Skin_Necrosis/' + exp + '/')
+
+			plt.savefig(output_location + '/Skin_Necrosis/' + exp + '/' + vic.replace(' ','_').replace(',','') + '.pdf')
+			plt.close('all')
 
 			# *********************************************************************************************************************************
 			# *********************************************** Building Necrosis Depth Table ***************************************************
@@ -688,9 +700,6 @@ for vic in ['Vic 1 necrosis depth', 'Vic 3 necrosis depth']:
 	necrosis_table.index = [x.strip().replace('_', ' ') for x in necrosis_table.index]
 
 	necrosis_table.to_latex('../5_Report/' + vic[:5].replace(' ', '_') + '_Necrosis_Depth_Table.tex')
-
-	# Save Figure
-
 
 print ('---------- Plotting Moisture Charts by Vent & Location -----')
 
@@ -750,9 +759,9 @@ for vent in exp_info.groupby('Vent').groups.keys():
 		plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '.pdf' )
 		plt.close('all')
 
-# ****************************************************************************************************************************************
-# ************************* This was an attempt at plotting average moisture. Data was not robust enough to work *************************
-# ****************************************************************************************************************************************
+# # ****************************************************************************************************************************************
+# # ************************* This was an attempt at plotting average moisture. Data was not robust enough to work *************************
+# # ****************************************************************************************************************************************
 
 # print ('---------- Average Moisture Charts by Vent & Location -----')
 
