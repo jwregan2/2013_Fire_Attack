@@ -1,3 +1,30 @@
 \clearpage		\large
 \chapter{Blood Perfusion \& Skin Damage Model} \label{App:blood_perfusion}
 
+The current, pig skin temperature data provides an estimate of the temperature response for dead skin. However, this fails to account for one of the key cooling mechanisms of live skin, which is blood perfusion, i.e. the impact of blood flowing through the skin and removing (or providing) heat. In order to account for blood perfusion, the 1-D heat diffusion must be modified slightly. With the ability to estimate heat flux to the skin surface accurately, equation \ref{equ_1} can be updated to include an additional term as shown in \ref{equ_5}.
+
+\begin{equation} \label{equ_5} \alpha \frac{d^2T(x,t)}{dx^2} + \frac{C_BG_B(T_B-T(x,t))}{C} = \frac{dT(x,t)}{dt} \end{equation}
+
+Where $C_B$ is the volumetric specific heat of blood
+
+\noindent\hangindent3em\hangafter0
+$G_B$ is the blood perfusion rate\\
+$C$ is the volumetric specific heat of skin\\
+$T_B$ is the blood temperature\\
+
+To account for the effect of tissue damage, an Arrhenius integral formulation is used to define the damage (necrosis), $\theta(x)$ \ref{equ_6}, which is then used to adjust the blood perfusion rate \ref{equ_7} [37, 38]:
+
+\begin{equation} \label{equ_6} 0(x) = \int\limits_0^t A exp(-\frac{\Delta E}{RT(x,t)}) dt \end{equation}
+\begin{equation} \label{equ_7} G_B(\theta) = 
+\begin{cases}
+(1+25\theta-260\theta^2)G_{BO}, 	& 0 \textless \theta \leq 0.1 \\
+(1-\theta)G_{BO},					& 0.1 \textless \theta \leq 1 \\
+0, 									& \theta \textgreater 1\\
+\end{cases}
+\end{equation}
+
+Equation \ref{equ_6} is identical to the Henriques equation proposed by Stoll et al. Second degree burn occurs when the skin depth is between the epidermis and dermis and $\theta$ is equal to one. A third degree burn occurs when $\theta$ is equal to one at a depth between the dermis and subcutaneous layers.20 Information from burn models regarding thresholds of time and temperature for injury will help set parameters for future experiments to be performed.
+
+Further details on the use of pig skin surface temperatures to measure heat flux and the use of the blood perfusion model can be found in \cite{Residential_Tenability}.
+
+
