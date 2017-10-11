@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import pickle
+import os
 
 data_location = '../2_Data/'
 
@@ -12,7 +13,7 @@ output_location = '../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imagin
 if not os.path.exists(output_location):
 	os.makedirs(output_location)
 
-Plot TIC Data from Exp_12
+# Plot TIC Data from Exp_12
 tic_data = pd.read_csv(data_location + 'TIC_Data/Experiment_12_Data_2.csv').set_index('Time')
 
 plt.plot(all_exp_data['Experiment_12_Data']['1TCV7'], label='7ft Temperature')
@@ -28,7 +29,7 @@ plt.xlabel('Time (Seconds)', fontsize=14)
 plt.ylabel('Temperature ($^\circ$F)', fontsize=14)
 plt.savefig('../0_Images/Script_Figures/TIC_12.png')
 
-Plot TIC Data from Exp_1
+# Plot TIC Data from Exp_1
 tic_data = pd.read_csv(data_location + 'TIC_Data/Experiment_1_Data.csv').set_index('Time')
 
 plt.plot(all_exp_data['Experiment_1_Data']['1TCV7'], label='7ft Temperature')
@@ -43,7 +44,7 @@ plt.xlabel('Time (Seconds)', fontsize=14)
 plt.ylabel('Temperature ($^\circ$F)', fontsize=14)
 plt.savefig('../0_Images/Script_Figures/TIC_1.png')
 
-Plot TIC Data from Exp_17
+# Plot TIC Data from Exp_17
 tic_data = pd.read_csv(data_location + 'TIC_Data/Experiment_17_Data.csv').set_index('Time')
 
 plt.plot(all_exp_data['Experiment_17_Data']['1TCV7'], label='7ft Temperature')
@@ -58,7 +59,7 @@ plt.xlabel('Time (Seconds)', fontsize=14)
 plt.ylabel('Temperature ($^\circ$F)', fontsize=14)
 plt.savefig('../0_Images/Script_Figures/TIC_17.png')
 
-Plot TIC Data from Exp_19
+# Plot TIC Data from Exp_19
 tic_data = pd.read_csv(data_location + 'TIC_Data/Experiment_19_Data.csv').set_index('Time')
 
 plt.plot(all_exp_data['Experiment_19_Data']['1TCV7'], label='7ft Temperature')
