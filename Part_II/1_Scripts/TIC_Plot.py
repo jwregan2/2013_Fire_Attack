@@ -6,6 +6,11 @@ data_location = '../2_Data/'
 
 all_exp_data = pickle.load(open(data_location + 'all_exp_data.dict', 'rb'))
 
+output_location = '../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/'
+
+# If the folder doesn't exist create it.
+if not os.path.exists(output_location):
+	os.makedirs(output_location)
 
 Plot TIC Data from Exp_12
 tic_data = pd.read_csv(data_location + 'TIC_Data/Experiment_12_Data.csv').set_index('Time')

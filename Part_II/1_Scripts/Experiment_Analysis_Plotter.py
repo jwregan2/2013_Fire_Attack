@@ -591,24 +591,19 @@ for exp in natsorted(experiments):
 		print ('	Reading ' + exp[:-4].replace('_', ' '))
 		all_skin_data[exp[:-4]] = pd.read_csv(data_location_skin_temp + exp).set_index('Time')
 
-print ('-------------------------------------- Developing Necrosis Depth Table and Plotting Comparison Charts----------------------------------')
+print ('-------------------------------------- Developing Necrosis Depth Charts----------------------------------')
 
 plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 
-for vic in ['Vic 1 necrosis depth', 'Vic 3 necrosis depth', 'Vic 1, surface necrosis', 'Vic 3, surface necrosis']:
-	necrosis_table = pd.DataFrame({'Experiment':[], 'Ignition':[], '5_Seconds_Prior':[], '60_Seconds_Post':[], 
-									 'Max_Value':[], }).set_index('Experiment')
+vent_info = pd.read_csv(info_location + 'Water_Flow_Info.csv')
 
-	vent_info = pd.read_csv(info_location + 'Water_Flow_Info.csv')
+for vent in vent_info:
+	print ('	------------ Plotting ' + vent.replace('_',' ') + ' ------------')
+	for exp in natsorted(vent_info[vent].dropna()):
+		print ('	Plotting ' + exp[:-5])
 
-	for vent in vent_info:
-		print ('	------------ Plotting ' + vent.replace('_',' ') + ' ' + vic.replace(',','') + ' ------------')
-		for exp in natsorted(vent_info[vent].dropna()):
-			print ('	Plotting ' + exp[:-5])
+		for vic in ['Vic 1', 'Vic 3']:
 
-			# *********************************************************************************************************************************
-			# ******************************************* Plotting Necrosis Depth Comparison Charts *******************************************
-			# *********************************************************************************************************************************
 			# Create figure
 			fig = plt.figure()
 			fig.set_size_inches(20, 16)
@@ -621,30 +616,51 @@ for vic in ['Vic 1 necrosis depth', 'Vic 3 necrosis depth', 'Vic 1, surface necr
 			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-			ax1.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
+			# *********************************************************************************************************************************
+			# ******************************************* Plotting Necrosis Depth Charts ******************************************************
+			# *********************************************************************************************************************************
+			x_min = all_exp_events[exp[:-5] +'_Events']['Time_Seconds']['Front Door Open']/60
+			x_max = (all_exp_events[exp[:-5] +'_Events']['Time_Seconds'][-2] + 30)/60 
 
 
-			ax1.plot(all_skin_data[exp].index, all_skin_data[exp][vic], label=vic, marker=next(plot_markers), markevery=20 )
+			ax1.plot(all_skin_data[exp].index, all_skin_data[exp][vic + ' necrosis depth'], label='Necrosis Depth', marker=next(plot_markers), markevery=20 )
+			ax1.plot(all_skin_data[exp].index, all_skin_data[exp][vic + ', surface necrosis'], label='Surface Necrosis', marker=next(plot_markers), markevery=20 )
 
+			ax1.set_xlim(x_min, x_max)
 			# # Plot the events on a secondary x axis. 
 			# ax3.set_xlim(0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60)
 
+			ax3=ax1.twiny()
+			ax3.set_xlim(x_min, x_max)
+			
 			i = 0
 
-			EventTime = np.empty(len(all_exp_events[exp[:-4]+'Events']['Results_Time'].dropna().index))
+			if 'Flow_Time_Seconds' in all_exp_events[exp[:-4]+'Events']:
+				events = 'Flow_Time_Seconds'
+			else:
+				events = 'Time_Seconds'
+
+			EventTime = np.empty(len(all_exp_events[exp[:-4]+'Events'][events].dropna().index))
 			EventTime[:] = nan
-			EventLabel = ['']*len(all_exp_events[exp[:-4]+'Events']['Results_Time'].dropna().index)
+			EventLabel = ['']*len(all_exp_events[exp[:-4]+'Events'][events].dropna().index)
 
-			for e in all_exp_events[exp[:-4]+'Events']['Results_Time'].dropna().index:
-				EventTime[i] = all_exp_events[exp[:-4]+'Events']['Results_Time_Seconds'][e]/60
-				EventLabel[i] = e
-				plt.axvline(EventTime[i],color='0',lw=2) 
-				i = i + 1
+			for e in all_exp_events[exp[:-4]+'Events'][events].dropna().index:
+				if e not in ['Ignition', 'End Experiment', 'Burst Suppression', 'Suppression Crew Enters']:
+					EventTime[i] = all_exp_events[exp[:-4]+'Events'][events][e]/60
+					EventLabel[i] = e
+					plt.axvline(EventTime[i],color='0',lw=2) 
+					i = i + 1
 
-				
+			ax3.set_xticks(EventTime)
+			plt.setp(plt.xticks()[1], rotation=67.5)		
+			ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')
 
-			plt.ylim([0,12])
-			ax1.set_yticks(np.arange(0, 12, 1))
+			# if exp in ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data']:
+			# 	plt.ylim([0,12])
+			# 	ax1.set_yticks(np.arange(0, 12, 1))
+			# else:
+			# 	plt.ylim([0,2])
+			# 	ax1.set_yticks(np.arange(0, 2, 0.25))
 
 			ax1.legend(fontsize=24, handlelength=2)
 			plt.subplots_adjust(top=0.80)
@@ -661,45 +677,63 @@ for vic in ['Vic 1 necrosis depth', 'Vic 3 necrosis depth', 'Vic 1, surface necr
 			plt.savefig(output_location + '/Skin_Necrosis/' + exp + '/' + vic.replace(' ','_').replace(',','') + '.pdf')
 			plt.close('all')
 
-			# *********************************************************************************************************************************
-			# *********************************************** Building Necrosis Depth Table ***************************************************
-			# *********************************************************************************************************************************
+# *********************************************************************************************************************************
+# *********************************************** Building Necrosis Depth Table ***************************************************
+# *********************************************************************************************************************************
 
+print ('---------------- Building Necrosis Depth Tables -----------------------')
+
+
+necrosis_table = pd.DataFrame({'Experiment':[], 'Ignition':[], '5_Seconds_Prior':[], '30_Seconds_Post':[], 
+								 'Max_Value':[], }).set_index('Experiment')
+
+surface_necrosis_table = pd.DataFrame({'Experiment':[], 'Ignition':[], '5_Seconds_Prior':[], '30_Seconds_Post':[], 
+								 'Max_Value':[], }).set_index('Experiment')
+
+for vic in ['Vic 1', 'Vic 3']:
+
+	for vent in vent_info:
+		for exp in natsorted(vent_info[vent].dropna()):
 			ignition = all_exp_events[exp[:-4]+'Events']['Results_Time_Seconds'].min()
 			
 			if 'Flow_Time' not in all_exp_events[exp[:-4]+'Events']:
-				flow_time = all_exp_events[exp[:-4]+'Events']['Results_Time_Seconds'].dropna()[1]
+				flow_time = all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression']
+			elif int(exp[11:-5]) < 18:
+				flow_time = all_exp_events[exp[:-4]+'Events']['Flow_Time']['Hall Suppression']
 			else:
-				flow_time = all_exp_events[exp[:-4]+'Events']['Flow_Time'].min()
+				flow_time = flow_time = all_exp_events[exp[:-4]+'Events']['Flow_Time'].min()
 
-			necrosis_table.ix[exp, 'Ignition'] = all_skin_data[exp][all_skin_data[exp].index > (ignition)/60][vic].iloc[0]
+			necrosis_table.ix[exp, 'Ignition'] = all_skin_data[exp][all_skin_data[exp].index > (ignition)/60][vic + ' necrosis depth'].iloc[0]
+			surface_necrosis_table.ix[exp, 'Ignition'] = all_skin_data[exp][all_skin_data[exp].index > (ignition)/60][vic + ' necrosis depth'].iloc[0]
 			
-			necrosis_table.ix[exp, '5_Seconds_Prior'] = all_skin_data[exp][all_skin_data[exp].index > (flow_time-5)/60].iloc[0][vic]
-			necrosis_table.ix[exp, '60_Seconds_Post'] = all_skin_data[exp][all_skin_data[exp].index > (flow_time+60)/60].iloc[0][vic]
-			necrosis_table.ix[exp, 'Max_Value'] = all_skin_data[exp].ix[all_skin_data[exp].index > 0][vic].max()
-			# necrosis_table.ix[exp, 'Increase_Prior'] = necrosis_table.ix[exp, '5_Seconds_Prior'] - necrosis_table.ix[exp, 'Ignition']
-			# necrosis_table.ix[exp, 'Increase_Post'] = necrosis_table.ix[exp, '60_Seconds_Post'] - necrosis_table.ix[exp, 'Ignition']
-			# necrosis_table.ix[exp, 'Increase_Max'] = necrosis_table.ix[exp, 'Max_Value'] - necrosis_table.ix[exp, 'Ignition']
+			necrosis_table.ix[exp, '5_Seconds_Prior'] = all_skin_data[exp][all_skin_data[exp].index > (flow_time-5)/60].iloc[0][vic + ' necrosis depth']
+			necrosis_table.ix[exp, '30_Seconds_Post'] = all_skin_data[exp][all_skin_data[exp].index > (flow_time+30)/60].iloc[0][vic + ' necrosis depth']
+			necrosis_table.ix[exp, 'Max_Value'] = all_skin_data[exp].ix[all_skin_data[exp].index > 0][vic + ' necrosis depth'].max()
+			surface_necrosis_table.ix[exp, '5_Seconds_Prior'] = all_skin_data[exp][all_skin_data[exp].index > (flow_time-5)/60].iloc[0][vic + ', surface necrosis']
+			surface_necrosis_table.ix[exp, '30_Seconds_Post'] = all_skin_data[exp][all_skin_data[exp].index > (flow_time+30)/60].iloc[0][vic + ', surface necrosis']
+			surface_necrosis_table.ix[exp, 'Max_Value'] = all_skin_data[exp].ix[all_skin_data[exp].index > 0][vic + ', surface necrosis'].max()
 		
 		necrosis_table.ix[vent] = necrosis_table.loc[[x for x in vent_info[vent].dropna() if x not in ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data']]].mean()	
+		surface_necrosis_table.ix[vent] = surface_necrosis_table.loc[[x for x in vent_info[vent].dropna() if x not in ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data']]].mean()	
 
 	necrosis_table = necrosis_table.round(3)
-
-	# necrosis_table['5_Seconds_Prior'] = necrosis_table['5_Seconds_Prior'].apply(str) + ' (' + necrosis_table['Increase_Prior'].apply(str) + ')'
-	# necrosis_table['60_Seconds_Post'] = necrosis_table['60_Seconds_Post'].apply(str) + ' (' + necrosis_table['Increase_Post'].apply(str) + ')'
-	# necrosis_table['Max_Value'] = necrosis_table['Max_Value'].apply(str) + ' (' + necrosis_table['Increase_Max'].apply(str) + ')'
+	surface_necrosis_table = necrosis_table.round(3)
 
 	necrosis_table = necrosis_table.replace('nan', 'N/A', regex=True)
+	surface_necrosis_table = surface_necrosis_table.replace('nan', 'N/A', regex=True)
 
-	necrosis_table = necrosis_table[['Ignition', '5_Seconds_Prior', '60_Seconds_Post', 'Max_Value',]]
-	# necrosis_table = necrosis_table.reindex(['Experiment_4', 'Experiment_6','Average_4_6', 'Experiment_18', 'Experiment_19', 'Average_18_19', 
-	# 										'Experiment_20', 'Experiment_7', 'Experiment_10', 'Experiment_11', 'Experiment_21', 'Average_7_10_11_21', 
-	# 										'Experiment_16', 'Experiment_13'])
+	necrosis_table = necrosis_table[['Ignition', '5_Seconds_Prior', '30_Seconds_Post', 'Max_Value',]]
+
+	surface_necrosis_table = surface_necrosis_table[['Ignition', '5_Seconds_Prior', '30_Seconds_Post', 'Max_Value',]]
 
 	necrosis_table.columns = [x.strip().replace('_', ' ') for x in necrosis_table.columns]
 	necrosis_table.index = [x.strip().replace('_', ' ') for x in necrosis_table.index]
+	surface_necrosis_table.columns = [x.strip().replace('_', ' ') for x in surface_necrosis_table.columns]
+	surface_necrosis_table.index = [x.strip().replace('_', ' ') for x in surface_necrosis_table.index]
 
-	necrosis_table.to_latex('../5_Report/' + vic[:5].replace(' ', '_') + '_Necrosis_Depth_Table.tex')
+	necrosis_table.to_latex('../5_Report/' + vic.replace('_',' ') + '_Necrosis_Depth_Table.tex')
+	surface_necrosis_table.to_latex('../5_Report/' + vic.replace('_',' ') + '_Surface_Necrosis_Depth_Table.tex')
+	print('	' + vic + ' Tables Built')
 
 print ('---------- Plotting Moisture Charts by Vent & Location -----')
 
@@ -717,7 +751,6 @@ for vent in exp_info.groupby('Vent').groups.keys():
 		# Create figure
 		fig = plt.figure()
 		fig.set_size_inches(8, 6)
-
 
 		# plt.style.use('ggplot')
 

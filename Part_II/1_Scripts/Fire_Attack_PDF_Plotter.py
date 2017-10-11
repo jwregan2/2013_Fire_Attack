@@ -26,6 +26,7 @@ def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
 # Set file locations
 
 data_location = '../2_Data/Smaller_Data/'
+data_location_gas_cooling = '../2_Data/'
 
 channel_location = '../3_Info/'
 
@@ -48,6 +49,9 @@ channel_list = channel_list.set_index('Channel')
 # Create groups data by grouping channels for 'Chart'
 channel_groups = channel_list.groupby('Primary_Chart')
 # channel_groups = channel_list.groupby('Secondary_Chart')
+
+#List of Channels for Experiment 25, Gas Cooling Plots
+all_gas_channels = pd.read_csv(info_location + 'Gas_Channels.csv').set_index('Channel')
 
 # Read in description of experiments
 Exp_Des = pd.read_csv(info_file)
@@ -81,284 +85,393 @@ for i in range(len(tableau20)):
 		r, g, b = tableau20[i]
 		tableau20[i] = (r / 255., g / 255., b / 255.)
 
-# # Loop through Experiment files
-for f in os.listdir(data_location):
-	if f.endswith('.csv'):
+# # # Loop through Experiment files
+# for f in os.listdir(data_location):
+# 	if f.endswith('.csv'):
 
-		# Skip files with time information or reduced data files
-		if any([substring in f.lower() for substring in skip_files]):
-			continue
+# 		# Skip files with time information or reduced data files
+# 		if any([substring in f.lower() for substring in skip_files]):
+# 			continue
 
-		# Read in experiment file
-		experiment = f
-		# exp = experiment[11:-9]
-		Exp_Data = pd.read_csv(data_location + experiment)
+# 		# Read in experiment file
+# 		experiment = f
+# 		# exp = experiment[11:-9]
+# 		Exp_Data = pd.read_csv(data_location + experiment)
 
-		# Get experiment name from file
-		Test_Name = experiment[:-4]
+# 		# Get experiment name from file
+# 		Test_Name = experiment[:-4]
 
-		# Grab experiment number from test name
-		Exp_Num = Test_Name[:-5]
+# 		# Grab experiment number from test name
+# 		Exp_Num = Test_Name[:-5]
 
-		# Set output location for results
-		if Test_Name == 'Experiment_27_Data':
-			output_location = output_location_init + 'Experiment_26_Data' + '/'
-		else:
-			output_location = output_location_init + Test_Name + '/'
+# 		# Set output location for results
+# 		if Test_Name == 'Experiment_27_Data':
+# 			output_location = output_location_init + 'Experiment_26_Data' + '/'
+# 		else:
+# 			output_location = output_location_init + Test_Name + '/'
 
-		# # If the folder exists delete it.
-		# if os.path.exists(output_location):
-		# 	shutil.rmtree(output_location)
+# 		# # If the folder exists delete it.
+# 		# if os.path.exists(output_location):
+# 		# 	shutil.rmtree(output_location)
 
-		# If the folder doesn't exist create it.
-		if not os.path.exists(output_location):
-			os.makedirs(output_location)
+# 		# If the folder doesn't exist create it.
+# 		if not os.path.exists(output_location):
+# 			os.makedirs(output_location)
 
-		# Get which house from description of events file
-		House = Exp_Des['House'][Test_Name]
+# 		# Get which house from description of events file
+# 		House = Exp_Des['House'][Test_Name]
 
-		# Get which data speed from description of events file
-		Speed = Exp_Des['Speed'][Test_Name]
+# 		# Get which data speed from description of events file
+# 		Speed = Exp_Des['Speed'][Test_Name]
 
-		# Read in each experiment event file
-		Events = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
+# 		# Read in each experiment event file
+# 		Events = pd.read_csv(channel_location + '/Events/' + Test_Name[:-4] + 'Events.csv')
 
-		# Set index of experiment events files to Event
-		Events = Events.set_index('Event')
+# 		# Set index of experiment events files to Event
+# 		Events = Events.set_index('Event')
 
-		print ()
-		print (Test_Name)
+# 		print ()
+# 		print (Test_Name)
 		 
-		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
-		if Speed == 'low':
-			#Set time to elapsed time column in experimental data.
-			Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
-			mark_freq = 15
+# 		# If statements to determine whether or not data is in high speed and assigning time accordingly based on data csv
+# 		if Speed == 'low':
+# 			#Set time to elapsed time column in experimental data.
+# 			Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
+# 			mark_freq = 15
 
-		if Speed == 'high':
-			#Set time to elapsed time column in experimental data.
-			Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
-			mark_freq = 5
+# 		if Speed == 'high':
+# 			#Set time to elapsed time column in experimental data.
+# 			Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
+# 			mark_freq = 5
 
-		# Pull ignition time from events csv file
-		Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
+# 		# Pull ignition time from events csv file
+# 		Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
 
-		# Adjust time for ignition offset
-		Time = [((t - Ignition).total_seconds())/60 for t in Time]
+# 		# Adjust time for ignition offset
+# 		Time = [((t - Ignition).total_seconds())/60 for t in Time]
 
-		#Get End of Experiment Time
-		End_Time = (datetime.datetime.strptime(Events['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
+# 		#Get End of Experiment Time
+# 		End_Time = (datetime.datetime.strptime(Events['Time']['End Experiment'], '%H:%M:%S')-datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')).total_seconds()/60
 		
-		if House == 'a':
-			scalefactor = 'ScaleFactor_A'
-			Transport_Time = 'Transport_Time_A'
+# 		if House == 'a':
+# 			scalefactor = 'ScaleFactor_A'
+# 			Transport_Time = 'Transport_Time_A'
 
-		if House == 'b':
-			scalefactor = 'ScaleFactor_B'
-			Transport_Time = 'Transport_Time_B'
+# 		if House == 'b':
+# 			scalefactor = 'ScaleFactor_B'
+# 			Transport_Time = 'Transport_Time_B'
 
-		# Begin plotting
+# 		# Begin plotting
 
-		for group in channel_groups.groups:
-			# Skip excluded groups listed in test description file
-			if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
-				continue
+# 		for group in channel_groups.groups:
+# 			# Skip excluded groups listed in test description file
+# 			if any([substring in group for substring in Exp_Des['Excluded Groups'][Test_Name].split('|')]):
+# 				continue
 
-            #Create figure
-			fig = plt.figure()
+#             #Create figure
+# 			fig = plt.figure()
 
-			# Plot style - cycle through 20 color pallet and define markers to cycle through
-			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+# 			# Plot style - cycle through 20 color pallet and define markers to cycle through
+# 			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+# 			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-			# Print 'Plotting Chart XX'
-			print ('Plotting ' + group.replace('_',' '))
+# 			# Print 'Plotting Chart XX'
+# 			print ('Plotting ' + group.replace('_',' '))
 
-			# Begin cycling through channels
-			for channel in channel_groups.get_group(group).index.values:
+# 			# Begin cycling through channels
+# 			for channel in channel_groups.get_group(group).index.values:
 
-				# Skip plot quantity if channel name is blank
-				if pd.isnull(channel):
-					continue
+# 				# Skip plot quantity if channel name is blank
+# 				if pd.isnull(channel):
+# 					continue
 
-                # Skip excluded channels listed in test description file
-				if any([substring in channel for substring in Exp_Des['Excluded Channels'][Test_Name].split('|')]):
-					continue
+#                 # Skip excluded channels listed in test description file
+# 				if any([substring in channel for substring in Exp_Des['Excluded Channels'][Test_Name].split('|')]):
+# 					continue
 
-                # Set scale factor and offset
-				scale_factor = channel_list[scalefactor][channel]
-				offset = channel_list['Offset'][channel]
-				current_data = Exp_Data[channel]
+#                 # Set scale factor and offset
+# 				scale_factor = channel_list[scalefactor][channel]
+# 				offset = channel_list['Offset'][channel]
+# 				current_data = Exp_Data[channel]
 
-				# Set secondary axis default to None, unless otherwise stated below
-				secondary_axis_label = None
+# 				# Set secondary axis default to None, unless otherwise stated below
+# 				secondary_axis_label = None
 
-				# Set parameters for temperature plots
+# 				# Set parameters for temperature plots
 
-				# If statement to find temperature type in channels csv
-				if channel_list['Type'][channel] == 'Temperature':
-					Data_Time = Time
-					# Set data to include slope and intercept
-					current_data = current_data * scale_factor + offset
-					# Set y-label to degrees F with LaTeX syntax
-					plt.ylabel('Temperature ($^\circ$F)', fontsize = axis_title_size)
-					# Search for skin inside description of events file for scaling
-					if 'Skin' in group:
-						axis_scale = 'Y Scale Skin Temperature'
-					else: # Default to standard temperature scale
-						axis_scale = 'Y Scale Temperature'
-					# Set secondary y-axis label to degrees C
-					secondary_axis_label = 'Temperature ($^\circ$C)'
-					#Set scaling dependent on axis scale defined above
-					secondary_axis_scale = (np.float(Exp_Des[axis_scale][Test_Name]) - 32) * (5/9)
+# 				# If statement to find temperature type in channels csv
+# 				if channel_list['Type'][channel] == 'Temperature':
+# 					Data_Time = Time
+# 					# Set data to include slope and intercept
+# 					current_data = current_data * scale_factor + offset
+# 					# Set y-label to degrees F with LaTeX syntax
+# 					plt.ylabel('Temperature ($^\circ$F)', fontsize = axis_title_size)
+# 					# Search for skin inside description of events file for scaling
+# 					if 'Skin' in group:
+# 						axis_scale = 'Y Scale Skin Temperature'
+# 					else: # Default to standard temperature scale
+# 						axis_scale = 'Y Scale Temperature'
+# 					# Set secondary y-axis label to degrees C
+# 					secondary_axis_label = 'Temperature ($^\circ$C)'
+# 					#Set scaling dependent on axis scale defined above
+# 					secondary_axis_scale = (np.float(Exp_Des[axis_scale][Test_Name]) - 32) * (5/9)
 
-                # Set parameters for velocity plots
+#                 # Set parameters for velocity plots
 
-                # If statement to find velocity type in channels csv
-				if channel_list['Type'][channel] == 'Velocity':
-					Data_Time = Time
-					# Define cutoff and fs for filtering 
-					cutoff = 50
-					fs = 700
-					current_data = current_data - np.average(current_data[:90]) + 2.5
-					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
-					#Calculate result
-					current_data = (np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5) * 2.23694
-					plt.ylabel('Velocity (mph)', fontsize=axis_title_size)
-					line_style = '-'
-					axis_scale = 'Y Scale BDP'
-					secondary_axis_label = 'Velocity (m/s)'
-					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) / 2.23694
+#                 # If statement to find velocity type in channels csv
+# 				if channel_list['Type'][channel] == 'Velocity':
+# 					Data_Time = Time
+# 					# Define cutoff and fs for filtering 
+# 					cutoff = 50
+# 					fs = 700
+# 					current_data = current_data - np.average(current_data[:90]) + 2.5
+# 					current_data = butter_lowpass_filtfilt(current_data, cutoff, fs)
+# 					#Calculate result
+# 					current_data = (np.sign(current_data-2.5)*0.070*((Exp_Data[channel[:-1]+'T']+273.15)*(99.6*abs(current_data-2.5)))**0.5) * 2.23694
+# 					plt.ylabel('Velocity (mph)', fontsize=axis_title_size)
+# 					line_style = '-'
+# 					axis_scale = 'Y Scale BDP'
+# 					secondary_axis_label = 'Velocity (m/s)'
+# 					secondary_axis_scale = np.float(Exp_Des[axis_scale][Test_Name]) / 2.23694
 
-                # Set parameters for heat flux plots
+#                 # Set parameters for heat flux plots
 
-				# If statement to find heat flux type in channels csv
-				if channel_list['Type'][channel] == 'Wall Heat Flux':
-					Data_Time = Time
-					# Set data to include slope and intercept
-					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
-					axis_scale = 'Y Scale Wall Heat Flux'
+# 				# If statement to find heat flux type in channels csv
+# 				if channel_list['Type'][channel] == 'Wall Heat Flux':
+# 					Data_Time = Time
+# 					# Set data to include slope and intercept
+# 					current_data = current_data * scale_factor + offset
+# 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
+# 					axis_scale = 'Y Scale Wall Heat Flux'
 
-				if channel_list['Type'][channel] == 'Floor Heat Flux':
-					Data_Time = Time
-					# Set data to include slope and intercept
-					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
-					axis_scale = 'Y Scale Floor Heat Flux'
+# 				if channel_list['Type'][channel] == 'Floor Heat Flux':
+# 					Data_Time = Time
+# 					# Set data to include slope and intercept
+# 					current_data = current_data * scale_factor + offset
+# 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
+# 					axis_scale = 'Y Scale Floor Heat Flux'
 
-				if channel_list['Type'][channel] == 'Victim Heat Flux':
-					Data_Time = Time
-					# Set data to include slope and intercept
-					current_data = current_data * scale_factor + offset
-					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
-					axis_scale = 'Y Scale Victim Heat Flux'
+# 				if channel_list['Type'][channel] == 'Victim Heat Flux':
+# 					Data_Time = Time
+# 					# Set data to include slope and intercept
+# 					current_data = current_data * scale_factor + offset
+# 					plt.ylabel('Heat Flux (kW/m$^2$)', fontsize = axis_title_size)
+# 					axis_scale = 'Y Scale Victim Heat Flux'
 
-				# Set parameters for gas plots
+# 				# Set parameters for gas plots
 
-				# If statement to find gas type in channels csv
-				if channel_list['Type'][channel] == 'Gas':
-					updated_transport = transport_times['Victim_' + channel[0] + '_' + str(House.upper())][Test_Name]
-					Data_Time = [t-float(updated_transport)/60.0 for t in Time]
-					# Set data to include slope and intercept
-					current_data = current_data * scale_factor + offset
-					plt.ylabel('Gas Concentration (%)', fontsize = axis_title_size)
-					axis_scale = 'Y Scale Gas'
+# 				# If statement to find gas type in channels csv
+# 				if channel_list['Type'][channel] == 'Gas':
+# 					updated_transport = transport_times['Victim_' + channel[0] + '_' + str(House.upper())][Test_Name]
+# 					Data_Time = [t-float(updated_transport)/60.0 for t in Time]
+# 					# Set data to include slope and intercept
+# 					current_data = current_data * scale_factor + offset
+# 					plt.ylabel('Gas Concentration (%)', fontsize = axis_title_size)
+# 					axis_scale = 'Y Scale Gas'
 
-				# If statement to find gas type in channels csv
-				if channel_list['Type'][channel] == 'Carbon Monoxide':
-					updated_transport = transport_times['Victim_' + channel[0] + '_' + str(House.upper())][Test_Name]
-					Data_Time = [t-float(updated_transport)/60.0 for t in Time]
-					# Set data to include slope and intercept
-					current_data = current_data * scale_factor + offset
-					plt.ylabel('Gas Concentration (PPM)', fontsize = axis_title_size)
-					axis_scale = 'Y Scale Carbon Monoxide'
+# 				# If statement to find gas type in channels csv
+# 				if channel_list['Type'][channel] == 'Carbon Monoxide':
+# 					updated_transport = transport_times['Victim_' + channel[0] + '_' + str(House.upper())][Test_Name]
+# 					Data_Time = [t-float(updated_transport)/60.0 for t in Time]
+# 					# Set data to include slope and intercept
+# 					current_data = current_data * scale_factor + offset
+# 					plt.ylabel('Gas Concentration (PPM)', fontsize = axis_title_size)
+# 					axis_scale = 'Y Scale Carbon Monoxide'
 
-				# If statement to find pressure type in channels csv
-				if channel_list['Type'][channel] == 'Pressure':
-					Data_Time = Time
+# 				# If statement to find pressure type in channels csv
+# 				if channel_list['Type'][channel] == 'Pressure':
+# 					Data_Time = Time
 
-					# Set data to include slope and intercept
-					current_data = current_data * scale_factor + offset
-					current_data = current_data - np.average(current_data[0:60])
+# 					# Set data to include slope and intercept
+# 					current_data = current_data * scale_factor + offset
+# 					current_data = current_data - np.average(current_data[0:60])
 
-					# Set y-label to degrees F with LaTeX syntax
-					plt.ylabel('Pressure (Pa)', fontsize = axis_title_size)
-					# Search for skin inside description of events file for scaling
-					axis_scale = 'Y Scale Pressure'
+# 					# Set y-label to degrees F with LaTeX syntax
+# 					plt.ylabel('Pressure (Pa)', fontsize = axis_title_size)
+# 					# Search for skin inside description of events file for scaling
+# 					axis_scale = 'Y Scale Pressure'
 
-				# Plot channel data or save channel data for later usage, depending on plot mode
-				plt.plot(Data_Time,
-					current_data,
-					lw=1.5,
-					marker=next(plot_markers),
-					markevery=int(End_Time*60/mark_freq),
-					mew=3,
-					mec='none',
-					ms=7,
-					label=channel_list['Title'][channel])
+# 				# Plot channel data or save channel data for later usage, depending on plot mode
+# 				plt.plot(Data_Time,
+# 					current_data,
+# 					lw=1.5,
+# 					marker=next(plot_markers),
+# 					markevery=int(End_Time*60/mark_freq),
+# 					mew=3,
+# 					mec='none',
+# 					ms=7,
+# 					label=channel_list['Title'][channel])
 
-				# Scale y-axis limit based on specified range in test description file
-				if axis_scale == 'Y Scale BDP':
-					plt.ylim([-np.float(Exp_Des[axis_scale][Test_Name]), np.float(Exp_Des[axis_scale][Test_Name])])
-				else:
-					plt.ylim([0, np.float(Exp_Des[axis_scale][Test_Name])])
+# 				# Scale y-axis limit based on specified range in test description file
+# 				if axis_scale == 'Y Scale BDP':
+# 					plt.ylim([-np.float(Exp_Des[axis_scale][Test_Name]), np.float(Exp_Des[axis_scale][Test_Name])])
+# 				else:
+# 					plt.ylim([0, np.float(Exp_Des[axis_scale][Test_Name])])
 
-                # Set axis options, legend, tickmarks, etc.
-				ax1 = plt.gca()
-				handles1, labels1 = ax1.get_legend_handles_labels()
-				plt.xlim([0, End_Time])
-				ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
-				ax1_xlims = ax1.axis()[0:2]
-				plt.grid(True)
-				plt.xlabel('Time (min)', fontsize=axis_title_size)
-				plt.xticks(fontsize=tic_label_size)
-				plt.yticks(fontsize=tic_label_size)
+#                 # Set axis options, legend, tickmarks, etc.
+# 				ax1 = plt.gca()
+# 				handles1, labels1 = ax1.get_legend_handles_labels()
+# 				plt.xlim([0, End_Time])
+# 				ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+# 				ax1_xlims = ax1.axis()[0:2]
+# 				plt.grid(True)
+# 				plt.xlabel('Time (min)', fontsize=axis_title_size)
+# 				plt.xticks(fontsize=tic_label_size)
+# 				plt.yticks(fontsize=tic_label_size)
 
-			# Secondary y-axis parameters
-			if secondary_axis_label:
-				ax2 = ax1.twinx()
-				ax2.set_ylabel(secondary_axis_label, fontsize=axis_title_size)
-				plt.xticks(fontsize=tic_label_size)
-				plt.yticks(fontsize=tic_label_size)
-				if axis_scale == 'Y Scale BDP':
-					ax2.set_ylim([-secondary_axis_scale, secondary_axis_scale])
-				elif axis_scale == 'Y Scale Temperature':
-					ax2.set_ylim([-17.78, secondary_axis_scale])
-				else:
-					ax2.set_ylim([0, secondary_axis_scale])
+# 			# Secondary y-axis parameters
+# 			if secondary_axis_label:
+# 				ax2 = ax1.twinx()
+# 				ax2.set_ylabel(secondary_axis_label, fontsize=axis_title_size)
+# 				plt.xticks(fontsize=tic_label_size)
+# 				plt.yticks(fontsize=tic_label_size)
+# 				if axis_scale == 'Y Scale BDP':
+# 					ax2.set_ylim([-secondary_axis_scale, secondary_axis_scale])
+# 				elif axis_scale == 'Y Scale Temperature':
+# 					ax2.set_ylim([-17.78, secondary_axis_scale])
+# 				else:
+# 					ax2.set_ylim([0, secondary_axis_scale])
 
-			try:
-				ax3=ax1.twiny()
-				ax3.set_xlim(0,End_Time)
+# 			try:
+# 				ax3=ax1.twiny()
+# 				ax3.set_xlim(0,End_Time)
 
-				i = 0
+# 				i = 0
 
-				EventTime = np.empty(len(Events['Results_Time'].dropna().index.values))
-				EventTime[:] = nan
-				EventLabel = ['']*len(Events['Results_Time'].dropna().index.values)
+# 				EventTime = np.empty(len(Events['Results_Time'].dropna().index.values))
+# 				EventTime[:] = nan
+# 				EventLabel = ['']*len(Events['Results_Time'].dropna().index.values)
 
-				for e in Events['Results_Time'].dropna().index.values:
-					# print (e)
-					EventTime[i] = (datetime.datetime.strptime(Events['Results_Time'][e], '%H:%M:%S')-Ignition).total_seconds()
-					EventLabel[i] = e
-					plt.axvline(EventTime[i],color='0',lw=2) 
-					i = i + 1
+# 				for e in Events['Results_Time'].dropna().index.values:
+# 					# print (e)
+# 					EventTime[i] = (datetime.datetime.strptime(Events['Results_Time'][e], '%H:%M:%S')-Ignition).total_seconds()
+# 					EventLabel[i] = e
+# 					plt.axvline(EventTime[i],color='0',lw=2) 
+# 					i = i + 1
 				
-				ax3.set_xticks(EventTime)
-				plt.setp(plt.xticks()[1], rotation=67.5)		
-				ax3.set_xticklabels(EventLabel, fontsize=event_label_size, ha='left')
-				fig.set_size_inches(20, 16)
-				plt.tight_layout()
-			except:
-				print('Error Setting Secondary Axis')
-				pass
+# 				ax3.set_xticks(EventTime)
+# 				plt.setp(plt.xticks()[1], rotation=67.5)		
+# 				ax3.set_xticklabels(EventLabel, fontsize=event_label_size, ha='left')
+# 				fig.set_size_inches(20, 16)
+# 				plt.tight_layout()
+# 			except:
+# 				print('Error Setting Secondary Axis')
+# 				pass
 
-			plt.legend(handles1, labels1, loc='upper left', fontsize=legend_font_size, handlelength=2)
+# 			plt.legend(handles1, labels1, loc='upper left', fontsize=legend_font_size, handlelength=2)
 
-			# Save plot to file
-			plt.savefig(output_location + group + '.pdf')
-			plt.close('all')
+# 			# Save plot to file
+# 			plt.savefig(output_location + group + '.pdf')
+# 			plt.close('all')
+
+# print ('-------------------------------------- Plotting Gas Cooling Results Charts ----------------------------------')
+
+# Set Channels for Gas Cooling.
+gas_cooling_plots = pd.DataFrame({'1TC':['1TC7','1TC6','1TC5','1TC4','1TC3','1TC2','1TC1'],
+						   		 '2TC':['3TC7','3TC6','3TC5','3TC4','3TC3','3TC2','3TC1'],
+						   		 '3TC':['7TC7','7TC6','7TC5','7TC4','7TC3','7TC2','7TC1'],
+						   		 '4TC':['8TC7','8TC6','8TC5','8TC4','8TC3','8TC2','8TC1']})
+
+
+# chart_limits = {'Pulse_95gpm':[340,370], 'Long_Pulse_95gpm':[370,405], 'Sweep_Pulse_95gpm':[405,590],
+# 				'Narrow_Fog_Sweep_95gpm':[590, 750], 'Pulse_150gpm':[750, 800], 'Long_Pulse_150gpm':[800,870],
+# 				'Sweep_Pulse_150gpm':[870, 1005], 'Narrow_Fog_Sweep_150gpm':[1005,1100],
+# 				'Wall_Ceiling_Wall_150gpm':[1100,1200]}
+
+data = pd.read_csv(data_location_gas_cooling + 'Experiment_25_Data.csv').set_index('Elapsed Time')
+
+output_location = output_location_init + 'Experiment_25_Data/'
+
+print (output_location)
+exit()
+
+
+for plot in gas_cooling_plots.columns:
+	
+	print('Plotting '+ plot)
+	
+# 	for chart in list(chart_limits.keys()):
+		
+	#Create figure
+	fig = plt.figure()
+	fig.set_size_inches(8, 6)
+
+	# Plot style - cycle through 20 color pallet and define markers to cycle through
+	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+	plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+	if plot == '1TC':
+		y_max = 2000
+	else:
+		y_max = 800
+
+	ax1 = plt.gca()
+	ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
+	ax1_xlims = ax1.axis()[0:2]
+	plt.ylim([0, y_max]) #Exp_Des['Y Scale Temperature'][exp]])
+	plt.ylabel('Temperature ($^\circ$F)', fontsize=48)
+	plt.grid(True)
+	plt.xlabel('Time (seconds)', fontsize=48)
+	plt.xticks(fontsize=44)
+	plt.yticks(fontsize=44)
+
+	if exp in all_flow_data.keys():
+		ax2 = ax1.twinx()
+		ax2.plot(all_flow_data[exp].index.values, all_flow_data[exp]['GPM'], lw=6, color='#1f77b4',)
+		ax2.set_ylim(0  ,160)
+		ax2.set_ylabel('Flow Rate (Gallons Per Minute)', fontsize=48)
+		ax2.tick_params(axis='y', labelsize=44)
+
+	for channel in gas_cooling_plots[plot]:
+
+		channel_label = all_gas_channels['Title'][channel]
+
+		ax1.plot(data[channel].index, data[channel], lw = 4, marker=next(plot_markers), markevery=mark,
+							label = channel_label, markersize=15 )
+
+	h1, l1 = ax1.get_legend_handles_labels()
+	h2, l2 = ax2.get_legend_handles_labels()
+	ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.215, 1.03), loc='lower right', fontsize=40, handlelength=2, labelspacing=.15)
+
+	ax3=ax1.twiny()
+
+	ax3.set_xlim(0,all_exp_events['Experiment_25_Events']['Results_Time_Seconds']['End Experiment']/60)
+
+	i = 0
+
+	EventTime = np.empty(len(all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index))
+	EventTime[:] = nan
+	EventLabel = ['']*len(all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index)
+
+	for e in all_exp_events[exp[:-4]+'_Events']['Flow_Time'].dropna().index:
+		EventTime[i] = all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds'][e]/60
+		EventLabel[i] = e
+		plt.axvline(EventTime[i],color='0',lw=2) 
+		i = i + 1
+	
+	ax3.set_xticks(EventTime)
+	plt.setp(plt.xticks()[1], rotation=67.5)		
+	ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')	
+
+
+	for flow in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
+		ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], lw=4, color='black')
+		ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], 
+			y_max, flow, ha='left', 
+			va='bottom', rotation=45, fontsize=34)
+
+	plt.subplots_adjust(top=0.65, right=0.85)
+	plt.xlim(chart_limits[chart])
+	ax1.tick_params(axis='x', which='major', pad=15)
+
+	fig.set_size_inches(20, 18)
+
+	if not os.path.exists(output_location + '/Gas_Cooling/' + chart + '/'):
+		os.makedirs(output_location + '/Gas_Cooling/' + chart + '/')
+
+	plt.savefig(output_location + '/Gas_Cooling/' + chart + '/' + plot + '.pdf')
+	plt.close('all')
+
 
 print ('-------------------------------------- Plotting Moisture Results Charts ----------------------------------')
 
@@ -451,54 +564,57 @@ for exp in natsorted(experiments):
 		if Exp_Des['Speed'][exp] == 'low':
 			markers = 10
 
-		# Create figure
-		fig = plt.figure()
-		fig.set_size_inches(20, 16)
-		ax1 = plt.gca()
-		ax1.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
+		for vic in ['Vic 1', 'Vic 3']:
+			
+			# Create figure
+			fig = plt.figure()
+			
+			fig.set_size_inches(20, 16)
+			ax1 = plt.gca()
+			ax1.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
 
-		plt.xticks(fontsize=28)
-		plt.yticks(fontsize=28)
-		plt.grid(True)
+			plt.xticks(fontsize=28)
+			plt.yticks(fontsize=28)
+			plt.grid(True)
 
-		# Plot style - cycle through 20 color pallet and define markers to cycle through
-		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+			# Plot style - cycle through 20 color pallet and define markers to cycle through
+			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-		ax1.plot(data.index, data['Vic 1 necrosis depth'], label='Victim 1', marker=next(plot_markers), markevery=markers)
-		ax1.plot(data.index, data['Vic 3 necrosis depth'], label='Victim 3', marker=next(plot_markers), markevery=markers)
+			ax1.plot(data.index, data[vic + ' necrosis depth'], label='Necrosis Depth', marker=next(plot_markers), markevery=markers )
+			ax1.plot(data.index, data[vic + ', surface necrosis'], label='Surface Necrosis', marker=next(plot_markers), markevery=markers )
 
-		ax3=ax1.twiny()
+			ax3=ax1.twiny()
 
-		ax3.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
+			ax3.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
 
-		i = 0
+			i = 0
 
-		EventTime = np.empty(len(all_exp_events[exp[:-5] +'_Events']['Results_Time'].dropna().index))
-		EventTime[:] = nan
-		EventLabel = ['']*len(all_exp_events[exp[:-5] +'_Events']['Results_Time'].dropna().index)
+			EventTime = np.empty(len(all_exp_events[exp[:-5] +'_Events']['Results_Time'].dropna().index))
+			EventTime[:] = nan
+			EventLabel = ['']*len(all_exp_events[exp[:-5] +'_Events']['Results_Time'].dropna().index)
 
-		for e in all_exp_events[exp[:-5]+'_Events']['Results_Time'].dropna().index:
-			EventTime[i] = all_exp_events[exp[:-5]+'_Events']['Results_Time_Seconds'][e]/60
-			EventLabel[i] = e
-			plt.axvline(EventTime[i],color='0',lw=2) 
-			i = i + 1
-		
-		ax3.set_xticks(EventTime)
-		plt.setp(plt.xticks()[1], rotation=67.5)		
-		ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')	
-		
-		plt.ylim([0,12])
-		ax1.set_yticks(np.arange(0, 12, 1))
+			for e in all_exp_events[exp[:-5]+'_Events']['Results_Time'].dropna().index:
+				EventTime[i] = all_exp_events[exp[:-5]+'_Events']['Results_Time_Seconds'][e]/60
+				EventLabel[i] = e
+				plt.axvline(EventTime[i],color='0',lw=2) 
+				i = i + 1
+			
+			ax3.set_xticks(EventTime)
+			plt.setp(plt.xticks()[1], rotation=67.5)		
+			ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')	
+			
+			plt.ylim([0,12])
+			ax1.set_yticks(np.arange(0, 12, 1))
 
-		ax1.legend(fontsize=24, handlelength=2)
-		plt.subplots_adjust(top=0.80)
-		ax1.set_xlabel('Time (Minutes)', fontsize=38)
-		ax1.set_ylabel('Necrosis Depth (mm)', fontsize=38)
-		plt.xticks(fontsize=28)
-		plt.yticks(fontsize=28)
-		plt.tight_layout()
+			ax1.legend(fontsize=24, handlelength=2)
+			plt.subplots_adjust(top=0.80)
+			ax1.set_xlabel('Time (Minutes)', fontsize=38)
+			ax1.set_ylabel('Necrosis Depth (mm)', fontsize=38)
+			plt.xticks(fontsize=28)
+			plt.yticks(fontsize=28)
+			plt.tight_layout()
 
-		plt.savefig('../0_Images/Script_Figures/Results/' + exp + '/Victim_Necrosis_Depth.pdf')
+			plt.savefig('../0_Images/Script_Figures/Results/' + exp + '/' + vic.replace(' ', '_') + '_Necrosis_Depth.pdf')
 
-		plt.close('all')
+			plt.close('all')
