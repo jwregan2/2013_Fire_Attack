@@ -2,3 +2,28 @@
 \chapter{One-dimensional Heat Diffusion Model} \label{App:1D_Heat_Diffusion}
 
  In order to predict the pig skin temperature from heat flux gage measurements, a one-dimensional heat diffusion model outlined in Equations 1-4 was implemented.
+ \begin{equation} \alpha \frac{d^2T(x,t)}{dx^2} = \frac{dT(x,t)}{dt} \end{equation}
+ \begin{equation} -k\frac{dT(0,t)}{dx} = \dot{q}"(t) \end{equation}
+ \begin{equation} T(L,t) = 310 \end{equation}
+ \begin{equation} T(x,0) = T_{initial} \end{equation}
+
+Where $\alpha$ is thermal diffusivity
+
+\noindent\hangindent3em\hangafter0
+$T$ is the temperature\\
+$x$ is the spatial coordinate\\
+$t$ is the time coordinate\\
+$k$ is the thermal conductivity of the siding\\
+$\dot{q}"(t)$ is the heat flux data from experiments\\
+$L$ is the thickness of the pig skin and neopren\\
+$T_{initial}$ is the initial surface temperature\\
+
+In solving these equations, it is assumed that the water bath maintains the core temperature of 37\textdegree C, and the top surface boundary condition with $\dot{q}"(t)$ coming from the measured heat flux values. These equations are discretized and solved using an implicit solution with $\Delta x=0.1 mm$ and $\Delta t=0.1 s$. The thermal properties used for skin were: density = $1000\ kg/m^3$, heat capacity = $3200\ J/(kgK)$, and thermal conductivity = $0.21\ W/(mK)$. Unfortunately, moisture interaction with the heat flux sensor results in the predicted temperature deviating significantly from those measured on the skin surface, particularly after water application.  Thus, it was found that using the heat flux gage to predict skin damage was unreliable.
+
+However, implementing the 1-D model outlined in Equations 1-4 in reverse, the apparent heat flux can be estimated from the measured skin temperatures in the SBA packages. Using an iterative scheme, heat flux is incremented by $\pm20\ W/m^2$ in the model and the surface temperature is compared to experimental measurements until it agrees to within $\pm0.2$ \textdegree C This heat flux estimation scheme has been validated against laboratory calibration experiments in an environmental chamber showing good agreement for radiation and convection dominated conditions
+
+Further details on the model can be found in \cite{Residential_Tenability}.
+
+
+
+
