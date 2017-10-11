@@ -11,18 +11,6 @@ firstline = '\t\\begin{figure}[H]\n'
 secondline	= '\t\t\\centering\n'
 lastline = '\t\end{figure}\n \n'
 
-# file.write('\\documentclass{article}\n')
-# file.write('\\usepackage{placeins}\n')
-# file.write('\\usepackage{graphicx}\n\n')
-# file.write('\\usepackage[toc,page]{appendix}\n')
-# file.write('\\usepackage{chngcntr} \n')
-# file.write('\\begin{document}\n')
-# file.write('\n\\tableofcontents\n\n')
-
-# file.write('\\begin{appendices}\n\n')
-# file.write('\\counterwithin{figure}{section}\n\n')
-# file.write('\\section{Experimental Results}\n')
-
 experiments = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26]
 
 for exp in experiments:
@@ -53,8 +41,4 @@ for exp in experiments:
 			file.write('\n')
 		X = 0
 
-# 	file.write('\t\t\\clearpage\n')
-
-# file.write('\\end{appendices}')
-# file.write('\\end{document}\n')
 file.close
