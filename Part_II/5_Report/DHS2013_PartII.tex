@@ -2228,12 +2228,28 @@ Ventilation Configuration & Action & Avg. Max Surface Temperature ($^{\circ}$F) 
 \label{tab:pig_skin_temp_increase}
 \end{table}
 
+In all cases, regardless of the ventilation configuration, delaying suppression resulted in an increase in the skin surface and subsurface temperatures of the skin. 
+
 \subsection{Effect of Fire Department Intervention}
-THIS SECTION IS UNDER DEVELOPMENT WITH THE UNIVERSITY OF ILLINOIS. TABLE BELOW REPRESENTS SOME POTENTIAL BURN INJURIES SEEN. ALTHOUGH IT MAY APPEAR SUPPRESSION IS INCREASING BURN POTENTIAL (REGARDLESS OF DIRECTION), WE ARE LOOKING AT THIS FURTHER. IT MAY BE BECAUSE THE POTENTIAL INJURY WOULD HAVE OCCURRED WIHTOUT SUPPRESSION, GIVEN SUPPRESSION OCCURS OVER A 1 MINUTE PEROID. 
+% THIS SECTION IS UNDER DEVELOPMENT WITH THE UNIVERSITY OF ILLINOIS. TABLE BELOW REPRESENTS SOME POTENTIAL BURN INJURIES SEEN. ALTHOUGH IT MAY APPEAR SUPPRESSION IS INCREASING BURN POTENTIAL (REGARDLESS OF DIRECTION), WE ARE LOOKING AT THIS FURTHER. IT MAY BE BECAUSE THE POTENTIAL INJURY WOULD HAVE OCCURRED WIHTOUT SUPPRESSION, GIVEN SUPPRESSION OCCURS OVER A 1 MINUTE PEROID. 
 
-One of the major goals for implementing the pig skin into the experimental study was to examine the relative impact of different suppression techniques on burn risk.  Critically, the fire service discussion regarding interior vs exterior water application has often centered on the concerns that applying water from the exterior will increase the risk for creating steam and burning occupants trapped within the structure.  Due to the variability in fire development at the time of water application, data is presented here in a relative format; to compare changes in the conditions after water application based on those present prior to application.  
+One of the major goals for implementing the pig skin into the experimental study was to examine the relative impact of different suppression techniques on burn risk.  The fire service discussion regarding interior vs exterior water application has often centered on the concerns that applying water from the exterior will increase the risk for creating steam and burning occupants trapped within the structure. This section will evaluate the skin temperature data in a relative format; to compare changes in the conditions before and after water application based on those present prior to application.  
 
-One important limitation of this ex vivo porcine skin model is that it does not account for the effect of blood perfusion through the skin. By combining this experimental tool with an engineering model that describes heat transfer through the skin, additional insights can be gleaned.  Since temperatures were measured on skin without blood flow, a simple 1\-D heat transfer model can be utilized to estimate the necessary heat flux result in such changes.  This approach is described in Appendix \ref{App:1D_Heat_Diffusion} and can provide more reliable estimations that the heat flux gages that are impacted by condensation and moisture related issues.  This approach can be reversed to predict temperatures with a term added to the equation that can include the impact of blood perfusion (Appendix \ref{App:blood_perfusion}).  Importantly, this model also allows for a simple estimation of the depth of tissue damage (necrosis) to be determined.  Through the understanding of depth of tissue damage, estimates of burn risks in the classical sense can be made. To provide a general comparison here, first-degree or “superficial” burns only involve damage to the skin in the epidermal layer (assumed to be less than 0.1~mm). Second-degree or ``partial\-thickness'' have significant damage that extends into the dermal layer of the skin, but not yet through thickness (\textgreater 2~mm - yellow highlight). Third\-degree or ``full-thickness'' burns have damage that extends into the subcutaneous layer of the skin (assumed here to be 3\-4~mm for the thickest skin) and complete destruction of the dermal layer (orange highlight). Finally, fourth-degree burns are burns that extend into the tissue underneath the skin layer and involves necrosis of the subcutaneous layer. It should be remembered that these estimations depend on the thickness of the skin that is being exposed to such conditions (i.e. fourth degree burns in some areas may be second degree burns in others depending on thickness of dermis and subcutaneous fat layers).
+
+\begin{table} [H]
+\caption{Definition of Burn Injury and Criteria}
+\label{tab:Burn_Inj_Criteria}
+\begin{tabular}{|c|c|c|}
+\hline
+Degree of Burn 					& Description				& Criteria 												\\ \hline \hline
+1\textsuperscript{st} degree 	& Superficial burns			& > 0.2 Surface Necrosis 								\\ \hline
+2\textsuperscript{nd} degree 	& Partial thickness burns 	& > 0.2 Surface Necrosis but < 2~mm Necrosis Depth 		\\ \hline
+3\textsuperscript{rd} degree 	& Full Thickness Burns		& > 2~mm Necrosis Depth but < 10~mm Necrosis Depth 		\\ \hline
+4\textsuperscript{th} degree 	& Beyond Full Thickness		& > 10~mm Necrosis Depth 								\\ \hline
+\end{tabular}
+\end{table}
+
+One important limitation of using a harvested porcine skin model is that it does not account for the effect of blood perfusion through the skin. By combining the skin temperature data with an engineering model that describes heat transfer through the skin, additional insights can be gleaned.  Since temperatures were measured on skin without blood flow, a simple 1\-D heat transfer model can be utilized to estimate the necessary heat flux result in such changes.  This approach is described in Appendix \ref{App:1D_Heat_Diffusion} and can provide more reliable estimations that the heat flux gages that are impacted by condensation and moisture related issues cannot.  This approach can be reversed to predict temperatures with a term added to the equation that can include the impact of blood perfusion (Appendix \ref{App:blood_perfusion}).  Importantly, this model also allows for a simple estimation of the depth of tissue damage (necrosis) to be determined.  Through the understanding of depth of tissue damage, estimates of burn risks in the classical sense can be made. To provide a general comparison here, first-degree or ``superficial'' burns only involve damage to the skin in the epidermal layer (assumed to be less than 0.1~mm), for the purpose of this analysis this would be a dimensionless surface necrosis value of \textgreater 0.2. Second-degree or ``partial\-thickness'' have significant damage that extends into the dermal layer of the skin, but not yet through thickness (\textgreater 2~mm). Third\-degree or ``full-thickness'' burns have damage that extends into the subcutaneous layer of the skin (assumed here to be 3\-4~mm for the thickest skin) and complete destruction of the dermal layer. Finally, fourth-degree burns are burns that extend into the tissue underneath the skin layer and involves necrosis of the subcutaneous layer. The thickness of skin does vary between various parts of the body, therefore, depending on the thickness of the skin will depend on if the burn is 3\textsuperscript{rd} or 4\textsuperscript{th} degree burn. For the purposes of evaluating the potential injury occurring from water application, the criteria listed in table \ref{tab:Burn_Inj_Criteria}.  
 
 \begin{table}[H]
 \caption{Burn Injury Summary Based on Necrosis Depth}
@@ -2242,28 +2258,169 @@ One important limitation of this ex vivo porcine skin model is that it does not 
 \begin{tabular}{|C{0.12\textwidth}|C{0.12\textwidth}|c|c|c|c|}
 \cline{3-6}
 \multicolumn{2}{C{0.2\textwidth}|}{}							& \multicolumn{2}{c|}{Location 1}	 								& \multicolumn{2}{c|}{Location 3}  								\\ \hline
-Test Type 						& Suppression Tactic 			& Pre-Water 							& Post-Water								& Pre-Water						& Post-Water 					\\ \hline \hline
-\multirow{4}{*}{No Vent}		& \multirow{3}{*}{Interior}		& (3) 1$^{st}$ degree 					& (1) 2$^{nd}$ degree 						& (1) 2$^{nd}$ degree 			& (1) 2$^{nd}$ degree 			\\ 
-								&								& (2) no damage 						& (3) 1$^{st}$ degree 						& (2) 1$^{st}$ degree 			& (4) 1$^{st}$ degree 			\\ 
-								&								&										& (1) no damage 							& (2) no damage 	 			&								\\ \cline{2-6}
-								& Delayed 						& 4$^{th}$ degree 						& 4$^{th}$ degree 							& 3$^{rd}$-4$^{th}$ degree 		& 3$^{rd}$-4$^{th}$ degree 		\\ \hline
-\multirow{5}{*}{Single Vent}	& \multirow{2}{*}{Interior} 	& (2) 2$^{nd}$ degree 					& (3) 2$^{nd}$ degree 						& \multirow{2}{*}{(5) no damge}	& \multirow{2}{*}{(5) no damge}	\\ 
-								&								& (3) 1$^{st}$ degree 					& (2) 1$^{st}$ degree 						&								&								\\ \cline{2-6} 
-								& \multirow{2}{*}{Transitional} & (1) 2$^{nd}$ degree 					& (1) 2$^{nd}$ degree 						& \multirow{2}{*}{(5) no damge}	& (3) 1$^{st}$ degree 			\\ 
-								&								& (3) 1$^{st}$ degree 					& (3) 1$^{st}$ degree 						&								& (1) no damage 				\\ \cline{2-6}
-								& Delayed 						& 3$^{rd}$-4$^{th}$ degree 				& 4$^{th}$ degree 							& 2$^{nd}$ degree 				& 2$^{nd}$ degree 				\\ \hline
-\multirow{5}{*}{Two Vent}		& \multirow{2}{*}{Interior} 	& (2) 3$^{rd}$ degree 					& \multirow{2}{*}{3$^{rd}$-4$^{th}$ degree} & (3) 1$^{st}$ degree 			& (3) 2$^{nd}$ degree 			\\ 
-								&								& (2) 2$^{nd}$ degree 					&											& (1) no damage 				& (1) 1$^{st}$ degree 			\\ \cline{2-6}
-								& \multirow{2}{*}{Transitional} & \multirow{2}{*}{(3) 3$^{rd}$ degree}	& \multirow{2}{*}{3$^{rd}$-4$^{th}$ degree}	& (1) 2$^{nd}$ degree 			& (1) 2$^{nd}$ degree 			\\ 
-								&								&										&											& (2) no damage 				& (2) 1$^{st}$ degree 			\\ \cline{2-6}
-								& Delayed 						& 4$^{th}$ degree 						& 4$^{th}$ degree 							& 1$^{st}$ degree 				& 1$^{st}$ degree 				\\ \hline
+Test Type 						& Suppression Tactic 			& Pre-Water 										& Post-Water															& Pre-Water												& Post-Water 											\\ \hline \hline
+\multirow{4}{*}{No Vent}		& \multirow{3}{*}{Interior}		& (3) 1\textsuperscript{st} degree 					& (1) 2\textsuperscript{nd} degree 										& (1) 2\textsuperscript{nd} degree 						& (1) 2\textsuperscript{nd} degree 						\\ 
+								&								& (2) no damage 									& (3) 1\textsuperscript{st} degree 										& (2) 1\textsuperscript{st} degree 						& (4) 1\textsuperscript{st} degree 						\\ 
+								&								&													& (1) no damage 														& (2) no damage 	 									&														\\ \cline{2-6}
+								& Delayed 						& 4\textsuperscript{th} degree 						& 4\textsuperscript{th} degree 											& 3\textsuperscript{rd}-4\textsuperscript{th} degree 	& 3\textsuperscript{rd}-4\textsuperscript{th} degree 	\\ \hline
+\multirow{5}{*}{Single Vent}	& \multirow{2}{*}{Interior} 	& (2) 2\textsuperscript{nd} degree 					& (3) 2\textsuperscript{nd} degree 										& \multirow{2}{*}{(5) no damge}							& \multirow{2}{*}{(5) no damge}							\\ 
+								&								& (3) 1\textsuperscript{st} degree 					& (2) 1\textsuperscript{st} degree 										&														&														\\ \cline{2-6} 
+								& \multirow{2}{*}{Transitional} & (1) 2\textsuperscript{nd} degree 					& (1) 2\textsuperscript{nd} degree 										& \multirow{2}{*}{(5) no damge}							& (3) 1\textsuperscript{st} degree 						\\ 
+								&								& (3) 1\textsuperscript{st} degree 					& (3) 1\textsuperscript{st} degree 										&														& (1) no damage 										\\ \cline{2-6}
+								& Delayed 						& 3\textsuperscript{rd}-4\textsuperscript{th} degree& 4\textsuperscript{th} degree 											& 2\textsuperscript{nd} degree 							& 2\textsuperscript{nd} degree 							\\ \hline
+\multirow{5}{*}{Two Vent}		& \multirow{2}{*}{Interior} 	& (2) 3\textsuperscript{rd} degree 					& \multirow{2}{*}{3\textsuperscript{rd}-4\textsuperscript{th} degree} 	& (3) 1\textsuperscript{st} degree 						& (3) 2\textsuperscript{nd} degree 						\\ 
+								&								& (2) 2\textsuperscript{nd} degree 					&																		& (1) no damage 										& (1) 1\textsuperscript{st} degree 						\\ \cline{2-6}
+								& \multirow{2}{*}{Transitional} & \multirow{2}{*}{(3) 3\textsuperscript{rd} degree}	& \multirow{2}{*}{3\textsuperscript{rd}-4\textsuperscript{th} degree}	& (1) 2\textsuperscript{nd} degree 						& (1) 2\textsuperscript{nd} degree 						\\ 
+								&								&													&																		& (2) no damage 										& (2) 1\textsuperscript{st} degree 						\\ \cline{2-6}
+								& Delayed 						& 4\textsuperscript{th} degree 						& 4\textsuperscript{th} degree 											& 1\textsuperscript{st} degree 							& 1\textsuperscript{st} degree 							\\ \hline
 \end{tabular}
 * (x) denotes number of tests where that type of burn injury was noted.
 \end{table}
 
-Table \ref{tab:burn_injury_summary} provides a summary of the estimated burn damage for each fire type and suppression scenario.  Importantly, this table includes the impact of both the temperature and the time of exposures to characterize burns risk.  The burn threat is typically limited to 1st degree of less for the 'No Vent' and 'Single Vent' experiments (except when intervention is delayed), though a few scenarios would result in burn that could reach beyond the epidermal layer and into the dermis (2\textsuperscript{nd} degree). Delayed intervention resulted in severe burns for occupants at location 1, reaching depths greater than 10 mm in all three scenarios.  Occupants at location 3 in the delayed scenario for fire type 1 would also be at risk for 3rd to 4th degree burns.
+Table \ref{tab:burn_injury_summary} provides a summary of the estimated burn damage for each fire type and suppression scenario.  Importantly, this table includes the impact of both the temperature and the time of exposures to characterize burns risk.  The burn threat is typically limited to 1\textsuperscript{st} degree of less for the 'No Vent' and 'Single Vent' experiments (except when intervention is delayed), though a few scenarios would result in burn that could reach beyond the epidermal layer and into the dermis (2\textsuperscript{nd} degree). Delayed intervention resulted in severe burns for the victim 1 location, reaching depths greater than 10 mm in all three scenarios.  The victim location 3 in the delayed scenario for the ``No Vent'' experiments was also at risk for 3\textsuperscript{rd} to 4\textsuperscript{th} degree burns.
  
-Although temperature spikes were observed at the skin surface for many of the scenarios where water was applied to the fire, this action did not result in any serious burns for most of the `No Vent' and `Single Vent' experiments as the epidermal layer still did not reach complete necrosis. Additionally, most experiments where the depth of necrosis increased significantly after water application had little to do with the water application and is more likely a result of the heat penetrating into the deeper layers of tissue.  As Stoll indicated, skin will continue to be damaged unless it can be cooled below 112~$^\circ$F (44~$^\circ$C).  
+% Although temperature spikes were observed at the skin surface for many of the scenarios where water was applied to the fire, this action did not result in any serious burns for most of the `No Vent' and `Single Vent' experiments as the epidermal layer still did not reach complete necrosis. Additionally, most experiments where the depth of necrosis increased significantly after water application had little to do with the water application and is more likely a result of the heat penetrating into the deeper layers of tissue.  As Stoll indicated, skin will continue to be damaged unless it can be cooled below 112~$^\circ$F (44~$^\circ$C).
+
+In some experiments, independent of the application direction of water, an increase in surface necrosis (skin damage), was seen immediately after water application. Figure \ref{fig:necrosis_increase_interior} and Figure \ref{fig:necrosis_increase_exterior} show the potential increase for both an interior or transitional attack. This was not seen in every experiment nor in every victim location. In many instances, the difference in potential damage seen from prior to water application as compared to after water appication had little to do with the water application and was more likely a result of the heat penetrating into the deeper layers of tissue.  As Stoll indicated, skin will continue to be damaged unless it can be cooled below 112~$^\circ$F (44~$^\circ$C) \cite{Pain_Thermal_Radiation}. When compared to the experiments where intervention was delayed, the additional potential injury is minor relative to the potential with delayed intervention. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Skin_Necrosis/Experiment_15_Data_Vic_1}
+\includegraphics[width=0.65\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Skin_Necrosis/Experiment_15_Data_Vic_3}
+\caption{Example of Skin Necrosis Depth Increase during Interior Attack (Experiment~15). Victim~1 Location (Top), Victim~3 Location (Bottom). Surface Necrosis exceeding 0.2 is equivalent to a 1\textsuperscript{st} degree burn. Necrosis depth exceeding 0.2~mm is equivalent to a 2\textsuperscript{nd} degree burn.}
+\label{fig:necrosis_increase_interior}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Skin_Necrosis/Experiment_19_Data_Vic_1}
+\includegraphics[width=0.65\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Skin_Necrosis/Experiment_19_Data_Vic_3}
+\caption{Example of Skin Necrosis Depth Increase during Transitional Attack (Experiment~19). Victim~1 Location (Top), Victim~3 Location (Bottom). Surface Necrosis exceeding 0.2 is equivalent to a 1\textsuperscript{st} degree burn. Necrosis depth exceeding 0.2~mm is equivalent to a 2\textsuperscript{nd} degree burn.}
+\label{fig:necrosis_increase_exterior}
+\end{figure}
+
+The results indicate that increases in burn potential (skin damage) were independent of the method of suppression tactic (interior or transitional) utilized. Additionally, the potential injury seen during delayed intervention cases illustrates the need to apply water regardless of if there a potential for a minor increase in injury potential.  Further research on this topic should included evaluating the difference between suppression water landing on instrumented skin samples as opposed to when water is being applied to adjacent compartments. Additionally, this measurement and analysis focused on exposed skin, additional research will need to be conducted to evaluate if the increased damage to the skin surface would be more harmful if the injury were to occur to the respiratory track. 
+
+\hl{The table below came from the data given to us from Nick. I'm having trouble getting it to match the data from Table 6.4. Any help would be greatly appreciated.}
+
+\begin{table}[H]
+\centering
+\caption{Potential Burn Injury for all Experiments} 
+\label{tab:burn_inj_potential}
+\begin{tabular}{|C{0.23\textwidth}|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Test Type}				&	\multirow{2}{*}{Experiment}	& \multicolumn{2}{c|}{Victim 1}   								& \multicolumn{2}{c|}{Victim 3}						\\ \cline{3-6}
+			    						&	 				& 5 Sec Prior 					& 60 Sec Post 					& 5 Sec Prior 					& 60 Sec Post  					\\ \hline \hline
+\multirow{6}{*}{No Vent Interior}  		&	1*   			& 4\textsuperscript{th} degree 	& 4\textsuperscript{th} degree 	& 3\textsuperscript{rd} degree 	& 3\textsuperscript{rd} degree 	\\ \cline{2-6}
+										&	2    			& No Damage 					& No Damage 					& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	3    			& No Damage 					& No Damage 					& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	4    			& 1\textsuperscript{st} degree 	& 1\textsuperscript{st} degree 	& 2\textsuperscript{nd} degree 	& 2\textsuperscript{nd} degree 	\\ \cline{2-6}
+										&	5    			& No Damage 					& No Damage 					& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	6	 			& No Damage 					& 1\textsuperscript{st} degree 	& No Damage 					& 1\textsuperscript{st} degree 	\\ \hline
+\multirow{6}{*}{Single Vent Interior}	& 	7				& 2\textsuperscript{nd} degree 	& 2\textsuperscript{nd} degree 	& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	8    			& No Damage 					& No Damage 					& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	9    			& No Damage 					& No Damage 					& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	10   			& 1\textsuperscript{st} degree 	& 2\textsuperscript{nd} degree 	& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	11   			& 2\textsuperscript{nd} degree 	& 2\textsuperscript{nd} degree 	& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	12*  			& 3\textsuperscript{rd} degree 	& 3\textsuperscript{rd} degree  & 1\textsuperscript{st} degree 	& 1\textsuperscript{st} degree 	\\ \hline
+\multirow{5}{*}{Two Vent Interior}		& 	13   			& 3\textsuperscript{rd} degree 	& 3\textsuperscript{rd} degree 	& 1\textsuperscript{st} degree 	& 1\textsuperscript{st} degree 	\\ \cline{2-6}
+										&	14   			& 2\textsuperscript{nd} degree 	& 3\textsuperscript{rd} degree 	& 1\textsuperscript{st} degree 	& 2\textsuperscript{nd} degree 	\\ \cline{2-6}
+										&	15   			& 2\textsuperscript{nd} degree 	& 3\textsuperscript{rd} degree 	& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	16   			& 3\textsuperscript{rd} degree 	& 3\textsuperscript{rd} degree 	& 1\textsuperscript{st} degree 	& 1\textsuperscript{st} degree 	\\ \cline{2-6}
+										&	17*  			& 3\textsuperscript{rd} degree 	& 3\textsuperscript{rd} degree 	& 1\textsuperscript{st} degree 	& 1\textsuperscript{st} degree 	\\ \hline
+\multirow{4}{*}{Two Vent Transitional}	& 	18   			& 2\textsuperscript{nd} degree 	& 2\textsuperscript{nd} degree 	& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	19   			& 1\textsuperscript{st} degree 	& 1\textsuperscript{st} degree 	& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	20   			& No Damage 					& No Damage 					& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	21   			& No Damage 					& No Damage 					& No Damage 					& No Damage 					\\ \hline
+\multirow{3}{*}{Two Vent Transitional}	& 	22   			& 3\textsuperscript{rd} degree 	& 3\textsuperscript{rd} degree 	& 1\textsuperscript{st} degree 	& 1\textsuperscript{st} degree 	\\ \cline{2-6}
+										&	23   			& 3\textsuperscript{rd} degree 	& 3\textsuperscript{rd} degree 	& No Damage 					& No Damage 					\\ \cline{2-6}
+										&	24   			& 3\textsuperscript{rd} degree 	& 3\textsuperscript{rd} degree 	& No Damage 					& No Damage 					\\ \hline
+\end{tabular} \\
+* Delayed Intervention Experiment
+\end{table}
+
+\hrule
+\vspace{2pt}
+\hrule
+
+\hl{The information in the tables below was used to determine the potential burn degree in Table 6.5 and will be only be included in the report in a chart form, not a table form.}
+
+\begin{table}[H]
+\centering
+\caption{Victim 1 Necrosis Prior to and Post Water Application} 
+\label{tab:vic_1_necrosis}
+\begin{tabular}{|C{0.23\textwidth}|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Test Type}				&	\multirow{2}{*}{Experiment}	& \multicolumn{2}{c|}{Surface Necrosis}   	& \multicolumn{2}{c|}{Necrosis Depth}				\\ \cline{3-6}
+			    						&	 				& 5 Sec Prior 	& 60 Sec Post 							& 5 Sec Prior 					& 60 Sec Post  		\\ \hline \hline
+\multirow{6}{*}{No Vent Interior}  		&	1*   			&  1.010 		& 1.010 								& 9.900 						& 10.700			\\ \cline{2-6}
+										&	2    			&  0.072 		& 0.141 								& 0.000 						&  0.000			\\ \cline{2-6}
+										&	3    			&  0.002 		& 0.005 								& 0.000 						&  0.000			\\ \cline{2-6}
+										&	4    			&  0.889 		& 0.898 								& 0.000 						&  0.000			\\ \cline{2-6}
+										&	5    			&  0.050 		& 0.077 								& 0.000 						&  0.000			\\ \cline{2-6}
+										&	6	 			&  0.096 		& 1.010 								& 0.000 						&  0.200			\\ \hline
+\multirow{6}{*}{Single Vent Interior}	& 	7				&  1.010 		& 1.010 								& 0.600 						&  0.700			\\ \cline{2-6}
+										&	8    			&  0.108 		& 0.167 								& 0.000 						&  0.000			\\ \cline{2-6}
+										&	9    			&  0.031 		& 0.196 								& 0.000 						&  0.000			\\ \cline{2-6}
+										&	10   			&  0.916 		& 1.010 								& 0.000 						&  0.200			\\ \cline{2-6}
+										&	11   			&  1.010 		& 1.010 								& 0.300 						&  0.300			\\ \cline{2-6}
+										&	12*  			&  1.010 		& 1.010 								& 4.600 						&  5.500			\\ \hline
+\multirow{5}{*}{Two Vent Interior}		& 	13   			&  1.010 		& 1.010 								& 4.000 						&  4.300			\\ \cline{2-6}
+										&	14   			&  1.010 		& 1.010 								& 1.700 						&  2.000			\\ \cline{2-6}
+										&	15   			&  1.010 		& 1.010 								& 1.800 						&  2.100			\\ \cline{2-6}
+										&	16   			&  1.010 		& 1.010 								& 4.500 						&  4.600			\\ \cline{2-6}
+										&	17*  			&  1.010 		& 1.010 								& 6.800 						&  8.100			\\ \hline
+\multirow{4}{*}{Two Vent Transitional}	& 	18   			&  1.010 		& 1.010 								& 0.300 						&  1.000			\\ \cline{2-6}
+										&	19   			&  0.211 		& 0.504 								& 0.000 						&  0.000			\\ \cline{2-6}
+										&	20   			&  0.098 		& 0.117 								& 0.000 						&  0.000			\\ \cline{2-6}
+										&	21   			&  0.030 		& 0.039 								& 0.000 						&  0.000			\\ \hline
+\multirow{3}{*}{Two Vent Transitional}	& 	22   			&  1.010 		& 1.010 								& 4.800 						&  5.500			\\ \cline{2-6}
+										&	23   			&  1.010 		& 1.010 								& 2.700 						&  3.000			\\ \cline{2-6}
+										&	24   			&  1.010 		& 1.010 								& 4.100 						&  4.900			\\ \hline
+\end{tabular} \\
+* Delayed Intervention Experiment
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Victim 3 Necrosis Prior to and Post Water Application} 
+\label{tab:vic_4_necrosis}
+\begin{tabular}{|C{0.23\textwidth}|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Test Type}				&	\multirow{2}{*}{Experiment}	& \multicolumn{2}{c|}{Surface Necrosis}   	& \multicolumn{2}{c|}{Necrosis Depth}				\\ \cline{3-6}
+			    						&	 				& 5 Sec Prior 	& 60 Sec Post 							& 5 Sec Prior 					& 60 Sec Post  		\\ \hline \hline
+\multirow{6}{*}{No Vent Interior}  		&	1*   			& 1.010 		& 1.010 								& 2.600 						& 3.000				\\ \cline{2-6}
+										&	2    			& 0.008 		& 0.063 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	3    			& 0.002 		& 0.011 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	4    			& 1.010 		& 1.010 								& 0.400 						& 0.500				\\ \cline{2-6}
+										&	5    			& 0.029 		& 0.066 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	6	 			& 0.183 		& 0.867 								& 0.000 						& 0.000				\\ \hline
+\multirow{6}{*}{Single Vent Interior}	& 	7				& 0.000 		& 0.000 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	8    			& 0.000 		& 0.000 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	9    			& 0.000 		& 0.001 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	10   			& 0.000 		& 0.000 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	11   			& 0.000 		& 0.003 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	12*  			& 1.010 		& 1.010 								& 0.200 						& 0.700				\\ \hline
+\multirow{5}{*}{Two Vent Interior}		& 	13   			& 0.845 		& 1.010 								& 0.000 						& 0.100				\\ \cline{2-6}
+										&	14   			& 0.752 		& 1.010 								& 0.000 						& 0.200				\\ \cline{2-6}
+										&	15   			& 0.015 		& 0.197 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	16   			& 1.010 		& 1.010 								& 0.100 						& 0.100				\\ \cline{2-6}
+										&	17*  			& 0.426 		& 0.549 								& 0.000 						& 0.000				\\ \hline
+\multirow{4}{*}{Two Vent Transitional}	& 	18   			& 0.002 		& 0.033 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	19   			& 0.000 		& 0.000 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	20   			& 0.000 		& 0.000 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	21   			& 0.000 		& 0.000 								& 0.000 						& 0.000				\\ \hline
+\multirow{3}{*}{Two Vent Transitional}	& 	22   			& 1.010 		& 1.010 								& 0.200 						& 0.700				\\ \cline{2-6}
+										&	23   			& 0.000 		& 0.012 								& 0.000 						& 0.000				\\ \cline{2-6}
+										&	24   			& 0.005 		& 0.069 								& 0.000 						& 0.000				\\ \hline
+\end{tabular} \\
+* Delayed Intervention Experiment
+\end{table}
+
+\hrule
+\vspace{2pt}
+\hrule
 
 % And while the skin surface might be directly impacted by the hose stream cooling the ambient air (and possibly even the skin surface itself), heat stored deep in the tissue can continue to cause damage until it has transferred to other locations.  \hl{Figure 10} shows the necrosis depth during a Fire Type 3 experiment where very high temperatures were experienced prior to water application.  Even though water application does not cause a significant spike in surface temperature, necrosis depth continues to increase after water application.  In fact, the rate of increase changes very little with the application of water. This behavior suggests that the increased burn depth after water application was not due to the water application. In fact, based on the delayed intervention experiments, the burn depth likely would have penetrated deeper if not for the application of water.
 
@@ -3519,7 +3676,7 @@ In the scenario in Figure \ref{fig:similatnious_search_tc_interior} a room and c
 
 The conditions prior to water application Figure \ref{fig:similatnious_search_tc_trans}~(left) are the same for the transitional attack. A search crew would not safely be able to enter the extreme (red) zones and although the bedrooms off the extreme zones would most likely not be as significant a hazard, accessing them would not be possible without significant injury. Once water is applied through the window directly into the compartment in a transitional attack Figure \ref{fig:similatnious_search_tc_trans}~(right) it not only effects the fire room but the adjacent spaces as well. The fire is no longer transferring heat energy to these spaces and they cool to the routine (green) operating range of the structural gear. 
 
-\section{Search Considersation: Closed Doors Significantly Increase Occupant Survivability} \label{tc:Search_Considersation_Closed_Doors}
+\section{Search Consideration: Closed Doors Significantly Increase Occupant Survivability} \label{tc:Search_Considersation_Closed_Doors}
 
 \begin{figure}[H]
 \centering
@@ -3616,6 +3773,41 @@ Water application from the exterior also entrains air. A narrow fog stream moved
 \caption[Exterior Application Can Change Flow path]{Examples of the potential to change the flow path based on the application of water from the exterior. The narrow fog (left) blocks the opening and entrains air increasing the pressure in the room, the solid stream (right) does not affect the flow path.}
 \label{fig:flow_path_effect_TC_exerior_application}
 \end{figure}
+
+\section{Water Application Was Not Shown to Significantly Increase the Potential Injury to Unprotected Skin}
+When arriving at a residential structure fire, assessing the impact of your tactical decisions may have on occupants trapped inside the structure requires a knowledge of how these tactical decisions effect occupant survivability. The potential negative consequences of water application are highlighted throughout fire service literature and training manuals \cite{Stowell_Essentials6}. These negative consequentialness focus on the impact to a victim located immediately outside the fire compartment. In this study instrumentation was located immediately outside the compartment to assess the potential impacts of the various tactics chosen. Additionally, victims were located in adjacent bedrooms outside the flow path, in the path of travel of the approaching hose crew and at the opposite corner of the structure from the fire compartment. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{../0_Images/Instrumentation/Victim_Locations}
+\caption{Simulated Victim Locations Within the Structure}
+\label{fig:TC_Victim_Locations}
+\end{figure}
+
+No potential burn injuries were observed at the victims located remote from the fire (Victim 4 and Victim 5) and at the victim located behind a closed door (Victim 2). The victim immediately outside the fire compartments (Victim 1) and the victim in the adjacent bedroom on the bed (Victim 3) both had potential burn injuries. When fire department intervention was delayed, these locations received 3\textsuperscript{rd} and 4\textsuperscript{th} degree burns. Table \ref{tab:TC_burn_inj_potential} shows the potential injury to unprotected skin when suppression is delayed.
+
+\begin{table}[H]
+\centering
+\caption{Potential Burn Injury - No Fire Department Intervention} 
+\label{tab:TC_burn_inj_potential}
+\begin{tabular}{|c|c|c|C{0.1\textwidth}|}
+\hline
+Test Type 											& Victim 1						& Victim 3						& Time from Ignition \\ \hline \hline
+Bedroom 1 Fire - No Vents  							& 4\textsuperscript{th} degree 	& 3\textsuperscript{rd} degree 	& 27:49 	\\ \hline
+Bedroom 1 Fire - Bedroom Window Open				& 3\textsuperscript{rd} degree 	& 1\textsuperscript{st} degree 	& 13:45 	\\ \hline
+Bedroom 1 \& 2 Fire - Bedroom 1 \& 2 Window Open 	& 3\textsuperscript{rd} degree 	& 1\textsuperscript{st} degree 	& 10:42 	\\ \hline
+\end{tabular} \\
+\end{table}
+
+*********************************************************************************************************************************************************
+***************************						NEED TO FINISH THIS TACTICAL CONSIDERATION 					*********************************************
+*********************************************************************************************************************************************************
+*********************************************************************************************************************************************************
+*********************************************************************************************************************************************************
+*********************************************************************************************************************************************************
+*********************************************************************************************************************************************************
+*********************************************************************************************************************************************************
+*********************************************************************************************************************************************************
 
 \section{Speed of transition is the enemy of re-growth} \label{tc:speed_enemy_regrowth}
 As with the initial water application, the method used for final suppression should be based on the time it takes to perform the tactic. During an exterior attack and often some interior attacks it is often difficult to apply water under or behind obstructions such as beds, dressers, chairs and sofas. After an initial water application from the exterior, if flames are visible the crew should attempt to place the nozzle in the ventilation opening and suppress the flames. If there are no obstructions, placing the nozzle through the opening on a half open bale or narrow fog and moving it in two or three large circles will cool as many surfaces as possible. 
