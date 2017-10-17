@@ -18,5 +18,7 @@ echo "Plotting Experiment Analysis Plots"
 Python.exe Experiment_Analysis_Plotter.py
 echo "Plotting Knock Back Analysis Plots"
 Python.exe Knock_Back_Time_Plotter.py
+echo "Plotting TIC Plots"
+Python.exe TIC_Plot.py
 echo "Plotting Tactical Considerations Plots"
 Python.exe Tactical_Considerations_Plotter.py

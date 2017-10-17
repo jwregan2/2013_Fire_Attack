@@ -561,20 +561,33 @@ for exp in natsorted(experiments):
 			# Create figure
 			fig = plt.figure()
 			
+			x_min = 0
+			x_max = all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60
+
 			fig.set_size_inches(20, 16)
 			ax1 = plt.gca()
-			ax1.set_xlim(0,all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60)
-
 			plt.xticks(fontsize=28)
 			plt.yticks(fontsize=28)
 			plt.grid(True)
+
+			ax2 = ax1.twinx()
+
+			ax1.set_xlim(x_min,x_max)
+			ax2.set_ylim(0,10)
+
+			ax2.set_xlim(x_min, x_max)
+			ax2.set_ylim(0,1)
+			ax2.tick_params(axis='x', top='off', labeltop='off')
+			plt.yticks(fontsize=32)
+
+
 
 			# Plot style - cycle through 20 color pallet and define markers to cycle through
 			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-			ax1.plot(data.index, data[vic + ' necrosis depth'], label='Necrosis Depth', marker=next(plot_markers), markevery=markers )
-			ax1.plot(data.index, data[vic + ', surface necrosis'], label='Surface Necrosis', marker=next(plot_markers), markevery=markers )
+			ax1.plot(data.index, data[vic + ' necrosis depth'], label='Necrosis Depth', marker='s', color=(31/255, 119/255, 180/255), markevery=markers )
+			ax2.plot(data.index, data[vic + ', surface necrosis'], label='Surface Necrosis', marker='o', color=(174/255, 199/255, 232/255), markevery=markers )
 
 			ax3=ax1.twiny()
 
@@ -599,10 +612,13 @@ for exp in natsorted(experiments):
 			plt.ylim([0,12])
 			ax1.set_yticks(np.arange(0, 12, 1))
 
-			ax1.legend(fontsize=24, handlelength=2)
-			plt.subplots_adjust(top=0.80)
+			h1, l1 = ax1.get_legend_handles_labels()
+			h2, l2 = ax2.get_legend_handles_labels()
+			ax1.legend(h1+h2, l1+l2, fontsize=32, handlelength=2, loc='upper left')
+
 			ax1.set_xlabel('Time (Minutes)', fontsize=38)
 			ax1.set_ylabel('Necrosis Depth (mm)', fontsize=38)
+			ax2.set_ylabel('Surface Necrosis (Dimensionless)', fontsize=38)
 			plt.xticks(fontsize=28)
 			plt.yticks(fontsize=28)
 			plt.tight_layout()
