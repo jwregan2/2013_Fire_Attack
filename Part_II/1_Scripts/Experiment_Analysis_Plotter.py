@@ -53,12 +53,13 @@ for exp in Exp_Des.index.values:
 	channels_to_skip[exp] = Exp_Des['Excluded Channels'][exp].split('|')
 
 experiment = {'Flow_vs_Shutdown':['Experiment_3_Data', 'Experiment_2_Data', 'Experiment_6_Data','Experiment_7_Data', 'Experiment_8_Data', 'Experiment_9_Data', 'Experiment_10_Data', 'Experiment_13_Data','Experiment_14_Data'],
-			'Pushing_Fire':['Experiment_7_Data','Experiment_8_Data','Experiment_9_Data','Experiment_10_Data','Experiment_11_Data','Experiment_18_Data','Experiment_19_Data','Experiment_20_Data','Experiment_21_Data'],
+			'Pushing_Fire':['Experiment_2_Data', 'Experiment_7_Data','Experiment_8_Data','Experiment_9_Data','Experiment_10_Data','Experiment_11_Data','Experiment_18_Data','Experiment_19_Data','Experiment_20_Data','Experiment_21_Data'],
 			'Door_Control':['Experiment_3_Data', 'Experiment_6_Data', 'Experiment_14_Data', 'Experiment_15_Data']}
 
 channels = {'Flow_vs_Shutdown':{'End_Hall':['3TC7','3TC6','3TC5','3TC4','3TC3','3TC2','3TC1'], 
 							'Bedroom_1_Temperature':['1TC1', '1TC3', '1TC5', '1TC7'],
-							'Start_Hall_Flow':['6BDP1','6BDP2','6BDP3','6BDP4','6BDP5']},
+							'Start_Hall_Flow':['6BDP1','6BDP2','6BDP3','6BDP4','6BDP5'],
+							'Bedroom_2_Door':['3BDP1','3BDP2','3BDP3','3BDP4','3BDP5']},
 			'Pushing_Fire':{'Start_Hall_Flow':['6BDP1','6BDP2','6BDP3','6BDP4','6BDP5'],
 							'Bedroom_1_Window_Flow':['1BDP1','1BDP2','1BDP3','1BDP4','1BDP5'],
 							'Front_Door_Flow':['7BDP1','7BDP2','7BDP3','7BDP4','7BDP5'],
@@ -578,6 +579,63 @@ moisture_table.index = [x.strip().replace('_', ' ') for x in moisture_table.inde
 
 moisture_table.to_latex('../5_Report/Moisture_Table.tex')
 
+print ('---------- Plotting Moisture Charts by Vent & Location -----')
+
+for vent in exp_info.groupby('Vent').groups.keys():
+	
+	for loc in exp_info.groupby('Location').groups.keys():
+		
+		combo = (vent,loc)
+		
+		if combo not in exp_info_grouped.groups.keys():
+			continue
+
+		print ('	Plotting ' + vent + ', ' + loc + ' chart')
+		
+		# Create figure
+		fig = plt.figure()
+		fig.set_size_inches(8, 6)
+
+		# plt.style.use('ggplot')
+
+		# Plot style - cycle through 20 color pallet and define markers to cycle through
+		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+		for exp in exp_info_grouped.groups[(vent,loc)].values:
+			data = all_laser_data[exp][['Low','High']].max(axis=1)
+			data = data.replace(0.0, np.nan)
+
+			plt.plot(data.index, data.values, label = exp.replace('_', ' '), marker=next(plot_markers), markevery=10)
+
+			plt.axvline(all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60, color = 'black')
+			if exp in ['Experiment_19','Experiment_21']:
+				plt.text((all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60)+0.1, 12.5, exp.replace('_', ' '), ha='left', va='bottom', rotation=45)
+			elif exp in ['Experiment_18', 'Experiment_11']:
+				plt.text((all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60)-0.1, 12.5, exp.replace('_', ' '), ha='left', va='bottom', rotation=45)
+			else:
+				plt.text(all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60, 12.5, exp.replace('_', ' '), ha='left', va='bottom', rotation=45)
+
+		plt.legend()
+		if vent == 'Single_Vent':
+			plt.xlim([4,11.5])
+		if vent == 'Two_Vent':
+			plt.xlim([4,11.5])
+		if vent == 'No_Vent':
+			plt.xlim([4,14])
+		
+		plt.ylim([0,12])
+		plt.yticks(np.arange(0, 12, 1))
+		plt.subplots_adjust(top=0.80)
+		plt.xlabel('Time (Minutes)')
+		plt.ylabel('Moisture Content (\% Volume)')
+
+		if not os.path.exists(output_location + '/Moisture/'):
+			os.makedirs(output_location + '/Moisture/')
+
+		plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '.pdf' )
+		plt.close('all')
+
 print ('-------------------------------------- Reading Skin Temp Data ----------------------------------')
 
 data_location_skin_temp = '../2_Data/Skin_Temp_Data/'
@@ -761,62 +819,6 @@ for vic in ['Vic 1', 'Vic 3']:
 	surface_necrosis_table.to_latex('../5_Report/' + vic.replace('_',' ') + '_Surface_Necrosis_Table.tex')
 	print('	' + vic + ' Tables Built')
 
-print ('---------- Plotting Moisture Charts by Vent & Location -----')
-
-for vent in exp_info.groupby('Vent').groups.keys():
-	
-	for loc in exp_info.groupby('Location').groups.keys():
-		
-		combo = (vent,loc)
-		
-		if combo not in exp_info_grouped.groups.keys():
-			continue
-
-		print ('	Plotting ' + vent + ', ' + loc + ' chart')
-		
-		# Create figure
-		fig = plt.figure()
-		fig.set_size_inches(8, 6)
-
-		# plt.style.use('ggplot')
-
-		# Plot style - cycle through 20 color pallet and define markers to cycle through
-		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
-		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
-
-		for exp in exp_info_grouped.groups[(vent,loc)].values:
-			data = all_laser_data[exp][['Low','High']].max(axis=1)
-			data = data.replace(0.0, np.nan)
-
-			plt.plot(data.index, data.values, label = exp.replace('_', ' '), marker=next(plot_markers), markevery=10)
-
-			plt.axvline(all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60, color = 'black')
-			if exp in ['Experiment_19','Experiment_21']:
-				plt.text((all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60)+0.1, 12.5, exp.replace('_', ' '), ha='left', va='bottom', rotation=45)
-			elif exp in ['Experiment_18', 'Experiment_11']:
-				plt.text((all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60)-0.1, 12.5, exp.replace('_', ' '), ha='left', va='bottom', rotation=45)
-			else:
-				plt.text(all_exp_events[exp+'_Events']['Flow_Time'].dropna().ix[0]/60, 12.5, exp.replace('_', ' '), ha='left', va='bottom', rotation=45)
-
-		plt.legend()
-		if vent == 'Single_Vent':
-			plt.xlim([4,11.5])
-		if vent == 'Two_Vent':
-			plt.xlim([4,11.5])
-		if vent == 'No_Vent':
-			plt.xlim([4,14])
-		
-		plt.ylim([0,12])
-		plt.yticks(np.arange(0, 12, 1))
-		plt.subplots_adjust(top=0.80)
-		plt.xlabel('Time (Minutes)')
-		plt.ylabel('Moisture Content (\% Volume)')
-
-		if not os.path.exists(output_location + '/Moisture/'):
-			os.makedirs(output_location + '/Moisture/')
-
-		plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '.pdf' )
-		plt.close('all')
 
 # ****************************************************************************************************************************************
 # ************************* This was an attempt at plotting average moisture. Data was not robust enough to work *************************
