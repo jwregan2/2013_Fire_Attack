@@ -25,3 +25,5 @@ echo "Plotting TIC Plots"
 python TIC_Plot.py
 echo "Creating Appendix B"
 python Create_Latex_AppendixB.py
+echo "Free_Burn_HRR_Plotter"
+python Free_Burn_HRR_Plotter.py
