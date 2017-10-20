@@ -58,6 +58,7 @@ for plot in plots.keys():
 	plt.xlabel('Time (s)', fontsize=16)
 	plt.xticks(fontsize=16)
 	plt.yticks(fontsize=16)
+	plt.tight_layout()
 	plt.savefig(output_location + plot + '.pdf')
 	plt.close()
 exit()
