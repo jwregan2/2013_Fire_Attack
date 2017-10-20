@@ -35,9 +35,15 @@ plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
 mark_freq = 60
 
+# To Label Plots with Peak HRR
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
 # Plot all like furniture together 
 
 experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite', 'stripedchair_1', 'stripedchair_2', 'stripedchair_3', 'yellowchair_1', 'yellowchair_2']
+
+print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'sofa_center_ignite':['Center'], 'sofa_left_ignite':['Left'], 'sofa_right_ignite':['Right'], 'stripedchair_1':['Chair 1'], 'stripedchair_2':['Chair 2'], 'stripedchair_3':['Chair 3'], 'yellowchair_1':['Chair 1'], 'yellowchair_2':['Chair 2']}
 
 all_HRR_data = {}
 for exp in experiments:
@@ -48,11 +54,15 @@ plots = {'all_sofa':['sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignit
 for plot in plots.keys():
 	print(plot)
 
+	height = 0 
 	for exp in plots[plot]:
 		print('		' + exp)
-		plt.plot(all_HRR_data[exp]['Heat Release Rate'], lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6, label= exp + '_HRR')
-
-	plt.legend(numpoints=1, loc='upper right')
+		plt.plot(all_HRR_data[exp]['Heat Release Rate'], lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6, label= print_name[exp][0] + '_HRR')
+		peak_hrr = max(all_HRR_data[exp]['Heat Release Rate']).round(1)
+		plot_text = print_name[exp][0] + ' Peak HRR: ' + str(peak_hrr)
+		plt.text(0.6, 0.95 - (height * 0.05), plot_text, horizontalalignment='left', verticalalignment='center',transform = ax.transAxes)
+		height = height + 1
+	plt.legend(numpoints=1, loc='upper left')
 	plt.grid(linestyle='-',linewidth = 1.5)
 	plt.ylabel('Heat Release Rate (kW)')
 	plt.xlabel('Time (s)', fontsize=16)
