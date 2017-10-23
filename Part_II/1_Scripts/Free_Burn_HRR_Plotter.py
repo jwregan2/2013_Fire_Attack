@@ -8,6 +8,8 @@ from dateutil.relativedelta import relativedelta
 from scipy.signal import butter, filtfilt
 from itertools import cycle
 from scipy.signal import butter, filtfilt, resample
+from scipy.integrate import simps
+from numpy import trapz
 
 data_location = '../2_Data/Free_Burn_Data/'
 
@@ -49,6 +51,13 @@ all_HRR_data = {}
 for exp in experiments:
 	all_HRR_data[exp] = pd.read_csv(data_location + exp + '.DAT', skiprows=[0,2,3,4]).set_index('Test Time')
 	print(exp)
+	
+	y = np.array([all_HRR_data[exp]['Heat Release Rate']])
+	area = trapz(y, dx=1)
+	print(exp + 'tapz_area = ', area)
+
+	area = simps(y, dx=1)
+	print(exp + 'simps_area = ', area)
 
 plots = {'all_sofa':['sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_1', 'stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
 for plot in plots.keys():
