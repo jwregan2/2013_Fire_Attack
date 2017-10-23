@@ -3175,114 +3175,171 @@ The tables below show the various times separated by attack type Table \ref{tab:
 
 % The average time for the suppression crew to reach Victim 1 was 58~seconds ($\pm$14~seconds). When an interior suppression was tested, the suppression crew reached the Victim 1 in on average 54~seconds ($\pm$4~seconds), and when a transitional attack was tested the suppression crew reached the victim in on average 1~minute and 9~seconds ($\pm$14~seconds). Statistically, the time to reach Victim 1 was not significantly different between an interior and transitional attack. This is most likely due to the improved advancement conditions found in the transitional attack, where the crew was able to advance down the hallway without flowing water as compared to when the crew needed to flow water to cool ahead of their position as they advanced down the hallway.
 
+\clearpage 
+
 \begin{table} [H]
 \centering
-\caption{Summary of Tactic Times for Interior Shutdown and Move Attack (Time, [min:sec])}
+\caption{Summary of Tactic Times for Interior Shutdown and Move Attack with No Vent Ventilation Configuration (Time, [min:sec])}
 \begin{tabular}{|C{0.11\textwidth}|C{0.15\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
 \hline
-
-Exp & Ventilation Configuration & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
-
-1 		& No Vent     & N/A    & N/A    & N/A    & 18:33 & 19:32   & N/A   \\ \hline 
-3 		& No Vent     & N/A    & 00:47  & 00:41  & 00:12  & 00:54  & 01:04 \\ \hline 
-5 		& No Vent     & 00:12  & 00:41  & 00:32  & 00:21  & 00:59  & 01:00 \\ \hline  
-6 		& No Vent     & 00:14  & 00:40  & 00:32  & 00:23  & 01:00  & 00:54 \\ \hline 
-8 		& Single Vent & 00:13  & 00:39  & 00:32  & 00:28  & 00:58  & 00:53 \\ \hline 
-10		& Single Vent & 00:11  & 00:41  & 00:32  & 00:20  & 00:55  & 00:56 \\ \hline 
-14		& Two Vent    & 00:13  & 00:41  & 00:34  & 00:21  & 00:55  & 00:53 \\ \hline  
-15		& Two Vent    & N/A    & 00:48  & 00:40  & 00:20  & 00:52  & 01:04 \\ \hline 
+Exp & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+1 		& N/A    & N/A    & N/A    & 18:33 & 19:32   & N/A   \\ \hline 
+3 		& N/A    & 00:47  & 00:41  & 00:12  & 00:54  & 01:04 \\ \hline 
+5 		& 00:12  & 00:41  & 00:32  & 00:21  & 00:59  & 01:00 \\ \hline  
+6 		& 00:14  & 00:40  & 00:32  & 00:23  & 01:00  & 00:54 \\ \hline 
 \end{tabular}
-\label{tab:interior_shutdown_times}
+\label{tab:interior_shutdown_times_no_vent}
 \end{table} 
+
+\begin{table} [H]
+\centering
+\caption{Summary of Tactic Times for Interior Shutdown and Move Attack with Single Vent Ventilation Configuration (Time, [min:sec])}
+\begin{tabular}{|C{0.11\textwidth}|C{0.15\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
+\hline
+Exp & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+8 		& 00:13  & 00:39  & 00:32  & 00:28  & 00:58  & 00:53 \\ \hline 
+10		& 00:11  & 00:41  & 00:32  & 00:20  & 00:55  & 00:56 \\ \hline 
+\end{tabular}
+\label{tab:interior_shutdown_times_single_vent}
+\end{table}
+
+\begin{table} [H]
+\centering
+\caption{Summary of Tactic Times for Interior Shutdown and Move Attack with Two Vent Ventilation Configuration (Time, [min:sec])}
+\begin{tabular}{|C{0.11\textwidth}|C{0.15\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
+\hline
+Exp & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+14		& 00:13  & 00:41  & 00:34  & 00:21  & 00:55  & 00:53 \\ \hline  
+15		& N/A    & 00:48  & 00:40  & 00:20  & 00:52  & 01:04 \\ \hline 
+\end{tabular}
+\label{tab:interior_shutdown_times_two_vent}
+\end{table} 
+
+\clearpage 
+
+\begin{table} [H]
+\centering
+\caption{Summary of Tactic Times for Interior Flow and Move Attack with No Vent Ventilation Configuration (Time, [min:sec])}
+\begin{tabular}{|C{0.11\textwidth}|C{0.15\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
+\hline
+Exp & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+2 		& 00:12  & 00:36  & 00:33  & 00:22  & 01:19  & 00:56 \\ \hline  
+4 		& 00:12  & 00:34  & 00:25  & 00:20  & 00:54  & 00:52 \\ \hline 
+\end{tabular}
+\label{tab:interior_flow_times_no_vent}
+\end{table} 
+
+\begin{table} [H]
+\centering
+\caption{Summary of Tactic Times for Interior Flow and Move Attack with Single Vent Ventilation Configuration (Time, [min:sec])}
+\begin{tabular}{|C{0.11\textwidth}|C{0.15\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
+\hline
+Exp & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+7 		& 00:11  & 00:32  & 00:22  & 00:16  & 00:40  & 00:49 \\ \hline  
+9 		& 00:11  & 00:22  & 00:19  & 00:21  & 00:42  & 00:37 \\ \hline  
+11		& 00:10  & 00:29  & 00:23  & 00:22  & 00:45  & 00:47 \\ \hline  
+12		& N/A    & N/A    & N/A    & 07:39  & 08:14  & N/A   \\ \hline
+\end{tabular}
+\label{tab:interior_flow_times_single_vent}
+\end{table} 
+
+\begin{table} [H]
+\centering
+\caption{Summary of Tactic Times for Interior Flow and Move Attack with Two Vent Ventilation Configuration (Time, [min:sec])}
+\begin{tabular}{|C{0.11\textwidth}|C{0.15\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
+\hline
+Exp & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+13		& 00:11  & 00:42  & 00:32  & 00:25  & 00:57  & 01:03 \\ \hline  
+16		& 00:10  & 00:38  & 00:26  & 00:19  & 00:45  & 00:54 \\ \hline  
+17		& N/A    & N/A    & N/A    & 05:12  & 05:35  & N/A   \\ \hline
+\end{tabular}
+\label{tab:interior_flow_times_two_vent}
+\end{table} 
+
+
+% To turn the page along with the table for .pdf purposes 
+\begin{landscape}
+\begin{table} [H]
+\centering
+\caption{Summary of Tactic Times for Transitional Attack with Single Vent Ventilation Configuration(Time, [min:sec])}
+\begin{tabular}{|C{0.09\textwidth}|C{0.18\textwidth}|C{0.11\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
+\hline
+Exp. & Tactic & Exterior Flow & Exterior Travel & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+  
+18		& No Adittional Water             & 00:10  & 00:07  & 00:07  & 00:06  & 00:15  & 00:27  & 00:46  & 00:48 \\ \hline 
+19		& Fog Additional Water Delayed    & 00:11 Fog 00:18 Stright Stream & 00:21  & N/A    & N/A    & N/A     & 03:54  & 04:10  & N/A   \\ \hline 
+20		& Adittional Water      & 00:13  & 00:29  & 00:12  & N/A    & 00:14  & 00:49  & 01:02  & 01:00 \\ \hline 
+21		& Adittional Water      & 00:14  & 00:07  & 00:40  & N/A    & 00:14  & 00:47  & 01:01  & 00:40 \\ \hline 
+22		& Adittional Water      & 00:22  & 00:07  & 00:04  & 00:47  & 00:43  & 00:36  & 01:17  & 01:29 \\ \hline 
+\end{tabular}
+\label{tab:transitional_times_single_vent}
+\end{table} 
+
+\begin{table} [H]
+\centering
+\caption{Summary of Tactic Times for Transitional Attack with Two Vent Ventilation Configuration(Time, [min:sec])}
+\begin{tabular}{|C{0.09\textwidth}|C{0.18\textwidth}|C{0.11\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
+\hline
+Exp. & Tactic & Exterior Flow & Exterior Travel & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+
+23		& Occlude Opening 1 Window & 00:16  & 00:08  & 00:07  & 01:01  & 00:35  & 00:36  & 01:07  & 01:35 \\ \hline 
+24		& Adittional Water Both Rooms & 00:43  & 00:18  & 00:13  & N/A    & 00:14  & 01:42  & 01:11  & 01:22 \\ \hline
+\end{tabular}
+\label{tab:transitional_times_two_vent}
+\end{table} 
+\end{landscape}
+ 
+\clearpage
 
 The average times for the interior shutdown and move experiments are shown here. It should be noted that these averages do not include Experiment 1 with delayed intervention.
 
 \begin{table} [H]
 \centering
 \caption{Average Tactic Times for Interior Shutdown and Move Attack (Time~min:sec)}
-\begin{tabular}{|C{0.05\textwidth}|C{0.15\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
+\begin{tabular}{|C{0.20\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
 \hline
 
-Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+Ventilation Configuration & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
 
-00:12    & 00:42    & 00:35    & 00:21 & 00:56   & 00:58   \\ \hline  
+No Vent 	& 00:12	& 00:36	& 00:29	& 00:21	& 00:67	& 00:54	\\ \hline  
+Single Vent & 00:11	& 00:28	& 00:21	& 00:20	& 00:42	& 00:44	\\ \hline
+Two Vent 	& 00:11	& 00:40	& 00:34	& 00:22	& 00:51	& 00:59	\\ \hline	
 \end{tabular}
 \label{tab:shutdown_move_averages}
 \end{table}
-
-\begin{table} [H]
-\centering
-\caption{Summary of Tactic Times for Interior Flow and Move Attack (Time, [min:sec])}
-\begin{tabular}{|C{0.11\textwidth}|C{0.15\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
-\hline
-
-Exp & Ventilation Configuration & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
-
-2 		& No Vent    	& 00:12  & 00:36  & 00:33  & 00:22  & 01:19  & 00:56 \\ \hline  
-4 		& No Vent    	& 00:12  & 00:34  & 00:25  & 00:20  & 00:54  & 00:52 \\ \hline  
-7 		& Single Vent	& 00:11  & 00:32  & 00:22  & 00:16  & 00:40  & 00:49 \\ \hline  
-9 		& Single Vent	& 00:11  & 00:22  & 00:19  & 00:21  & 00:42  & 00:37 \\ \hline  
-11		& Single Vent	& 00:10  & 00:29  & 00:23  & 00:22  & 00:45  & 00:47 \\ \hline  
-12		& Single Vent	& N/A    & N/A    & N/A    & 07:39  & 08:14  & N/A   \\ \hline  
-13		& Two Vent   	& 00:11  & 00:42  & 00:32  & 00:25  & 00:57  & 01:03 \\ \hline  
-16		& Two Vent   	& 00:10  & 00:38  & 00:26  & 00:19  & 00:45  & 00:54 \\ \hline  
-17		& Two Vent   	& N/A    & N/A    & N/A    & 05:12  & 05:35  & N/A   \\ \hline
-\end{tabular}
-\label{tab:interior_flow_times}
-\end{table} 
 
 The average times for the interior flow and move experiments are shown here. It should be noted that these averages do not include Experiments 12 or 17 with delayed intervention.
 
 \begin{table} [H]
 \centering
 \caption{Average Tactic Times for Interior Flow and Move Attack (Time~min:sec)}
-\begin{tabular}{|C{0.05\textwidth}|C{0.15\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
+\begin{tabular}{|C{0.20\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
 \hline
 
-Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+Ventilation Configuration & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
 
-00:11    & 00:33    & 00:26    & 00:21 & 00:52   & 00:51   \\ \hline  
+No Vent 	& 00:13	& 00:43	& 00:35	& 00:19	& 00:58	& 00:59	\\ \hline
+Single Vent & 00:12	& 00:40	& 00:32	& 00:24	& 00:57	& 00:55	\\ \hline
+Two Vent 	& 00:13	& 00:45 & 00:37	& 00:21	& 00:54	& 00:59 \\ \hline
 \end{tabular}
 \label{tab:flow_move_averages}
 \end{table}
-
-% To turn the page along with the table for .pdf purposes 
-\begin{landscape}
-\begin{table} [H]
-\centering
-\caption{Summary of Tactic Times for Transitional Attack (Time, [min:sec])}
-\begin{tabular}{|C{0.11\textwidth}|C{0.15\textwidth}|C{0.13\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|C{0.09\textwidth}|}
-\hline
-
-Exp & Ventilation Configuration & Tactic & Exterior Flow & Exterior Travel & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
-  
-18		& Single Vent	& No Adittional Water             & 00:10  & 00:07  & 00:07  & 00:06  & 00:15  & 00:27  & 00:46  & 00:48 \\ \hline 
-19		& Single Vent	& Fog Additional Water Delayed    & 00:11 Fog 00:18 Stright Stream & 00:21  & N/A    & N/A    & N/A     & 03:54  & 04:10  & N/A   \\ \hline 
-20		& Single Vent	& Adittional Water      & 00:13  & 00:29  & 00:12  & N/A    & 00:14  & 00:49  & 01:02  & 01:00 \\ \hline 
-21		& Single Vent	& Adittional Water      & 00:14  & 00:07  & 00:40  & N/A    & 00:14  & 00:47  & 01:01  & 00:40 \\ \hline 
-22		& Single Vent	& Adittional Water      & 00:22  & 00:07  & 00:04  & 00:47  & 00:43  & 00:36  & 01:17  & 01:29 \\ \hline 
-23		& Two Vent   	& Occlude Opening 1 Window & 00:16  & 00:08  & 00:07  & 01:01  & 00:35  & 00:36  & 01:07  & 01:35 \\ \hline 
-24		& Two Vent   	& Adittional Water Both Rooms & 00:43  & 00:18  & 00:13  & N/A    & 00:14  & 01:42  & 01:11  & 01:22 \\ \hline
-\end{tabular}
-\label{tab:transitional_times}
-\end{table} 
-\end{landscape}
 
 The average times for the transitional experiments are shown here. It should be noted that these averages do not include Experiment 19 with delayed intervention.
 
 \begin{table} [H]
 \centering
 \caption{Average Tactic Times for Transitional Attack (Time~min:sec)}
-\begin{tabular}{|C{0.20\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|C{0.10\textwidth}|}
+\begin{tabular}{|C{0.145\textwidth}|C{0.085\textwidth}|C{0.085\textwidth}|C{0.07\textwidth}|C{0.08\textwidth}|C{0.08\textwidth}|C{0.07\textwidth}|C{0.07\textwidth}|C{0.07\textwidth}|C{0.07\textwidth}|}
 \hline
 
-Exterior Flow & Exterior Travel & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
+Ventilation Configuration & Exterior Flow & Exterior Travel & Door Read & Interior Flow & Interior Travel & Victim 4 & Victim 1 & Tactic Time \\ \hline \hline
 
-00:20  & 00:13  & 00:14  & 00:38  & 00:23  & 00:50  & 01:04  & 01:09 \\ \hline  
+Single Vent & 00:12	& 00:15	& 00:20	& 00:02	& 00:15	& 00:41	& 00:56	& 00:49	\\ \hline  
+Two Vent 	& 00:27	& 00:11	& 00:08	& 00:54	& 00:31	& 00:58	& 01:12	& 01:29 \\ \hline 
 \end{tabular}
 \label{tab:transitional_averages}
 \end{table}
-
 
 \section{Impact of Water Usage}
 The amount of water used during each suppression tactic was measured from the start of the experiment until the fire was extinguished. Some hot spots remained, however no visible flame or smoldering existed. Figure \ref{fig:water_flow_all} illustrates the water used in all experiments. The average water used varied from as little as 30.6 gallons in a single room exterior attack to as much as 257.2 gallons in a two room interior attack.
