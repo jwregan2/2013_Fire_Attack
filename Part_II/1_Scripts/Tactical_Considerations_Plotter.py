@@ -98,13 +98,6 @@ for tc in tactic_consid.keys():
 			plt.xticks(fontsize=44)
 			plt.yticks(fontsize=44)
 
-			if exp in all_flow_data.keys():
-				ax2 = ax1.twinx()
-				ax2.plot(all_flow_data[exp].index.values/60, all_flow_data[exp]['Total Gallons'], lw=6, color='#1f77b4',)
-				ax2.set_ylim(0,100)
-				ax2.set_ylabel('Total Flow (Gallons)', fontsize=48)
-				ax2.tick_params(axis='y', labelsize=44)
-
 			axis_scale = Exp_Des['Y Scale Temperature'][exp]
 
 			chart_length = limits[tc][1] - limits[tc][0]
@@ -164,6 +157,12 @@ for tc in tactic_consid.keys():
 				if exp in all_flow_data.keys():
 					flow_data = all_flow_data[exp]['GPM'] 
 					ax1.fill_between(flow_data.index.values, fill_min,  fill_max, where =  flow_data > 10, facecolor='blue', alpha=0.1)
+
+					ax2 = ax1.twinx()
+					ax2.plot(all_flow_data[exp].index.values, all_flow_data[exp]['Total Gallons'], lw=6, color='#1f77b4',)
+					ax2.set_ylim(0,100)
+					ax2.set_ylabel('Total Flow (Gallons)', fontsize=48)
+					ax2.tick_params(axis='y', labelsize=44)
 
 			for flow in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
 				ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], lw=4, color='black')
