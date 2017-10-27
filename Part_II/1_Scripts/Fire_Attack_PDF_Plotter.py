@@ -64,10 +64,10 @@ skip_files = ['example']
 
 all_exp_events = pickle.load(open(info_location + '/Events/all_exp_events.dict', 'rb'))
 
-event_label_size = 28
-axis_title_size = 32
-tic_label_size = 28
-legend_font_size = 24
+event_label_size = 7
+axis_title_size = 8
+tic_label_size = 7
+legend_font_size = 6
 
 
 # **************************************************************************************
@@ -137,12 +137,12 @@ for f in os.listdir(data_location):
 		if Speed == 'low':
 			#Set time to elapsed time column in experimental data.
 			Time = [datetime.datetime.strptime(t, '%H:%M:%S') for t in Exp_Data['Elapsed Time']]
-			mark_freq = 15
+			mark_freq = 8
 
 		if Speed == 'high':
 			#Set time to elapsed time column in experimental data.
 			Time = [datetime.datetime.strptime(t, '%M:%S.%f') for t in Exp_Data['Elapsed Time']]
-			mark_freq = 5
+			mark_freq = 3
 
 		# Pull ignition time from events csv file
 		Ignition = datetime.datetime.strptime(Events['Time']['Ignition'], '%H:%M:%S')
@@ -294,12 +294,12 @@ for f in os.listdir(data_location):
 				# Plot channel data or save channel data for later usage, depending on plot mode
 				plt.plot(Data_Time,
 					current_data,
-					lw=1.5,
+					lw=1,
 					marker=next(plot_markers),
 					markevery=int(End_Time*60/mark_freq),
 					mew=3,
 					mec='none',
-					ms=7,
+					ms=3,
 					label=channel_list['Title'][channel])
 
 				# Scale y-axis limit based on specified range in test description file
@@ -346,13 +346,13 @@ for f in os.listdir(data_location):
 					# print (e)
 					EventTime[i] = (datetime.datetime.strptime(Events['Results_Time'][e], '%H:%M:%S')-Ignition).total_seconds()
 					EventLabel[i] = e
-					plt.axvline(EventTime[i],color='0',lw=2) 
+					plt.axvline(EventTime[i],color='0',lw=1.5) 
 					i = i + 1
 				
 				ax3.set_xticks(EventTime)
 				plt.setp(plt.xticks()[1], rotation=67.5)		
 				ax3.set_xticklabels(EventLabel, fontsize=event_label_size, ha='left')
-				fig.set_size_inches(20, 16)
+				fig.set_size_inches(5, 4)
 				plt.tight_layout()
 			except:
 				print('Error Setting Secondary Axis')
@@ -394,7 +394,7 @@ for plot in gas_cooling_plots.columns:
 		
 	#Create figure
 	fig = plt.figure()
-	fig.set_size_inches(8, 6)
+	fig.set_size_inches(5, 4)
 
 	# Plot style - cycle through 20 color pallet and define markers to cycle through
 	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
@@ -449,7 +449,7 @@ for plot in gas_cooling_plots.columns:
 	
 	ax1.tick_params(axis='x', which='major', pad=15)
 
-	fig.set_size_inches(20, 18)
+	fig.set_size_inches(5, 4)
 
 	ax3.set_xlim(0,5)
 	ax1.set_xlim(0,5)
@@ -487,7 +487,7 @@ for exp in natsorted(experiments):
 
 		# Create figure
 		fig = plt.figure()
-		fig.set_size_inches(20, 16)
+		fig.set_size_inches(5, 4)
 		ax1 = plt.gca()
 		ax1.set_xlim(0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60)
 
@@ -564,7 +564,7 @@ for exp in natsorted(experiments):
 			x_min = 0
 			x_max = all_exp_events[exp[:-5] +'_Events']['Results_Time_Seconds']['End Experiment']/60
 
-			fig.set_size_inches(20, 16)
+			fig.set_size_inches(5, 4)
 			ax1 = plt.gca()
 			plt.xticks(fontsize=28)
 			plt.yticks(fontsize=28)
