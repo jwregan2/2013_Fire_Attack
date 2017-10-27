@@ -1,7 +1,7 @@
 from PIL import Image
 import pytesseract
  
-image_file = '../2_Data/HRR_Mass_Loss/download.png'
+image_file = '../2_Data/HRR_Mass_Loss/Test_Image.png'
 im = Image.open(image_file)
 
 
