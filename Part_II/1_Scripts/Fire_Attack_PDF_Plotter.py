@@ -208,7 +208,14 @@ for f in os.listdir(data_location):
 					plt.ylabel('Temperature ($^\circ$F)', fontsize = axis_title_size)
 					# Search for skin inside description of events file for scaling
 					if 'Skin' in group:
-						axis_scale = 'Y Scale Skin Temperature'
+						if Test_Name in ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_13_Data', 'Experiment_14_Data', 'Experiment_15_Data',
+										 'Experiment_16_Data', 'Experiment_17_Data', 'Experiment_22_Data', 'Experiment_23_Data', 'Experiment_24_Data',]:
+							if 'Victim 1' in channel_list['Title'][channel]:
+								axis_scale = 'Y Scale Skin Temperature High'
+								# print ('Using Skin High Range')
+						else:
+							axis_scale = 'Y Scale Skin Temperature'
+							# print('Using Skin Low Range')
 					else: # Default to standard temperature scale
 						axis_scale = 'Y Scale Temperature'
 					# Set secondary y-axis label to degrees C
@@ -294,7 +301,7 @@ for f in os.listdir(data_location):
 				# Plot channel data or save channel data for later usage, depending on plot mode
 				plt.plot(Data_Time,
 					current_data,
-					lw=1,
+					lw=.5,
 					marker=next(plot_markers),
 					markevery=int(End_Time*60/mark_freq),
 					mew=3,
@@ -409,21 +416,21 @@ for plot in gas_cooling_plots.columns:
 	ax1.xaxis.set_major_locator(plt.MaxNLocator(8))
 	ax1_xlims = ax1.axis()[0:2]
 	plt.ylim([0, y_max]) #Exp_Des['Y Scale Temperature'][exp]])
-	plt.ylabel('Temperature ($^\circ$F)', fontsize=48)
+	plt.ylabel('Temperature ($^\circ$F)', fontsize=axis_title_size)
 	plt.grid(True)
-	plt.xlabel('Time (seconds)', fontsize=48)
-	plt.xticks(fontsize=44)
-	plt.yticks(fontsize=44)
+	plt.xlabel('Time (seconds)', fontsize=axis_title_size)
+	plt.xticks(fontsize=tic_label_size)
+	plt.yticks(fontsize=tic_label_size)
 
 	for channel in gas_cooling_plots[plot]:
 
 		channel_label = all_gas_channels['Title'][channel]
 
-		ax1.plot(data[channel].index/60, data[channel], lw = 4, marker=next(plot_markers), markevery=500,
+		ax1.plot(data[channel].index/60, data[channel], lw =0.5, marker=next(plot_markers), markevery=500,
 							label = channel_label, markersize=15 )
 
 	h1, l1 = ax1.get_legend_handles_labels()
-	ax1.legend(h1, l1, bbox_to_anchor=(1.35, 0.20), loc='lower right', fontsize=40, handlelength=2, labelspacing=.15)
+	ax1.legend(h1, l1, bbox_to_anchor=(1.35, 0.20), loc='lower right', fontsize=legend_font_size, handlelength=2, labelspacing=.15)
 
 	ax3=ax1.twiny()
 
@@ -436,12 +443,12 @@ for plot in gas_cooling_plots.columns:
 	for e in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index:
 		EventTime[i] = all_exp_events[exp[:-4]+'Events']['Flow_Time'][e]/60
 		EventLabel[i] = e
-		plt.axvline(EventTime[i],color='0',lw=2) 
+		plt.axvline(EventTime[i],color='0',lw=1.5) 
 		i = i + 1
 	
 	ax3.set_xticks(EventTime)
 	plt.setp(plt.xticks()[1], rotation=67.5)		
-	ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')	
+	ax3.set_xticklabels(EventLabel, fontsize=tic_label_size, ha='left')	
 
 
 	plt.subplots_adjust(top=0.60, right=0.78)
@@ -491,15 +498,15 @@ for exp in natsorted(experiments):
 		ax1 = plt.gca()
 		ax1.set_xlim(0,all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds']['End Experiment']/60)
 
-		plt.xticks(fontsize=28)
-		plt.yticks(fontsize=28)
+		plt.xticks(fontsize=tic_label_size)
+		plt.yticks(fontsize=tic_label_size)
 		plt.grid(True)
 
 		# Plot style - cycle through 20 color pallet and define markers to cycle through
 		plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 		plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-		ax1.plot(all_laser_data[exp[:-4]].index, all_laser_data[exp[:-4]].max(axis=1), label='Bedroom 4 Moisture', marker=next(plot_markers), markevery=10)
+		ax1.plot(all_laser_data[exp[:-4]].index, all_laser_data[exp[:-4]].max(axis=1), lw=0.5, label='Bedroom 4 Moisture', marker=next(plot_markers), ms=3, markevery=50)
 
 		ax3=ax1.twiny()
 		
@@ -515,22 +522,22 @@ for exp in natsorted(experiments):
 		for e in all_exp_events[exp[:-4]+'_Events']['Results_Time'].dropna().index:
 			EventTime[i] = all_exp_events[exp[:-4]+'_Events']['Results_Time_Seconds'][e]/60
 			EventLabel[i] = e
-			plt.axvline(EventTime[i],color='0',lw=2) 
+			plt.axvline(EventTime[i],color='0',lw=1.5) 
 			i = i + 1
 		
 		ax3.set_xticks(EventTime)
 		plt.setp(plt.xticks()[1], rotation=67.5)		
-		ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')	
+		ax3.set_xticklabels(EventLabel, fontsize=event_label_size, ha='left')	
 		
 		plt.ylim([0,12])
 		ax1.set_yticks(np.arange(0, 12, 1))
 
-		ax1.legend(fontsize=24, handlelength=2)
+		ax1.legend(fontsize=legend_font_size, handlelength=2)
 		plt.subplots_adjust(top=0.80)
-		ax1.set_xlabel('Time (Minutes)', fontsize=38)
-		ax1.set_ylabel('Moisture Content (\% Volume)', fontsize=38)
-		plt.xticks(fontsize=28)
-		plt.yticks(fontsize=28)
+		ax1.set_xlabel('Time (Minutes)', fontsize=axis_title_size)
+		ax1.set_ylabel('Moisture Content (\% Volume)', fontsize=axis_title_size)
+		plt.xticks(fontsize=tic_label_size)
+		plt.yticks(fontsize=tic_label_size)
 		plt.tight_layout()
 
 
@@ -552,7 +559,7 @@ for exp in natsorted(experiments):
 		exp = exp[:-4]
 
 		if Exp_Des['Speed'][exp] == 'high':
-			markers = 1000
+			markers = 250
 		if Exp_Des['Speed'][exp] == 'low':
 			markers = 10
 
@@ -566,8 +573,8 @@ for exp in natsorted(experiments):
 
 			fig.set_size_inches(5, 4)
 			ax1 = plt.gca()
-			plt.xticks(fontsize=28)
-			plt.yticks(fontsize=28)
+			plt.xticks(fontsize=tic_label_size)
+			plt.yticks(fontsize=tic_label_size)
 			plt.grid(True)
 
 			ax2 = ax1.twinx()
@@ -578,7 +585,7 @@ for exp in natsorted(experiments):
 			ax2.set_xlim(x_min, x_max)
 			ax2.set_ylim(0,1)
 			ax2.tick_params(axis='x', top='off', labeltop='off')
-			plt.yticks(fontsize=32)
+			plt.yticks(fontsize=tic_label_size)
 
 
 
@@ -586,8 +593,8 @@ for exp in natsorted(experiments):
 			plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 			plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
-			ax1.plot(data.index, data[vic + ' necrosis depth'], label='Necrosis Depth', marker='s', color=(31/255, 119/255, 180/255), markevery=markers )
-			ax2.plot(data.index, data[vic + ', surface necrosis'], label='Surface Necrosis', marker='o', color=(174/255, 199/255, 232/255), markevery=markers )
+			ax1.plot(data.index, data[vic + ' necrosis depth'], lw=0.5, label='Necrosis Depth', marker='s', color=(31/255, 119/255, 180/255), ms=3, markevery=markers )
+			ax2.plot(data.index, data[vic + ', surface necrosis'], lw=0.5, label='Surface Necrosis', marker='o', color=(174/255, 199/255, 232/255), ms=3,  markevery=markers )
 
 			ax3=ax1.twiny()
 
@@ -602,25 +609,25 @@ for exp in natsorted(experiments):
 			for e in all_exp_events[exp[:-5]+'_Events']['Results_Time'].dropna().index:
 				EventTime[i] = all_exp_events[exp[:-5]+'_Events']['Results_Time_Seconds'][e]/60
 				EventLabel[i] = e
-				plt.axvline(EventTime[i],color='0',lw=2) 
+				plt.axvline(EventTime[i],color='0',lw=1.5) 
 				i = i + 1
 			
 			ax3.set_xticks(EventTime)
 			plt.setp(plt.xticks()[1], rotation=67.5)		
-			ax3.set_xticklabels(EventLabel, fontsize=28, ha='left')	
+			ax3.set_xticklabels(EventLabel, fontsize=tic_label_size, ha='left')	
 			
 			plt.ylim([0,12])
 			ax1.set_yticks(np.arange(0, 12, 1))
 
 			h1, l1 = ax1.get_legend_handles_labels()
 			h2, l2 = ax2.get_legend_handles_labels()
-			ax1.legend(h1+h2, l1+l2, fontsize=32, handlelength=2, loc='upper left')
+			ax1.legend(h1+h2, l1+l2, fontsize=legend_font_size, handlelength=2, loc='upper left')
 
-			ax1.set_xlabel('Time (Minutes)', fontsize=38)
-			ax1.set_ylabel('Necrosis Depth (mm)', fontsize=38)
-			ax2.set_ylabel('Surface Necrosis (Dimensionless)', fontsize=38)
-			plt.xticks(fontsize=28)
-			plt.yticks(fontsize=28)
+			ax1.set_xlabel('Time (Minutes)', fontsize=axis_title_size)
+			ax1.set_ylabel('Necrosis Depth (mm)', fontsize=axis_title_size)
+			ax2.set_ylabel('Surface Necrosis (Dimensionless)', fontsize=axis_title_size)
+			plt.xticks(fontsize=tic_label_size)
+			plt.yticks(fontsize=tic_label_size)
 			plt.tight_layout()
 
 			plt.savefig('../0_Images/Script_Figures/Results/' + exp + '/' + vic.replace(' ', '_') + '_Necrosis_Depth.pdf')
