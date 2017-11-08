@@ -27,5 +27,8 @@ echo "Creating Appendix B"
 python Create_Latex_AppendixB.py
 echo "Free_Burn_HRR_Plotter"
 python Free_Burn_HRR_Plotter.py
-echo "Mass_Loss_Rate"
-python Mass_Loss_Rate.py
+echo "Free_Burn_MLR_Plotter"
+python Free_Burn_MLR_Plotter.py
+echo "HRR_MLR_HoC_Plotter"
+python HRR_MLR_HoC_Plotter.py
+
