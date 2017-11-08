@@ -11,7 +11,7 @@ from scipy.signal import butter, filtfilt, resample
 from scipy.integrate import simps
 from numpy import trapz
 
-data_location = '../2_Data/Free_Burn_Data/'
+data_location = '../2_Data/Heat_Release_Data/'
 
 output_location = '../0_Images/Script_Figures/HRR/'
 
@@ -44,7 +44,6 @@ ax = fig.add_subplot(111)
 # Plot all like furniture together 
 
 experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite', 'stripedchair_1', 'stripedchair_2', 'stripedchair_3', 'yellowchair_1', 'yellowchair_2']
-
 print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'sofa_center_ignite':['Center'], 'sofa_left_ignite':['Left'], 'sofa_right_ignite':['Right'], 'stripedchair_1':['Chair 1'], 'stripedchair_2':['Chair 2'], 'stripedchair_3':['Chair 3'], 'yellowchair_1':['Chair 1'], 'yellowchair_2':['Chair 2']}
 
 all_HRR_data = {}
@@ -78,6 +77,8 @@ for plot in plots.keys():
 	plt.xticks(fontsize=16)
 	plt.yticks(fontsize=16)
 	plt.tight_layout()
-	plt.savefig(output_location + plot + '.png')
-	plt.close()
+	plt.savefig(output_location + plot + '_HRR.png')
+	plt.close('all')
+
+
 exit()
