@@ -279,7 +279,7 @@ for section in experiment.keys():
 			else:
 				plt.subplots_adjust(top=0.70)
 
-			fig.set_size_inches(20, 18)
+			fig.set_size_inches(20, 20)
 			
 			if exp in all_flow_data.keys():
 				h1, l1 = ax1.get_legend_handles_labels()
@@ -294,7 +294,7 @@ for section in experiment.keys():
 				elif section == 'Door_Control':
 					ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.2, 1.03), loc='lower right', fontsize=40, handlelength=2, labelspacing=.15)
 				else: 
-					ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=2, labelspacing=.15)
+					ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.1, 1.03), loc='lower right', fontsize=40, handlelength=2, labelspacing=.15)
 
 			ax1.set_ylim(fill_min,fill_max)
 
@@ -303,7 +303,7 @@ for section in experiment.keys():
 			if section == 'Flow_vs_Shutdown':
 				if exp in ['Experiment_1_Data', 'Experiment_12_Data', 'Experiment_17_Data']:
 					ax1.set_ylim([fill_min*1.25, fill_max*1.25])
-					ax1.legend(loc='upper right', fontsize=40, handlelength=3, labelspacing=.15)
+					ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.13, 1.03), loc='lower right', fontsize=40, handlelength=3, labelspacing=.15)
 					plt.subplots_adjust(top=.9)
 
 			if not os.path.exists(output_location_section +  exp[:-5] + '/'):
