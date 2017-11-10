@@ -65,6 +65,7 @@ labels_pos = []
 
 fig = plt.figure()
 fig.set_size_inches(8, 6)
+matplotlib.rcParams.update({'font.size':18})
 
 for vent in tactic_info:
 
