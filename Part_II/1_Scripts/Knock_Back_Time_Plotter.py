@@ -71,7 +71,7 @@ save_dirs = ['Flow_and_Move_Solid_Stream/',
 			 'Ext_BR1_Window_and_Events_After/']
 
 # Define 20 color pallet using RGB values
-tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
+tableau20 = [(255, 127, 14), (255, 187, 120), 
 (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
 (148, 103, 189), (197, 176, 213), (140, 86, 75), (196, 156, 148),
 (227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
@@ -230,7 +230,7 @@ for set_idx, Exp_Set in enumerate(comparison_sets):
 
 			# Add legend to figure
 			handles1, labels1 = ax1.get_legend_handles_labels()
-			plt.legend(handles1, labels1, loc='upper right', fontsize=40, handlelength=3, labelspacing=.15)
+			plt.legend(handles1, labels1, bbox_to_anchor=(1.13, 1), loc='lower right', fontsize=40, handlelength=3, labelspacing=.15)
 
 			plt.tight_layout()
 			
