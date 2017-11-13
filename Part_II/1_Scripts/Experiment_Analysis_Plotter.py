@@ -294,7 +294,7 @@ for section in experiment.keys():
 				elif section == 'Door_Control':
 					ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.2, 1.03), loc='lower right', fontsize=40, handlelength=2, labelspacing=.15)
 				else: 
-					ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.1, 1.03), loc='lower right', fontsize=40, handlelength=2, labelspacing=.15)
+					ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.13, 1.03), loc='lower right', fontsize=40, handlelength=2, labelspacing=.15)
 
 			ax1.set_ylim(fill_min,fill_max)
 
