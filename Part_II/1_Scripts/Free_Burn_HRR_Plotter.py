@@ -53,10 +53,10 @@ for exp in experiments:
 	print(exp)
 	
 	y = np.array([all_HRR_data[exp]['Heat Release Rate']])
-	area = trapz(y, dx=1, axis=end_time[0],end_time[1])
+	area = trapz(y[:end_time[exp][1]], dx=1)
 	print(exp + 'tapz_area = ', area)
 
-	area = simps(y, dx=1)
+	area = simps(y[:end_time[exp][1]], dx=1)
 	print(exp + 'simps_area = ', area)
 
 plots = {'Couch':['fr_couch1'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
@@ -71,7 +71,7 @@ for plot in plots.keys():
 		plot_text = print_name[exp][0] + ' Peak HRR: ' + str(peak_hrr)
 		plt.text(0.6, 0.95 - (height * 0.05), plot_text, horizontalalignment='left', verticalalignment='center',transform = ax.transAxes)
 		height = height + 1
-	plt.xlim([0,end_time[exp]])
+	plt.xlim([0,end_time[exp][1]])
 	plt.legend(numpoints=1, loc='upper left')
 	plt.grid(linestyle='-',linewidth = 1.5)
 	plt.ylabel('Heat Release Rate (kW)')
