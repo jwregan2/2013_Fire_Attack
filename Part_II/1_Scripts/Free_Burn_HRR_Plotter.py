@@ -43,8 +43,9 @@ ax = fig.add_subplot(111)
 
 # Plot all like furniture together 
 
-experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite', 'stripedchair_1', 'stripedchair_2', 'stripedchair_3', 'yellowchair_1', 'yellowchair_2']
-print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'sofa_center_ignite':['Center'], 'sofa_left_ignite':['Left'], 'sofa_right_ignite':['Right'], 'stripedchair_1':['Chair 1'], 'stripedchair_2':['Chair 2'], 'stripedchair_3':['Chair 3'], 'yellowchair_1':['Chair 1'], 'yellowchair_2':['Chair 2']}
+experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'stripedchair_2', 'stripedchair_3', 'yellowchair_1', 'yellowchair_2', 'fr_couch1']
+print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'stripedchair_2':['Chair 2'], 'stripedchair_3':['Chair 3'], 'yellowchair_1':['Chair 1'], 'yellowchair_2':['Chair 2'], 'fr_couch1':['Couch']}
+end_time = {'fireattack_bed_1':[0,1532], 'fireattack_bed_2':[0,1532], 'stripedchair_2':[0,1385], 'stripedchair_3':[0,1385], 'yellowchair_1':[0,857], 'yellowchair_2':[0,857], 'fr_couch1':[0,4173]}
 
 all_HRR_data = {}
 for exp in experiments:
@@ -52,13 +53,13 @@ for exp in experiments:
 	print(exp)
 	
 	y = np.array([all_HRR_data[exp]['Heat Release Rate']])
-	area = trapz(y, dx=1)
+	area = trapz(y, dx=1, axis=end_time[0],end_time[1])
 	print(exp + 'tapz_area = ', area)
 
 	area = simps(y, dx=1)
 	print(exp + 'simps_area = ', area)
 
-plots = {'all_sofa':['sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_1', 'stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
+plots = {'Couch':['fr_couch1'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
 for plot in plots.keys():
 	print(plot)
 
@@ -70,6 +71,7 @@ for plot in plots.keys():
 		plot_text = print_name[exp][0] + ' Peak HRR: ' + str(peak_hrr)
 		plt.text(0.6, 0.95 - (height * 0.05), plot_text, horizontalalignment='left', verticalalignment='center',transform = ax.transAxes)
 		height = height + 1
+	plt.xlim([0,end_time[exp]])
 	plt.legend(numpoints=1, loc='upper left')
 	plt.grid(linestyle='-',linewidth = 1.5)
 	plt.ylabel('Heat Release Rate (kW)')

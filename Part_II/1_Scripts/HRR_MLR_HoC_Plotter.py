@@ -43,9 +43,12 @@ mark_freq = 60
 
 # Plot all like furniture together 
 
-experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite', 'stripedchair_1', 'stripedchair_2', 'stripedchair_3', 'yellowchair_1', 'yellowchair_2']
-print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'sofa_center_ignite':['Sofa Center Ignition'], 'sofa_left_ignite':['Sofa Left Ignition'], 'sofa_right_ignite':['Sofa Right Ignition'], 'stripedchair_1':['Striped Chair 1'], 'stripedchair_2':['Striped Chair 2'], 'stripedchair_3':['Striped Chair 3'], 'yellowchair_1':['Yellow Chair 1'], 'yellowchair_2':['Yellow Chair 2']}
-plots = {'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_sofa':['sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite'], 'all_striped_chair':['stripedchair_1', 'stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
+experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'stripedchair_2', 'stripedchair_3', 'yellowchair_1', 'yellowchair_2','fr_couch1']
+print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'stripedchair_2':['Striped Chair 2'], 'stripedchair_3':['Striped Chair 3'], 'yellowchair_1':['Yellow Chair 1'], 'yellowchair_2':['Yellow Chair 2'], 'fr_couch1':['Couch']}
+plots = {'couch':['fr_couch1'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
+
+end_time = {'fireattack_bed_1':1532, 'fireattack_bed_2':1532, 'stripedchair_2':1385, 'stripedchair_3':1385, 'yellowchair_1':857, 'yellowchair_2':857, 'fr_couch1':4173}
+
 
 hrr_data = {}
 for exp in experiments:
@@ -66,8 +69,9 @@ for plot in plots.keys():
 		ax1.plot(hrr_data[exp]['Heat Release Rate'], label= print_name[exp][0] + ' HRR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 		ax2.plot(mlr_data[exp], label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 		ax1.set_xlabel('Time (s)', fontsize=14)
+	plt.xlim([0,end_time[exp]])
 	ax1.set_ylabel('Heat Release Rate (kW)',  fontsize=14)
-	ax2.set_ylabel('Mass Loss Rate (kg)',  fontsize=14)
+	ax2.set_ylabel('Mass Loss Rate (kg/s)',  fontsize=14)
 	ax1.legend(numpoints=1, loc='upper right')
 	ax2.legend(bbox_to_anchor=(1,0.8), numpoints=1, loc='upper right')
 	ax1.grid(linestyle='-',linewidth = 1.5)
@@ -94,8 +98,8 @@ for exp in experiments:
 	plt.plot(mlr_data['Seconds'], (hrr_data['Heat Release Rate'] / mlr_data[exp]), label= print_name[exp][0] + ' Heat of Combustion', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 
 	plt.legend(numpoints=1, loc='upper right')
-	plt.xlabel('Time (Seconds)', fontsize=14)
-	plt.ylabel('Heat of Combustion (kW/kg)', fontsize=14)
+	plt.xlabel('Time (s)', fontsize=14)
+	plt.ylabel('Heat of Combustion (kJ/kg)', fontsize=14)
 	plt.grid(linestyle='-',linewidth = 1.5)
 	plt.xticks(fontsize=16)
 	plt.yticks(fontsize=16)

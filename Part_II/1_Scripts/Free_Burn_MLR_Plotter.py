@@ -9,7 +9,7 @@ from scipy.signal import butter, filtfilt
 from itertools import cycle
 from scipy.signal import butter, filtfilt, resample
 
-data_location = '../2_Data/Heat_Release_Data/'
+data_location = '../2_Data/Mass_Loss_Data/'
 
 output_location = '../0_Images/Script_Figures/MLR/'
 
@@ -41,13 +41,14 @@ ax = fig.add_subplot(111)
 
 # Plot all like furniture together 
 
-experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite', 'stripedchair_1', 'stripedchair_2', 'stripedchair_3', 'yellowchair_1', 'yellowchair_2']
-print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'sofa_center_ignite':['Center'], 'sofa_left_ignite':['Left'], 'sofa_right_ignite':['Right'], 'stripedchair_1':['Chair 1'], 'stripedchair_2':['Chair 2'], 'stripedchair_3':['Chair 3'], 'yellowchair_1':['Chair 1'], 'yellowchair_2':['Chair 2']}
+experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'stripedchair_2', 'stripedchair_3', 'yellowchair_1', 'yellowchair_2', 'fr_couch1']
+print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'stripedchair_2':['Chair 2'], 'stripedchair_3':['Chair 3'], 'yellowchair_1':['Chair 1'], 'yellowchair_2':['Chair 2'], 'fr_couch1':['Couch']}
+end_time = {'fireattack_bed_1':1532, 'fireattack_bed_2':1532, 'stripedchair_2':1385, 'stripedchair_3':1385, 'yellowchair_1':857, 'yellowchair_2':857, 'fr_couch1':4173}
 
 all_MLR_data = pd.read_csv(data_location + 'Mass_Loss_Rate_Data.csv').set_index('Seconds')
 print(exp)
 
-plots = {'all_sofa':['sofa_center_ignite', 'sofa_right_ignite', 'sofa_left_ignite'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_1', 'stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
+plots = {'couch':['fr_couch1'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
 for plot in plots.keys():
 	print(plot)
 
@@ -55,7 +56,7 @@ for plot in plots.keys():
 	for exp in plots[plot]:
 		print('		' + exp)
 		plt.plot(all_MLR_data[exp], lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6, label= print_name[exp][0] + ' MLR')
-
+	plt.xlim([0,end_time[exp]])
 	plt.legend(numpoints=1, loc='upper right')
 	plt.grid(linestyle='-',linewidth = 1.5)
 	plt.ylabel('Mass Loss (kg)', fontsize=16)
