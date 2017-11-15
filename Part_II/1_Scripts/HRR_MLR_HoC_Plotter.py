@@ -52,10 +52,14 @@ end_time = {'fireattack_bed_1':1532, 'fireattack_bed_2':1532, 'stripedchair_2':1
 
 hrr_data = {}
 for exp in experiments:
-	hrr_data[exp] = pd.read_csv(hrr_data_location + exp + '.DAT', skiprows=[0,2,3,4]).set_index('Test Time')
+	hrr_data[exp] = pd.read_csv(hrr_data_location + exp + '.DAT', skiprows=[0,2,3,4])#.set_index('Test Time')
+	hrr_data[exp]['Test Time'] = hrr_data[exp]['Test Time']/60
+	hrr_data[exp] = hrr_data[exp].set_index('Test Time')
 	print(exp + '_hrr')
 
-mlr_data = pd.read_csv(mlr_data_location + 'Mass_Loss_Rate_Data.csv').set_index('Seconds')
+mlr_data = pd.read_csv(mlr_data_location + 'Mass_Loss_Rate_Data.csv')#.set_index('Seconds')
+mlr_data['Seconds'] = mlr_data['Seconds']/60
+mlr_data = mlr_data.set_index('Seconds')
 print(exp + '_mlr')
 
 for plot in plots.keys():
@@ -69,7 +73,8 @@ for plot in plots.keys():
 		print('		' + exp)
 		ax1.plot(hrr_data[exp]['Heat Release Rate'], label= print_name[exp][0] + ' HRR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 		ax2.plot(mlr_data[exp], label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
-		ax1.set_xlabel('Time (s)', fontsize=14)
+		ax1.set_xlabel('Time (min)', fontsize=14)
+		end_time[exp] = end_time[exp]/60
 	plt.xlim([0,end_time[exp]])
 	ax1.set_ylabel('Heat Release Rate (kW)',  fontsize=14)
 	ax2.set_ylabel('Mass Loss Rate (kg/s)',  fontsize=14)
@@ -89,26 +94,29 @@ plt.close('all')
 # HoC
 for exp in experiments:
 
-	hrr_data = pd.read_csv(hrr_data_location + exp + '.DAT', skiprows=[0,2,3,4])
-	print(exp + '_HoC')
-	mlr_data = pd.read_csv(mlr_data_location + 'Mass_Loss_Rate_Data.csv')
+	hrr_data[exp] = pd.read_csv(hrr_data_location + exp + '.DAT', skiprows=[0,2,3,4])
+	hrr_data[exp]['Test Time'] = hrr_data[exp]['Test Time']/60
+	# hrr_data[exp] = hrr_data[exp].set_index('Test Time')
 	print(exp + '_HoC')
 
-	HoC = (hrr_data['Heat Release Rate'] / mlr_data[exp])
+	mlr_data = pd.read_csv(mlr_data_location + 'Mass_Loss_Rate_Data.csv')
+	mlr_data['Seconds'] = mlr_data['Seconds']/60
+	# mlr_data = mlr_data.set_index('Seconds')
+	print(exp + '_HoC')
+
+	HoC = (hrr_data[exp]['Heat Release Rate'] / mlr_data[exp])
 
 	fig = plt.figure()
 	fig.set_tight_layout(True)
-	
 	it = tableau20.__iter__()
-	plt.plot(mlr_data['Seconds'], (hrr_data['Heat Release Rate'] / mlr_data[exp]), label= print_name[exp][0] + ' Heat of Combustion', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
-
+	plt.plot(mlr_data['Seconds'], HoC, label= print_name[exp][0] + ' Heat of Combustion', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 	plt.legend(numpoints=1, loc='upper right')
-	plt.xlabel('Time (s)', fontsize=14)
+	plt.xlabel('Time (min)', fontsize=14)
 	plt.ylabel('Heat of Combustion (kJ/kg)', fontsize=14)
 	plt.grid(linestyle='-',linewidth = 1.5)
 	plt.xticks(fontsize=16)
 	plt.yticks(fontsize=16)
-	plt.savefig(HoC_output_location + exp + 'HoC.png')
+	plt.savefig(HoC_output_location + exp + '_HoC.png')
 	plt.close('all')
 
 exit()
