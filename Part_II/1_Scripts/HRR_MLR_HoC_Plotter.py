@@ -81,7 +81,7 @@ for plot in plots.keys():
 
 	h1, l1 = ax1.get_legend_handles_labels()
 	h2, l2 = ax2.get_legend_handles_labels()
-	ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(0.8, 1), loc='lower left', fontsize=16, handlelength=2, labelspacing=.15)
+	ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(0.65, 1), loc='lower left', fontsize=16, handlelength=2, labelspacing=.15)
 
 	ax1.grid(linestyle='-',linewidth = 1.5)
 	plt.xticks(fontsize=16)
