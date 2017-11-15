@@ -35,7 +35,8 @@ if not os.path.exists(output_location):
 experiments = ['Experiment_1', 'Experiment_12', 'Experiment_17', 'Experiment_19']
 
 for exp in experiments:
-	
+	tic_data={}
+
 # Define 17 color pallet using RGB values - Removed Blue due to water flow potting.
 	tableau20 = [(255, 127, 14), (255, 187, 120), 
 (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
@@ -52,28 +53,34 @@ for exp in experiments:
 	plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
 	plot_markers = cycle(['s', 'o', 'd', 'h', 'p','v','8','D','*','<','>','H'])
 
+	end_time[exp][1] = end_time[exp][1]/60 
+
 	chart_length = end_time[exp][1] - end_time[exp][0]
 
 	if chart_length > 50:
 		mark = int(chart_length * (4/50))
 	else: 
-		mark = 4 	
+		mark = 60 	
 
 # Plot TIC Data for Hall IR
 	print (tic_location + exp + '_Data.csv')
-	tic_data = pd.read_csv(tic_location + exp + '_Data.csv').set_index('Time')
+	tic_data[exp] = pd.read_csv(tic_location + exp + '_Data.csv')
+	tic_data[exp]['Time'] = tic_data[exp]['Time']/60
+	tic_data[exp] = tic_data[exp].set_index('Time')
 
-	
+	all_exp_data[exp + '_Data'].index = all_exp_data[exp + '_Data'].index/60
+
+	# print(all_exp_data[exp + '_Data']['1TCV7'].head())
 	plt.plot(all_exp_data[exp + '_Data']['1TCV7'], label='7ft Temperature', marker=next(plot_markers), markevery=mark, markersize=5)
 	plt.plot(all_exp_data[exp + '_Data']['1TCV5'], label='5ft Temperature', marker=next(plot_markers), markevery=mark, markersize=5)
 	plt.plot(all_exp_data[exp + '_Data']['1TCV3'], label='3ft Temperature', marker=next(plot_markers), markevery=mark, markersize=5)
 	plt.plot(all_exp_data[exp + '_Data']['1TCV1'], label='1ft Temperature', marker=next(plot_markers), markevery=mark, markersize=5)
-	plt.plot(tic_data['Hall'], label='Hall TIC Temperature', lw=3)
+	plt.plot(tic_data[exp]['Hall'], label='Hall TIC Temperature', lw=3)
 	plt.legend(numpoints=1, loc='upper left')
 	plt.grid(linestyle='-',linewidth = 1.5)
 	plt.xlim([0,end_time[exp][1]])
 	plt.ylim([0,end_temp_hall[exp]])
-	plt.xlabel('Time (Seconds)', fontsize=14)
+	plt.xlabel('Time (min)', fontsize=14)
 	plt.ylabel('Temperature ($^\circ$F)', fontsize=14)
 	plt.xticks(fontsize=16)
 	plt.yticks(fontsize=16)
@@ -86,12 +93,12 @@ for exp in experiments:
 	plt.plot(all_exp_data[exp + '_Data']['4TCV5'], label='5ft Temperature', marker=next(plot_markers), markevery=mark, markersize=5)
 	plt.plot(all_exp_data[exp + '_Data']['4TCV3'], label='3ft Temperature', marker=next(plot_markers), markevery=mark, markersize=5)
 	plt.plot(all_exp_data[exp + '_Data']['4TCV1'], label='1ft Temperature', marker=next(plot_markers), markevery=mark, markersize=5)
-	plt.plot(tic_data['Front'], label='Front Door TIC Temperature', lw=3)
+	plt.plot(tic_data[exp]['Front'], label='Front Door TIC Temperature', lw=3)
 	plt.legend(numpoints=1, loc='upper left')
 	plt.grid(linestyle='-',linewidth = 1.5)
 	plt.xlim([0,end_time[exp][1]])
 	plt.ylim([0,end_temp_door[exp]])
-	plt.xlabel('Time (Seconds)', fontsize=14)
+	plt.xlabel('Time (min)', fontsize=14)
 	plt.ylabel('Temperature ($^\circ$F)', fontsize=14)
 	plt.xticks(fontsize=16)
 	plt.yticks(fontsize=16)
