@@ -60,6 +60,7 @@ print(exp + '_mlr')
 
 for plot in plots.keys():
 	fig = plt.figure()
+	fig.set_size_inches(8, 6)
 	ax1 = fig.add_subplot(111)
 	print(plot)
 	ax2 = ax1.twinx()
@@ -72,12 +73,16 @@ for plot in plots.keys():
 	plt.xlim([0,end_time[exp]])
 	ax1.set_ylabel('Heat Release Rate (kW)',  fontsize=14)
 	ax2.set_ylabel('Mass Loss Rate (kg/s)',  fontsize=14)
-	ax1.legend(numpoints=1, loc='upper right')
-	ax2.legend(bbox_to_anchor=(1,0.8), numpoints=1, loc='upper right')
+
+	h1, l1 = ax1.get_legend_handles_labels()
+	h2, l2 = ax2.get_legend_handles_labels()
+	ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(0.8, 1), loc='lower left', fontsize=16, handlelength=2, labelspacing=.15)
+
 	ax1.grid(linestyle='-',linewidth = 1.5)
 	plt.xticks(fontsize=16)
 	plt.yticks(fontsize=16)
-	fig.set_tight_layout(True)
+	plt.subplots_adjust(top=0.8, right = 0.85)
+	# fig.set_tight_layout(True)
 	plt.savefig(output_location + plot + '_HRR_MLR.png')
 plt.close('all')
 
