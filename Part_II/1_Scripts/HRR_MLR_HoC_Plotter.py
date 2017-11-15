@@ -72,7 +72,7 @@ for plot in plots.keys():
 	for exp in plots[plot]:
 		print('		' + exp)
 		ax1.plot(hrr_data[exp]['Heat Release Rate'], label= print_name[exp][0] + ' HRR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
-		ax2.plot(mlr_data[exp], label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
+		ax2.plot(-mlr_data[exp].diff(10), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 		ax1.set_xlabel('Time (min)', fontsize=14)
 		end_time[exp] = end_time[exp]/60
 	plt.xlim([0,end_time[exp]])
@@ -104,7 +104,7 @@ for exp in experiments:
 	# mlr_data = mlr_data.set_index('Seconds')
 	print(exp + '_HoC')
 
-	HoC = (hrr_data[exp]['Heat Release Rate'] / mlr_data[exp])
+	HoC = (hrr_data[exp]['Heat Release Rate'] / -mlr_data[exp].diff(10))
 
 	fig = plt.figure()
 	fig.set_tight_layout(True)

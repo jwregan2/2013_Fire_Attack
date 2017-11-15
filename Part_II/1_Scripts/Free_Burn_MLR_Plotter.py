@@ -55,16 +55,17 @@ for plot in plots.keys():
 	height = 0 
 	for exp in plots[plot]:
 		print('		' + exp)
-		plt.plot(all_MLR_data[exp], lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6, label= print_name[exp][0] + ' MLR')
+		plt.plot(-all_MLR_data[exp].diff(10), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6, label= print_name[exp][0] + ' MLR')
 	plt.xlim([0,end_time[exp]])
 	plt.legend(numpoints=1, loc='upper right')
 	plt.grid(linestyle='-',linewidth = 1.5)
-	plt.ylabel('Mass Loss (kg)', fontsize=16)
+	plt.ylabel('Mass Loss Rate (kg/s)', fontsize=16)
 	plt.xlabel('Time (s)', fontsize=16)
 	plt.xticks(fontsize=16)
-	plt.yticks(fontsize=16)
-	fig.tight_layout()
+	plt.yticks(fontsize=16) 
+	fig.set_tight_layout(True)
 	plt.savefig(output_location + plot + '_MLR.png')
 	plt.close('all')
 
 exit()
+
