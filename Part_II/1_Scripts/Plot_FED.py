@@ -344,15 +344,15 @@ for vic in victims:
 
 			if vic in FED_Gas[exp]:
 				createplot = True
-				plt.plot(FED_Gas[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
+				plt.plot(FED_Gas[exp][vic].index/60, FED_Gas[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
 				# if 'Front Door Open' in all_exp_events[exp[:-4]+'Events'].index: 
 					# plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Front Door Open'], lw = 2, color = 'black')
 
 		if createplot == True:
 			plt.legend(fontsize=16)
-			plt.xlabel('Time (s)', fontsize=18)
+			plt.xlabel('Time (min)', fontsize=18)
 			plt.ylabel('FED (Gas Concentration)', fontsize=18)
-			plt.xlim([0,600])
+			plt.xlim([0,10])
 			plt.ylim([0,3])
 			plt.xticks(fontsize=16)
 			plt.yticks(fontsize=16)
@@ -386,15 +386,15 @@ for vic in victims:
 
 			if vic in FED_Temp_Flux[exp]:
 				createplot = True
-				plt.plot(FED_Temp_Flux[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
+				plt.plot(FED_Temp_Flux[exp][vic].index/60, FED_Temp_Flux[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
 				# if 'Hall Suppression' in all_exp_events[exp[:-4]+'Events'].index: 
 			# 		plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression'], lw = 2, color = 'black')
 
 		if createplot == True:
 			plt.legend(fontsize=18)
-			plt.xlabel('Time (s)', fontsize=18)
+			plt.xlabel('Time (min)', fontsize=18)
 			plt.ylabel('FED (Heat Flux)', fontsize=18)
-			plt.xlim([0,600])
+			plt.xlim([0,10])
 			plt.ylim([0,1])
 			plt.xticks(fontsize=16)
 			plt.yticks(fontsize=16)
@@ -429,15 +429,15 @@ for vic in victims:
 
 			if vic in FED_Temp_Conv[exp]:
 				createplot = True
-				plt.plot(FED_Temp_Conv[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
+				plt.plot(FED_Temp_Conv[exp][vic].index/60, FED_Temp_Conv[exp][vic], marker = next(plot_markers), markevery=20, label = exp[:-4].replace('_', ' ' ), lw = 2)
 			# 	if 'Hall Suppression' in all_exp_events[exp[:-4]+'Events'].index: 
 			# 		plt.axvline(all_exp_events[exp[:-4]+'Events']['Time_Seconds']['Hall Suppression'], lw = 2, color = 'black')
 
 		if createplot == True:
 			plt.legend()
-			plt.xlabel('Time (s)')
+			plt.xlabel('Time (min)')
 			plt.ylabel('Fractional Effective Dose')
-			plt.xlim([0,600])
+			plt.xlim([0,10])
 			plt.ylim([0,5])
 			plt.savefig(output_location + vent + '_' + vic + '.pdf')
 			plt.close('all')
