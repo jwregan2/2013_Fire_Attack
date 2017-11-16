@@ -426,8 +426,8 @@ for plot in gas_cooling_plots.columns:
 
 		channel_label = all_gas_channels['Title'][channel]
 
-		ax1.plot(data[channel].index/60, data[channel], lw =0.5, marker=next(plot_markers), markevery=500,
-							label = channel_label, markersize=15 )
+		ax1.plot(data[channel].index/60, data[channel], lw =0.5, marker=next(plot_markers), markevery=50,
+							label = channel_label, markersize=5 )
 
 	h1, l1 = ax1.get_legend_handles_labels()
 	ax1.legend(h1, l1, bbox_to_anchor=(1.35, 0.20), loc='lower right', fontsize=legend_font_size, handlelength=2, labelspacing=.15)

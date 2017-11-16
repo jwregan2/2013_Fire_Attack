@@ -9,11 +9,28 @@ from pylab import *
 import datetime
 import shutil
 from dateutil.relativedelta import relativedelta
-from scipy.signal import butter, filtfilt
+from scipy.signal import butter, filtfilt, savgol_filter
 import matplotlib.transforms as mtransforms
 from matplotlib.path import Path
 import matplotlib.patches as patches
 from natsort import natsorted
+
+# Define filter for low pass filtering of pressure/temperature for BDP
+def butter_lowpass(cutoff, fs, order=5):
+    nyq = 0.5 * fs
+    normal_cutoff = cutoff / nyq
+    b, a = butter(order, normal_cutoff, btype='low', analog=False)
+    return b, a
+
+def butter_lowpass_filtfilt(data, cutoff, fs, order=5):
+    b, a = butter_lowpass(cutoff, fs, order=order)
+    y = filtfilt(b, a, data)
+    return y
+
+def moving_average(a, n=3) :
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n
 
 data_location = '../2_Data/'
 info_location = '../3_Info/'
@@ -399,6 +416,65 @@ for exp in charts.keys():
 		plt.savefig(output_location + '/Thermal_Class/'  + exp[:-4] + str(time) +'_Thermal_Exposure.pdf')
 		plt.close('all')
 
+#Plot Blank Thermal Class Plot
+print ('Plotting Blank Thermal Class Plot')
+fig = plt.figure()
+fig.set_size_inches(10, 7)
+ax = plt.gca()
+
+ax.set_xlabel('Heat Flux (kW/m$^2$)',fontsize=16)
+ax.set_ylabel('Temperature ($^{\circ}$F)',fontsize=16)
+ax.set_axisbelow(True)
+plt.grid(linestyle='-',linewidth = 1.5)
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlim([.1,200])
+ax.set_ylim([(10*(9/5)+32),1200*(9/5)+32])
+# ax.set_yticks([0,100,500,1000])
+ax.set_yticks([100, 300,1000])
+ax.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
+for axis in [ax.xaxis, ax.yaxis]:
+		 axis.set_major_formatter(ScalarFormatter())
+
+
+plt.fill_between([12,200],[(200*(9/5)+32),(200*(9/5)+32)],[(1200*(9/5)+32),(1200*(9/5)+32)], color = 'r',alpha=0.86)
+plt.text(60, 430*(9/5)+32, 'EMERGENCY', va='center', ha='center', color='white', fontsize=16)
+
+plt.fill_between([2,12],[(70*(9/5)+32),(70*(9/5)+32)],[(200*(9/5)+32), (200*(9/5)+32)], color = 'y',alpha=0.85)
+plt.text(4.75, 115*(9/5)+32, 'ORDINARY', va='center', ha='center', color='white', fontsize=16)
+
+plt.fill_between([1,2], [(20*(9/5)+32),(20*(9/5)+32)], [(70*(9/5)+32),(70*(9/5)+32)], color = 'g' , alpha=0.85)
+plt.text(1.4, 39*(9/5)+32,'R\nO\nU\nT\nI\nN\nE', va='center', ha='center', color='white', fontsize=16, linespacing=.8)
+
+plt.tight_layout()	
+
+if not os.path.exists(output_location + '/Thermal_Class/'):
+	os.makedirs(output_location + '/Thermal_Class/')
+
+plt.savefig(output_location + '/Thermal_Class/Blank_Thermal_Exposure.pdf')
+
+print ('Plotting Modern Thermal Class')
+plt.text(0.105, 161.6,'A', va='center', ha='left', color='black', fontsize=16, bbox={'facecolor':'white', 'clip_on':True})
+plt.axhline(y=161.6, dashes=[5,5,5,5], color='black')
+plt.text(0.105, 356,'B', va='center', ha='left', color='black', fontsize=16, bbox={'facecolor':'white', 'clip_on':True})
+plt.axhline(y=356, dashes=[5,5,5,5], color='black')
+plt.text(0.105, 518,'C', va='center', ha='left', color='black', fontsize=16, bbox={'facecolor':'white', 'clip_on':True})
+plt.axhline(y=518, dashes=[5,5,5,5], color='black')
+
+plt.text(2.5, 51.75,'D', va='bottom', ha='center', color='black', fontsize=16, bbox={'facecolor':'white', 'clip_on':True})
+plt.axvline(x=2.5,  dashes=[5,5,5,5], color='black')
+plt.text(8, 51.75,'E', va='bottom', ha='center', color='black', fontsize=16, bbox={'facecolor':'white', 'clip_on':True})
+plt.axvline(x=8,  dashes=[5,5,5,5], color='black')
+plt.text(15, 51.75,'F', va='bottom', ha='center', color='black', fontsize=16, bbox={'facecolor':'white', 'clip_on':True})
+plt.axvline(x=15,  dashes=[5,5,5,5], color='black')
+plt.text(80, 51.75 ,'G', va='bottom', ha='center', color='black', fontsize=16, bbox={'facecolor':'white', 'clip_on':True})
+plt.axvline(x=80, dashes=[5,5,5,5], color='black')
+
+plt.savefig(output_location + '/Thermal_Class/Modern_Thermal_Exposure.pdf')
+plt.close('all')
+
 print ('---------------------------------Plotting Gas Cooling Plots -----------------------------')
 
 gas_cooling_plots = pd.DataFrame({'1TC':['1TC7','1TC6','1TC5','1TC4','1TC3','1TC2','1TC1'],
@@ -582,9 +658,9 @@ moisture_table.to_latex('../5_Report/Moisture_Table.tex')
 print ('---------- Plotting Moisture Charts by Vent & Location -----')
 
 for vent in exp_info.groupby('Vent').groups.keys():
-	
+
 	for loc in exp_info.groupby('Location').groups.keys():
-		
+
 		combo = (vent,loc)
 		
 		if combo not in exp_info_grouped.groups.keys():
@@ -820,11 +896,13 @@ for vic in ['Vic 1', 'Vic 3']:
 	print('	' + vic + ' Tables Built')
 
 
-# ****************************************************************************************************************************************
-# ************************* This was an attempt at plotting average moisture. Data was not robust enough to work *************************
-# ****************************************************************************************************************************************
+# ***************************************************************************************************************************************
+# ************************* Average Moisture By Location Only Used for Tactical Consideration *******************************************
+# ***************************************************************************************************************************************
 
 print ('---------- Average Moisture Charts by Vent & Location -----')
+
+moisture_data_average = pd.DataFrame()
 
 for exp in natsorted(experiments):
 	if exp.endswith('.csv'):
@@ -878,7 +956,9 @@ for vent in exp_info.groupby('Vent').groups.keys():
 
 			data = data.replace(0.0, np.nan)
 			data['Average'] = data.mean(axis=1) 
-			
+			moisture_data_average[combo[0]+ '_'+combo[1]] = data['Average']
+
+			# data['Average'] = savgol_filter(data['Average'],5,3)
 			# plt.plot(data.index/60, data.max(axis=1), label='Maximum', marker=next(plot_markers), markevery=20, markersize=5 )
 			avg, = plt.plot(data.index/60, data.mean(axis=1), label='Average', marker=next(plot_markers), markevery=20, markersize=5 )
 			# plt.plot(data.index/60, data.min(axis=1), label='Minimum', marker=next(plot_markers), markevery=20, markersize=5 )
@@ -895,4 +975,29 @@ for vent in exp_info.groupby('Vent').groups.keys():
 			plt.savefig(output_location + '/Moisture/' + vent + '_' + loc + '_Average.pdf' )
 			plt.close('all')
 
+#Create figure
+fig = plt.figure()
+fig.set_size_inches(8, 6)
 
+# plt.style.use('ggplot')
+
+# Plot style - cycle through 20 color pallet and define markers to cycle through
+plt.rcParams['axes.prop_cycle'] = (cycler('color',tableau20))
+plot_markers = cycle(['s', 'o', '^', 'd', 'h', 'p','v','8','D','*','<','>','H'])
+
+
+
+for combo in ['Single_Vent_Spool', 'Single_Vent_Floor']:
+	data = moisture_data_average[combo].ewm(span=5.0).mean()
+	plt.plot(data.index/60, data.values, label=combo.replace('_', ' ').replace('Spool', '5Ft').replace('Floor','1ft').replace('Single Vent','Average'), marker=next(plot_markers), markevery=20, markersize=5 )
+
+plt.legend()
+# plt.xlim([0,first_flow])
+plt.xlim([0,12])
+plt.ylim([0,12])
+plt.yticks(np.arange(0, 12, 1))
+plt.xlabel('Time (Minutes)')
+plt.ylabel('Precent Moisture By Volume')
+
+plt.savefig(output_location + '/Moisture/Tactical_Consideration_Plot.pdf' )
+plt.close('all')
