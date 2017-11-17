@@ -72,7 +72,7 @@ for plot in plots.keys():
 	for exp in plots[plot]:
 		print('		' + exp)
 		ax1.plot(hrr_data[exp]['Heat Release Rate'], label= print_name[exp][0] + ' HRR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
-		ax2.plot(-mlr_data[exp].diff(10), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
+		ax2.plot(pd.rolling_mean(-mlr_data[exp].diff(10),10), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 		ax1.set_xlabel('Time (min)', fontsize=14)
 		end_time[exp] = end_time[exp]/60
 	plt.xlim([0,end_time[exp]])
@@ -92,6 +92,9 @@ for plot in plots.keys():
 plt.close('all')
 
 # HoC
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
 for exp in experiments:
 
 	hrr_data[exp] = pd.read_csv(hrr_data_location + exp + '.DAT', skiprows=[0,2,3,4])
@@ -106,11 +109,18 @@ for exp in experiments:
 
 	HoC = (hrr_data[exp]['Heat Release Rate'] / -mlr_data[exp].diff(10))
 
-	fig = plt.figure()
+	df = pd.DataFrame(HoC)
+	x = df.replace([-np.inf, np.inf], np.nan).dropna(how='all')
+	y = np.mean(x)
+	print(y)
+
+	# plot_text = print_name[exp][0] + ' Average HoC: ' + str(y)
+	# plt.text(0.55, 0.05, plot_text, horizontalalignment='left', verticalalignment='center',transform = ax.transAxes)
+
 	fig.set_tight_layout(True)
 	it = tableau20.__iter__()
 	plt.plot(mlr_data['Seconds'], HoC, label= print_name[exp][0] + ' Heat of Combustion', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
-	plt.legend(numpoints=1, loc='upper right')
+	plt.legend(numpoints=1, loc='upper left')
 	plt.xlabel('Time (min)', fontsize=14)
 	plt.ylabel('Heat of Combustion (kJ/kg)', fontsize=14)
 	plt.grid(linestyle='-',linewidth = 1.5)
