@@ -46,7 +46,7 @@ print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'strip
 end_time = {'fireattack_bed_1':1532, 'fireattack_bed_2':1532, 'stripedchair_2':1385, 'stripedchair_3':1385, 'yellowchair_1':857, 'yellowchair_2':857, 'fr_couch1':4173}
 
 all_MLR_data = pd.read_csv(data_location + 'Mass_Loss_Rate_Data.csv').set_index('Seconds')
-print(exp)
+print(all_MLR_data)
 
 plots = {'couch':['fr_couch1'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
 for plot in plots.keys():
