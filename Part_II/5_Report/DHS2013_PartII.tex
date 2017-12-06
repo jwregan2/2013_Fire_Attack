@@ -13,10 +13,10 @@
 \chead{}
 \renewcommand{\headrulewidth}{0pt}
 
-% % UN-COMMENT TO PLACE WATERMARK
-\usepackage{draftwatermark}
-\SetWatermarkText{DRAFT}
-\SetWatermarkScale{1}
+% % % UN-COMMENT TO PLACE WATERMARK
+% \usepackage{draftwatermark}
+% \SetWatermarkText{DRAFT}
+% \SetWatermarkScale{1}
 
 \usepackage{subcaption}
 \usepackage{xfrac}
@@ -796,7 +796,7 @@ Gas samples were analyzed through the use of OxyMat6 and UltraMat23 Siemens gas 
 	\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/DriRightTube.jpg}	\hspace{0.1\textwidth}
 	\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/FineFilter.jpg} \\
 	\includegraphics[height = 2in]{0_Images/Instrumentation/Gas_Analyzer/GasAnalyzers.jpg}
-	\caption[Gas Analyzer Configuration]{Gas Analyzer Configuration, Gas Sample Point (Top Left), Vacuum Pump - Cole Palmer L-79200-30 (Top Center), Course Filter - Solberg 842 (Top Right), Condensing Tube (Middle Left), Drierite Tube (Middle Center), Fine Filter - Perma Pure FF-250-SG-2.5G (Middle Right), Gas Analyzer (Bottom)}
+	\caption[Gas Analyzer Configuration]{Gas Analyzer Configuration, Gas Sample Point (Top Left), Vacuum Pump - Cole Palmer L-79200-30 (Top Center), Course Filter - Solberg 842 (Top Right), Condensing Tube (Middle Left), Drierite Tube (Middle Center), Fine Filter - Perma Pure FF-250-SG-2.5G (Middle Right), Gas Analyzer Setup (Bottom)}
 	\label{fig:GasAnalyzers}
 \end{figure}
 
@@ -1024,8 +1024,8 @@ Fire suppression intervention times were based on conditions within the fire com
 \scalebox{0.70}{
 \begin{tabular}{|c|c|c|c|c|l|}
 \hline
-\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}		& \multicolumn{1}{c|}{\multirow{2}{*}{Ventilation Parameters}} \\ 
-								& 	Method	   	& 								& 									& 								& 										\\ 
+\multirow{2}{*}{Experiment} 	& Fire Attack 		& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}		& \multicolumn{1}{c|}{\multirow{2}{*}{Ventilation Parameters}} \\
+								& Method	   	& 								& 									& 								& 										\\
 \hline \hline
 \multirow{2}{*}{1}	& \multirow{2}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application with combination;} 									& \multirow{2}{*}{Flow path between front door \& BR1 fire} \\
 					& 							& \multicolumn{3}{c|}{Shutdown \& Move; Straight Stream} 											& 		\\
@@ -1038,8 +1038,9 @@ Fire suppression intervention times were based on conditions within the fire com
 \multirow{2}{*}{4}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Smooth Bore} 	& \multirow{2}{*}{Flow \& Move} 	& \multirow{2}{*}{Solid Stream} & Flow path between front door \& BR1 fire 	\\
  					& 							& 								& 									& 								& ~~w/ coordinated horizontal vent 				\\
 \hline
-\multirow{2}{*}{5}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Shutdown \& Move} &  Straight Stream, near to far 		& \multirow{2}{*}{Flow path between front door \& BR1 fire} \\
- 					& 							& 								& 									&  along hall centerline		& 		\\
+\multirow{3}{*}{5}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Combination} 	& \multirow{3}{*}{Shutdown \& Move} & Straight Stream,  			& \multirow{3}{*}{Flow path between front door \& BR1 fire} \\
+ 					& 							& 								& 									& near to far along 			&  \\
+ 					&							&								&									& hall centerline				&  \\
 \hline
 	6							& Interior 		& 	Smooth Bore 				& Shutdown \& Move 					&  Solid Stream 				& Flow path between front door \& BR1 fire 	\\
 \hline \hline
@@ -1061,54 +1062,54 @@ Fire suppression intervention times were based on conditions within the fire com
 \multirow{2}{*}{12}	& \multirow{2}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application w/ Combination;} 										& Flow paths between front door \& BR1 fire; 	\\
 					& 							& \multicolumn{3}{c|}{Flow \& Move; Straight Stream} 													& ~~BR1 fire \& BR1 window 	\\
 \hline \hline
-\multirow{3}{*}{13}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& 								& 									& 									& ~~\& BR2 window \\
+\multirow{3}{*}{13}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire;  \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window; front door \& BR2 \\
+					& 							& 								& 									& 									& ~~fire; BR2 fire \& BR2 window \\
 \hline
-\multirow{3}{*}{14}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& 								& 									& 									& ~~\& BR2 window \\
+\multirow{3}{*}{14}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire;  \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window; front door \& BR2 \\
+					& 							& 								& 									& 									& ~~fire; BR2 fire \& BR2 window \\
 \hline
-\multirow{3}{*}{15}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& 								& 									& 									& ~~\& BR2 window w/ door control \\
+\multirow{3}{*}{15}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire;  \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window; front door \& BR2 \\
+					& 							& 								& 									& 									& ~~fire; BR2 fire \& BR2 window w/ door control \\
 \hline
-\multirow{3}{*}{16}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Combination} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Narrow Fog} 		& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& 								& 									& 									& ~~\& BR2 window \\
+\multirow{3}{*}{16}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Combination} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Narrow Fog} 		& Flow paths between front door \& BR1 fire;  \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window; front door \& BR2 \\
+					& 							& 								& 									& 									& ~~fire; BR2 fire \& BR2 window \\
 \hline
-\multirow{3}{*}{17}	& \multirow{3}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application w/}														& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& \multicolumn{3}{c|}{Combination; Flow \& Move;}														& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& \multicolumn{3}{c|}{Straight Stream}																	& ~~\& BR2 window \\
+\multirow{3}{*}{17}	& \multirow{3}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application w/}														& Flow paths between front door \& BR1 fire;  \\
+					& 							& \multicolumn{3}{c|}{Combination; Flow \& Move;}														& ~~BR1 fire \& BR1 window; front door \& BR2 \\
+					& 							& \multicolumn{3}{c|}{Straight Stream}																	& ~~~fire; BR2 fire \& BR2 window \\
 \hline \hline
-18 					& Exterior 					& 	Smooth bore 				& Steep angle 				& 	Solid stream 			& 	Flow path between BR1 fire \& BR1 window \\
+18 					& Transitional 					& Smooth Bore 					& Steep angle 				& 	Solid stream 							& 	Flow path between BR1 fire \& BR1 window \\
 \hline
-					&  							& 								& Occlude opening, 		 	&  	Narrow fog, rebuild, 		& 	\\
- 		19			& 			Exterior		& 	Combination					& rebuild, steep angle   	&  	straight stream to  		& 	Flow path between BR1 fire \& BR1 window		\\
- 					& 							& 								& to fog 					& 	content suppression 					& 		\\
-					&							&								& content suppression 		& 								 	&							\\
+\multirow{4}{*}{19}	& \multirow{4}{*}{Transitional} & \multirow{4}{*}{Combination}	& Occlude opening, 		 	& Narrow fog,  								& 		\\
+					& 							& 									& rebuild, steep    		& rebuild, straight   						& 	Flow path between BR1 fire \& BR1 window		\\
+ 					& 							& 									& angle, fog content 		& stream to content  						& 		\\
+					&							&									& suppression 				& suppression								&		\\
 \hline
-\multirow{2}{*}{20}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Smooth bore} 	& Steep angle to 			&  	Solid stream to 	& 	\multirow{2}{*}{Flow path between BR1 fire \& BR1 window} 	\\
- 					& 							& 								& half bale 	&  	half bale  		& 			\\
-					&							&								& content suppression 			& content suppression 	&							\\
+\multirow{3}{*}{20}	& \multirow{3}{*}{Transitional} & \multirow{3}{*}{Smooth bore} 	& Steep angle to 			& Solid stream to 							& 	\multirow{3}{*}{Flow path between BR1 fire \& BR1 window} 	\\
+ 					& 							& 									& half bale content 		& half bale content  						& 			\\
+					&							&									& suppression 				& suppression 								&							\\
 \hline \hline
-\multirow{2}{*}{21}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Smooth bore} 	& Steep angle to 			&  Solid stream to 		& Flow paths between front door \& BR1 fire; 	\\
- 					& 							& 								& half bale 			&  half bale 		& ~~BR1 fire \& BR1 window \\
-					&							&								& content suppression 			& content suppression 	&							\\
+\multirow{3}{*}{21}	& \multirow{3}{*}{Transitional} & \multirow{3}{*}{Smooth bore} 	& Steep angle to 			& Solid stream to 							& Flow paths between front door \& BR1 fire; 	\\
+ 					& 							& 									& half bale content			& half bale content 						& ~~BR1 fire \& BR1 window \\
+					&							&									& suppression 				& suppression 								&							\\
 \hline \hline
-\multirow{2}{*}{26}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Steep angle sweep} &  \multirow{2}{*}{Straight stream} & Flow paths between front door \& BR4 fire; 	\\
- 					& 							& 								& 							&  						& ~~BR4 fire \& BR4 window 	\\
+\multirow{2}{*}{26}	& \multirow{2}{*}{Transitional} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Steep angle sweep} & \multirow{2}{*}{Straight stream} & Flow paths between front door \& BR4 fire; 	\\
+ 					& 							& 									& 							&  											& ~~BR4 fire \& BR4 window 	\\
 \hline \hline
-\multirow{2}{*}{22}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Smooth bore} 	& Steep angle to 				&  	Solid stream to 	& 	Flow path between BR1 fire \& BR1 window;~ 	\\
- 					& 							& 								& half bale   					&  	half bale 		& 	flow path between BR2 fire \& BR2 window 	\\
-					&							&								& content suppression 			& content suppression 	&							\\
+\multirow{3}{*}{22}	& \multirow{3}{*}{Transitional} & \multirow{3}{*}{Smooth bore} 	& Steep angle to 			& Solid stream to 							& 	Flow path between BR1 fire \& BR1 window;~ 	\\
+ 					& 							& 									& half bale content  		& half bale content 						& 	~~flow path between BR2 fire \& BR2 window 	\\
+					&							&									& suppression 				& suppression 								&							\\
 \hline
-\multirow{2}{*}{23}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Occlude opening} 	&  \multirow{2}{*}{Narrow fog} 	& Flow path between BR1 fire \& BR1 window;~ 	\\
- 					& 							& 								& 									&  								& flow path between BR2 fire \& BR2 window \\
+\multirow{2}{*}{23}	& \multirow{2}{*}{Transitional} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Occlude opening} 	& \multirow{2}{*}{Narrow fog} 		& Flow path between BR1 fire \& BR1 window;~ 	\\
+ 					& 							& 									& 									&  									& ~~flow path between BR2 fire \& BR2 window \\
 \hline
-\multirow{2}{*}{24}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Combination} 	& Steep angle to 					&  Straight stream 		& Flow path between BR1 fire \& BR1 window;~ 	\\
- 					& 							& 								& half fog 					&  to fog 			& flow path between BR2 fire \& BR2 window 	\\
-					&							&								& content suppression 			& content suppression 	&							\\
+\multirow{3}{*}{24}	& \multirow{3}{*}{Transitional} & \multirow{3}{*}{Combination} 	& Steep angle to 			& Straight stream 							& Flow path between BR1 fire \& BR1 window;~ 	\\
+ 					& 							& 									& half fog content			& to fog content							& ~~flow path between BR2 fire \& BR2 window 	\\
+					&							&									& suppression 				& suppression 								&							\\
 \hline
 \end{tabular}}
 \label{table:summary_of_experiments}
@@ -1132,8 +1133,9 @@ During Experiments~1--6, an interior attack method was performed to extinguish a
 \scalebox{0.75}{
 \begin{tabular}{|c|c|c|c|c|l|}
 \hline
-\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}		& \multicolumn{1}{c|}{\multirow{2}{*}{Ventilation Parameters}} \\ 
-								& 	Method	   	& 								& 									& 								& 										\\ 
+\multirow{3}{*}{Experiment} 	& Fire  		& \multirow{3}{*}{Nozzle}		& \multirow{3}{*}{Advancement} 		& \multirow{3}{*}{Pattern}		& \multicolumn{1}{c|}{\multirow{3}{*}{Ventilation Parameters}} \\ 
+								& Attack	   	& 								& 									& 								& 										\\ 
+								& Method	   	& 								& 									& 								& 										\\ 
 \hline \hline
 \multirow{2}{*}{1}	& \multirow{2}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application with combination;} 									& \multirow{2}{*}{Flow path between front door \& BR1 fire} \\
 					& 							& \multicolumn{3}{c|}{Shutdown \& Move; Straight Stream} 											& 		\\
@@ -1146,8 +1148,9 @@ During Experiments~1--6, an interior attack method was performed to extinguish a
 \multirow{2}{*}{4}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Smooth Bore} 	& \multirow{2}{*}{Flow \& Move} 	& \multirow{2}{*}{Solid Stream} & Flow path between front door \& BR1 fire 	\\
  					& 							& 								& 									& 								& ~~w/ coordinated horizontal vent 				\\
 \hline
-\multirow{2}{*}{5}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Shutdown \& Move} &  Straight Stream, near to far 		& \multirow{2}{*}{Flow path between front door \& BR1 fire} \\
- 					& 							& 								& 									&  along hall centerline		& 		\\
+\multirow{3}{*}{5}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Combination} 	& \multirow{3}{*}{Shutdown \& Move} &  Straight Stream,  			& \multirow{3}{*}{Flow path between front door \& BR1 fire} \\
+ 					& 							& 								& 									&  near to far along 			& 		\\
+ 					& 							& 								& 									&  hall centerline				& 		\\
 \hline
 	6							& Interior 		& 	Smooth Bore 				& Shutdown \& Move 					&  Solid Stream 				& Flow path between front door \& BR1 fire 	\\
 \hline
@@ -1213,7 +1216,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170510934
 \subsubsection{Experiment 3}
 Experiment~3 looked at the fire dynamics in a single-story structure when suppression is conducted with a solid stream and the front door controlled immediately following entry. The fire was ignited in Bedroom~1 in the arm of the chair in the `A/B' corner of the room and allowed to develop until it became ventilation-limited. Then, the front door was opened to simulate fire department arrival. The open door established a flow path between itself and Bedroom~1. An interior fire attack was initiated through the front door with a solid stream from a smooth bore nozzle. After the suppression crew entered, the door was closed to the width of the hoseline in an effort to limit the amount of fresh air supplied to the fire (Door Control). The nozzle was shut down as the hoseline advanced. Figure~\ref{fig:No_Vent_int} shows the configuration of the structure and Table~\ref{Table:Exp3Interventions} shows at what times interventions were performed. The results of Experiment 3 can be found in Appendix~\ref{App:Exp3Results}.
 
-To view the full experiment video \href{https://player.vimeo.com/video/170513516?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243714399?autoplay=1}{Click Here}.
 
 \begin{table}[!ht]
 	\centering
@@ -1266,7 +1269,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170499609
 \subsubsection{Experiment 5}
 Experiment~5 looked at the fire dynamics in a single-story structure when suppression is conducted with a straight stream from a combination nozzle. The fire was ignited in the Bedroom~1 in the arm of the chair in the `A/B' corner of the room and allowed to develop until it became ventilation-limited. Then, the front door was opened to simulate fire department arrival. The open door established a flow path between itself and Bedroom~1. An interior fire attack was initiated through the front door with a straight stream from a combination nozzle. The nozzle was directed from near to far along the centerline of the hallway ceiling. Suppression occured from the start of the hallway. The crew then advanced directly to the fire room to complete suppression. Figure~\ref{fig:No_Vent_int} shows the configuration of the structure and Table~\ref{Table:Exp5Interventions} shows at what times interventions were performed. The results of Experiment~5 can be found in Appendix~\ref{App:Exp5Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170511425?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243714618?autoplay=1}{Click Here}.
 
 \begin{table}[!ht]
 	\centering
@@ -1331,8 +1334,10 @@ During Experiments~7--12, an interior suppression tactic was performed to exting
 \scalebox{0.75}{
 \begin{tabular}{|c|c|c|c|c|l|}
 \hline
-\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}	& \multicolumn{1}{c|}{\multirow{2}{*}{Ventilation Parameters}} \\ 
-								& 	Method	   	& 								& 									& 									& 										\\ 
+\multirow{3}{*}{Experiment} 	& Fire  		& \multirow{3}{*}{Nozzle}		& \multirow{3}{*}{Advancement} 		& \multirow{3}{*}{Pattern}	& \multicolumn{1}{c|}{\multirow{3}{*}{Ventilation Parameters}} \\ 
+								& Attack	   	& 								& 									& 									& 										\\ 
+								& Method	   	& 								& 									& 									& 										\\ 
+
 \hline \hline
 \multirow{2}{*}{7}	& \multirow{2}{*}{Interior} & \multirow{2}{*}{Smooth Bore} 	& \multirow{2}{*}{Flow \& Move}		& \multirow{2}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; \\
 					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window 	\\
@@ -1362,7 +1367,7 @@ During Experiments~7--12, an interior suppression tactic was performed to exting
 \subsubsection{Experiment 7}
 Experiment~7 looked at the fire dynamics in a single-story structure where suppression was conducted with a solid stream. The fire was ignited in the Bedroom~1 in the arm of the chair in the `A/B' corner of the room with the Bedroom~1 window open. The fire developed and became ventilation-limited. Once this occurred, the front door was opened, simulating fire department arrival. Two flow paths: one between the front door and the bedroom fire and the other between the bedroom window and the bedroom fire. An interior fire attack was initiated through the front door, utilizing a solid stream from a smooth bore nozzle. The nozzle was flowing as the hoseline advanced. Figure~\ref{fig:Single_Vent_int} shows the configuration of the structure and Table~\ref{Table:Exp7Interventions} shows at what times interventions were performed. The results of Experiment~7 can be found in Appendix~\ref{App:Exp7Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170513517?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243714734?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1440,7 +1445,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170510938
 \subsubsection{Experiment 10}
 Experiment~10 looked at examine the fire dynamics in a single-story structure where suppression was conducted with a straight stream. The fire was ignited in the Bedroom~1 in the arm of the chair in the `A/B' corner of the room with the Bedroom~1 window open. The fire developed and became ventilation limited. Once this occurred, the front door was opened, simulating fire department arrival. Two flow paths were established: one between the front door and the bedroom fire and the other between the bedroom window and the bedroom fire. An interior fire attack was initiated through the front door, utilizing a straight stream from a combination nozzle. The nozzle was shut down while the hoseline advanced. Figure~\ref{fig:Single_Vent_int} shows the configuration of the structure and Table~\ref{Table:Exp10Interventions} shows at what times interventions were performed. The results of Experiment~10 can be found in Appendix~\ref{App:Exp10Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170510939?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243714860?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1466,7 +1471,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170510939
 \subsubsection{Experiment 11}
 Experiment~11 looked at the fire dynamics in a single-story structure where suppression was conducted with a fog stream pattern from a combination nozzle. The fire was ignited in Bedroom~1 in the arm of the chair in the `A/B' corner of the room with the Bedroom~1 window open. The fire developed and became ventilation-limited. Once this occurred, the front door was opened, simulating fire department arrival. Two flow paths were established: oone between the front door and the bedroom fire and the other between the bedroom window and the bedroom fire. An interior fire attack was initiated through the front door, utilizing a narrow fog stream from a combination nozzle. The nozzle was flowing while the hoseline advanced.  Figure~\ref{fig:Single_Vent_int} shows the configuration of the structure and Table~\ref{Table:Exp11Interventions} shows at what times interventions were performed. The results of Experiment 11 can be found in Appendix~\ref{App:Exp11Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170499614?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243715005?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1532,28 +1537,30 @@ During Experiments~13--17, an interior suppression tactic was performed to extin
 \scalebox{0.75}{
 \begin{tabular}{|c|c|c|c|c|l|}
 \hline
-\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}		& \multirow{2}{*}{Advancement} 		& \multirow{2}{*}{Pattern}	& \multicolumn{1}{c|}{\multirow{2}{*}{Ventilation Parameters}} \\ 
-								& 	Method	   	& 								& 									& 									& 										\\ 
+\multirow{3}{*}{Experiment} 	& Fire  		& \multirow{3}{*}{Nozzle}		& \multirow{3}{*}{Advancement} 		& \multirow{3}{*}{Pattern}			& \multicolumn{1}{c|}{\multirow{3}{*}{Ventilation Parameters}} \\ 
+								& Attack	   	& 								& 									& 									& 										\\ 
+								& Method	   	& 								& 									& 									& 										\\ 
+
 \hline \hline
-\multirow{3}{*}{13}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& 								& 									& 									& ~~\& BR2 window \\
+\multirow{3}{*}{13}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire;  \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window; front door \& BR2 fire;	\\
+					& 							& 								& 									& 									& ~~BR2 fire \& BR2 window \\
 \hline
-\multirow{3}{*}{14}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& 								& 									& 									& ~~\& BR2 window \\
+\multirow{3}{*}{14}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire;  \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window; front door \& BR2 fire;	\\
+					& 							& 								& 									& 									& ~~BR2 fire \& BR2 window \\
 \hline
-\multirow{3}{*}{15}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& 								& 									& 									& ~~\& BR2 window w/ door control \\
+\multirow{3}{*}{15}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Smooth Bore} 	& \multirow{3}{*}{Shutdown \& Move}	& \multirow{3}{*}{Solid Stream} 	& Flow paths between front door \& BR1 fire;  \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window; front door \& BR2 fire;	\\
+					& 							& 								& 									& 									& ~~BR2 fire \& BR2 window w/ door control \\
 \hline
-\multirow{3}{*}{16}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Combination} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Narrow Fog} 		& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& 								& 									& 									& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& 								& 									& 									& ~~\& BR2 window \\
+\multirow{3}{*}{16}	& \multirow{3}{*}{Interior} & \multirow{3}{*}{Combination} 	& \multirow{3}{*}{Flow \& Move}		& \multirow{3}{*}{Narrow Fog} 		& Flow paths between front door \& BR1 fire;  \\
+					& 							& 								& 									& 									& ~~BR1 fire \& BR1 window; front door \& BR2 fire;	\\
+					& 							& 								& 									& 									& ~~BR2 fire \& BR2 window \\
 \hline
-\multirow{3}{*}{17}	& \multirow{3}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application w/}														& Flow paths between front door \& BR1 fire; BR1 fire \\
-					& 							& \multicolumn{3}{c|}{Combination; Flow \& Move;}														& ~~\& BR1 window; front door \& BR2 fire; BR2 fire	\\
-					& 							& \multicolumn{3}{c|}{Straight Stream}																	& ~~\& BR2 window \\
+\multirow{3}{*}{17}	& \multirow{3}{*}{Interior} & \multicolumn{3}{c|}{Delayed water application w/}														& Flow paths between front door \& BR1 fire;  \\
+					& 							& \multicolumn{3}{c|}{Combination; Flow \& Move;}														& ~~BR1 fire \& BR1 window; front door \& BR2 fire;	\\
+					& 							& \multicolumn{3}{c|}{Straight Stream}																	& ~~BR2 fire \& BR2 window \\
 \hline
 \end{tabular}}
 \label{table:Exp13to17}
@@ -1565,7 +1572,7 @@ During Experiments~13--17, an interior suppression tactic was performed to extin
 \subsubsection{Experiment 13}
 Experiment~13 looked at the fire dynamics of a 2-bedroom fire in a single-story structure where suppression was conducted with a solid stream from a smooth bore nozzle. The fire was ignited simultaneously in Bedroom~1 in the arm of the chair in the `A/B' corner of the room and Bedroom~2 in the arm of the chair in the `B/C' corner of the room with the Bedroom~1 and Bedroom~2 windows open. The fire developed and became ventilation-limited. Once this occurred, the front door was opened, simulating fire department arrival. This created flow paths between the front door and each fire bedroom and between each bedroom window and the fire bedrooms. An interior fire attack was initiated through the front door, utilizing a solid stream from a smooth bore nozzle. The nozzle was flowing while the hoseline advanced. Figure~\ref{fig:Two_Vent_int} shows the configuration of the structure and Table~\ref{Table:Exp13Interventions} shows at what times interventions were performed. The results of Experiment~13 can be found in Appendix~\ref{App:Exp13Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170499618?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243715096?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1643,7 +1650,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170499619
 \paragraph{Experiment 16}
 Experiment~16 looked at the fire dynamics of a 2-bedroom fire in a single-story structure where suppression was conducted with a narrow fog stream. The fire was ignited simultaneously in Bedroom~1 in the arm of the chair in the `A/B' corner of the room and Bedroom~2 in the arm of the chair in the `B/C' corner of the room with the Bedroom~1 and Bedroom~2 windows open. The fire develops and becomes ventilation-limited. Once this happens, the front door was opened, simulating fire department arrival. These actions create flow paths between the front door and each fire bedroom and between each bedroom window and the fire bedrooms. An interior fire attack was initiated through the front door, utilizing a narrow fog stream from a combination nozzle. The nozzle was flowing while the hoseline advanced. Figure~\ref{fig:Two_Vent_int} shows the configuration of the structure and Table~\ref{Table:Exp16Interventions} shows at what times interventions were performed. The results of Experiment~16 can be found in Appendix~\ref{App:Exp16Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170510941?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243715275?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1669,7 +1676,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170510941
 \paragraph{Experiment 17}
 Experiment~17 looked at the fire dynamics of a 2-bedroom fire in a single-story structure where suppression was conducted with delayed suppression. The fire was ignited simultaneously in Bedroom~1 in the arm of the chair in the `A/B' corner of the room and Bedroom~2 in the arm of the chair in the `B/C' corner of the room with the Bedroom~1 and Bedroom~2 windows open. The fire developed and became ventilation-limited. Once this occurred, the front door was opened, simulating fire department arrival. This created flow paths between the front door and each fire bedroom and between each bedroom window and the fire bedrooms. An interior fire attack was initiated through the front door, utilizing a straight stream from a combination nozzle. The nozzle was shut down while the hoseline advanced Figure~\ref{fig:Two_Vent_int} shows the configuration of the structure and Table~\ref{Table:Exp17Interventions} shows at what times interventions were performed. The results of Experiment~17 can be found in Appendix~\ref{App:Exp17Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170499615?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243715405?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1707,12 +1714,12 @@ During Experiments~18--20, a transitional attack was performed to extinguish a f
 \caption{Experiments 18 through 20}
 \centering
 \scalebox{0.75}{
-\begin{tabular}{|c|C{.09\textwidth}|c|C{0.26\textwidth}|C{0.24\textwidth}|L{0.25\textwidth}|}
+\begin{tabular}{|c|C{.13\textwidth}|c|C{0.26\textwidth}|C{0.24\textwidth}|L{0.25\textwidth}|}
 \hline
 Experiment 	& Fire Attack Method & Nozzle			& Advancement 													& Pattern																& Ventilation Parameters 					\\ \hline \hline
-18			& Exterior 			 & Smooth bore 		& Steep angle 													& Solid stream  														& Flow path between BR1 fire \& BR1 window 	\\ \hline
-19			& Exterior			 & Combination		& Occlude opening,rebuild, steep angle	to content suppression  & Narrow fog, rebuild, straight stream to fog content suppression		& Flow path between BR1 fire \& BR1 window \\ \hline
-20			& Exterior 			 & Smooth bore 		& Steep angle to half bale content suppression 					& Solid stream to half bale content suppression 						& Flow path between BR1 fire \& BR1 window \\ \hline 
+18			& Transitional 			 & Smooth bore 		& Steep angle 													& Solid stream  														& Flow path between BR1 fire \& BR1 window 	\\ \hline
+19			& Transitional			 & Combination		& Occlude opening,rebuild, steep angle	to content suppression  & Narrow fog, rebuild, straight stream to fog content suppression		& Flow path between BR1 fire \& BR1 window \\ \hline
+20			& Transitional 			 & Smooth bore 		& Steep angle to half bale content suppression 					& Solid stream to half bale content suppression 						& Flow path between BR1 fire \& BR1 window \\ \hline 
 \end{tabular}}
 \label{table:Exp18to20}
 \end{table}
@@ -1732,10 +1739,10 @@ During Experiment~21, a transitional attack was performed to extinguish a fire i
 \caption{Experiment 21}
 \centering
 \scalebox{0.75}{
-\begin{tabular}{|c|C{.09\textwidth}|c|C{0.24\textwidth}|C{0.26\textwidth}|L{0.30\textwidth}|}
+\begin{tabular}{|c|C{.13\textwidth}|c|C{0.24\textwidth}|C{0.26\textwidth}|L{0.30\textwidth}|}
 \hline
 Experiment 	& Fire Attack Method & Nozzle			& Advancement 								 	& Pattern											& Ventilation Parameters 					\\ \hline \hline
-21			& Exterior 			 & Smooth bore 		& Steep angle to half bale content suppression 	& Solid stream to half bale content suppression		& Flow paths between front door \& BR1 fire; BR1 fire \& BR1 window \\
+21			& Transitional 			 & Smooth bore 		& Steep angle to half bale content suppression 	& Solid stream to half bale content suppression		& Flow paths between front door \& BR1 fire; BR1 fire \& BR1 window \\
 \hline
 \end{tabular}}
 \label{table:Exp21}
@@ -1757,10 +1764,11 @@ During Experiment~26, a transitional attack was performed to extinguish a fire i
 \scalebox{0.75}{
 \begin{tabular}{|c|c|c|c|c|l|}
 \hline
-\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}	& \multirow{2}{*}{Advancement} 	& \multirow{2}{*}{Pattern}	& \multirow{2}{*}{Ventilation Parameters} \\ 
-								& 	Method	   	& 							& 								& 							& 										\\ 
+\multirow{3}{*}{Experiment} 	& Fire  		& \multirow{3}{*}{Nozzle}	& \multirow{3}{*}{Advancement} 	& \multirow{3}{*}{Pattern}	& \multirow{3}{*}{Ventilation Parameters} \\ 
+								& Attack	   	& 							& 								& 							& 										\\ 
+								& Method	   	& 							& 								& 							& 										\\ 
 \hline \hline
-\multirow{2}{*}{26}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Steep angle sweep} &  \multirow{2}{*}{Straight stream} & Flow paths between front door \& BR4 fire; 	\\
+\multirow{2}{*}{26}	& \multirow{2}{*}{Transitional} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Steep angle sweep} &  \multirow{2}{*}{Straight stream} & Flow paths between front door \& BR4 fire; 	\\
  					& 							& 								& 							&  						& ~~BR4 fire \& BR4 window 	\\
 \hline
 \end{tabular}}
@@ -1770,6 +1778,8 @@ During Experiment~26, a transitional attack was performed to extinguish a fire i
 The following sections contain a brief description of each experiment along with a table of interventions and times at which they were performed during each experiment. 
 
 \FloatBarrier
+
+\clearpage
 
 \subsubsection{Experiment 18}
 Experiment~18 looked at the fire dynamics of a bedroom fire in a single-story structure where suppression was initiated from the exterior of the house. The fire was ignited in Bedroom~1 in the arm of the chair in the `A/B' corner of the room. The fire developed and became ventilation-limited. Once this occurred, a transitional attack was initiated, starting at the Bedroom~1 window via a straight stream from a combination nozzle.  The suppression crew then transitioned to the interior for final suppression. The crew used a burst suppression to check conditions and then proceeded directly to the fire room. Figure~\ref{fig:Single_Vent_ext} shows the configuration of the structure and Table~\ref{Table:Exp18Interventions} shows at what times interventions were performed. The results of Experiment~18 can be found in Appendix~\ref{App:Exp18Results}. 
@@ -1801,7 +1811,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170499622
 \subsubsection{Experiment 19}
 Experiment~19 looked at the fire dynamics of a bedroom fire in a single-story structure where suppression was initiated from the exterior. The fire was ignited in Bedroom~1 in the arm of the chair in the `A/B' corner of the room. The fire developed and became ventilation-limited. Once this occurred a exterior water application was initiated through the Bedroom~1 window via a narrow fog stream from a combination nozzle. The fire was knocked back. The nozzle was shut down and the fire was permitted to regrow to the earlier ventilation-limited state.  Once this occurred, a transitional fire attack was initiated, starting at the Bedroom~1 window via a straight stream from a combination nozzle. The suppression crew then transitioned to the interior for final suppression. The crew entered the structure and proceeded directly to the fire room before flowing additional water. Figure~\ref{fig:Single_Vent_ext} shows the configuration of the structure and Table~\ref{Table:Exp19Interventions} shows at what times interventions were performed. The results of Experiment~19 can be found in Appendix~\ref{App:Exp19Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170499621?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243715795?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1854,7 +1864,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170499620
 \subsubsection{Experiment 21}
 Experiment~21 looked at the fire dynamics of a bedroom fire in a single-story structure where suppression was initiated from the exterior. The fire was ignited in Bedroom~1 in the arm of the chair in the `A/B' corner of the room. The fire developed and became ventilation limited. Once this occurred, the front door was opened to simulate an uncoordinated crew entry during a transitional fire attack. This created two flow paths: one between the front door and the bedroom and a second between the bedroom window and the bedroom. Once this occurred, a transitional fire attack was initiated, starting at the Bedroom~1 window via a solid stream from a smooth bore nozzle. After the initial application, the suppression crew approached the window, placed the nozzle through the window and opened the bale half way while making an `O' pattern. The nozzle was shut down and the suppression crew transitioned to the interior for final suppression. The crew entered the structure and proceeded directly to the fire room before flowing additional water. Figure~\ref{fig:Single_Vent_ext_alt1} shows the configuration of the structure and Table~\ref{Table:Exp21Interventions} shows at what times interventions were performed. The results of Experiment~21 can be found in Appendix~\ref{App:Exp21Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170499627?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243716021?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1880,7 +1890,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170499627
 \subsubsection{Experiment 26}
 Experiment~26 looked at the fire dynamics of a bedroom fire in a single-story structure with transitional suppression. The fire was ignited in Bedroom~4 in the arm of the chair in the `A/B' corner of the room. The fire develops and becomes ventilation-limited. Once this happened, a transitional fire attack was initiated, starting at the Bedroom~4 window via a straight stream from a combination nozzle. The nozzle was shut down and the suppression crew, transitioned to the interior for final suppression. The crew entered the structure and flowed water as they deemed necessary as they proceeded to the fire room before completing final suppression.  Figure~\ref{fig:Single_Vent_ext_alt2} shows the configuration of the structure and Table~\ref{Table:Exp26Interventions} shows at what times interventions were performed. The results of Experiment~26 can be found in Appendix~\ref{App:Exp26Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170499626?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243716729?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1918,19 +1928,21 @@ During Experiments~22--24, a transitional suppression tactic was performed to ex
 \scalebox{0.75}{
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\multirow{2}{*}{Experiment} 	& Fire Attack 	& \multirow{2}{*}{Nozzle}	& \multirow{2}{*}{Advancement} 	& \multirow{2}{*}{Pattern}	& \multirow{2}{*}{Ventilation Parameters} \\ 
-								& 	Method	   	& 							& 								& 							& 										\\ 
+\multirow{2}{*}{Experiment} 	& Fire  		& \multirow{2}{*}{Nozzle}	& \multirow{2}{*}{Advancement} 	& \multirow{2}{*}{Pattern}	& \multirow{2}{*}{Ventilation Parameters} \\ 
+								& Attack	   	& 							& 								& 							& 										\\ 
+								& Method	   	& 							& 								& 							& 										\\ 
+
 \hline \hline
-\multirow{2}{*}{22}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Smooth bore} 	& Steep angle to 					& Solid stream to 		& 	Flow path between BR1 fire \& BR1 window;~ 	\\
- 					& 							& 								& half bale 						& half bale 	 		& 	flow path between BR2 fire \& BR2 window 	\\
- 					&							&								& content suppression 				& content suppression 	& 												\\
+\multirow{3}{*}{22}	& \multirow{3}{*}{Transitional} & \multirow{3}{*}{Smooth bore} 	& Steep angle to 			& Solid stream to 		& 	Flow path between BR1 fire \& BR1 window;~ 	\\
+ 					& 							& 								& half bale content			& half bale content	 	& 	flow path between BR2 fire \& BR2 window 	\\
+ 					&							&								& suppression 				& suppression 			& 												\\
 \hline
-\multirow{2}{*}{23}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Occlude opening} 	&  \multirow{2}{*}{Narrow fog} 	& Flow path between BR1 fire \& BR1 window;~ 	\\
+\multirow{2}{*}{23}	& \multirow{2}{*}{Transitional} & \multirow{2}{*}{Combination} 	& \multirow{2}{*}{Occlude opening} 	&  \multirow{2}{*}{Narrow fog} 	& Flow path between BR1 fire \& BR1 window;~ 	\\
  					& 							& 								& 									&  								& flow path between BR2 fire \& BR2 window \\
 \hline
-\multirow{2}{*}{24}	& \multirow{2}{*}{Exterior} & \multirow{2}{*}{Combination} 	& Steep angle to 					& Straight stream 		& Flow path between BR1 fire \& BR1 window;~ 	\\
- 					& 							& 								& half fog 							& to fog 				& flow path between BR2 fire \& BR2 window 	\\
- 					&							&								& content suppression 				& content suppression  	&											\\
+\multirow{3}{*}{24}	& \multirow{3}{*}{Transitional} & \multirow{3}{*}{Combination} 	& Steep angle to 					& Straight stream 		& Flow path between BR1 fire \& BR1 window;~ 	\\
+ 					& 							& 								& half fog content					& to fog content		& flow path between BR2 fire \& BR2 window 	\\
+ 					&							&								& suppression 						& suppression  			&											\\
 \hline
 \end{tabular}}
 \label{table:Exp22to24}
@@ -1967,7 +1979,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170499624
 \subsubsection{Experiment 23}
 Experiment~23 looked at the fire dynamics of a 2-bedroom fire in a single-story structure with transitional suppression via a narrow fog only on the Bedroom~1 window before suppression transitioned to the interior. The fire was ignited simultaneously in Bedroom~1 in the arm of the chair in the `A/B' corner of the room and Bedroom~2 in the arm of the chair in the `B/C' corner of the room. The Bedroom~1 and Bedroom~2 windows were open. The fire developed and became ventilation-limited. Once this occurred, a transitional fire attack was initiated, starting at the Bedroom~1 window via a narrow fog from a combination nozzle. The nozzle was shut down and the suppression crew transitioned to the interior for final suppression. The crew entered the structure and proceeded down the hallway with the nozzle flowing while the line was advanced. Figure~\ref{fig:Two_Vent_ext} shows the configuration of the structure and Table~\ref{Table:Exp23Interventions} shows at what times interventions were performed. The results of Experiment 23 can be found in Appendix~\ref{App:Exp23Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170499625?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243716135?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -1992,7 +2004,7 @@ To view the full experiment video \href{https://player.vimeo.com/video/170499625
 \subsubsection{Experiment 24}
 Experiment 24 looked at the fire dynamics of a 2-bedroom fire in a single-story structure with transitional suppression on both bedroom windows. The fire was ignited simultaneously in Bedroom~1 in the arm of the chair in the `A/B' corner of the room and Bedroom~2 in the arm of the chair in the `B/C' corner of the room. The Bedroom~1 and Bedroom~2 windows were open. The fire developed and became ventilation-limited. Once this occurred, a transitional fire attack was initiated, starting at the Bedroom~1 window via a straight stream from a combination nozzle. The nozzle was shut down and the line re-located to the Bedroom~2 window for a second water application. The nozzle was shut down and the suppression crew transitioned to the interior for final suppression. The crew entered the structure and proceeded to a position directly outside the fire rooms before flowing additional water. Figure~\ref{fig:Two_Vent_ext} shows the configuration of the structure and Table~\ref{Table:Exp24Interventions} shows at what times interventions were performed. The results of Experiment~24 can be found in Appendix~\ref{App:Exp24Results}. 
 
-To view the full experiment video \href{https://player.vimeo.com/video/170499626?autoplay=1}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243716236?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -2036,7 +2048,7 @@ Experiment~25 aimed to examine gas cooling through a challenging configuration. 
 \label{fig:Exp_25_Images}
 \end{figure}
 
-To view the full experiment video \href{https://youtu.be/gl8rc1Nsl1k}{Click Here}.
+To view the full experiment video \href{https://player.vimeo.com/video/243716427?autoplay=1}{Click Here}.
 
 \begin{table}[H]
 	\centering
@@ -3010,7 +3022,7 @@ To evaluate the impact of door control, Experiment 3, which included door contro
 \centering
 \includegraphics[width=0.45\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Door_Control/Experiment_6/Start_Hall_Flow}
 \includegraphics[width=0.45\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Door_Control/Experiment_3/Start_Hall_Flow}
-\caption[Door Control Effectiveness - No Ventilation]{Start of hall flow with no door control Experiment 6 (left), with door control Experiment 3 (right) for interior attack. The blue shaded areas represent where water was flowing from the hose stream. Charts start 15 seconds prior to the tactic is started and continue until 90 seconds after the door was opened.}
+\caption[Door Control Effectiveness - No Ventilation]{Start of hall flow with no door control Experiment 6 (left), with door control Experiment 3 (right) for interior attack. The blue shaded areas represent where water was flowing from the hose stream. Charts start 15 seconds prior to the tactic is started and continue until 105 seconds after the door was opened.}
 \label{fig:door_control_no_vent}
 \end{figure}
 
@@ -3023,7 +3035,7 @@ To evaluate the impact door control had on two rooms of fire with ventilation op
 \centering
 \includegraphics[width=0.45\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Door_Control/Experiment_14/Start_Hall_Flow}
 \includegraphics[width=0.45\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Door_Control/Experiment_15/Start_Hall_Flow}
-\caption[Door Control Effectiveness - Window Vent]{Start of hall flow with no door control Experiment 14 (left), with door control Experiment 15 (right) for interior suppression with the window venting prior to initiating the tactic. The blue shaded areas represent where water was flowing from the hose stream. Charts start 15 seconds prior to the tactic is started and continue until 90 seconds after the door was opened.}
+\caption[Door Control Effectiveness - Window Vent]{Start of hall flow with no door control Experiment 14 (left), with door control Experiment 15 (right) for interior suppression with the window venting prior to initiating the tactic. The blue shaded areas represent where water was flowing from the hose stream. Charts start 15 seconds prior to the tactic is started and continue until 105 seconds after the door was opened.}
 \label{fig:door_control_vent}
 \end{figure}
 
@@ -3116,7 +3128,7 @@ Providing ventilation ahead of the nozzle crew changes the ability of the hose s
 \label{fig:Flow_vs_Shut_Single_Vent_Velocity}
 \end{figure}
 
-\section{Need to Cool While Advancing Operating in the Interior}
+\section{Need to Cool While Operating on in the Interior}
 Traditionally, firefighters have been taught that there are negative consequences to applying water prior to reaching the fire compartment \cite{Stowell_Essentials6, JandB:Firefighter_Skills, Delmar:Firefighters_Handbook, Corbett_FE_FFI_FFII}. This, combined with training fires that do not cause hazardous thermal scenarios lead to firefighters believe that water application down a hall; prior to advancing is not necessary. The structural turnout gear will provide enough protection to make it to the compartment before applying water. To evaluate this instrumentation was placed outside the fire compartment and at various places down the hallway.
 
 Utech developed three thermal classes for environments found inside the structure. These classes combined temperature (convective) and heat flux (radiative) to develop zones quantifying the hazard thermal energy poses to firefighters in structural gear. The routine zone represents those areas were structural turnout gear are not necessary for thermal protection. The ordinary zone was intended to be a thermal classification where a firefighter in full protective equipment could remain for the duration of their air supply. The emergency zone identified a zone in which a fully-encapsulated firefighter could only remain for under a minute, and the upper range, only a few seconds \cite{Utech_Firefighter_Clothing}. 
@@ -3567,14 +3579,14 @@ In Figures \ref{fig:thermal_imager_a} and \ref{fig:thermal_imager_b}, the only o
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{../0_Images/Tactical_Considerations/Thermal_Imager/Exp6FDpair.PNG}
-\caption[Thermal Imager A]{Bedroom window closed configuration. The images are frame captures from the standard video on the left and the thermal imager on the right. While air flowing through the lower part of the doorway has provided a small amount of visibility just inside the doorway, the back-up firefighter on the hose line is only visible in the thermal imager view.}
+\caption[Thermal Imager and Standard Video Front Door - Bedroom Window Closed]{Bedroom window closed configuration. The images are frame captures from the standard video on the left and the thermal imager on the right. While air flowing through the lower part of the doorway has provided a small amount of visibility just inside the doorway, the back-up firefighter on the hose line is only visible in the thermal imager view.}
 \label{fig:thermal_imager_a}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{../0_Images/Tactical_Considerations/Thermal_Imager/Exp6Hallpair.png}
-\caption[Thermal Imager B]{Bedroom window closed configuration.  The images are frame captures from the standard video on the left and the thermal imager on the right. The firefighter with the nozzle has advanced to the entry point of the hall way. The firefighter can be seen in the thermal imager view on the right. The smoke has obscured the view of the firefighter in the standard video.}
+\caption[Thermal Imager and Standard Video Hallway - Bedroom Window Closed]{Bedroom window closed configuration.  The images are frame captures from the standard video on the left and the thermal imager on the right. The firefighter with the nozzle has advanced to the entry point of the hall way. The firefighter can be seen in the thermal imager view on the right. The smoke has obscured the view of the firefighter in the standard video.}
 \label{fig:thermal_imager_b}
 \end{figure}
 
@@ -3583,14 +3595,14 @@ Figures \ref{fig:thermal_imager_c} and \ref{fig:thermal_imager_d} show similar v
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{../0_Images/Tactical_Considerations/Thermal_Imager/Exp8FDpair.png}
-\caption[Thermal Imager C]{Bedroom window open configuration.  The images are frame captures from the standard video on the left and the thermal imager on the right. Notice how more of the back-up firefighter can be seen in the visual image compared to the visual image in Figure \ref{fig:thermal_imager_a}.}
+\caption[Thermal Imager and Standard Video Front Door - Bedroom Window Open]{Bedroom window open configuration.  The images are frame captures from the standard video on the left and the thermal imager on the right. Notice how more of the back-up firefighter can be seen in the visual image compared to the visual image in Figure \ref{fig:thermal_imager_a}.}
 \label{fig:thermal_imager_c}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{../0_Images/Tactical_Considerations/Thermal_Imager/Exp8Hallpair.png}
-\caption[Thermal Imager D]{Bedroom window open configuration. The images are frame captures from the standard video on the left and the thermal imager on the right. The firefighter with the nozzle has advanced to the entry point of the hall way. The firefighter can be seen in the thermal imager view on the right. The smoke has obscured the view of the firefighter in the standard video. The open doorway is toward the left side of the standard video image.}
+\caption[Thermal Imager and Standard Video Hallway - Bedroom Window Open]{Bedroom window open configuration. The images are frame captures from the standard video on the left and the thermal imager on the right. The firefighter with the nozzle has advanced to the entry point of the hall way. The firefighter can be seen in the thermal imager view on the right. The smoke has obscured the view of the firefighter in the standard video. The open doorway is toward the left side of the standard video image.}
 \label{fig:thermal_imager_d}
 \end{figure}
 
@@ -3599,14 +3611,14 @@ The third type of ventilation configuration had two open windows, one in each fi
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{../0_Images/Tactical_Considerations/Thermal_Imager/Exp14FDpair.png}
-\caption[Thermal Imager E]{Bedroom windows open configuration.  The images are frame captures from the standard video on the left and the thermal imager on the right.  Notice how more of the back-up firefighter can be seen in the visual image compared to the visual image in Figure \ref{fig:thermal_imager_a}.}
+\caption[Thermal Imager and Standard Video Front Door - Bedroom Window Open]{Bedroom windows open configuration.  The images are frame captures from the standard video on the left and the thermal imager on the right.  Notice how more of the back-up firefighter can be seen in the visual image compared to the visual image in Figure \ref{fig:thermal_imager_a}.}
 \label{fig:thermal_imager_e}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{../0_Images/Tactical_Considerations/Thermal_Imager/Exp14Hallpair.png}
-\caption[Thermal Imager F]{Bedroom windows open configuration. The images are frame captures from the standard video on the left and the thermal imager on the right. The firefighter with the nozzle has advanced to the entry point of the hall way. The firefighter can be seen in the thermal imager view on the right. The smoke has obscured the view of the firefighter in the standard video.}
+\caption[Thermal Imager and Standard Video Hallway - Bedroom Window Open]{Bedroom windows open configuration. The images are frame captures from the standard video on the left and the thermal imager on the right. The firefighter with the nozzle has advanced to the entry point of the hall way. The firefighter can be seen in the thermal imager view on the right. The smoke has obscured the view of the firefighter in the standard video.}
 \label{fig:thermal_imager_f}
 \end{figure}
 
@@ -3633,7 +3645,7 @@ Each of the examples are presented a pair of charts, one from each imager where 
 \centering
 \includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/Experiment_1_Door.png}
 \includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/Experiment_1_Hall.png}
-\caption[Thermal Imager G]{Comparison of thermal imager temperature read out to the actual compartment temperatures. Thermal imager from the door location is left and thermal imager from the hallway location is right. The thermocouple temperatures from the adjacent arrays are shown at 7, 5, 3, and 1 ft above the floor (AF). (Experiment 1)}
+\caption[Thermal Imager Temperature Comparison - Bedroom Window Closed]{Comparison of thermal imager temperature read out to the actual compartment temperatures. Thermal imager from the door location is left and thermal imager from the hallway location is right. The thermocouple temperatures from the adjacent arrays are shown at 7, 5, 3, and 1 ft above the floor (AF). (Experiment 1)}
 \label{fig:thermal_imager_g}
 \end{figure}
 
@@ -3661,7 +3673,7 @@ Each of the examples are presented a pair of charts, one from each imager where 
 \centering
 \includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/Experiment_12_Door.png}
 \includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/Experiment_12_Hall.png}
-\caption[Thermal Imager H]{Comparison of thermal imager temperature read out to the actual compartment temperatures. Thermal imager from the door location is left and thermal imager from the hallway location is right. The thermocouple temperatures from the adjacent arrays are shown at 7, 5, 3, and 1 ft above the floor (AF). (Experiment 12)}
+\caption[Thermal Imager Temperature Comparison - Bedroom Window Open]{Comparison of thermal imager temperature read out to the actual compartment temperatures. Thermal imager from the door location is left and thermal imager from the hallway location is right. The thermocouple temperatures from the adjacent arrays are shown at 7, 5, 3, and 1 ft above the floor (AF). (Experiment 12)}
 \label{fig:thermal_imager_h}
 \end{figure}
 
@@ -3689,7 +3701,7 @@ Each of the examples are presented a pair of charts, one from each imager where 
 \centering
 \includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/Experiment_17_Door.png}
 \includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/Experiment_17_Hall.png}
-\caption[Thermal Imager H]{Comparison of thermal imager temperature read out to the actual compartment temperatures. Thermal imager from the door location is left and thermal imager from the hallway location is right. The thermocouple temperatures from the adjacent arrays are shown at 7, 5, 3, and 1 ft above the floor (AF). (Experiment 17)}
+\caption[Thermal Imager Temperature Comparison - Two Bedroom Windows Open]{Comparison of thermal imager temperature read out to the actual compartment temperatures. Thermal imager from the door location is left and thermal imager from the hallway location is right. The thermocouple temperatures from the adjacent arrays are shown at 7, 5, 3, and 1 ft above the floor (AF). (Experiment 17)}
 \label{fig:thermal_imager_i}
 \end{figure}
 
@@ -3717,7 +3729,7 @@ Each of the examples are presented a pair of charts, one from each imager where 
 \centering
 \includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/Experiment_19_Door.png}
 \includegraphics[width=0.495\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Thermal_Imaging_Camera/Experiment_19_Hall.png}
-\caption[Thermal Imager H]{Comparison of thermal imager temperature read out to the actual compartment temperatures. Thermal imager from the door location is left and thermal imager from the hallway location is right. The thermocouple temperatures from the adjacent arrays are shown at 7, 5, 3, and 1 ft above the floor (AF). (Experiment 19)}
+\caption[Thermal Imager Temperature Comparison - Bedroom Window Open - Transitional]{Comparison of thermal imager temperature read out to the actual compartment temperatures. Thermal imager from the door location is left and thermal imager from the hallway location is right. The thermocouple temperatures from the adjacent arrays are shown at 7, 5, 3, and 1 ft above the floor (AF). (Experiment 19)}
 \label{fig:thermal_imager_j}
 \end{figure}
 
@@ -4071,7 +4083,7 @@ The most effective initial application method from outside the compartment, to c
 
 ``Knock back'' is only a portion of the fire extinguishment. Although ``knock back'' is capable cooling the environment in the structure, reducing the rate of combustion and therefore reducing the creation of products of combustion, it is not full extinguishment. In order to ensure the fire is completely extinguished a crew must enter the compartment and apply water under and behind all objects in the room. The application of water behind and under obstructions should be a priority immediately following ``knock back''.  
 
-\section{If you get water to where it needs to go, you don't need much.} \label{tc:water_where_it_needs_to_go}
+\section{If You Can Get Water to Where it Needs to Go, You Don't Need Much.} \label{tc:water_where_it_needs_to_go}
 When dealing with a room and contents fire, the energy release rate is limited by the available oxygen (ventilation - limited) \cite{DHS2008, DHS2010}. It does not take a large amount of water to absorb the energy being released and knock back the fire. Although less is not necessarily better, when a water supply has not been established, or in areas where no municipal supply exists, water application should not be delayed to establish a water supply. Even a 500-gallon supply tank can be sufficient to knock back two rooms of fire, if the attack crew can get the water where it needs to go.    
 
 \begin{figure}[H]
@@ -4190,7 +4202,7 @@ Test Type 						& Suppression Tactic 			& Pre-Water 						& Post-Water							& P
 
 When Table \ref{tab:tc_burn_injury_summary} is compared to Table \ref{tab:TC_burn_inj_potential}, the impact of fire department intervention is evident as the injuries are not as severe when the fire department intervened. The two rooms of fire with two vents is the exception. The size of the fire resulted in significant burn injuries prior to fire department intervention which were the same as the cases where fire department intervention was delayed. 
 
-\section{Speed of transition is the enemy of re-growth} \label{tc:speed_enemy_regrowth}
+\section{Speed of Transition is the Enemy of Re-Growth} \label{tc:speed_enemy_regrowth}
 As with the initial water application, the method used for final suppression should be based on the time it takes to perform the tactic. During an exterior attack and often some interior attacks, for example hording conditions, it is often difficult to apply water under or behind obstructions such as beds, dressers, chairs and sofas. After an initial water application from the exterior, if flames are visible the crew should attempt to place the nozzle in the ventilation opening and suppress the flames. If there are no obstructions, placing the nozzle through the opening on a half-open bale or narrow fog and moving it in two or three large circles will cool as many surfaces as possible. 
 
 When the fire is located on the floors above the exterior grade level, the nozzle cannot be placed in the opening. In this instance, following the initial full-bale steep angle application, with a steep angle half-bale application for 5-10~seconds will result in the most effective surface cooling \cite{Weinchenk_watermapping}. However, extended exterior application should not take precedence over the transition to the interior for final suppression.  
@@ -4246,7 +4258,7 @@ Figure \ref{fig:expansion_TC_chart} shows that as the room is cooled, temperatur
 
 In the example above, the line is operated for approximately 11~seconds, with a total flow of 26~gallons as recorded from the flow meter. One gallon of water takes up 0.13~ft$^3$ of space. The 26 gallons utilized would take up 3.48~ft$^3$ as liquid water and when converted to steam (3.48~ft$^3$ x 1,700), would take up 5,909~ft$^3$ of space. The room was approximately 1350~ft$^3$ and the house was approximately 8500~ft$^3$ when the dead space for walls is removed. Thus, if all the water was converted to steam and expanded, the entire room and 70\% of the house would have been filled with steam. All the water was not converted to steam; however, some most likely was and this created expansion. At the same time the gases contracted as they were cooled balancing out and most likely negating the expansion. 
 
-\section[Water vapor is a bi-product of combustion]{Water Vapor is a Bi-Product of Combustion, Suppression Water is not Drastically Increasing Water Vapor in the Environment} \label{tc:steam_is_biproduct_of_combustion}
+\section[Water Vapor is a Bi-Product of Combustion]{Water Vapor is a Bi-Product of Combustion, Suppression Water is not Drastically Increasing Water Vapor in the Environment} \label{tc:steam_is_biproduct_of_combustion}
 
 In the presence of oxygen, fuel provided with sufficient heat results in combustion. As seen in Equation \ref{eq:comb_methane} the complete combustion of methane ($\ce{CH4}$) results in the products of carbon dioxide ($\ce{CO2}$) and water vapor($\ce{H2O}$) also known as steam. 
 
@@ -4403,7 +4415,7 @@ To examine the cooling effects of the environment by burst suppression, we analy
 
 While lasting cooling did not occur, using the short burst of water, there are other potential benefits of flowing once inside the structure when you have zero visibility: to wet walls and ceilings to potentially slow down ignition of the gases and wall linings in the room; and to hear water hitting walls and ceilings to get an approximate size of the space when there is no thermal imaging camera available. This can be important in the case of vaulted ceilings to let the crew know that there is potentially a high volume of unburned smoke over their position. 
 
-\section{Large volume gas cooling requires a large volume of water} \label{tc:large_volume_gas_cooling}
+\section{Large Volume Gas Cooling Requires a Large Volume of Water} \label{tc:large_volume_gas_cooling}
 Although small droplets of water theoretically will provide the most effective cooling of hot fire gases in a large volume, using a combination nozzle on a wide fog setting providing pulses was not effective. Most likely this is due to a combination of the droplets being too large, the gases not being hot enough to take advantage of the cooling before the droplets fall to the floor out of the hot gas layer, or the gases are replaced too quickly due to the exhaust flow out of the open door.
 
 \begin{figure}[H]
@@ -4420,7 +4432,7 @@ The effectiveness of the cooling increased as both the flow rate and the ability
 \centering
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Wall_Ceiling_Wall_150gpm/2TC}
 \includegraphics[width=.48\textwidth]{../0_Images/Script_Figures/Experiment_Analysis/Gas_Cooling/Wall_Ceiling_Wall_150gpm/4TC}
-\caption[Gas Cooling - Straight Stream 150~gpm]{Effectiveness of `wall, ceiling, wall' technique using 150~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team. (Experiment 25)}
+\caption[Gas Cooling Example- Straight Stream 150~gpm]{Effectiveness of `wall, ceiling, wall' technique using 150~gpm nozzle at gas cooling. Upper left is fire compartment, upper left is left center of doorway, lower left is right center of doorway and lower right is just to the right of the advancing hose team. (Experiment 25)}
 \label{fig:gas_wall_ceiling_wall_150_TC}
 \end{figure}
 
@@ -4443,7 +4455,7 @@ Finally, this work looked at the potential impact of two different suppression m
 
 \include{Additional_Info}
 
-\include{One_Dimensional_Heat}
+\input{One_Dimensional_Heat}
 
 \include{Blood_Perfusion_Skin_Damage}
 

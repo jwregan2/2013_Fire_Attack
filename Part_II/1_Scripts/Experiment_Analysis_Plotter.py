@@ -127,13 +127,17 @@ for section in experiment.keys():
 			ax1_xlims = ax1.axis()[0:2]
 			plt.ylim([0, Exp_Des['Y Scale Temperature'][exp]])
 			plt.grid(True)
-			plt.xlabel('Time (min)', fontsize=48)
+			plt.xlabel('Time (Seconds)', fontsize=48)
 			plt.xticks(fontsize=44)
 			plt.yticks(fontsize=44)
 
+
+			zero_point = all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]
+
+
 			if exp in all_flow_data.keys():
 				ax2 = ax1.twinx()
-				ax2.plot(all_flow_data[exp].index.values/60, all_flow_data[exp]['Total Gallons'], lw=6, color='#1f77b4',)
+				ax2.plot(all_flow_data[exp].index.values-zero_point, all_flow_data[exp]['Total Gallons'], lw=6, color='#1f77b4',)
 				ax2.set_ylim(0,400)
 				ax2.set_ylabel('Total Flow (Gallons)', fontsize=48)
 				ax2.tick_params(axis='y', labelsize=44)
@@ -198,20 +202,20 @@ for section in experiment.keys():
 					else:
 						channel_label = all_channels['Title'][channel_name]
 
-				ax1.plot(all_exp_data[exp][channel].index/60, all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
+				ax1.plot(all_exp_data[exp][channel].index-zero_point, all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
 							label = channel_label)
 
 				if exp in all_flow_data.keys():
 					flow_data = all_flow_data[exp]['GPM'] 
-					ax1.fill_between(flow_data.index.values/60, fill_min,  fill_max, where =  flow_data > 10, facecolor='blue', alpha=0.1)
+					ax1.fill_between(flow_data.index.values-zero_point, fill_min,  fill_max, where =  flow_data > 10, facecolor='blue', alpha=0.1)
 
 			# Plot flow markers for initial water flow for both intereior and exterior fire attacks.
 			if exp in interior:
 				for flow in ['Burst Suppression', 'Hall Suppression']:
 					if flow not in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
 						continue
-					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, lw=4, color='black')
-					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, fill_max, flow, ha='left', 
+					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]-zero_point, lw=4, color='black')
+					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]-zero_point, fill_max, flow, ha='left', 
 						va='bottom', rotation=45, fontsize=34)
 			
 			if exp in exterior:
@@ -220,72 +224,30 @@ for section in experiment.keys():
 							'BR4 Window Straight Stream']:
 					if flow not in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
 						continue
-					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, lw=4, color='black')
-					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, fill_max, flow, ha='left', 
+					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]-zero_point, lw=4, color='black')
+					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]-zero_point, fill_max, flow, ha='left', 
 						va='bottom', rotation=45, fontsize=34)
 
 			if exp == 'Experiment_25_Data':
 				for flow in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
-					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, lw=4, color='black')
-					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]/60, fill_max, flow, ha='left', 
+					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]-zero_point, lw=4, color='black')
+					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]-zero_point, fill_max, flow, ha='left', 
 						va='bottom', rotation=45, fontsize=34)
 
 			# Plot front door open for experiments where door was opened
 			if exp not in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data']:
 				if 'Front Door Open' in all_exp_events[exp[:-4]+ 'Events'].index.values:
-					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']/60, lw = 4, color='black')
-					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']/60, fill_max, 'Front Door Open', 
+					ax1.axvline(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']-zero_point, lw = 4, color='black')
+					ax1.text(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['Front Door Open']-zero_point, fill_max, 'Front Door Open', 
 						ha='left', va='bottom', rotation=45, fontsize=34)
 
 			if section == 'Door_Control':
 				if exp == 'Experiment_3_Data':
-					ax1.axvline(521/60, lw=4, color = 'black')
-					ax1.text(519/60, fill_max, 'Door Controlled', ha='left', va='bottom', rotation=45, fontsize=34)
+					ax1.axvline(521-zero_point, lw=4, color = 'black')
+					ax1.text(519-zero_point, fill_max, 'Door Controlled', ha='left', va='bottom', rotation=45, fontsize=34)
 				if exp == 'Experiment_15_Data':
-					ax1.axvline(351/60, lw=4, color = 'black')
-					ax1.text(351/60, fill_max, 'Door Controlled', ha='left', va='bottom', rotation=45, fontsize=34)
-
-			if exp in all_flow_data.keys():
-				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60, 
-				# plt.xlim([0, 
-							# all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60])
-							np.minimum(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60, np.max(all_flow_data[exp].index.values)/60)])
-			else:
-				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60, 
-							10.5])
-
-			#For Experiment 14 & 17 Adjust the end chart time.
-			if exp == 'Experiment_14_Data':
-				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60,12])
-			if exp == 'Experiment_17_Data':
-				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60,10])
-			if exp == 'Experiment_25_Data':
-				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][0]-0)/60,
-					# all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60] )
-					5])
-
-			if section == 'Door_Control':
-				if exp == 'Experiment_6_Data':
-					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15)/60, 
-						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+105)/60])
-				else:
-					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15)/60, 
-						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+90)/60])
-
-			
-			#For Exterior Attacks Set the graph to start 60 seconds before attack. 
-			if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
-				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-60)/60,
-					np.minimum(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']/60, np.max(all_flow_data[exp].index.values)/60)])
-						
-			#For Pushing Fire Set chart to end 60 seconds after suppression
-			if section == 'Pushing_Fire':
-				if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data']:
-					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15)/60,
-						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+90)/60])
-				else:
-					plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60,
-						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+90)/60])
+					ax1.axvline(351-zero_point, lw=4, color = 'black')
+					ax1.text(351-zero_point, fill_max, 'Door Controlled', ha='left', va='bottom', rotation=45, fontsize=34)
 
 			if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
 				plt.subplots_adjust(top=0.70, right = 0.85)
@@ -295,6 +257,45 @@ for section in experiment.keys():
 				plt.subplots_adjust(top=0.70, right = 0.85)
 			else:
 				plt.subplots_adjust(top=0.70)
+
+			if exp in all_flow_data.keys():
+				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-zero_point, 
+							np.minimum(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']-zero_point, np.max(all_flow_data[exp].index.values)-zero_point)])
+			else:
+				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-zero_point, 
+							(10.5*60)-zero_point])
+
+			#For Experiment 14 & 17 Adjust the end chart time.
+			if exp == 'Experiment_14_Data':
+				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-zero_point,(12*60)-zero_point])
+			if exp == 'Experiment_17_Data':
+				plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]/60,(10*60)-zero_point])
+			if exp == 'Experiment_25_Data':
+				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][0]-0)/60,(5*60)-zero_point])
+
+			if section == 'Door_Control':
+				if exp == 'Experiment_6_Data':
+					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15-zero_point), 
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+105-zero_point)])
+				else:
+					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15-zero_point), 
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+105-zero_point)])
+
+			
+			#For Exterior Attacks Set the graph to start 60 seconds before attack. 
+			if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data', 'Experiment_21_Data']:
+				plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-60-zero_point),
+					np.minimum(all_exp_events[exp[:-4] + 'Events']['Time_Seconds']['End Experiment']-zero_point, np.max(all_flow_data[exp].index.values)-zero_point)])
+						
+			#For Pushing Fire Set chart to end 60 seconds after suppression
+			if section == 'Pushing_Fire':
+				if exp in ['Experiment_18_Data', 'Experiment_19_Data', 'Experiment_20_Data']:
+					plt.xlim([(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-15-zero_point),
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+90-zero_point)])
+				else:
+					plt.xlim([all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]-zero_point,
+						(all_exp_events[exp[:-4] + 'Events']['Time_Seconds'][2]+90-zero_point)])
+
 
 			fig.set_size_inches(20, 20)
 			
@@ -323,12 +324,14 @@ for section in experiment.keys():
 					ax1.legend(h1+h2, l1+l2, bbox_to_anchor=(1.13, 1.03), loc='lower right', fontsize=40, handlelength=3, labelspacing=.15)
 					plt.subplots_adjust(top=.9)
 
+			ax1.tick_params(axis='x', which='major', pad=15)
+
 			if not os.path.exists(output_location_section +  exp[:-5] + '/'):
 				os.makedirs(output_location_section +  exp[:-5] + '/')
 
 			# plt.show()
 			# exit()
-			
+
 			plt.savefig(output_location_section +  exp[:-5] + '/' + sensor +'.pdf')
 		plt.close('all')
 
@@ -483,10 +486,10 @@ gas_cooling_plots = pd.DataFrame({'1TC':['1TC7','1TC6','1TC5','1TC4','1TC3','1TC
 						   		 '4TC':['8TC7','8TC6','8TC5','8TC4','8TC3','8TC2','8TC1']})
 
 
-chart_limits = {'Pulse_95gpm':[340,370], 'Long_Pulse_95gpm':[370,405], 'Sweep_Pulse_95gpm':[405,590],
-				'Narrow_Fog_Sweep_95gpm':[590, 750], 'Pulse_150gpm':[750, 800], 'Long_Pulse_150gpm':[800,870],
-				'Sweep_Pulse_150gpm':[870, 1005], 'Narrow_Fog_Sweep_150gpm':[1005,1100],
-				'Wall_Ceiling_Wall_150gpm':[1100,1200]}
+chart_limits = {'Pulse_95gpm':[340,370,346.24], 'Long_Pulse_95gpm':[370,405,373.54], 'Sweep_Pulse_95gpm':[405,590,414.34],
+				'Narrow_Fog_Sweep_95gpm':[590, 750, 620.44], 'Pulse_150gpm':[750, 800, 762.94], 'Long_Pulse_150gpm':[800,890, 807.54],
+				'Sweep_Pulse_150gpm':[870, 1005, 890.24], 'Narrow_Fog_Sweep_150gpm':[1005,1100,1029.44],
+				'Wall_Ceiling_Wall_150gpm':[1100,1200,1141.94]}
 
 exp = 'Experiment_25_Data'
 
@@ -521,7 +524,7 @@ for plot in gas_cooling_plots.columns:
 
 		if exp in all_flow_data.keys():
 			ax2 = ax1.twinx()
-			ax2.plot(all_flow_data[exp].index.values, all_flow_data[exp]['GPM'], lw=6, color='#1f77b4',)
+			ax2.plot(all_flow_data[exp].index.values-chart_limits[chart][2], all_flow_data[exp]['GPM'], lw=6, color='#1f77b4',)
 			ax2.set_ylim(0  ,160)
 			ax2.set_ylabel('Flow Rate (Gallons Per Minute)', fontsize=48)
 			ax2.tick_params(axis='y', labelsize=44)
@@ -537,7 +540,7 @@ for plot in gas_cooling_plots.columns:
 
 			channel_label = all_gas_channels['Title'][channel]
 
-			ax1.plot(all_exp_data[exp][channel].index, all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
+			ax1.plot(all_exp_data[exp][channel].index-chart_limits[chart][2], all_exp_data[exp][channel], lw = 4, marker=next(plot_markers), markevery=mark,
 								label = channel_label, markersize=15 )
 
 		h1, l1 = ax1.get_legend_handles_labels()
@@ -548,13 +551,13 @@ for plot in gas_cooling_plots.columns:
 		for flow in all_exp_events[exp[:-4]+'Events']['Flow_Time'].dropna().index.values:
 			if all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow] < chart_limits[chart][1]:
 				if all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow] > chart_limits[chart][0]:
-					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], lw=4, color='black')
-					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow], 
+					ax1.axvline(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]-chart_limits[chart][2], lw=4, color='black')
+					ax1.text(all_exp_events[exp[:-4]+'Events']['Flow_Time'][flow]-chart_limits[chart][2], 
 						y_max, flow, ha='left', 
 						va='bottom', rotation=45, fontsize=34)
 
 		plt.subplots_adjust(top=0.65, right=0.85)
-		plt.xlim(chart_limits[chart])
+		plt.xlim([chart_limits[chart][0]-chart_limits[chart][2],chart_limits[chart][1]-chart_limits[chart][2]])
 		ax1.tick_params(axis='x', which='major', pad=15)
 
 		fig.set_size_inches(20, 18)
@@ -903,6 +906,8 @@ for vic in ['Vic 1', 'Vic 3']:
 print ('---------- Average Moisture Charts by Vent & Location -----')
 
 moisture_data_average = pd.DataFrame()
+
+experiments = os.listdir(data_location_moisture)
 
 for exp in natsorted(experiments):
 	if exp.endswith('.csv'):
