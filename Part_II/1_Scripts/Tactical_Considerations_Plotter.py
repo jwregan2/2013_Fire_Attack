@@ -218,19 +218,20 @@ plt.yticks(fontsize=44)
 window = all_exp_data['Experiment_18_Data'][['1BDP1','1BDP2','1BDP3','1BDP4','1BDP5']]
 door = all_exp_data['Experiment_18_Data'][['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5']]
 
+zero_point = all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream']
 
-plt.plot(window.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Window Velocity', markersize=15)
-plt.plot(door.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Door Velocity', markersize=15)
+plt.plot(window.mean(axis=1).index-zero_point, window.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Window Velocity', markersize=15)
+plt.plot(door.mean(axis=1).index-zero_point, door.mean(axis=1), lw = 4, marker=next(plot_markers), markevery=5, label = 'Avg. Door Velocity', markersize=15)
 
 plt.ylim([-10,10])
-plt.axvline(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'], lw=4, color='black')
-plt.text(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream'],10, 'BR1 Window Solid Stream', ha='left', 
+plt.axvline(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream']-zero_point, lw=4, color='black')
+plt.text(all_exp_events['Experiment_18_Events']['Flow_Time']['BR1 Window Solid Stream']-zero_point,10, 'BR1 Window Solid Stream', ha='left', 
 					va='bottom', rotation=45, fontsize=34)
 
 plt.axhline(0, lw=7, color = 'black')
 
 flow_data = all_flow_data['Experiment_18_Data']['GPM'] 
-plt.fill_between(flow_data.index.values, -10,  10, where =  flow_data > 10, facecolor='blue', alpha=0.1)
+plt.fill_between(flow_data.index.values-zero_point, -10,  10, where =  flow_data > 10, facecolor='blue', alpha=0.1)
 
 ax2 = ax1.twinx()
 ax2.set_ylim(0,2000)
@@ -238,16 +239,17 @@ ax2.set_ylabel('Temperature ($^\circ$F)', fontsize=48)
 ax2.tick_params(axis='y', labelsize=44)
 
 roomtemp = all_exp_data['Experiment_18_Data'][['1TC1','1TC3','1TC5','1TC7']]
-ax2.plot (roomtemp.mean(axis=1), lw = 4, color='green', markevery=5, label = 'Avg. Room Temp', markersize=15)
+ax2.plot (roomtemp.mean(axis=1).index-zero_point, roomtemp.mean(axis=1), lw = 4, color='green', markevery=5, label = 'Avg. Room Temp', markersize=15)
 
 h1, l1 = ax1.get_legend_handles_labels()
 h2, l2 = ax2.get_legend_handles_labels()
 ax1.legend(h1+h2, l1+l2, loc='upper right', fontsize=40, handlelength=2, labelspacing=.15)
 
-plt.xlim([315,350])
+plt.xlim([-10,45])
 plt.subplots_adjust(top=0.70, left=.15, right=0.88)
 fig.set_size_inches(20, 18) 
 plt.tick_params(axis='x', which='major', pad=20)
+plt.xticks(np.arange(-10, 45,5))
 
 if not os.path.exists(output_location +  'Steam_Expansion/'):
 	os.makedirs(output_location +  'Steam_Expansion/')
