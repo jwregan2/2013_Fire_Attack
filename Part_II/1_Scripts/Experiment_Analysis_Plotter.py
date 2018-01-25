@@ -82,7 +82,9 @@ channels = {'Flow_vs_Shutdown':{'End_Hall':['3TC7','3TC6','3TC5','3TC4','3TC3','
 							'Front_Door_Flow':['7BDP1','7BDP2','7BDP3','7BDP4','7BDP5'],
 							'Bedroom_1_Door':['2BDP1','2BDP2','2BDP3','2BDP4','2BDP5'],
 							'Bedroom_2_Door':['3BDP1','3BDP2','3BDP3','3BDP4','3BDP5'],
-							'Bedroom_3_Door':['5BDP1','5BDP2','5BDP3','5BDP4','5BDP5']},
+							'Bedroom_4_Door':['5BDP1','5BDP2','5BDP3','5BDP4','5BDP5'],
+							'Bedroom_4_Temps':['8TC1', '8TC3', '8TC5', '8TC7'],
+							'Bedroom_1_Temps':['1TC1', '1TC3', '1TC5', '1TC7']},
 			'Door_Control':{'Bedroom_1_Temperature':['1TC1', '1TC3', '1TC5', '1TC7'],
 							'Start_Hall_Flow':['6BDP1','6BDP2','6BDP3','6BDP4','6BDP5'],
 							'Hall_Heat_Flux':['1HF1','1HF3','1HF5']}}
