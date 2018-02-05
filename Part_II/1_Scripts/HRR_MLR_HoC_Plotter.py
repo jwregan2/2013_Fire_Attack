@@ -58,6 +58,7 @@ for exp in experiments:
 	print(exp + '_hrr')
 
 mlr_data = pd.read_csv(mlr_data_location + 'Mass_Loss_Rate_Data.csv')#.set_index('Seconds')
+mlr_data[exp] = mlr_data[exp]*0.454
 mlr_data['Seconds'] = mlr_data['Seconds']/60
 mlr_data = mlr_data.set_index('Seconds')
 print(exp + '_mlr')
@@ -103,6 +104,7 @@ for exp in experiments:
 	print(exp + '_HoC')
 
 	mlr_data = pd.read_csv(mlr_data_location + 'Mass_Loss_Rate_Data.csv')
+	mlr_data[exp] = mlr_data[exp]*0.454
 	mlr_data['Seconds'] = mlr_data['Seconds']/60
 	# mlr_data = mlr_data.set_index('Seconds')
 	print(exp + '_HoC')
