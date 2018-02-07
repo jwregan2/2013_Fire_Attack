@@ -72,7 +72,7 @@ for plot in plots.keys():
 	for exp in plots[plot]:
 		print('		' + exp)
 		ax1.plot(hrr_data[exp]['Heat Release Rate'], label= print_name[exp][0] + ' HRR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
-		ax2.plot(pd.rolling_mean(-mlr_data[exp]*0.454.diff(10),10), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
+		ax2.plot(pd.rolling_mean(-mlr_data[exp].diff(10),10), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 		ax1.set_xlabel('Time (min)', fontsize=14)
 		end_time[exp] = end_time[exp]/60
 	plt.xlim([0,end_time[exp]])
@@ -103,7 +103,6 @@ for exp in experiments:
 	print(exp + '_HoC')
 
 	mlr_data = pd.read_csv(mlr_data_location + 'Mass_Loss_Rate_Data.csv')
-	mlr_data[exp] = mlr_data[exp]*0.454
 	mlr_data['Seconds'] = mlr_data['Seconds']/60
 	# mlr_data = mlr_data.set_index('Seconds')
 	print(exp + '_HoC')
