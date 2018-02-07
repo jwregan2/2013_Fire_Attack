@@ -46,6 +46,7 @@ print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'strip
 end_time = {'fireattack_bed_1':1532, 'fireattack_bed_2':1532, 'stripedchair_2':1385, 'stripedchair_3':1385, 'yellowchair_1':857, 'yellowchair_2':857, 'fr_couch1':4173}
 
 all_MLR_data = pd.read_csv(data_location + 'Mass_Loss_Rate_Data.csv').set_index('Seconds')
+
 print(all_MLR_data)
 
 plots = {'couch':['fr_couch1'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
@@ -54,12 +55,13 @@ for plot in plots.keys():
 
 	height = 0 
 	for exp in plots[plot]:
+		# all_MLR_data[exp] = all_MLR_data[exp]*1000
 		print('		' + exp)
 		plt.plot(-all_MLR_data[exp].diff(10), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6, label= print_name[exp][0] + ' MLR')
 	plt.xlim([0,end_time[exp]])
 	plt.legend(numpoints=1, loc='upper right')
 	plt.grid(linestyle='-',linewidth = 1.5)
-	plt.ylabel('Mass Loss Rate (kg/s)', fontsize=16)
+	plt.ylabel('Mass Loss Rate (g/s)', fontsize=16)
 	plt.xlabel('Time (s)', fontsize=16)
 	plt.xticks(fontsize=16)
 	plt.yticks(fontsize=16) 
