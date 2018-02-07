@@ -47,7 +47,7 @@ experiments = ['fireattack_bed_1', 'fireattack_bed_2', 'stripedchair_2', 'stripe
 print_name = {'fireattack_bed_1':['Bed 1'], 'fireattack_bed_2':['Bed 2'], 'stripedchair_2':['Striped Chair 2'], 'stripedchair_3':['Striped Chair 3'], 'yellowchair_1':['Yellow Chair 1'], 'yellowchair_2':['Yellow Chair 2'], 'fr_couch1':['Couch']}
 plots = {'couch':['fr_couch1'], 'all_bed':['fireattack_bed_1', 'fireattack_bed_2'], 'all_striped_chair':['stripedchair_2', 'stripedchair_3'], 'all_yellow_chair':['yellowchair_1', 'yellowchair_2']}
 
-end_time = {'fireattack_bed_1':1532, 'fireattack_bed_2':1532, 'stripedchair_2':1385, 'stripedchair_3':1385, 'yellowchair_1':857, 'yellowchair_2':857, 'fr_couch1':4173}
+end_time = {'fireattack_bed_1':1532, 'fireattack_bed_2':1532, 'stripedchair_2':1385, 'stripedchair_3':1385, 'yellowchair_1':750, 'yellowchair_2':750, 'fr_couch1':4173}
 
 
 hrr_data = {}
@@ -72,7 +72,7 @@ for plot in plots.keys():
 	for exp in plots[plot]:
 		print('		' + exp)
 		ax1.plot(hrr_data[exp]['Heat Release Rate'], label= print_name[exp][0] + ' HRR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
-		ax2.plot(pd.rolling_mean(-mlr_data[exp].diff(2),10), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
+		ax2.plot(pd.rolling_mean((-mlr_data[exp].diff(2)),50), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 		ax1.set_xlabel('Time (min)', fontsize=14)
 		end_time[exp] = end_time[exp]/60
 	plt.xlim([0,end_time[exp]])
