@@ -85,7 +85,9 @@ for plot in plots.keys():
 
 	ax1.grid(linestyle='-',linewidth = 1.5)
 	plt.xticks(fontsize=16)
-	plt.yticks(fontsize=16)
+	ax1.tick_params(labelsize=16)
+	ax2.tick_params(labelsize=16)
+	# plt.yticks(fontsize=16)
 	plt.subplots_adjust(top=0.8, right = 0.85)
 	# fig.set_tight_layout(True)
 	plt.savefig(output_location + plot + '_HRR_MLR.png')
