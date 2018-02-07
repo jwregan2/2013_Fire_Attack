@@ -72,12 +72,12 @@ for plot in plots.keys():
 	for exp in plots[plot]:
 		print('		' + exp)
 		ax1.plot(hrr_data[exp]['Heat Release Rate'], label= print_name[exp][0] + ' HRR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
-		ax2.plot(pd.rolling_mean(-mlr_data[exp].diff(10),10), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
+		ax2.plot(pd.rolling_mean(-mlr_data[exp].diff(2),10), label= print_name[exp][0] + ' MLR', color = next(it), lw=1.25, marker=next(plot_markers), markevery=int(mark_freq), mew=1.5,mec='none', ms=6)
 		ax1.set_xlabel('Time (min)', fontsize=14)
 		end_time[exp] = end_time[exp]/60
 	plt.xlim([0,end_time[exp]])
 	ax1.set_ylabel('Heat Release Rate (kW)',  fontsize=14)
-	ax2.set_ylabel('Mass Loss Rate (kg/s)',  fontsize=14)
+	ax2.set_ylabel('Mass Loss Rate (g/s)',  fontsize=14)
 
 	h1, l1 = ax1.get_legend_handles_labels()
 	h2, l2 = ax2.get_legend_handles_labels()
